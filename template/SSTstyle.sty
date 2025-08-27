@@ -1,0 +1,111 @@
+% sststyle.sty
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{sststyle}[2025/07/01 SST unified style]
+
+
+
+% === Draft Options ===
+\newif\ifsstdraft
+% \sstdrafttrue
+\ifsstdraft
+\RequirePackage{showframe}
+\fi
+
+% === Load Once ===
+\RequirePackage{ifthen}
+\newboolean{sststyleloaded}
+\ifthenelse{\boolean{sststyleloaded}}{}{\setboolean{sststyleloaded}{true}
+
+% === Page ===
+\RequirePackage[a4paper, margin=2.5cm]{geometry}
+
+% === Fonts ===
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[english]{babel}
+\RequirePackage{textgreek}
+\RequirePackage{mathpazo}
+\RequirePackage[scaled=0.95]{inconsolata}
+\RequirePackage{helvet}
+
+% === Math ===
+\RequirePackage{amsmath, amssymb, mathrsfs, physics}
+\RequirePackage{siunitx}
+\sisetup{per-mode=symbol}
+
+% === Tables ===
+\RequirePackage{graphicx, float, booktabs}
+\RequirePackage{array, tabularx, multirow, makecell}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\newenvironment{tighttable}[1][]{\begin{table}[H]\centering\renewcommand{\arraystretch}{1.3}\begin{tabularx}{\textwidth}{#1}}{\end{tabularx}\end{table}}
+\RequirePackage{etoolbox}
+\newcommand{\fitbox}[2][\linewidth]{\makebox[#1]{\resizebox{#1}{!}{#2}}}
+
+% === Graphics ===
+\RequirePackage{tikz}
+\usetikzlibrary{3d, calc, arrows.meta, positioning}
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\RequirePackage{xcolor}
+
+% === Code ===
+\RequirePackage{listings}
+\lstset{basicstyle=\ttfamily\footnotesize, breaklines=true}
+
+% === Theorems ===
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+
+% === TOC ===
+\RequirePackage{tocloft}
+\setcounter{tocdepth}{2}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\itshape}
+\renewcommand{\cftsecleader}{\cftdotfill{.}}
+\renewcommand{\contentsname}{\centering \Huge\textbf{Contents}}
+
+% === Sections ===
+\RequirePackage{sectsty}
+\sectionfont{\Large\bfseries\sffamily}
+\subsectionfont{\large\bfseries\sffamily}
+
+% === Bibliography ===
+
+
+% === Links ===
+\RequirePackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue,
+    pdftitle={The Vortex \AE ther Model},
+    pdfauthor={Omar Iskandarani},
+    pdfkeywords={vorticity, gravity, \ae ther, fluid dynamics, time dilation, SST}
+}
+\urlstyle{same}
+\RequirePackage{bookmark}
+
+% === Misc ===
+\RequirePackage[none]{hyphenat}
+\sloppy
+\RequirePackage{empheq}
+\RequirePackage[most]{tcolorbox}
+\newtcolorbox{eqbox}{colback=blue!5!white, colframe=blue!75!black, boxrule=0.6pt, arc=4pt, left=6pt, right=6pt, top=4pt, bottom=4pt}
+\RequirePackage{titling}
+\RequirePackage{amsfonts}
+\RequirePackage{titlesec}
+\RequirePackage{enumitem}
+
+\AtBeginDocument{\RenewCommandCopy\qty\SI}
+
+\pretitle{\begin{center}\LARGE\bfseries}
+\posttitle{\par\end{center}\vskip 0.5em}
+\preauthor{\begin{center}\large}
+\postauthor{\end{center}}
+\predate{\begin{center}\small}
+\postdate{\end{center}}
+
+
+\endinput
+}
