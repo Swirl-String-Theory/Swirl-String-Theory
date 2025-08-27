@@ -1,0 +1,53 @@
+%! Author = Omar Iskandarani
+%! Title = ...
+%! Date = xx-xx-2025
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxxxxxx
+
+% === Metadata ===
+\newcommand{\papertitle}{....}
+\newcommand{\paperdoi}{10.5281/zenodo.xxxxxxxx}
+
+
+\documentclass[a4paper,12pt]{article}
+\usepackage{SSTstyle}
+
+\usepackage{import}
+\usepackage{subfiles}
+
+
+\input{SSTstyle.sty}
+\input{SST_appendix_setup.sty}
+\begin{document}
+
+    % === Title page ===
+    \titlepageOpen
+
+
+    \begin{abstract}
+
+    \end{abstract}
+
+    \titlepageClose
+    \fi
+
+% ============= BEGIN of content ============
+
+    \tableofcontents
+
+    \section{Introduction}\label{sec:introduction}
+    \input{01_section}
+
+    \appendix
+    \def\standalonechapter{false}
+    \subfile{A1_Appendix.tex}  % Sets standalone=false
+    \subfile{appendix_2.tex}
+
+% ============= END of content ============
+
+    \bibliographystyle{unsrt}
+    \bibliography{../references}
+
+\end{document}

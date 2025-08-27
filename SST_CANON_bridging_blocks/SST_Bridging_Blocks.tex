@@ -1,0 +1,66 @@
+%! Author = Omar Iskandarani
+%! Title = Swirl-Strings: Bridging Blocks for Modern Physics and String Methods in Fluid Dynamics
+%! Date = xx-xx-2025
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxxxxxx
+
+% === Metadata ===
+\newcommand{\papertitle}{Swirl-Strings: Bridging Blocks for Modern Physics and String Methods in Fluid Dynamics}
+\newcommand{\paperdoi}{10.5281/zenodo.xxxxxxxx}
+
+
+\documentclass[a4paper,12pt]{article}
+
+
+\usepackage{import}
+\usepackage{subfiles}
+
+
+\input{../template/SSTstyle.sty}
+\input{../template/SST_appendix_setup.sty}
+\begin{document}
+
+    % === Title page ===
+    \titlepageOpen
+
+
+    \begin{abstract}
+
+    \end{abstract}
+
+    \titlepageClose
+    \fi
+
+    \ifdefined\standalonechapter
+    \section{\papertitle}
+    \else
+    \fi
+% ============= BEGIN of content ============
+
+    \tableofcontents
+
+    \section{Introduction}\label{sec:introduction}
+    \input{sections/main_1}
+
+    \appendix
+    \def\standalonechapter{false}
+
+    \subfile{sections/Addendum_1.tex}
+    \subfile{sections/Addendum_2.tex}
+    \subfile{sections/Addendum_A.tex}  % Sets standalone=false
+    \subfile{sections/Addendum_B.tex}
+    \subfile{sections/Addendum_C.tex}
+    \subfile{sections/Addendum_D.tex}
+    \subfile{sections/Addendum_E.tex}
+    \subfile{sections/Addendum_F.tex}
+    \subfile{sections/Addendum_G.tex}
+    \subfile{sections/Addendum_H.tex}
+
+% ============= END of content ============
+
+    \bibliographystyle{unsrt}
+    \bibliography{bridging_blocks_references}
+
+\end{document}

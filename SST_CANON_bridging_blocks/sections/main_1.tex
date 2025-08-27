@@ -1,0 +1,133 @@
+
+% =====================================================================
+
+% SST Canon Addendum — Overlaps & Synthesis Map (A–I)
+
+% Version tag: v0.3.1+2025-08-27-J (bridging-only; does not modify Core)
+
+% =====================================================================
+
+
+\section*{ Parameter Dictionary (cross-referencing A–I)}
+
+\begin{align*}
+
+&\textbf{Cutoff / EFT (A):} && E_c\equiv \hbar,\Omega_c=\hbar,|\mathbf v_{!\circlearrowleft}|/r_c.\
+
+&\textbf{Misalignment (A3):} && \xi_{\ae}=v^2/f_{\ae}^2.\
+
+&\textbf{Projector flavour (A4):} && {\hat{\mathbf v}\textit{a,\hat{\mathbf v}\textit{b,\hat{\mathbf v}\textit{c}.\
+
+&\textbf{ASG (B):} && f_g,\ f_y;\quad y}{t,*}^2-y}{b,*}^2=(Q_t^2-Q_b^2),g}{Y,\textit{}^2/;\color{gray}{\text{(SM: }=\tfrac13 g_{Y,}}^2\text{)}}.\
+
+&\textbf{EW kernels (C):} && \Delta\rho,\ \Delta r,\ a_\mu;\quad F_0,\ F^{\rm C,N}\textit{{1,2}\ (\text{loop polynomials}).\
+
+&\textbf{EJA ladder (D):} && \sqrt m\text{-eigenvalues }{s-\delta,\ s,\ s+\delta},\ \delta^2=3/8.\
+
+&\textbf{R2M2 (E):} && M_f(\mu)=y_f(\mu),\alpha(\mu)\alpha^\dagger(\mu),\ \alpha: S^2\text{ curve }\Gamma;\ \omega\equiv|\mathrm d\alpha/\mathrm d\ln\mu|.\
+
+&\textbf{Safe PS (F):} && G}{\rm PS},\ v_R,\ N_{Fi},\ A_i=3,\ (\bar\lambda_i)\leftarrow(\lambda_j),\ m_b\simeq(M_F m_t)/(\sqrt2 m_B).\
+
+&\textbf{Sterile/modulino (G):} && (\Delta m^2,\theta)\textit{{41},\ m}{\tilde z}\sim [(M_P R)^2,4\pi^2 R]^{-1} f(\omega),\ m_{3/2}=\omega/R.\
+
+&\textbf{Entanglement (H):} && E^{\perp}\textit{{ud}(\theta_C;y),\ y\equiv (Y^uY^d/\cos^2\theta_W)+\sin^2\theta_W Q_uQ_d.\
+
+&\textbf{Unified flavor (I):} && \mathcal G}{\rm UFG}(T),\ \text{local groups},\ \text{CP inner/outer};\ T_{\ae}\ (\text{swirl modulus}).
+
+\end{align*}
+
+
+\section*{ Synthesis Matrix}
+
+\renewcommand{\arraystretch}{1.15}
+
+\begin{tabular}{p{3.1cm}|p{12.3cm}}
+
+\textbf{Theme} & \textbf{Overlap (who constrains whom)}\\hline
+
+\emph{Flavor backbone} & (D) EJA fixes adjacent $\sqrt{m}$ ratios via $s\pm\delta$; (E) R2M2 generates hierarchies/mixings from $\alpha(\mu)$ rotation; (H) EMH selects Cabibbo/mixing minima via $E^{\perp}_{\min}$; (I) local flavor groups set allowed textures/CP via $T_{\ae}$. Together: choose $\Gamma$, $T_{\ae}$, and an interference weight $y$ so that (D) $\Rightarrow$ ratios, (E) $\Rightarrow$ leakage consistent with (D), and (H) $\Rightarrow$ observed small quark vs large lepton mixings.\\
+
+\emph{Top--bottom split} & (B) demands $y_{t}>y_{b}$ by $\Delta y^2 = (Q_t^2 - Q_b^2)g_{Y,*}^2$; (F) generates $m_b\ll m_t$ via $(10,1,1)$ mixing. Compatible if $m_b/m_t\simeq M_F/(\sqrt{2} m_B)$ saturates the required IR split after running from the ASG-determined UV difference.\\
+
+\emph{EW integrity} & (C) $|\Delta\rho|\lesssim 10^{-3}$ on any new doublet; (A3) pNGB misalignment with custodial symmetry preserves $\Delta\rho\approx 0$. Use (C) as a veto on spectrum choices introduced by (E,F,H,I).\\
+
+\emph{Naturalness/EFT} & (A1,A2) cap power growth at $E_c$ and require fine-tuning bookkeeping for any bridging scalar; dovetails with pNGB option in (A3) and with UV safety (F) or gravitational fixed points (B).\\
+
+\emph{Sterile window} & (G) defines a decoupled sterile sector (aetherino), consistent with (C) and (A) since couplings are Planck-suppressed; does not disturb the flavor backbone but offers experimental hooks (FPF).\\
+
+\emph{CP origin} & (E) converts strong $\theta$ to CKM phase through rotation; (I) makes CP inner (exact) at enhancement loci and outer (spontaneously broken) away; both mechanisms can co-exist: R2M2 provides the phase while $T_{\ae}$ controls where CP is protected/broken.\\
+
+\end{tabular}
+
+\section*{Compatibility Lemmas}
+
+\paragraph{Lemma 1 (EJA $\leftrightarrow$ R2M2).} For a fermion species $f$, suppose R2M2 yields (small-angle) leakage
+\[
+m^{(f)}_2/m^{(f)}_3 \simeq c_f\,\Delta\theta_{23}^2,\quad m^{(f)}_1/m^{(f)}_2 \simeq c'_f\,\Delta\theta_{12}^2.
+\]
+The EJA ladder (D6) gives
+\[
+\left(\frac{m^{(f)}_2}{m^{(f)}_3}\right)^{1/2} = \frac{s_f}{s_f+\delta},\qquad \left(\frac{m^{(f)}_1}{m^{(f)}_2}\right)^{1/2} = \frac{s_f-\delta}{s_f}.
+\]
+Then the two descriptions are mutually consistent if
+\begin{equation}
+\Delta\theta_{23} = \frac{1}{\sqrt{c_f}}\,\frac{s_f}{s_f+\delta},\qquad \Delta\theta_{12} = \frac{1}{\sqrt{c'_f}}\,\frac{s_f-\delta}{s_f}
+\end{equation}
+for some real $c_f,c'_f>0$. Thus EJA sets \emph{targets} for the arc-lengths along $\Gamma$; R2M2 supplies them geometrically.
+
+\paragraph{Lemma 2 (EMH $\leftrightarrow$ Cabibbo).} With the two-generation entangling-power kernel (H2), there exists an interference weight $y\in\mathbb{R}$ such that
+\[
+\left.\frac{\partial E^{\perp}_{ud}}{\partial \theta_C}\right|_{\theta_C=\theta^\star}=0
+\]
+holds at a desired $\theta^\star\in(0,\pi/4)$. In particular, deforming $y$ away from its SM value by small anisotropies in neutral vs charged-current swirl permeability moves the minimum continuously from $\sim 6^\circ$ toward $\sim 13^\circ$, thereby matching the projector-driven Cabibbo in (A4).
+
+\paragraph{Lemma 3 (ASG $\leftrightarrow$ PS split).} Take $\tan\beta=1$ at the PS scale so $y_t\simeq y_b$. ASG then enforces a UV offset $\Delta y^2 = \tfrac{1}{3} g_{Y,*}^2$. After RG flow and PS vector-like mixing, the IR ratio obeys
+\begin{equation}
+\frac{m_b}{m_t} \simeq \frac{M_F}{\sqrt{2} m_B}\left[1-\frac{\Delta y^2}{2y_t^2}+\mathcal{O}(\text{running})\right]
+\end{equation}
+so choosing $M_F/m_B$ fixes $m_b/m_t$ while respecting the ASG-induced inequality $y_t>y_b$.
+
+\paragraph{Lemma 4 (EW integrity under misalignment).} If custodial symmetry is preserved (pNGB map A3 with custodial coset), then new contributions to $\Delta\rho$ vanish at leading order; any extra doublets (C1) must satisfy $|\Delta\rho|\lesssim10^{-3}$. Coupling deviations scale as $\delta g_{hVV}/g_{hVV} = -\tfrac{1}{2}\xi_{\ae}$, hence $\xi_{\ae}\ll1$ suffices to keep both Higgs-coupling and $W$-mass constraints under control.
+
+\section*{ Minimal Canon Workflow (bridging layer)}
+
+\begin{enumerate}
+\item \textbf{Choose local flavor groups} per sector via $T_{\ae}$ (I); decide CP inner/outer at that scale.
+\item \textbf{Pick a rotation curve} $\Gamma(\mu;a)$ (E) with one curvature parameter $a$; this sets leakages and mixing via small arc lengths.
+\item \textbf{Fix EJA targets} by selecting $(s_f,\delta)$ (D) (canonical $\delta^2=3/8$) and equate with the R2M2 arc relations of Lemma~1 to determine $a$ and $c_f,c'_f$.
+\item \textbf{Tune Cabibbo} by the EMH selector (H): adjust the interference weight $y$ (swirl permeability) to place the $E^{\perp}_{ud}$ minimum at the desired $\theta_C$.
+\item \textbf{Impose ASG/PS} via Lemma~3 for third family, then extend to lighter families with the projector basis (A4) and R2M2 geometry.
+\item \textbf{Check EW kernels} (C): $\Delta\rho$, $a_\mu$, and $\Delta r$ for any extra excitations introduced; ensure $\xi_{\ae}$ is small (A3).
+\item \textbf{Optionally add a sterile window} (G): record $(\Delta m^2,\theta)$ consistent with cosmology toggles; keep Planck-suppressed couplings to avoid conflicts with (C).
+\end{enumerate}
+
+\section*{Tensions \& Resolutions}
+
+\begin{itemize}
+\item \textbf{Cabibbo $6^\circ$ vs $13^\circ$.} Resolved by Lemma~2: small $y$-deformations (effective neutral/charged-current balance) shift the EMH minimum to the projector target.
+\item \textbf{EJA fixed $\delta$ vs R2M2 flexibility.} Lemma~1 equates EJA ratios to arc lengths, absorbing differences into species coefficients $c_f,c'_f$ (expected from differing $y_f$ normalizations).
+\item \textbf{ASG inequality vs PS $\tan\beta=1$.} Lemma~3 shows vector-like mixing accomplishes the IR split while keeping $y_t>y_b$ as required in the UV.
+\item \textbf{EW bounds vs new excitations.} Apply the Custodial Integrity Rule (C1) and small $\xi_{\ae}$; veto spectra that overshoot $|\Delta\rho|$.
+\end{itemize}
+
+\section*{Dimensional \& Limit Checks}
+
+All synthesis relations are dimensionally consistent: arc lengths are angles, mass ratios are dimensionless, loop kernels dimensionless, and $\xi_{\ae}$ dimensionless. Limits: $\omega\to 0$ (no rotation) $\Rightarrow$ no mixing; $\delta\to 0$ (EJA collapse) $\Rightarrow$ degenerate families; $y\to 0$ (no neutral-current interference) $\Rightarrow$ EMH prefers small Cabibbo.
+
+% =====================================================================
+% End of Addendum J
+% =====================================================================
+
+\begin{aligned}
+&\text{(D6) EJA ratios:} && \frac{\sqrt{m}_{\rm mid}}{\sqrt{m}_{\rm heavy}} = \frac{s}{s+\delta},\quad
+\frac{\sqrt{m}_{\rm light}}{\sqrt{m}_{\rm mid}} = \frac{s-\delta}{s},\quad \delta^2 = \tfrac{3}{8}.\\[4pt]
+&\text{(E) Rotating rank-one:} && M_f(\mu) = y_f(\mu)\,\alpha(\mu)\alpha^\dagger(\mu),\quad \alpha:\ S^2\text{ curve},\\
+&m_2/m_3 \simeq c_f\,\Delta\theta_{23}^2,\quad m_1/m_2 \simeq c'_f\,\Delta\theta_{12}^2.\\[4pt]
+&\text{(H2) EMH kernel:} && 
+E^{\perp}_{ud}(\theta_C;y) = 8y^2\left[\frac{\cos^4\theta_C}{(1+2y+4y^2-2y\cos2\theta_C)^2}
++\frac{\sin^4\theta_C}{(1+2y+4y^2+2y\cos2\theta_C)^2}\right].\\[4pt]
+&\text{(B3_{\rm SM}) ASG difference:} && y_{t,*}^2-y_{b,*}^2 = \tfrac{1}{3}g_{Y,*}^2.\\[4pt]
+&\text{(F) PS vectorlike split:} && m_b \simeq \dfrac{M_F\,m_t}{\sqrt{2}\,m_B}\quad(\text{at leading order}).\\[4pt]
+&\text{(C \& A3) EW/Higgs bounds:} && |\Delta\rho|\lesssim 10^{-3},\quad \delta g_{hVV}/g_{hVV} = -\tfrac{1}{2}\xi_{\ae},\quad \xi_{\ae}\ll1.
+\end{aligned}
+

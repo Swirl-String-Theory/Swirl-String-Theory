@@ -1,0 +1,210 @@
+%! Author = Omar Iskandarani
+%! Title = ......
+%! Date = .....
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxxxxxx
+
+% =====================================================================
+% SST Canon Addendum — Bridging Blocks
+% Version tag: v0.3.1+2025-08-27 (conforms to Canon v0.3.1)
+% Persona: Bridging (does not modify Core Postulates)
+% =====================================================================
+
+% === Metadata ===
+\newcommand{\papertitle}{....}
+\newcommand{\paperdoi}{10.5281/zenodo.xxxxxxxx}
+
+
+\ifdefined\standalonechapter\else
+% Standalone mode
+\documentclass[11pt]{article}
+\input{../../template/SSTstyle.sty}
+\input{../../template/SST_appendix_setup.sty}
+\begin{document}
+
+  % === Title page ===
+  \titlepageOpen
+
+  \begin{abstract}
+
+
+  \end{abstract}
+
+  \titlepageClose
+  \fi
+
+  \ifdefined\standalonechapter
+  \section{\papertitle}
+  \else
+  \fi
+% ============= Begin of content ============
+
+% =====================================================================
+% SST Canon Addendum — Safe Pati–Salam Bridge
+% Version tag: v0.3.1+2025-08-27 (Addendum F; conforms to Canon v0.3.1)
+% Persona: Bridging (does not modify Core Postulates)
+% =====================================================================
+
+  \section*{Addendum F: Asymptotically Safe Pati–Salam as an SST Bridge}
+
+      \subsection*{F1. Group, matching, and scale landmarks}
+
+          \textbf{Gauge group.} \; $G_{\rm PS}=SU(4)\otimes SU(2)_L\otimes SU(2)_R$.
+          Matching at the PS breaking scale $v_R$:
+          \begin{equation}
+          g_3=g_4,\qquad
+          g_{B-L}=\sqrt{\tfrac{3}{8}}\;g_3.
+          \end{equation}
+
+          \textbf{Phenomenological bound.} \; Kaon–decay constraints are encoded as a hard lower limit
+          \begin{equation}
+          v_R \;\gtrsim\; 2\times10^{3}\ \text{TeV}.
+          \end{equation}
+
+          \textbf{SST map.} \; Identify the $U(1)_{B-L}$ generator with a swirl–circulation charge; the PS–breaking vev $v_R$ sets a swirl–EFT matching scale in the Canon tables.
+
+      \subsection*{F2. Safety via large $N_F$ and bubble resummation}
+
+          Introduce sets of vector–like multiplets
+          \[
+              N_{F4}\,(\mathbf 4,\mathbf 1,\mathbf 1)\;\oplus\;
+              N_{F2L}\,(\mathbf 1,\mathbf 3,\mathbf 1)\;\oplus\;
+              N_{F2R}\,(\mathbf 1,\mathbf 1,\mathbf 2),
+          \]
+          with $N_{Fi}\!\gg\!1$.
+          Define
+          \begin{equation}
+          \alpha_i \equiv \frac{g_i^2}{(4\pi)^2},\qquad
+          A_i = 4\,\alpha_i\,T_R\,N_{Fi},\qquad i\in\{2L,2R,4\}.
+          \end{equation}
+          The higher–order (bubble) contribution to the gauge $\beta$ functions reads schematically
+          \begin{equation}
+          \beta_i^{\rm ho} \;=\; \frac{2\,A_i\,\alpha_i^2}{3\,N_{Fi}}\;H_{1i}(A_i),
+          \end{equation}
+          with a nonperturbative pole yielding an interacting UV fixed point at
+          \begin{equation}
+          A_i \;=\; 3.
+          \end{equation}
+
+          \textbf{Unification selector.} \; Choose reps such that $A_{2L}=A_{2R}=A_4$ to drive $g_L,g_R,g_4$ to a common interacting fixed point (“safe unification”). A representative UV crossover scale for sample $(N_{F2L},N_{F2R},N_{F4})$ choices sits near
+          \[
+              \mu \sim 5\times10^{8}\ \mathrm{GeV}.
+          \]
+
+          \paragraph{SST interpretation.}
+              Vector–like families act as dense swirl microstructure (vortex–knot multiplets) whose net effect is to anti–screen all three non–abelian sectors equally when their swirl charges are matched, implementing an SST analogue of fixed–point unification without enlarging the gauge group.
+
+  \subsection*{F3. Scalar (bi–doublet) $\to$ 2HDM matching}
+
+      At PS breaking, the scalar bi–doublet $\Phi\sim(1,2,2)$ matches onto a two–Higgs–doublet potential with couplings $\bar\lambda_i$ related to PS quartics $\lambda_j$ via
+      \begin{align}
+      \bar\lambda_1&=\lambda_1, & \bar\lambda_2&=\lambda_1, &
+      \bar\lambda_3&=2\lambda_1, & \bar\lambda_4&=4(-2\lambda_2+\lambda_4),\\
+      \bar\lambda_5&=4\lambda_2, & \bar\lambda_6&=-\lambda_3, &
+      \bar\lambda_7&=\lambda_3. &&
+      \end{align}
+      \textbf{Placement.} Record this map in the Canon “SST$\leftrightarrow$EWSB” dictionary; it composes cleanly with the misalignment adapter (Addendum~A3) for pNGB scenarios.
+
+  \subsection*{F4. Yukawas, seesaw, and $m_b$–$m_t$ splitting}
+
+      With Yukawas $y$, $y_c$ and
+      \[
+          \langle\Phi\rangle=\mathrm{diag}(u_1,u_2),\qquad
+          \tan\beta\equiv \frac{u_1}{u_2},\qquad
+          v=\sqrt{u_1^2+u_2^2}=174~\mathrm{GeV},
+      \]
+      the third–family masses at tree level are
+      \begin{equation}
+      m_t=m_{\nu_\tau}=\bigl(y\sin\beta+y_c\cos\beta\bigr)\,v,\qquad
+      m_b=m_{\tau}=\bigl(y\cos\beta+y_c\sin\beta\bigr)\,v.
+      \end{equation}
+      A type–I seesaw with $N_L\sim(1,1,1)$ and $M_R=y_\nu v_R$ yields one light $\nu_\tau$ with
+      \begin{equation}
+      m_{\nu_\tau}\;=\;M_N\,\frac{m_t^2}{m_D^2},\qquad
+      m_D=\sqrt{m_t^2+M_R^2}.
+      \end{equation}
+
+      \textbf{Bottom–top splitting via vector–like $F\sim(10,1,1)$.}
+      Mixing with the PS–triplet $B$ and singlet $E$ components (masses $m_B=y_F v_R/\sqrt{2}$, $M_F$ Dirac) generates, to leading order,
+      \begin{equation}
+      m_b\;\simeq\;\frac{M_F\,m_t}{\sqrt{2}\,m_B},\qquad
+      M_B=\frac{M_E}{\sqrt{2}}\simeq m_B,
+      \end{equation}
+      providing a technically natural path to $m_b\ll m_t$ while retaining $y\approx y_c$ near the PS scale.
+      \textit{Dimensional check:} the right–hand side has mass dimension one.
+
+      \paragraph{SST encoding.}
+          Treat the $(10,1,1)$ as a \emph{twist–parity}–odd swirl multiplet that couples only to the right–handed PS sector; the induced $m_b$ emerges from a suppressed cross–circulation between right– and left–handed swirl layers.
+
+  \subsection*{F5. Practical “safe window” for Canon tables}
+
+  \begin{itemize}
+  \item Use $v_R=2\times10^{3}\ \text{TeV}$ as a conservative default; annotate flows where $v_R\sim10^{4}\ \text{TeV}$ aids 125~GeV Higgs fits.
+  \item Example safe–unification choice: $N_{F2L}=35$, $N_{F2R}=140$, $N_{F4}=140$ (equal $A_i$). Record that the UV fixed point is encountered around $\mu\sim5\times10^{8}\ \text{GeV}$.
+  \item For Yukawa fits, a CP–symmetric choice $y=y_c$, $\tan\beta=1$ gives $m_t=\sqrt{2}\,y\,v$, implying $y\approx 0.66$ at the EW scale after running.
+  \end{itemize}
+
+  \subsection*{F6. Sanity checks}
+
+  \begin{itemize}
+  \item All $\bar\lambda_i$ maps are dimensionless and linear in PS quartics; custodial–symmetric limits are recovered for $\lambda_2,\lambda_3\to0$.
+  \item The $m_b$ relation scales as $1/v_R$; increasing $v_R$ suppresses $m_b$ at fixed $M_F,y_F$, consistent with decoupling.
+  \item The fixed–point condition $A_i=3$ is representation–independent once $T_R$ and $N_{Fi}$ are specified; equalization $A_{2L}=A_{2R}=A_4$ enforces safe unification.
+  \end{itemize}
+
+  \section*{References (Bib\TeX)}
+  \begin{verbatim}
+@article{MolinaroSanninoWang2018SafePS,
+  author        = {E. Molinaro and F. Sannino and Z. W. Wang},
+  title         = {Safe Pati-Salam},
+  year          = {2018},
+  eprint        = {1807.03669},
+  archivePrefix = {arXiv},
+  primaryClass  = {hep-ph}
+}
+@article{PatiSalam1974,
+  author  = {J. C. Pati and Abdus Salam},
+  title   = {Lepton number as the fourth color},
+  journal = {Phys. Rev. D},
+  volume  = {10},
+  pages   = {275--289},
+  year    = {1974},
+  doi     = {10.1103/PhysRevD.10.275}
+}
+@article{BardeenHillLindner1990,
+  author  = {W. A. Bardeen and C. T. Hill and M. Lindner},
+  title   = {Minimal Dynamical Symmetry Breaking of the Standard Model},
+  journal = {Phys. Rev. D},
+  volume  = {41},
+  pages   = {1647},
+  year    = {1990}
+}
+@article{AntipinEtAl2018LargeN,
+  author  = {A. Antipin and F. Sannino and K. Tuominen},
+  title   = {Resummations in Large-$N_F$ Gauge--Yukawa Theories},
+  journal = {Phys. Rev. D},
+  year    = {2018}
+}
+@article{BrancoFerreiraLavoura2012,
+  author  = {G. C. Branco and P. M. Ferreira and L. Lavoura and others},
+  title   = {Theory and phenomenology of two-Higgs-doublet models},
+  journal = {Phys. Rept.},
+  volume  = {516},
+  pages   = {1--102},
+  year    = {2012},
+  doi     = {10.1016/j.physrep.2012.02.002}
+}
+  \end{verbatim}
+
+
+
+% ============== End of content =============
+
+% === Bibliography (only for standalone) ===
+  \ifdefined\standalonechapter\else
+  \bibliographystyle{unsrt}
+
+\end{document}
+\fi

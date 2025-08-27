@@ -1,0 +1,143 @@
+%! Author = Omar Iskandarani
+%! Title = ......
+%! Date = .....
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxxxxxx
+
+% =====================================================================
+% SST Canon Addendum — Bridging Blocks
+% Version tag: v0.3.1+2025-08-27 (conforms to Canon v0.3.1)
+% Persona: Bridging (does not modify Core Postulates)
+% =====================================================================
+
+% === Metadata ===
+\newcommand{\papertitle}{....}
+\newcommand{\paperdoi}{10.5281/zenodo.xxxxxxxx}
+
+
+\ifdefined\standalonechapter\else
+% Standalone mode
+\documentclass[11pt]{article}
+\input{../../template/SSTstyle.sty}
+\input{../../template/SST_appendix_setup.sty}
+\begin{document}
+
+  % === Title page ===
+  \titlepageOpen
+
+  \begin{abstract}
+
+
+  \end{abstract}
+
+  \titlepageClose
+  \fi
+
+  \ifdefined\standalonechapter
+  \section{\papertitle}
+  \else
+  \fi
+% ============= Begin of content ============
+
+% =====================================================================
+% SST Canon Addendum — Bridging Block (FSM → SST/VAM)
+% Version tag: v0.3.1+2025-08-27-E (conforms to Canon v0.3.1)
+% Persona: Bridging (does not modify Core Postulates)
+% Source: Chan & Tsou, “The Framed Standard Model (I)” (2015)
+% =====================================================================
+
+  \section*{Addendum E: Framons and the Rotating Rank–One Mass (R2M2)}
+
+      \subsection*{E1. Framon fields as internal frames (dictionary)}
+          \textbf{FSM statement.} Introduce frame vectors (\emph{framons}) carrying both local and dual global indices under
+          $G=\mathrm{SU}(3)_c\times\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y$ and
+          $\tilde G=\widetilde{\mathrm{SU}}(3)\times\widetilde{\mathrm{SU}}(2)\times\widetilde{\mathrm{U}}(1)$.
+          The weak framon is an $\mathrm{SU}(2)$ doublet (the Higgs), the strong framon is a colour triplet, and invariance under $G\times\tilde G$ endows a global $\widetilde{\mathrm{SU}}(3)$ acting as generations.
+
+          \textbf{SST/VAM adapter.} Treat a framon as a \emph{swirl frame field} $\mathcal F(x)$ mapping a global flavour triad to the local vortex–knot basis. Invariants built from $\mathcal F$ generate the scalar sector, with the observed Higgs identified with the weak framon (no change to Core). Strong framons correspond to colour–charged swirl excitations confined inside hadronic bound states.
+
+      \subsection*{E2. Universal rank–one mass matrix (tree level)}
+          \textbf{FSM form.} For each fermion species $f\in\{u,d,\ell,\nu\}$,
+          \begin{equation}
+          \boxed{\quad M_f(\mu)\;=\; y_f(\mu)\,\alpha(\mu)\,\alpha^{\dagger}(\mu)\quad}
+          \label{eq:rank1}
+          \end{equation}
+          with a \emph{universal} unit vector $\alpha\in\mathbb R^3$ in generation space and a species–dependent scalar coefficient $y_f$.
+          At tree level, \eqref{eq:rank1} yields one massive generation and two zero eigenvalues.
+          \textit{Dimensional check:} $[M_f]=\mathrm{mass}$, $[y_f]=\mathrm{mass}$, $[\alpha]=1$.
+
+          \textbf{SST/VAM adapter.} Identify $\alpha$ with a normalized swirl–projector orientation. In a fixed orthonormal projector basis $\{\hat{\mathbf v}_1,\hat{\mathbf v}_2,\hat{\mathbf v}_3\}$ (cf.\ Addendum~A4), take
+          $\alpha(\mu)=\sum_i a_i(\mu)\,\hat{\mathbf v}_i$, with $\sum_i |a_i|^2=1$.
+
+      \subsection*{E3. RG–induced rotation and its kinematics}
+          \textbf{FSM mechanism.} Renormalization by \emph{strong framon} loops rotates the vacuum orientation in generation space; hence $\alpha(\mu)$ becomes scale–dependent. Denote by
+          $\Gamma:\ln\mu\mapsto \alpha(\mu)\in\mathbb S^2$ a unit–speed curve on the unit sphere, with speed
+          $\omega(\mu)=\bigl\Vert\mathrm d\alpha/\mathrm d\ln\mu\bigr\Vert$ and geodesic curvature $\kappa_g(\mu)$ on $\mathbb S^2$.
+
+          \textbf{Consequences (model–independent):}
+          \begin{itemize}
+          \item \emph{Mixing from misalignment.} For example,
+          $V_{tb}=\alpha(m_t)\!\cdot\!\alpha(m_b)=\cos\Delta\theta_{tb}$, where $\Delta\theta_{tb}$ is the arc length on $\Gamma$ between $m_t$ and $m_b$. Small–angle limit:
+          $1-|V_{tb}|\simeq \tfrac12\,\Delta\theta_{tb}^2$.
+          \item \emph{Hierarchy by leakage.} With $\alpha$ rotating, lower–generation masses are induced at their own scales:
+          $m_2/m_3\sim\mathcal O(\Delta\theta_{23}^2)$, $m_1/m_2\sim\mathcal O(\Delta\theta_{12}^2)$, up to species coefficients.
+          \item \emph{Texture features from geometry.} Corner suppression ($|V_{ub}|,|V_{td}|\ll|V_{us}|,|V_{cb}|$) and the pattern $|V_{us}|>|V_{cb}|$ emerge when the geodesic torsion on $\mathbb S^2$ vanishes (as it does) and $\kappa_g$ dominates sideways bending near one segment of $\Gamma$.
+          \end{itemize}
+
+          \textbf{SST/VAM adapter (operational rule).} To compute spectra and mixings at leading order:
+          (i) choose an admissible curve family $\Gamma(\mu;a)$ with one curvature parameter $a$;
+          (ii) set heavy–generation state vectors by $\mathbf t=\alpha(m_t)$, $\mathbf b=\alpha(m_b)$, etc.;
+          (iii) define the lighter states as orthonormal directions following the local Frenet frame of $\Gamma$;
+          (iv) assemble $V_{\rm CKM}$ from dot products $V_{ij}=\mathbf u_i\!\cdot\!\mathbf d_j$.
+          This realizes R2M2 inside SST without altering its core.
+
+      \subsection*{E4. $\theta_{\rm QCD}$ $\rightarrow$ CKM phase (bridging)}
+          Because $\mathrm{rank}\,M_f=1$ at each $\mu$, two chiral rotations are available to remove the QCD $\theta$ term at any fixed scale while keeping $M_f$ real. The \emph{scale variation} of $\alpha(\mu)$ transmits this rotation as a physical Kobayashi–Maskawa phase at nearby scales, providing a bridge from strong CP to CKM CP violation within the R2M2 scheme (no change to SST postulates).
+
+      \subsection*{E5. Phenomenology hooks (to be tested in SST)}
+          \begin{enumerate}
+          \item \textbf{Qualitative CKM/PMNS features from geometry:} corner suppression, $|V_{us}|\gg|V_{cb}|$ for quarks, and the possibility $m_u<m_d$ despite $m_t\!\gg\!m_b$. These map to curvature properties of $\Gamma$ and a fixed–point structure at high $\mu$.
+          \item \textbf{Higgs couplings and LFV decays (bridging signal):} if the weak framon mixes with strong–framon composites, second–generation Higgs decays ($H\!\to\!\mu^+\mu^-,\,c\bar c$) can be suppressed and a LFV mode $H\!\to\!\tau\mu$ at $\sim 10^{-4}$ may occur. SST can treat such effects via small misalignment terms in the swirl–Higgs sector (cf.\ Addendum~A3).
+          \item \textbf{Strong–framon composites ($H_K$) as dark matter candidates:} neutral, colour–singlet framon–antiframon bound states (notably $H_4, H_5$) may be stable. In SST this corresponds to confined colour–swirl excitations with vanishing weak charge; interaction rates are naturally suppressed.
+          \end{enumerate}
+
+      \subsection*{E6. Compact SST ruleset (RR1–SST)}
+          \begin{itemize}
+          \item \textbf{Rule E.1 (rank–one ansatz):} Use \eqref{eq:rank1} with a \emph{common} $\alpha(\mu)$ for all species at the \emph{same} $\mu$.
+          \item \textbf{Rule E.2 (scale–matching):} Define the heavy state of a species at its pole/running scale $\mu=m_3$; lighter states are evaluated at their own $\mu$ with the same $\alpha(\mu)$.
+          \item \textbf{Rule E.3 (mixing from rotation):} For leading estimates, use small–angle expansions in the arc distances between the $\mu$ intervals of neighbouring masses.
+          \item \textbf{Rule E.4 (geometry prior):} Adopt a one–parameter $\Gamma(\mu;a)$ with a sharp bend near one region and a UV fixed point where $\omega\to 0$. Fit $a$ and species $y_f$ to a minimal input set; predict the rest.
+          \end{itemize}
+
+      \subsection*{E7. Dimensions and limits}
+          \begin{itemize}
+          \item $[\alpha]=1$, $[y_f]=\mathrm{mass}$. If rotation is switched off ($\omega\to 0$), mixing vanishes and only one family is massive per species.
+          \item A UV fixed point with $\omega\to 0$ implies increasing mass ratios $m_2/m_3$ across $\ell,d,u$ in the order observed if $\omega$ grows towards the IR.
+          \end{itemize}
+
+  \section*{References (Bib\TeX)}
+      \begin{verbatim}
+@misc{ChanTsou2015FSMI,
+  author        = {Hong-Mo Chan and Sheung Tsun Tsou},
+  title         = {The Framed Standard Model (I): A Physics Case for Framing
+                   the Yang--Mills Theory},
+  year          = {2015},
+  eprint        = {1505.05472},
+  archivePrefix = {arXiv},
+  primaryClass  = {hep-ph}
+}
+      \end{verbatim}
+}
+
+
+
+% ============== End of content =============
+
+% === Bibliography (only for standalone) ===
+  \ifdefined\standalonechapter\else
+  \bibliographystyle{unsrt}
+  \bibliography{../bridging_blocks_references}
+\end{document}
+\fi

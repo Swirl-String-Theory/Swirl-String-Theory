@@ -1,0 +1,168 @@
+%! Author = Omar Iskandarani
+%! Title = ......
+%! Date = .....
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxxxxxx
+
+% =====================================================================
+% SST Canon Addendum — Bridging Blocks
+% Version tag: v0.3.1+2025-08-27 (conforms to Canon v0.3.1)
+% Persona: Bridging (does not modify Core Postulates)
+% =====================================================================
+
+% === Metadata ===
+\newcommand{\papertitle}{....}
+\newcommand{\paperdoi}{10.5281/zenodo.xxxxxxxx}
+
+
+\ifdefined\standalonechapter\else
+% Standalone mode
+\documentclass[11pt]{article}
+\input{../../template/SSTstyle.sty}
+\input{../../template/SST_appendix_setup.sty}
+\begin{document}
+
+  % === Title page ===
+  \titlepageOpen
+
+  \begin{abstract}
+
+
+  \end{abstract}
+
+  \titlepageClose
+  \fi
+
+  \ifdefined\standalonechapter
+  \section{\papertitle}
+  \else
+  \fi
+% ============= Begin of content ============
+
+
+% =====================================================================
+% Addendum D: CSD4 Projectors & Cabibbo–PMNS Linkage (King, 2014)
+% Source: S. F. King, "A model of quark and lepton mixing" (arXiv:1311.3295)
+% Persona: Bridging (does not modify Core Postulates)
+% =====================================================================
+
+  \section*{Addendum D: CSD4 projectors and Cabibbo–PMNS linkage (bridging)}
+
+      \subsection*{D1. Technical synopsis (King, 2014)}
+          The ``tetra-model'' employs an $A_4$ family symmetry with Pati–Salam
+          $SU(4)_{\rm PS}\times SU(2)_L\times U(1)_R$ and a single vacuum-alignment vector
+          $(1,4,2)$ (CSD4) that controls both the lepton and up-quark sectors. Down-quark
+          and charged-lepton Yukawas are diagonal with Georgi–Jarlskog (GJ) factors; quark
+          mixing originates from $Y_u$ (equal to $Y_\nu$ up to Clebsch factors). The Cabibbo
+          angle then follows at leading order from the same $(1,4,2)$ column: $\theta_C\simeq 1/4 \approx 14^\circ$.
+
+          At the PS matching scale (LR convention),
+          \begin{equation}
+          Y_d=\begin{pmatrix}y_d&0&0\\[2pt]0&y_s&0\\[2pt]0&0&y_b\end{pmatrix},\quad
+          Y_e=\begin{pmatrix}y_d/3&0&0\\[2pt]0&3y_s&0\\[2pt]0&0&y_b\end{pmatrix},
+          \end{equation}
+          \begin{equation}
+          Y_u=\begin{pmatrix}
+          0&b\varepsilon&0\\
+          a\varepsilon^2&4b\varepsilon&0\\
+          a\varepsilon^2&2b\varepsilon&c
+          \end{pmatrix},\quad
+          Y_\nu=\begin{pmatrix}
+          0&b\varepsilon&0\\
+          a\varepsilon^2&4b\varepsilon&0\\
+          a\varepsilon^2&2b\varepsilon&c/3
+          \end{pmatrix},\quad
+          M_R=\mathrm{diag}\!\big(\varepsilon^4\tilde M_1,\ \varepsilon^2\tilde M_2,\ \tilde M_3\big).
+          \end{equation}
+          These yield the GJ relations $m_e=m_d/3$, $m_\mu=3m_s$, $m_\tau=m_b$.
+
+          After see-saw, the light-neutrino matrix is a sum of three rank-1 pieces aligned
+          with $(0,1,1)$, $(1,4,2)$ and the third-family direction, with a fixed phase $2\eta$:
+          \begin{equation}\label{eq:D_rank1}
+          m_\nu
+          = m_a\!\begin{pmatrix}0&0&0\\0&1&1\\0&1&1\end{pmatrix}
+          + m_b\, e^{2i\eta}\!\begin{pmatrix}1&4&2\\4&16&8\\2&8&4\end{pmatrix}
+          + m_c\!\begin{pmatrix}0&0&0\\0&0&0\\0&0&1\end{pmatrix},
+          \end{equation}
+          with $m_a\propto |a|^2 v_u^2/\tilde M_1$, $m_b\propto |b|^2 v_u^2/\tilde M_2$, $m_c\propto |c|^2 v_u^2/(9\tilde M_3)$.
+          Choosing $\eta=2\pi/5$ reproduces (normal hierarchy)
+          \[
+              \theta_{12}\!\approx\!34^\circ,\quad \theta_{23}\!\approx\!40^\circ,\quad
+              \theta_{13}\!\approx\!9^\circ,\quad \delta_\ell\!\approx\!260^\circ,\qquad
+              |m_{ee}|\!\approx\!1.5~\mathrm{meV}.
+          \]
+          RH-neutrino masses are hierarchical with $M_1\!:\!M_2\!:\!M_3\sim m_u^2:m_c^2:m_t^2$ (e.g.\ $M_1\!\sim\!10~\mathrm{TeV}$, $M_2\!\sim\!10^{10}~\mathrm{GeV}$, $M_3\!\sim\!10^{16}~\mathrm{GeV}$).
+
+      \subsection*{D2. Bridging primitives for SST/VAM}
+          We import King’s structure as projector primitives in the swirl–string (SST) / vorticity–anomaly (VAM) canon.
+
+          \paragraph{(i) Family projector basis.}
+              Define unit (not mutually orthogonal) directions
+              \begin{equation}
+              \hat{\mathbf v}_a=\frac{1}{\sqrt{2}}(0,1,1),\qquad
+              \hat{\mathbf v}_b=\frac{1}{\sqrt{21}}(1,4,2),\qquad
+              \hat{\mathbf v}_c=(0,0,1),
+              \end{equation}
+              to be used as rank-1 projectors $\hat{\mathbf v}_i\hat{\mathbf v}_i^{\!\top}$.
+
+          \paragraph{(ii) Swirl–mass ansatz (neutrinos).}
+              Adopt the CSD4 phase as a quantized circulation offset,
+              \begin{equation}\label{eq:D_swirl_mass}
+          m_\nu = \alpha\, \hat{\mathbf v}_a \hat{\mathbf v}_a^{\!\top}
+          + \beta\, e^{\,i\,4\pi/5}\, \hat{\mathbf v}_b \hat{\mathbf v}_b^{\!\top}
+          + \gamma\, \hat{\mathbf v}_c \hat{\mathbf v}_c^{\!\top},
+              \end{equation}
+              with $\alpha,\beta,\gamma>0$. Tuning $\beta/\alpha$ to $m_2/m_3$ and setting $\gamma$ fixes
+              $m_1$; the angles and $\delta_\ell$ then follow as in King.
+
+          \paragraph{(iii) Up-sector reuse and Cabibbo.}
+              Reuse $\hat{\mathbf v}_b$ as the dominant column in $Y_u$,
+              \begin{equation}
+              Y_u \ \propto\ \big[\ \hat{\mathbf v}_a\ \ \ \sqrt{21}\,\hat{\mathbf v}_b\ \ \ \hat{\mathbf v}_c\ \big]
+              \begin{pmatrix}a\varepsilon^2\\ b\varepsilon\\ c\end{pmatrix}^{\!\!\top}
+              \quad (\text{up to row relabellings}),
+              \end{equation}
+              to obtain $\theta_C\simeq 1/4$ at leading order, with CKM generated by small deformations.
+
+          \paragraph{(iv) Clebsch as a selection rule.}
+              Encode the $c/3$ entry of $Y_\nu$ as a \emph{topological coupling ratio} in the neutrino
+              channel (e.g.\ twist parity or circulation quantum) that suppresses the third-family right-swirl mode and enforces a normal hierarchy.
+
+  \subsection*{D3. Canon notes and implementation}
+      \begin{itemize}
+      \item Tag D2 as \emph{Bridging}. It constrains flavour textures but does not modify core SST postulates.
+      \item Cross-link to Addendum~A4 (projector template) and your knot taxonomy rules for how $\hat{\mathbf v}_i$ arise from overlap integrals on distinct knot/link classes.
+      \item Keep GJ relations as boundary conditions at the PS scale for $(Y_d,Y_e)$; propagate to pole masses in your mass tables.
+      \end{itemize}
+
+  \subsection*{D4. Quick checks (VAM pipeline)}
+      \begin{itemize}
+      \item Fit $\beta/\alpha$ to $m_2/m_3$, choose $\gamma$ for $m_1\simeq0.3~\mathrm{meV}$, and verify
+      $(\theta_{12},\theta_{23},\theta_{13},\delta_\ell)\approx(34^\circ,40^\circ,9^\circ,260^\circ)$.
+      \item Verify $\theta_C\simeq 14^\circ$ from the $\hat{\mathbf v}_b$ column at LO.
+      \item Record the implied RH scales $(M_1,M_2,M_3)$ in the Canon constants table for see-saw benchmarks.
+      \end{itemize}
+
+  \section*{References (Bib\TeX)}
+  \begin{verbatim}
+@article{King2014TetraModel,
+  author = {Stephen F. King},
+  title  = {A model of quark and lepton mixing},
+  journal= {arXiv:1311.3295 [hep-ph]},
+  year   = {2014},
+  url    = {https://arxiv.org/abs/1311.3295}
+}
+  \end{verbatim}
+
+
+
+% ============== End of content =============
+
+% === Bibliography (only for standalone) ===
+  \ifdefined\standalonechapter\else
+  \bibliographystyle{unsrt}
+
+\end{document}
+\fi

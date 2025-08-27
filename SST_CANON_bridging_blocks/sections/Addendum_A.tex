@@ -1,0 +1,156 @@
+%! Author = Omar Iskandarani
+%! Title = ......
+%! Date = .....
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxxxxxx
+
+% =====================================================================
+% SST Canon Addendum — Bridging Blocks
+% Version tag: v0.3.1+2025-08-27 (conforms to Canon v0.3.1)
+% Persona: Bridging (does not modify Core Postulates)
+% =====================================================================
+
+% === Metadata ===
+\newcommand{\papertitle}{....}
+\newcommand{\paperdoi}{10.5281/zenodo.xxxxxxxx}
+
+
+\ifdefined\standalonechapter\else
+% Standalone mode
+\documentclass[11pt]{article}
+\input{../../template/SSTstyle.sty}
+\input{../../template/SST_appendix_setup.sty}
+\begin{document}
+
+  % === Title page ===
+  \titlepageOpen
+
+  \begin{abstract}
+
+
+  \end{abstract}
+
+  \titlepageClose
+  \fi
+
+  \ifdefined\standalonechapter
+  \section{\papertitle}
+  \else
+  \fi
+% ============= Begin of content ============
+
+% =====================================================================
+% SST Canon Addendum — Bridging Blocks (EFT & Flavour)
+% Version tag: v0.3.1+2025-08-27 (conforms to Canon v0.3.1)
+% Persona: Bridging (does not modify Core Postulates)
+% =====================================================================
+
+  \section*{Addendum A: EFT Growth, Naturalness, and Flavour Projectors}
+
+      \subsection*{A1. SST ``No–Lose'' Lemma (EFT growth $\Rightarrow$ new swirl microstructure)}
+          \textbf{Statement.} Consider any SST effective operator of swirl–dimension $\mathcal D>4$ that induces a $2\!\to\!2$ amplitude
+          $\mathcal M(E)\sim (E/\Lambda_{\ae})^{\mathcal D-4}$. Perturbative unitarity then demands the onset of new microstructure at
+          \[
+              E_{\text{new}} \;\lesssim\; 4\pi\, \Lambda_{\ae}\, .
+          \]
+          Here we choose the geometric swirl cutoff in energy units
+          \[
+              \Lambda_{\ae}^{(E)} \equiv E_c
+              = \hbar\,\Omega_c
+              = \hbar\, \frac{\|\mathbf v_{\!\circlearrowleft}\|}{r_c}\, .
+          \]
+          \textit{Dimensional check:} $[\Omega_c]=\mathrm{s}^{-1}$,\; $[E_c]=\mathrm{J}$. Using the Canon constants
+          $\|\mathbf v_{\!\circlearrowleft}\|=1.09384563\times10^{6}\,\mathrm{m\,s^{-1}}$, $r_c=1.40897017\times10^{-15}\,\mathrm{m}$, $\hbar=1.054571817\times10^{-34}\,\mathrm{J\,s}$, we get
+          \[
+              \Omega_c\approx7.761\times10^{20}\,\mathrm{s}^{-1},\qquad
+              E_c\approx8.19\times10^{-14}\,\mathrm{J}\approx0.511\,\mathrm{MeV}.
+          \]
+          \textit{Interpretation:} Quadratic/power growth in any swirl–EFT amplitude must be cut off at (or below) the electron mass scale.
+
+      \subsection*{A2. Naturalness bookkeeping rule (quadratic sensitivity cap)}
+          For any \emph{bridging} scalar–sector parameter with mass dimension two, $\mu_{\ae}^2$, enforce the split
+          \[
+              \mu_{\ae}^2=\delta^{\mathrm{IR}}\mu_{\ae}^2+\delta^{\mathrm{UV}}\mu_{\ae}^2,
+          \]
+          with a minimal fine–tuning measure
+          \[
+              \Delta_{\ae}\;\equiv\;\frac{\delta^{\mathrm{IR}}\mu_{\ae}^2}{\mu_{\ae}^2}
+              \;\gtrsim\; \kappa\,\Big(\frac{E_c}{E_*}\Big)^{\!2},
+          \]
+          where $E_c=\hbar\,\|\mathbf v_{\!\circlearrowleft}\|/r_c$ (from A1), $E_*$ is the physical scale governed by $\mu_{\ae}^2$, and $\kappa$ is the largest loop coefficient (SST analogue of the top loop). \textit{Dimensional check:} $[\Delta_{\ae}]=1$.
+
+          \paragraph{Remark.} This rule either (i) motivates symmetry protection (pseudo–Nambu–Goldstone origin), or (ii) defers to an environmental/dynamical setting (relaxion–style) if protection is absent.
+
+  \subsection*{A3. Optional pNGB–misalignment adapter for EWSB (bridging)}
+      If the observed Higgs is realized as an emergent pNGB of a swirl–internal breaking $G_{\rm sw}\!\to\! H_{\rm sw}$, adopt the one–parameter misalignment map
+      \[
+          \boxed{\;
+          v=f_{\ae}\,\sin\!\Big(\tfrac{\Theta}{f_{\ae}}\Big),\quad \xi_{\ae}\equiv\frac{v^2}{f_{\ae}^2},\quad
+          \frac{g_{hVV}}{g_{hVV}^{\rm SM}}=\sqrt{1-\xi_{\ae}},\quad
+          \frac{g_{hhVV}}{g_{hhVV}^{\rm SM}}=1-2\xi_{\ae} \;}
+      \]
+      with $\xi_{\ae}\ll1$ required by Higgs–coupling fits. \textit{Dimensional check:} $[v]=[f_{\ae}]=\mathrm{energy}$.
+
+  \subsection*{A4. Flavour: rank–1 projector basis for neutrinos and up sector (bridging)}
+
+      \textbf{Normalized family directions}
+      \[
+          \hat{\mathbf v}_a=\tfrac{1}{\sqrt{2}}(0,1,1),\qquad
+          \hat{\mathbf v}_b=\tfrac{1}{\sqrt{21}}(1,4,2),\qquad
+          \hat{\mathbf v}_c=(0,0,1).
+      \]
+      (These unit vectors are \emph{not} mutually orthogonal; orthogonality is not required for a rank–1 projector sum.)
+
+      \textbf{Swirl–mass ansatz (neutrinos).} Normal hierarchy with a single quantized relative phase $\Delta\phi=4\pi/5$:
+      \[
+          \boxed{\;
+          m_\nu
+              = \alpha\, \hat{\mathbf v}_a \hat{\mathbf v}_a^{\!\top}
+              + \beta\, e^{i\,4\pi/5}\, \hat{\mathbf v}_b \hat{\mathbf v}_b^{\!\top}
+              + \gamma\, \hat{\mathbf v}_c \hat{\mathbf v}_c^{\!\top} \;}
+      \]
+      with $\alpha,\beta,\gamma>0$. For suitable $\beta/\alpha$ (fixed by $m_2/m_3$), this reproduces
+      $\theta_{12}\!\approx\!34^{\circ}$, $\theta_{23}\!\approx\!40^{\circ}$, $\theta_{13}\!\approx\!9^{\circ}$ and a leptonic CP phase $\delta_\ell\!\approx\!260^{\circ}$.
+
+      \textbf{Up–sector reuse and Cabibbo.} Reusing $\hat{\mathbf v}_b$ as the dominant column in $Y_u$ yields at leading order
+      $\theta_C\!\approx\!13\text{--}14^{\circ}$, with quark mixing generated predominantly from the up sector.
+
+      \textbf{Matching conditions (down vs.\ charged leptons).} Impose the Georgi–Jarlskog relations at the Pati–Salam matching scale as boundary data for the \emph{down}/charged–lepton sectors:
+      \[
+          \boxed{\; m_e=\tfrac{1}{3}m_d,\qquad m_\mu=3m_s,\qquad m_\tau=m_b\;}
+      \]
+      (This functions as a \emph{selection rule} in the SST coupling dictionary.)
+
+      \paragraph{Selection–rule note.} The factor $1/3$ effectively suppresses the third–family contribution in the neutrino channel; in SST this is encoded as a topological coupling ratio (e.g., twist parity or circulation quantum), making the hierarchy robust.
+
+  \subsection*{A5. Implementation notes}
+  \begin{itemize}
+  \item Tag A1--A4 as \emph{Bridging} in the Canon. They do not alter the core postulates; they constrain the EFT and provide a compact flavour template.
+  \item Place A3 in the ``SST\,$\leftrightarrow$\,EWSB Map'' subsection. Place A4 in the ``Flavour'' subsection, with a cross reference to your knot taxonomy rules.
+  \item Record constants and numerics in the Canon constants table (no new constants introduced).
+  \end{itemize}
+
+  \subsection*{A6. Sanity checks (dimensions and limits)}
+  \begin{itemize}
+  \item A1: $[E_c]=\mathrm{J}$; decoupling limit $r_c\!\to\!0$ with fixed $\|\mathbf v_{\!\circlearrowleft}\|$ pushes $E_c\!\to\!\infty$, restoring pure contact EFT.
+  \item A2: $\Delta_{\ae}$ is dimensionless; protection via symmetry (pNGB) corresponds to $\kappa\!\to\!0$ at leading order.
+  \item A3: $\xi_{\ae}\!\to\!0$ recovers SM–like couplings; $\xi_{\ae}\!\to\!1$ approaches the maximally composite limit.
+  \item A4: The $\hat{\mathbf v}_i$ are unit vectors; orthogonality is not assumed—rank–1 projectors suffice for the texture.
+  \end{itemize}
+
+  \section*{References (Bib\TeX)}
+  \begin{verbatim}
+
+  \end{verbatim}
+
+
+% ============== End of content =============
+
+% === Bibliography (only for standalone) ===
+  \ifdefined\standalonechapter\else
+  \bibliographystyle{unsrt}
+
+\end{document}
+\fi

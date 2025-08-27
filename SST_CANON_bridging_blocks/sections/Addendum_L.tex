@@ -1,0 +1,172 @@
+%! Author = Omar Iskandarani
+%! Title = ......
+%! Date = .....
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxxxxxx
+
+% =====================================================================
+% SST Canon Addendum — Bridging Blocks
+% Version tag: v0.3.1+2025-08-27 (conforms to Canon v0.3.1)
+% Persona: Bridging (does not modify Core Postulates)
+% =====================================================================
+
+% === Metadata ===
+\newcommand{\papertitle}{....}
+\newcommand{\paperdoi}{10.5281/zenodo.xxxxxxxx}
+
+
+\ifdefined\standalonechapter\else
+% Standalone mode
+\documentclass[11pt]{article}
+\input{../../template/SSTstyle.sty}
+\input{../../template/SST_appendix_setup.sty}
+\begin{document}
+
+  % === Title page ===
+  \titlepageOpen
+
+  \begin{abstract}
+
+
+  \end{abstract}
+
+  \titlepageClose
+  \fi
+
+  \ifdefined\standalonechapter
+  \section{\papertitle}
+  \else
+  \fi
+% ============= Begin of content ============
+
+% =====================================================================
+% SST Canon Addendum — SU(2)⊗SU(4) Gauge Self-Energy Mass Map
+% Version tag: v0.3.1+2025-08-27-L (bridging-only; does not modify Core)
+% =====================================================================
+
+  \section*{Addendum L: \texorpdfstring{$SU(2)\otimes SU(4)$}{SU(2)xSU(4)} gauge self-energy mass map (bridging)}
+
+      \subsection*{L1. Scope and takeaway}
+          Marsch--Narita propose that light-fermion masses (first family; template for all) arise from gauge-field energy in each fermion's rest frame within a unified $SU(2)\otimes SU(4)$ model. This addendum records their kernels and provides an SST/VAM dictionary so the idea can be tested (or vetoed) inside the Canon without altering core postulates.
+
+      \subsection*{L2. Kernels captured from the paper}
+
+          \paragraph{Unified covariant structure.}
+              The $8\times 8$ gauge-field matrix enters the covariant derivative as
+              \begin{equation}
+              S_\mu \;=\; Q\,A_\mu \;+\; R\,Z_\mu \;+\; Q_2\,G^{(2)}_{\mu} \;+\; \frac{1}{\sqrt{3}}\,Q_3\,G^{(3)}_{\mu} \;+\; I_\mu,
+              \label{eq:L2.1}
+              \end{equation}
+              where $Q$ is the electromagnetic charge operator, $R$ the weak $Z$-charge operator, $Q_{2,3}$ are hadronic charge operators, and $I_\mu$ contains off-diagonal weak/strong exchange blocks (``leptoquark'' $V$, $W$, and gluon sub-structure).
+
+          \paragraph{Charge operators.}
+              With weak/strong couplings $g_2, g_4$, the electric unit and $Z$-charges are (paper conventions)
+              \begin{align}
+              e &= \frac{g_2\,g_4}{\sqrt{g_4^2 + \tfrac{2}{3}g_2^2}},
+              \qquad
+              Q \;=\; e\,\mathrm{diag}\!\Big(\tfrac{2}{3},\,\tfrac{2}{3},\,\tfrac{2}{3},\,0,\,-\tfrac{1}{3},\,-\tfrac{1}{3},\,-\tfrac{1}{3},\,-1\Big),
+              \label{eq:L2.2}\\[4pt]
+              R &= \frac{e}{2}\,
+              \mathrm{diag}\!\big(q_-,q_-,q_-,\ell_-,q_+,q_+,q_+,\ell_+\big),
+              \quad
+              \ell_\pm = \pm\sqrt{\tfrac{2}{3}}\frac{g_2}{g_4} \mp \sqrt{\tfrac{3}{2}}\frac{g_4}{g_2},
+              \quad
+              q_\pm = \pm\sqrt{\tfrac{2}{3}}\frac{g_2}{g_4} + \tfrac{1}{3}\sqrt{\tfrac{3}{2}}\frac{g_4}{g_2}.
+              \label{eq:L2.3}
+              \end{align}
+
+          \paragraph{Classical Coulomb mass heuristic.}
+              In natural units, the canonical-momentum replacement $P_\mu=p_\mu-eA_\mu$ and a static Coulomb potential lead heuristically to
+              \begin{equation}
+              m_e c^2 \;=\; \frac{e^2}{r_e},
+              \qquad
+              r_e \;=\; \alpha_e\,\lambda_e,
+              \qquad
+              \lambda_e \;=\; \frac{\hbar}{m_e c}.
+              \label{eq:L2.4}
+              \end{equation}
+
+          \paragraph{Short-range $Z$-Yukawa mass heuristic.}
+              Replacing $A_0$ by a Yukawa potential $Z_0=Y(r)=e^{-r/\lambda_Z}/r$ gives the species-dependent rest energy
+              \begin{equation}
+              m_j \;=\; M_Z\,
+              \Big(\frac{e_j}{e}\Big)^{\!2}\,
+              \alpha_e\,
+              \frac{e^{-x}}{x},
+              \qquad
+              x\equiv \frac{r}{\lambda_Z},
+              \qquad
+              \lambda_Z=\frac{\hbar}{M_Z c}.
+              \label{eq:L2.5}
+              \end{equation}
+              \textit{Dimensional checks.} $\alpha_e$ and $e_j/e$ are dimensionless; $e^{-x}/x$ is dimensionless; $M_Z$ sets the mass scale; hence $[m_j]=$ mass. The Coulomb form \eqref{eq:L2.4} is recovered from \eqref{eq:L2.5} in the formal limit $M_Z\!\to\!0$ (i.e.\ $\lambda_Z\!\to\!\infty$).
+
+  \subsection*{L3. SST/VAM dictionary and testable map}
+
+      We reinterpret \eqref{eq:L2.4}–\eqref{eq:L2.5} as \emph{swirl self-energies} of a knotted-vortex excitation interacting with emergent gauge sectors:
+      \begin{equation}
+      \boxed{~
+      m_j^{(\text{ae})}
+          \;=\;
+          \underbrace{\;\kappa_E\,q_{E,j}^2\,\frac{1}{r_\star}\;}_{\text{long-range (EM-like) swirl}}
+          \;+\;
+          \underbrace{\;\kappa_Z\,q_{Z,j}^2\,\alpha_e\,
+          \frac{e^{-\,r_\star/\lambda_Z}}{\,r_\star/\lambda_Z\,}\;}_{\text{short-range (Z-like) swirl}}
+          ~}
+      \label{eq:L3.1}
+      \end{equation}
+      with a single geometric regulator $r_\star\sim r_c$ (vortex-core scale) and sector ``swirl-charges'' $q_{E,j},q_{Z,j}$ inheriting the diagonal entries of $Q$ and $R$. Matching the neutrino fixes $\kappa_Z$ given $\lambda_Z$, while the electron fixes $\kappa_E$ (up to $r_\star$).
+
+      \paragraph{Lemma L.1 (Neutrino calibration).}
+          Given a target $m_\nu$ (from oscillation/global fits), choose $r_\star$ and $\kappa_Z$ such that \eqref{eq:L3.1} satisfies $m_\nu^{(\text{ae})}=m_\nu$ with $q_{E,\nu}=0$. This sets the \emph{short-range} normalization that then predicts \emph{minimal} contributions for neutral-current dominated species.
+
+      \paragraph{Lemma L.2 (Electron calibration).}
+          With $q_{E,e}=-1$ and $q_{Z,e}=\ell_+$, pick $\kappa_E$ (or $r_\star$) to reproduce $m_e$. This sets the \emph{long-range} normalization and bounds $r_\star$ relative to $r_c$ (Canon constants).
+
+      \paragraph{Cross-links.}
+      (i) Insert \eqref{eq:L3.1} as an \emph{IR seed} into the R2M2 rotation (Addendum~E) and EJA ratios (Addendum~D): the absolute masses fix the leakage normalizations $c_f,c'_f$ without changing ratios.
+          (ii) The $Z$-term scales with $M_Z$ and is thus consistent with the misalignment adapter in A3 (via $v$).
+          (iii) The diagonal structure is compatible with PS matching (Addendum~F) before vectorlike mixing.
+
+  \subsection*{L4. Consistency gates}
+
+  \begin{itemize}
+  \item \textbf{Custodial/EW veto:} any extra doublets or altered $Z$ couplings must obey $|\Delta\rho|\lesssim 10^{-3}$ and small $\xi_{\text{ae}}$ (Addendum~C/A3).
+  \item \textbf{UV caution:} \eqref{eq:L2.4} is a classical heuristic; within SST it only serves as an \emph{effective IR parametrization} of swirl self-energy, not a fundamental QED self-energy calculation.
+  \item \textbf{Limits:} $\alpha_e\!\to\!0 \Rightarrow m_j^{(\text{ae})}$ reduces to the long-range term; $M_Z\!\to\!\infty \Rightarrow$ short-range decouples.
+  \end{itemize}
+
+  \subsection*{L5. Minimal procedure}
+
+  \begin{enumerate}
+  \item Fix $\lambda_Z$ (input), choose $r_\star\sim r_c$ from Canon constants; solve Lemma~L.1 for $\kappa_Z$ at $m_\nu$.
+  \item Solve Lemma~L.2 for $\kappa_E$ at $m_e$; compute \emph{seed} masses $m_u,m_d$ from \eqref{eq:L3.1} using $q_{E/Z}$ entries.
+  \item Feed seeds into Addendum~J pipeline (EJA targets $\to$ R2M2 arc-lengths; EMH selector for Cabibbo) and apply EW vetoes.
+  \end{enumerate}
+
+  \section*{References (Bib\TeX)}
+  \begin{verbatim}
+@article{MarschNarita2025SU2SU4Mass,
+  author        = {Eckart Marsch and Yasuhito Narita},
+  title         = {On the Lagrangian and fermion mass of the unified SU(2) \otimes SU(4) gauge field theory},
+  year          = {2025},
+  eprint        = {2508.15332},
+  archivePrefix = {arXiv},
+  primaryClass  = {hep-ph},
+  note          = {v2}
+}
+  \end{verbatim}
+
+
+
+
+% ============== End of content =============
+
+% === Bibliography (only for standalone) ===
+  \ifdefined\standalonechapter\else
+  \bibliographystyle{unsrt}
+  \bibliography{../bridging_blocks_references}
+\end{document}
+\fi

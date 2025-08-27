@@ -1,0 +1,204 @@
+%! Author = Omar Iskandarani
+%! Title = ......
+%! Date = .....
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxxxxxx
+
+% =====================================================================
+% SST Canon Addendum — Bridging Blocks
+% Version tag: v0.3.1+2025-08-27 (conforms to Canon v0.3.1)
+% Persona: Bridging (does not modify Core Postulates)
+% =====================================================================
+
+
+\ifdefined\standalonechapter
+% Standalone mode
+% === Metadata ===
+\newcommand{\papertitle}{....}
+\newcommand{\paperdoi}{10.5281/zenodo.xxxxxxxx}
+\documentclass[11pt]{article}
+\input{../../template/SSTstyle.sty}
+\input{../../template/SST_appendix_setup.sty}
+\else
+\begin{document}
+
+  % === Title page ===
+  \titlepageOpen
+
+  \begin{abstract}
+
+
+  \end{abstract}
+
+  \titlepageClose
+  \fi
+
+  \ifdefined\standalonechapter
+  \section{\papertitle}
+  \else
+  \fi
+% ============= Begin of content ============
+
+
+% =====================================================================
+% Addendum E: No-Lose, Naturalness & pNGB Misalignment (Wulzer, 2019)
+% Source: A. Wulzer, "Behind the Standard Model" (arXiv:1901.01017)
+% Persona: Bridging (does not modify Core Postulates)
+% =====================================================================
+
+  \section*{Addendum E: Naturalness bounds and pNGB misalignment (bridging)}
+
+      \subsection*{E1. Load-bearing statements (from Wulzer)}
+          \paragraph{(i) Naturalness as a quantitative fine-tuning bound.}
+              Split the Higgs mass just below the SM cutoff:
+              \begin{equation}\label{eq:E_split}
+          m_H^2 \;=\; \underbrace{\delta^{\rm SM} m_H^2}_{E<\Lambda_{\rm SM}}
+          \;+\; \underbrace{\delta^{\rm BSM} m_H^2}_{E\ge \Lambda_{\rm SM}} .
+              \end{equation}
+              With SM quadratic sensitivity,
+              \begin{equation}\label{eq:E_quad}
+          \delta^{\rm SM} m_H^2
+          =\frac{3y_t^2}{4\pi^2}\Lambda_{\rm SM}^2
+          -\frac{3g_W^2}{8\pi^2}\!\left(\frac14+\frac{1}{8\cos^2\theta_W}\right)\!\Lambda_{\rm SM}^2
+          -\frac{3\lambda}{8\pi^2}\Lambda_{\rm SM}^2,
+              \end{equation}
+              the minimum fine-tuning obeys
+              \begin{equation}\label{eq:E_tuning}
+          \Delta \;\gtrsim\; \frac{\delta^{\rm SM} m_H^2}{m_H^2}
+          \;\approx\; \left(\frac{\Lambda_{\rm SM}}{450\,{\rm GeV}}\right)^{\!2}.
+              \end{equation}
+
+          \paragraph{(ii) No-Lose Theorems post-Higgs.}
+              After EWSB, no remaining EW/QCD amplitude exhibits forced power growth below $\sim 4\pi v$; only gravity ensures new physics at $M_{\rm Pl}$.
+
+          \paragraph{(iii) Composite Higgs misalignment.}
+              For $SO(5)/SO(4)$ pNGB Higgs,
+              \begin{equation}\label{eq:E_pNGB}
+          v=f\,\sin\!\Big(\frac{V}{f}\Big),\qquad \xi\equiv\frac{v^2}{f^2},
+          \qquad
+          \frac{g_{hVV}}{g_{hVV}^{\rm SM}}=\sqrt{1-\xi},\quad
+          \frac{g_{hhVV}}{g_{hhVV}^{\rm SM}}=1-2\xi,
+              \end{equation}
+              with SM recovered as $\xi\to0$.
+
+          \paragraph{(iv) If Nature is un-natural.}
+              Fallback origins for $m_H^2$: environmental (anthropic) selection; dynamical relaxation (relaxion).
+
+  \subsection*{E2. SST/VAM translations (canon add-ons)}
+      \paragraph{E2.1 No-Lose (SST version).}
+          If a swirl–EFT operator of dimension $\mathcal D>4$ induces $2\!\to\!2$ growth
+          $\mathcal M\sim (E/\Lambda_{\ae})^{\mathcal D-4}$, then new swirl microstructure must appear below
+          \begin{equation}\label{eq:E_nolose}
+          E \;\lesssim\; 4\pi\,\Lambda_{\ae},
+          \qquad
+          \Lambda_{\ae}^{(E)}\equiv E_c=\hbar\,\Omega_c=\hbar\,\frac{\|{\bf v}_{\!\circlearrowleft}\|}{r_c}.
+          \end{equation}
+          \emph{Canon:} restate \eqref{eq:E_nolose} next to Addendum~A1 and use $E_c$ as the default UV saturation scale for swirl loops.
+
+      \paragraph{E2.2 Naturalness bookkeeping (bridging sectors).}
+          For any SST mass-like parameter $\mu_{\ae}^2$,
+          \begin{equation}\label{eq:E_nat}
+          \mu_{\ae}^2=\delta^{\rm IR}\mu_{\ae}^2+\delta^{\rm UV}\mu_{\ae}^2,\qquad
+          \Delta_{\ae}\equiv\frac{\delta^{\rm IR}\mu_{\ae}^2}{\mu_{\ae}^2}
+          \;\gtrsim\; \kappa\left(\frac{E_c}{E_*}\right)^{\!2},
+          \end{equation}
+          with $E_c=\hbar \|{\bf v}_{\!\circlearrowleft}\|/r_c$ and $E_*$ the physical scale set by $\mu_{\ae}^2$; $\kappa$ is the largest loop coefficient. \emph{Canon:} track $\Delta_{\ae}$ in any scalar \emph{bridging} module (see Addendum~A2).
+
+      \paragraph{E2.3 Optional pNGB–Higgs map (SST$\leftrightarrow$EWSB).}
+          If the observed Higgs is emergent from $G_{\rm sw}\!\to\!H_{\rm sw}$, adopt
+          \begin{equation}\label{eq:E_xi}
+          v=f_{\ae}\,\sin\!\Big(\frac{\Theta}{f_{\ae}}\Big),\quad
+          \xi_{\ae}=\frac{v^2}{f_{\ae}^2},\quad
+          \frac{g_{hVV}}{g_{hVV}^{\rm SM}}=\sqrt{1-\xi_{\ae}},\quad
+          \frac{g_{hhVV}}{g_{hhVV}^{\rm SM}}=1-2\xi_{\ae}},
+\end{equation}
+with $\xi_{\ae}\ll1$ from LHC coupling fits. \emph{Canon:} include \eqref{eq:E_xi} in the “SST$\leftrightarrow$EWSB map” (bridging).
+
+\paragraph{E2.4 Fallback origins for $\mu_{\ae}^2$.}
+\emph{Environmental:} allow $\mu_{\ae}^2$ to scan across æther vacua (Weinberg-style selection). \emph{Dynamical:} a slow “swirl-axion” $a(x)$ that couples to helicity density $\,{\bf v}\!\cdot\!\boldsymbol\omega\,$ and halts via backreaction (relaxion analogue).
+
+\subsection*{E3. Minimal math blocks (dimension-checked)}
+\paragraph{E3.1 Swirl UV saturation.}
+For naive quadratic integrals,
+\begin{equation}
+\int^{\Lambda}\!\frac{d^3k}{(2\pi)^3}\,\frac{1}{k^2+m^2}
+\;\xrightarrow[\Lambda\to k_c=1/r_c]{\rm SST}\;
+\frac{k_c}{4\pi^2}=\frac{1}{4\pi^2 r_c},
+\end{equation}
+and the associated correction scales as
+\begin{equation}
+\delta\mu_{\ae}^2 \;\sim\; \kappa\,(\hbar\Omega_c)^2
+=\kappa\left(\frac{\hbar\|{\bf v}_{\!\circlearrowleft}\|}{r_c}\right)^{\!2},\qquad
+[\delta\mu_{\ae}^2]={\rm energy}^2.
+\end{equation}
+
+\paragraph{E3.2 pNGB misalignment identities.}
+Collect the coupling relations:
+\begin{equation}
+\boxed{\
+v=f_{\ae}\sin(\Theta/f_{\ae}),\quad
+\xi_{\ae}=\frac{v^2}{f_{\ae}^2},\quad
+\frac{g_{hVV}}{g_{hVV}^{\rm SM}}=\sqrt{1-\xi_{\ae}},\quad
+\frac{g_{hhVV}}{g_{hhVV}^{\rm SM}}=1-2\xi_{\ae}\
+}
+\end{equation}
+with the SM limit $\xi_{\ae}\to0$.
+
+\subsection*{E4. Canon to-do (practical)}
+\begin{itemize}
+\item Add \eqref{eq:E_nolose} next to A1 as the \emph{No-Lose (swirl)} lemma and set $E_c$ as the default loop cutoff in Bridging modules.
+\item Enforce the bookkeeping rule \eqref{eq:E_nat} wherever $\mu_{\ae}^2$ appears; record $\Delta_{\ae}$ alongside fit parameters.
+\item If adopting an emergent/pNGB Higgs, register $\xi_{\ae}$ in the Canon constants and expose coupling ratios for phenomenology tables.
+\item Log the environmental/relaxion options as allowable origins for any remaining scalar mass terms (Bridging-only note).
+\end{itemize}
+
+\section*{References (Bib\TeX)}
+\begin{verbatim}
+@misc{Wulzer2019BehindSM,
+author        = {Andrea Wulzer},
+title         = {Behind the Standard Model},
+year          = {2019},
+eprint        = {1901.01017},
+archivePrefix = {arXiv},
+primaryClass  = {hep-ph}
+}
+@article{AgasheContinoPomarol2005MCHM,
+author  = {Kaustubh Agashe and Roberto Contino and Alex Pomarol},
+title   = {The Minimal Composite Higgs Model},
+journal = {Nucl. Phys. B},
+volume  = {719},
+pages   = {165--187},
+year    = {2005},
+doi     = {10.1016/j.nuclphysb.2005.04.035}
+}
+@article{GrahamKaplanRajendran2015Relaxion,
+author  = {Peter W. Graham and David E. Kaplan and Surjeet Rajendran},
+title   = {Cosmological Relaxation of the Electroweak Scale},
+journal = {Phys. Rev. Lett.},
+volume  = {115},
+number  = {22},
+pages   = {221801},
+year    = {2015},
+doi     = {10.1103/PhysRevLett.115.221801}
+}
+@book{PanicoWulzer2016Book,
+author    = {Giuliano Panico and Andrea Wulzer},
+title     = {The Composite Nambu--Goldstone Higgs},
+publisher = {Springer},
+year      = {2016},
+doi       = {10.1007/978-3-319-22617-0}
+}
+\end{verbatim}
+
+
+
+% ============== End of content =============
+
+% === Bibliography (only for standalone) ===
+  \ifdefined\standalonechapter\else
+  \bibliographystyle{unsrt}
+  \bibliography{../bridging_blocks_references}
+\end{document}
+\fi

@@ -1,0 +1,229 @@
+%! Author = Omar Iskandarani
+%! Title = ......
+%! Date = .....
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxxxxxx
+
+% =====================================================================
+% SST Canon Addendum — Bridging Blocks
+% Version tag: v0.3.1+2025-08-27 (conforms to Canon v0.3.1)
+% Persona: Bridging (does not modify Core Postulates)
+% =====================================================================
+
+% === Metadata ===
+\newcommand{\papertitle}{....}
+\newcommand{\paperdoi}{10.5281/zenodo.xxxxxxxx}
+
+
+\ifdefined\standalonechapter\else
+% Standalone mode
+\documentclass[11pt]{article}
+\input{../../template/SSTstyle.sty}
+\input{../../template/SST_appendix_setup.sty}
+\begin{document}
+
+  % === Title page ===
+  \titlepageOpen
+
+  \begin{abstract}
+
+
+  \end{abstract}
+
+  \titlepageClose
+  \fi
+
+  \ifdefined\standalonechapter
+  \section{\papertitle}
+  \else
+  \fi
+% ============= Begin of content ============
+
+
+% =====================================================================
+% SST Canon Addendum — FPF Modulino Oscillations & Scherk–Schwarz SUSY Bridge
+% Version tag: v0.3.1+2025-08-27-G (conforms to Canon v0.3.1)
+% Persona: Bridging (does not modify Core Postulates)
+% Source: Anchordoqui et al. (2024/25), SUSY at the FPF (arXiv:2410.16342v2)
+% =====================================================================
+
+  \section*{Addendum G: FPF modulino oscillations and Scherk--Schwarz SUSY (bridging)}
+
+      \subsection*{G1. (3+1) oscillation formalism for an eV--keV modulino}
+          Consider a sterile state $\tilde z$ (``modulino'') mixing with the three active neutrinos. In the short--baseline limit
+          $\Delta m^2_{21}L/E\ll1$, $\Delta m^2_{31}L/E\ll1$, the disappearance probability is
+          \begin{equation}
+          P_{\alpha\alpha}
+          \;=\;
+          1 - 4\,|U_{\alpha4}|^2\bigl(1-|U_{\alpha4}|^2\bigr)\,
+          \sin^2\!\Bigl(\frac{\Delta m^2_{41}\,L}{4E}\Bigr),
+          \qquad \alpha\in\{e,\mu,\tau\}.
+          \end{equation}
+          Oscillation maxima occur at $\Delta m^2_{41} L/(4E)=\pi/2$, i.e.
+          \begin{equation}
+          \Delta m^2_{41}\;\simeq\;\frac{\pi\,E}{2\,L}
+          \;\;\;\Rightarrow\;\;\;
+          \Delta m^2_{41}(\mathrm{eV}^2)\;\simeq\;\frac{\pi}{2\times1.27}\,
+          \frac{E(\mathrm{GeV})}{L(\mathrm{km})}
+          \approx 1.24\,\frac{E}{L}.
+          \end{equation}
+          For the FPF benchmark $L\simeq 600~\mathrm{m}$, $E\simeq 100~\mathrm{GeV}$ this gives
+          $\Delta m^2_{41}\sim \mathcal O(10^2)~\mathrm{eV}^2$.
+          \textit{Dimensional check:} $[\Delta m^2_{41}]=\mathrm{mass}^2$; the sine argument is dimensionless.
+
+      \subsection*{G2. Planck--suppressed mixing from SUSY breaking}
+          Assume supergravity--suppressed couplings between $\tilde z$ and SM fields after SUSY breaking:
+          \begin{equation}
+          \mathcal L_{\rm eff}\supset
+          \lambda_\alpha\,\overline{L}_\alpha H\,\tilde z+\text{h.c.},
+          \qquad
+          \lambda_\alpha \;=\; \alpha_\alpha\,\frac{m_{3/2}}{M_P},
+          \end{equation}
+          so that
+          \begin{equation}
+          m_{\nu_\alpha \tilde z}\;\equiv\;\eta\,\lambda_\alpha\,v
+          \;=\; \alpha_\alpha\,\eta\,\frac{m_{3/2}\,v}{M_P},
+          \end{equation}
+          with $m_{3/2}$ the gravitino mass, $M_P$ the reduced Planck mass, $v\simeq 174~\mathrm{GeV}$, and $\eta$ a renormalization factor. The active--sterile mixing angle obeys (for $m_4\gg m_{\nu_i}$)
+          \begin{equation}
+          \tan 2\theta_{\alpha\tilde z}
+          \;=\; \frac{m_{\nu_\alpha\tilde z}}{\,m_4-m_{\nu_i}\,}
+          \;\simeq\; \frac{\alpha_\alpha\,\eta}{m_4}\,
+          \frac{m_{3/2}\,v}{M_P}.
+          \end{equation}
+          \textit{Dimensional check:} $[\lambda_\alpha]=1$, $[m_{\nu_\alpha\tilde z}]=\mathrm{mass}$, $[\theta]=1$.
+
+      \subsection*{G3. Modulino mass from Scherk--Schwarz SUSY breaking (sequestered gravity)}
+          In 5D Scherk--Schwarz breaking along a compact extra dimension of radius $R$, the gravitino KK spectrum is
+          $M_n(\omega)=m_{3/2}+n/R$ with $m_{3/2}=\omega/R$ ($0<\omega<1/2$). One--loop gravitational mediation from the bulk to the brane generates a modulino Majorana mass
+          \begin{equation}
+          \boxed{\;
+          m_{\tilde z}
+              \;=\;
+              \frac{1}{R}\,\frac{1}{(M_P R)^2}\,\frac{1}{(4\pi)^2}\,f(\omega),
+              \qquad
+              f(\omega)\;=\;\frac{3}{4\pi^3}\,\mathrm{Im}\!\left[\operatorname{Li}_4\!\big(e^{2\pi i\omega}\big)\right]\; }
+          \end{equation}
+          with $f(\omega)\to 0$ at $\omega=\tfrac12$ by an $R$-symmetry. For $1/R\sim 10^{11\text{--}11.5}~\mathrm{GeV}$ and
+          $f(\omega)\sim 10^{-2}$, one finds $m_{\tilde z}\sim 10$--$500~\mathrm{eV}$,
+          i.e.\ $\Delta m^2_{41}\sim 10^{2}$--$10^{5}~\mathrm{eV}^2$.
+          \textit{Limit:} large-$R$ decoupling: as $R\!\to\!\infty$, $m_{\tilde z}\propto R^{-3}\to 0$.
+
+      \subsection*{G4. Cosmology constraints (BBN/CMB) and longevity}
+          For $m_4<2m_e$, the leading decay $\tilde z\!\to\!3\nu$ has width
+          \begin{equation}
+          \Gamma(\tilde z\to 3\nu)\;\simeq\;
+          \frac{G_F^2\,m_4^5}{768\,\pi^3}\,\sin^2(2\theta_{\alpha\tilde z})
+          \;\approx\;
+          8.7\times 10^{-28}\,\mathrm{s}^{-1}\,
+          \Bigl(\frac{\sin^2 2\theta}{10^{-2}}\Bigr)
+          \Bigl(\frac{m_4}{100\,\mathrm{eV}}\Bigr)^{\!5},
+          \end{equation}
+          so $\tilde z$ is cosmologically long--lived in the eV--keV range. Thermalization before neutrino decoupling raises $\Delta N_{\rm eff}$; a useful empirical fit is
+          \begin{equation}
+          \Delta m^2_{41}\,\sin^4 2\theta_{\alpha\tilde z}
+          \;\simeq\;
+          10^{-5}\,\mathrm{eV}^2\,
+          \ln^2\!\bigl(1-\Delta N_{\rm eff}\bigr),
+          \end{equation}
+          which can be satisfied either by small mixing or by extending the IR spectrum to allow invisible decays that reduce $\Delta N_{\rm eff}$.
+
+      \subsection*{G5. SST/VAM adapter}
+          \begin{itemize}
+          \item \textbf{Dictionary.} Introduce a neutral \emph{aetherino} $\psi_{\ae}$ (a fermionic swirl singlet). Bridge to the modulino by the identification $\psi_{\ae}\equiv\tilde z$ at the EFT level with Planck--suppressed mixing $\propto m_{3/2}/M_P$. No change to Core: $\psi_{\ae}$ is a bridging excitation external to the core hydrodynamic fields.
+          \item \textbf{FPF estimator.} For any proposed $(\Delta m^2,|U_{\mu4}|^2)$, the FPF disappearance amplitude is
+          $\mathcal A_{\mu\mu}=4|U_{\mu4}|^2(1-|U_{\mu4}|^2)$.
+          Oscillation maxima occur near
+          $\Delta m^2\!\approx\! (\pi/2)(E/L)/(1.27)$, providing a direct map from Canon $(\Delta m^2,\theta)$ tables to expected FPF reach.
+          \item \textbf{Cosmology toggle.} Flag two options in Canon runs:
+          (i) \emph{CMB-tension-tolerant} (loose $\Delta N_{\rm eff}$) vs.\ (ii) \emph{CMB-safe} (suppressed $\sin^2 2\theta$ or invisible IR decays of $\psi_{\ae}$).
+          \end{itemize}
+
+      \subsection*{G6. Implementation \& sanity checks}
+          \begin{itemize}
+          \item Tag G1--G5 as \emph{Bridging}. They constrain a sterile sector coupled to SST, but do not alter core postulates (absolute time, incompressible inviscid aether, knot particles, etc.).
+          \item All displayed probabilities are dimensionless; widths have dimension of inverse time; mass formulas carry correct mass dimensions.
+          \item Limits: $\omega\!\to\!\tfrac12 \Rightarrow f(\omega)\!\to\!0$ ($R$-symmetry); $\theta\!\to\!0 \Rightarrow P_{\alpha\alpha}\!\to\!1$.
+          \end{itemize}
+
+  \section*{References (Bib\TeX)}
+      \begin{verbatim}
+@article{Anchordoqui2024SUSYFPF,
+  author = {Luis A. Anchordoqui and Ignatios Antoniadis and Karim Benakli and
+            Jules Cunat and Dieter L{\"u}st},
+  title  = {SUSY at the FPF},
+  journal= {arXiv:2410.16342 [hep-ph]},
+  year   = {2024},
+  note   = {v2 (2025-01-30)}
+}
+@article{Anchordoqui2022FPFPhysics,
+  author  = {L. A. Anchordoqui and others},
+  title   = {The Forward Physics Facility: Sites, experiments, and physics potential},
+  journal = {Phys. Rept.},
+  volume  = {968},
+  pages   = {1--50},
+  year    = {2022},
+  doi     = {10.1016/j.physrep.2022.04.004}
+}
+@article{BenakliSmirnov1997,
+  author  = {Karim Benakli and Alexei Yu. Smirnov},
+  title   = {Neutrino--modulino mixing},
+  journal = {Phys. Rev. Lett.},
+  volume  = {79},
+  pages   = {4314--4317},
+  year    = {1997},
+  doi     = {10.1103/PhysRevLett.79.4314}
+}
+@article{AntoniadisQuiros1997,
+  author  = {Ignatios Antoniadis and Mariano Quir{\'o}s},
+  title   = {Supersymmetry breaking in M theory and gaugino condensation},
+  journal = {Nucl. Phys. B},
+  volume  = {505},
+  pages   = {109--122},
+  year    = {1997},
+  doi     = {10.1016/S0550-3213(97)00490-2}
+}
+@article{GherghettaRiotto2002,
+  author  = {Tony Gherghetta and Antonio Riotto},
+  title   = {Gravity mediated supersymmetry breaking in the brane world},
+  journal = {Nucl. Phys. B},
+  volume  = {623},
+  pages   = {97--125},
+  year    = {2002},
+  doi     = {10.1016/S0550-3213(01)00637-X}
+}
+@article{PDG2024,
+  author  = {Particle Data Group},
+  title   = {Review of Particle Physics},
+  journal = {Phys. Rev. D},
+  volume  = {110},
+  number  = {3},
+  pages   = {030001},
+  year    = {2024}
+}
+@article{Hagstotz2021SterileCosmo,
+  author  = {S. Hagstotz and P. F. de Salas and S. Gariazzo and M. Gerbino
+             and M. Lattanzi and S. Vagnozzi and K. Freese and S. Pastor},
+  title   = {Bounds on light sterile neutrino mass and mixing from cosmology
+             and laboratory searches},
+  journal = {Phys. Rev. D},
+  volume  = {104},
+  number  = {12},
+  pages   = {123524},
+  year    = {2021},
+  doi     = {10.1103/PhysRevD.104.123524}
+}
+      \end{verbatim}
+
+
+
+% ============== End of content =============
+
+% === Bibliography (only for standalone) ===
+  \ifdefined\standalonechapter\else
+  \bibliographystyle{unsrt}
+
+\end{document}
+\fi

@@ -1,0 +1,168 @@
+%! Author = Omar Iskandarani
+%! Title = ......
+%! Date = .....
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxxxxxx
+
+% =====================================================================
+% SST Canon Addendum — Bridging Blocks
+% Version tag: v0.3.1+2025-08-27 (conforms to Canon v0.3.1)
+% Persona: Bridging (does not modify Core Postulates)
+% =====================================================================
+
+% === Metadata ===
+\newcommand{\papertitle}{....}
+\newcommand{\paperdoi}{10.5281/zenodo.xxxxxxxx}
+
+
+\ifdefined\standalonechapter\else
+% Standalone mode
+\documentclass[11pt]{article}
+\input{../../template/SSTstyle.sty}
+\input{../../template/SST_appendix_setup.sty}
+\begin{document}
+
+  % === Title page ===
+  \titlepageOpen
+
+  \begin{abstract}
+
+
+  \end{abstract}
+
+  \titlepageClose
+  \fi
+
+  \ifdefined\standalonechapter
+  \section{\papertitle}
+  \else
+  \fi
+% ============= Begin of content ============
+
+
+% =====================================================================
+% SST Canon Addendum — Electroweak Entanglement-Minimization (Bridge)
+% Version tag: v0.3.1+2025-08-27-H (conforms to Canon v0.3.1)
+% Persona: Bridging (does not modify Core Postulates)
+% Source: Thaler & Trifinopoulos (2025), “Flavor Patterns from Quantum Entanglement” (arXiv:2410.23343v2)
+% =====================================================================
+
+  \section*{Addendum H: Electroweak entanglement–minimization (bridging)}
+
+      \subsection*{H1. Setup: entangling power and perpendicular scattering}
+
+          \textbf{Flavor Hilbert space.}
+          Let $\mathcal H_u\otimes\mathcal H_d$ denote the up/down flavor Hilbert space (qutrits for three generations). A bipartite pure state
+          $|\alpha\rangle=\sum_{i,j}\alpha_{ij}\,|i\rangle_u\otimes|j\rangle_d$
+          has linear–entropy entanglement
+          \begin{equation}
+          E(\rho)\equiv \frac{G}{G-1}\,\bigl|1-\mathrm{tr}\,\rho_R^2\bigr|,
+          \qquad
+          E(|\alpha\rangle)\big|_{G=2}=4\lambda_1\lambda_2,\quad
+          E(|\alpha\rangle)\big|_{G=3}=3(\lambda_1\lambda_2+\lambda_2\lambda_3+\lambda_3\lambda_1),
+          \end{equation}
+          with $\{\lambda_i\}$ the eigenvalues of $\alpha^\dagger\alpha$ (trace one).
+
+          \textbf{Entangling power.}
+          For the flavor–space map $S_f$ representing “scattering + projection” (elastic, fixed helicities), define
+          \begin{equation}
+          E(S_f)\equiv \overline{\,E\!\big(S_f|i\rangle_u\otimes|j\rangle_d\big)\,}
+          \quad\text{(average over generation product states).}
+          \end{equation}
+          We use \emph{perpendicular entangling power} at $\Theta=\pi/2$:
+          \begin{equation}
+          E^{\perp}_{\min}\equiv \min\{E_{ud},\,E_{ud^{\dagger}}\}\ \Big|_{\ \Theta=\pi/2,\ t=u=-s/2}.
+          \end{equation}
+
+          \textbf{Kinematic window.}
+          The relevant ranges are $m_Z\lesssim\sqrt s\lesssim m_t$ (quarks) and $m_\tau\lesssim\sqrt s\lesssim m_Z$ (leptons). Within each interval, choose the $\sqrt s$ that minimizes $E^{\perp}_{\min}$.
+
+          \paragraph{SST reading.}
+              All quantities above are \emph{dimensionless} functionals of scattering amplitudes; this addendum provides a selection principle usable in the Canon without changing the fluid postulates.
+
+  \subsection*{H2. Two–generation analytic kernel (Cabibbo sector)}
+
+      At leading order for $ud\to ud$ with $Z/\gamma$ ($t$–channel) and $W$ ($u$–channel) exchange, introduce
+      \begin{equation}
+      y\;\equiv\;\frac{Y^u Y^d}{\cos^2\theta_W}+\sin^2\theta_W\,Q_u Q_d,
+      \qquad
+      \theta_C\equiv\theta_{12}.
+      \end{equation}
+      Then, for perpendicular scattering the flavor–averaged entangling power is
+      \begin{equation}
+      \label{eq:Eperpud}
+      E^{\perp}_{ud}(\theta_C)
+      \;=\;8y^2\!\left[
+                     \frac{\cos^4\theta_C}{\big(1+2y+4y^2-2y\cos 2\theta_C\big)^2}
+                     +\frac{\sin^4\theta_C}{\big(1+2y+4y^2+2y\cos 2\theta_C\big)^2}
+      \right].
+      \end{equation}
+      This exhibits a shallow minimum at $\theta_C\approx 6^{\circ}$ for SM couplings, with controlled dependence on $\theta_W$: as $\sin\theta_W\!\to\!0$ the preferred $\theta_C$ decreases; as $\sin\theta_W\!\to\!1$, the minimum drifts to $\pi/4$. \emph{Remark:} suppressing the photon term can shift the minimum toward $\theta_C\approx 13^{\circ}$.
+
+  \subsection*{H3. Three generations: CKM and PMNS patterns}
+
+      \textbf{Quarks (CKM).}
+      Minimizing $E^{\perp}_{\min}$ for $m_Z\lesssim\sqrt s\lesssim m_t$ yields a nearly diagonal CKM with a single small angle:
+      $\theta_{12}\sim\mathcal O(\mathrm{few}^\circ)$, while $\theta_{13}\approx\theta_{23}\approx 0$.
+      Energy dependence is mild: far below the EW scale, photon dominance drives maximal $12$–mixing; just above $m_t$ the preferred angles compress to $\sim 4^{\circ}$; for $\sqrt s\gg m_t$, the crossed channel prefers vanishing mixing.
+
+      \textbf{Leptons (PMNS).}
+      In $m_\tau\lesssim\sqrt s\lesssim m_Z$, the minimum favors two large angles and one smaller: a representative minimum occurs near $\sqrt s\approx 30\,\mathrm{GeV}$ with $\theta_{12}\approx\theta_{23}\approx 29^{\circ}$, $\theta_{13}\approx 16^{\circ}$. The CP phase enters nontrivially; the minima generically prefer \emph{minimal} CP violation ($\delta_{\rm PMNS}\approx 0,\pi$), and align more closely with normal ordering than inverted ordering.
+
+  \subsection*{H4. SST/VAM adapter and usage}
+
+      \begin{itemize}
+      \item \textbf{Principle (optional):} \emph{Entanglement–Minimization Hypothesis (EMH).} At a chosen $\sqrt s$ within the canonical windows, select flavor parameters so that $E^{\perp}_{\min}$ is minimized.
+      \item \textbf{Interference dictionary:} The single parameter $y$ in Eq.~(\ref{eq:Eperpud}) encodes the $\gamma/Z$ vs.\ $W$ competition. In SST, treat $y$ as an \emph{effective swirl–interference weight}, i.e.\ a ratio of neutral–current to charged–current swirl couplings at the probe scale. Small deformations of $y$ (e.g.\ anisotropic swirl permeability) move the Cabibbo minimum from $\sim 6^{\circ}$ toward $\sim 13^{\circ}$, where our rank–1 projector basis (Addendum~A4) already sits.
+      \item \textbf{How to use:} (i) Fix $\sqrt s$ per sector; (ii) compute $E^{\perp}_{\min}$ along your flavor template manifold (e.g.\ rotating rank–one, projector basis); (iii) pick the point of minimal $E$. Record the result as a \emph{bridging} selection, not a postulate.
+      \end{itemize}
+
+  \subsection*{H5. Sanity checks}
+
+      \begin{itemize}
+      \item All entanglement measures and $E^{\perp}_{\min}$ are dimensionless. The dependence on $\theta_W$ enters only through $y$.
+      \item Limits: $\theta_C\to 0,\pi/2 \Rightarrow E^{\perp}_{ud}$ reduces to a single–denominator term; $\sin\theta_W\to 0$ enhances charged–current dominance; $\sin\theta_W\to 1$ drives $\theta_C\to \pi/4$ at the minimum.
+      \item CKM/PMNS qualitative hierarchies persist across the recommended $\sqrt s$ windows.
+      \end{itemize}
+
+  \section*{References (Bib\TeX)}
+  \begin{verbatim}
+@article{ThalerTrifinopoulos2025FlavorEntanglement,
+  author  = {Jesse Thaler and Sokratis Trifinopoulos},
+  title   = {Flavor Patterns of Fundamental Particles from Quantum Entanglement?},
+  journal = {arXiv:2410.23343 [hep-ph]},
+  year    = {2025},
+  note    = {v2}
+}
+@article{ZanardiZalkaFaoro2000EntanglingPower,
+  author  = {P. Zanardi and C. Zalka and L. Faoro},
+  title   = {Entangling power of quantum evolutions},
+  journal = {Phys. Rev. A},
+  volume  = {62},
+  pages   = {030301},
+  year    = {2000},
+  doi     = {10.1103/PhysRevA.62.030301}
+}
+@article{PDG2024,
+  author  = {Particle Data Group},
+  title   = {Review of Particle Physics},
+  journal = {Phys. Rev. D},
+  volume  = {110},
+  number  = {3},
+  pages   = {030001},
+  year    = {2024}
+}
+  \end{verbatim}
+
+
+
+% ============== End of content =============
+
+% === Bibliography (only for standalone) ===
+  \ifdefined\standalonechapter\else
+  \bibliographystyle{unsrt}
+
+\end{document}
+\fi

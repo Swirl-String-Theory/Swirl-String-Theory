@@ -1,0 +1,215 @@
+%! Author = Omar Iskandarani
+%! Title = ......
+%! Date = .....
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxxxxxx
+
+% =====================================================================
+% SST Canon Addendum — Bridging Blocks
+% Version tag: v0.3.1+2025-08-27 (conforms to Canon v0.3.1)
+% Persona: Bridging (does not modify Core Postulates)
+% =====================================================================
+
+% === Metadata ===
+\newcommand{\papertitle}{....}
+\newcommand{\paperdoi}{10.5281/zenodo.xxxxxxxx}
+
+
+\ifdefined\standalonechapter\else
+% Standalone mode
+\documentclass[11pt]{article}
+\input{../../template/SSTstyle.sty}
+\input{../../template/SST_appendix_setup.sty}
+\begin{document}
+
+  % === Title page ===
+  \titlepageOpen
+
+  \begin{abstract}
+
+
+  \end{abstract}
+
+  \titlepageClose
+  \fi
+
+  \ifdefined\standalonechapter
+  \section{\papertitle}
+  \else
+  \fi
+% ============= Begin of content ============
+
+% =====================================================================
+% Addendum C: SUSY-era Constraints as Loop Kernels & Selection Rules
+% Source: Hyun Min Lee, "Supersymmetry and LHC era" (arXiv:2505.01769)
+% Persona: Bridging (does not modify Core Postulates)
+% =====================================================================
+
+  \section*{Addendum C: SUSY--era constraints (bridging kernels for SST)}
+
+      \subsection*{C1. Custodial breaking and the $W$ mass (generic doublets)}
+          \textbf{Master relation.} From muon decay, the (tree\,+\,loop) relation is
+          \begin{equation}
+          M_W^2\!\left(1-\frac{M_W^2}{M_Z^2}\right)
+          \;=\; \frac{\pi\alpha}{\sqrt{2}\,G_\mu}\,\bigl(1+\Delta r\bigr),
+          \qquad
+          \Delta r_{\rm new}\simeq -\,\frac{c_W^2}{s_W^2}\,\Delta\rho,
+          \label{eq:MWmaster}
+          \end{equation}
+          with $s_W\equiv\sin\theta_W$, $c_W\equiv\cos\theta_W$. For an $SU(2)_L$ doublet with mass splitting, the oblique shift is
+          \begin{equation}
+          \Delta\rho \;=\; \frac{3G_F}{8\sqrt{2}\,\pi^2}\,F_0(m_1^2,m_2^2),
+          \qquad
+          F_0(x,y)=x+y-\frac{2xy}{x-y}\ln\!\frac{x}{y}\,,
+          \end{equation}
+          and with mixing between weak and mass eigenstates ($\theta$) a convenient template is
+          \begin{equation}
+          \Delta\rho \;=\; \frac{3G_F}{8\sqrt{2}\,\pi^2}\!
+          \left[
+              -\sin^2\theta\,\cos^2\theta\,F_0(m_1^2,m_2^2)
+          + \cos^2\theta\,F_0(m_0^2,m_2^2)
+          + \sin^2\theta\,F_0(m_0^2,m_1^2)
+          \right]\!,
+          \end{equation}
+          where $m_0$ denotes the neutral partner mass in the doublet.
+          Therefore the induced $W$-mass shift is
+          \begin{equation}
+          \boxed{\;\Delta M_W \;\simeq\; \frac{M_W}{2}\,
+          \frac{c_W^2}{\,c_W^2-s_W^2\,}\,\Delta\rho\;}\,.
+          \end{equation}
+          \textit{Dimensional check:} $[\Delta\rho]=1$, so $[\Delta M_W]=[M_W]$. \textit{SST constraint:} any SST doublet excitation that breaks custodial symmetry must satisfy $|\Delta\rho|\lesssim \mathcal O(10^{-3})$ to respect EW precision fits; canonize as a \emph{Custodial Integrity Rule}.
+
+      \subsection*{C2. Muon $g-2$ (model--independent one--loop kernels)}
+          Adopt two universal Yukawa structures for a charged lepton $\ell$ (here $\mu$):
+          \begin{align}
+          \mathcal L_1 &= -\,\bar\mu\,(A_S + A_P\gamma_5)\,F\,\phi + \text{h.c.}
+          && (\phi:\ \text{neutral scalar},\; F:\ \text{charged fermion}),\\
+          \mathcal L_2 &= -\,\bar\mu\,(B_S + B_P\gamma_5)\,N\,\phi^- + \text{h.c.}
+          && (\phi^-:\ \text{charged scalar},\; N:\ \text{neutral fermion}).
+          \end{align}
+          The one--loop corrections are
+          \begin{align}
+          a_\mu^{(1)} &= \frac{m_\mu^2}{8\pi^2}\!\int_0^1\!dx\,
+          \frac{|A_S|^2\,P_S(x)+|A_P|^2\,P_P(x)}{(1-x)\,m_F^2 + x\,m_\phi^2},\\[2pt]
+          a_\mu^{(2)} &= \frac{m_\mu^2}{8\pi^2}\!\int_0^1\!dx\,
+          \frac{|B_S|^2\,Q_S(x)+|B_P|^2\,Q_P(x)}{(1-x)\,m_N^2 + x\,m_\phi^2},
+          \end{align}
+          with dimensionless polynomials $P_{S,P},Q_{S,P}$ (canon loop library). In the chargino/neutralino limit these reduce to the standard kernels $F^{\rm C}_{1,2}(x)$, $F^{\rm N}_{1,2}(x)$, with schematic approximations
+          \begin{align}
+          a_\mu^{\rm (chg)} &\simeq
+          \frac{g_2^2\,m_\mu^2}{16\pi^2}\,
+          \frac{\mu_H M_2\,\tan\beta}{m_{\tilde\nu}^2}\,
+          F^{\rm C}_2\!\!\left(\frac{M_2^2}{m_{\tilde\nu}^2},\frac{\mu_H^2}{m_{\tilde\nu}^2}\right),\\[2pt]
+          a_\mu^{\rm (neu)} &\simeq
+          \frac{g'^2\,m_\mu^2}{16\pi^2}\,
+          \frac{m_{\chi^0}}{m_{\tilde\mu_1}^2 m_{\tilde\mu_2}^2}\,
+          \sin 2\theta_{\tilde\mu}\,
+          \biggl[
+              m_{\tilde\mu_2}^2\,F^{\rm N}_2\!\!\left(\frac{m_{\chi^0}^2}{m_{\tilde\mu_2}^2}\right)
+              - m_{\tilde\mu_1}^2\,F^{\rm N}_2\!\!\left(\frac{m_{\chi^0}^2}{m_{\tilde\mu_1}^2}\right)
+              \biggr],
+          \end{align}
+          which are positive in the large-$\tan\beta$ regime for appropriate parameter signs. \textit{Dimensional check:} $[a_\mu]=1$.
+
+          \paragraph{SST adapter.} Any SST lepton–adjoint or lepton–knot excitation fitting $\mathcal L_{1,2}$ contributes via the same kernels. Use this block as a plug-in when mapping swirl excitations to $\Delta a_\mu$; require $\Delta a_\mu\sim\mathcal O(10^{-9})$ to address the reported anomaly.
+
+  \subsection*{C3. Proton decay selection rule (dimension--5/6 template)}
+      In SU(5)--like embeddings, integrating out colored Higgsinos yields the superpotential
+      \begin{equation}
+      W_5 \;=\; \frac{\kappa}{2M_{H_C}}\,(f^u e^{i\phi})(f^d V^*)\,QQQL
+      \;+\; \frac{\kappa}{M_{H_C}}\,(f^u e^{i\phi})(f^d V^*)\,U^c E^c U^c D^c \,,
+      \end{equation}
+      leading, after dressing, to effective dimension--6 operators for $p\to K^+\bar\nu_j$ with loop kernel $F(x,y,z)$ and renormalization factor $A_R$. A practical lifetime estimate is
+      \begin{equation}
+      \boxed{\;
+      \tau(p\!\to\!K^+\bar\nu)\ \simeq\
+          4\times 10^{35}\,\text{yr}\times
+          \sin^4 2\beta\,
+          \left(\frac{0.1}{A_R}\right)^{\!2}\,
+          \Bigl[\,2\,F(\mu_H^2, m_{\tilde t_R}^2, m_{\tilde\tau_R}^2)\Bigr]^{-1}
+          \left(\frac{M_{H_C}/\kappa}{10^{16}\,\text{GeV}}\right)^{\!2}
+          \;}
+      \end{equation}
+      (up to order--one hadronic and phase--space factors).
+      \textit{SST selection rule:} impose a \emph{topological suppression} $\kappa\ll1$ (e.g., orbifold/origin selection or twist parity) \emph{or} raise the colored--mediator scale to protect $\tau_p>10^{34}\,$yr, dovetailing with Canon flavour projectors and GJ matching.
+
+  \subsection*{C4. Implementation \& cross--checks}
+      \begin{itemize}
+      \item Tag C1--C3 as \emph{Bridging}. They provide kernel libraries and constraints; no change to core SST postulates.
+      \item Cross--link C1 to the Canon EW precision section; C2 to the lepton sector and time--scaling notes; C3 to the unification/selection--rule subsection.
+      \item Dimensional sanity: $F_0$ and $F^{\rm C,N}_{1,2}$ are dimensionless; all prefactors carry the required mass dimensions.
+      \end{itemize}
+
+  \section*{References (Bib\TeX)}
+  \begin{verbatim}
+@article{Lee2025SUSYEncyclopedia,
+  author  = {Hyun Min Lee},
+  title   = {Supersymmetry and LHC era},
+  journal = {arXiv:2505.01769 [hep-ph]},
+  year    = {2025}
+}
+@article{Heinemeyer2006EWPOinMSSM,
+  author  = {S. Heinemeyer and W. Hollik and G. Weiglein},
+  title   = {Electroweak precision observables in the MSSM},
+  journal = {Phys. Rept.},
+  volume  = {425},
+  pages   = {265--368},
+  year    = {2006}
+}
+@article{Moroi1996MuonG2MSSM,
+  author  = {Takeo Moroi},
+  title   = {The Muon Anomalous Magnetic Dipole Moment in the Minimal Supersymmetric Standard Model},
+  journal = {Phys. Rev. D},
+  volume  = {53},
+  pages   = {6565--6575},
+  year    = {1996},
+  doi     = {10.1103/PhysRevD.53.6565}
+}
+@article{PDG2024,
+  author  = {Particle Data Group},
+  title   = {Review of Particle Physics},
+  journal = {Phys. Rev. D},
+  volume  = {110},
+  number  = {3},
+  pages   = {030001},
+  year    = {2024}
+}
+@article{CDF2022Wmass,
+  author  = {CDF Collaboration},
+  title   = {High-precision measurement of the W boson mass with the CDF II detector},
+  journal = {Science},
+  volume  = {376},
+  number  = {6589},
+  pages   = {170--176},
+  year    = {2022}
+}
+@article{ATLAS2024Wmass,
+  author  = {ATLAS Collaboration},
+  title   = {Measurement of the W-boson mass and width with the ATLAS detector},
+  journal = {Eur. Phys. J. C},
+  volume  = {84},
+  number  = {12},
+  pages   = {1309},
+  year    = {2024}
+}
+@article{CMS2024Wmass,
+  author  = {CMS Collaboration},
+  title   = {High-precision measurement of the W boson mass with the CMS experiment at the LHC},
+  journal = {arXiv:2412.13872 [hep-ex]},
+  year    = {2024}
+}
+  \end{verbatim}
+
+
+
+
+% ============== End of content =============
+
+% === Bibliography (only for standalone) ===
+  \ifdefined\standalonechapter\else
+  \bibliographystyle{unsrt}
+
+\end{document}
+\fi
