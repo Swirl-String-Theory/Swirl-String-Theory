@@ -154,7 +154,7 @@ if __name__ == "__main__":
     r_sq = (Xf**2 + Yf**2 + Zf**2).ravel()
     grid_shape = (grid_size, grid_size, grid_size)
 
-    paths = sorted(glob.glob("*.fseries"))
+    paths = sorted(glob.glob("../Knots_FourierSeries/**/*.fseries", recursive=True))
 
     print("\n=== Compute against another ===")
     for path in paths:
@@ -163,7 +163,7 @@ if __name__ == "__main__":
             a_mu, Hc, Hm = compute_a_mu_for_file(path, G, S, I)
             print(f"{os.path.basename(path)}:  a_mu({G}) = {a_mu:.8f}   [Hc={Hc:.3e}, Hm={Hm:.3e}]")
 
-    print("\n=== VAM Muon Anomaly via Helicity ===")
+    print("\n=== SST Muon Anomaly via Helicity ===")
     rows = []
     for path in paths:
         blocks = parse_fseries_multi(path)
@@ -178,7 +178,7 @@ if __name__ == "__main__":
         Hc = np.einsum('ij,ij->', v_sub, w_sub)
         Hm = np.sum(np.linalg.norm(w_sub, axis=1)**2 * r_sq)
         a_mu = 0.5 * (Hc / Hm - 1.0)
-        print(f"{os.path.basename(path)}:  a_mu^VAM = {a_mu:.8f}  [Hc={Hc:.2f}, Hm={Hm:.2f}]")
+        print(f"{os.path.basename(path)}:  a_mu^SST = {a_mu:.8f}  [Hc={Hc:.2f}, Hm={Hm:.2f}]")
         rows.append({"file": os.path.basename(path).replace("knot.","").replace(".fseries",""),
                      "base": base_id(path), "a_mu": a_mu, "Hc": Hc, "Hm": Hm})
 
@@ -187,5 +187,5 @@ if __name__ == "__main__":
     g = df.groupby("base")["a_mu"].agg(["mean","std","count"]).reset_index()
     g["is_amphi"] = g["base"].isin(AMPHI)
     g["flag"] = np.where(g["is_amphi"] & (np.abs(g["mean"] + 0.5) > 0.02), "WARN(amphi≠−0.5)", "")
-    g.to_csv("VAM_helicity_by_base.csv", index=False)
-    print("Wrote VAM_helicity_by_base.csv")
+    g.to_csv("SST_helicity_by_base.csv", index=False)
+    print("Wrote SST_helicity_by_base.csv")

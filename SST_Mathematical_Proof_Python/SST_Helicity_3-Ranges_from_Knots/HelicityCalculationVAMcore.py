@@ -154,8 +154,7 @@ if __name__ == "__main__":
     r_sq = (Xf**2 + Yf**2 + Zf**2).ravel()
     grid_shape = (grid_size, grid_size, grid_size)
 
-    paths = sorted(glob.glob("*.fseries"))
-
+    paths = sorted(glob.glob("../Knots_FourierSeries/**/*.fseries", recursive=True))
     print("\n=== Compute against another ===")
     for path in paths:
         print(f"========== {os.path.basename(path)} ============")

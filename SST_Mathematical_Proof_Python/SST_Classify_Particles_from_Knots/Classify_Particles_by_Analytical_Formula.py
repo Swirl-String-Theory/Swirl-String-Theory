@@ -134,7 +134,12 @@ def classify_particle(a_mu, filename):
 
 def load_fourier_series_clean(filename):
     """Loads Fourier series coefficients from a .fseries file."""
+    import glob
     data = []
+    # Find all .fseries files in ../Knot_FourierSeries and subdirectories
+    fseries_files = glob.glob("../Knot_FourierSeries/**/*.fseries", recursive=True)
+    if filename not in fseries_files:
+        raise ValueError(f"File {filename} not found in ../Knot_FourierSeries.")
     with open(filename, 'r') as f:
         for line in f:
             # Skip comments and empty lines

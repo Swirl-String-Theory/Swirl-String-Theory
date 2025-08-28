@@ -146,7 +146,7 @@ def classify(a64, sig):
     return "unstable"
 
 if __name__ == "__main__":
-    paths = sorted(glob.glob("knot.*.fseries"))
+    paths = sorted(glob.glob("../Knots_FourierSeries/**/*.fseries", recursive=True))
     rows = []
     for path in paths:
         a32,_,_ = a_mu_for_file(path, 32, 0.10)

@@ -61,8 +61,7 @@ def compute_curvature(x, y, z):
     return num / denom
 
 # --- Load and prepare knots ---
-folder = './'
-paths = sorted(glob.glob(os.path.join(folder, '*.fseries')))
+paths = sorted(glob.glob("../Knots_FourierSeries/**/*.fseries", recursive=True))
 labels = [os.path.splitext(os.path.basename(p))[0].replace('knot','').replace('Knot','') for p in paths]
 s = np.linspace(0, 2*np.pi, 1000)
 

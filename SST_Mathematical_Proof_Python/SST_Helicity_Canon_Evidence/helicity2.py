@@ -70,10 +70,11 @@ r_sq = (Xf**2 + Yf**2 + Zf**2).ravel()
 grid_shape = (grid_size, grid_size, grid_size)
 
 # === Automatically Find All .fseries Files ===
+import glob
+paths = sorted(glob.glob("../Knots_FourierSeries/**/*.fseries", recursive=True))
 knot_files = {
-    os.path.splitext(fname)[0]: fname
-    for fname in os.listdir("")
-    if fname.endswith(".fseries")
+    os.path.splitext(os.path.basename(fname))[0]: fname
+    for fname in paths
 }
 
 results = {}

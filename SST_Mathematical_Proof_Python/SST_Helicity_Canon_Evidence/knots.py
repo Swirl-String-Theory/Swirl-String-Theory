@@ -117,10 +117,8 @@ def plot_knots_grid_auto(paths):
 
 
 if __name__ == "__main__":
-    # automatically grab all .fseries in the fseries/ folder
-    folder = "fseries"
-    filenames = sorted(glob.glob(os.path.join(folder, "*.fseries")))
+    filenames = sorted(glob.glob("../Knots_FourierSeries/**/*.fseries", recursive=True))
     if not filenames:
-            print(f"No .fseries files found in '{folder}/'")
+            print("No .fseries files found in ../Knots_FourierSeries/'")
     else:
         plot_knots_grid_auto(filenames)

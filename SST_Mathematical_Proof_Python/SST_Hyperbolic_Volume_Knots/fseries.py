@@ -178,7 +178,7 @@ def main():
     else:
         meta = None
 
-    root_dir = os.path.join(os.getcwd(), "knots")
+    root_dir = os.path.join(os.getcwd(), "..", "Knots_FourierSeries")
     # Scan directory
     # Recursively find *.fseries and *.short
     files = sorted(glob.glob(os.path.join(root_dir, "**", "*.fseries"), recursive=True))
@@ -187,7 +187,7 @@ def main():
         raise RuntimeError(f"No .fseries or .short files found under: {root_dir}")
 
     if not files:
-        print("No .fseries files found in", args.dir)
+        print("No .fseries files found in", root_dir)
         return
 
     # Time grid

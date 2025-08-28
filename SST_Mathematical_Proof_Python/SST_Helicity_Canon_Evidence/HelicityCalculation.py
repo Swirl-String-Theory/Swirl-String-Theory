@@ -77,7 +77,7 @@ r_sq = (Xf**2 + Yf**2 + Zf**2).ravel()
 grid_shape = (grid_size, grid_size, grid_size)
 
 # Find all .fseries files
-paths = sorted(glob.glob("*.fseries"))
+paths = sorted(glob.glob("../Knots_FourierSeries/**/*.fseries", recursive=True))
 
 
 def helicity_at(grid_size=32, spacing=0.1, interior=8):

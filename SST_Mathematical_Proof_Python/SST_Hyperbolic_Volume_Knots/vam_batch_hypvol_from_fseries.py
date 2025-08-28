@@ -304,9 +304,9 @@ def process_file(path, samples=1600, tries=40):
         return dict(status="fail", volume=float('nan'), n_crossings=0, message=str(e))
 
 def main():
-    ap = argparse.ArgumentParser(description="Batch hyperbolic volume for ./knots/*/*.fseries")
-    ap.add_argument("--root", type=str, default="./knots", help="Root directory containing subfolders per knot")
-    ap.add_argument("--out",  type=str, default="./knots/hypvol_results.csv", help="Output CSV path")
+    ap = argparse.ArgumentParser(description="Batch hyperbolic volume for ../Knots_FourierSeries/*/*.fseries")
+    ap.add_argument("--root", type=str, default="../Knots_FourierSeries", help="Root directory containing subfolders per knot")
+    ap.add_argument("--out",  type=str, default="../Knots_FourierSeries/hypvol_results.csv", help="Output CSV path")
     ap.add_argument("--samples", type=int, default=1600, help="Samples along the curve (t-grid)")
     ap.add_argument("--tries",   type=int, default=40,   help="Random projection tries")
     args = ap.parse_args()
