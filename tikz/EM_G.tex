@@ -326,6 +326,114 @@ with bursts coincident with vortex nucleation (when $a\lesssim\alpha r_c$).
 \section*{Acknowledgement of canonical constants}
 Where numerical evaluation is desired, adopt the Canon values $C_e$, $r_c$, $\rho_{\ae}^{\rm core}$, $\rho_{\ae}$ provided in the SST Canon; these enter rate and threshold estimates (via $a\sim \sqrt{A/N}$ and $r_c$), but not the quantized \emph{magnitude} $\Phi_\star$ of the EMF-time impulse.
 
+
+%===============================================================================
+% SST Canon Addendum Q — Double-Star Coil Stack Realization
+% Version tag: v0.3.3+2025-09-01-Q
+%===============================================================================
+
+\section*{Addendum Q: Double--Star Coil Stack Realization}
+\label{sec:addendumQ}
+
+\subsection*{Q.1 Definition (Double--Star Coil)}
+On a stator with $S=40$ slots and $p=4$ poles, consider a short--pitched
+3--phase winding with pitch $y=2$ (step rule $+11/−9$).
+This yields a chording angle
+\[
+	\gamma = y\,\alpha_e = 36^\circ,
+	\qquad
+	\alpha_e = \tfrac{180^\circ p}{S} = 18^\circ,
+\]
+so that
+\[
+	k_p^{(5)}=\cos\!\big(\tfrac{5\gamma}{2}\big)=0.
+\]
+The winding is implemented as two interleaved 3--phase stars (``double--star''),
+with electrical displacement $\Delta_e=30^\circ$, giving
+\[
+	\mathcal A_\nu \;\propto\; 2\cos\!\Big(\tfrac{\nu\Delta_e}{2}\Big)\,k_w^{(\nu)}.
+\]
+Hence
+\[
+	\mathcal A_1 \approx 1.93\,k_w^{(1)},\qquad
+	\mathcal A_5=0,\qquad
+	\mathcal A_6=0,\qquad
+	\mathcal A_7\simeq -0.05,
+\]
+i.e.\ fundamental reinforced, $5^{\rm th}$ suppressed, $6^{\rm th}$ canceled,
+$7^{\rm th}$ reduced.
+
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{S40_double_star_best}
+\end{center}
+
+\subsection*{Q.2 Stacking (Two Double--Stars)}
+Place two identical double--star coils axially stacked (gap $h$).
+Let their on--axis contributions be $B_T(z)$ and $B_B(z)$.
+Superposition allows the following canonical modes:
+\begin{align*}
+	\text{Mode A (additive):}&\quad B_{\rm tot}\simeq B_T+B_B
+	\quad\Rightarrow\quad \text{max fundamental}.\\[3pt]
+	\text{Mode B (gradient):}&\quad \Delta p = \eta\,\tfrac{B_B^2-B_T^2}{2\mu_0}
+	\quad\Rightarrow\quad \text{effective gravity blocking}.\\[3pt]
+	\text{Mode C (counter--rot.):}&\quad B_{\rm rot}\to 0,\;
+	\nabla B^2\neq 0
+	\quad\Rightarrow\quad \text{standing pressure pattern}.\\[3pt]
+	\text{Mode D (beat):}&\quad \varphi\neq 0\;\Rightarrow\;\text{axially traveling envelope}.
+\end{align*}
+
+\subsection*{Q.3 Canonical Equation (Swirl Pressure)}
+Within SST Canon, the swirl pressure on a foliation slice $\Sigma_t$ is
+\[
+	p_{\rm sw}(z) \;=\; \eta\,\frac{\langle B^2(z)\rangle}{2\mu_0},
+\]
+so that a stacked asymmetry yields
+\[
+	F_z \;=\; \int_A \Delta p(z)\,dA
+	=\eta\;\frac{B_B^2-B_T^2}{2\mu_0}\,A.
+\]
+
+\subsection*{Q.4 Experimental Pathway}
+\begin{enumerate}
+	\item Verify harmonic hygiene: $5^{\rm th}=0$, $6^{\rm th}=0$, $7^{\rm th}\ll1$.
+	\item Map $B(z)$ with Hall sensors for both stacks.
+	\item Tune $B_B/B_T$ to measure $\Delta p$ on a plate of area $A$.
+	\item Switch to Mode~C (counter--rotate top stack) to confirm $\nabla B^2$ persists with vanishing torque.
+\end{enumerate}
+
+\subsection*{Q.5 Canonical Status}
+This configuration is canonical for coil--based RMF realization in SST:
+\begin{itemize}
+	\item It implements the harmonic hygiene postulates (Addendum~O).
+	\item It realizes swirl pressure modulation in direct accordance with the pressure functional (Canon Core v0.3.3).
+	\item It defines a benchmark experimental platform for \emph{gravity--blocking} tests.
+\end{itemize}
+
+\subsection*{References}
+\begin{thebibliography}{9}
+	\bibitem{LandauLifshitzEDCM}
+	L.~D. Landau and E.~M. Lifshitz,
+	\newblock \emph{Electrodynamics of Continuous Media}, 2nd ed.,
+	Pergamon, 1984.
+
+	\bibitem{SimonGeim2000}
+	M.~D. Simon and A.~K. Geim,
+	``Diamagnetic levitation: Flying frogs and floating magnets (invited),''
+	\emph{J. Appl. Phys.}, vol.~87, no.~9, pp. 6200--6204, 2000.
+	doi:10.1063/1.372654.
+
+	\bibitem{Batchelor1967}
+	G.~K. Batchelor,
+	\newblock \emph{An Introduction to Fluid Dynamics},
+	Cambridge University Press, 1967.
+
+	\bibitem{Kelvin1869}
+	W. Thomson (Lord Kelvin),
+	``On Vortex Motion,''
+	\emph{Trans. R. Soc. Edinburgh}, vol.~25, pp. 217--260, 1869.
+	doi:10.1017/S0080456800028175.
+\end{thebibliography}
+
 \bibliographystyle{plain}
 \begin{thebibliography}{10}
 
