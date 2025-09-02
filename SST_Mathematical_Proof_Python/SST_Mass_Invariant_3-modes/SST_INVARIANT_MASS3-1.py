@@ -178,6 +178,7 @@ M_n_actual: float = 1.674_927_498_04e-27   # Neutron
 # ──────────────────────────────────────────────────────────────────────────────
 @dataclass
 class Config:
+    # s_u = Vol_H(5_2), s_d = Vol_H(6_1) (canonical up/down)
     mode: str = "exact_closure"
     kappa_R: float = 2.0
     fixed_su: float = 2.8281

@@ -42,6 +42,169 @@
 % ============= Begin of content ============
 
 
+% =====================================================================
+% SST Canon Addendum N — Fixed-Point Family Replication & \alpha
+% Version tag: v0.3.2+2025-08-29-N (bridging-only; does not modify Core)
+% =====================================================================
+
+      \usepackage{amsmath,amssymb,bm}
+      \usepackage{hyperref}
+      \usepackage{physics}
+      \usepackage{siunitx}
+      \usepackage{cleveref}
+
+% --------- Embed a local .bib file so this compiles standalone ----------
+      \begin{filecontents*}{addendumN.bib}
+      @misc{Lemmon2013FamiliesAlpha,
+      author       = {John Lemmon},
+      title        = {The origin of fermion families and the value of the fine structure constant},
+      year         = {2013},
+      eprint       = {1307.2201},
+      archivePrefix= {arXiv},
+      primaryClass = {hep-ph},
+      version      = {v3},
+      url          = {https://arxiv.org/abs/1307.2201}
+      }
+
+      @article{Feynman1949SelfEnergy,
+      author  = {Richard P. Feynman},
+      title   = {Space-Time Approach to Quantum Electrodynamics},
+      journal = {Physical Review},
+      year    = {1949},
+      volume  = {76},
+      pages   = {769--789},
+      doi     = {10.1103/PhysRev.76.769}
+      }
+
+      @article{PauliVillars1949,
+      author  = {Wolfgang Pauli and Felix Villars},
+      title   = {On the Invariant Regularization in Relativistic Quantum Theory},
+      journal = {Reviews of Modern Physics},
+      year    = {1949},
+      volume  = {21},
+      pages   = {434--444},
+      doi     = {10.1103/RevModPhys.21.434}
+      }
+
+      @misc{SSTCanon2025,
+      author       = {Omar Iskandarani},
+      title        = {Swirl String Theory (SST) Canon v0.3.2},
+      year         = {2025},
+      doi          = {10.5281/zenodo.16934536},
+      howpublished = {Zenodo},
+      url          = {https://doi.org/10.5281/zenodo.16934536}
+      }
+
+      @misc{SSTLagrangian2025,
+      author       = {Omar Iskandarani},
+      title        = {Swirl-String Theory as an Emergent Relativistic Effective Field Theory with Preferred Foliation},
+      year         = {2025},
+      doi          = {10.5281/zenodo.16956665},
+      howpublished = {Zenodo},
+      url          = {https://doi.org/10.5281/zenodo.16956665}
+      }
+
+      @article{KniehlSirlin2008PoleMass,
+      author  = {Bernd A. Kniehl and Alberto Sirlin},
+      title   = {Pole Mass, Width, and Propagators of Unstable Fermions},
+      journal = {Physical Review D},
+      year    = {2008},
+      volume  = {77},
+      pages   = {116012},
+      doi     = {10.1103/PhysRevD.77.116012}
+      }
+      \end{filecontents*}
+% ----------------------------------------------------------------------
+
+
+
+      \paragraph{Policy status.}
+          \emph{Bridging-only addendum.} This note introduces a fixed-point mechanism for fermion family triplication and an approximate determination of the fine-structure constant, adapted from Lemmon~\cite{Lemmon2013FamiliesAlpha}. It \textbf{does not modify} SST Core postulates or boxed Canon results~\cite{SSTCanon2025}, and is intended for phenomenological interfacing with the covariant EFT in~\cite{SSTLagrangian2025}.
+
+      \section{Executive Summary (Benchmark Targets)}
+      Lemmon~\cite{Lemmon2013FamiliesAlpha} proposes: (i) treating the UV cutoff as physical, (ii) resumming the divergent fermion self-mass as a geometric formal sum, yielding a self-consistency equation with potentially three fixed points (interpreted as generations), (iii) a QED-only estimate of $\alpha$, and (iv) an electroweak extension that preserves the $\alpha$ estimate while driving the cutoff to $M_P$. We port this \emph{formal structure} into SST by replacing the hard cutoff with an SST spectral regulator derived from swirl scales (no change to SST ontology).
+
+      \section{Canon-Aligned Formal Statements}
+      \subsection{Fixed-point self-mass (charged leptons)}
+          The formal resummation of the mass series gives
+          \begin{equation}
+          \boxed{\, m \;=\; m_0 \;+\; \frac{m\,\Delta(m)}{1-\Delta(m)} \,}\,,
+          \label{eq:N1}
+          \end{equation}
+          with one-loop QED kernel
+          \begin{equation}
+          \Delta^{(1)}(m)\;=\;\frac{3\alpha_0}{4\pi}\!\left(\ln\!\frac{\Lambda^2}{m^2}+\frac12\right)\;+\;\cdots\,,
+          \label{eq:N2}
+          \end{equation}
+          as in~\cite{Lemmon2013FamiliesAlpha} (see also classic renormalization structures~\cite{Feynman1949SelfEnergy,PauliVillars1949}). For suitable $(m_0,\alpha_0,\Lambda)$, \cref{eq:N1,eq:N2} admit three fixed points $m$, interpretable as $(m_e,m_\mu,m_\tau)$~\cite{Lemmon2013FamiliesAlpha}.
+
+      \subsection{Electroweak extension (leptons)}
+          Including $W$ and $Z$ loops and a physical weak angle $\theta_W$, Lemmon writes (displaying only the integral skeleton)
+          \begin{align}
+          \Delta^{(1)}(m)\;&=\;\frac{3\alpha_0}{4\pi}\!\left(\ln\frac{\Lambda^2}{m^2}+\frac12\right)
+          -\frac{\alpha_0}{\pi}\Bigg[\frac{1}{16}\csc^2\!\theta_W\,I_1 \nonumber\\
+          &\quad\;+\left(\frac{1}{32}\cot^2\!\theta_W+\frac{5}{32}\tan^2\!\theta_W-\frac{1}{16}\right)I_2
+          +\left(\frac12-\frac12\tan^2\!\theta_W\right)I_3\Bigg],
+          \label{eq:N3}
+          \end{align}
+          with
+          \begin{align}
+          I_1(m,m_\nu)&=2\!\int_0^1\! z\,\ln\frac{\Lambda^2 z}{M_W^2 z-m^2z(1-z)+m_\nu^2(1-z)}\,dz,\nonumber\\
+          I_2(m)&=2\!\int_0^1\! z\,\ln\frac{\Lambda^2 z}{M_Z^2 z+m^2(1-z)^2}\,dz,\nonumber\\
+          I_3(m)&=\int_0^1\!\ln\frac{\Lambda^2 z}{M_Z^2 z+m^2(1-z)^2}\,dz,
+          \label{eq:N4}
+          \end{align}
+          and a chiral averaging rule for the pole mass (see also~\cite{KniehlSirlin2008PoleMass}) as quoted in~\cite{Lemmon2013FamiliesAlpha}. The $W$ loop contributes positively to charge renormalization, shifting the preferred cutoff toward $M_P$ while preserving the $\alpha$ estimate~\cite{Lemmon2013FamiliesAlpha}.
+
+      \subsection{Charge renormalization and $\alpha$}
+          At one loop,
+          \begin{equation}
+          \alpha \;=\;\alpha_0\!\left[1-\frac{\alpha_0}{3\pi}\sum_{\ell=e,\mu,\tau}\ln\frac{\Lambda^2}{m_\ell^2}
+                                    +\frac{11\alpha_0}{12\pi}\ln\frac{\Lambda^2}{M_W^2}\right]
+          \;-\;\alpha(M_Z^2)\,\Delta\alpha_H(M_Z^2)\,,
+          \label{eq:N5}
+          \end{equation}
+          yielding $\alpha^{-1}\!\approx\!158.7$ (QED-only) and $\alpha^{-1}\!\approx\!164.5$ with EW contributions in the scheme of~\cite{Lemmon2013FamiliesAlpha}.
+
+      \subsection{Quark sector and mixing trigger}
+          For up-type quarks (down-type analogous), a one-loop kernel of the form
+          \begin{equation}
+          \Delta^{(1)}_U(m_U)\;=\;\frac{\alpha_0}{3\pi}\!\left(\ln\frac{\Lambda^2}{m_U^2}+\frac12\right)
+          +\frac{3\alpha_0^{(s)}}{4\pi}\!\left(\frac{4}{9}\right)\!\left(\ln\frac{\Lambda^2}{m_U^2}+\frac12\right)
+          -\frac{\alpha_0}{\pi}\,\Big[\cdots\Big]
+          \label{eq:N6}
+          \end{equation}
+          is augmented by a mixing necessity once $I_1(m_t,m_b)$ becomes complex, which Lemmon implements by CKM-weighted replacements $I_1\to\sum_{ij}\abs{V_{ij}}^2 I_1(m_i,m_j)$~\cite{Lemmon2013FamiliesAlpha}.
+
+      \section{SST Bridging Map (No-Core-Change)}
+      To interface \cref{eq:N1}--\cref{eq:N6} with SST:
+      \begin{itemize}
+      \item Replace the hard cutoff $\Lambda$ by an \emph{SST spectral regulator} tied to swirl scales,
+      \[
+          \Lambda \;\longrightarrow\; \Lambda_{\text{SST}} \sim \Omega_{\max} \equiv \frac{v_{\circlearrowleft}}{r_c}\,,
+      \]
+      where $v_{\circlearrowleft}$ and $r_c$ are Canon constants~\cite{SSTCanon2025}. This keeps $\Delta$ dimensionless while grounding the logs in SST kinematics.
+      \item Interpret $\Delta(m)$ as nonlinear backreaction from swirl polarization (vacuum screening) around a knotted filament. The geometric sum in~\cref{eq:N1} corresponds to iterated medium feedback---consistent with the EFT structure in~\cite{SSTLagrangian2025}.
+      \item Mixing/CP: complex thresholds in the SST mediator sector (swirl-gauge channels) trigger superpositions, paralleling the CKM-weighted $I_1$ replacement~\cite{Lemmon2013FamiliesAlpha}.
+      \end{itemize}
+      \emph{Note.} This addendum does not alter SST ontology (no point-particle fundamentals, no Planckian necessity); it supplies a calculational kernel compatible with the Canon/Lagrangian.
+
+      \section{Immediate SST Tests}
+      \begin{enumerate}
+      \item \textbf{Triplication with $\Lambda_{\text{SST}}$.} Calibrate $(\alpha_0,m_0)$ on $(m_e,m_\mu)$ using $\Lambda_{\text{SST}}$ and test whether a third fixed point reproduces $m_\tau$.
+      \item \textbf{$\alpha$ with SST screening.} Evaluate \cref{eq:N5} with $\Lambda\!\to\!\Lambda_{\text{SST}}$ and quantify the analogue of $\Delta\alpha_H$ via collective swirl modes.
+      \item \textbf{Mixing trigger.} Identify the SST channel whose opening renders the analogue of $I_1$ complex and verify that CKM-like phase structure follows.
+      \end{enumerate}
+
+      \section*{Classification (Canon Governance)}
+      \textbf{Type:} Addendum (Bridging). \quad
+      \textbf{Scope:} Family replication, hierarchies, $\alpha$ estimate via fixed points. \quad
+      \textbf{Core:} Unchanged (no modification to boxed Canon equations~\cite{SSTCanon2025}).
+
+% -------------------- Bibliography --------------------
+      \bibliographystyle{unsrt}
+      \bibliography{addendumN}
+
 
 
 
