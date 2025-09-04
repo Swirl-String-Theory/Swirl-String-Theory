@@ -83,7 +83,7 @@ xlabel={$r$}, ylabel={$v_\theta(r)$}, xmin=0,xmax=1, ymin=0,ymax=1.2, grid=both]
 \node[draw,rounded corners,very thick,below left=of bulk,align=center,minimum width=3.6cm] (len) {$-\beta\,\ell[\Sigma]$};
 \node[draw,rounded corners,very thick,below=of bulk,align=center,minimum width=3.6cm] (cont) {$-\alpha\,\mathcal C[\Sigma]$};
 \node[draw,rounded corners,very thick,below right=of bulk,align=center,minimum width=3.6cm] (hel) {$-\gamma\,\mathcal H[\Sigma]$};
-\node[draw,rounded corners,very thick,below=2.6cm of cont,align=center,minimum width=5.6cm] (em) {$\mathcal L_{\rm EM}^{\rm int}[A_\mu;\Sigma]$};
+\node[draw,rounded corners,very thick,below=2.6cm of cont,align=center,minimum width=5.6cm] (em) {$\mathcal L_{\textrm EM}^{\textrm int}[A_\mu;\Sigma]$};
 \draw[->,thick] (bulk) -- (cont);
 \draw[->,thick] (len) -- (cont);
 \draw[->,thick] (hel) -- (cont);
@@ -200,7 +200,7 @@ xlabel={$r$}, ylabel={$p(r)$ (arb.)}, xmin=0,xmax=1, ymin=-1.1,ymax=0.2, grid=bo
 \begin{figure}[t]\centering
 \begin{tikzpicture}
 \begin{axis}[width=0.8\linewidth,height=5cm,
-xlabel={$r$}, ylabel={$V_{\rm eff}(r)$ (arb.)}, xmin=0,xmax=1, ymin=-1.0,ymax=1.0, grid=both]
+xlabel={$r$}, ylabel={$V_{\textrm eff}(r)$ (arb.)}, xmin=0,xmax=1, ymin=-1.0,ymax=1.0, grid=both]
 \addplot[very thick,domain=0.05:1,samples=200] {-1/(x+0.05) + 0.6*exp(-10*(x-0.2)^2)};
 \draw[densely dashed] (0.2,-1.0) -- (0.2,1.0) node[above] {$r_c$};
 \end{axis}
@@ -270,7 +270,7 @@ Copy code
 \foreach \a in {0,60,...,300}{
     \draw[line width=1pt] ({1.8*cos(\a)},{1.8*sin(\a)}) -- ({2.2*cos(\a)},{2.2*sin(\a)});
 }
-\node at (0,-2.8) {$\Gamma_n=\oint v\!\cdot d\ell = n\frac{h}{m_e}, \quad \lambda_{\rm ring}=\frac{2\pi R}{n}=\frac{h}{p_\theta}$};
+\node at (0,-2.8) {$\Gamma_n=\oint v\!\cdot d\ell = n\frac{h}{m_e}, \quad \lambda_{\textrm ring}=\frac{2\pi R}{n}=\frac{h}{p_\theta}$};
 \end{tikzpicture}
 \caption{Circulation quantization and de Broglie relation on the ring phase $\mathcal R$.}
 \end{figure}
@@ -418,7 +418,7 @@ Copy code
 
 
 
-\section*{3) Core profile Ω(r)\Omega(r)Ω(r) and Swirl Clock dtlocal/dt∞dt_{\rm local}/dt_\inftydtlocal​/dt∞​}
+\section*{3) Core profile Ω(r)\Omega(r)Ω(r) and Swirl Clock dtlocal/dt∞dt_{\textrm local}/dt_\inftydtlocal​/dt∞​}
 
 
 
@@ -443,7 +443,7 @@ Copy code
 \begin{tikzpicture}
 \begin{axis}[
   width=\linewidth,height=5cm,
-  xlabel={$v/c$}, ylabel={$dt_{\rm local}/dt_\infty$},
+  xlabel={$v/c$}, ylabel={$dt_{\textrm local}/dt_\infty$},
   xmin=0,xmax=0.02, ymin=0.9998, ymax=1.0000,
   grid=both, yticklabel style={/pgf/number format/fixed, /pgf/number format/precision=4}]
 \addplot[very thick,domain=0:0.02,samples=200] {sqrt(1 - x^2)};
@@ -558,7 +558,7 @@ Copy code
   \node[draw,very thick,rounded corners,minimum width=3.8cm,minimum height=0.9cm] (hel)
     at (4.6,-0.2) {$-\gamma\,\mathcal H[\Sigma]$};
   \node[draw,very thick,rounded corners,minimum width=5.4cm,minimum height=0.9cm] (em)
-    at (0,-2.1) {$\mathcal L_{\rm EM}^{\rm int}[A_\mu;\Sigma]$};
+    at (0,-2.1) {$\mathcal L_{\textrm EM}^{\textrm int}[A_\mu;\Sigma]$};
 
   \node[draw,very thick,rounded corners,fill=black!5,minimum width=12cm,minimum height=4.8cm,fit=(bulk)(len)(cont)(hel)(em)] (L) {};
   \node[above right] at (-6.2,2.6) {$\displaystyle \mathcal L$ (SST EFT)};

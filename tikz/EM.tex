@@ -30,7 +30,7 @@ We show that the analogy of shrinking parallel charged plates while holding char
 \section{Canonical Background}
     On a spatial leaf $\Sigma_t$ with absolute time $t$, SST posits a conserved \emph{swirl flux}
     \begin{equation}
-    \Phi_{\rm sw}(t) \equiv \int_A \bm{\varrho}\cdot d\mathbf A = N\kappa,
+    \Phi_{\textrm sw}(t) \equiv \int_A \bm{\varrho}\cdot d\mathbf A = N\kappa,
     \end{equation}
     where $\bm{\varrho}$ is the vortex-line density vector (units m$^{-2}$), $\kappa$ is the circulation quantum, and $N\in\mathbb{Z}$ counts total linked circulation quanta.
 
@@ -53,8 +53,8 @@ We show that the analogy of shrinking parallel charged plates while holding char
 
 % Faraday (with swirl-EMF term)
     \node(Faraday)
-    {$\nabla \times \mathbf{E} = -\,\partial_t \mathbf{B} \;-\; \mathbf{b}_{\rm sw}$\\
-    \footnotesize $[\nabla\times\mathbf E]=\mathrm{V\,m^{-2}},\ [\partial_t\mathbf B]=\mathrm{T\,s^{-1}},\ [\mathbf b_{\rm sw}]=\mathrm{V\,m^{-2}}$};
+    {$\nabla \times \mathbf{E} = -\,\partial_t \mathbf{B} \;-\; \mathbf{b}_{\textrm sw}$\\
+    \footnotesize $[\nabla\times\mathbf E]=\mathrm{V\,m^{-2}},\ [\partial_t\mathbf B]=\mathrm{T\,s^{-1}},\ [\mathbf b_{\textrm sw}]=\mathrm{V\,m^{-2}}$};
 
 % Left / Right of Faraday
     \node[left=of Faraday]  (E)
@@ -123,8 +123,8 @@ We show that the analogy of shrinking parallel charged plates while holding char
 
 % Faraday (with swirl-EMF term)
 \node(Faraday)
-{$\nabla \times \mathbf{E} = -\,\partial_t \mathbf{B} \;-\; \mathbf{b}_{\rm sw}$\\
-\footnotesize $[\nabla\times\mathbf E]=\mathrm{V\,m^{-2}},\ [\partial_t\mathbf B]=\mathrm{T\,s^{-1}},\ [\mathbf b_{\rm sw}]=\mathrm{V\,m^{-2}}$};
+{$\nabla \times \mathbf{E} = -\,\partial_t \mathbf{B} \;-\; \mathbf{b}_{\textrm sw}$\\
+\footnotesize $[\nabla\times\mathbf E]=\mathrm{V\,m^{-2}},\ [\partial_t\mathbf B]=\mathrm{T\,s^{-1}},\ [\mathbf b_{\textrm sw}]=\mathrm{V\,m^{-2}}$};
 
 % Left / Right of Faraday
 \node[left=of Faraday]  (E)
@@ -165,7 +165,7 @@ We show that the analogy of shrinking parallel charged plates while holding char
 
 % NEW: explicit b_sw card (kept implicit before; now we show it to receive the dashed link)
 \node[above left=1.4 and 0.8 of rho] (b)
-{$\mathbf{b}_{\rm sw}$\\ \footnotesize swirl–EMF source $[\mathbf b_{\rm sw}]=\mathrm{V\,m^{-2}}$};
+{$\mathbf{b}_{\textrm sw}$\\ \footnotesize swirl–EMF source $[\mathbf b_{\textrm sw}]=\mathrm{V\,m^{-2}}$};
 
 % ===================== ARROWS (your original solid couplings) =====================
 \draw[arrow] (E) -- (D);
@@ -183,7 +183,7 @@ We show that the analogy of shrinking parallel charged plates while holding char
 
 % ===================== NEW: SWIRL-GRAVITY MEDIATION (dashed, diagonal) =====================
 \draw[garrow] (rho.south west) -- node[above,sloped,inner sep=1pt]
-    {\footnotesize swirl-gravity mediation $\ \mathcal{G}_{\rm sw}$}
+    {\footnotesize swirl-gravity mediation $\ \mathcal{G}_{\textrm sw}$}
 (b.north);
 
 % Optional: feed b_sw into Faraday explicitly (already implicit via equation)
@@ -210,7 +210,7 @@ We show that the analogy of shrinking parallel charged plates while holding char
         \draw[fill=black] (\x,0) circle (0.05);
     }
     \node[align=center] at (-3,-1.6)
-        {$\Phi_{\rm sw}=\displaystyle\int_{A_0}\bm{\varrho}\!\cdot d\mathbf A = N\kappa$\\(fixed)};
+        {$\Phi_{\textrm sw}=\displaystyle\int_{A_0}\bm{\varrho}\!\cdot d\mathbf A = N\kappa$\\(fixed)};
 
     % Right plate (area A < A0)
     \draw[very thick] (1.0,0.8) rectangle (4.0,-0.8);
@@ -386,7 +386,7 @@ These overlaps suggest that laser-driven graphite levitation experiments uninten
 
 
 \section{Plate Compression Analogy}
-    Consider two parallel circular plates initially of area $A_0$, charged and then disconnected so that the \emph{swirl flux} through them is frozen at $\Phi_{\rm sw}=N\kappa$.
+    Consider two parallel circular plates initially of area $A_0$, charged and then disconnected so that the \emph{swirl flux} through them is frozen at $\Phi_{\textrm sw}=N\kappa$.
 
     \subsection*{Flux conservation}
         If the plate area is reduced to $A<A_0$ with no escape path for swirl lines,
@@ -414,7 +414,7 @@ These overlaps suggest that laser-driven graphite levitation experiments uninten
     \end{equation}
     where $\vswirl=C_e$ is the canonical swirl velocity. Substituting into the flux,
     \begin{equation}
-    \Phi_{\rm sw} = \int_A \bm{\varrho}\cdot d\mathbf A
+    \Phi_{\textrm sw} = \int_A \bm{\varrho}\cdot d\mathbf A
     = \frac{\rhof A}{\rhocore r_c} \vswirl
     = N\kappa.
     \end{equation}
@@ -432,7 +432,7 @@ These overlaps suggest that laser-driven graphite levitation experiments uninten
         \draw[fill=black] (\x,0) circle (0.05);
     }
     \node[align=center] at (-3,-1.6)
-        {$\Phi_{\rm sw}=N\kappa$};
+        {$\Phi_{\textrm sw}=N\kappa$};
 
     % Right plate (small A)
     \draw[very thick] (1.0,0.8) rectangle (4.0,-0.8);
@@ -454,7 +454,7 @@ These overlaps suggest that laser-driven graphite levitation experiments uninten
     \end{center}
 
 \section{Conclusion}
-    We have shown that the ``shrinking capacitor plate'' analogy is a direct realization of flux quantization in SST. The conserved swirl flux $\Phi_{\rm sw}=N\kappa$ enforces that reducing area $A$ increases line density $\bm{\varrho}$ until intervortex spacing matches the core scale $r_c$, at which point vortex nucleation occurs. This establishes a concrete bridge between classical electromechanical analogies and the Canon's swirl invariants.
+    We have shown that the ``shrinking capacitor plate'' analogy is a direct realization of flux quantization in SST. The conserved swirl flux $\Phi_{\textrm sw}=N\kappa$ enforces that reducing area $A$ increases line density $\bm{\varrho}$ until intervortex spacing matches the core scale $r_c$, at which point vortex nucleation occurs. This establishes a concrete bridge between classical electromechanical analogies and the Canon's swirl invariants.
 
     \bibliographystyle{plain}
     \begin{thebibliography}{9}
