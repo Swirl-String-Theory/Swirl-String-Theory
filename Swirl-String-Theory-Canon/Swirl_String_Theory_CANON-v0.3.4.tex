@@ -857,6 +857,264 @@
         \subsection*{Swirl gravitational potential}
             From \texttt{ExperimentalValidationOfGravitationalPotential.tex}: infer $p_{\text{swirl}}(r)$ from centripetal balance (\S\ref{sec:darkpressure}) and compare predicted forces with measured thrust or buoyancy anomalies in shielded high-voltage/coil experiments (geometry: starship/Rodin coils). Ensure dimensional consistency and calibrate only via Canon constants.
 
+%=========================================================
+% Critical Questions Across SST Extensions
+%=========================================================
+
+        \section{Critical Questions Across the SST Extensions}
+        \label{sec:critical-questions}
+
+        We collect here several forward-facing questions for Swirl--String Theory (SST), posed as critical tests or extensions. Each is answered canonically, with experimental or theoretical implications.
+
+%---------------------------------------------------------
+        \subsection*{1. Is EMF quantization observable?}
+
+            If each reconnection or knotting event releases a discrete flux impulse $\Phi^\*$, then
+            \[
+                \Delta \Phi_{\mathcal C} \;=\; \int_{\Sigma(\mathcal C)} \Delta \mathbf B \cdot d\mathbf S \;=\; m\,\Phi^\*,\quad m\in\mathbb Z,
+            \]
+            should appear as a \emph{quantized step} in a superconducting interferometer.
+            For a pickup loop of inductance $L$,
+            \[
+                \Delta I=\frac{\Delta\Phi}{L},\qquad V_{\rm ind}(t)=-\frac{d\Phi}{dt}.
+            \]
+            A reconnection of duration $\tau$ requires bandwidth $f_{\rm BW}\gtrsim (2\pi\tau)^{-1}$. For $\tau\sim$ ns, this is 20--200 MHz, within modern SQUID ranges. If $\Phi^\*\approx\Phi_0=h/2e$, steps are resolvable.
+
+            \paragraph{Status.} Canonical prediction: \emph{yes}, observable as quantized steps; scale of $\Phi^\*$ to be calibrated empirically.
+
+%---------------------------------------------------------
+        \subsection*{2. Is $R\!\to\!T$ collapse deterministic or stochastic?}
+
+        Field equations (Euler + swirl coupling) are deterministic. However, topology change occurs at core separations $\sim r_c$ with extreme sensitivity to microstates. Effective model:
+        \[
+            \dot K=F(K)+\sqrt{2D_{\rm env}}\,\eta(t),\qquad \text{Vis}(t)=e^{-\Gamma_{\rm env} t},\;\Gamma_{\rm env}\propto D_{\rm env}.
+        \]
+        Thus: deterministic instability in the $D_{\rm env}\!\to 0$ limit; effectively stochastic under environmental noise.
+
+        \paragraph{Status.} Collapse is \emph{deterministic at the core level}, \emph{stochastic in practice}.
+
+%---------------------------------------------------------
+        \subsection*{3. Can SST replace quantum measurement postulates?}
+
+        The dual-phase picture (delocalized $R$ vs localized $T$ states) suggests an objective collapse mechanism. Collapse is driven by swirl radiation and reconnections.
+        Key tasks:
+        \begin{itemize}
+        \item Derive the Born rule $P\sim|\psi|^2$ from ergodic measures on swirl phase space.
+        \item Ensure no-signaling under nonlocal correlations of linked knots.
+        \end{itemize}
+
+        \paragraph{Status.} Promising realist alternative, but \emph{derivation of Born and no-signaling remains open}.
+
+%---------------------------------------------------------
+        \subsection*{4. How unique is the topological decomposition?}
+
+        Different knots $K$ can share
+        \[
+            \mathcal M(K)=b(K)^{-3/2}\,\varphi^{-g(K)}\,n(K)^{-1/\varphi}\,L_{\rm tot}(K).
+        \]
+        Thus mass alone is degenerate. Resolution requires:
+        \begin{itemize}
+        \item Helicity $H=\int \mathbf v\!\cdot\!\boldsymbol\omega\,dV$,
+        \item writhe/twist spectra and normal-mode eigenfrequencies,
+        \item stability (lifetime) and selection rules.
+        \end{itemize}
+
+        \paragraph{Status.} Unique particle identity emerges only when \emph{mass, helicity, and mode spectra} are jointly enforced.
+
+%---------------------------------------------------------
+        \subsection*{5. Can the swirl Lagrangian generate interactions?}
+
+        Beyond mass, interaction terms may appear via extended couplings:
+        \[
+            \mathcal L_{\rm couple}\;+\;\lambda_{\rm ch}\int (\mathbf v\!\cdot\!\boldsymbol\omega)(\nabla\!\cdot\!\mathbf a)\,dV
+            +\;g_c \int \mathcal C(\mathcal K_1,\mathcal K_2)\,d\Sigma.
+        \]
+        These generate parity-odd (chiral) and contact vertices, reminiscent of Yukawa/weak interactions.
+
+        \paragraph{Status.} Plausible EFT tower; \emph{explicit vertex catalogue} is an open derivation.
+
+%---------------------------------------------------------
+        \subsection*{6. Is the swirl condensate Lorentz-violating?}
+
+        SST posits absolute time (preferred foliation). Microscopic frame is Galilean.
+        However, the photon sector Lagrangian
+        \[
+            \partial_t^2 \mathbf a - c^2 \nabla\times(\nabla\times \mathbf a)=0,\quad \nabla\cdot\mathbf a=0
+        \]
+        is exactly Lorentz-invariant. Residual anisotropies are suppressed operators of order $\epsilon^2$ with $\epsilon=\|\mathbf u_{\rm drift}\|/c$.
+        Experimental bounds: $\delta c/c \lesssim 10^{-17}$--$10^{-21}$; SST must respect these.
+
+        \paragraph{Status.} \emph{Emergent Lorentz invariance} in radiation sector; matter sector constrained to high precision.
+
+%---------------------------------------------------------
+        \subsection*{Experiment table}
+
+        \begin{table}[H]
+        \centering
+        \caption{Concrete experiments to test critical SST questions.}
+        \begin{tabular}{lllll}
+        \toprule
+        Objective & Observable & SST control & Expected scale & Note \\
+        \midrule
+        Flux impulse & $\Delta\Phi$ steps & reconnections & $\Phi^\*\sim\Phi_0$? & SQUID; $f_{\rm BW}$ ns--µs \\
+        Collapse rate & vis. $\sim e^{-\Gamma t}$ & env. coupling $D_{\rm env}$ & tunable $\Gamma$ & Kramers escape analogue \\
+        Identity & spectra, $H$ & knot class $K$ & discrete $\Omega_n$ & inelastic spectroscopy \\
+        Interactions & scattering & contact twist/link & selection rules & EFT vertex test \\
+        Lorentz & $\delta c/c$ & drift $\mathbf u$ & $<10^{-17}$ & cavity/clock tests \\
+        \bottomrule
+        \end{tabular}
+        \end{table}
+
+%---------------------------------------------------------
+        \subsection*{Bib\TeX (comparators)}
+        \begin{verbatim}
+@book{Tinkham1996,
+  author={Tinkham, Michael},
+  title={Introduction to Superconductivity},
+  edition={2}, year={1996}, publisher={McGraw--Hill}
+}
+@book{ClarkeBraginski2004,
+  author={Clarke, John and Braginski, Alex I.},
+  title={The SQUID Handbook},
+  year={2004}, publisher={Wiley-VCH}
+}
+@article{Moffatt1969,
+  author={Moffatt, H. K.},
+  title={The degree of knottedness of tangled vortex lines},
+  journal={J. Fluid Mech.}, year={1969}, doi={10.1017/S0022112069000225}
+}
+        \end{verbatim}
+
+
+        % === Composite-knot correction (SST) ===
+        For a composite $K_1 \# K_2$,
+        \[
+            u(K_1 \# K_2)
+            = u(K_1) + u(K_2) - \Delta_u(K_1,K_2),
+            \qquad \Delta_u \ge 0.
+        \]
+
+        Hence the barrier functional satisfies
+        \[
+            \mathcal B[K_1 \# K_2]
+            = \mathcal B[K_1] + \mathcal B[K_2] - \varepsilon_*\,\Delta_u.
+        \]
+
+        We define a dimensionless \emph{simplification index}:
+        \[
+            S_{\rm comp}(K_1,K_2)
+            = \frac{\Delta_u}{u(K_1)+u(K_2)} \in [0,1).
+        \]
+
+        This index measures the degree to which composition
+        reduces the unknotting barrier.
+
+        \medskip
+
+        In SST taxonomy, the correction term
+        \[
+            \Delta\mathcal B = \varepsilon_* \Delta_u
+        \]
+        acts as a \emph{nonlinear coupling},
+        analogous to the non-Abelian structure constants
+        in $\mathfrak{su}(3)\oplus\mathfrak{su}(2)\oplus\mathfrak{u}(1)$.
+
+
+
+        % ==========================================================
+% 16 Swirl Condensation and BEC Correspondence (Canon Extension)
+% ==========================================================
+
+        \section{Swirl Condensation and BEC Correspondence (Canon Extension)}
+
+        \subsection*{Postulate 16.1 (Condensed Swirl Sector)}
+            Let $U \subset \mathbb R^3$ be a foliation leaf with transverse swirl velocity $v_{\text{swirl}}$.
+            Assume incompressible, inviscid medium with no reconnection. Then:
+            \begin{equation}
+            v_{\text{swirl}} = \frac{\hbar}{m_{\text{eff}}}\,\nabla \phi,
+            \qquad n = |\Psi|^2 ,
+            \end{equation}
+            where $\Psi$ is a complex order parameter. The swirl circulation is quantized:
+            \begin{equation}
+            \Gamma = \oint v_{\text{swirl}}\cdot d\ell = N\,\Gamma_0,
+            \qquad \Gamma_0 := 2\pi v_\circlearrowleft r_c .
+            \end{equation}
+            A core frequency defines a spectral gap:
+            \begin{equation}
+            \omega_0 := \frac{v_\circlearrowleft}{r_c}, \qquad
+            m_{\text{eff}} := \frac{\hbar \omega_0}{c^2}
+            = \frac{\hbar v_\circlearrowleft}{c^2 r_c}.
+            \end{equation}
+
+            \noindent\textit{Dimensional check:}\;
+            $[\Gamma_0] = \text{m}^2\text{s}^{-1},\;
+            [\omega_0]=\text{s}^{-1},\;
+            [m_{\text{eff}}]=\text{kg}.$ \checkmark
+
+% ----------------------------------------------------------
+        \subsection*{Theorem 16.2 (SST--BEC Correspondence)}
+            Starting from the quadratic swirl Lagrangian (cf. Sec.~11):
+            \begin{equation}
+            \mathcal L_0 = \tfrac{1}{2}\rho_f\left(\dot\psi^2 - c^2|\nabla\psi|^2\right),
+            \end{equation}
+            the dispersion acquires a gap:
+            \begin{equation}
+            \omega_{\mathbf k}^2 = \omega_0^2 + c^2k^2,
+            \qquad
+            E_{\mathbf k} = \hbar \omega_{\mathbf k}
+            \simeq \hbar \omega_0 + \frac{\hbar^2 k^2}{2m_{\text{eff}}}.
+            \end{equation}
+            Thus transverse swirl excitations behave as massive bosons of mass $m_{\text{eff}}$.
+            At finite density $n$, the coarse-grained action reduces to a Gross--Pitaevskii functional:
+            \begin{equation}
+            \mathcal E[\Psi] = \int d^3x \left[
+                                             \frac{\hbar^2}{2m_{\text{eff}}}|\nabla\Psi|^2
+                + \tfrac{g}{2}|\Psi|^4 - \mu|\Psi|^2
+            \right].
+            \end{equation}
+            The condensation temperature is the canonical Bose value:
+            \begin{equation}
+            k_B T_c = \frac{2\pi \hbar^2}{m_{\text{eff}}}
+            \left(\frac{n}{\zeta(3/2)}\right)^{2/3}.
+            \end{equation}
+
+            \noindent\textit{Sketch of proof.}\;
+            Fourier diagonalization yields $\omega_k$ with gap $\omega_0$.
+            Number conservation (Sec.~1.1) allows chemical potential $\mu$.
+            Partition function is that of massive bosons, giving the Bose integral.
+            GP functional is the Landau--Ginzburg reduction at finite density. \qed
+
+% ----------------------------------------------------------
+        \subsection*{Corollaries 16.3}
+            \begin{enumerate}
+            \item \textbf{Swirl quantum number.}
+            Condensed fraction fixes global phase of $\Psi$; circulation $N$ locks $\phi$.
+
+            \item \textbf{Healing length (coherence).}
+            \begin{equation}
+            \xi = \frac{\hbar}{\sqrt{2 m_{\text{eff}} g n}} .
+            \end{equation}
+
+            \item \textbf{Rotating trap.}
+            External rotation couples to quantized $\Gamma$; minimizers are Abrikosov-like vortex lattices.
+            \end{enumerate}
+
+% ----------------------------------------------------------
+        \subsection*{Numerical Calibration (Canon constants, Sec.~4)}
+            With $v_\circlearrowleft = 1.09384563\times 10^6~\text{m/s}$
+            and $r_c = 1.40897017\times 10^{-15}~\text{m}$:
+            \begin{align}
+            \Gamma_0 &= 9.6836\times10^{-9}\ \text{m}^2/\text{s}, \\
+            \omega_0 &= 7.7634\times10^{20}\ \text{s}^{-1}, \\
+            m_{\text{eff}} &= 9.1094\times10^{-31}\ \text{kg}.
+            \end{align}
+            Critical temperatures:
+            \begin{align}
+            T_c(n=10^{20}\,\text{m}^{-3}) &= 6.31\times10^{-2}\ \text{K}, \\
+            T_c(n=10^{21}\,\text{m}^{-3}) &= 2.93\times10^{-1}\ \text{K}.
+            \end{align}
+
+            \noindent Scaling $T_c \propto n^{2/3}$ is confirmed. \checkmark
 
 %================================================
 % END OF CANONICALS
@@ -871,6 +1129,33 @@
 % Boxed Canon Equations (paste-ready)
 %================================================
     \section*{Appendix A: Boxed Canon Equations (paste-ready)}
+        \begin{center}
+        \fbox{%
+            \begin{minipage}{0.92\linewidth}
+
+            \textbf{Swirl Condensation Quanta (Canonical Extension, Sec.~16)}
+
+            \begin{align}
+            \Gamma_0 &= 2\pi v_\circlearrowleft r_c
+            && \text{(circulation quantum)} \\[6pt]
+            \omega_0 &= \frac{v_\circlearrowleft}{r_c}
+            && \text{(core frequency / mass gap)} \\[6pt]
+            m_{\text{eff}} &= \frac{\hbar \omega_0}{c^2}
+            = \frac{\hbar v_\circlearrowleft}{c^2 r_c}
+            && \text{(effective boson mass)} \\[6pt]
+            k_B T_c &= \frac{2\pi\hbar^2}{m_{\text{eff}}}
+            \left(\frac{n}{\zeta(3/2)}\right)^{2/3}
+            && \text{(condensation temperature)}
+            \end{align}
+
+            \noindent
+            \textit{Calibration (Canon constants Sec.~4):}
+            $\Gamma_0 = 9.68\times 10^{-9}\ \text{m}^2/\text{s},\;
+            \omega_0 = 7.76\times 10^{20}\ \text{s}^{-1},\;
+            m_{\text{eff}} = 9.11\times 10^{-31}\ \text{kg}$.
+
+            \end{minipage}}
+        \end{center}
     \begin{enumerate}
         \item \textbf{Energy:} \fbox{$E_{\text{SST}} = \dfrac{4}{\alpha\varphi}\left(\dfrac{1}{2}\rhof \vscore^2\right)V$}
         \item \textbf{Mass:} \fbox{$M_{\text{SST}} = \dfrac{E_{\text{SST}}}{c^2}$}
@@ -1066,6 +1351,117 @@
 
 % ---------------------------------------------------------
 
+% === Unknotting barrier & gauge structure (SST) ===
+        \subsection*{From unknotting non-additivity to \(\mathfrak{su}(3)\oplus\mathfrak{su}(2)\oplus\mathfrak u(1)\) in SST}
+
+        \paragraph{Unknotting barrier functional.}
+            Let \(K\subset\mathbb R^3\) be a closed swirl–string on a leaf \(\Sigma_t\).
+            Define the per–crossing activation scale
+            \[
+                \varepsilon_*\;=\;\kappa\,\beta\,\rc\;+\;\frac{\kappa\pi}{2}\,\rhoF\,\vnorm^2\,\rc^3,
+                \quad \kappa=\mathcal O(1{-}10),
+            \]
+            and the barrier
+            \[
+                \mathcal B[K]\;=\;u(K)\,\varepsilon_*.
+            \]
+            For a connected sum \(K_1\#K_2\),
+            \[
+                u(K_1\#K_2)=u(K_1)+u(K_2)-\Delta_u(K_1,K_2),\qquad \Delta_u\ge 0,
+            \]
+            so that
+            \[
+                \mathcal B[K_1\#K_2]=\mathcal B[K_1]+\mathcal B[K_2]-\varepsilon_*\,\Delta_u.
+            \]
+            (Brittenham–Hermiller 2025 give explicit \(\Delta_u>0\) families for torus knots.)
+
+        \paragraph{Dimensionless simplification index.}
+            Define
+            \[
+                S_{\rm comp}(K_1,K_2):=\frac{\Delta_u(K_1,K_2)}{u(K_1)+u(K_2)}\in[0,1),
+            \]
+            and \(\Delta\mathcal B=\varepsilon_*\,\Delta_u\). Here \(S_{\rm comp}\) is \emph{dimensionless}; \(\Delta\mathcal B\) has units of energy.
+
+        \paragraph{Discrete curvature on composition.}
+            Let \((\mathcal K,\#)\) denote the knot configuration monoid. Non-additivity of \(u\) defines a discrete \(2\)-cocycle:
+            \[
+                \mathcal C(K_1,K_2):=\Delta_u(K_1,K_2).
+            \]
+            A minimal \emph{associator defect} (discrete curvature) for triples is
+            \[
+                \mathfrak{R}(K_1,K_2,K_3)\;:=\;
+                \mathcal C(K_1,K_2)+\mathcal C(K_1\#K_2,K_3)
+                -\mathcal C(K_2,K_3)-\mathcal C(K_1,K_2\#K_3).
+            \]
+            If \(\mathfrak{R}\equiv 0\) the composition is “flat” (effectively Abelian in the barrier metric); \(\mathfrak{R}\neq 0\) signals nontrivial curvature, the discrete analogue of non-Abelian structure.
+
+        \paragraph{Emergent gauge potentials from multi-director swirl.}
+            Let \(\mathcal A=\big(A_\mu^{(0)},\,W_\mu^a,\,G_\mu^A\big)\) denote the swirl–gauge potentials for
+            \(\mathfrak u(1)\oplus\mathfrak{su}(2)\oplus\mathfrak{su}(3)\).
+            Introduce coupling functions driven by simplification statistics in a family \(\mathcal F\subset\mathcal K\):
+            \[
+                g_1^{-2}(\mathcal F)=g_{1,0}^{-2},\qquad
+                g_2^{-2}(\mathcal F)=g_{2,0}^{-2}\Bigl[1+\lambda_2\,\langle S_{\rm comp}\rangle_{\mathcal F}\Bigr],
+                \qquad
+                g_3^{-2}(\mathcal F)=g_{3,0}^{-2}\Bigl[1+\lambda_3\,\langle S_{\rm comp}\rangle_{\mathcal F}\Bigr],
+            \]
+            with \(\lambda_{2,3}>0\) dimensionless and \(\langle\cdot\rangle_{\mathcal F}\) the family average.
+            Thus nonzero simplification (\(\Delta_u>0\)) \emph{renormalizes} the non-Abelian sectors, while \(U(1)\) remains purely additive at leading order.
+
+        \paragraph{SST gauge Lagrangian (coupling by taxonomy).}
+            With \(F_{\mu\nu}^{(0)},\,W_{\mu\nu}^a,\,G_{\mu\nu}^A\) the field strengths,
+            \[
+                \mathcal L_{\rm gauge}
+                =-\frac{1}{4}\frac{1}{g_1^2(\mathcal F)}\,F_{\mu\nu}^{(0)}F^{(0)\mu\nu}
+                -\frac{1}{4}\frac{1}{g_2^2(\mathcal F)}\,W_{\mu\nu}^{a}W^{a\,\mu\nu}
+                -\frac{1}{4}\frac{1}{g_3^2(\mathcal F)}\,G_{\mu\nu}^{A}G^{A\,\mu\nu},
+            \]
+            and the total selection functional acquires the barrier:
+            \[
+                \mathcal E_{\rm tot}[K]=\alpha\,C(K)+\beta\,L(K)+\gamma\,\mathcal H(K)+\mathcal B[K],
+                \quad
+                \mathcal E_{\rm tot}[K_1\#K_2]
+                =\mathcal E_{\rm tot}[K_1]+\mathcal E_{\rm tot}[K_2]-\varepsilon_*\,\Delta_u.
+            \]
+
+        \paragraph{Representation assignment (house mapping).}
+            Adopt the Canon homomorphism \(t(K)=(L \bmod 3,\;S \bmod 2,\;\chi)\) to \(\mathfrak{su}(3)\oplus\mathfrak{su}(2)\oplus\mathfrak u(1)\):
+            \[
+                \begin{aligned}
+                &\text{Color (SU(3)) index: } &&\mathbf 3 \text{ class determined by } (L \bmod 3),\\
+                &\text{Weak (SU(2)) isospin: } &&\mathbf 2 \text{ / singlet by } (S \bmod 2),\\
+                &\text{Hypercharge (U(1)): } &&Y\propto \chi\, \mathcal Q(K),
+                \end{aligned}
+            \]
+            where \(\chi\in\{\pm1\}\) tracks chirality/mirror and \(\mathcal Q(K)\) is a chosen Abelian scalar (e.g.\ normalized circulation or writhe). This retains Abelian additivity for \(Y\) while allowing non-Abelian renormalization via \(\langle S_{\rm comp}\rangle\).
+
+        \paragraph{Worked composite example.}
+            For \(K=T(2,7)\) with \(u(K)=3\) and \(u(K\#\overline K)\le 5\),
+            \[
+                \Delta_u(K,\overline K)\ge 1,\qquad
+                S_{\rm comp}(K,\overline K)\ge \frac{1}{6}.
+            \]
+            Hence
+            \[
+                \Delta\mathcal B=\varepsilon_*\,\Delta_u\ge \varepsilon_*,
+                \quad
+                \frac{1}{g_{2,3}^2}\;\mapsto\;\frac{1}{g_{2,3}^2}\Bigl[1+\lambda_{2,3}\times\tfrac{1}{6}\Bigr]
+                \ \ \text{for the family containing }K,\overline K.
+            \]
+            All quantities entering \(g_i(\mathcal F)\) are dimensionless (consistency check).
+
+        \paragraph{Physical interpretation.}
+            Additive (\(U(1)\)) observables follow linear composition; subadditivity of \(u\) generates a discrete curvature that selectively enhances the non-Abelian sectors. Families with larger \(\langle S_{\rm comp}\rangle\) act as stronger “non-Abelianizers” of the swirl–gauge dynamics.
+
+% =========================
+% Bibliography (non-original)
+% =========================
+            \begin{thebibliography}{9}
+            \bibitem{BrittenhamHermiller2025}
+            M.~Brittenham and S.~Hermiller,
+            \emph{Unknotting number is not additive under connected sum},
+            arXiv:2506.24088 (2025).
+            \end{thebibliography}
 
 %================================================
 % Personas (unchanged logic, SST names)
