@@ -760,18 +760,18 @@ Here, $p_0$ is the pressure at a reference radius $r_0$. The resulting outward-r
 We collect here several forward-facing questions for Swirl–String Theory (SST), posed as critical tests or extensions. Each is answered canonically, with experimental or theoretical implications.
 
 \subsection*{1. Is EMF quantization observable?}
-    If each reconnection or knotting event releases a discrete flux impulse $\Phi^\*$, then
+    If each reconnection or knotting event releases a discrete flux impulse $\Phi^*$, then
     \[
-        \Delta \Phi_{\mathcal{C}} = \int_{\Sigma(\mathcal{C})} \Delta \mathbf{B} \cdot d\mathbf{S} = m\,\Phi^\*,\quad m\in\mathbb Z,
+        \Delta \Phi_{\mathcal{C}} = \int_{\Sigma(\mathcal{C})} \Delta \mathbf{B} \cdot d\mathbf{S} = m\,\Phi^*,\quad m\in\mathbb Z,
     \]
     should appear as a \emph{quantized step} in a superconducting interferometer.
     For a pickup loop of inductance $L$,
     \[
         \Delta I=\frac{\Delta\Phi}{L},\qquad V_{\textrm ind}(t)=-\frac{d\Phi}{dt}.
     \]
-    A reconnection of duration $\tau$ requires bandwidth $f_{\textrm BW}\gtrsim (2\pi\tau)^{-1}$. For $\tau\sim$ ns, this is 20--200 MHz, within modern SQUID ranges. If $\Phi^\*\approx\Phi_0=h/2e$, steps are resolvable.
+    A reconnection of duration $\tau$ requires bandwidth $f_{\textrm BW}\gtrsim (2\pi\tau)^{-1}$. For $\tau\sim$ ns, this is 20--200 MHz, within modern SQUID ranges. If $\Phi^*\approx\Phi_0=h/2e$, steps are resolvable.
 
-    \paragraph{Status.} Canonical prediction: \emph{yes}, observable as quantized steps; scale of $\Phi^\*$ to be calibrated empirically.
+    \paragraph{Status.} Canonical prediction: \emph{yes}, observable as quantized steps; scale of $\Phi^*$ to be calibrated empirically.
 
 \subsection*{2. Is $R\!\to\!T$ collapse deterministic or stochastic?}
 Field equations (Euler + swirl coupling) are deterministic. However, topology change occurs at core separations $\sim r_c$ with extreme sensitivity to microstates. Effective model:
@@ -836,7 +836,7 @@ Experimental bounds: $\delta c/c \lesssim 10^{-17}$--$10^{-21}$; SST must respec
 \toprule
 Objective & Observable & SST control & Expected scale & Note \\
 \midrule
-Flux impulse & $\Delta\Phi$ steps & reconnections & $\Phi^\*\sim\Phi_0$? & SQUID; $f_{\textrm BW}$ ns--µs \\
+Flux impulse & $\Delta\Phi$ steps & reconnections & $\Phi^*\sim\Phi_0$? & SQUID; $f_{\textrm BW}$ ns--µs \\
 Collapse rate & vis. $\sim e^{-\Gamma t}$ & env. coupling $D_{\textrm env}$ & tunable $\Gamma$ & Kramers escape analogue \\
 Identity & spectra, $H$ & knot class $K$ & discrete $\Omega_n$ & inelastic spectroscopy \\
 Interactions & scattering & contact twist/link & selection rules & EFT vertex test \\
@@ -942,10 +942,10 @@ where $r_c$ is the core radius and $L_{\textrm tot}$ is the \emph{dimensionless 
     \end{equation*}
 
 \paragraph{Leptons (solved $L_{\textrm tot}$).}
-    For a lepton with labels $(b,g,n)$ and known mass $M_\ell^{\textrm(exp)}$, invert \eqref{eq:SST-invariant-mass}:
+    For a lepton with labels $(b,g,n)$ and known mass $M_\ell^{\textrm(\exp)}$, invert \eqref{eq:SST-invariant-mass}:
     \[
         L_{\textrm tot}^{(\ell)} \;=\;
-        \frac{M_\ell^{\textrm(exp)}\,c^2}{\big(\tfrac{4}{\alpha_{\textrm fs}}\,b^{-3/2}\varphi^{-g}n^{-1/\varphi}\big)\,u\,\pi r_c^3}.
+        \frac{M_\ell^{\textrm(\exp)}\,c^2}{\big(\tfrac{4}{\alpha_{\textrm fs}}\,b^{-3/2}\varphi^{-g}n^{-1/\varphi}\big)\,u\,\pi r_c^3}.
     \]
 
 \paragraph{Baryons (exact closure).}
@@ -956,7 +956,7 @@ where $r_c$ is the core radius and $L_{\textrm tot}$ is the \emph{dimensionless 
         \mathcal S=2\pi^2\kappa_R,\;\;\kappa_R=2,
     \]
     with $(s_u,s_d)$ dimensionless sector weights and $\lambda_b$ a sector scale (set to $1$ in exact-closure).
-    Imposing $M_p^{\textrm(exp)}=M_p$ and $M_n^{\textrm(exp)}=M_n$ in \eqref{eq:SST-invariant-mass} yields a \emph{linear} $2\times2$ system for $(s_u,s_d)$:
+    Imposing $M_p^{\textrm(\exp)}=M_p$ and $M_n^{\textrm(\exp)}=M_n$ in \eqref{eq:SST-invariant-mass} yields a \emph{linear} $2\times2$ system for $(s_u,s_d)$:
     \[
         \begin{bmatrix}
         2 & 1\\[2pt]
@@ -965,19 +965,20 @@ where $r_c$ is the core radius and $L_{\textrm tot}$ is the \emph{dimensionless 
         \begin{bmatrix}
         s_u\\ s_d
         \end{bmatrix}
+
         =
         \frac{1}{K}
         \begin{bmatrix}
-        M_p^{\textrm(exp)}\\ M_n^{\textrm(exp)}
+        M_p^{\textrm(\exp)}\\ M_n^{\textrm(\exp)}
         \end{bmatrix},
         \qquad
         K=\Big[\tfrac{4}{\alpha_{\textrm fs}}\,3^{-3/2}\,\varphi^{-2}\,3^{-1/\varphi}\Big]\frac{u\,\pi r_c^3\,\mathcal S}{c^2}.
     \]
     Solving gives
     \[
-        s_u=\frac{2M_p^{\textrm(exp)}-M_n^{\textrm(exp)}}{3K},
+        s_u=\frac{2M_p^{\textrm(\exp)}-M_n^{\textrm(\exp)}}{3K},
         \qquad
-        s_d=\frac{M_p^{\textrm(exp)}}{K}-2s_u.
+        s_d=\frac{M_p^{\textrm(\exp)}}{K}-2s_u.
     \]
 
 \paragraph{Composites (no binding).}
@@ -1033,7 +1034,7 @@ CO$_2$ molecule & 7.305355e-26 & 7.354340e-26 & 0.6704\\
     Let \(K\subset\mathbb R^3\) be a closed swirl–string on a leaf \(\Sigma_t\).
     Define the per–crossing activation scale
     \[
-        \varepsilon_*\;=\;\kappa\,\beta\,\rc\;+\;\frac{\kappa\pi}{2}\,\rhoF\,\vnorm^2\,\rc^3,
+        \varepsilon_*\;=\;\kappa\,\beta\,\rc\;+\;\frac{\kappa\pi}{2}\,\rhof\,\vnorm^2\,\rc^3,
         \quad \kappa=\mathcal O(1{-}10),
     \]
     and the barrier
