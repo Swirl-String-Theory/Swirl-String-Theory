@@ -16,6 +16,7 @@
 # We draw 3 phases with 120° offsets. Set draw_phases=False for 1-phase.
 #
 import matplotlib
+
 matplotlib.use('TkAgg')
 # Extended GUI: add a "Bowl profile" radio group (1 of 3):
 #   - "Exponential (r_start→r_end)"     r(s) = r_start + (r_end-r_start)*s^power
@@ -28,6 +29,7 @@ matplotlib.use('TkAgg')
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import CheckButtons, RadioButtons, Slider
+import os
 
 # ---------- Fixed SawShape parameters ----------
 S = 40
@@ -35,6 +37,8 @@ step_fwd = 11
 step_bwd = -9
 samples_per_seg = 24
 power = 2.2  # exponent for exponential profiles
+rVal = [0.01, 2.0, 0.5]  # initial Rb, Rt, n_pairs
+RVal = [0.01, 2.0, 1.5]
 
 phase_colors = ['tab:purple', 'tab:blue', 'tab:green']
 phase_labels = ['Phase A', 'Phase B', 'Phase C']
@@ -97,21 +101,23 @@ def build_curved_phase(seq, Rb, Rt, n_pairs, angle_offset=0.0, profile='Exponent
 fig = plt.figure(figsize=(11.5, 8.2))
 ax = fig.add_subplot(111, projection='3d')
 plt.subplots_adjust(left=0.05, right=0.80, bottom=0.20)
-
+#               axes([left, bottom, width, height])
 rax_mode  = plt.axes([0.81, 0.72, 0.18, 0.20])  # Straight/Curved
 rax_chk   = plt.axes([0.81, 0.50, 0.18, 0.20])  # Phase toggles
 rax_prof  = plt.axes([0.81, 0.28, 0.18, 0.20])  # Bowl profile (1 of 3)
 rax_Rb    = plt.axes([0.12, 0.07, 0.30, 0.03])  # R bottom
 rax_Rt    = plt.axes([0.56, 0.07, 0.30, 0.03])  # R top
 rax_L     = plt.axes([0.12, 0.03, 0.74, 0.03])  # Layers
+rax_S     = plt.axes([0.12, 0.05, 0.74, 0.03])  # spacing
 
 mode_radio = RadioButtons(rax_mode, labels=['Straight SawShape', 'Curved SawShape'], active=1)
 phase_checks = CheckButtons(rax_chk, labels=phase_labels, actives=[True, True, True])
 profile_radio = RadioButtons(rax_prof, labels=['Exponential', 'Linear', 'Inverse Exp'], active=0)
 
-Rb_slider = Slider(rax_Rb, 'R bottom', 0.3, 1.5, valinit=0.6, valstep=0.01)
-Rt_slider = Slider(rax_Rt, 'R top',    0.6, 2.2, valinit=1.6, valstep=0.01)
-L_slider  = Slider(rax_L,  'Layers (pairs: 1 = +11/−9 once)', 1, 80, valinit=20, valstep=1)
+Rb_slider = Slider(rax_Rb, 'R bottom', rVal[0], rVal[1], valinit=rVal[2], valstep=0.01)
+Rt_slider = Slider(rax_Rt, 'R top',    RVal[0], RVal[1], valinit=RVal[2], valstep=0.01)
+L_slider  = Slider(rax_L,  'Layers (pairs: 1 = +11/−9 once)', 1, 160, valinit=20, valstep=1)
+H_slider  = Slider(rax_S,  'Spacing', 0.1, 1, valinit=0.1, valstep=0.01)
 
 def redraw(event=None):
     # save current camera
@@ -124,6 +130,7 @@ def redraw(event=None):
     Rb = Rb_slider.val
     Rt = Rt_slider.val
     n_pairs = int(L_slider.val)
+    Hc = H_slider.val
     curved = (mode_radio.value_selected == 'Curved SawShape')
     profile = profile_radio.value_selected
 
@@ -136,7 +143,7 @@ def redraw(event=None):
             x, y, z = build_curved_phase(seq, Rb, Rt, n_pairs, angle_offset=ang_off, profile=profile)
         else:
             x, y, z = build_straight_phase(seq, Rb, Rt, n_pairs, angle_offset=ang_off, profile=profile)
-        ax.plot(x, y, z, lw=2, color=color, label=label)
+        ax.plot(x, y, z*Hc, lw=2, color=color, label=label)
 
     Rmax = max(Rb, Rt)*1.1
     ax.set_xlim(-Rmax, Rmax); ax.set_ylim(-Rmax, Rmax); ax.set_zlim(0, 1.0)
@@ -150,12 +157,14 @@ def redraw(event=None):
 # Hook up callbacks
 for w in (mode_radio, profile_radio):
     w.on_clicked(redraw)
-for s in (Rb_slider, Rt_slider, L_slider):
+for s in (Rb_slider, Rt_slider, L_slider, H_slider):
     s.on_changed(redraw)
 phase_checks.on_clicked(lambda evt: redraw())
 
 
 out_path = "SawShape_GUI.png"
+# Ensure output directory exists
+os.makedirs(os.path.dirname(out_path) or '.', exist_ok=True)
 plt.savefig(out_path, dpi=160, bbox_inches='tight')
 
 plt.show()
