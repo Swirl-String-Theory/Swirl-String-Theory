@@ -146,11 +146,19 @@ This Canon is the single source of truth for \emph{Swirl String Theory (SST)}: d
 %================================================
 \label{sec:classical_invariants}
 Under Axiom 1 (inviscid, barotropic medium), the Euler equations hold and yield standard vortex invariants. In particular, Helmholtz/Kelvin circulation theorem ensures:
-\begin{align}
-\textbf{Kelvin's circulation theorem:} & \quad \frac{d\Gamma}{dt}=0, \qquad \Gamma=\oint_{\mathcal{C}(t)} \vswirl\cdot d\boldsymbol{\ell}, \tag{F1} \label{eq:kelvin} \\
-\textbf{Vorticity transport:} & \quad \pdv{\omegas}{t} = \nabla\times(\vswirl\times \omegas), \tag{F2} \label{eq:vorticity-transport}\\
-\textbf{Helicity invariance:} & \quad h=\vswirl\cdot \omegas,\quad H=\int h\, dV\ \text{(constant; changes only by reconnections)~\cite{Moffatt1969}}. \tag{F3}\label{eq:helicity}
-\end{align}
+
+\textbf{Kelvin's circulation theorem:}
+\begin{equation}
+    \frac{d\Gamma}{dt}=0, \qquad \Gamma=\oint_{\mathcal{C}(t)} \vswirl\cdot d\boldsymbol{\ell}, \label{eq:kelvin}
+\end{equation}
+
+\textbf{Vorticity transport:}
+\begin{equation}
+    \pdv{\omegas}{t} = \nabla\times(\vswirl\times \omegas), \label{eq:vorticity-transport}
+\end{equation}
+\textbf{Helicity invariance:}
+\begin{equation} h=\vswirl\cdot \omegas,\quad H=\int h\, dV\ \text{(constant; changes only by reconnections)~\cite{Moffatt1969}}. \label{eq:helicity}
+\end{equation}
 These underpin knotted swirl-string stability and reconnection energetics in SST.
 
 \begin{axiom}[Chronos–Kelvin Invariant]
@@ -171,7 +179,7 @@ where $\omega=\|\omegas\|$ on the loop and $S_t=\sqrt{\,1-(\omega r_c/c)^2\,}$ i
 \end{axiom}
 
 \paragraph{Derivation (Kelvin's theorem).}
-    Kelvin's theorem (F1) implies $\frac{D}{Dt}\Gamma=0$ for any material loop in a barotropic flow【Helmholtz1858,Kelvin1869,Batchelor1967】. For a nearly solid-body core, $\Gamma = 2\pi R\, v_t = 2\pi R^2 \omega$, so $\frac{D}{Dt}(R^2 \omega)=0$. Using $v_t = \omega r_c$ and the definition of $S_t$ (Axiom 4), we get $R^2\omega=\frac{c}{r_c}R^2\sqrt{\,1-S_t^2\,}$, yielding \eqref{eq:CK}. \qed
+    Kelvin's theorem \ref{eq:kelvin}  implies $\frac{D}{Dt}\Gamma=0$ for any material loop in a barotropic flow【Helmholtz1858,Kelvin1869,Batchelor1967】. For a nearly solid-body core, $\Gamma = 2\pi R\, v_t = 2\pi R^2 \omega$, so $\frac{D}{Dt}(R^2 \omega)=0$. Using $v_t = \omega r_c$ and the definition of $S_t$ (Axiom 4), we get $R^2\omega=\frac{c}{r_c}R^2\sqrt{\,1-S_t^2\,}$, yielding \eqref{eq:CK}. \qed
 
 \paragraph{Dimensional check.}
     $[R^2\omega] = \mathrm{m}^2\mathrm{s}^{-1}$, and $[\frac{c}{r_c}R^2\sqrt{1-S_t^2}] = \mathrm{s}^{-1}\cdot \mathrm{m}^2 = \mathrm{m}^2\mathrm{s}^{-1}$.

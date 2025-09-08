@@ -1,15 +1,97 @@
-%! Author = mr
-%! Date = 9/6/2025
+%! Author = Omar Iskandarani
+%! Date = 2025-09-06
 
-% Preamble
 \documentclass[11pt]{article}
 
 % Packages
-\usepackage{amsmath}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\geometry{margin=1in}
 
-% Document
+% Macros (SST explicit symbols, no undefined macros in chat)
+\newcommand{\vswirl}{\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}}
+\newcommand{\SwirlClock}{S_t^{\boldsymbol{\circlearrowleft}}}
+\newcommand{\rhoF}{\rho_{\!f}}
+\newcommand{\GammaC}{\Gamma_C}
+
 \begin{document}
 
+\title{Long-Distance Swirl Gravity from Chiral Swirling Knots with Central Holes}
+\author{Omar Iskandarani}
+\date{\today}
+\maketitle
 
+\begin{abstract}
+We derive long-range gravitational attraction in Swirl--String Theory (SST) as a direct consequence of \emph{chiral swirling knots}---topological vortex filaments such as the trefoil ($3_1$), cinquefoil ($5_1$, $5_2$), and stevedore ($6_1$).
+Each knot encloses a central rotational line, which acts as an anchor of circulation.
+Using Cauchy's integral theorem, we show that the circulation measured around any loop enclosing this axis is quantized by the knot's winding number.
+This quantization is expressed by the Swirl Clock $\SwirlClock$, and its persistence explains why neutral molecules (e.g.\ H$_2$) attract in otherwise flat space: their knots are connected via the same central swirl line extending beyond the equal-pressure boundary.
+\end{abstract}
+
+\section{Chiral Swirling Knots and Central Holes}
+Consider a chiral knot $K$ embedded in $\mathbb{R}^3$, such as:
+\[
+3_1 \ (\text{trefoil}), \quad
+5_1 \ (\text{cinquefoil torus}), \quad
+5_2 \ (\text{cinquefoil twist}), \quad
+6_1 \ (\text{stevedore}).
+\]
+Each knot can be parametrized on a torus with major radius $R$ and minor radius $r$.
+The core tube of radius $r_c$ supports a tangential swirl velocity $\vswirl$, defining the \emph{Swirl Clock} $\SwirlClock$.
+
+A defining feature is that all these knots possess a \emph{central hole} threaded by a straight axis (taken as the $z$-axis).
+This axis is the ``fabric line'' of flat space: it is the singularity in the analytic swirl potential.
+
+\section{Cauchy Integral and Circulation Quantization}
+Let $C$ be a closed loop in the $x$--$y$ plane encircling the $z$-axis.
+By Cauchy's integral theorem, for an analytic swirl potential $W(z)=\Phi+i\Psi$,
+\begin{equation}
+\oint_C \vswirl \cdot d\mathbf{l} =
+\begin{cases}
+0, & \text{if no singularity inside,}\\[4pt]
+2\pi i\, \mathrm{Res}\!\left(\frac{dW}{dz}, z=0\right), & \text{if axis enclosed.}
+\end{cases}
+\end{equation}
+In SST, the residue corresponds to the circulation quantum
+\begin{equation}
+\kappa = 2\pi\, v_c\, r_c,
+\end{equation}
+where $v_c$ is the swirl speed at the core boundary $r_c$.
+
+If the knot winds around the axis $n$ times (its \emph{linking number}),
+\begin{equation}
+\GammaC = n \kappa.
+\end{equation}
+This is the Cauchy--Kelvin equivalence: long-distance swirl circulation is locked to integer multiples of $\kappa$ by topology.
+
+\section{Swirl Clock and Chiral Gravity}
+The Swirl Clock $\SwirlClock$ connects circulation to time dilation:
+\begin{equation}
+dt_{\text{local}} = dt_\infty \sqrt{1 - \frac{\lVert \vswirl \rVert^2}{c^2}}.
+\end{equation}
+Chirality (left- vs right-handed knotting) determines whether $\SwirlClock$ advances forward (matter) or backward (antimatter) relative to the background.
+
+Thus, two chiral knots coupled through the same central line experience a net pressure gradient:
+\begin{equation}
+\Delta p = -\tfrac{1}{2}\rhoF \, \lVert \vswirl \rVert^2,
+\end{equation}
+which is transmitted outward along the axis and manifests as \emph{swirl gravity}.
+
+\section{Hydrogen Molecules in Flat Space}
+Even in Euclidean space (no curvature), two hydrogen molecules each represented by a chiral trefoil ($3_1$) have their central holes threaded by the same fabric axis.
+Their swirl clocks couple via the shared circulation residue:
+\[
+\Gamma_{\text{H}_2-\text{H}_2} = \kappa_{(1)} + \kappa_{(2)}.
+\]
+This explains why neutral molecules attract at long range: the attraction is not from spacetime curvature but from \emph{quantized swirl circulation anchored to a shared axis}.
+
+\section{Conclusion}
+Long-distance gravitational attraction in SST is a manifestation of topological quantization: chiral knots with central holes enforce non-vanishing circulation residues along a central line.
+This mechanism is general across knots $3_1, 5_1, 5_2, 6_1$, and directly explains molecular-scale attraction in flat space.
+
+\bibliographystyle{plain}
+\bibliography{swirlgravity}
 
 \end{document}
