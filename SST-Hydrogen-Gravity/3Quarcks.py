@@ -213,8 +213,8 @@ def rotz(x, y, theta_rad):
 
 # Angles in radians
 ang0 = np.deg2rad(-90.0)
-ang1 = np.deg2rad(+33.0)
-ang2 = np.deg2rad(+148.0)
+ang1 = np.deg2rad(+30.0)
+ang2 = np.deg2rad(+150.0)
 
 # Rotate locally, then translate to centers
 x0r, y0r = rotz(x52, y52, ang0)
@@ -312,5 +312,122 @@ df = pd.DataFrame(stag_pts)
 csv_path = "sst_three_knot_rotated_stagnation_points.csv"
 df.to_csv(csv_path, index=False)
 
+
+# Apply per-knot in-plane rotations (about local z) and recompute field & stagnation points.
+# Requested rotations (viewed from +z):
+#  knot 0 (u,5_2 at angle 0°): 90° CW  -> -90 deg
+#  knot 1 (d,6_1 at angle 120°): 45° CCW -> +45 deg
+#  knot 2 (u,5_2 at angle 240°): 135° CCW -> +135 deg
+
+
+def rotz(x, y, theta_rad):
+    ct = np.cos(theta_rad); st = np.sin(theta_rad)
+    xr =  ct*x - st*y
+    yr =  st*x + ct*y
+    return xr, yr
+
+# Angles in radians
+ang0 = np.deg2rad(+90.0)
+ang1 = np.deg2rad(+210.0)
+ang2 = np.deg2rad(-30.0)
+
+# Rotate locally, then translate to centers
+x0r, y0r = rotz(x52, y52, ang0)
+x1r, y1r = rotz(x61, y61, ang1)
+x2r, y2r = rotz(x52, y52, ang2)
+
+xL, yL, zL = x0r + centers[0,0], y0r + centers[0,1], z52
+xC, yC, zC = x1r + centers[1,0], y1r + centers[1,1], z61
+xR, yR, zR = x2r + centers[2,0], y2r + centers[2,1], z52
+
+def segments_from_curve(x,y,z):
+    X = np.stack([x,y,z], axis=1)
+    Xn = np.roll(X, -1, axis=0)
+    dl = Xn - X
+    return X, dl
+
+XL, dLL = segments_from_curve(xL,yL,zL)
+XC, dLC = segments_from_curve(xC,yC,zC)
+XR, dLR = segments_from_curve(xR,yR,zR)
+
+X_list = [XL, XC, XR]
+DL_list = [dLL, dLC, dLR]
+Gamma_list = [kappa, kappa, kappa]
+
+
+
+def velocity_from_filaments(P):
+    v = np.zeros((P.shape[0],3), dtype=float)
+    for Xs, dls, Gam in zip(X_list, DL_list, Gamma_list):
+        const = Gam/(4*np.pi)
+        for i in range(Xs.shape[0]):
+            R = P - Xs[i]
+            cross = np.cross(dls[i], R)
+            r2 = np.sum(R*R, axis=1) + a_core*a_core
+            denom = (r2**1.5)[:,None]
+            v += const * (cross / denom)
+    return v
+
+grid_R = 3.5
+n = 160
+xs = np.linspace(-grid_R, grid_R, n)
+ys = np.linspace(-grid_R, grid_R, n)
+XX,YY = np.meshgrid(xs, ys)
+Pts = np.stack([XX.ravel(), YY.ravel(), np.zeros_like(XX).ravel()], axis=1)
+V = velocity_from_filaments(Pts)
+speed = np.linalg.norm(V, axis=1).reshape(XX.shape)
+
+def stagnation_on_segment(P1, P2, num=600):
+    ts = np.linspace(0,1,num)
+    pts = (1-ts)[:,None]*P1 + ts[:,None]*P2
+    v = velocity_from_filaments(np.column_stack([pts, np.zeros(num)]))
+    sp = np.linalg.norm(v, axis=1)
+    k = np.argmin(sp)
+    return pts[k], sp[k], v[k]
+
+pairs = [(0,1),(1,2),(2,0)]
+stag_pts = []
+for i,j in pairs:
+    P1 = centers[i]; P2 = centers[j]
+    pmin, smin, vmin = stagnation_on_segment(P1, P2)
+    stag_pts.append({"pair":f"{i}-{j}","x":pmin[0],"y":pmin[1],"speed_min":smin,"vx":vmin[0],"vy":vmin[1]})
+
+fig = plt.figure(figsize=(9,8))
+ax = fig.add_subplot(111)
+eps = 1e-30
+cs = ax.contourf(XX, YY, np.log10(speed+eps), levels=30, cmap='viridis')
+cbar = plt.colorbar(cs, ax=ax, label='log10 |v| (m/s)')
+
+for c in centers:
+    ax.plot([c[0], c[0]], [c[1]-0.1, c[1]+0.1], 'w-', lw=3)
+    circ = plt.Circle((c[0], c[1]), 0.08, color='w', fill=False, lw=1.5)
+    ax.add_patch(circ)
+
+ax.plot(xL, yL, '-', color='#2ca02c', lw=1.5, label='u (5_2) rot')
+ax.plot(xC, yC, '-', color='#1f77b4', lw=1.5, label='d (6_1) rot')
+ax.plot(xR, yR, '-', color='#2ca02c', lw=1.5)
+
+for sp in stag_pts:
+    ax.plot(sp["x"], sp["y"], 'ro', ms=6)
+    ax.text(sp["x"], sp["y"]+0.12, f"{sp['pair']}", color='w', ha='center', va='bottom')
+
+ax.plot([centers[0,0], centers[1,0], centers[2,0], centers[0,0]],
+        [centers[0,1], centers[1,1], centers[2,1], centers[0,1]], 'w--', lw=1.2)
+
+ax.set_aspect('equal', 'box')
+ax.set_xlim(-grid_R, grid_R); ax.set_ylim(-grid_R, grid_R)
+ax.set_xlabel('x (m)'); ax.set_ylabel('y (m)')
+ax.set_title('Knots tops aiming at center° (z=0): speed field and stagnation points')
+
+out_png = "sst_three_knot_180_speed_stagnation.png"
+plt.tight_layout()
+plt.savefig(out_png, dpi=200, bbox_inches='tight')
+
+df = pd.DataFrame(stag_pts)
+csv_path = "sst_three_knot_180_stagnation_points.csv"
+df.to_csv(csv_path, index=False)
+
 plt.show()
+
+
 
