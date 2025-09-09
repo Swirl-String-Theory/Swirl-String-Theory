@@ -154,15 +154,16 @@ Opposite enantiomers are represented by opposite clock orientations ($\SwirlCloc
         \begin{tikzpicture}[x=1cm,y=1cm,>=Latex, scale=0.55]
             \begin{scope}[shift={(0,0)}]
               \foreach \y in {-1.6,-0.8,0,0.8,1.6} \draw[dashed] (-2.3,\y) -- (2.3,\y+0.4);
-              \draw[very thick,->] (0.9,0) arc[start angle=0,end angle=330,radius=0.9];
-              \node at (0,-1.25) {L ($\SwirlClock$)};
-              \draw[->] (0,2.2) -- (0,1.0) node[midway,right] {XUV (APT) + IR};
-              \draw[->] (0,0) -- (2.6,0.3) node[above right] {$+\Delta\tau_{\!FB}\,\approx\,\SI{60}{as}$};
-              \draw[->] (0,0) -- (-2.6,-0.3) node[below left] {$-\Delta\tau_{\!FB}$};
+              \draw[thick,->] (0.9,0) arc[start angle=0,end angle=330,radius=0.9];
+              \node at (0,-2.05) {\scriptsize L ($\SwirlClock$)};
+              \draw[->] (0,2.2) -- (0,1.0) node[midway,right] {\scriptsize XUV (APT) + IR};
+              \draw[->] (0,0) -- (2.6,0.3) node[above right] {\scriptsize $+\Delta\tau_{\!FB}\,\approx\,\SI{60}{as}$};
+              \draw[->] (0,0) -- (-2.6,-0.3) node[below left] {\scriptsize $-\Delta\tau_{\!FB}$};
               \draw[->] (0,0) -- (2.0,1.4);
               \draw[->] (0,0) -- (2.0,-1.0);
-              \node[align=left] at (2.55,1.05) {$\Delta\tau(\theta)\lesssim\SI{240}{as}$};
-              \node[align=left,anchor=west] at (-2.3,-2.05) {$|\Delta\ell|=v_e\,\Delta\tau$\\$E=\SI{2}{eV},\ \Delta\tau=\SI{60}{as}\Rightarrow\ |\Delta\ell|\approx\SI{0.50}{\angstrom}$};
+              \node[align=left] at (4.5,1.15) {\scriptsize $\Delta\tau(\theta)\lesssim\SI{240}{as}$};
+              \node[align=left,anchor=west] at (2.3,-2.05) {\scriptsize $|\Delta\ell|=v_e\,\Delta\tau$}
+			  \node[align=left,anchor=west] at (-2.3,-3.05) {$E=\SI{2}{eV},\ \Delta\tau=\SI{60}{as}\Rightarrow\ |\Delta\ell|\approx\SI{0.50}{\angstrom}$};
             \end{scope}
         \end{tikzpicture}
         \caption{L enantiomer with $+\Delta\tau_{\!FB}$.}
@@ -175,13 +176,14 @@ Opposite enantiomers are represented by opposite clock orientations ($\SwirlCloc
             \begin{scope}[shift={(0,0)}]
               \foreach \y in {-1.6,-0.8,0,0.8,1.6}
               \draw[dashed] (-2.3,\y) -- (2.3,\y+0.4);
-              \draw[very thick,->] (-0.9,0) arc[start angle=180,end angle=-150,radius=0.9];
-              \node at (0,-1.25) {D ($\SwirlClockcw$)};
-              \draw[->] (0,2.2) -- (0,1.0) node[midway,right] {XUV (APT) + IR};
-              \draw[->] (0,0) -- (2.6,-0.3) node[below right] {$-\Delta\tau_{\!FB}\,\approx\,\SI{60}{as}$};
-              \draw[->] (0,0) -- (-2.6,0.3) node[above left] {$+\Delta\tau_{\!FB}$};
-              \node[align=left] at (2.55,1.05) {$\Delta\tau(\theta)\lesssim\SI{240}{as}$};
-              \node[align=left,anchor=west] at (-2.3,-2.05) {$|\Delta\ell|=v_e\,\Delta\tau$\\$E=\SI{10}{eV},\ \Delta\tau=\SI{240}{as}\Rightarrow\ |\Delta\ell|\approx\SI{4.50}{\angstrom}$};
+              \draw[thick,->] (-0.9,0) arc[start angle=180,end angle=-150,radius=0.9];
+              \node at (0,-2.05) {\scriptsize D ($\SwirlClockcw$)};
+              \draw[->] (0,2.2) -- (0,1.0) node[midway,right] {\scriptsize XUV (APT) + IR};
+              \draw[->] (0,0) -- (2.6,-0.3) node[below right] {\scriptsize $-\Delta\tau_{\!FB}\,\approx\,\SI{60}{as}$};
+              \draw[->] (0,0) -- (-2.6,0.3) node[above left] {\scriptsize $+\Delta\tau_{\!FB}$};
+              \node[align=left] at (4.55,1.05) {\scriptsize $\Delta\tau(\theta)\lesssim\SI{240}{as}$};
+              \node[align=left,anchor=west] at (2.3,-2.05) {\scriptsize $|\Delta\ell|=v_e\,\Delta\tau$}
+			  \node[align=left,anchor=west] at (-2.3,-3.05) {$E=\SI{10}{eV},\ \Delta\tau=\SI{240}{as}\Rightarrow\ |\Delta\ell|\approx\SI{4.50}{\angstrom}$};
             \end{scope}
         \end{tikzpicture}
         \caption{D enantiomer with $-\Delta\tau_{\!FB}$.}
@@ -293,6 +295,6 @@ This work was carried out independently and received no external funding. Any er
 
 
 \bibliography{SST-On_Attosecond_Chiral_Photoionization_Dynamics}
-\bibliographystyle{unsrt}
+\bibliographystyle{apsrev4-2}
 
 \end{document}7

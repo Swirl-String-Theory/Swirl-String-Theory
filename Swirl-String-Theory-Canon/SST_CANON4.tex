@@ -6,7 +6,7 @@
 %! ORCID = 0009-0006-1686-3961
 %! DOI = 10.5281/zenodo.17052966
 
-\newcommand{\canonversion}{\textbf{v0.4.0}} % Semantic versioning: vMAJOR.MINOR.PATCH
+\newcommand{\canonversion}{\textbf{v0.4.1}} % Semantic versioning: vMAJOR.MINOR.PATCH
 \newcommand{\papertitle}{Swirl String Theory (SST) Canon \canonversion}
 \newcommand{\paperdoi}{10.5281/zenodo.17052966}
 
@@ -98,6 +98,15 @@
 \usepackage{booktabs}
 \usepackage{hyperref}
 \hypersetup{colorlinks=true, linkcolor=blue!60!black, citecolor=blue!60!black, urlcolor=blue!60!black}
+
+
+% ===== Gauge sector macros =====
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\ii}{\mathrm{i}}
+% Gauge fields (adjoints; indices a=1..8, i=1..3)
+\newcommand{\GsA}{G^a_{\mu\nu}}
+\newcommand{\WsI}{W^i_{\mu\nu}}
+\newcommand{\Bmn}{B_{\mu\nu}}
 
 %========================================================================================
 % DOCUMENT START
@@ -515,20 +524,137 @@ so the baseline $\rhof = 7.0\times 10^{-7}\ \si{kg/m^3}$ occurs at
     \]
 
 \subsection*{Vorticity Potential (Canonical Form)}
-    \[
-        \Phi(\mathbf{r},\omegas) = \frac{\vscore^2}{2\,F_{\text{EM}}^{\max}}\;(\omegas\cdot \mathbf{r})\,.
-    \]
-    (Use with the SST Lagrangian so that $\rhof\,\Phi$ has units of energy density.)
+\[
+	\Phi_{\text{swirl}}(\mathbf{r},\omegas) = \frac{\vscore^2}{2\,F_{\text{EM}}^{\max}}\;(\omegas\cdot \mathbf{r})\,.
+\]
+(Use with the SST Lagrangian so that $\rhof\,\Phi_{\text{swirl}}$ has units of energy density.)
+
+
+\subsection{Empirical Anchoring of Gauge Sector (Canonical Calibration)}
+The $\mathrm{SU}(3)\oplus \mathrm{SU}(2)\oplus \mathrm{U}(1)$ sector is anchored to experiment by the
+following empirical values:
+\begin{align}
+	m_W &= 80.377~\mathrm{GeV}, \\
+	m_Z &= 91.1876~\mathrm{GeV}, \\
+	\sin^2\theta_W &= 0.23121 \pm 0.00004, \\
+	\alpha_s(M_Z) &= 0.1181 \pm 0.0011 .
+\end{align}
+These imply a canonical electroweak symmetry-breaking scale
+\begin{equation}
+	v_\Phi^{\rm exp} = \frac{2 m_W}{g} \approx 246.22~\mathrm{GeV}.
+\end{equation}
+This scale is treated as an \emph{empirical calibration}. Any Swirl--String reinterpretation
+in terms of fluid constants $(\rho_{\!f}, r_c, \lVert \vswirl \rVert)$ belongs to
+Canon~4R (Research) until it reproduces this value.
+
+%================================================
+\section{Standard Gauge Sector (Canonical Core)}
+%================================================
+\label{sec:gauge_core}
+
+\paragraph{Bundle and connections (Canonical).}
+Let $P\!\to\! \mathbb{R}^{3}\times\mathbb{R}$ be a principal bundle with
+$G=\mathrm{SU}(3)\times\mathrm{SU}(2)\times\mathrm{U}(1)$.
+Local gauge potentials are
+\[
+	\mathcal{A}_\mu
+	= g_s\,A^a_\mu T^a \;\oplus\; g\,W^i_\mu \tau^i \;\oplus\; g'\,B_\mu\,Y,
+\]
+with $T^a\in\mathfrak{su}(3)$, $\tau^i\in\mathfrak{su}(2)$, $Y\in\mathfrak u(1)$.
+
+\paragraph{Field strengths (Canonical).}
+\begin{align}
+	G^a_{\mu\nu} &= \partial_\mu A^a_\nu-\partial_\nu A^a_\mu + g_s f^{abc} A^b_\mu A^c_\nu,\label{eq:Gmunu}\\
+	W^i_{\mu\nu} &= \partial_\mu W^i_\nu-\partial_\nu W^i_\mu + g \epsilon^{ijk} W^j_\mu W^k_\nu,\label{eq:Wmunu}\\
+	B_{\mu\nu} &= \partial_\mu B_\nu-\partial_\nu B_\mu.\label{eq:Bmunu}
+\end{align}
+
+\paragraph{Yang--Mills Lagrangian (Canonical).}
+\begin{equation}
+	\mathcal{L}_{\text{YM}}
+	= -\frac{1}{4} \GsA \, G^{a\,\mu\nu}
+	-\frac{1}{4} \WsI \, W^{i\,\mu\nu}
+	-\frac{1}{4} \Bmn \, B^{\mu\nu}.
+	\label{eq:YM-core}
+\end{equation}
+\textit{Dimensional check (natural units):} $[A_\mu]=\text{mass}$, $[F_{\mu\nu}]=\text{mass}^2$, so $[\mathcal L_{\rm YM}]=\text{mass}^4$ (SI $\to$ J/m$^3$ by \(\hbar c\)).
+
+\paragraph{Matter, covariant derivative (Canonical).}
+For any gauge-charged field $\Phi$ in representation $R$,
+\begin{equation}
+	D_\mu \Phi
+	= \left(\partial_\mu + \ii g_s A^a_\mu T^a
+	+ \ii g W^i_\mu \tau^i
+	+ \ii g' B_\mu Y \right)\Phi,
+	\qquad
+	\mathcal{L}_{\Phi}^{\text{kin}}=(D_\mu\Phi)^\dagger (D^\mu\Phi).
+	\label{eq:covder}
+\end{equation}
+
+\paragraph{Electroweak mixing and masses (Canonical).}
+\begin{align}
+	A_\mu &= \sin\theta_W\, W^3_\mu + \cos\theta_W\, B_\mu,\label{eq:photon}\\
+	Z_\mu &= \cos\theta_W\, W^3_\mu - \sin\theta_W\, B_\mu,\qquad \tan\theta_W=\frac{g'}{g}.
+\end{align}
+If a scalar doublet (or SST-equivalent) develops a vacuum value $v_\Phi$ via a gauge-invariant potential $V(\Phi)$,
+\begin{equation}
+	m_W = \tfrac{1}{2} g v_\Phi,\qquad
+	m_Z = \tfrac{1}{2}\sqrt{g^2+g'^2}\,v_\Phi,\qquad
+	m_\gamma=0. \label{eq:ew_masses}
+\end{equation}
+\textit{Empirical anchoring:} $v_\Phi$ is fixed by data, cf. Sec.~\ref{sec:master_equations} (Empirical Anchoring).
+
+\paragraph{Currents and anomaly constraint (Canonical).}
+Noether currents:
+\[
+	J^{a\,\mu}_{(3)}=\sum \bar{\Psi}\gamma^\mu T^a\Psi,\quad
+	J^{i\,\mu}_{(2)}=\sum \bar{\Psi}\gamma^\mu \tau^i\Psi,\quad
+	J^\mu_{(1)}=\sum \bar{\Psi}\gamma^\mu Y\Psi,
+\]
+with minimal-coupling interaction
+\(
+\mathcal L_{\rm int}=- A^a_\mu J^{a\,\mu}_{(3)} - W^i_\mu J^{i\,\mu}_{(2)} - B_\mu J^\mu_{(1)}.
+\)
+\textbf{Anomaly cancellation} for one generation must hold; this constrains any knot\(\to\)rep mapping used elsewhere.
+
 
 %================================================
 \section{Unified SST Lagrangian (Definitive Form)}
 %================================================
 \label{sec:lagrangian}
-Let $\vswirl(\mathbf{x},t)$ be the velocity, $\rhof$ constant (incompressible), $\omegas = \nabla\times\vswirl$, and $\lambda$ enforce $\nabla\cdot\vswirl=0$. Then:
+Let $\vswirl(\mathbf{x},t)$ be the velocity, $\rhof$ constant (incompressible),
+$\omegas = \nabla\times\vswirl$, and $\lambda$ enforce $\nabla\cdot\vswirl=0$. Then
 \[
-    \boxed{\,\mathcal{L}_{\text{SST}} = \frac{1}{2}\rhof\,\|\vswirl\|^2 - \rhof\,\Phi(\mathbf{r},\omegas) + \lambda(\nabla\cdot\vswirl) + \eta\,\int (\vswirl\cdot\omegas)\,dV + \mathcal{L}_{\text{couple}}[\Gamma,\mathcal{K}]\,}\,.
+	\boxed{\,\mathcal{L}_{\text{SST+Gauge}}
+		=
+		\underbrace{\frac{1}{2}\rhof\,\|\vswirl\|^2
+		- \rhof\,\Phi_{\text{swirl}}(\mathbf{r},\omegas)
+			+ \lambda(\nabla\cdot\vswirl)
+			+ \chi_h\,\rhof\,(\vswirl\cdot\omegas)}_{\text{SST (Kelvin-compatible, local)}}
+		\;+\;
+		\underbrace{\mathcal{L}_{\text{YM}}}_{\text{Yang--Mills, Eq.\,\eqref{eq:YM-core}}}
+		\;+\;
+		\underbrace{(D_\mu\Phi)^\dagger (D^\mu\Phi) - V(\Phi)}_{\text{Gauge-charged scalar sector}}
+		\;+\;
+		\underbrace{\mathcal{L}_{\text{int}}}_{\text{Minimal coupling to currents}}
+		\;+\;
+		\mathcal{L}_{\text{couple}}[\Gamma,\mathcal{K}]
+		\,}\,.
 \]
-Here $\Phi(\mathbf{r},\omegas)$ is a prescribed swirl potential (e.g. from a background field), the $\eta$ term enforces Kelvin helicity conservation (on-shell $\vswirl\cdot\omegas$ is constant absent reconnection), and $\mathcal{L}_{\text{couple}}$ encodes coupling to quantized circulation $\Gamma$ and knot invariants $\mathcal{K}$ (linking, writhe, twist).
+\noindent\emph{Units.} All terms carry energy-density units $\,[\mathcal L]=\mathrm{J\,m^{-3}}\,$; the helicity coupling is dimensionless $([\chi_h]=1)$. (In natural units $\hbar=c=1$, $[\mathcal L]=\text{mass}^4$.)
+
+\noindent
+\textit{Governance:} $\mathcal{L}_{\text{YM}}$, minimal coupling, and EW mixing/masses (\S\ref{sec:gauge_core}) are Canonical; any SST-specific mapping $v_\Phi(\rhof,\rc,\vnorm)$ is tracked in Canon~4R (Research).
+
+Here $\Phi_{\text{swirl}}(\mathbf{r},\omegas)$ is a prescribed swirl potential (Sec.~\ref{sec:master_equations});
+the term $\chi_h\,\rhof\,(\vswirl\cdot\omegas)$ is the local helicity density (dimensionless $\chi_h$); and $\mathcal{L}_{\text{couple}}$ encodes
+coupling to quantized circulation $\Gamma$ and knot invariants $\mathcal{K}$ (linking, writhe, twist).
+For the scalar sector one may take $V(\Phi)=\lambda_\Phi (|\Phi|^2 - v_\Phi^2)^2$ with
+$v_\Phi$ fixed empirically (Sec.~\ref{sec:master_equations}).
+\paragraph{Constraints (data).}
+Running couplings $g_s,g,g'$ obey standard $\beta$ functions; numerically we anchor
+$\alpha_s(M_Z)$ in Sec.~\ref{sec:master_equations}. Electroweak precision observables
+(LEP/SLD) constrain $\sin^2\theta_W$ and thus the $A$–$Z$ mixing in \eqref{eq:photon}.
 
 %================================================
 \section{Wave–Particle Duality in SST}
@@ -853,6 +979,22 @@ Lorentz & $\delta c/c$ & drift $\mathbf u$ & $<10^{-17}$ & cavity/clock tests \\
 \end{tabular}
 \end{table}
 
+\paragraph{Governance Note.}
+Definitions of $\varepsilon_*$, $\mathcal B[K]$, and $S_{\textrm comp}$ are Canonical.
+Their \emph{interpretation as renormalizing} $g_{2,3}$ and the representation map
+$t(K)\to(\mathrm{SU}(3),\mathrm{SU}(2),Y)$ are \emph{Research} until anomaly cancellation
+and empirical coupling fits are demonstrated.
+
+\section*{Canon 4R: Research Extensions (Non-Canonical)}
+The following conjectural relations are recorded for future calibration. They are
+dimensionally consistent but not yet anchored to empirical values.
+\begin{itemize}
+	\item $v_\Phi^{\rm SST} \sim \sqrt{\rho_{\!f}}\, r_c \lVert \vswirl \rVert / \hbar$
+	\item Swirl-helicity $\times$ Chern–Simons couplings
+	\item Knot $\to$ gauge representation map beyond anomaly checks
+\end{itemize}
+
+% ================== Begin Operational Kinematics ==================
 \subsection*{Bib\TeX (comparators)}
 \begin{verbatim}
 @book{Tinkham1996,
