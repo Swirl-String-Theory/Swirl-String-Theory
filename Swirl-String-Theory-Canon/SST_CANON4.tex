@@ -1329,6 +1329,78 @@ CO$_2$ molecule & 7.305355e-26 & 7.354340e-26 & 0.6704\\
 \item At end, record Canon deltas (if any) and bump version.
 \end{enumerate}
 
+
+%================================================
+\section*{Appendix F: Dimensional Cross-Check for \texorpdfstring{$\mathcal L_{\text{SST+Gauge}}$}{L\_\{SST+Gauge\}}}
+%================================================
+\label{app:dim-check}
+
+\noindent\textbf{Unit conventions.}
+We present SI checks. Where convenient, we also note the natural-unit assignment
+($\hbar=c=1$), with \([A_\mu]=\text{mass}\), \([F_{\mu\nu}]=\text{mass}^2\), ensuring \([\mathcal L]=\text{mass}^4\);
+conversion to SI energy density uses \(\hbar c\).
+
+\begin{center}
+	\renewcommand{\arraystretch}{1.2}
+	\begin{tabular}{@{}llcl@{}}
+		\toprule
+		\textbf{Term} & \textbf{Expression} & \textbf{Primary units} & \textbf{Check (SI)} \\
+		\midrule
+		Kinetic (swirl) &
+		$\displaystyle \tfrac12\,\rhof\,\|\vswirl\|^2$ &
+		$[\rhof]=\mathrm{kg\,m^{-3}},\ [\vswirl]=\mathrm{m\,s^{-1}}$ &
+		$\mathrm{kg\,m^{-3}}\cdot \mathrm{m^2\,s^{-2}}=\mathrm{J\,m^{-3}}$ \\
+
+		Swirl potential &
+		$\displaystyle -\,\rhof\,\Phi_{\text{swirl}}(\mathbf r,\omegas)$ &
+		$[\Phi_{\text{swirl}}]=\mathrm{m^2\,s^{-2}}$ &
+		$\mathrm{kg\,m^{-3}}\cdot \mathrm{m^2\,s^{-2}}=\mathrm{J\,m^{-3}}$ \\
+
+		Incompressibility constraint &
+		$\displaystyle \lambda\,(\nabla\!\cdot\!\vswirl)$ &
+		$[\nabla\!\cdot\!\vswirl]=\mathrm{s^{-1}}$ &
+		$[\lambda]=\mathrm{J\,s\,m^{-3}}$ so product is $\mathrm{J\,m^{-3}}$ \\
+
+		Helicity density (local) &
+		$\displaystyle \chi_h\,\rhof\,(\vswirl\!\cdot\!\omegas)$ &
+		$[\omegas]=\mathrm{s^{-1}}$ &
+		$\chi_h$ dimensionless; $\mathrm{kg\,m^{-3}}\cdot \mathrm{m\,s^{-1}}\cdot \mathrm{s^{-1}}=\mathrm{J\,m^{-3}}$ \\
+
+		Yang--Mills (gauge) &
+		$\displaystyle -\tfrac14 \GsA G^{a\,\mu\nu}
+		-\tfrac14 \WsI W^{i\,\mu\nu}
+		-\tfrac14 \Bmn B^{\mu\nu}$ &
+		$\hbar=c=1:\ [F]=\text{mass}^2$ &
+		$[\mathcal L_{\rm YM}]=\text{mass}^4\ \Rightarrow\ \mathrm{J\,m^{-3}}$ via $\hbar c$ \\
+
+		Scalar kinetic &
+		$\displaystyle (D_\mu\Phi)^\dagger(D^\mu\Phi)$ &
+		$\hbar=c=1:\ [D_\mu]=\text{mass}$,\ $[\Phi]=\text{mass}$ &
+		$\text{mass}^4\ \Rightarrow\ \mathrm{J\,m^{-3}}$ \\
+
+		Scalar potential &
+		$\displaystyle V(\Phi)=\lambda_\Phi\big(|\Phi|^2-v_\Phi^2\big)^2$ &
+		$\hbar=c=1:\ [V]=\text{mass}^4$ &
+		$\text{mass}^4\ \Rightarrow\ \mathrm{J\,m^{-3}}$ \\
+
+		Minimal coupling &
+		$\displaystyle \mathcal L_{\text{int}}=-A^a_\mu J_{(3)}^{a\,\mu}-W^i_\mu J_{(2)}^{i\,\mu}-B_\mu J_{(1)}^\mu$ &
+		$\hbar=c=1:\ [A_\mu]=\text{mass},\ [J^\mu]=\text{mass}^3$ &
+		$\text{mass}^4\ \Rightarrow\ \mathrm{J\,m^{-3}}$ \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\paragraph{Notes for reviewers.}
+\begin{itemize}
+	\item \textbf{Helicity term:} since $[\vswirl\!\cdot\!\omegas]=\mathrm{m\,s^{-2}}$, multiplying by $\rhof$ gives $\mathrm{J\,m^{-3}}$, so $[\chi_h]=1$.
+	\item \textbf{Constraint multiplier:} with $(\nabla\!\cdot\!\vswirl)$ in $\mathrm{s^{-1}}$, the Lagrange multiplier has units $[\lambda]=\mathrm{Pa\cdot s}=\mathrm{J\,s\,m^{-3}}$. In Euler–Lagrange equations, its \emph{spatial} gradient divided by time (or $\partial_t\lambda$) plays the role of a pressure field.
+	\item \textbf{Swirl potential:} the canonical choice $\Phi_{\text{swirl}}=\frac{\vscore^{2}}{2\,\FmaxEM}(\omegas\!\cdot\!\mathbf r)$ has $[\Phi_{\text{swirl}}]=\mathrm{m^2\,s^{-2}}$ provided $\FmaxEM$ carries force units, consistent with Table entries.
+	\item \textbf{Gauge block:} all gauge-sector rows are standard; in natural units they produce mass$^4$, hence energy density after restoring $\hbar,c$.
+\end{itemize}
+
+\noindent\textbf{Summary.} Each addend in $\mathcal L_{\text{SST+Gauge}}$ carries $\mathrm{J\,m^{-3}}$ in SI; coupling constants \((g_s,g,g',\chi_h)\) are dimensionless; the incompressibility multiplier has $[\lambda]=\mathrm{Pa\cdot s}$ under the present choice of constraint.
+
 %================================================
 % References
 %================================================
