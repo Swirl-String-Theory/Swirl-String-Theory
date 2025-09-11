@@ -84,10 +84,13 @@ target = 0.6  # target in meters for visual clarity
 x52 *= target/s52; y52 *= target/s52; z52 *= target/s52
 x61 *= target/s61; y61 *= target/s61; z61 *= target/s61
 
-# Build three copies: u(5_2) at angles 0°, 240°; d(6_1) at 120°
+# Build three copies: rotate triangle so knot1 lies at x=0 (angle 90°)
 R_axes = 2.0
-angles = np.deg2rad([0, 120, 240])
+phi_deg = -30.0  # rotation offset to make center[1] = (0, R_axes)
+base_deg = np.array([0.0, 120.0, 240.0]) + phi_deg
+angles = np.deg2rad(base_deg)
 centers = np.column_stack([R_axes*np.cos(angles), R_axes*np.sin(angles)])
+
 
 # Rotation to align each knot's "major plane" with its local xy; here we just translate,
 # assuming the fseries curves are already roughly centered and oriented.
@@ -327,9 +330,9 @@ def rotz(x, y, theta_rad):
     return xr, yr
 
 # Angles in radians
-ang0 = np.deg2rad(+90.0)
-ang1 = np.deg2rad(+210.0)
-ang2 = np.deg2rad(-30.0)
+ang0 = np.deg2rad(+60.0)
+ang1 = np.deg2rad(+180.0)
+ang2 = np.deg2rad(-60.0)
 
 # Rotate locally, then translate to centers
 x0r, y0r = rotz(x52, y52, ang0)
@@ -427,7 +430,7 @@ df = pd.DataFrame(stag_pts)
 csv_path = "sst_three_knot_180_stagnation_points.csv"
 df.to_csv(csv_path, index=False)
 
-plt.show()
+# plt.show()
 
 
 

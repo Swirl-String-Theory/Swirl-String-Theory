@@ -25,9 +25,9 @@ F_52 = '../SST_Mathematical_Proof_Python/Knots_FourierSeries/5_2/knot.5_2.fserie
 F_61 = '../SST_Mathematical_Proof_Python/Knots_FourierSeries/6_1/knot.6_1.fseries'
 
 # Rotations in degrees (viewed from +z)
-ANG0_DEG = +90.0   # knot0: u(5_2) at +x axis
-ANG1_DEG = +210.0   # knot1: d(6_1) at 120°
-ANG2_DEG = -30.0  # knot2: u(5_2) at 240°
+ANG0_DEG = +60.0   # knot0: u(5_2) at +x axis
+ANG1_DEG = +180.0   # knot1: d(6_1) at 120°
+ANG2_DEG = -60.0  # knot2: u(5_2) at 240°
 
 # Axis ring radius
 R_AXES = 2.0
@@ -38,7 +38,7 @@ SEG_STRIDE = 15    # ~80 segments/knot at 2400 pts
 # Streamline integration parameters (ultralight)
 STEP_LEN = 0.10
 NSTEPS   = 250
-SEEDS_PER_KNOT = 10  # set to 2 or more to increase density
+SEEDS_PER_KNOT = 0  # set to 2 or more to increase density
 
 # ------------------ Utility functions ------------------
 def load_fseries(path):
@@ -103,9 +103,12 @@ def build_geometry():
     x52,y52,z52 = center_and_scale(x52,y52,z52, target=0.6)
     x61,y61,z61 = center_and_scale(x61,y61,z61, target=0.6)
 
-    # Centers (equilateral triangle in xy)
-    centers = np.column_stack([R_AXES*np.cos(np.deg2rad([0,120,240])),
-                               R_AXES*np.sin(np.deg2rad([0,120,240]))])
+    # Centers (equilateral triangle in xy), rotated so knot1 sits at x=0
+    # Base angles are [0, 120, 240] degrees; we add -30° so the second center is at 90° (x=0, y=R_AXES).
+    phi_deg = -30.0
+    base_deg = np.array([0.0, 120.0, 240.0]) + phi_deg
+    base = np.deg2rad(base_deg)
+    centers = np.column_stack([R_AXES*np.cos(base), R_AXES*np.sin(base)])
 
     # Rotations and placements
     ang0 = np.deg2rad(ANG0_DEG)

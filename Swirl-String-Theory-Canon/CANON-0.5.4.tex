@@ -17,8 +17,8 @@
 %========================================================================================
 \documentclass[11pt]{article}
 \usepackage{subfiles}
-% \input{../template/SSTstyle.sty} % Assuming a local style file
-% \input{../template/SST_appendix_setup.sty} % Assuming a local appendix setup
+\input{../template/SSTstyle.sty} % Assuming a local style file
+\input{../template/SST_appendix_setup.sty} % Assuming a local appendix setup
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amssymb,amsfonts,amsthm}
 \usepackage{tcolorbox}
@@ -111,36 +111,7 @@
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{definition}{Definition}[section]
 
-% Custom tcolorbox for title page
-\newtcolorbox{titlepagebox}{
-    colback=white,
-    colframe=black,
-    arc=0mm,
-    boxrule=0.5pt,
-    left=1cm,
-    right=1cm,
-    top=1cm,
-    bottom=1cm,
-    center,
-    fonttitle=\bfseries\Large
-}
-\newcommand{\titlepageOpen}{%
-    \thispagestyle{empty}
-    \begin{titlepagebox}
-    \begin{center}
-    {\Huge\papertitle\par}
-    \vspace{1.5cm}
-    {\large Omar Iskandarani\par}
-    \vspace{0.5cm}
-    {\normalsize Independent Researcher, Groningen, The Netherlands\par}
-    \vspace{0.5cm}
-    {\normalsize \today\par}
-    \vspace{1cm}
-}
-\newcommand{\titlepageClose}{%
-    \end{center}
-    \end{titlepagebox}
-}
+
 
 %========================================================================================
 % DOCUMENT START
