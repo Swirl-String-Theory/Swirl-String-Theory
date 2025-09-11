@@ -14,7 +14,6 @@
 \newcommand{\papertitle}{SST Rosetta: VAM-to-SST Translation Guide for Symbols, Macros, and Constants}
 \newcommand{\paperdoi}{10.5281/zenodo.16980378}
 
-\ifdefined\standalonechapter\else
 % Standalone mode
 \documentclass[11pt]{article}
 \usepackage{amssymb}
@@ -76,12 +75,9 @@
 	\end{abstract}
 
 	\titlepageClose
-	\fi
 
-	\ifdefined\standalonechapter
-	\section{\papertitle}
-	\else
-	\fi
+
+
 % ============= Begin of content ============
 
 
@@ -292,9 +288,6 @@
 		The earlier ansatz $d\tau/d\bar t=e^{-r/r_c}$ can be used only as a phenomenological fit; it does not follow from the SR-like form unless one imposes a special $v_\phi(r)$ inconsistent with Rankine.
 % ============== End of content =============
 
-% === Bibliography (only for standalone) ===
-	\ifdefined\standalonechapter\else
 %	\bibliographystyle{unsrt}
 %	\bibliography{canon_swirl_string_theory}
 \end{document}
-\fi
