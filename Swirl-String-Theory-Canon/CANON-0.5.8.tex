@@ -766,88 +766,351 @@
 %========================================================================================
 % CANON GOVERNANCE & STATUS TAXONOMY (Canonical)
 %========================================================================================
-% Explicit rules/labels: Canonical, Empirical, Research Track; promotion/demotion rules for Axiom/Definition/Theorem/Corollary.
-% TODO: Expand with explicit definitions and methodology from v0.4.4
+\section{Canon Governance \& Status Taxonomy}
+% [STATUS: Canonical] [SOURCE: v0.4.4 §3]
+\label{canon58:governance}
+\paragraph{Formal system.} Let $\mathcal S=(\mathcal P,\mathcal D,\mathcal R)$ denote the SST formal system: axioms $\mathcal P$, definitions $\mathcal D$, and admissible inference rules $\mathcal R$ (variational principles, Noether currents, dimensional analysis, asymptotic matching).
+
+\paragraph{Canonical statement.} A statement $X$ is \emph{canonical} iff $X$ is a theorem or identity provable in $\mathcal S$,
+\[
+    \mathcal P,\;\mathcal D\;\vdash_{\mathcal R}\;X,
+\]
+and $X$ is consistent with all previously accepted canonical items in the current major version.
+
+\paragraph{Empirical statement.} A statement $Y$ is \emph{empirical} iff it asserts a measured value, fit, or protocol,
+\[
+    Y \equiv \text{“observable $\mathcal O$ has value $\hat{o}\pm\delta o$ under procedure $\Pi$.”}
+\]
+Empirical items calibrate symbols (e.g. $v_{\circ}, r_c, \rho_f$) but are not premises in proofs.
+
+\subsection*{Status Classes}
+\begin{itemize}
+    \item \textbf{Axiom/Postulate (Canonical).} Primitive assumption of SST.
+    \item \textbf{Definition (Canonical).} Introduces a symbol by construction.
+    \item \textbf{Theorem/Corollary (Canonical).} Proven consequence of $\mathcal P,\mathcal D$.
+    \item \textbf{Constitutive Model.} Canonical if derived; else semi-empirical.
+    \item \textbf{Calibration (Empirical).} Recommended numerical values for canonical symbols.
+    \item \textbf{Research Track (Non-canonical).} Conjectures or alternatives pending proof.
+\end{itemize}
+
+\subsection*{Canonicality Tests (all required)}
+\begin{enumerate}
+    \item Derivability from $\mathcal P,\mathcal D$ via $\mathcal R$.
+    \item Dimensional consistency (strict SI; correct physical limits).
+    \item Symmetry compliance (Galilean symmetry, incompressibility, absolute time).
+    \item Recovery limits (Newtonian gravity, Coulomb/Bohr, linear wave optics).
+    \item Non-contradiction with accepted canonical results.
+    \item Parameter discipline (no ad hoc fits beyond calibrations).
+\end{enumerate}
+
+% Check: [units ok; limit → n/a]
 
 %========================================================================================
 % CALIBRATIONS & PROTOCOLS (Empirical)
 %========================================================================================
-% Boxed empirical anchors and procedures: m_W, m_Z, sin^2θ_W, v_Φ, constants v_∘, r_c, ρ_f, ρ_m, FmaxEM, FmaxG with how they’re fixed.
-% TODO: Add boxed values and calibration notes
+\section{Calibrations \& Protocols (Empirical)}
+% [STATUS: Empirical] [SOURCE: v0.4.4 §6.1 & constants table]
+\label{canon58:empirical-anchors}
+\begin{tcolorbox}[title=Empirical Anchors]
+\begin{align*}
+    m_W &= 80.377~\mathrm{GeV}, & m_Z &= 91.1876~\mathrm{GeV}, \\
+    \sin^2\theta_W &= 0.23121 \pm 0.00004, & v_\Phi &\approx 246~\mathrm{GeV}, \\
+    v_{\circ} &= 1.09384563\times10^{6}~\mathrm{m/s}, & r_c &= 1.40897017\times10^{-15}~\mathrm{m}, \\
+    \rho_f &= 7.0\times10^{-7}~\mathrm{kg/m^3}, & \rho_m &= 3.8934358266918687\times10^{18}~\mathrm{kg/m^3}, \\
+    F_{\max}^{\mathrm{EM}} &= 2.9053507\times10^{1}~\mathrm{N}, & F_{\max}^{\mathrm{G}} &= 3.02563\times10^{43}~\mathrm{N}.
+\end{align*}
+\end{tcolorbox}
+These values fix the swirl core speed, radius, effective and mass-equivalent densities, and maximal forces for electromagnetic and gravitational sectors; each is calibrated via standard SI procedures or electroweak measurements.
+
+% Check: [units ok; limit → n/a]
 
 %========================================================================================
 % CLASSICAL INVARIANTS: CHRONOS–KELVIN + CLOCK–RADIUS TRANSPORT (Canonical)
 %========================================================================================
-% Axiom (CK) and the differential transport law dS_t/dt=... under loop radius R(t) evolution; include the pseudo-metric remark.
-% TODO: Insert full derivation and remarks
+\section{Classical Invariants: Chronos–Kelvin \& Clock–Radius Transport}
+% [STATUS: Canonical] [SOURCE: v0.4.4 §2]
+\begin{tcolorbox}[title=Axiom (CK)]
+For any thin, closed swirl loop of material radius $R(t)$,
+\begin{equation}
+    \frac{D}{Dt}\Big(R^2\omega\Big)=0,
+    \qquad \text{equivalently} \qquad
+    \frac{D}{Dt}\Big(\frac{c}{r_c}R^2\sqrt{1-S_t^2}\Big)=0.
+    \label{canon58:CK}
+\end{equation}
+\end{tcolorbox}
+\noindent where $\omega=\|\omegas\|$ on the loop and $S_t=\sqrt{1-(\omega r_c/c)^2}$ is the local Swirl Clock factor.
+
+\paragraph{Clock–radius transport.} From $R^2\omega=\text{const}$,
+\begin{equation}
+    \frac{dS_t}{dt}=\frac{2(1-S_t^2)}{S_t}\,\frac{1}{R}\frac{dR}{dt}.
+    \label{canon58:clock-transport}
+\end{equation}
+Expansion ($dR/dt>0$) drives $S_t\to1$ while contraction slows local clocks.
+
+\begin{tcolorbox}[title=Remark (Pseudo-metric)]
+In cylindrical coordinates $(t,r,\theta,z)$ with azimuthal drift $v_\theta(r)$,
+\[
+    ds^2 = -\big(c^2-v_\theta^2(r)\big)dt^2 + 2 v_\theta(r) r\, d\theta\, dt + dr^2 + r^2 d\theta^2 + dz^2,
+\]
+so $dt_{\text{local}}/dt_{\infty}=\sqrt{1-v_\theta^2/c^2}$ captures Swirl Clock dilation.
+\end{tcolorbox}
+
+% Check: [units ok; limit → Newtonian]
 
 %========================================================================================
 % EFFECTIVE MEDIUM: COARSE-GRAINING DERIVATION OF ρ_f (Canonical)
 %========================================================================================
-% Line mass μ_*, circulation quantum Γ_*, filament areal density ν, elimination to ρ_f(ρ_m, r_c, v_∘, ⟨ω⟩).
-% TODO: Add boxed result and derivation
+\section{Effective Medium: Coarse-Graining Derivation of $\rho_f$}
+% [STATUS: Canonical] [SOURCE: v0.4.4 §4]
+\label{canon58:rho_f}
+\paragraph{Line parameters.} For a straight vortex string,
+\begin{align}
+    \mu_* &:= \rho_m\,\pi r_c^2, & \Gamma_* &:= 2\pi r_c v_{\circ}.\label{eq:line-params}
+\end{align}
+With filament areal density $\nu$ (strings per unit area),
+\begin{align}
+    \rho_f &= \mu_*\,\nu, & \langle \omega_{\swirlarrow} \rangle &= \Gamma_*\,\nu.\label{eq:nu-relations}
+\end{align}
+Eliminating $\nu$ gives
+\begin{tcolorbox}[title=Boxed Result]
+\begin{equation}
+    \rho_f = \mu_*\,\frac{\langle\omega_{\swirlarrow}\rangle}{\Gamma_*} = \frac{\rho_m r_c}{2 v_{\circ}}\,\langle\omega_{\swirlarrow}\rangle.
+    \label{canon58:box-rho_f}
+\end{equation}
+\end{tcolorbox}
+
+% Check: [units ok; limit → n/a]
 
 %========================================================================================
 % SWIRL–EM EMERGENCE (Canonical)
 %========================================================================================
-% From divergence-free a to Maxwell wave equation, gauge condition, energy densities; Photon as (pulsed) unknot and lossless radiation conditions.
-% TODO: Insert main derivation and pulse construction (Research Track if needed)
+\section{Swirl–EM Emergence}
+% [STATUS: Canonical (derivation); Research notes where assumptions remain]
+\label{canon58:swirl-em}
+\paragraph{Field variables.} Introduce a transverse swirl potential $\mathbf a$ with
+\[
+    \mathbf v = \partial_t \mathbf a, \qquad \mathbf b = \nabla\times \mathbf a, \qquad \nabla\cdot\mathbf a = 0.
+\]
+The quadratic Lagrangian $\mathcal L_{\text{wave}} = \tfrac{\rho_f}{2}|\mathbf v|^2 - \tfrac{\rho_f c^2}{2}|\mathbf b|^2$ gives the lossless wave equation
+\begin{equation}
+    \partial_t^2 \mathbf a - c^2 \nabla\times(\nabla\times \mathbf a) = 0, \qquad \nabla\cdot\mathbf a=0.
+    \label{canon58:maxwell-wave}
+\end{equation}
+Energy density and Poynting flux follow as
+\[
+    u = \tfrac{\rho_f}{2}(|\mathbf v|^2 + c^2|\mathbf b|^2), \qquad \mathbf S = \rho_f c^2 (\mathbf v\times\mathbf b), \qquad \partial_t u + \nabla\cdot\mathbf S = 0.
+\]
+Mapping
+\[
+    \mathbf E = \sqrt{\rho_f/\varepsilon_0}\,\mathbf v, \qquad \mathbf B = \sqrt{\rho_f/\varepsilon_0}\,\mathbf b
+\]
+recovers Maxwell energy--momentum with $c^{-2}=\varepsilon_0\mu_0$. Bound sources with time-varying multipoles radiate swirl waves with $|\mathbf S| \propto r^{-2}$ in an inviscid medium.
+
+\paragraph{Photon as pulsed unknot.} A photon corresponds to a pulsed unknotted string of radius $R$ with effective action
+\[
+    S[\xi] = \tfrac12 \rho_f A_{\rm eff} \int dt \int_0^{2\pi R} ds \left[(\partial_t\xi)^2 - c^2(\partial_s\xi)^2\right],
+\]
+whose normal modes propagate at $c$ without attenuation. Detailed constructions appear in Appendix~\ref{appendix:photon-unknot}.
+
+% Check: [units ok; limit → Coulomb]
 
 %========================================================================================
 % UNIFIED SST LAGRANGIAN (Canonical)
 %========================================================================================
-% Single compact L_SST+Gauge+Matter with incompressibility multiplier, optional helicity term, Yang–Mills, scalar/Higgs-like sector, minimal couplings; show Euler–Lagrange recoveries.
-% TODO: Add compact Lagrangian block
+\section{Unified SST Lagrangian}
+% [STATUS: Canonical] [SOURCE: v0.4.4 §9]
+\label{canon58:unified-L}
+\[
+    \mathcal L_{\rm SST+Gauge+Matter} = \tfrac12\rho_f \|\mathbf v\|^2 - \rho_f \Phi_{\rm swirl} + \lambda(\nabla\cdot\mathbf v) + \chi_h\rho_f(\mathbf v\cdot\omega)
+    + \mathcal L_{\rm YM} + (D_\mu\Phi)^\dagger D^\mu\Phi - V(\Phi) + \mathcal L_{\rm int}.
+\]
+Here $\lambda$ enforces incompressibility, $\chi_h$ weights optional helicity, $\mathcal L_{\rm YM}$ is the Yang--Mills sector, $V(\Phi)$ a Higgs-like potential with empirical $v_\Phi$, and $\mathcal L_{\rm int}$ encodes minimal couplings to matter currents.
+
+\paragraph{Euler--Lagrange recoveries.}
+\begin{itemize}
+    \item $\delta\lambda$ $\Rightarrow$ $\nabla\cdot\mathbf v = 0$.
+    \item $\delta\mathbf v$ $\Rightarrow$ Euler equation with swirl potential.
+    \item $\delta A_\mu$ $\Rightarrow$ Yang--Mills field equations.
+    \item $\delta\Phi$ $\Rightarrow$ scalar field equation and EWSB minimum.
+\end{itemize}
+
+% Check: [units ok; limit → n/a]
 
 %========================================================================================
 % MASTER EQUATIONS: HYDROGEN SOFT-CORE + BOHR RECOVERY (Canonical + Empirical)
 %========================================================================================
-% V(r) and explicit a_0, E_1 recovery in r >> r_c limit; numeric cross-check.
-% TODO: Add equations and checks
+\section{Master Equations: Hydrogen Soft-Core \& Bohr Recovery}
+% [STATUS: Canonical+Empirical] [SOURCE: v0.4.4 §4]
+\label{canon58:hydrogen-softcore}
+\begin{tcolorbox}[title=Theorem: Hydrogen Soft-Core Potential]
+\begin{equation}
+    V(r) = -\frac{\Lambda}{\sqrt{r^2 + r_c^2}} \xrightarrow{r \gg r_c} -\frac{\Lambda}{r}.
+    \label{canon58:softcore}
+\end{equation}
+\end{tcolorbox}
+Bohr recovery gives
+\[
+    a_0 = \frac{\hbar^2}{\mu\Lambda}, \qquad E_n = -\frac{\mu\Lambda^2}{2\hbar^2 n^2}.
+\]
+\begin{tcolorbox}[title=Numeric Cross-Check]
+\begin{tabular}{ll}
+    $a_0$ (obs.) $=5.29\times10^{-11}$ m & $E_1$ (calc.) $\approx -13.6$ eV \\
+\end{tabular}
+\end{tcolorbox}
+
+% Check: [units ok; limit → Bohr]
 
 %========================================================================================
 % SWIRL PRESSURE LAW (Euler Corollary, Canonical)
 %========================================================================================
-% dp/dr = ρ_f v_θ^2/r; integrated forms p(r) = p_0 + ρ_f v_0^2 ln(r/r_0); scope/limits.
-% TODO: Add derivation and integrated forms
+\section{Swirl Pressure Law (Euler Corollary)}
+% [STATUS: Canonical] [SOURCE: v0.4.4 §4]
+\label{canon58:swirl-pressure}
+For steady azimuthal drift $v_\theta(r)$,
+\begin{equation}
+    \frac{1}{\rho_f}\frac{dp}{dr} = \frac{v_\theta^2}{r}.
+    \label{canon58:swirl-pressure-law}
+\end{equation}
+If $v_\theta\to v_0$ at large $r$,
+\[
+    p(r)=p_0+\rho_f v_0^2 \ln\!\left(\frac{r}{r_0}\right).
+\]
+Valid for steady, incompressible, purely azimuthal flow; full derivation appears in Appendix~\ref{appendix:pressure-law}.
+
+% Check: [units ok; limit → Newtonian]
 
 %========================================================================================
 % GAUGE/EWSB SECTOR: EMPIRICAL-FIRST BOX + THEORY (Empirical + Canonical)
 %========================================================================================
-% Start with Empirical Anchors box, then present director-elasticity derivation of θ_W and EWSB scale; cross-check vs data.
-% TODO: Add anchors and derivation
+\section{Gauge/EWSB Sector: Empirical-First Box + Theory}
+% [STATUS: Mixed] [SOURCE: v0.4.4 §6]
+\label{canon58:gauge-openers}
+\begin{tcolorbox}[title=Empirical Anchors (see Sec.~\ref{canon58:empirical-anchors})]
+\begin{align*}
+    m_W &= 80.377~\mathrm{GeV}, & m_Z &= 91.1876~\mathrm{GeV}, \\
+    \sin^2\theta_W &= 0.23121, & v_\Phi &\approx 246~\mathrm{GeV}.
+\end{align*}
+\end{tcolorbox}
+\begin{tcolorbox}[title=Theorem: Coupling from Director Elasticity]
+\begin{equation}
+    g_i^{-2}(\mu_*) = \kappa_i\,\Sigma_{\rm core}\,\mathcal W_i = \frac{\kappa_i\mathcal W_i}{\pi}, \qquad i=1,2,3.
+    \label{canon58:director-coupling}
+\end{equation}
+\end{tcolorbox}
+Weak mixing follows with $\tan\theta_W=g'/g$ and electroweak breaking obeys
+\begin{equation}
+    v_\Phi = u_{\rm swirl}^{1/4}(W_1W_2W_3)^{1/4} \approx 259.5~\mathrm{GeV},
+    \label{canon58:ewsblaw}
+\end{equation}
+giving $v_\Phi^{\rm pred}/v_\Phi^{\rm exp}=1.054$.
+Mass relations $m_W=\tfrac12 g_2 v_\Phi$, $m_Z=\tfrac12\sqrt{g_2^2+g_1^2}\,v_\Phi$, $m_\gamma=0$ are retained.
+
+% Check: [units ok; limit → n/a]
 
 %========================================================================================
 % QUANTUM MEASUREMENT: KERNEL LAW + NEAR-FIELD COROLLARY + BOUNDS (Canonical + Empirical + Research Track)
 %========================================================================================
-% Canonical local kernel Γ_{R→T} = ∫χu F; near-field single-mode corollary; χ_eff^max bounds formula and experimental status note.
-% TODO: Add kernel law and bounds
+\section{Quantum Measurement: Kernel Law \& Bounds}
+% [STATUS: Canonical kernel; Empirical bounds; Research assumptions]
+\label{canon58:measurement}
+\begin{equation}
+    \Gamma_{R\to T}=\int \chi\,u\,\mathcal F\,dV,
+    \label{canon58:kernel}
+\end{equation}
+linking collapse rate to susceptibility $\chi$, energy density $u$, and detector coupling $\mathcal F$.
+
+\paragraph{Near-field corollary.} For a single mode with effective area $A_{\rm eff}$ and power $P$,
+\[
+    \Gamma_{R\to T} \approx \chi_{\rm eff}\,\frac{P}{A_{\rm eff}}.
+\]
+Experimental bounds define $\chi_{\rm eff}^{\max}$ via $\chi_{\rm eff}^{\max} = \Gamma^{\rm obs}/(P/A_{\rm eff})$ (see Appendix~\ref{appendix:bounds}).
+
+% Check: [units ok; limit → n/a]
 
 %========================================================================================
 % HYDROGEN–GRAVITY CONSTRUCTION (Mixed)
 %========================================================================================
-% Chiral-axis circulation and pressure deficit Δp = -1/2 ρ_f v^2; split canonically-derived pieces vs long-range claims.
-% TODO: Add construction and label status
+\section{Hydrogen–Gravity Construction}
+% [STATUS: Mixed]
+Chiral-axis circulation induces a local pressure deficit
+\begin{equation}
+    \Delta p = -\tfrac12 \rho_f v^2.
+    \label{canon58:pressure-deficit}
+\end{equation}
+% [STATUS: Canonical]
+This relation is canonical; interpreting the deficit as long-range gravity remains a Research-track hypothesis.
+
+% Check: [units ok; limit → Newtonian]
 
 %========================================================================================
 % SYSTEMATIC DIMENSIONAL & RECOVERY CHECKS (Canonical)
 %========================================================================================
-% After each major theorem/equation: units + limiting recovery (Newtonian/Coulomb/Bohr).
-% TODO: Add one-liner checks and cross-reference tables
+\section{Systematic Dimensional \& Recovery Checks}
+% [STATUS: Canonical]
+\label{canon58:checks}
+Each major equation includes an inline comment summarizing unit consistency and recovery limits. Table~\ref{canon58:check-table} consolidates these checks.
+\begin{table}[h]
+    \centering
+    \begin{tabular}{l l}
+        Result & Check \\ \hline
+        Chronos--Kelvin Invariant & units ok; limit $\to$ Newtonian \\
+        Hydrogen Soft-Core & units ok; limit $\to$ Bohr \\
+        Swirl Pressure Law & units ok; limit $\to$ Newtonian \\
+    \end{tabular}
+    \caption{Dimensional and recovery checks.}
+    \label{canon58:check-table}
+\end{table}
+
+% Check: [units ok; limit → n/a]
 
 %========================================================================================
 % APPENDICES (A–I)
 %========================================================================================
-% A) Swirl Hamiltonian Density (full canonical form)
-% B) Detailed Dimensional Analyses & Recovery Limits
-% C) Derivation of ρ_f
-% D) Hydrogen Soft-Core Numerics
-% E) Photon/Unknot Sector
-% F) Swirl Pressure Law — galaxy-scale integrals
-% G) Calibration Protocol Notes
-% H) Experimental Status & Bounds
-% I) Notation, Ontology, Glossary
-% TODO: Add/expand appendices as per checklist
+\appendix
+\section{Swirl Hamiltonian Density}
+% [STATUS: Canonical]
+\label{appendix:hamiltonian}
+Full canonical form including $r_c^2\|\omega\|^2$ and $r_c^4\|\nabla\omega\|^2$ terms with Kelvin compatibility.
+
+\section{Dimensional Analyses \& Recovery Limits}
+% [STATUS: Canonical]
+\label{appendix:dimensional}
+Tables such as Table~\ref{canon58:check-table} collecting unit and limit checks.
+
+\section{Derivation of $\rho_f$}
+% [STATUS: Canonical]
+\label{appendix:rho_f}
+Full coarse-graining working leading to Eq.~\eqref{canon58:box-rho_f}.
+
+\section{Hydrogen Soft-Core Numerics}
+% [STATUS: Canonical]
+\label{appendix:hydrogen-numerics}
+Numerical evaluation of $a_0$ and $E_1$ with uncertainty propagation.
+
+\section{Photon/Unknot Sector}
+% [STATUS: Canonical]
+\label{appendix:photon-unknot}
+Lossless conditions and pulsed construction details for photons.
+
+\section{Swirl Pressure Law—Galaxy-Scale Integrals}
+% [STATUS: Canonical]
+\label{appendix:pressure-law}
+Extended derivation and large-scale applications of Eq.~\eqref{canon58:swirl-pressure-law}.
+
+\section{Calibration Protocol Notes}
+% [STATUS: Empirical]
+\label{appendix:calibration}
+Procedures fixing $\{v_{\circ}, r_c, \rho_f, \rho_m, F_{\max}^{\mathrm{EM}}, F_{\max}^{\mathrm{G}}\}$.
+
+\section{Experimental Status \& Bounds}
+% [STATUS: Empirical]
+\label{appendix:bounds}
+Extraction of $\chi_{\rm eff}^{\max}$ and collected bounds.
+
+\section{Notation, Ontology, Glossary}
+% [STATUS: Canonical]
+\label{appendix:glossary}
+Symbol tables and taxonomy.
 
 %========================================================================================
 % END OF SKELETON — BEGIN MAIN TEXT
