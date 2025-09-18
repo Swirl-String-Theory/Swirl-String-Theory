@@ -1,20 +1,104 @@
 %! Author = Omar Iskandarani
-%! Date = 2025-09-06
+%! Title = Swirl String Theory (SST) Canon v0.5
+%! Date = Sept 4, 2025
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.17155855
 
-\documentclass[11pt]{article}
+\newcommand{\paperversion}{\textbf{v0.0.1}} % Semantic versioning: vMAJOR.MINOR.PATCH
+\newcommand{\papertitle}{Long-Distance Swirl Gravity from Chiral Swirling Knots with Central Holes}
+\newcommand{\paperdoi}{10.5281/zenodo.17155855}
 
-% Packages
-\usepackage{amsmath,amssymb}
-\usepackage{geometry}
-\usepackage{graphicx}
+%========================================================================================
+% PACKAGES AND DOCUMENT CONFIGURATION
+%========================================================================================
+\documentclass[reprint,aps,onecolumn,nofootinbib]{revtex4-2}
+
+% ====== minimal packages ======
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{bm}
+\usepackage{physics}
+\usepackage{microtype}
+\usepackage{tcolorbox}
 \usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+% ==== Packages ====
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{booktabs}
+\usepackage[utf8]{inputenc}
+
+% ===== Gauge sector macros =====
+\renewcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\ii}{\mathrm{i}}
+% Gauge fields (adjoints; indices a=1..8, i=1..3)
+\newcommand{\GsA}{G^a_{\mu\nu}}
+\newcommand{\WsI}{W^i_{\mu\nu}}
+\newcommand{\Bmn}{B_{\mu\nu}}
+
+% ===============================
+% Macros (canonicalized)
+% ===============================
+
+% swirl arrows (context-aware)
+\newcommand{\swirlarrow}{%
+    \mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}%
+    {\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}%
+    {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
+    {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
+}
+\newcommand{\swirlarrowcw}{%
+    \mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}%
+    {\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}%
+    {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}%
+    {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}%
+}
+
+% Canonical symbols
+\newcommand{\vswirl}{\mathbf{v}_{\swirlarrow}}
+\newcommand{\vswirlcw}{\mathbf{v}_{\swirlarrowcw}}
+\newcommand{\SwirlClock}{S_{(t)}^{\swirlarrow}}
+\newcommand{\SwirlClockcw}{S_{(t)}^{\swirlarrowcw}}
+\newcommand{\omegas}{\boldsymbol{\omega}_{\swirlarrow}}  % swirl vorticity
+\newcommand{\vscore}{v_{\swirlarrow}}                    % shorthand: |v_swirl| at r=r_c
+\newcommand{\vnorm}{\lVert \vswirl \rVert}               % swirl speed magnitude
+\newcommand{\rhof}{\rho_{\!f}}                           % effective fluid density
+\newcommand{\rhoE}{\rho_{\!E}}                           % swirl energy density
+\newcommand{\rhom}{\rho_{\!m}}                           % mass-equivalent density
+\newcommand{\rc}{r_c}                                    % string core radius (swirl string radius)
+\newcommand{\FmaxEM}{F_{\mathrm{EM}}^{\max}}             % EM-like maximal force scale
+\newcommand{\FmaxG}{F_{\mathrm{G}}^{\max}}               % G-like maximal force scale
+\newcommand{\Lam}{\Lambda}                               % Swirl Coulomb constant
+\newcommand{\Om}{\Omega_{\swirlarrow}}                   % swirl angular frequency profile
+\newcommand{\alpg}{\alpha_g}                             % gravitational fine-structure analogue
+% --- Minimal macro prelude (safe, local) ---
+\providecommand{\rc}{r_c}
+\newcommand{\omegaVec}{\boldsymbol{\omega}}
+\newcommand{\rhoF}{\rho_{\!f}}     % effective fluid density
+\newcommand{\rhoM}{\rho_{\!m}}     % mass-equivalent density
+\newcommand{\OmegaCore}{\Omega_{\mathrm{core}}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\core}{\mathrm{core}}
+\newcommand{\GammaC}{\Gamma_C}
+
+% ===============================
+% Policy: the golden constant is only allowed via hyperbolic functions.
+\newcommand{\xig}{\operatorname{asinh}\!\left(\tfrac{1}{2}\right)}
+\newcommand{\phig}{\exp(\xig)}
+\newcommand{\phialg}{\bigl(1+\sqrt{5}\bigr)/2}
+\newcommand{\xigold}{\tfrac{3}{2}\,\xig}
+\newcommand{\GoldenDeclare}{%
+    \textbf{Golden (hyperbolic)}:\ \(\ln\phi=\xig\), hence \(\phi=\phig\).
+    \ \emph{(Equivalently, \(\phi=\phialg\); the algebraic form is derivative.)}%
+}
+\usepackage{graphicx}
+\usepackage{geometry}
 \geometry{margin=1in}
 
 % Macros (explicit, macro-free chat-safe)
-\newcommand{\vswirl}{\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}}
-\newcommand{\SwirlClock}{S_t^{\boldsymbol{\circlearrowleft}}}
-\newcommand{\rhoF}{\rho_{\!f}}
-\newcommand{\GammaC}{\Gamma_C}
+
 % --- Add to your preamble (if not already present) ---
 %-------------------------------------------
 % Put this in your preamble (once)
@@ -63,7 +147,7 @@
 
 % ------- Guides toggle -------
 \newif\ifsstguides
-\sstguidestrue
+\sstguidesfalse
 
 % ------- Helper: label & skeleton for points P1..Pn -------
 \newcommand{\SSTGuidesPoints}[2]{% #1=basename (e.g. P), #2=last index
@@ -78,18 +162,22 @@
 
 \begin{document}
 
-\title{Long-Distance Swirl Gravity from Chiral Swirling Knots with Central Holes}
-\author{Omar Iskandarani}
-\date{\today}
-\maketitle
+	\title{\papertitle }
+	\author{Omar Iskandarani}
+	\affiliation{Independent Researcher, Groningen, The Netherlands}
+    \thanks{ORCID: 0009-0006-1686-3961,\\
+            DOI: \paperdoi \\
+            Version: \paperversion
+    }
+	\date{\today}
 
 \begin{abstract}
-We derive long-range gravitational attraction in Swirl--String Theory (SST) as a direct consequence of \emph{chiral swirling knots}---topological vortex filaments such as the trefoil ($3_1$), cinquefoil ($5_1$, $5_2$), and stevedore ($6_1$).
+We derive long-range gravitational attraction in Swirl--String Theory (SST) as a direct consequence of \emph{chiral swirling knots}---topological vortex filaments such as the trefoil (\(3_1\)), cinquefoil (\(5_1\), (\(5_2\)), and stevedore (\(6_1\)).
 Each knot encloses a central rotational line, which acts as an anchor of circulation.
 Using Cauchy's integral theorem, we show that the circulation measured around any loop enclosing this axis is quantized by the knot's winding number.
-This quantization is expressed by the Swirl Clock $\SwirlClock$, and its persistence explains why neutral molecules (e.g.\ H$_2$) attract in otherwise flat space: their knots are connected via the same central swirl line extending beyond the equal-pressure boundary.
+This quantization is expressed by the Swirl Clock \(\SwirlClock\), and its persistence explains why neutral molecules (e.g.\ H\(_2\) attract in otherwise flat space: their knots are connected via the same central swirl line extending beyond the equal-pressure boundary.
 \end{abstract}
-
+\maketitle
 
 
 % ====================================================================
@@ -148,21 +236,21 @@ This quantization is expressed by the Swirl Clock $\SwirlClock$, and its persist
 % ====================================================================
 
 \begin{tikzpicture}[use Hobby shortcut]
-\coordinate (P1) at (2, -2);
-\coordinate (P2) at (1, 0);
+\coordinate (P1) at (2, -1.5);
+\coordinate (P2) at (1.5, 1);
 \coordinate (P3) at (0, 2);
 \coordinate (P4) at (-2, 1);
-\coordinate (P5) at (0, -1);
-\coordinate (P6) at (1, -2);
-\coordinate (P7) at (0, -2.5);
-\coordinate (P8) at (-2, -2);
-\coordinate (P9) at (-1, 0);
+\coordinate (P5) at (-1, -1.5);
+\coordinate (P6) at (0.5, -2);
+\coordinate (P7) at (-1.25, -2.25);
+\coordinate (P8) at (-2, -1.5);
+\coordinate (P9) at (-1.5, 1);
 \coordinate (P10) at (0, 2);
 \coordinate (P11) at (2, 1);
-\coordinate (P12) at (1, -1);
-\coordinate (P13) at (0, -2);
-\coordinate (P14) at (1, -2.5);
-\coordinate (P15) at (2, -2); % = P1
+\coordinate (P12) at (1, -1.5);
+\coordinate (P13) at (-0.5, -2);
+\coordinate (P14) at (1.25, -2.25);
+\coordinate (P15) at (2, -1.5); % = P1
 
 \begin{knot}[
     consider self intersections,
@@ -198,69 +286,13 @@ This quantization is expressed by the Swirl Clock $\SwirlClock$, and its persist
     A defining feature is that all these knots possess a \emph{central hole} threaded by a straight axis (taken as the $z$-axis).
     This axis is the ``fabric line'' of flat space: it is the singularity in the analytic swirl potential.
 
-\section{Cauchy Integral and Circulation Quantization}
-    Let $C$ be a closed loop in the $x$--$y$ plane encircling the $z$-axis.
-    By Cauchy's integral theorem, for an analytic swirl potential $W(z)=\Phi+i\Psi$,
-    \begin{equation}
-    \oint_C \vswirl \cdot d\mathbf{l} =
-    \begin{cases}
-    0, & \text{if no singularity inside,}\\[4pt]
-    2\pi i\, \mathrm{Res}\!\left(\frac{dW}{dz}, z=0\right), & \text{if axis enclosed.}
-    \end{cases}
-    \end{equation}
-    In SST, the residue corresponds to the circulation quantum
-    \begin{equation}
-    \kappa = 2\pi\, v_c\, r_c,
-    \end{equation}
-    where $v_c$ is the swirl speed at the core boundary $r_c$.
-
-    If the knot winds around the axis $n$ times (its \emph{linking number}),
-    \begin{equation}
-    \GammaC = n \kappa.
-    \end{equation}
-    This is the Cauchy--Kelvin equivalence: long-distance swirl circulation is locked to integer multiples of $\kappa$ by topology.
-
-\section{Composite Baryon Tubes}
-    Inside baryons, three quark knots (e.g.\ $5_2$, $5_2$, $6_1$) meet at a Y-shaped junction, forming a single composite swirl tube.
-    By Kelvin's theorem, circulation is additive:
-    \begin{equation}
-    \Gamma_{\rm baryon} = \Gamma_1 + \Gamma_2 + \Gamma_3
-    = 3 \kappa.
-    \end{equation}
-    Since $\Gamma = 2\pi r_c v_\theta$, this means the effective swirl velocity is tripled:
-    \begin{equation}
-    v_{\theta,\rm eff} = \frac{\Gamma_{\rm baryon}}{2\pi r_c} = 3 v_c,
-    \end{equation}
-    while the core radius $r_c$ remains essentially unchanged.
-    The baryon thus behaves as a single tube with three times the circulation and a deeper pressure well.
-
-    \paragraph{Swirl Clock scaling.}
-        The Swirl Clock relation becomes
-        \begin{equation}
-        dt_{\rm local} = dt_\infty \sqrt{1 - \frac{(3 v_c)^2}{c^2}},
-        \end{equation}
-        predicting a more pronounced local time dilation, consistent with the larger rest mass of baryons relative to single quark knots.
-
-\section{Swirl Gravity and Molecular Attraction}
-Two composite tubes (e.g.\ two protons) sharing the same central line produce a combined circulation
-\[
-    \Gamma_{\rm total} = (3 \kappa)_{\rm proton} + (3 \kappa)_{\rm proton} = 6 \kappa,
-\]
-which deepens the shared pressure well and yields a stronger long-range attraction.
-This explains why neutral molecules (e.g.\ H$_2$) still attract in Euclidean space: their baryon cores are connected by the same central line, and the resulting swirl gravity follows directly from the additive circulation.
-
-\section{Conclusion}
-Long-distance gravitational attraction in SST is a manifestation of topological quantization: chiral knots with central holes enforce non-vanishing circulation residues along a central line.
-When multiple quark knots merge into a baryon, their circulations add linearly, forming a single composite tube with $3\kappa$ circulation.
-This mechanism predicts the correct baryonic mass scaling and provides a flat-space explanation for molecular attraction.
-
 
 % ============================
 % Figure 1: Trefoil + central axis + circulation loops
 % ============================
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[scale=1.05]
+\begin{tikzpicture}[scale=0.80]
     % Parameters (schematic torus cross-section)
 \def\R{3.2}   % major radius (to center of tube annulus)
 \def\r{1.1}   % tube half-width in the drawing (annulus thickness/2)
@@ -323,6 +355,35 @@ Loops outside the annulus do not enclose the filament and give $\Gamma\approx 0$
 \label{fig:trefoil_axis_plateau}
 \end{figure}
 
+
+
+
+\section{Cauchy Integral and Circulation Quantization}
+    Let $C$ be a closed loop in the $x$--$y$ plane encircling the $z$-axis.
+    By Cauchy's integral theorem, for an analytic swirl potential $W(z)=\Phi+i\Psi$,
+    \begin{equation}
+    \oint_C \vswirl \cdot d\mathbf{l} =
+    \begin{cases}
+    0, & \text{if no singularity inside,}\\[4pt]
+    2\pi i\, \mathrm{Res}\!\left(\frac{dW}{dz}, z=0\right), & \text{if axis enclosed.}
+    \end{cases}
+    \end{equation}
+    In SST, the residue corresponds to the circulation quantum
+    \begin{equation}
+    \kappa = 2\pi\, v_c\, r_c,
+    \end{equation}
+    where $v_c$ is the swirl speed at the core boundary $r_c$.
+
+    If the knot winds around the axis $n$ times (its \emph{linking number}),
+    \begin{equation}
+    \GammaC = n \kappa.
+    \end{equation}
+    This is the Cauchy--Kelvin equivalence: long-distance swirl circulation is locked to integer multiples of $\kappa$ by topology.
+
+\section{Composite Baryon Tubes}
+    Inside baryons, three quark knots (e.g.\ $5_2$, $5_2$, $6_1$) meet at a Y-shaped junction, forming a single composite swirl tube.
+
+
 % ============================
 % Figure 2: Baryon composite tube (Y-junction -> single tube)
 % ============================
@@ -376,6 +437,26 @@ The composite tube anchors to the same central axis, preserving the long-distanc
 \end{figure}
 
 
+    Each quark knot $i$ has circulation $\Gamma_i = \kappa$ around the central axis (Fig.~\ref{fig:baryon_composite_tube}).
+    By Kelvin's theorem, circulation is additive:
+    \begin{equation}
+    \Gamma_{\mathrm{baryon}} = \Gamma_1 + \Gamma_2 + \Gamma_3
+    = 3 \kappa.
+    \end{equation}
+    Since $\Gamma = 2\pi r_c v_\theta$, this means the effective swirl velocity is tripled:
+    \begin{equation}
+    v_{\theta,\mathrm{eff}} = \frac{\Gamma_{\mathrm{baryon}}}{2\pi r_c} = 3 v_c,
+    \end{equation}
+    while the core radius $r_c$ remains essentially unchanged.
+    The baryon thus behaves as a single tube with three times the circulation and a deeper pressure well.
+
+    \paragraph{Swirl Clock scaling.}
+        The Swirl Clock relation becomes
+        \begin{equation}
+        dt_{\mathrm{local}} = dt_\infty \sqrt{1 - \frac{(3 v_c)^2}{c^2}},
+        \end{equation}
+        predicting a more pronounced local time dilation, consistent with the larger rest mass of baryons relative to single quark knots.
+
 
 %-------------------------------------------
 % 4-panel cartoon (same scale / same view)
@@ -386,7 +467,7 @@ The composite tube anchors to the same central axis, preserving the long-distanc
 % -------- helper macro: one panel --------------
 % args: #1 = loop radius, #2 = ON/OFF style, #3 = caption text under panel
 \newcommand{\OnePanel}[3]{%
-    \begin{tikzpicture}[x=1cm,y=1cm,scale=0.90]
+    \begin{tikzpicture}[x=1cm,y=1cm,scale=0.60]
     % parameters (shared across all panels)
     \def\R{3.2}   % major radius (center of torus band)
     \def\r{1.1}   % half-thickness of torus band
@@ -464,7 +545,23 @@ Red loops (a,d) do not link the filament \(\Rightarrow \Gamma\approx 0\).}
 \end{figure}
 
 
-\bibliographystyle{plain}
+\section{Swirl Gravity and Molecular Attraction}
+Two composite tubes (e.g., two protons) sharing the same central line produce a combined circulation
+\[
+    \Gamma_{\mathrm{total}} = (3 \kappa)_{\mathrm{proton}} + (3 \kappa)_{\mathrm{proton}} = 6 \kappa,
+\]
+which deepens the shared pressure well and yields a stronger long-range attraction.
+This explains why neutral molecules (e.g., H$_2$) still attract in Euclidean space: their baryon cores are connected by the same central line, and the resulting swirl gravity follows directly from the additive circulation.
+
+\section{Conclusion}
+Long-distance gravitational attraction in SST is a manifestation of topological quantization: chiral knots with central holes enforce non-vanishing circulation residues along a central line.
+When multiple quark knots merge into a baryon, their circulations add linearly, forming a single composite tube with $3\kappa$ circulation.
+This mechanism predicts the correct baryonic mass scaling and provides a flat-space explanation for molecular attraction.
+
+
+
+\nocite{*}
+\bibliographystyle{unsrt}
 \bibliography{swirlgravity}
 
 

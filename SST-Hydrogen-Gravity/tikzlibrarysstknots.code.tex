@@ -36,6 +36,219 @@
 % LATEX SWIRL STRING THEORY
 % KNOT LIBRARY
 % ====================================================================
+\newcommand{\SSTfourPanel}{% optional arg = flip list
+%-------------------------------------------
+% 4-panel cartoon (same scale / same view)
+%-------------------------------------------
+\begin{figure}[t]
+\centering
+
+% -------- helper macro: one panel --------------
+% args: #1 = loop radius, #2 = ON/OFF style, #3 = caption text under panel
+\newcommand{\OnePanel}[3]{%
+    \begin{tikzpicture}[x=1cm,y=1cm,scale=0.60]
+    % parameters (shared across all panels)
+    \def\R{3.2}   % major radius (center of torus band)
+    \def\r{1.1}   % half-thickness of torus band
+    \def\tilt{0.55}% yscale to hint 3D tilt of torus
+    \def\RL{#1}   % test loop radius
+
+    % axes (same in all panels)
+    \draw[axes,->] (-0.25,0) -- (6.8,0) node[below right] {$x$};
+    \draw[axes,->] (0,-3.0) -- (0,3.0) node[left] {$y$};
+
+    % central axis marker (z coming out of page)
+    \fill (0,0) circle(2pt);
+    \node[below left] at (0,0) {\footnotesize central axis ($z$)};
+
+    % --- torus "band" with a little 3D hint (tilted annulus) ---
+    % outer and inner tilted ellipses (yscale = tilt)
+    \begin{scope}[yscale=\tilt]
+    \draw[very thick, gray!40] (0,0) circle (\R+\r);
+    \draw[very thick, gray!40] (0,0) circle (\R-\r);
+    % faint fill between ellipses for depth cue
+    \path[fill=gray!10,draw=none] (0,0) circle (\R+\r);
+    \clip (0,0) circle (\R+\r);
+    \fill[white] (0,0) circle (\R-\r);
+    \end{scope}
+
+    % --- schematic trefoil projection with over/under cues ---
+    % front arc (solid), back arc (dashed + lighter) to hint 3D crossing
+    % This is a clean cartoon, not exact geometry.
+    % Back (far) lobe:
+    \draw[knotline, dashed, opacity=0.35]
+    plot[smooth cycle, tension=0.9]
+    coordinates {
+        ({\R+0.2},  0.10)
+        ({\R-0.4},  0.95)
+        ({\R+0.6},  0.85)
+        ({\R+0.3}, -0.9)
+        ({\R-0.9}, -1.05)
+    };
+    % Front (near) lobe with arrows (swirl direction)
+    \draw[knotline]
+    plot[smooth cycle, tension=0.9]
+    coordinates {
+        ({\R},     0.00)
+        ({\R-0.6}, 1.00)
+        ({\R+0.8}, 0.80)
+        ({\R+0.4},-1.00)
+        ({\R-0.8},-1.20)
+    };
+    % flow arrows along the visible lobe
+    \foreach \t/\L in {0/0.35, 60/0.35, 180/0.35}{
+        \draw[looparrow, blue!70]
+        ({\R+0.7*cos(\t)},{0.1+0.9*sin(\t)}) --
+        ++({0.7*cos(\t+25)*\L},{0.7*sin(\t+25)*\L});
+    }
+
+% --- test loop (the circulation contour) ---
+    \draw[#2] (0,0) circle (\RL);
+
+    % panel caption (under)
+    \node at (3.0,-2.7) {\small #3};
+    \end{tikzpicture}%
+}
+
+% --------- lay out four panels on one row ----------
+\OnePanel{0.55}{testloopOFF}{(a)\; very small loop $\Rightarrow\ \Gamma=0$}\hspace{0.9cm}
+\OnePanel{2.65}{testloopON}{(b)\; inside torus band $\Rightarrow\ \Gamma=-3\,\kappa$}\hspace{0.9cm}
+\OnePanel{3.25}{testloopON}{(c)\; still inside band $\Rightarrow\ \Gamma=-3\,\kappa$}\hspace{0.9cm}
+\OnePanel{4.60}{testloopOFF}{(d)\; far outside $\Rightarrow\ \Gamma\approx 0$}
+
+\caption{Four identical-scale, top-down panels. The gray tilted annulus hints at the torus where the trefoil lives (donut seen at an angle).
+The blue curve is a schematic trefoil; dashed parts are “behind” (3D cue).
+The green **test loops** (b,c) lie \emph{within} the torus band and measure the plateau \(\Gamma=\mathrm{Lk}\cdot\kappa=\pm 3\,\kappa\) (sign by orientation).
+Red loops (a,d) do not link the filament \(\Rightarrow \Gamma\approx 0\).}
+\label{fig:fourpanel-3D-cartoon}
+\end{figure}
+}
+
+\newcommand{\CirculationLoop}{
+
+% ============================
+% Figure 1: Trefoil + central axis + circulation loops
+% ============================
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[scale=1.05]
+    % Parameters (schematic torus cross-section)
+\def\R{3.2}   % major radius (to center of tube annulus)
+\def\r{1.1}   % tube half-width in the drawing (annulus thickness/2)
+\def\Rin{\R-\r}
+\def\Rout{\R+\r}
+
+% Coordinate axes (x-y plane view)
+\draw[->,axisline] (-0.3,0) -- (6.8,0) node[below right] {$x$};
+\draw[->,axisline] (0,-3.2) -- (0,3.2) node[left] {$y$};
+
+% Central rotational axis (z-axis comes out-of-plane at (0,0))
+\fill[black] (0,0) circle(2pt);
+\node[below left] at (0,0) {central axis ($z$)};
+
+% Annulus representing the torus "core circle" band (projection)
+\draw[thick, gray!50] (0,0) circle (\Rin);
+\draw[thick, gray!50] (0,0) circle (\Rout);
+\node[labelbox,gray!50!black] at ({\R},-2.2) {torus annulus $[R-r,\,R+r]$};
+
+% Circulation test loops (z=0 plane); inside annulus => plateau q=3
+\foreach \RR in {2.1,2.6,3.2} {
+    \draw[corecircle] (0,0) circle (\RR);
+}
+\node[labelbox] at (2.1,1.2) {$\Gamma \approx -3\,\kappa$};
+\node[labelbox] at (2.6,-1.2) {$\Gamma \approx -3\,\kappa$};
+\node[labelbox] at (3.2,1.2) {$\Gamma \approx -3\,\kappa$};
+
+% Outside loop: ~0
+\draw[corecircle] (0,0) circle (4.4);
+\node[labelbox] at (4.4,-1.2) {$\Gamma \approx 0$};
+
+% Schematic trefoil projection (simple stylized 3-lobe curve around core circle)
+\begin{scope}
+\draw[knotline]
+plot[smooth cycle, tension=0.8]
+coordinates {
+    ({\R},0.0)
+    ({\R-0.9},0.9)
+    ({\R-0.1},1.6)
+    ({\R+0.9},0.8)
+    ({\R+0.6},-0.8)
+    ({\R-0.4},-1.4)
+};
+% swirl direction arrows along the knot
+\foreach \ang/\rad in {20/0.4,150/0.4,280/0.4}{
+    \draw[swirlarrow, blue!65] ({\R+cos(\ang)*1.0},{sin(\ang)*1.0}) -- ++({cos(\ang+25)*\rad},{sin(\ang+25)*\rad});
+}
+\end{scope}
+
+% Caption annotations
+\node[align=left, labelbox] at (5.9,2.5) {%
+    \small Trefoil $3_1$ (\emph{schematic})\\
+    meridional winding $q=3$\\
+    $\Rightarrow\ \Gamma=\mathrm{Lk}\cdot\kappa=-3\,\kappa$
+};
+\end{tikzpicture}
+\caption{Trefoil knot with central axis and circulation loops in the $z{=}0$ plane.
+Loops whose spanning disk intersects the filament within the torus annulus measure a constant plateau $\Gamma=\mathrm{Lk}\cdot\kappa=\pm 3\,\kappa$ (sign by orientation).
+Loops outside the annulus do not enclose the filament and give $\Gamma\approx 0$.}
+\label{fig:trefoil_axis_plateau}
+\end{figure}
+
+}
+
+
+\newcommand{\Yjunction}{
+% ============================
+% Figure 2: Baryon composite tube (Y-junction -> single tube)
+% ============================
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[scale=1.0]
+    % Central axis
+\draw[axisline] (0,-2.2) -- (0,2.2);
+\node[left] at (0,2.2) {$z$};
+
+% Three incoming quark tubes (left side), colored
+\draw[tube, red!70] (-5, 1.4) .. controls + (1,0) and +(-1,0.5) .. (-2, 0.6);
+\draw[tube, green!70!black] (-5, 0.0) .. controls + (1,0) and +(-1,0.0) .. (-2, 0.0);
+\draw[tube, blue!70] (-5,-1.4) .. controls + (1,0) and +(-1,-0.5) .. (-2,-0.6);
+
+% Y-junction region
+\draw[tube, gray!30,line cap=round] (-2,0.6) -- (-1.2,0.3);
+\draw[tube, gray!30,line cap=round] (-2,0.0) -- (-1.2,0.0);
+\draw[tube, gray!30,line cap=round] (-2,-0.6) -- (-1.2,-0.3);
+
+% Merge into single composite tube (right side)
+\draw[tube, black!80] (-1.2,0.0) .. controls +(0.8,0) and +(-0.8,0) .. (3.4,0.0);
+
+% Swirl direction arrows on tubes
+\foreach \x/\y in {-4.3/1.30, -3.6/1.00, -2.9/0.75}{
+    \draw[vline, red!70] (\x,\y) -- ++(0.7,0.05);
+}
+\foreach \x/\y in {-4.3/0.00, -3.6/0.00, -2.9/0.00}{
+    \draw[vline, green!70!black] (\x,\y) -- ++(0.7,0.00);
+}
+\foreach \x/\y in {-4.3/-1.30, -3.6/-1.00, -2.9/-0.75}{
+    \draw[vline, blue!70] (\x,\y) -- ++(0.7,-0.05);
+}
+\foreach \x in {-0.8,0.2,1.2,2.2}{
+    \draw[vline, black!80] (\x,0.0) -- ++(0.8,0.0);
+}
+
+% Labels
+\node[align=left, labelbox] at (-4.6,2.0) {Three quark tubes\\[-2pt] $\Gamma_1=\Gamma_2=\Gamma_3=\kappa$};
+\node[align=left, labelbox] at (2.3,0.9) {Composite tube\\[-2pt] $\Gamma_{\text{baryon}}=3\kappa$\\[-2pt] $v_{\theta,\mathrm{eff}}=3v_c$};
+\node[align=left, labelbox] at (0.5,-1.7) {Additivity (Kelvin): $\ \Gamma=\sum_i \Gamma_i$};
+
+% Central axis marker
+\fill (0,0) circle (2pt);
+\node[below right] at (0,0) {central axis};
+\end{tikzpicture}
+
+
+}
+
+
 
 % ====================================================================
 % 6_1: Down Quarck Stevedore
@@ -74,7 +287,42 @@
     \end{tikzpicture}%
 }
 
+% ====================================================================
+% 6_1: Down Quarck Stevedore
+% Usage: \SSTdownRound
+% ====================================================================
+\newcommand{\SSTroundDown}[1][2,4,6,8,10,12,14,16]{% optional arg = flip list
+        \begin{tikzpicture}[use Hobby shortcut]
+        \coordinate (P1)  at ( 0,  2);
+        \coordinate (P2)  at (-2,  2);
+        \coordinate (P3)  at (-1.5, -1);
+        \coordinate (P4)  at ( 0.5, -2);
+        \coordinate (P5)  at (-1.5,-2);
+        \coordinate (P6)  at (-2.5,-0.5);
+        \coordinate (P7)  at (-2, 1);
+        \coordinate (P8)  at ( 0,  3);
+        \coordinate (P9)  at ( 2, 1);
+        \coordinate (P10) at ( 2.5,-0.5);
+        \coordinate (P11) at ( 1.5,-2);
+        \coordinate (P12) at (-0.5, -2);
+        \coordinate (P13) at ( 1.5, -1);
+        \coordinate (P14) at ( 2,  2);
+        \coordinate (P15) at ( 0,  2); % = P1
 
+        \begin{knot}[
+            consider self intersections,
+            clip width=5pt, clip radius=3pt,
+            ignore endpoint intersections=false,
+            flip crossing/.list={#1}
+        % draft mode=crossings % uncomment to see numbers
+        ]
+        \strand
+        ([closed] P1)..(P2)..(P3)..(P4)..(P5)..(P6)..(P7)..(P8)%
+        ..(P9)..(P10)..(P11)..(P12)..(P13)..(P14)..(P15);
+        \end{knot}
+        \SSTGuidesPoints{P}{15}
+        \end{tikzpicture}
+}
 % ====================================================================
 % 5_2: Up Quark
 % Usage: \SSTup
@@ -105,6 +353,41 @@
     \end{tikzpicture}%
 }
 
+% ====================================================================
+% 5_2: Up Quark
+% Usage: \SSTupRound
+% ====================================================================
+\newcommand{\SSTroundUp}[1][2,4,6,8,10,12,14,16,18]{% optional arg = flip list
+\begin{tikzpicture}[use Hobby shortcut]
+\coordinate (P1) at (2, -1.5);
+\coordinate (P2) at (1.5, 1);
+\coordinate (P3) at (0, 2);
+\coordinate (P4) at (-2, 1);
+\coordinate (P5) at (-1, -1.5);
+\coordinate (P6) at (0.5, -2);
+\coordinate (P7) at (-1.25, -2.25);
+\coordinate (P8) at (-2, -1.5);
+\coordinate (P9) at (-1.5, 1);
+\coordinate (P10) at (0, 2);
+\coordinate (P11) at (2, 1);
+\coordinate (P12) at (1, -1.5);
+\coordinate (P13) at (-0.5, -2);
+\coordinate (P14) at (1.25, -2.25);
+\coordinate (P15) at (2, -1.5); % = P1
+
+\begin{knot}[
+    consider self intersections,
+    clip width=5pt, clip radius=3pt,
+    ignore endpoint intersections=false,
+    flip crossing/.list={#1}
+% draft mode=crossings
+]
+\strand
+([closed] P1)..(P2)..(P3)..(P4)..(P5)..(P6)..(P7)..(P8)..(P9)..(P10)..(P11)..(P12)..(P13)..(P14)..(P15);
+\end{knot}
+\SSTGuidesPoints{P}{15}
+\end{tikzpicture}
+}
 % ====================================================================
 % Usage: \SSTSeptfoil
 % ====================================================================

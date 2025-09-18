@@ -4,11 +4,11 @@
 %! Affiliation = Independent Researcher, Groningen, The Netherlands
 %! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
 %! ORCID = 0009-0006-1686-3961
-%! DOI = 10.5281/zenodo.17101841
+%! DOI = 10.5281/zenodo.17155748
 
-\newcommand{\canonversion}{\textbf{v0.5.8}} % Semantic versioning: vMAJOR.MINOR.PATCH
+\newcommand{\canonversion}{\textbf{v0.5.9}} % Semantic versioning: vMAJOR.MINOR.PATCH
 \newcommand{\papertitle}{Swirl String Theory (SST) Canon \canonversion}
-\newcommand{\paperdoi}{10.5281/zenodo.17101841}
+\newcommand{\paperdoi}{10.5281/zenodo.17155748}
 
 %========================================================================================
 % PACKAGES AND DOCUMENT CONFIGURATION
@@ -129,10 +129,143 @@
 
         \end{tabular}
 
-		\vspace{1ex}\noindent
+
 		\emph{Keywords:} vortex dynamics; topological fluid; quantum topology; emergent gauge theory; time dilation; wavefunction collapse
     \end{abstract}
     \maketitle
+
+    	\section*{Preface: Reader Pathways}
+	This document formalizes SST in a self-contained manner, but it is structured to accommodate different levels of reader expertise.
+        \textbf{Beginner-level readers} are encouraged to focus on the physical descriptions and boxed highlights in the main text, skipping the more technical derivations (which are relegated to the appendices and side notes).\\
+        \textbf{Expert readers} can delve into the detailed derivations and dimensional analyses in the appendices to verify consistency and connect SST formulas to classical limits.\\
+        \textbf{Active researchers} should consult the formal axiomatic system section and appendices for the rigorous foundation, as well as the traceability tables and glossary that link each canonical statement to established physics or experimental context. Throughout the text, important equations, axioms, and theorems are presented in numbered, boxed form for quick reference. Pedagogical sidebars can be expanded in future versions to provide intuitive explanations, historical notes, or illustrative diagrams without interrupting the flow of the formal development.
+
+    %===============================
+% Sevenfold Genesis of the Swirling Cosmos
+%===============================
+\section{Sevenfold Genesis of the Swirling Cosmos}
+\label{sec:cosmogony-seven}
+
+\noindent
+\textbf{Canonical Cosmogony (SST · STC Mapped)}
+This section compresses the sixteen stages of \emph{The Simplicity Codex}~\cite{Goldau2025_STC}
+into seven logically complete emergence stages, consistent with the SST Canon~\canonversion{}
+and the Lagrangian EFT~\cite{Iskandarani2025_Lagrangian}.
+Each stage represents a parameter-free imprint of physical law onto the condensate.
+
+\subsection*{Stage 1: Logical Substrate (Pre-Swirl Potential)}
+A Haar-neutral, scale-free potential field encodes possible circulation states.
+No time or space exist yet — only relational templates.
+Global $\mathbb{Z}_2$ (chirality) and $\mathbb{Z}_3$ (triadic closure) symmetries are imprinted as pre-physical rules:
+\[
+\Gamma \mapsto -\Gamma,
+\qquad
+\Gamma_1 + \Gamma_2 + \Gamma_3 = 0 \pmod{2\pi}
+\]
+laying the groundwork for matter/antimatter duality and baryon triplet stability.
+\hfill (STC Stages 1–3)
+
+\subsection*{Stage 2: Big Condensation (First Manifestation)}
+When the information complexity $\mathcal{I}_{\mathrm{swirl}}$ exceeds the Guardian threshold,
+the swirl condensate forms as an incompressible, inviscid medium on $\mathbb{R}^3$ with absolute time $t$.
+Primary constants lock in by resonance:
+\[
+\kappa = 2\pi r_c v_\circ,
+\qquad
+\tau_{\mathrm{beat}} = \frac{2\pi r_c}{v_\circ},
+\qquad
+\rho_{\!f} = \frac{\rho_{\!m} r_c}{v_\circ}\,\Omega
+\]
+marking the birth of physical time and the circulation quantum.
+\hfill (STC Stage 8)
+
+\subsection*{Stage 3: Tangible Chirality and Swirl-Time}
+Knotted swirl strings appear, stabilized by circulation quantization $\Gamma = n\kappa$.
+The swirl clock
+\[
+S_t = \sqrt{1 - \frac{v^{2}}{c^{2}}}
+\]
+defines local proper time, with left-handed ($\circlearrowleft$) and right-handed ($\circlearrowright$) knots forming the basis for matter and antimatter.
+\hfill (STC Stage 9)
+
+\subsection*{Stage 4: Topological Charges and Particle Spectrum}
+Topological invariants of knots $(\mathrm{Lk}, \mathrm{Wr}, \mathrm{Tw})$ map to quantum numbers:
+\[
+Q(K) = T_3(K) + \frac{Y(K)}{2}
+\]
+with $Q$ the electric charge, $T_3$ weak isospin, and $Y$ hypercharge.
+Fermion masses arise as soliton energies:
+\[
+m_{K} = \rho_{\!f} v_\circ^{2}\, \Vol_{\!\mathbb{H}}(K)\,\phi^{-2k}
+\]
+where $\Vol_{\!\mathbb{H}}(K)$ is the hyperbolic complement volume of $K$
+and $\phi^{-2k}$ encodes Golden-layer suppression.
+\hfill (STC Stage 10)
+
+\subsection*{Stage 5: Emergent Interactions (Gauge and Forces)}
+Unknotted excitations of the condensate form the R-phase modes (photons, gluons, W/Z),
+with interactions governed by the emergent gauge group:
+\[
+\mathfrak{g}_{\mathrm{swirl}} \;\simeq\;
+\mathfrak{su}(3) \oplus \mathfrak{su}(2) \oplus \mathfrak{u}(1)
+\]
+and minimal coupling
+\[
+D_\mu = \nabla_\mu + i g_{\mathrm{sw}} W_{\mu}^{a}T^{a}\,.
+\]
+\hfill (STC Stage 11)
+
+\subsection*{Stage 6: Geometric Closure and Constant Lock-In}
+Global Gauss closure yields the $1/r^{2}$ force law:
+\[
+\nabla \cdot \vec{P}_{\mathrm{swirl}} = 0
+\quad\Rightarrow\quad
+F(r) \propto \frac{1}{r^{2}}
+\]
+and fixes $\pi$ geometrically.
+The entire condensate enters a global resonance, locking all constants of nature.
+
+\begin{tcolorbox}[title=Zero–Parameter Principle (Canonical),colback=blue!5!white,colframe=blue!75!black]
+\textbf{Statement (Axiom):}
+All dimensional constants of nature are determined by the condensate state, its circulation quantum,
+and the allowed topological sectors:
+\begin{aligned}
+\text{Primary Scale:}\qquad &
+\mathbf{v}_{\!\boldsymbol{\circlearrowleft}} \equiv v_\circ,
+\qquad
+\kappa = 2\pi r_c v_\circ \\[4pt]
+\text{Effective Density:}\qquad &
+\rho_{\!f} = \frac{\rho_{\!m}\, r_c}{v_\circ}\, \Omega
+\qquad (\text{coarse-grain rule}) \\[4pt]
+\text{Mass Functional:}\qquad &
+m_K = \rho_{\!f} v_\circ^{2}\, \Vol_{\!\mathbb{H}}(K)\,\phi^{-2k} \\[4pt]
+\text{Gravitational Coupling:}\qquad &
+G_{\mathrm{swirl}} = \frac{v_\circ c^{5} t_p^{2}}{2 F_{\mathrm{max}} r_c^{2}} \\[4pt]
+\text{Fine-Structure Constant:}\qquad &
+\alpha = \alpha_{\mathrm{DSI}}\!\bigl(\omega_{\mathrm{DSI}}\bigr),
+\qquad
+\omega_{\mathrm{DSI}} \approx 13.06
+\end{aligned}
+
+\textbf{Corollary:}
+Once $v_\circ$, $r_c$, and $\rho_{\!f}$ are fixed by a single calibration
+(e.g. $m_e$), the full mass spectrum and coupling strengths follow with no free parameters.
+See STC Stages 12–13 (Gauss-closure \& Universal Resonance)~\cite{Goldau2025_STC}.
+\end{tcolorbox}
+
+\subsection*{Stage 7: Recursive Cosmos (Fractal Emergence)}
+Composite knots (baryons, nuclei, atoms) satisfy $\mathbb{Z}_3$ closure,
+1+12 isotropic shielding, and duality pairing.
+Each stable composite becomes a new circulation source:
+\[
+\mathrm{Cluster} \;\Rightarrow\;
+\mathrm{Meta\text{-}Knot} \;\Rightarrow\;
+\mathrm{New\ Swirl\ Layer}
+\]
+seeding the next scale of complexity.
+This recursion drives cosmic structure formation, yielding a fractal universe of knots within knots.
+\hfill (STC Stages 14–16)
+
 
 %========================================================================================
 % CANON GOVERNANCE & STATUS TAXONOMY (Canonical)
@@ -181,17 +314,7 @@
     \end{tcolorbox}
 
 % [STATUS: Canonical] [SOURCE: v0.4.4 §3]
-
-
-	\section*{Preface: Reader Pathways}
-	This document formalizes SST in a self-contained manner, but it is structured to accommodate different levels of reader expertise.
-        \textbf{Beginner-level readers} are encouraged to focus on the physical descriptions and boxed highlights in the main text, skipping the more technical derivations (which are relegated to the appendices and side notes).
-        \textbf{Expert readers} can delve into the detailed derivations and dimensional analyses in the appendices to verify consistency and connect SST formulas to classical limits.
-        \textbf{Active researchers} should consult the formal axiomatic system section and appendices for the rigorous foundation, as well as the traceability tables and glossary that link each canonical statement to established physics or experimental context. Throughout the text, important equations, axioms, and theorems are presented in numbered, boxed form for quick reference. Pedagogical sidebars can be expanded in future versions to provide intuitive explanations, historical notes, or illustrative diagrams without interrupting the flow of the formal development.
-
-
-
-
+%========================================================================================
         \begin{figure}[htbp]
         \centering
         \setlength{\tabcolsep}{8pt}
@@ -931,26 +1054,6 @@
     and is recast here in fluid-topological variables. Classical vortex invariants follow
     Helmholtz/Kelvin; energetics follow standard incompressible inviscid fluid dynamics.
 
-%================================================
-% BIBLIOGRAPHY ENTRIES (to be merged into Canon .bib)
-%================================================
-    \begin{thebibliography}{9}
-    \bibitem{Helmholtz1858}
-    H.~Helmholtz, ``Über Integrale der hydrodynamischen Gleichungen, welche den Wirbelbewegungen entsprechen,''
-    \textit{J. Reine Angew. Math.} \textbf{55}, 25–55 (1858).
-    doi:10.1515/crll.1858.55.25
-
-    \bibitem{Englert1996}
-    B.-G.~Englert, ``Fringe Visibility and Which-Way Information: An Inequality,''
-    \textit{Phys. Rev. Lett.} \textbf{77}, 2154–2157 (1996).
-    doi:10.1103/PhysRevLett.77.2154
-
-    \bibitem{KhatiwadaQian2025}
-    P.~Khatiwada and X.-F.~Qian, ``Wave-particle duality ellipse and application in quantum imaging with undetected photons,''
-    \textit{Phys. Rev. Research} \textbf{7}, 033033 (2025).
-    doi:10.1103/PhysRevResearch.7.033033
-    \end{thebibliography}
-
 
 %========================================
 % SST Canon: Exact replacement for Λ
@@ -1211,34 +1314,6 @@
         \label{fig:hexapole}
         \end{figure}
 
-%=====================================================
-% Bibliography entries
-%=====================================================
-        \bibliographystyle{unsrt}
-        \begin{thebibliography}{99}
-        \bibitem{Buchert2000} Buchert, T. (2000).
-        On average properties of inhomogeneous fluids in general relativity: Dust cosmologies.
-        \emph{Gen. Relativ. Gravit.} 32:105--125.
-        doi:10.1023/A:1001800617177.
-
-        \bibitem{Buchert2001} Buchert, T. (2001).
-        On average properties of inhomogeneous cosmologies.
-        \emph{Gen. Relativ. Gravit.} 33:1381--1405.
-        doi:10.1023/A:1012061725841.
-
-        \bibitem{Kelvin1869} Thomson, W. (Lord Kelvin) (1869).
-        On Vortex Motion.
-        \emph{Trans. Roy. Soc. Edinburgh}.
-        doi:10.1017/S008045680001342X.
-
-        \bibitem{Batchelor1967} Batchelor, G. K. (1967).
-        \emph{An Introduction to Fluid Dynamics}.
-        Cambridge University Press.
-
-        \bibitem{Saffman1992} Saffman, P. G. (1992).
-        \emph{Vortex Dynamics}.
-        Cambridge University Press.
-        \end{thebibliography}
 
 %========================================================================================
 % SYSTEMATIC DIMENSIONAL & RECOVERY CHECKS (Canonical)
@@ -1670,6 +1745,7 @@
 % References
 %================================================
         \nocite{*}
-        \bibliographystyle{unsrt}
+
         \bibliography{canon_swirl_string_theory}
+            \bibliographystyle{unsrt}
 \end{document}
