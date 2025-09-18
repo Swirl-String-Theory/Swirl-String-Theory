@@ -7,6 +7,51 @@
 \usepackage{tikz}
 \usepackage[T1]{fontenc}
 \geometry{margin=1in}
+% ===============================
+% Macros (canonicalized)
+% ===============================
+
+% swirl arrows (context-aware)
+\newcommand{\swirlarrow}{%
+    \mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}%
+    {\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}%
+    {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
+    {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
+}
+\newcommand{\swirlarrowcw}{%
+    \mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}%
+    {\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}%
+    {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}%
+    {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}%
+}
+
+% Canonical symbols
+\newcommand{\vswirl}{\mathbf{v}_{\swirlarrow}}
+\newcommand{\vswirlcw}{\mathbf{v}_{\swirlarrowcw}}
+\newcommand{\SwirlClock}{S_{(t)}^{\swirlarrow}}
+\newcommand{\SwirlClockcw}{S_{(t)}^{\swirlarrowcw}}
+\newcommand{\omegas}{\boldsymbol{\omega}_{\swirlarrow}}  % swirl vorticity
+\newcommand{\vscore}{v_{\swirlarrow}}                    % shorthand: |v_swirl| at r=r_c
+\newcommand{\vnorm}{\lVert \vswirl \rVert}               % swirl speed magnitude
+\newcommand{\rhof}{\rho_{\!f}}                           % effective fluid density
+\newcommand{\rhoE}{\rho_{\!E}}                           % swirl energy density
+\newcommand{\rhom}{\rho_{\!m}}                           % mass-equivalent density
+\newcommand{\rc}{r_c}                                    % string core radius (swirl string radius)
+\newcommand{\FmaxEM}{F_{\mathrm{EM}}^{\max}}             % EM-like maximal force scale
+\newcommand{\FmaxG}{F_{\mathrm{G}}^{\max}}               % G-like maximal force scale
+\newcommand{\Lam}{\Lambda}                               % Swirl Coulomb constant
+\newcommand{\Om}{\Omega_{\swirlarrow}}                   % swirl angular frequency profile
+\newcommand{\alpg}{\alpha_g}                             % gravitational fine-structure analogue
+
+% Policy: the golden constant is only allowed via hyperbolic functions.
+\newcommand{\xig}{\operatorname{asinh}\!\left(\tfrac{1}{2}\right)}
+\newcommand{\phig}{\exp(\xig)}
+\newcommand{\phialg}{\bigl(1+\sqrt{5}\bigr)/2}
+\newcommand{\xigold}{\tfrac{3}{2}\,\xig}
+\newcommand{\GoldenDeclare}{%
+    \textbf{Golden (hyperbolic)}:\ \(\ln\phi=\xig\), hence \(\phi=\phig\).
+    \ \emph{(Equivalently, \(\phi=\phialg\); the algebraic form is derivative.)}%
+}
 
 \title{Wave--Particle Duality in Swirl--String Theory: \\
 Toroidal Circulation, Knot Collapse, and Photon-Induced Transitions}
@@ -29,7 +74,7 @@ Toroidal Circulation, Knot Collapse, and Photon-Induced Transitions}
 
 \section{Two Phases of the Electron String}
 
-    \subsection{Unknotted toroidal ring $\mathcal{R}$}
+    \subsection{Unknotted toroidal ring R}
 
         The delocalized phase is an unknotted ring circulation $\mathcal{R}$ with radius $R$ and length $L(\mathcal{R})=2\pi R$. Its circulation is quantized:
 \begin{equation}
@@ -45,7 +90,7 @@ Hence the tangential speed is
 \end{equation}
         Thus $\mathcal{R}$ naturally supports interference and standing-wave behavior.
 
-    \subsection{Knotted trefoil soliton $\mathcal{T}$}
+    \subsection{Knotted trefoil soliton }
 
         The localized phase $\mathcal{T}$ is a knotted filament (e.g.\ trefoil $3_1$) with enhanced curvature and helicity. Its invariants satisfy $C(\mathcal{T})>0$, $\mathcal{H}(\mathcal{T})\neq 0$, and typically $L(\mathcal{T})>L(\mathcal{R})$ for equal scale.
 

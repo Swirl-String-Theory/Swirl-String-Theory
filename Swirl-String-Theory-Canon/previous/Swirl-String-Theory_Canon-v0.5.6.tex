@@ -137,29 +137,29 @@
         \setlength{\tabcolsep}{8pt}
         \renewcommand{\arraystretch}{1.2}
         \begin{tabular}{ccc}
-        \includegraphics[width=0.04\linewidth]{0_1} &
-        \includegraphics[width=0.04\linewidth]{a3_1} &
-        \includegraphics[width=0.04\linewidth]{4_1} \\
+        \includegraphics[width=0.04\linewidth]{figures/0_1} &
+        \includegraphics[width=0.04\linewidth]{figures/a3_1} &
+        \includegraphics[width=0.04\linewidth]{figures/4_1} \\
         \textbf{$0_1$: Unknot} &
         \textbf{$3_1$: Torus-knot} &
         \textbf{$4_1$: Achiral-knot} \\
         \small R-phase photon (torsional pulse) &
         \small Electron (T-phase lepton) &
         \small Candidate dark-sector knot \\[4pt]
-        \includegraphics[width=0.04\linewidth]{5_1} &
-        \includegraphics[width=0.04\linewidth]{5_2} &
-        \includegraphics[width=0.04\linewidth]{6_1} \\
+        \includegraphics[width=0.04\linewidth]{figures/5_1} &
+        \includegraphics[width=0.04\linewidth]{figures/5_2} &
+        \includegraphics[width=0.04\linewidth]{figures/6_1} \\
         \textbf{$5_1$: Torus-knot}&
         \textbf{$5_2$: Twist-knot}&
         \textbf{$6_1$: Twist-knot}\\
         \small Higher lepton candidate &
         \small Up quark &
         \small Down quark \\[4pt]
-        \includegraphics[width=0.04\linewidth]{7_1} & & \\
+        \includegraphics[width=0.04\linewidth]{figures/7_1} & & \\
         \textbf{$7_1$: Torus-knot}  & & \\
         \small Higher-generation quark (strange/charm) & &
         \end{tabular}
-        \caption{Canonical knot taxonomy in SST. Each image shows the minimal embedding of the corresponding knot and its mapping to a particle family. Unknots (0$_1$) correspond to R-phase bosonic modes such as photons, while knotted states encode fermions (torus knots $\leftrightarrow$ leptons, chiral hyperbolic knots $\leftrightarrow$ quarks). Linked knots describe nuclei and bound states.}
+        \caption{Canonical knot taxonomy in SST. Each image shows the minimal embedding of the corresponding knot and its mapping to a particle family. Unknots (0$_1$) correspond to R-phase bosonic modes such as photons, while knotted states encode fermions (torus knots $\leftrightarrow$ leptons, chiral hyperbolic knots $\leftrightarrow$ quarks).}
         \label{fig:knot-taxonomy}
         \end{figure}
 % [Sidebar: The vortex picture -- a diagram could illustrate a closed swirl string (loop) and its core radius]
@@ -196,7 +196,7 @@
 % [Sidebar: Knot taxonomy diagram -- illustrate unknotted loop (photon), trefoil knot (proton/quark), etc.]
         \begin{figure}[htbp]
         \centering
-        \includegraphics[width=0.7\linewidth]{3quarcks}
+        \includegraphics[width=0.7\linewidth]{figures/3quarcks}
         \caption{Sst three knot 180 speed stagnation}
         \label{fig:sst-three-knot-180-speed-stagnation}
         \end{figure}
@@ -585,7 +585,7 @@
 	\noindent\textbf{Physical meaning:} As a loop contracts or expands, $R^2 \omega = \text{const}$ implies $\omega$ increases if $R$ decreases (spin-up on contraction, like a skater pulling arms in). The swirl clock factor $S_t$ enters because if the vortex spins fast, time slows locally, affecting how one measures $\omega$ in the lab frame. The invariant including $S_t$ basically says the “circulation with relativistic correction” is constant.
 
 	\section{Swirl Coulomb Potential Derivation}
-	The swirl Coulomb potential $V_{\text{SST}}(r) = -\Lambda/\sqrt{r^2+r_c^2}$ was posited to recover $- \Lambda/r$ at large $r$ while remaining finite at $r=0$. We outline how this form arises from vortex fluid mechanics.
+	The swirl Coulomb potential $V_{\text{SST}}(r) = -\Lambda/\sqrt{r^2 + r_c^2}$ was posited to recover $- \Lambda/r$ at large $r$ while remaining finite at $r=0$. We outline how this form arises from vortex fluid mechanics.
 
 	Consider a straight, infinitely long swirl string (vortex filament) along $z$-axis. We seek an effective potential $V(r)$ (per unit test mass) that a small probe swirl (another vortex) feels due to this string. In a fluid, forces come from pressure gradients. For a circular flow about $z$, Euler’s radial equation (no external forces) reads:
 	\[
@@ -762,97 +762,6 @@
 	\end{description}
 
 	This glossary covers most symbols and terminology introduced in this Canon. It can be used to decode equations and recall physical meanings without searching through the text.
-
-%========================================================================================
-% CANON GOVERNANCE & STATUS TAXONOMY (Canonical)
-%========================================================================================
-% Explicit rules/labels: Canonical, Empirical, Research Track; promotion/demotion rules for Axiom/Definition/Theorem/Corollary.
-% TODO: Expand with explicit definitions and methodology from v0.4.4
-
-%========================================================================================
-% CALIBRATIONS & PROTOCOLS (Empirical)
-%========================================================================================
-% Boxed empirical anchors and procedures: m_W, m_Z, sin^2θ_W, v_Φ, constants v_∘, r_c, ρ_f, ρ_m, FmaxEM, FmaxG with how they’re fixed.
-% TODO: Add boxed values and calibration notes
-
-%========================================================================================
-% CLASSICAL INVARIANTS: CHRONOS–KELVIN + CLOCK–RADIUS TRANSPORT (Canonical)
-%========================================================================================
-% Axiom (CK) and the differential transport law dS_t/dt=... under loop radius R(t) evolution; include the pseudo-metric remark.
-% TODO: Insert full derivation and remarks
-
-%========================================================================================
-% EFFECTIVE MEDIUM: COARSE-GRAINING DERIVATION OF ρ_f (Canonical)
-%========================================================================================
-% Line mass μ_*, circulation quantum Γ_*, filament areal density ν, elimination to ρ_f(ρ_m, r_c, v_∘, ⟨ω⟩).
-% TODO: Add boxed result and derivation
-
-%========================================================================================
-% SWIRL–EM EMERGENCE (Canonical)
-%========================================================================================
-% From divergence-free a to Maxwell wave equation, gauge condition, energy densities; Photon as (pulsed) unknot and lossless radiation conditions.
-% TODO: Insert main derivation and pulse construction (Research Track if needed)
-
-%========================================================================================
-% UNIFIED SST LAGRANGIAN (Canonical)
-%========================================================================================
-% Single compact L_SST+Gauge+Matter with incompressibility multiplier, optional helicity term, Yang–Mills, scalar/Higgs-like sector, minimal couplings; show Euler–Lagrange recoveries.
-% TODO: Add compact Lagrangian block
-
-%========================================================================================
-% MASTER EQUATIONS: HYDROGEN SOFT-CORE + BOHR RECOVERY (Canonical + Empirical)
-%========================================================================================
-% V(r) and explicit a_0, E_1 recovery in r >> r_c limit; numeric cross-check.
-% TODO: Add equations and checks
-
-%========================================================================================
-% SWIRL PRESSURE LAW (Euler Corollary, Canonical)
-%========================================================================================
-% dp/dr = ρ_f v_θ^2/r; integrated forms p(r) = p_0 + ρ_f v_0^2 ln(r/r_0); scope/limits.
-% TODO: Add derivation and integrated forms
-
-%========================================================================================
-% GAUGE/EWSB SECTOR: EMPIRICAL-FIRST BOX + THEORY (Empirical + Canonical)
-%========================================================================================
-% Start with Empirical Anchors box, then present director-elasticity derivation of θ_W and EWSB scale; cross-check vs data.
-% TODO: Add anchors and derivation
-
-%========================================================================================
-% QUANTUM MEASUREMENT: KERNEL LAW + NEAR-FIELD COROLLARY + BOUNDS (Canonical + Empirical + Research Track)
-%========================================================================================
-% Canonical local kernel Γ_{R→T} = ∫χu F; near-field single-mode corollary; χ_eff^max bounds formula and experimental status note.
-% TODO: Add kernel law and bounds
-
-%========================================================================================
-% HYDROGEN–GRAVITY CONSTRUCTION (Mixed)
-%========================================================================================
-% Chiral-axis circulation and pressure deficit Δp = -1/2 ρ_f v^2; split canonically-derived pieces vs long-range claims.
-% TODO: Add construction and label status
-
-%========================================================================================
-% SYSTEMATIC DIMENSIONAL & RECOVERY CHECKS (Canonical)
-%========================================================================================
-% After each major theorem/equation: units + limiting recovery (Newtonian/Coulomb/Bohr).
-% TODO: Add one-liner checks and cross-reference tables
-
-%========================================================================================
-% APPENDICES (A–I)
-%========================================================================================
-% A) Swirl Hamiltonian Density (full canonical form)
-% B) Detailed Dimensional Analyses & Recovery Limits
-% C) Derivation of ρ_f
-% D) Hydrogen Soft-Core Numerics
-% E) Photon/Unknot Sector
-% F) Swirl Pressure Law — galaxy-scale integrals
-% G) Calibration Protocol Notes
-% H) Experimental Status & Bounds
-% I) Notation, Ontology, Glossary
-% TODO: Add/expand appendices as per checklist
-
-%========================================================================================
-% END OF SKELETON — BEGIN MAIN TEXT
-%========================================================================================
-% ...existing code...
 
 %================================================
 % References
