@@ -132,7 +132,61 @@
         \textbf{Expert readers} can delve into the detailed derivations and dimensional analyses in the appendices to verify consistency and connect SST formulas to classical limits.
         \textbf{Active researchers} should consult the formal axiomatic system section and appendices for the rigorous foundation, as well as the traceability tables and glossary that link each canonical statement to established physics or experimental context. Throughout the text, important equations, axioms, and theorems are presented in numbered, boxed form for quick reference. Pedagogical sidebars can be expanded in future versions to provide intuitive explanations, historical notes, or illustrative diagrams without interrupting the flow of the formal development.
 
-        \begin{figure}[htbp]
+
+	\section{Formal Structure and Canonical Framework}
+	In addition to physical axioms, SST is formulated as a formal system $S = (P, D, R)$ comprising a set of postulates ($P$), definitions ($D$), and inference rules ($R$). A statement in SST is considered \emph{canonical} if and only if it can be derived from the axioms and definitions using the permitted inference rules, and it is consistent with all previously established canonical statements. The hierarchy of statement types is as follows:
+
+	\begin{itemize}
+		\item \textbf{Axiom (Postulate):} A primitive assumption of SST, not derived from deeper principles (e.g. the existence of an incompressible swirl medium, as in Axiom 1).
+		\item \textbf{Definition:} Introduction of a new symbol or concept and its meaning (e.g. defining the swirl Coulomb constant $\Lambda$ in terms of a surface integral of swirl pressure).
+		\item \textbf{Theorem / Corollary:} A nontrivial proposition that is logically derived from the axioms and prior theorems. Corollaries are immediate consequences of theorems.
+		\item \textbf{Calibration (Empirical):} An assignment of a numerical value to a canonical constant, obtained from experiment or observation, used to anchor the theory’s free parameters. Calibrations are not used as premises in proofs, but serve to connect SST to measurable reality.
+		\item \textbf{Research Track (Conjecture):} A speculative extension or hypothesis not yet derivable within $S$. Such statements are included for context or future development but are explicitly marked as non-canonical.
+	\end{itemize}
+
+	All developments in the main text are canonical (axioms, definitions, theorems, corollaries, with recommended constant calibrations). Derivations, proofs, and pedagogical explanations are mostly deferred to the appendices to maintain a clear logical flow. Every formula and constant introduced is checked for dimensional consistency and reducing to known physics in the appropriate limits (Newtonian, Coulomb, etc.), as documented in the appendices. This ensures that the SST formal system remains self-consistent and empirically anchored.
+
+% [Sidebar: Formal system logic -- diagram illustrating how axioms lead via rules to theorems, etc.]
+
+	\section{Classical Invariants and Swirl Quantization}
+	Under Axiom 1 (inviscid, incompressible medium with absolute time), the standard results of classical vortex dynamics apply. In particular, Euler’s equations for an inviscid barotropic fluid yield several conservation laws that carry over into SST as special cases:
+
+	\begin{itemize}
+		\item \emph{Kelvin’s circulation theorem:} $\displaystyle \frac{d\Gamma}{dt} = 0$. The circulation $\Gamma = \oint_{C(t)} \vswirl \cdot d\ell$ around any material loop $C(t)$ moving with the fluid is constant in time. This is the classical statement that vortex lines are “frozen” into the fluid.
+		\item \emph{Helmholtz vorticity transport:} $\displaystyle \frac{\partial \omega}{\partial t} = \nabla \times (\vswirl \times \omega)$, so that vortex lines move with the fluid flow (no creation or destruction of vorticity in the absence of dissipation).
+		\item \emph{Helicity conservation:} $H = \int \vswirl \cdot \omega\, dV$ is materially invariant (conserved in time barring reconnection events). Here $H$ is the total helicity, measuring the knottedness of vortex lines.
+	\end{itemize}
+
+	These classical invariants underpin the stability of knotted swirl strings and govern their reconnection dynamics. In essence, a swirl string (closed vortex filament) cannot change its topology or circulation without a non-ideal effect (e.g. reconnection or an external source) because of these constraints.
+
+	\begin{tcolorbox}[title=Axiom 1: Chronos–Kelvin Invariant]
+		For any thin, closed swirl loop (swirl string) of time-dependent material radius $R(t)$, carried with the flow (no reconnections or external sources), the following quantity is invariant in time (constant along the motion):
+		\[
+			\frac{D}{Dt}\!\Big( R^2\,\omega \Big) \;=\; 0\,,
+		\]
+		where $\omega = \|\omega_{\circ}\|$ is the magnitude of the swirl vorticity on the loop. Equivalently, using $v_t = \omega\,r_c$ (the tangential swirl speed at the string core, with $r_c$ the core radius) and the local time-dilation factor $S_t = \sqrt{\,1 - (v_t^2/c^2)\,}$, the invariant can be expressed as
+		\[
+			\frac{D}{Dt}\!\Big( \frac{c}{r_c}\,R^2 \sqrt{\,1 - S_t^2\,}\Big) \;=\; 0\,.
+		\]
+		In other words, $R^2 \omega$ is a constant of motion even when relativistic swirl clock effects ($S_t<1$) are taken into account. This \emph{Chronos–Kelvin invariant} generalizes Kelvin’s circulation theorem by including the time dilation due to swirl motion (the “swirl clock” effect).
+	\end{tcolorbox}
+
+	\noindent \textit{Discussion:} Axiom 1 encapsulates Kelvin’s theorem in the relativistic regime of the swirl medium. The material derivative $D/Dt$ is taken with respect to the absolute reference time of the medium. For a near-solid-body vortex core, $\Gamma = \oint_C \vswirl\cdot d\ell \approx 2\pi R^2 \omega$ (since $v_{\theta}\approx \omega R$ inside the core). Kelvin’s theorem ($D\Gamma/Dt=0$) then implies $D(R^2 \omega)/Dt=0$. The swirl clock factor $S_t$ relates the local “proper time” of the moving swirl to the reference time; explicitly $S_t = dt_{\text{local}}/dt_{\infty} = \sqrt{1 - v_t^2/c^2}$. Thus $R^2 \omega$ being invariant is equivalent to $R^2 \sqrt{1 - S_t^2}$ being invariant after multiplying by the constant $c/r_c$. The Chronos–Kelvin law shows that as a swirl loop contracts ($R$ decreases), the local swirl clock $S_t$ decreases (time slows further) such that the combination $R^2 (1-S_t^2)^{1/2}$ remains fixed. In the weak-swirl limit $v_t \ll c$ ($S_t\approx 1$), this reduces to the classical invariant $R^2 \omega = \text{const}$ (Kelvin’s law).
+
+% [Sidebar: Implication of Chronos–Kelvin -- a collapsing vortex loop causes extra time dilation, slowing internal clocks, preventing violation of Kelvin's circulation]
+
+	\subsection*{Swirl Quantization Principle}
+	\textbf{Swirl Quantization Principle.} \emph{The joint discreteness of circulation and topology is the fundamental origin of quantum behavior in SST.} In concrete terms, a swirl string’s circulation $\Gamma$ can only take quantized values $n\kappa$, and the string’s configuration space breaks into disjoint topological sectors (knot classes). This principle replaces the operator commutation quantization of standard quantum mechanics with topological and integral constraints:
+
+	- \emph{Circulation quantization:} $\Gamma = n\,\kappa$ for $n\in\mathbb{Z}$ (as stated in Axiom 2), where $\kappa = h/m_{\text{eff}}$ plays the role of a circulation quantum. This is analogous to the Onsager–Feynman quantization condition in superfluid helium, elevated here to a universal postulate of the medium.
+	- \emph{Topological quantization:} The allowed states of a swirl string are classified by knot type. Each distinct knot (unknot, trefoil, figure-eight, etc.) corresponds to a distinct quantum excitation species. We denote the spectrum of knot types as $\mathcal{H}_{\text{swirl}} = \{\text{trefoil, figure-8, Hopf link, ...}\}$. Quantum numbers (such as electric charge or baryon number) are interpreted as invariants of the knot (e.g. linking number, or other topological quantum numbers) rather than abstract quantum charges.
+
+	In summary, \emph{discreteness in SST arises from (a) integral circulation and (b) topologically distinct knot spectra}. A “particle” in SST is identified with a specific quantized swirl state—a closed vortex filament carrying $n\kappa$ circulation and realized in a particular knot configuration—in contrast to a particle in quantum mechanics being an eigenstate of an operator. This provides a tangible, geometric interpretation of quantum numbers.
+
+% [Sidebar: Topological spectrum illustration -- e.g. small images of a trefoil knot vs figure-8 labeled with quantum numbers]
+
+
+	\begin{figure}[htbp]
         \centering
         \setlength{\tabcolsep}{8pt}
         \renewcommand{\arraystretch}{1.2}
@@ -204,57 +258,101 @@
 	These axioms define the ontological starting point of SST. The swirl medium (Axiom 1) provides the arena, swirl strings (Axiom 2) provide the basic degrees of freedom with quantized circulation and allowed topologies, and the remaining axioms posit how classical forces and quantum behaviors emerge from this framework (gravity from collective flows, time dilation from swirl motion, wave–particle dual phases, and a topological classification of particles).
 
 
-	\section{Formal Structure and Canonical Framework}
-	In addition to physical axioms, SST is formulated as a formal system $S = (P, D, R)$ comprising a set of postulates ($P$), definitions ($D$), and inference rules ($R$). A statement in SST is considered \emph{canonical} if and only if it can be derived from the axioms and definitions using the permitted inference rules, and it is consistent with all previously established canonical statements. The hierarchy of statement types is as follows:
+%================================================
+% NEW SECTION: COSMOGONY (Sevenfold Genesis)
+%================================================
+	\section{Sevenfold Genesis of the Swirling Cosmos}\label{sec:cosmogony-seven}
 
-	\begin{itemize}
-	    \item \textbf{Axiom (Postulate):} A primitive assumption of SST, not derived from deeper principles (e.g. the existence of an incompressible swirl medium, as in Axiom 1).
-	    \item \textbf{Definition:} Introduction of a new symbol or concept and its meaning (e.g. defining the swirl Coulomb constant $\Lambda$ in terms of a surface integral of swirl pressure).
-	    \item \textbf{Theorem / Corollary:} A nontrivial proposition that is logically derived from the axioms and prior theorems. Corollaries are immediate consequences of theorems.
-	    \item \textbf{Calibration (Empirical):} An assignment of a numerical value to a canonical constant, obtained from experiment or observation, used to anchor the theory’s free parameters. Calibrations are not used as premises in proofs, but serve to connect SST to measurable reality.
-	    \item \textbf{Research Track (Conjecture):} A speculative extension or hypothesis not yet derivable within $S$. Such statements are included for context or future development but are explicitly marked as non-canonical.
-	\end{itemize}
+	\noindent
 
-	All developments in the main text are canonical (axioms, definitions, theorems, corollaries, with recommended constant calibrations). Derivations, proofs, and pedagogical explanations are mostly deferred to the appendices to maintain a clear logical flow. Every formula and constant introduced is checked for dimensional consistency and reducing to known physics in the appropriate limits (Newtonian, Coulomb, etc.), as documented in the appendices. This ensures that the SST formal system remains self-consistent and empirically anchored.
-
-% [Sidebar: Formal system logic -- diagram illustrating how axioms lead via rules to theorems, etc.]
-
-	\section{Classical Invariants and Swirl Quantization}
-	Under Axiom 1 (inviscid, incompressible medium with absolute time), the standard results of classical vortex dynamics apply. In particular, Euler’s equations for an inviscid barotropic fluid yield several conservation laws that carry over into SST as special cases:
-
-	\begin{itemize}
-	    \item \emph{Kelvin’s circulation theorem:} $\displaystyle \frac{d\Gamma}{dt} = 0$. The circulation $\Gamma = \oint_{C(t)} \vswirl \cdot d\ell$ around any material loop $C(t)$ moving with the fluid is constant in time. This is the classical statement that vortex lines are “frozen” into the fluid.
-	    \item \emph{Helmholtz vorticity transport:} $\displaystyle \frac{\partial \omega}{\partial t} = \nabla \times (\vswirl \times \omega)$, so that vortex lines move with the fluid flow (no creation or destruction of vorticity in the absence of dissipation).
-	    \item \emph{Helicity conservation:} $H = \int \vswirl \cdot \omega\, dV$ is materially invariant (conserved in time barring reconnection events). Here $H$ is the total helicity, measuring the knottedness of vortex lines.
-	\end{itemize}
-
-	These classical invariants underpin the stability of knotted swirl strings and govern their reconnection dynamics. In essence, a swirl string (closed vortex filament) cannot change its topology or circulation without a non-ideal effect (e.g. reconnection or an external source) because of these constraints.
-
-	\begin{tcolorbox}[title=Axiom 1: Chronos–Kelvin Invariant]
-		For any thin, closed swirl loop (swirl string) of time-dependent material radius $R(t)$, carried with the flow (no reconnections or external sources), the following quantity is invariant in time (constant along the motion):
-		\[
-			\frac{D}{Dt}\!\Big( R^2\,\omega \Big) \;=\; 0\,,
-		\]
-		where $\omega = \|\omega_{\circ}\|$ is the magnitude of the swirl vorticity on the loop. Equivalently, using $v_t = \omega\,r_c$ (the tangential swirl speed at the string core, with $r_c$ the core radius) and the local time-dilation factor $S_t = \sqrt{\,1 - (v_t^2/c^2)\,}$, the invariant can be expressed as
-		\[
-			\frac{D}{Dt}\!\Big( \frac{c}{r_c}\,R^2 \sqrt{\,1 - S_t^2\,}\Big) \;=\; 0\,.
-		\]
-		In other words, $R^2 \omega$ is a constant of motion even when relativistic swirl clock effects ($S_t<1$) are taken into account. This \emph{Chronos–Kelvin invariant} generalizes Kelvin’s circulation theorem by including the time dilation due to swirl motion (the “swirl clock” effect).
+	\begin{tcolorbox}[title=Canonical Scope]
+		\textbf{Source:} This cosmogony compresses the sixteen stages of
+		\emph{The Simplicity Codex} \cite{Goldau2025_STC}
+		into seven logically minimal emergence stages, matching the constants
+		and axioms of SST Canon~\canonversion. Each stage marks a parameter-free imprint of law onto the swirl condensate; STC references are indicated per stage.
 	\end{tcolorbox}
 
-	\noindent \textit{Discussion:} Axiom 1 encapsulates Kelvin’s theorem in the relativistic regime of the swirl medium. The material derivative $D/Dt$ is taken with respect to the absolute reference time of the medium. For a near-solid-body vortex core, $\Gamma = \oint_C \vswirl\cdot d\ell \approx 2\pi R^2 \omega$ (since $v_{\theta}\approx \omega R$ inside the core). Kelvin’s theorem ($D\Gamma/Dt=0$) then implies $D(R^2 \omega)/Dt=0$. The swirl clock factor $S_t$ relates the local “proper time” of the moving swirl to the reference time; explicitly $S_t = dt_{\text{local}}/dt_{\infty} = \sqrt{1 - v_t^2/c^2}$. Thus $R^2 \omega$ being invariant is equivalent to $R^2 \sqrt{1 - S_t^2}$ being invariant after multiplying by the constant $c/r_c$. The Chronos–Kelvin law shows that as a swirl loop contracts ($R$ decreases), the local swirl clock $S_t$ decreases (time slows further) such that the combination $R^2 (1-S_t^2)^{1/2}$ remains fixed. In the weak-swirl limit $v_t \ll c$ ($S_t\approx 1$), this reduces to the classical invariant $R^2 \omega = \text{const}$ (Kelvin’s law).
+	\subsection*{Stage 1: Logical Substrate (Pre-Swirl Potential)}
+	A Haar-neutral, scale-free potential encodes possible circulation states. No $t$ or metric yet—only relational templates. Global $Z_2$ (chirality) and $Z_3$ (triadic closure) symmetries are imprinted as pre-physical rules,
+	\[
+		\Gamma \mapsto -\Gamma,
+		\qquad
+		\Gamma_1+\Gamma_2+\Gamma_3\equiv 0 \;(\mathrm{mod}\ 2\pi),
+	\]
+	seeding matter/antimatter duality and triplet stability (baryonic triads).
+	\emph{(STC 1–3)}
 
-% [Sidebar: Implication of Chronos–Kelvin -- a collapsing vortex loop causes extra time dilation, slowing internal clocks, preventing violation of Kelvin's circulation]
+	\subsection*{Stage 2: Big Condensation (First Manifestation)}
+	When the information complexity $\mathcal{I}_{\mathrm{swirl}}$ exceeds the Guardian threshold, the incompressible, inviscid \emph{swirl medium} forms on $\mathbb{R}^3$ with absolute time. Primary scales lock by resonance:
+	\[
+		\kappa = 2\pi \rc \, v_{\circ},\qquad
+		\tau_{\mathrm{beat}}=\frac{2\pi \rc}{v_{\circ}},\qquad
+		\rhof = \frac{\rhom\,\rc}{v_{\circ}}\,\Omega_{\swirlarrow}\!,
+	\]
+	marking the birth of physical time and the circulation quantum.
+	\emph{(STC 7–8)}
 
-	\subsection*{Swirl Quantization Principle}
-	\textbf{Swirl Quantization Principle.} \emph{The joint discreteness of circulation and topology is the fundamental origin of quantum behavior in SST.} In concrete terms, a swirl string’s circulation $\Gamma$ can only take quantized values $n\kappa$, and the string’s configuration space breaks into disjoint topological sectors (knot classes). This principle replaces the operator commutation quantization of standard quantum mechanics with topological and integral constraints:
+	\subsection*{Stage 3: Tangible Chirality and Swirl-Time}
+	Knotted swirl strings stabilize with quantized circulation $\Gamma=n\kappa$.
+	The local \emph{swirl clock} obeys
+	\[
+		\frac{dt_{\text{local}}}{dt_{\infty}}= \sqrt{\,1-\frac{\|\vswirl\|^2}{c^2}\,}\equiv \SwirlClock,
+	\]
+	with left- and right-chiral knots $(\swirlarrow,\swirlarrowcw)$ forming the matter/antimatter basis. \emph{(STC 9)}
 
-	- \emph{Circulation quantization:} $\Gamma = n\,\kappa$ for $n\in\mathbb{Z}$ (as stated in Axiom 2), where $\kappa = h/m_{\text{eff}}$ plays the role of a circulation quantum. This is analogous to the Onsager–Feynman quantization condition in superfluid helium, elevated here to a universal postulate of the medium.
-	- \emph{Topological quantization:} The allowed states of a swirl string are classified by knot type. Each distinct knot (unknot, trefoil, figure-eight, etc.) corresponds to a distinct quantum excitation species. We denote the spectrum of knot types as $\mathcal{H}_{\text{swirl}} = \{\text{trefoil, figure-8, Hopf link, ...}\}$. Quantum numbers (such as electric charge or baryon number) are interpreted as invariants of the knot (e.g. linking number, or other topological quantum numbers) rather than abstract quantum charges.
+	\subsection*{Stage 4: Topological Charges and Particle Spectrum}
+	Knot invariants $(Lk,Wr,Tw)$ map to quantum numbers; in particular
+	\[
+		Q(K)=T_3(K)+\frac{Y(K)}{2},
+	\]
+	with $Q$ the electric charge, $T_3$ weak isospin, and $Y$ hypercharge.
+	Fermion (T-phase) masses arise as soliton energies of knotted strings:
+	\[
+		m_{K} \;=\; \rhof\, v_{\circ}^{2}\,\Vol_{\!\mathbb{H}}(K)\,\phig^{-2k}.
+	\]
+	Leptons $\leftrightarrow$ torus knots (e.g.\ $3_1$), quarks $\leftrightarrow$ chiral hyperbolic knots; composites are linked multi-knots. \emph{(STC 10)}
 
-	In summary, \emph{discreteness in SST arises from (a) integral circulation and (b) topologically distinct knot spectra}. A “particle” in SST is identified with a specific quantized swirl state—a closed vortex filament carrying $n\kappa$ circulation and realized in a particular knot configuration—in contrast to a particle in quantum mechanics being an eigenstate of an operator. This provides a tangible, geometric interpretation of quantum numbers.
+	\subsection*{Stage 5: Emergent Interactions (Gauge and Forces)}
+	Unknotted R-phase excitations (director/torsional waves) realize gauge bosons.
+	The emergent gauge algebra at long wavelength is
+	\[
+		\mathfrak{g}_{\text{swirl}}\simeq \mathfrak{su}(3)\oplus \mathfrak{su}(2)\oplus \mathfrak{u}(1),
+	\]
+	with minimal coupling $D_\mu=\nabla_\mu + i\,g_{\text{sw}}\,W^a_{\mu}T^a$. Photons are pulsed torsional R-phase excitations (unknots). \emph{(STC 11)}
 
-% [Sidebar: Topological spectrum illustration -- e.g. small images of a trefoil knot vs figure-8 labeled with quantum numbers]
+	\subsection*{Stage 6: Geometric Closure and Constant Lock-In}
+	Global Gauss-closure yields inverse-square falloff:
+	\[
+		\nabla\!\cdot\!\vec{P}_{\text{swirl}}=0 \quad\Rightarrow\quad F(r)\propto \frac{1}{r^2},
+	\]
+	fixing the Euclidean embedding and $\pi$ geometrically. The condensate enters a global resonance that locks all constants.
+
+	\begin{tcolorbox}[colback=blue!5!white,colframe=blue!60!black,title=Zero–Parameter Principle (Canonical)]
+		\textbf{Claim.} Dimensionful constants are consequences of a single primary scale $v_{\circ}$ and the allowed topological sectors:
+		\begin{align}
+			G_{\text{swirl}} &= \frac{v_{\circ}\,c^{5}\,t_P^{2}}{2\,\FmaxEM\,\rc^{2}},
+			&
+			\alpha &= \alpha_{\mathrm{DSI}}\!\left(\omega_{\mathrm{DSI}}\right),
+			\qquad \omega_{\mathrm{DSI}}\approx 13.06.
+		\end{align}
+		Once $(v_{\circ},\rc,\rhof)$ are fixed by \emph{one} calibration (e.g.\ $m_e$),
+		the full mass and coupling spectrum becomes predictive (no free Yukawas).
+		\emph{(STC 12–13)}
+	\end{tcolorbox}
+
+	\subsection*{Stage 7: Recursive Cosmos (Fractal Emergence)}
+	Composite knots (baryons, nuclei, atoms) satisfy $Z_3$ closure, $1{+}12$ isotropic shielding, and duality pairing. Each stable composite is a new circulation source:
+	\[
+		\text{Cluster}\;\Rightarrow\;\text{Meta-Knot}\;\Rightarrow\;\text{New Swirl Layer},
+	\]
+	driving scale-recursive structure formation (galaxies \textrightarrow\ clusters). \emph{(STC 14–16)}
+
+	\begin{tcolorbox}[title=Traceability Note]
+		Stages 2–6 ensure recovery of the hydrogen spectrum (soft-core $1/r$ potential),
+		Maxwell wave sector (R-phase), Newtonian gravity scale via $G_{\text{swirl}}\!\approx\!G_N$,
+		and the weak-mixing prediction through director stiffness ratios. Dimensional
+		consistency and low-energy limits are documented in Sections \ref{tab:constants}–\ref{fig:knot-taxonomy}.
+	\end{tcolorbox}
 
 
 	\section{Canonical Constants and Effective Densities}
