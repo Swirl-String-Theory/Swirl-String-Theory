@@ -154,7 +154,7 @@ def main():
     plt.plot(z_vals, best["Ez"], label=f"E(z) SST (Ω_Q0={best_Omega_Q0:.3f}, n={best_n:.3f})", linestyle="--")
     plt.xlabel("z"); plt.ylabel("E(z) = H(z)/H0")
     plt.title("Expansion History Comparison"); plt.legend()
-    plt.tight_layout(); plt.savefig("SST_benchmark_Ez.png"); plt.close()
+    plt.tight_layout(); plt.savefig("figures/SST_benchmark_Ez.png"); plt.close()
 
     # 2) μ(z)
     plt.figure(figsize=(7,5), dpi=140)
@@ -162,7 +162,7 @@ def main():
     plt.plot(z_vals, best["mu"], label="μ(z) SST (fit)", linestyle="--")
     plt.xlabel("z"); plt.ylabel("Distance Modulus μ [mag]")
     plt.title("Hubble Diagram (Model Curves)"); plt.legend()
-    plt.tight_layout(); plt.savefig("SST_benchmark_mu.png"); plt.close()
+    plt.tight_layout(); plt.savefig("figures/SST_benchmark_mu.png"); plt.close()
 
     # 3) Residuals (finite-only)
     finite2 = np.isfinite(best["mu"]) & np.isfinite(mu_LCDM_vals)
@@ -171,7 +171,7 @@ def main():
     plt.plot(z_vals[finite2], (best["mu"] - mu_LCDM_vals)[finite2], label="μ_SST − μ_ΛCDM residuals")
     plt.xlabel("z"); plt.ylabel("Δμ [mag]")
     plt.title("Residuals vs ΛCDM"); plt.legend()
-    plt.tight_layout(); plt.savefig("SST_benchmark_residuals.png"); plt.close()
+    plt.tight_layout(); plt.savefig("figures/SST_benchmark_residuals.png"); plt.close()
 
     # -------------------- Summary --------------------
     summary = {
@@ -190,7 +190,7 @@ def main():
         print(f"{k}: {v}")
 
     # CSV export of the table
-    df.to_csv("SST_vs_LCDM_table.csv", index=False)
+    df.to_csv("figures/SST_vs_LCDM_table.csv", index=False)
 
 if __name__ == "__main__":
     main()

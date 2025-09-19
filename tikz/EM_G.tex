@@ -1,37 +1,48 @@
-\documentclass[11pt,a4paper]{article}
+%! Author = Omar Iskandarani
+%! Title = Rotating--Frame Unification in the SST Canon
+%! Date = Sept 4, 2025
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxxxxxx
+
+\newcommand{\paperversion}{\textbf{v0.0.1}}
+\newcommand{\papertitle}{Rotating--Frame Unification in the SST Canon: From Swirl Density to Swirl--EMF, and a Canonical Derivation of the Coupling \texorpdfstring{$\mathcal{G}_{\text{\swirlarrow}}$}{G_swirl}}
+\newcommand{\paperdoi}{10.5281/zenodo.xxx}
+
+\documentclass[reprint,aps,onecolumn,nofootinbib]{revtex4-2}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[margin=2.2cm]{geometry}
 \usepackage{amsmath,amssymb,amsfonts,bm}
+\usepackage{tcolorbox}
 \usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,calc,fit,decorations.pathmorphing}
-\usepackage{cite}
 
+% swirl arrows (context-aware)
 \newcommand{\swirlarrow}{%
-    \mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}%
-    {\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}%
-    {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
-    {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
+	\mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}%
+	{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}%
+	{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
+	{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
 }
 
-\title{Rotating--Frame Unification in the SST Canon: \\
-From Swirl Density to Swirl--EMF, and a Canonical Derivation of the Coupling $\mathcal G_{\textrm \swirlarrow}$}
-\author{Omar Iskandarani}
-\date{\today}
-
 \begin{document}
-\maketitle
+	\title{\papertitle}
+	\author{Omar Iskandarani}
+	\affiliation{Independent Researcher, Groningen, The Netherlands}
+	\thanks{ORCID: 0009-0006-1686-3961, DOI: \paperdoi, Version: \paperversion}
+	\date{\today}
 
 \begin{abstract}
-We derive, from the Swirl--String Theory (SST) Canon, a rotating-frame unification where centrifugal and gravitational (swirl) effects merge into a single source term modifying Faraday's law in matter. The key objects are the swirl (vortex-line) areal density $\bm{\varrho}_\textrm{\swirlarrow}$ and a swirl-induced electromotive source $\mathbf b_{\textrm \swirlarrow}$ in the curl equation for $\mathbf E$. We prove the canonical relation:
-\[
-   \nabla\times\mathbf E = -\,\partial_t\mathbf B - \mathbf b_{\textrm \swirlarrow}, \qquad
-   \mathbf b_{\textrm \swirlarrow} = \mathcal G_{\textrm \swirlarrow}\,\partial_t\bm{\varrho}_{\textrm \swirlarrow}
-\]
-where $\mathcal G_{\textrm \swirlarrow}$ is a material/topological transduction constant. Using SST electron logic, circulation quantization, and a flux-pumping pillbox argument, we show $\mathcal G_{\textrm \swirlarrow}$ is quantized in Weber units and, under minimal assumptions, is set by a single-flux normalization $\mathcal G_{\textrm \swirlarrow}\simeq \Phi_\star$ with $\Phi_\star$ a flux quantum (\emph{a priori} $h/e$; in superconductors $h/2e$)~\cite{Aharonov1959,Tinkham2004,Onsager1949,Feynman1955}. We provide a rotating-frame derivation, dimensional checks, and experimental predictions (EMF spikes at vortex nucleation during plate compression; integrated EMF $\simeq \Phi_\star \Delta N$).
+We derive, from the Swirl--String Theory (SST) Canon, a rotating-frame unification where centrifugal and gravitational (swirl) effects merge into a single source term modifying Faraday's law in matter. The key objects are the swirl (vortex-line) areal density $\bm{\varrho}_{\text{\swirlarrow}}$ and a swirl-induced electromotive source $\mathbf b_{\text{\swirlarrow}}$ in the curl equation for $\mathbf E$. We prove the canonical relation:
+\( \nabla\times\mathbf E = -\,\partial_t\mathbf B - \mathbf b_{\text{\swirlarrow}}, \qquad
+   \mathbf b_{\text{\swirlarrow}} = \mathcal G_{\text{\swirlarrow}}\,\partial_t\bm{\varrho}_{\text{\swirlarrow}} \)
+where $\mathcal G_{\text{\swirlarrow}}$ is a material/topological transduction constant. Using SST electron logic, circulation quantization, and a flux-pumping pillbox argument, we show $\mathcal G_{\text{\swirlarrow}}$ is quantized in Weber units and, under minimal assumptions, is set by a single-flux normalization $\mathcal G_{\text{\swirlarrow}}\simeq \Phi_\star$ with $\Phi_\star$ a flux quantum (\emph{a priori} $h/e$; in superconductors $h/2e$)~\cite{Aharonov1959,Tinkham2004,Onsager1949,Feynman1955}. We provide a rotating-frame derivation, dimensional checks, and experimental predictions (EMF spikes at vortex nucleation during plate compression; integrated EMF $\simeq \Phi_\star \Delta N$).
 \end{abstract}
-
+\maketitle
 \section{Canonical objects and rotating foliation}
     SST adopts absolute time $t$ and Euclidean space on leaves $\Sigma_t$, with a preferred congruence $u^\mu$ orthogonal to $\Sigma_t$. The Canon’s chronos--Kelvin invariant enforces conservation of circulation at fixed topology,
     \begin{equation}
@@ -42,21 +53,21 @@ where $\mathcal G_{\textrm \swirlarrow}$ is a material/topological transduction 
     \end{equation}
     where $\kappa$ is the circulation quantum. Coarse graining over an area $A\subset\Sigma_t$ defines the \emph{swirl (vortex-line) areal density vector}
     \begin{equation}
-    \bm{\varrho}_{\textrm \swirlarrow}(\mathbf x,t) \;\equiv\; n_v(\mathbf x,t)\,\hat{\mathbf n} \;=\; \frac{1}{A}\sum_{\ell\in A}\hat{\mathbf t}_\ell,
+    \bm{\varrho}_{\text{\swirlarrow}}(\mathbf x,t) \;\equiv\; n_v(\mathbf x,t)\,\hat{\mathbf n} \;=\; \frac{1}{A}\sum_{\ell\in A}\hat{\mathbf t}_\ell,
     \qquad [\bm{\varrho}]={\textrm m^{-2}},
     \label{eq:rho_def}
     \end{equation}
     whose flux counts vortex lines through $A$:
     \begin{equation}
-    \Phi_{\textrm \swirlarrow}(t;A)=\int_A \bm{\varrho}_{\textrm \swirlarrow}\!\cdot d\mathbf A = N(A,t).
+    \Phi_{\text{\swirlarrow}}(t;A)=\int_A \bm{\varrho}_{\text{\swirlarrow}}\!\cdot d\mathbf A = N(A,t).
     \label{eq:swflux}
     \end{equation}
 
     \paragraph{Rotating frame merger.}
-        In a frame rotating with angular velocity $\boldsymbol\Omega$, the standard decomposition of absolute vorticity $\boldsymbol\zeta_a=\boldsymbol\zeta_r+2\boldsymbol\Omega$ and the effective gravity $\mathbf g_{\textrm eff}=\mathbf g-\boldsymbol\Omega\times(\boldsymbol\Omega\times\mathbf r)$ imply that centrifugal and gravitational contributions enter through \emph{one} potential. In SST, this translates to a long-range \emph{swirl gravity} channel: time-varying $\bm{\varrho}_{\textrm \swirlarrow}$ couples to electromotive response via a single effective source $\mathbf b_{\textrm \swirlarrow}$, i.e. the ``centrifugal\,+\,gravity'' merger manifests as
+        In a frame rotating with angular velocity $\boldsymbol\Omega$, the standard decomposition of absolute vorticity $\boldsymbol\zeta_a=\boldsymbol\zeta_r+2\boldsymbol\Omega$ and the effective gravity $\mathbf g_{\textrm eff}=\mathbf g-\boldsymbol\Omega\times(\boldsymbol\Omega\times\mathbf r)$ imply that centrifugal and gravitational contributions enter through \emph{one} potential. In SST, this translates to a long-range \emph{swirl gravity} channel: time-varying $\bm{\varrho}_{\text{\swirlarrow}}$ couples to electromotive response via a single effective source $\mathbf b_{\text{\swirlarrow}}$, i.e. the ``centrifugal\,+\,gravity'' merger manifests as
         \begin{equation}
-        \nabla\times\mathbf E = -\,\partial_t\mathbf B - \mathbf b_{\textrm \swirlarrow},
-        \qquad \mathbf b_{\textrm \swirlarrow}=\text{(long-range response to }\partial_t \bm{\varrho}_{\textrm \swirlarrow}\text{)}.
+        \nabla\times\mathbf E = -\,\partial_t\mathbf B - \mathbf b_{\text{\swirlarrow}},
+        \qquad \mathbf b_{\text{\swirlarrow}}=\text{(long-range response to }\partial_t \bm{\varrho}_{\text{\swirlarrow}}\text{)}.
         \label{eq:Faraday_mod}
         \end{equation}
 
@@ -64,7 +75,7 @@ where $\mathcal G_{\textrm \swirlarrow}$ is a material/topological transduction 
 At laboratory scales we assume two local, linear constitutive maps:
 \begin{align}
 \mathbf D &= \varepsilon\,\mathbf E, \qquad \mathbf B = \mu\,\mathbf H, \\
-\bm{\varrho}_{\textrm \swirlarrow} &= \chi_H \,\mathbf H, \qquad [\chi_H] = {\textrm m^{-1}A^{-1}},
+\bm{\varrho}_{\text{\swirlarrow}} &= \chi_H \,\mathbf H, \qquad [\chi_H] = {\textrm m^{-1}A^{-1}},
 \label{eq:local_const}
 \end{align}
 where $\chi_H$ is a \emph{swirl susceptibility}: stronger $\mathbf H$ aligns/admits more vortex lines per area in the medium. This is the right-hand (magnetic/swirl) mirror of Ohm’s law on the left (electric/conduction) side,
@@ -77,20 +88,20 @@ where $\chi_H$ is a \emph{swirl susceptibility}: stronger $\mathbf H$ aligns/adm
 Integrate~\eqref{eq:Faraday_mod} over a surface $S\subset \Sigma_t$ with boundary $\partial S$ and time interval $[t_i,t_f]$:
 \begin{align}
 \int_{t_i}^{t_f}\!\!\oint_{\partial S}\mathbf E\!\cdot d\boldsymbol\ell\,dt
-&= -\,\Delta\Phi_B(S) \;-\; \int_{t_i}^{t_f}\!\!\int_S \mathbf b_{\textrm \swirlarrow}\!\cdot d\mathbf A\,dt.
+&= -\,\Delta\Phi_B(S) \;-\; \int_{t_i}^{t_f}\!\!\int_S \mathbf b_{\text{\swirlarrow}}\!\cdot d\mathbf A\,dt.
 \label{eq:pillbox1}
 \end{align}
-If the magnetic flux is held fixed ($\Delta\Phi_B=0$), the \emph{time-integrated EMF} equals minus the spacetime integral of $\mathbf b_{\textrm \swirlarrow}$.
+If the magnetic flux is held fixed ($\Delta\Phi_B=0$), the \emph{time-integrated EMF} equals minus the spacetime integral of $\mathbf b_{\text{\swirlarrow}}$.
 
 Now, by definition~\eqref{eq:swflux} the rate of change of swirl flux counts vortex nucleations/escapes through $S$:
 \begin{equation}
-\frac{d}{dt}\!\int_S \bm{\varrho}_{\textrm \swirlarrow}\!\cdot d\mathbf A \;=\; \dot N(S,t).
+\frac{d}{dt}\!\int_S \bm{\varrho}_{\text{\swirlarrow}}\!\cdot d\mathbf A \;=\; \dot N(S,t).
 \label{eq:count}
 \end{equation}
 Postulate the \emph{mixed topological coupling} (EFT level)
 \begin{equation}
-\boxed{\ \mathbf b_{\textrm \swirlarrow} \;=\; \mathcal G_{\textrm \swirlarrow}\,\partial_t\bm{\varrho}_{\textrm \swirlarrow}\ },
-\qquad [\mathcal G_{\textrm \swirlarrow}]={\textrm V\,s}= {\textrm Wb},
+\boxed{\ \mathbf b_{\text{\swirlarrow}} \;=\; \mathcal G_{\text{\swirlarrow}}\,\partial_t\bm{\varrho}_{\text{\swirlarrow}}\ },
+\qquad [\mathcal G_{\text{\swirlarrow}}]={\textrm V\,s}= {\textrm Wb},
 \label{eq:mix}
 \end{equation}
 which is the unique linear, local-in-time map that (i) respects units ($\mathrm{V\,m^{-2}}$ on both sides of~\eqref{eq:Faraday_mod}), (ii) vanishes in steady states, and (iii) couples only to \emph{topological} changes (nucleations/reconnections) via~\eqref{eq:count}.
@@ -98,11 +109,11 @@ which is the unique linear, local-in-time map that (i) respects units ($\mathrm{
 Inserting~\eqref{eq:mix} into~\eqref{eq:pillbox1} and using~\eqref{eq:count} gives the \emph{flux-pumping quantization}:
 \begin{equation}
 \boxed{\ \int_{t_i}^{t_f}\!\!\oint_{\partial S}\mathbf E\!\cdot d\boldsymbol\ell\,dt
-\;=\; -\,\mathcal G_{\textrm \swirlarrow}\, \Delta N(S)\ },
+\;=\; -\,\mathcal G_{\text{\swirlarrow}}\, \Delta N(S)\ },
 \qquad \Delta N(S)=\int_{t_i}^{t_f}\!\dot N(S,t)\,dt \in \mathbb Z.
 \label{eq:pumping}
 \end{equation}
-Thus each net vortex line added/removed through $S$ produces a \emph{quantized EMF-time impulse} set by $\mathcal G_{\textrm \swirlarrow}$.
+Thus each net vortex line added/removed through $S$ produces a \emph{quantized EMF-time impulse} set by $\mathcal G_{\text{\swirlarrow}}$.
 
 \section{Electron logic: canonical normalization of $\mathcal G$}
 SST models the electron in its propagation phase as a toroidal ring $\mathcal R$ with tangential speed fixed by the Canon,
@@ -120,13 +131,13 @@ and core cross-section $A_c=\pi r_c^2$. When $\mathcal R$ knots ($\mathcal T$) o
 \end{equation}
 Comparing with~\eqref{eq:pumping} fixes
 \begin{equation}
-\boxed{\ \mathcal G_{\textrm \swirlarrow} = \Phi_\star \ },
+\boxed{\ \mathcal G_{\text{\swirlarrow}} = \Phi_\star \ },
 \label{eq:Gsw_fluxq}
 \end{equation}
 i.e. the swirl--EMF transduction constant equals a \emph{flux quantum}. For single-charged rings the Aharonov--Bohm quantum suggests $\Phi_\star=h/e$~\cite{Aharonov1959}; for Cooper-paired media, $\Phi_\star=h/2e$~\cite{Tinkham2004}. Which constant is realized is a \emph{material/topology} question; either choice preserves~\eqref{eq:pumping} and yields a falsifiable prediction.
 
 \paragraph{Dimensional and energetic consistency.}
-    Equation~\eqref{eq:Gsw_fluxq} gives $[\mathcal G_{\textrm \swirlarrow}]={\textrm V\,s}$ as required by~\eqref{eq:mix}. Energetically, the EM work per event is
+    Equation~\eqref{eq:Gsw_fluxq} gives $[\mathcal G_{\text{\swirlarrow}}]={\textrm V\,s}$ as required by~\eqref{eq:mix}. Energetically, the EM work per event is
     \(
     W=\int dt\oint \mathbf E\cdot d\boldsymbol\ell\,I_{\textrm loop}(t).
     \)
@@ -135,19 +146,19 @@ i.e. the swirl--EMF transduction constant equals a \emph{flux quantum}. For sing
 \section{Rotating frame: centrifugal + gravity $\Rightarrow$ $\mathbf b$}
 Let the container rotate at $\boldsymbol\Omega$ while the plate area shrinks from $A_0$ to $A$. With swirl flux frozen (disconnected electrodes), flux conservation~\eqref{eq:swflux} implies
 \begin{equation}
-\bm{\varrho}_{\textrm \swirlarrow}(A) = \frac{N \,\hat{\mathbf n}}{A},
+\bm{\varrho}_{\text{\swirlarrow}}(A) = \frac{N \,\hat{\mathbf n}}{A},
 \quad a(A)\sim n_v^{-1/2}=\sqrt{\frac{A}{N}},
 \end{equation}
-and nucleation when $a\lesssim \alpha r_c$. The rate $\partial_t \bm{\varrho}_{\textrm \swirlarrow}$ is nonzero during nucleation bursts, and by~\eqref{eq:mix} produces a nonzero $\mathbf b_{\textrm \swirlarrow}$. In the rotating foliation, the absolute vorticity merger ensures that centrifugal forcing does not appear as a separate source: its effect is absorbed into the \emph{long-range} channel represented by $\mathbf b_{\textrm \swirlarrow}$. Combining these, we obtain the \emph{two-tier symmetry}:
+and nucleation when $a\lesssim \alpha r_c$. The rate $\partial_t \bm{\varrho}_{\text{\swirlarrow}}$ is nonzero during nucleation bursts, and by~\eqref{eq:mix} produces a nonzero $\mathbf b_{\text{\swirlarrow}}$. In the rotating foliation, the absolute vorticity merger ensures that centrifugal forcing does not appear as a separate source: its effect is absorbed into the \emph{long-range} channel represented by $\mathbf b_{\text{\swirlarrow}}$. Combining these, we obtain the \emph{two-tier symmetry}:
 
 \medskip
 \noindent\emph{Local tier (mirror):}
 \[
-    \boxed{\ \mathbf j=\sigma\mathbf E \quad \leftrightarrow \quad \bm{\varrho}_{\textrm \swirlarrow}=\chi_H\mathbf H\ }.
+    \boxed{\ \mathbf j=\sigma\mathbf E \quad \leftrightarrow \quad \bm{\varrho}_{\text{\swirlarrow}}=\chi_H\mathbf H\ }.
 \]
 \noindent\emph{Long-range tier (unification):}
 \[
-    \boxed{\ \partial_t \bm{\varrho}_{\textrm \swirlarrow} \xRightarrow[\ \ \mathcal G_{\textrm \swirlarrow}\ \ ] = \ \mathbf b_{\textrm \swirlarrow},
+    \boxed{\ \partial_t \bm{\varrho}_{\text{\swirlarrow}} \xRightarrow[\ \ \mathcal G_{\text{\swirlarrow}}\ \ ] = \ \mathbf b_{\text{\swirlarrow}},
         \quad \text{centrifugal + gravity merged} }.
 \]
 
@@ -163,7 +174,7 @@ and nucleation when $a\lesssim \alpha r_c$. The rate $\partial_t \bm{\varrho}_{\
 ]
 % ---------------- center curl (Faraday) ----------------
 \node(Faraday)
-{$\nabla \times \mathbf{E} = -\,\partial_t \mathbf{B} \;-\; \mathbf{b}_{\textrm \swirlarrow}$\\
+{$\nabla \times \mathbf{E} = -\,\partial_t \mathbf{B} \;-\; \mathbf{b}_{\text{\swirlarrow}}$\\
 \scriptsize $[\nabla\times\mathbf E]=\tfrac{V}{m^{2}},\ [\partial_t\mathbf B]=\tfrac{T}{s}$};
 
 % ---------------- left: field E ----------------
@@ -172,17 +183,17 @@ and nucleation when $a\lesssim \alpha r_c$. The rate $\partial_t \bm{\varrho}_{\
 
 % ---------------- right: swirl density rho ----------------
 \node[right=of Faraday] (rho)
-{\scriptsize swirl density $\bm{\varrho}_{\textrm \swirlarrow}$\\ $[\bm{\varrho}_{\textrm \swirlarrow}]=\tfrac{1}{m^{2}}$};
+{\scriptsize swirl density $\bm{\varrho}_{\text{\swirlarrow}}$\\ $[\bm{\varrho}_{\text{\swirlarrow}}]=\tfrac{1}{m^{2}}$};
 
 \node[below left=0.25 and 0 of rho] (b)
 {
-    \scriptsize $\mathbf b_{\textrm \swirlarrow}=\mathcal G_{\textrm \swirlarrow}\,\partial_t\bm{\varrho}_{\textrm \swirlarrow}$\\
-\scriptsize $[\mathbf b_{\textrm \swirlarrow}]=\tfrac{V}{m^{2}}$
+    \scriptsize $\mathbf b_{\text{\swirlarrow}}=\mathcal G_{\text{\swirlarrow}}\,\partial_t\bm{\varrho}_{\text{\swirlarrow}}$\\
+\scriptsize $[\mathbf b_{\text{\swirlarrow}}]=\tfrac{V}{m^{2}}$
 };
 
 % ---------------- right middle: susceptibility ----------------
 \node[below=of rho] (C)
-{$\chi_H\,\mathbf{H} = \bm{\varrho}_{\textrm \swirlarrow}$\\
+{$\chi_H\,\mathbf{H} = \bm{\varrho}_{\text{\swirlarrow}}$\\
 \scriptsize $[\chi_H]=\tfrac{1}{Am}$};
 
 % ---------------- left middle: conduction accumulation ----------------
@@ -250,18 +261,18 @@ and nucleation when $a\lesssim \alpha r_c$. The rate $\partial_t \bm{\varrho}_{\
 
 
 \begin{itemize}
-    \item $\mathbf{b}_{\textrm \swirlarrow}=\mathcal G_{\textrm \swirlarrow}\,\partial_t\bm{\varrho}_{\textrm \swirlarrow}$: swirl--EMF source, with units $[\mathbf b_{\textrm \swirlarrow}]$.
-    \item $\bm{\varrho}_{\textrm \swirlarrow}$: swirl density, with units $[\bm{\varrho}_{\textrm \swirlarrow}]$.
-    \item Swirl--gravity mediation: $\mathcal G_{\textrm \swirlarrow}=\Phi_\star$.
+    \item $\mathbf{b}_{\text{\swirlarrow}}=\mathcal G_{\text{\swirlarrow}}\,\partial_t\bm{\varrho}_{\text{\swirlarrow}}$: swirl--EMF source, with units $[\mathbf b_{\text{\swirlarrow}}]$.
+    \item $\bm{\varrho}_{\text{\swirlarrow}}$: swirl density, with units $[\bm{\varrho}_{\text{\swirlarrow}}]$.
+    \item Swirl--gravity mediation: $\mathcal G_{\text{\swirlarrow}}=\Phi_\star$.
     \item $\bm{\eta}$: conduction accumulation, with units $[\bm{\eta}]$.
     \item $\mathcal{K}_E$: a constitutive kernel (electric side), mapping the field $\mathbf{E}$ into an areal charge accumulation $\bm{\eta}$. In the simplest (local, isotropic) form:
     \[
         \bm{\eta} = \varepsilon\,\mathbf{E}
     \]
     but written as $(\mathcal{K}_E * \mathbf{E})$, it allows for spatial/temporal nonlocal response (like a susceptibility kernel).
-    \item $\chi_H$: a swirl susceptibility (magnetic side), mapping the field $\mathbf{H}$ into the swirl density $\bm{\varrho}_{\textrm \swirlarrow}$:
+    \item $\chi_H$: a swirl susceptibility (magnetic side), mapping the field $\mathbf{H}$ into the swirl density $\bm{\varrho}_{\text{\swirlarrow}}$:
     \[
-        \bm{\varrho}_{\textrm \swirlarrow} = \chi_H\,\mathbf{H}
+        \bm{\varrho}_{\text{\swirlarrow}} = \chi_H\,\mathbf{H}
     \]
     Units: $[\chi_H] = \mathrm{m^{-1}A^{-1}}$. It plays the same role as an electric or magnetic susceptibility, but in the SST Canon it measures how strongly $\mathbf{H}$ seeds swirl line density.
 \end{itemize}
@@ -280,7 +291,7 @@ and nucleation when $a\lesssim \alpha r_c$. The rate $\partial_t \bm{\varrho}_{\
 
 
 \section{From the Canon to a value for $\mathcal G$}
-Equation~\eqref{eq:Gsw_fluxq} sets the \emph{scale} of $\mathcal G_{\textrm \swirlarrow}$; SST “electron logic” refines it:
+Equation~\eqref{eq:Gsw_fluxq} sets the \emph{scale} of $\mathcal G_{\text{\swirlarrow}}$; SST “electron logic” refines it:
 
 \paragraph{(i) Topological normalization.}
     The ring $\mathcal R$ carries an integer winding $N$; knotting/unknotting changes $N\!\to\!N\pm1$. A single event thus generates an EMF-time impulse $\Phi_\star$ by~\eqref{eq:pumping}--\eqref{eq:normalization}.
@@ -311,17 +322,17 @@ with bursts coincident with vortex nucleation (when $a\lesssim\alpha r_c$).
     \boxed{
         \begin{gathered}
         \text{(Kelvin/Canon)}\quad \Gamma=\oint \mathbf v\!\cdot d\boldsymbol\ell = N\kappa, \quad
-        \Phi_{\textrm \swirlarrow}=\int_A \bm{\varrho}\!\cdot d\mathbf A=N \\
+        \Phi_{\text{\swirlarrow}}=\int_A \bm{\varrho}\!\cdot d\mathbf A=N \\
         \text{(local mirror)}\quad \mathbf j=\sigma\mathbf E \;\;\leftrightarrow\;\; \bm{\varrho}=\chi_H\mathbf H \\
-        \text{(long-range unification)}\quad \nabla\times\mathbf E = -\partial_t\mathbf B - \mathbf b_{\textrm \swirlarrow},\quad
-        \mathbf b_{\textrm \swirlarrow}=\mathcal G_{\textrm \swirlarrow}\,\partial_t\bm{\varrho} \\
-        \text{(electron normalization)}\quad \mathcal G_{\textrm \swirlarrow}=\Phi_\star \in\{h/e,\;h/2e\},\quad
+        \text{(long-range unification)}\quad \nabla\times\mathbf E = -\partial_t\mathbf B - \mathbf b_{\text{\swirlarrow}},\quad
+        \mathbf b_{\text{\swirlarrow}}=\mathcal G_{\text{\swirlarrow}}\,\partial_t\bm{\varrho} \\
+        \text{(electron normalization)}\quad \mathcal G_{\text{\swirlarrow}}=\Phi_\star \in\{h/e,\;h/2e\},\quad
         \int dt\,\oint \mathbf E\!\cdot d\boldsymbol\ell = -\,\Phi_\star\,\Delta N
         \end{gathered}}
 \]
 
 \paragraph{Dimensional checks.}
-    $[\bm{\varrho}]={\textrm m^{-2}}$, $[\partial_t\bm{\varrho}]={\textrm m^{-2}s^{-1}}$; $[\mathcal G_{\textrm \swirlarrow}]={\textrm V\,s}$ so $[\mathbf b_{\textrm \swirlarrow}]={\textrm V\,m^{-2}}$ matches $[\partial_t\mathbf B]={\textrm T\,s^{-1}}={\textrm V\,m^{-2}}$; all local maps in~\eqref{eq:local_const} use standard SI.
+    $[\bm{\varrho}]={\textrm m^{-2}}$, $[\partial_t\bm{\varrho}]={\textrm m^{-2}s^{-1}}$; $[\mathcal G_{\text{\swirlarrow}}]={\textrm V\,s}$ so $[\mathbf b_{\text{\swirlarrow}}]={\textrm V\,m^{-2}}$ matches $[\partial_t\mathbf B]={\textrm T\,s^{-1}}={\textrm V\,m^{-2}}$; all local maps in~\eqref{eq:local_const} use standard SI.
 
 \section*{Acknowledgement of canonical constants}
 Where numerical evaluation is desired, adopt the Canon values $C_e$, $r_c$, $\rho_{\ae}^{\textrm core}$, $\rho_{\ae}$ provided in the SST Canon; these enter rate and threshold estimates (via $a\sim \sqrt{A/N}$ and $r_c$), but not the quantized \emph{magnitude} $\Phi_\star$ of the EMF-time impulse.

@@ -126,7 +126,7 @@ def save_maps_for(p, q):
     plt.xlabel('x [m]'); plt.ylabel('y [m]')
     plt.title(f'log10 ρ_E MIP(x,y) — T({p},{q})')
     plt.colorbar(label='log10(ρ_E [J/m^3])')
-    f_rhoE = f"T{p}_{q}_rhoE_log10_MIP.png"
+    f_rhoE = f"figures/T{p}_{q}_rhoE_log10_MIP.png"
     plt.tight_layout(); plt.savefig(f_rhoE); plt.close()
 
     # 2) Swirl‑Clock (absolute cap → nearly yellow, included deliberately)
@@ -136,7 +136,7 @@ def save_maps_for(p, q):
     plt.xlabel('x [m]'); plt.ylabel('y [m]')
     plt.title(f'Swirl‑Clock S_t (absolute cap) — T({p},{q})')
     plt.colorbar(label='S_t')
-    f_St_abs = f"T{p}_{q}_SwirlClock_abs.png"
+    f_St_abs = f"figures/T{p}_{q}_SwirlClock_abs.png"
     plt.tight_layout(); plt.savefig(f_St_abs); plt.close()
 
     # 3) Swirl‑Clock (normalized γ‑contrast → high‑contrast rings)
@@ -149,7 +149,7 @@ def save_maps_for(p, q):
     plt.xlabel('x [m]'); plt.ylabel('y [m]')
     plt.title(f'Swirl‑Clock S_t (norm, MIP) — T({p},{q})')
     plt.colorbar(label='S_t (normalized)')
-    f_St_norm = f"T{p}_{q}_SwirlClock_norm_MIP.png"
+    f_St_norm = f"figures/T{p}_{q}_SwirlClock_norm_MIP.png"
     plt.tight_layout(); plt.savefig(f_St_norm); plt.close()
 
     # 4) |v| at z=0 (for quick reference)
@@ -164,7 +164,7 @@ def save_maps_for(p, q):
     plt.xlabel('x [m]'); plt.ylabel('y [m]')
     plt.title(f'|v|(x,y) — z=0 — T({p},{q})')
     plt.colorbar(label='|v| [m/s]')
-    f_vmag = f"T{p}_{q}_velmag_heatmap.png"
+    f_vmag = f"figures/T{p}_{q}_velmag_heatmap.png"
     plt.tight_layout(); plt.savefig(f_vmag); plt.close()
 
     # Stats row
