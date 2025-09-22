@@ -97,7 +97,7 @@ all_tables = {}
 
 for (p,q) in knot_list:
     # Build three filaments with 120° poloidal offsets
-    phases = [0.0, 2*np.pi/3, 4*np.pi/3]
+    phases = [0.0, 2*np.pi/9, 4*np.pi/9]
     mids_list, dls_list = [], []
     for ph in phases:
         mids, dls = filament_segments(p, q, R_major, r_minor, N_curve, ph)
@@ -142,7 +142,7 @@ for (p,q) in knot_list:
     plt.xlabel("r [m]"); plt.ylabel("Angle-averaged |v_θ| [m/s]")
     plt.title(f"Angle-averaged v_θ vs r for 3-threaded T({p},{q})")
     plt.legend(); plt.tight_layout()
-    fname1 = f"T{p}_{q}_avg_vtheta_vs_r.png"
+    fname1 = f"figures/T{p}_{q}_avg_vtheta_vs_r.png"
     plt.savefig(fname1); plt.close()
 
     # 2) Residual ratio
@@ -152,7 +152,7 @@ for (p,q) in knot_list:
     plt.xlabel("r [m]"); plt.ylabel("(⟨v_θ⟩ - v_far)/v_far")
     plt.title(f"Relative deviation from far-field for T({p},{q})")
     plt.tight_layout()
-    fname2 = f"T{p}_{q}_residual_ratio.png"
+    fname2 = f"figures/T{p}_{q}_residual_ratio.png"
     plt.savefig(fname2); plt.close()
 
     # 3) Angular pattern at r_plot
@@ -161,7 +161,7 @@ for (p,q) in knot_list:
     plt.xlabel("θ [rad]"); plt.ylabel("v_θ(θ) [m/s]")
     plt.title(f"Angular pattern v_θ(θ) at r={r_plot:.2e} m for T({p},{q})")
     plt.tight_layout()
-    fname3 = f"T{p}_{q}_angular_pattern.png"
+    fname3 = f"figures/T{p}_{q}_angular_pattern.png"
     plt.savefig(fname3); plt.close()
 
     # 4) Hexapole amplitude vs r
@@ -170,7 +170,7 @@ for (p,q) in knot_list:
     plt.xlabel("r [m]"); plt.ylabel("Hexapole amplitude / mean")
     plt.title(f"Hexapole fraction vs r for T({p},{q})")
     plt.tight_layout()
-    fname4 = f"T{p}_{q}_hexapole_fraction.png"
+    fname4 = f"figures/T{p}_{q}_hexapole_fraction.png"
     plt.savefig(fname4); plt.close()
 
     # Summary rows and export table
@@ -330,7 +330,7 @@ for (p,q) in knot_list:
     plt.xlabel('x [m]'); plt.ylabel('y [m]')
     plt.title(f'|v|(x,y) in z=0 plane — T({p},{q})')
     plt.colorbar(label='|v| [m/s]')
-    f_vmag = f"T{p}_{q}_velmag_heatmap.png"
+    f_vmag = f"figures/T{p}_{q}_velmag_heatmap.png"
     plt.tight_layout(); plt.savefig(f_vmag); plt.close()
 
     # Swirl-Clock heatmap
@@ -339,7 +339,7 @@ for (p,q) in knot_list:
     plt.xlabel('x [m]'); plt.ylabel('y [m]')
     plt.title(f'Swirl-Clock S_t(x,y) — T({p},{q})')
     plt.colorbar(label='S_t [dimensionless]')
-    f_St = f"T{p}_{q}_SwirlClock_heatmap.png"
+    f_St = f"figures/T{p}_{q}_SwirlClock_heatmap.png"
     plt.tight_layout(); plt.savefig(f_St); plt.close()
 
     # Extract previously computed hexapole at r≈1.2R if available; otherwise compute quickly
@@ -546,7 +546,7 @@ def make_swirlclock_maps(
     plt.xlabel('x [m]'); plt.ylabel('y [m]')
     plt.title(f'log10 ρ_E MIP(x,y) — T({p},{q})')
     plt.colorbar(label='log10(ρ_E [J/m^3])')
-    f1 = f"{out_prefix}_rhoE_log10_MIP.png"
+    f1 = f"figures/{out_prefix}_rhoE_log10_MIP.png"
     plt.tight_layout(); plt.savefig(f1); plt.close(fig1)
 
     # --- Choose reference for normalization
@@ -571,7 +571,7 @@ def make_swirlclock_maps(
     plt.xlabel('x [m]'); plt.ylabel('y [m]')
     plt.title(f'Swirl-Clock S_t (norm, MIP) — T({p},{q})')
     plt.colorbar(label='S_t (normalized; γ-contrast)')
-    f2 = f"{out_prefix}_SwirlClock_norm_MIP.png"
+    f2 = f"figures/{out_prefix}_SwirlClock_norm_MIP.png"
     plt.tight_layout(); plt.savefig(f2); plt.close(fig2)
 
     stats = dict(
@@ -597,7 +597,7 @@ for (p,q) in knot_list:
     plt.xlabel('x [m]'); plt.ylabel('y [m]')
     plt.title(f'|v|(x,y) — T({p},{q})')
     plt.colorbar(label='|v| [m/s]')
-    f_vmag = f"T{p}_{q}_velmag_heatmap.png"
+    f_vmag = f"figures/T{p}_{q}_velmag_heatmap.png"
     plt.tight_layout(); plt.savefig(f_vmag); plt.close()
 
     # S_t heatmap (normalized contrast)
@@ -606,7 +606,7 @@ for (p,q) in knot_list:
     plt.xlabel('x [m]'); plt.ylabel('y [m]')
     plt.title(f'Swirl-Clock S_t(x,y) — T({p},{q}) (normalized)')
     plt.colorbar(label='S_t (normalized)')
-    f_St = f"T{p}_{q}_SwirlClock_heatmap.png"
+    f_St = f"figures/T{p}_{q}_SwirlClock_heatmap.png"
     plt.tight_layout(); plt.savefig(f_St); plt.close()
 
     # log10 ρ_E heatmap
@@ -615,7 +615,7 @@ for (p,q) in knot_list:
     plt.xlabel('x [m]'); plt.ylabel('y [m]')
     plt.title(f'log10 ρ_E(x,y) — T({p},{q})')
     plt.colorbar(label='log10(ρ_E [J/m^3])')
-    f_rhoE = f"T{p}_{q}_rhoE_log10_heatmap.png"
+    f_rhoE = f"figures/T{p}_{q}_rhoE_log10_heatmap.png"
     plt.tight_layout(); plt.savefig(f_rhoE); plt.close()
 
     # Example inside: for (p,q) in knot_list:

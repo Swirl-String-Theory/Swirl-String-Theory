@@ -67,7 +67,7 @@ Follow this exact order; **commit after each step** with the given message templ
 
 -   In v0.5.8: section “CALIBRATIONS & PROTOCOLS (Empirical)”.
 
--   From v0.4.4: bring the boxed empirical anchors: `m_W`, `m_Z`, `\sin^2\theta_W`, `v_\Phi≈246 GeV`, and the constants set `{v_\circ, r_c, \rho_f, \rho_m, FmaxEM, FmaxG}` with a brief note on **how they’re fixed**. Format as a LaTeX `\begin{tcolorbox}` (or `\begin{mdframed}`) if available; else `\paragraph{Empirical Anchors.}` + `aligned`.
+-   From v0.4.4: bring the boxed empirical anchors: `m_W`, `m_Z`, `\sin^2\theta_W`, `v_\Phi≈246 GeV`, and the constants set `{\vswirl, r_c, \rho_f, \rho_m, FmaxEM, FmaxG}` with a brief note on **how they’re fixed**. Format as a LaTeX `\begin{tcolorbox}` (or `\begin{mdframed}`) if available; else `\paragraph{Empirical Anchors.}` + `aligned`.
 
 -   Add tag: `% [STATUS: Empirical] [SOURCE: v0.4.4 §6.1 & constants table]`.
 
@@ -93,7 +93,7 @@ Follow this exact order; **commit after each step** with the given message templ
 
 -   Destination: “EFFECTIVE MEDIUM…” section.
 
--   Source: v0.4.4 derivation with `\mu_*=\rho_m \pi r_c^2`, `\Gamma_*=2\pi r_c v_\circ`, `\nu`, elimination to `\rho_f(\rho_m, r_c, v_\circ, \langle\omega\rangle)`.
+-   Source: v0.4.4 derivation with `\mu_*=\rho_m \pi r_c^2`, `\Gamma_*=2\pi r_c \vswirl`, `\nu`, elimination to `\rho_f(\rho_m, r_c, \vswirl, \langle\omega\rangle)`.
 
 -   Present the final relation in a `\begin{boxedminipage}` or `\begin{tcolorbox}` as “Boxed Result”.
 
@@ -206,7 +206,7 @@ Follow this exact order; **commit after each step** with the given message templ
 
     -   F) Swirl Pressure Law — galaxy-scale integrals
 
-    -   G) Calibration Protocol Notes (how `{v_\circ,r_c,\rho_f,\rho_m,FmaxEM,FmaxG}` are fixed)
+    -   G) Calibration Protocol Notes (how `{\vswirl,r_c,\rho_f,\rho_m,FmaxEM,FmaxG}` are fixed)
 
     -   H) Experimental Status & Bounds (`\chi_{\rm eff}^{\max}` extraction; bounds table)
 

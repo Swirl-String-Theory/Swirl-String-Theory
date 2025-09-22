@@ -121,8 +121,8 @@ def run():
 
 if __name__ == "__main__":
     df = run()
-    xlsx = "SST_invariant_kernel_benchmarks_exact_closure.xlsx"
-    csv  = "SST_invariant_kernel_benchmarks_exact_closure.csv"
+    xlsx = "figures/SST_invariant_kernel_benchmarks_exact_closure.xlsx"
+    csv  = "figures/SST_invariant_kernel_benchmarks_exact_closure.csv"
     df.to_excel(xlsx, index=False)
     df.to_csv(csv, index=False)
     # Print LaTeX table

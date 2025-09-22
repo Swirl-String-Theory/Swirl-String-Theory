@@ -1,38 +1,48 @@
-\documentclass[11pt,a4paper]{article}
+%! Author = Omar Iskandarani
+%! Title = Rotating--Frame Unification in the SST Canon
+%! Date = Sept 4, 2025
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxxxxxx
+
+\newcommand{\paperversion}{\textbf{v0.0.1}}
+\newcommand{\papertitle}{Rotating--Frame Unification in the SST Canon: From Swirl Density to Swirl--EMF, and a Canonical Derivation of the Coupling \texorpdfstring{$\mathcal{G}_{\text{\swirlarrow}}$}{G_swirl}}
+\newcommand{\paperdoi}{10.5281/zenodo.xxx}
+
+\documentclass[reprint,aps,onecolumn,nofootinbib]{revtex4-2}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[margin=2.2cm]{geometry}
 \usepackage{amsmath,amssymb,amsfonts,bm}
+\usepackage{tcolorbox}
 \usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,calc,fit,decorations.pathmorphing}
-\usepackage{cite}
-\usepackage{textcomp}
 
+% swirl arrows (context-aware)
 \newcommand{\swirlarrow}{%
-    \mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}%
-    {\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}%
-    {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
-    {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
+	\mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}%
+	{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}%
+	{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
+	{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
 }
 
-\title{Rotating--Frame Unification in the SST Canon: \\
-From Swirl Density to Swirl--EMF, and a Canonical Derivation of the Coupling $\mathcal G_{\text{\swirlarrow}}$}
-\author{Omar Iskandarani}
-\date{\today}
-
 \begin{document}
-\maketitle
+	\title{\papertitle}
+	\author{Omar Iskandarani}
+	\affiliation{Independent Researcher, Groningen, The Netherlands}
+	\thanks{ORCID: 0009-0006-1686-3961, DOI: \paperdoi, Version: \paperversion}
+	\date{\today}
 
 \begin{abstract}
-We derive, from the Swirl--String Theory (SST) Canon, a rotating-frame unification where centrifugal and gravitational (swirl) effects merge into a single source term modifying Faraday's law in matter. The key objects are the swirl (vortex-line) areal density $\bm{\varrho}_\textrm{\swirlarrow}$ and a swirl-induced electromotive source $\mathbf b_{\text{\swirlarrow}}$ in the curl equation for $\mathbf E$. We prove the canonical relation:
-\[
-   \nabla\times\mathbf E = -\,\partial_t\mathbf B - \mathbf b_{\text{\swirlarrow}}, \qquad
-   \mathbf b_{\text{\swirlarrow}} = \mathcal G_{\text{\swirlarrow}}\,\partial_t\bm{\varrho}_{\text{\swirlarrow}}
-\]
+We derive, from the Swirl--String Theory (SST) Canon, a rotating-frame unification where centrifugal and gravitational (swirl) effects merge into a single source term modifying Faraday's law in matter. The key objects are the swirl (vortex-line) areal density $\bm{\varrho}_{\text{\swirlarrow}}$ and a swirl-induced electromotive source $\mathbf b_{\text{\swirlarrow}}$ in the curl equation for $\mathbf E$. We prove the canonical relation:
+\( \nabla\times\mathbf E = -\,\partial_t\mathbf B - \mathbf b_{\text{\swirlarrow}}, \qquad
+   \mathbf b_{\text{\swirlarrow}} = \mathcal G_{\text{\swirlarrow}}\,\partial_t\bm{\varrho}_{\text{\swirlarrow}} \)
 where $\mathcal G_{\text{\swirlarrow}}$ is a material/topological transduction constant. Using SST electron logic, circulation quantization, and a flux-pumping pillbox argument, we show $\mathcal G_{\text{\swirlarrow}}$ is quantized in Weber units and, under minimal assumptions, is set by a single-flux normalization $\mathcal G_{\text{\swirlarrow}}\simeq \Phi_\star$ with $\Phi_\star$ a flux quantum (\emph{a priori} $h/e$; in superconductors $h/2e$)~\cite{Aharonov1959,Tinkham2004,Onsager1949,Feynman1955}. We provide a rotating-frame derivation, dimensional checks, and experimental predictions (EMF spikes at vortex nucleation during plate compression; integrated EMF $\simeq \Phi_\star \Delta N$).
 \end{abstract}
-
+\maketitle
 \section{Canonical objects and rotating foliation}
     SST adopts absolute time $t$ and Euclidean space on leaves $\Sigma_t$, with a preferred congruence $u^\mu$ orthogonal to $\Sigma_t$. The Canon’s chronos--Kelvin invariant enforces conservation of circulation at fixed topology,
     \begin{equation}

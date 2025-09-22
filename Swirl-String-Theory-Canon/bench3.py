@@ -90,7 +90,7 @@ plt.imshow(np.log10(rhoE_mip + 1e-300), origin='lower', extent=extent, aspect='e
 plt.xlabel('x [m]'); plt.ylabel('y [m]')
 plt.title('log10 ρ_E MIP(x,y) — T(2,3)')
 plt.colorbar(label='log10(ρ_E [J/m^3])')
-f1 = "T2_3_rhoE_log10_MIP.png"
+f1 = "figures/T2_3_rhoE_log10_MIP.png"
 plt.tight_layout(); plt.savefig(f1); plt.close()
 
 St_abs = np.sqrt(np.maximum(0.0, 1.0 - rhoE_mip/ rhoE_abs_cap))
@@ -99,7 +99,7 @@ plt.imshow(St_abs, origin='lower', extent=extent, aspect='equal', vmin=0.0, vmax
 plt.xlabel('x [m]'); plt.ylabel('y [m]')
 plt.title('Swirl‑Clock S_t (absolute cap) — T(2,3)')
 plt.colorbar(label='S_t')
-f2 = "T2_3_SwirlClock_abs.png"
+f2 = "figures/T2_3_SwirlClock_abs.png"
 plt.tight_layout(); plt.savefig(f2); plt.close()
 
 rhoE_ref = np.percentile(rhoE_mip, 99.0)
@@ -111,7 +111,7 @@ plt.imshow(St_norm, origin='lower', extent=extent, aspect='equal', vmin=0.0, vma
 plt.xlabel('x [m]'); plt.ylabel('y [m]')
 plt.title('Swirl‑Clock S_t (norm, MIP) — T(2,3)')
 plt.colorbar(label='S_t (normalized)')
-f3 = "T2_3_SwirlClock_norm_MIP.png"
+f3 = "figures/T2_3_SwirlClock_norm_MIP.png"
 plt.tight_layout(); plt.savefig(f3); plt.close()
 
 print(f"Created:\n{f1}\n{f2}\n{f3}")
