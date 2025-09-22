@@ -29,6 +29,7 @@
 \usepackage{lmodern}
 \usepackage{booktabs}
 \usepackage[utf8]{inputenc}
+\usepackage[caption=false]{subfig} % REVTeX-compatible
 
 % ===== Gauge sector macros =====
 \renewcommand{\Tr}{\mathrm{Tr}}
@@ -116,7 +117,7 @@
 }
 
 \usepackage{siunitx}
-
+\AtBeginDocument{\RenewCommandCopy\qty\SI}
 
 % Styling helpers
 \tikzset{
@@ -134,17 +135,17 @@
 
 % ------- Shared styles (from your preamble) -------
 \tikzset{
-    knot diagram/every strand/.append style={ultra thick, black},
-%    every path/.style={black,line width=2pt},
-%    every node/.style={transform shape,knot crossing,inner sep=1.5pt},
-%    every knot/.style={line cap=round,line join=round,very thick},
-%    strand/.style={line cap=round,line join=round,line width=3pt,draw=black},
-%    over/.style={preaction={draw=white,line width=6.5pt}},
-%    sst/ring A/.style={draw=black, line width=3pt},
-%    sst/ring B/.style={draw=black,  line width=3pt},
-%    sst/ring C/.style={draw=black, line width=3pt},
+    knot diagram/every strand/.append style={
+        line cap=round,
+        line join=round,
+        ultra thick,
+        red
+    },
+    every knot/.style={line cap=round,line join=round,very thick},
+    strand/.style={line cap=round,line join=round,line width=3pt,draw=black},
+    over/.style={preaction={draw=white,line width=6.5pt}},
+% DO NOT set a global "every path" here; it breaks internal clip paths.
 }
-
 % ------- Guides toggle -------
 \newif\ifsstguides
 \sstguidesfalse
@@ -185,176 +186,157 @@ This quantization is expressed by the Swirl Clock \(\SwirlClock\), and its persi
 % KNOT LIBRARY
 % ====================================================================
 
-\begin{table}[htbp]
-\centering
-\begin{tabular}{|ll|}
-\toprule
 
-% ====================================================================
-% 6_1: Down Quarck Stevedore
-% Usage: \SSTdown
-% ====================================================================
-
-        \begin{tikzpicture}[use Hobby shortcut]
-        \coordinate (P1)  at ( 0,  2);
-        \coordinate (P2)  at (-2,  2);
-        \coordinate (P3)  at (-1.5, -1);
-        \coordinate (P4)  at ( 0.5, -2);
-        \coordinate (P5)  at (-1.5,-2);
-        \coordinate (P6)  at (-2.5,-0.5);
-        \coordinate (P7)  at (-2, 1);
-        \coordinate (P8)  at ( 0,  3);
-        \coordinate (P9)  at ( 2, 1);
-        \coordinate (P10) at ( 2.5,-0.5);
-        \coordinate (P11) at ( 1.5,-2);
-        \coordinate (P12) at (-0.5, -2);
-        \coordinate (P13) at ( 1.5, -1);
-        \coordinate (P14) at ( 2,  2);
-        \coordinate (P15) at ( 0,  2); % = P1
-
-        \begin{knot}[
-            consider self intersections,
-            clip width=5pt, clip radius=3pt,
-            ignore endpoint intersections=false,
-            flip crossing/.list={2,4,6,8,10,12}
-        % draft mode=crossings % uncomment to see numbers
-        ]
-        \strand
-        ([closed] P1)..(P2)..(P3)..(P4)..(P5)..(P6)..(P7)..(P8)%
-        ..(P9)..(P10)..(P11)..(P12)..(P13)..(P14)..(P15);
-        \end{knot}
-        \SSTGuidesPoints{P}{15}
-        \end{tikzpicture}
-
-&
-
-
-
-% ====================================================================
-% 5_2: Up Quark
-% Usage: \SSTup
-% ====================================================================
-
-\begin{tikzpicture}[use Hobby shortcut]
-\coordinate (P1) at (2, -1.5);
-\coordinate (P2) at (1.5, 1);
-\coordinate (P3) at (0, 2);
-\coordinate (P4) at (-2, 1);
-\coordinate (P5) at (-1, -1.5);
-\coordinate (P6) at (0.5, -2);
-\coordinate (P7) at (-1.25, -2.25);
-\coordinate (P8) at (-2, -1.5);
-\coordinate (P9) at (-1.5, 1);
-\coordinate (P10) at (0, 2);
-\coordinate (P11) at (2, 1);
-\coordinate (P12) at (1, -1.5);
-\coordinate (P13) at (-0.5, -2);
-\coordinate (P14) at (1.25, -2.25);
-\coordinate (P15) at (2, -1.5); % = P1
-
-\begin{knot}[
-    consider self intersections,
-    clip width=5pt, clip radius=3pt,
-    ignore endpoint intersections=false,
-    flip crossing/.list={2,4,6,8,10,12,14,16,18}
-% draft mode=crossings
-]
-\strand
-([closed] P1)..(P2)..(P3)..(P4)..(P5)..(P6)..(P7)..(P8)..(P9)..(P10)..(P11)..(P12)..(P13)..(P14)..(P15);
-\end{knot}
-\SSTGuidesPoints{P}{15}
-\end{tikzpicture}
-
-
-
-\\
-\bottomrule
-\end{tabular}
-\end{table}
 
 \section{Chiral Swirling Knots and Central Holes}
     Consider a chiral knot $K$ embedded in $\mathbb{R}^3$, such as:
-    \[
-        3_1 \ (\text{trefoil}), \quad
-        5_1 \ (\text{cinquefoil torus}), \quad
-        5_2 \ (\text{cinquefoil twist}), \quad
-        6_1 \ (\text{stevedore}).
-    \]
+
+
+
+
+        \begin{figure}[t]
+        \centering
+        \subfloat[$3_1$ (trefoil)\label{fig:3-1}]{
+            \includegraphics[width=0.22\linewidth]{3_1.png}}
+        \hfill
+        \subfloat[$5_1$ (cinquefoil)\label{fig:5-1}]{
+            \includegraphics[width=0.22\linewidth]{5_1.png}}
+        \hfill
+        \subfloat[$5_2$ (cinquefoil twist)\label{fig:5-2}]{
+            \includegraphics[width=0.22\linewidth]{5_2.png}}
+        \hfill
+        \subfloat[$6_1$ (stevedore)\label{fig:6-1}]{
+            \includegraphics[width=0.22\linewidth]{6_1.png}}
+        \caption{Canonical knot gallery.}
+        \label{fig:knot-gallery}
+        \end{figure}
+
+
+
+
+
     Each knot can be parametrized on a torus with major radius $R$ and minor radius $r$.
     The core tube of radius $r_c$ supports a tangential swirl velocity $\vswirl$, defining the \emph{Swirl Clock} $\SwirlClock$.
 
     A defining feature is that all these knots possess a \emph{central hole} threaded by a straight axis (taken as the $z$-axis).
     This axis is the ``fabric line'' of flat space: it is the singularity in the analytic swirl potential.
 
-
 % ============================
-% Figure 1: Trefoil + central axis + circulation loops
+% Figure: Trefoil + central axis + circulation loops (clean, layered)
 % ============================
-\begin{figure}[t]
-\centering
-\begin{tikzpicture}[scale=0.80]
-    % Parameters (schematic torus cross-section)
-\def\R{3.2}   % major radius (to center of tube annulus)
-\def\r{1.1}   % tube half-width in the drawing (annulus thickness/2)
-\def\Rin{\R-\r}
-\def\Rout{\R+\r}
+        \begin{figure}[t]
+        \centering
+% Preamble requirement (once per document):
+% \usetikzlibrary{decorations.markings}
 
-% Coordinate axes (x-y plane view)
-\draw[->,axisline] (-0.3,0) -- (6.8,0) node[below right] {$x$};
-\draw[->,axisline] (0,-3.2) -- (0,3.2) node[left] {$y$};
+        \begin{tikzpicture}[scale=0.90, line cap=round, line join=round]
+% ------------------------
+% Parameters
+% ------------------------
+        \def\R{3.20}      % major radius (to center of tube)
+        \def\rtube{0.95}  % tube radius (for planar projection amplitude)
+        \def\Rin{\R-\rtube}
+        \def\Rout{\R+\rtube}
 
-% Central rotational axis (z-axis comes out-of-plane at (0,0))
-\fill[black] (0,0) circle(2pt);
-\node[below left] at (0,0) {central axis ($z$)};
+% ------------------------
+% Styles
+% ------------------------
+        \tikzset{
+            axisline/.style={->, line width=0.6pt, black!70},
+            annulusfill/.style={fill=gray!10, even odd rule},
+            annulusline/.style={draw=gray!55, line width=0.6pt},
+            corecircle/.style={draw=black!70, line width=0.8pt},
+            outercircle/.style={draw=black!60, line width=0.8pt, dash pattern=on 3pt off 2pt},
+            labelbox/.style={fill=white, draw=black!20, rounded corners=2pt, inner sep=3pt},
+            knotunder/.style={draw=blue!45!black, line width=1.4pt},
+            knotover/.style={
+                draw=blue!80!black, line width=1.4pt,
+                preaction={draw=white, line width=3.2pt, line cap=round}
+            },
+            knotarrows/.style={
+                postaction={decorate},
+                decoration={
+                    markings,
+                    mark=at position 0.18 with {\arrow{Latex}},
+                    mark=at position 0.52 with {\arrow{Latex}},
+                    mark=at position 0.86 with {\arrow{Latex}}
+                }
+            }
+        }
 
-% Annulus representing the torus "core circle" band (projection)
-\draw[thick, gray!50] (0,0) circle (\Rin);
-\draw[thick, gray!50] (0,0) circle (\Rout);
-\node[labelbox,gray!50!black] at ({\R},-2.2) {torus annulus $[R-r,\,R+r]$};
+% ------------------------
+% Axes (x-y plane view)
+% ------------------------
+        \draw[axisline] (-0.3,0) -- (6.8,0) node[below right] {$x$};
+        \draw[axisline] (0,-3.6) -- (0,3.6) node[left] {$y$};
 
-% Circulation test loops (z=0 plane); inside annulus => plateau q=3
-\foreach \RR in {2.1,2.6,3.2} {
-    \draw[corecircle] (0,0) circle (\RR);
-}
-\node[labelbox] at (2.1,1.2) {$\Gamma \approx -3\,\kappa$};
-\node[labelbox] at (2.6,-1.2) {$\Gamma \approx -3\,\kappa$};
-\node[labelbox] at (3.2,1.2) {$\Gamma \approx -3\,\kappa$};
+% Central rotational axis marker (z comes out of plane at origin)
+        \fill[black] (0,0) circle(2pt);
+        \node[below left] at (0,0) {\small central axis ($z$)};
 
-% Outside loop: ~0
-\draw[corecircle] (0,0) circle (4.4);
-\node[labelbox] at (4.4,-1.2) {$\Gamma \approx 0$};
+% ------------------------
+% Torus annulus (projection band)
+% ------------------------
+        \fill[annulusfill] (0,0) circle (\Rout) (0,0) circle (\Rin);
+        \draw[annulusline] (0,0) circle (\Rin);
+        \draw[annulusline] (0,0) circle (\Rout);
+        \node[labelbox, align=left] at (\R,-2.35) {\footnotesize torus annulus $[R-\!r,\,R+\!r]$};
 
-% Schematic trefoil projection (simple stylized 3-lobe curve around core circle)
-\begin{scope}
-\draw[knotline]
-plot[smooth cycle, tension=0.8]
-coordinates {
-    ({\R},0.0)
-    ({\R-0.9},0.9)
-    ({\R-0.1},1.6)
-    ({\R+0.9},0.8)
-    ({\R+0.6},-0.8)
-    ({\R-0.4},-1.4)
-};
-% swirl direction arrows along the knot
-\foreach \ang/\rad in {20/0.4,150/0.4,280/0.4}{
-    \draw[swirlarrow, blue!65] ({\R+cos(\ang)*1.0},{sin(\ang)*1.0}) -- ++({cos(\ang+25)*\rad},{sin(\ang+25)*\rad});
-}
-\end{scope}
+% ------------------------
+% Circulation test loops in z=0 plane
+% ------------------------
+        \foreach \RR in {2.10, 2.60, 3.20} {
+            \draw[corecircle] (0,0) circle (\RR);
+        }
+        \node[labelbox] at (2.10, 1.25) {\(\Gamma \approx -3\,\kappa\)};
+        \node[labelbox] at (2.60,-1.25) {\(\Gamma \approx -3\,\kappa\)};
+        \node[labelbox] at (3.20, 1.25) {\(\Gamma \approx -3\,\kappa\)};
 
-% Caption annotations
-\node[align=left, labelbox] at (5.9,2.5) {%
-    \small Trefoil $3_1$ (\emph{schematic})\\
-    meridional winding $q=3$\\
-    $\Rightarrow\ \Gamma=\mathrm{Lk}\cdot\kappa=-3\,\kappa$
-};
-\end{tikzpicture}
-\caption{Trefoil knot with central axis and circulation loops in the $z{=}0$ plane.
-Loops whose spanning disk intersects the filament within the torus annulus measure a constant plateau $\Gamma=\mathrm{Lk}\cdot\kappa=\pm 3\,\kappa$ (sign by orientation).
-Loops outside the annulus do not enclose the filament and give $\Gamma\approx 0$.}
-\label{fig:trefoil_axis_plateau}
-\end{figure}
+% Outside loop ~ 0
+        \draw[outercircle] (0,0) circle (4.6);
+        \node[labelbox] at (4.6,-1.25) {\(\Gamma \approx 0\)};
 
+% ------------------------
+% Trefoil T(2,3) projection on torus: parametric planar curve
+% x(θ) = (R + r cos(3θ)) cos θ
+% y(θ) = (R + r cos(3θ)) sin θ
+% Over/under decided by sign of z(θ) = r sin(3θ):
+%   sin(3θ) > 0  => "over" segments
+%   sin(3θ) < 0  => "under" segments
+% We split [0, 2π] at θ = k·π/3.
+% ------------------------
+% UNDER segments first (drawn behind):
+        \draw[knotunder, samples=300, domain={60}:{120}, smooth, variable=\t]
+        plot ({( \R + \rtube*cos(3*\t) )*cos(\t)}, {( \R + \rtube*cos(3*\t) )*sin(\t)});
+        \draw[knotunder, samples=300, domain={180}:{240}, smooth, variable=\t]
+        plot ({( \R + \rtube*cos(3*\t) )*cos(\t)}, {( \R + \rtube*cos(3*\t) )*sin(\t)});
+        \draw[knotunder, samples=300, domain={300}:{360}, smooth, variable=\t]
+        plot ({( \R + \rtube*cos(3*\t) )*cos(\t)}, {( \R + \rtube*cos(3*\t) )*sin(\t)});
+
+% OVER segments (on top):
+        \draw[knotover, knotarrows, samples=300, domain={0}:{60}, smooth, variable=\t]
+        plot ({( \R + \rtube*cos(3*\t) )*cos(\t)}, {( \R + \rtube*cos(3*\t) )*sin(\t)});
+        \draw[knotover, knotarrows, samples=300, domain={120}:{180}, smooth, variable=\t]
+        plot ({( \R + \rtube*cos(3*\t) )*cos(\t)}, {( \R + \rtube*cos(3*\t) )*sin(\t)});
+        \draw[knotover, knotarrows, samples=300, domain={240}:{300}, smooth, variable=\t]
+        plot ({( \R + \rtube*cos(3*\t) )*cos(\t)}, {( \R + \rtube*cos(3*\t) )*sin(\t)});
+
+
+% ------------------------
+% Caption note inside canvas
+% ------------------------
+        \node[align=left, labelbox, anchor=south east] at (6.6,3.4) {\footnotesize
+        Trefoil \(3_1\) (torus-knot projection)\\
+        meridional winding \(q=3\)\\
+        \(\Rightarrow\ \Gamma=\mathrm{Lk}\cdot\kappa=\pm 3\,\kappa\)
+        };
+        \end{tikzpicture}
+
+        \caption{Trefoil knot with central axis and circulation loops in the \(z{=}0\) plane.
+        Loops whose spanning disk intersects the filament within the torus annulus measure a plateau \(\Gamma=\mathrm{Lk}\cdot\kappa=\pm 3\,\kappa\) (sign by orientation).
+        Loops outside the annulus do not enclose the filament and give \(\Gamma\approx 0\).}
+        \label{fig:trefoil_axis_plateau_clean}
+        \end{figure}
 
 
 
@@ -385,56 +367,77 @@ Loops outside the annulus do not enclose the filament and give $\Gamma\approx 0$
 
 
 % ============================
-% Figure 2: Baryon composite tube (Y-junction -> single tube)
+% Figure 2 (rotated): Baryon composite tube merging vertically on the z-axis
 % ============================
-\begin{figure}[t]
-\centering
-\begin{tikzpicture}[scale=1.0]
-    % Central axis
-\draw[axisline] (0,-2.2) -- (0,2.2);
-\node[left] at (0,2.2) {$z$};
+        \begin{figure}[t]
+        \centering
+        \begin{tikzpicture}[scale=1.0, line cap=round, line join=round]
 
-% Three incoming quark tubes (left side), colored
-\draw[tube, red!70] (-5, 1.4) .. controls + (1,0) and +(-1,0.5) .. (-2, 0.6);
-\draw[tube, green!70!black] (-5, 0.0) .. controls + (1,0) and +(-1,0.0) .. (-2, 0.0);
-\draw[tube, blue!70] (-5,-1.4) .. controls + (1,0) and +(-1,-0.5) .. (-2,-0.6);
+% ---------- Styles ----------
+        \tikzset{
+            axisline/.style={draw=black!70, line width=0.6pt},
+            tube/.style={draw, line width=2.2pt, rounded corners=2pt},
+            vline/.style={draw, line width=1.2pt},
+            labelbox/.style={fill=white, draw=black!20, rounded corners=2pt, inner sep=3pt}
+        }
 
-% Y-junction region
-\draw[tube, gray!30,line cap=round] (-2,0.6) -- (-1.2,0.3);
-\draw[tube, gray!30,line cap=round] (-2,0.0) -- (-1.2,0.0);
-\draw[tube, gray!30,line cap=round] (-2,-0.6) -- (-1.2,-0.3);
-
-% Merge into single composite tube (right side)
-\draw[tube, black!80] (-1.2,0.0) .. controls +(0.8,0) and +(-0.8,0) .. (3.4,0.0);
-
-% Swirl direction arrows on tubes
-\foreach \x/\y in {-4.3/1.30, -3.6/1.00, -2.9/0.75}{
-    \draw[vline, red!70] (\x,\y) -- ++(0.7,0.05);
-}
-\foreach \x/\y in {-4.3/0.00, -3.6/0.00, -2.9/0.00}{
-    \draw[vline, green!70!black] (\x,\y) -- ++(0.7,0.00);
-}
-\foreach \x/\y in {-4.3/-1.30, -3.6/-1.00, -2.9/-0.75}{
-    \draw[vline, blue!70] (\x,\y) -- ++(0.7,-0.05);
-}
-\foreach \x in {-0.8,0.2,1.2,2.2}{
-    \draw[vline, black!80] (\x,0.0) -- ++(0.8,0.0);
-}
-
-% Labels
-\node[align=left, labelbox] at (-4.6,2.0) {Three quark tubes\\[-2pt] $\Gamma_1=\Gamma_2=\Gamma_3=\kappa$};
-\node[align=left, labelbox] at (2.3,0.9) {Composite tube\\[-2pt] $\Gamma_{\text{baryon}}=3\kappa$\\[-2pt] $v_{\theta,\mathrm{eff}}=3v_c$};
-\node[align=left, labelbox] at (0.5,-1.7) {Additivity (Kelvin): $\ \Gamma=\sum_i \Gamma_i$};
+% ---------- Axes ----------
+        \draw[axisline, ->] (0,-5.2) -- (0,4.2) node[left] {$z$};
+        \draw[axisline, ->] (-4.2,0) -- (4.2,0) node[below right] {$x$};
 
 % Central axis marker
-\fill (0,0) circle (2pt);
-\node[below right] at (0,0) {central axis};
-\end{tikzpicture}
-\caption{Baryon core as a \emph{composite swirl tube}: three quark tubes (left) merge via a Y-junction into a single tube (right).
-Circulation adds linearly, $\Gamma_{\rm baryon}=3\kappa$, so the effective tangential swirl is $v_{\theta,\mathrm{eff}} = 3 v_c$ while the core radius remains $\approx r_c$.
-The composite tube anchors to the same central axis, preserving the long-distance circulation residue.}
-\label{fig:baryon_composite_tube}
-\end{figure}
+        \fill (0,0) circle (2pt);
+        \node[below right] at (0,0) {\small central axis};
+
+% ---------- Three incoming quark tubes (from -z, merging to z-axis) ----------
+% Left (blue)
+        \draw[tube, blue!70]
+        (-1.8,-5.0) .. controls + (0,2.1) and +(-0.6,-0.3) .. (-0.8,-1.2);
+% Center (green)
+        \draw[tube, green!70!black]
+        (0.0,-5.0) .. controls + (0,2.3) and +(-0.2,-0.3) .. (0.0,-1.2);
+% Right (red)
+        \draw[tube, red!70]
+        (1.8,-5.0) .. controls + (0,2.1) and +(0.6,-0.3) .. (0.8,-1.2);
+
+% ---------- Y-junction region into the central tube ----------
+        \draw[tube, gray!35] (-0.8,-1.2) -- (-0.25,-0.6);
+        \draw[tube, gray!35] ( 0.0,-1.2) -- ( 0.0,-0.6);
+        \draw[tube, gray!35] ( 0.8,-1.2) -- ( 0.25,-0.6);
+
+% ---------- Composite tube along +z on the central axis ----------
+        \draw[tube, black!80]
+        (0.0,-0.6) .. controls +(0,0.9) and +(0,-0.9) .. (0.0,3.8);
+
+% ---------- Swirl/flow direction tick marks ----------
+% Incoming (upwards along +z)
+        \foreach \x/\z in {-1.5/-4.2, -1.2/-3.2, -1.0/-2.2}{
+            \draw[vline, blue!70] (\x,\z) -- ++(0,0.6);
+        }
+        \foreach \x/\z in {0.0/-4.4, 0.0/-3.4, 0.0/-2.4}{
+            \draw[vline, green!70!black] (\x,\z) -- ++(0,0.6);
+        }
+        \foreach \x/\z in {1.5/-4.2, 1.2/-3.2, 1.0/-2.2}{
+            \draw[vline, red!70] (\x,\z) -- ++(0,0.6);
+        }
+% Composite (upwards along +z)
+        \foreach \z in {-0.2, 0.8, 1.8, 2.8}{
+            \draw[vline, black!80] (0.0,\z) -- ++(0,0.8);
+        }
+
+% ---------- Labels ----------
+        \node[align=left, labelbox, anchor=west] at (-3.9,-4.6) {Three quark tubes\\[-2pt]
+        \(\Gamma_1=\Gamma_2=\Gamma_3=\kappa\)};
+        \node[align=left, labelbox, anchor=west] at (0.2,2.8) {Composite tube on \(z\)-axis\\[-2pt]
+        \(\Gamma_{\text{baryon}}=3\kappa\)\\[-2pt]
+        \(v_{\theta,\mathrm{eff}}=3\,v_c\)};
+        \node[align=left, labelbox, anchor=east] at (3.9,-3.9) {Additivity (Kelvin): \(\ \Gamma=\sum_i \Gamma_i\)};
+
+        \end{tikzpicture}
+        \caption{Baryon core as a \emph{composite swirl tube} merging vertically on the \(z\)-axis. Three quark tubes (bottom) join via a Y-junction into a single tube along \(+z\). Circulation adds linearly, \(\Gamma_{\rm baryon}=3\kappa\), so the effective tangential swirl is \(v_{\theta,\mathrm{eff}} = 3 v_c\) while the core radius remains \(\approx r_c\).}
+        \label{fig:baryon_composite_tube}
+        \end{figure}
+
 
 
     Each quark knot $i$ has circulation $\Gamma_i = \kappa$ around the central axis (Fig.~\ref{fig:baryon_composite_tube}).
@@ -539,7 +542,7 @@ The composite tube anchors to the same central axis, preserving the long-distanc
 
 \caption{Four identical-scale, top-down panels. The gray tilted annulus hints at the torus where the trefoil lives (donut seen at an angle).
 The blue curve is a schematic trefoil; dashed parts are “behind” (3D cue).
-The green **test loops** (b,c) lie \emph{within} the torus band and measure the plateau \(\Gamma=\mathrm{Lk}\cdot\kappa=\pm 3\,\kappa\) (sign by orientation).
+The green \textbf{test loops} (b,c) lie \emph{within} the torus band and measure the plateau \(\Gamma=\mathrm{Lk}\cdot\kappa=\pm 3\,\kappa\) (sign by orientation).
 Red loops (a,d) do not link the filament \(\Rightarrow \Gamma\approx 0\).}
 \label{fig:fourpanel-3D-cartoon}
 \end{figure}

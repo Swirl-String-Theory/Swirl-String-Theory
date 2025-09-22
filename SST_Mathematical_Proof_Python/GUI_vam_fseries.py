@@ -69,26 +69,71 @@ def load_matrix_fseries(path):
     arr[~np.isfinite(arr)] = 0.0
     return arr
 
+def load_fseries_best_block(path):
+    """Parse .fseries into blocks separated by '%' or blank lines.
+    Keep only the block with the most rows. Each row must have 6 floats.
+    """
+    blocks = []
+    cur = []
+    def flush():
+        nonlocal cur, blocks
+        if cur:
+            arr = np.asarray(cur, dtype=float)
+            if arr.ndim == 2 and arr.shape[1] == 6 and np.any(np.abs(arr) > 0):
+                blocks.append(arr)
+            cur = []
+
+    with open(path, "r", encoding="utf-8", errors="ignore") as f:
+        for raw in f:
+            ln = raw.strip()
+            if not ln or ln.startswith('%'):
+                flush()
+                continue
+            parts = ln.replace(",", " ").split()
+            if len(parts) != 6:
+                # ignore non-6-length rows entirely (do NOT pad with zeros)
+                continue
+            try:
+                row = [float(p) for p in parts]
+            except ValueError:
+                continue
+            cur.append(row)
+    flush()
+
+    if not blocks:
+        return np.zeros((0, 6), dtype=float)
+
+    # Choose the densest block (most harmonics)
+    return max(blocks, key=lambda a: a.shape[0])
+
+
 def eval_series(coeffs, t):
-    """Return r(t) and r'(t) from Fourier coefficients.
-    coeffs shape: (N,6) columns [Ax, Bx, Ay, By, Az, Bz]; nth row -> harmonic n.
+    """Return r(t) and r'(t) from Fourier coefficients (1-based harmonics).
+    coeffs shape: (N,6) with columns [Ax, Bx, Ay, By, Az, Bz]; row j -> harmonic n=j+1.
     """
     if coeffs.size == 0:
         return np.zeros((t.size,3)), np.zeros((t.size,3))
+
     N = coeffs.shape[0]
-    n = np.arange(N).reshape(-1, 1)
+    n = np.arange(1, N+1, dtype=float).reshape(-1, 1)   # 1..N
     nt = n * t.reshape(1, -1)
     cos_nt = np.cos(nt); sin_nt = np.sin(nt)
-    Ax, Bx, Ay, By, Az, Bz = [coeffs[:,i].reshape(-1,1) for i in range(6)]
+
+    Ax, Bx, Ay, By, Az, Bz = [coeffs[:, i].reshape(-1, 1) for i in range(6)]
+
     x = (Ax * cos_nt + Bx * sin_nt).sum(axis=0)
     y = (Ay * cos_nt + By * sin_nt).sum(axis=0)
     z = (Az * cos_nt + Bz * sin_nt).sum(axis=0)
-    r = np.stack([x,y,z], axis=1)
+
+    # derivatives: d/dt cos(n t) = -n sin(n t), d/dt sin(n t) =  n cos(n t)
     x_t = ((-n * Ax) * sin_nt + (n * Bx) * cos_nt).sum(axis=0)
     y_t = ((-n * Ay) * sin_nt + (n * By) * cos_nt).sum(axis=0)
     z_t = ((-n * Az) * sin_nt + (n * Bz) * cos_nt).sum(axis=0)
-    r_t = np.stack([x_t,y_t,z_t], axis=1)
+
+    r   = np.stack([x, y, z], axis=1)
+    r_t = np.stack([x_t, y_t, z_t], axis=1)
     return r, r_t
+
 
 def resample_closed_polyline(points, M):
     """Resample a closed polyline to M points, uniformly in arclength."""
@@ -294,7 +339,7 @@ def run_batch(root_dir, out_csv, scale=1.0, xi=1.0, b0=3.0, samples=1500,
         # Evaluate r(t), r'(t)
         if ext == ".fseries":
             t = np.linspace(0, 2*math.pi, samples, endpoint=False)
-            coeffs = load_matrix_fseries(path)
+            coeffs = load_fseries_best_block(path)
             r, r_t = eval_series(coeffs, t)
             dt = 2*math.pi / samples
         elif ext == ".short":
@@ -422,7 +467,7 @@ def quick_preview_any(path, profile, b0=3.0, wr_tol=5e-3):
     ext = os.path.splitext(path)[1].lower()
     prof = profile
     if ext == ".fseries":
-        coeffs = load_matrix_fseries(path)
+        coeffs = load_fseries_best_block(path)
         if coeffs.size == 0:
             raise RuntimeError("Empty .fseries")
         t = np.linspace(0, 2*math.pi, prof["samples"], endpoint=False)
@@ -475,7 +520,7 @@ def quick_status(path):
     ext = os.path.splitext(path)[1].lower()
     try:
         if ext == ".fseries":
-            coeffs = load_matrix_fseries(path)
+            coeffs = load_fseries_best_block(path)
             if coeffs.size == 0:
                 return "empty_fseries"
             if not np.any(np.abs(coeffs) > 0):
@@ -530,7 +575,7 @@ class App(tk.Tk):
         self.resizable(True, True)
 
         # Defaults to knots\ under CWD
-        default_root = os.path.join(os.getcwd(), "knots")
+        default_root = os.path.join(os.getcwd(), "Knots_FourierSeries")
         default_out = os.path.join(default_root, "fseries_batch_results.csv")
         default_meta = os.path.join(default_root, "knot_meta.csv")
         default_emit = os.path.join(default_root, "knot_meta_skeleton.csv")

@@ -1,0 +1,330 @@
+%! Author = Omar Iskandarani
+%! Title = Swirl String Theory (SST) Canon v0.5
+%! Date = Sept 4, 2025
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.17155748
+
+\newcommand{\canonversion}{\textbf{v0.5.9}} % Semantic versioning
+\newcommand{\papertitle}{Swirl String Theory (SST) Canon \canonversion}
+\newcommand{\paperdoi}{10.5281/zenodo.17155748}
+
+%========================================================================================
+% PACKAGES AND DOCUMENT CONFIGURATION
+%========================================================================================
+\documentclass[10pt,reprint,aps,onecolumn,nofootinbib]{revtex4-2}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{bm}
+\usepackage{physics}
+\usepackage{microtype}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{booktabs}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\sisetup{per-mode=symbol,detect-all=true}
+
+% ===== Gauge sector macros =====
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\GsA}{G^a_{\mu\nu}}
+\newcommand{\WsI}{W^i_{\mu\nu}}
+\newcommand{\Bmn}{B_{\mu\nu}}
+
+% ===============================
+% Macros (canonicalized)
+% ===============================
+
+% swirl arrows (context-aware)
+\newcommand{\swirlarrow}{%
+    \mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}%
+    {\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}%
+    {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
+    {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
+}
+\newcommand{\swirlarrowcw}{%
+    \mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}%
+    {\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}%
+    {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}%
+    {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}%
+}
+
+% Canonical symbols
+\newcommand{\vswirl}{\mathbf{v}_{\swirlarrow}}
+\newcommand{\vswirlcw}{\mathbf{v}_{\swirlarrowcw}}
+\newcommand{\SwirlClock}{S_{(t)}^{\swirlarrow}}
+\newcommand{\SwirlClockcw}{S_{(t)}^{\swirlarrowcw}}
+\newcommand{\omegas}{\boldsymbol{\omega}_{\swirlarrow}}
+\newcommand{\vscore}{v_{\swirlarrow}}
+\newcommand{\vnorm}{\lVert \vswirl \rVert}
+\newcommand{\rhof}{\rho_{\!f}}
+\newcommand{\rhoE}{\rho_{\!E}}
+\newcommand{\rhom}{\rho_{\!m}}
+\newcommand{\rc}{r_c}
+\newcommand{\FmaxEM}{F_{\mathrm{EM}}^{\max}}
+\newcommand{\FmaxG}{F_{\mathrm{G}}^{\max}}
+\newcommand{\Lam}{\Lambda}
+\newcommand{\Om}{\Omega_{\swirlarrow}}
+\newcommand{\alpg}{\alpha_g}
+\newcommand{\omegaVec}{\boldsymbol{\omega}}
+\newcommand{\rhoF}{\rho_{\!f}}
+\newcommand{\rhoM}{\rho_{\!m}}
+\newcommand{\OmegaCore}{\Omega_{\mathrm{core}}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\core}{\mathrm{core}}
+\newcommand{\Vol}{\operatorname{Vol}}
+
+% Golden policy (hyperbolic declaration)
+\newcommand{\xig}{\operatorname{asinh}\!\left(\tfrac{1}{2}\right)}
+\newcommand{\phig}{\exp(\xig)}
+\newcommand{\phialg}{\bigl(1+\sqrt{5}\bigr)/2}
+\newcommand{\xigold}{\tfrac{3}{2}\,\xig}
+\newcommand{\GoldenDeclare}{%
+    \textbf{Golden (hyperbolic)}:\ \(\ln\phi=\xig\), hence \(\phi=\phig\).
+    \ \emph{(Algebraic form \(\phi=\phialg\) is equivalent.)}%
+}
+
+% ===== Canonical constants (SI; numeric macros for in-text checks) =====
+\newcommand{\vswirlval}{1.09384563\times 10^{6}\ \si{m.s^{-1}}}
+\newcommand{\rcval}{1.40897017\times 10^{-15}\ \si{m}}
+\newcommand{\rhofval}{7.0\times 10^{-7}\ \si{kg.m^{-3}}}
+\newcommand{\rhocoreval}{3.8934358266918687\times 10^{18}\ \si{kg.m^{-3}}}
+\newcommand{\cval}{2.99792458\times 10^{8}\ \si{m.s^{-1}}}
+\newcommand{\alphafsval}{7.2973525693\times 10^{-3}}
+
+\begin{document}
+
+\title{Cosmological Foundations in Swirl String Theory}
+\author{Omar Iskandarani}
+\affiliation{Independent Researcher, Groningen, The Netherlands}
+\thanks{ORCID: 0009-0006-1686-3961, DOI: \paperdoi}
+\date{\today}
+
+\begin{abstract}
+This Canon Cheat-Sheet condenses \emph{Swirl String Theory (SST)} for cosmology: definitions, constants, boxed master equations, and notational conventions. It emphasizes dimensional consistency, known-limit checks, and minimal assumptions.
+\end{abstract}
+
+\maketitle
+
+% =======================
+% Foundations
+% =======================
+\section*{Foundations}
+\begin{itemize}
+  \item \textbf{Arena:} Flat \( \mathbb{R}^3 \) with absolute (Chronos) time.
+  \item \textbf{Medium:} Homogeneous, incompressible swirl condensate of density \( \rhof \); circulation quantized in closed filaments (``swirl strings'').
+  \item \textbf{Gravity:} Emergent from swirl-pressure and clock-rate gradients; no curved spacetime.
+\end{itemize}
+
+% =======================
+% Cosmogony
+% =======================
+\section*{Swirl Cosmogony (Genesis via Knots)}
+\begin{itemize}
+  \item \textbf{Primordial:} Uniform, laminar state (topologically trivial).
+  \item \textbf{Instability:} Fluctuations/reconnections nucleate closed loops (unknots).
+  \item \textbf{Knot genesis:} Reconnection cascades stabilize nontrivial knots; topology protects excitation.
+  \item \textbf{Freeze-in:} Energy is inherited via line-length and local topology.
+  \item \textbf{Causal asymmetry:} Arrow of time measured by monotone growth of knot complexity and coherent volume fraction.
+  \item \textbf{Inflation-like era:} Burst of coherence and reconnection leads to exponential growth of coherent domains.
+  \item \textbf{Post-era:} Knots seed matter; coherence zones act as gravitational attractors.
+\end{itemize}
+
+% =======================
+% Swirl clock
+% =======================
+\section*{Swirl Clock, Time Dilation, and Redshift}
+Define the swirl-clock factor
+\[
+S_t \equiv \sqrt{1-\frac{\vnorm^2}{c^2}}\!,
+\qquad
+dt_{\mathrm{local}} = S_t\, dt_{\infty}.
+\]
+Cosmological redshift is interpreted as a clock-ratio:
+\[
+1+z \;=\; \frac{S_t^{-1}(\mathrm{emit})}{S_t^{-1}(\mathrm{obs})}
+\quad\text{(line-of-sight shear gives subleading corrections).}
+\]
+\emph{Analogy (age 10):} Clocks run slower near strong swirls; light leaving slow-clock regions looks redder, like a stretched spring.
+
+% =======================
+% Emergent gravity
+% =======================
+\section*{Emergent Gravity from Swirl Pressure}
+For axisymmetric swirl with azimuthal speed \(v_\theta(r)\), steady Euler balance gives
+\[
+\frac{1}{\rhof}\,\frac{dp_{\text{swirl}}}{dr} \;=\; \frac{v_\theta^2}{r},
+\]
+so an effective inward acceleration \(g_{\text{eff}}(r)=v_\theta^2/r\), approximating \(1/r^2\) attraction when \(v_\theta\propto r^{-1/2}\). % \cite{Batchelor1967,Saffman1992}
+
+% =======================
+% Vacuum/core energy scale + numeric
+% =======================
+\section*{Vacuum (Core) Energy Density Scale}
+Assuming the core carries the characteristic swirl speed \( \vnorm\approx \vscore \),
+\[
+u \;=\; \tfrac{1}{2}\,\rho_{\text{core}}\,\vnorm^2.
+\]
+\textbf{Numerical check (SI):}
+\[
+\rho_{\text{core}}=\rhocoreval,\quad \vnorm=\vswirlval
+\;\Rightarrow\;
+u \approx 2.329\times 10^{30}\ \si{J.m^{-3}}.
+\]
+
+% =======================
+% Mass law (dimensionally correct) + numeric scale
+% =======================
+\section*{Invariant Mass Law for Knotted Excitations (Canonical)}
+Let \(L_{\text{tot}}(K)\) be a \emph{dimensionless} ropelength of knot \(K\). The dimensionally correct SST mass law used in particle fits is
+\begin{equation}
+\boxed{\
+M(K)\;=\;\Big(\frac{4}{\alpha_{\mathrm{fs}}}\Big)\, b(K)^{-3/2}\,\phi^{-g(K)}\,n(K)^{-1/\phi}\;
+\frac{u\,\big(\pi\,\rc^{3}\,L_{\text{tot}}(K)\big)}{c^{2}}\
+}
+\label{eq:mass-law}
+\end{equation}
+with \(b\) (braid index proxy), \(g\) (genus proxy), \(n\) (component count), and \(\phi=\phig\) per the Golden policy.
+\paragraph*{Units check.} \(u[\si{J.m^{-3}}]\cdot(\pi \rc^3 L_{\text{tot}})[\si{m^3}]/c^2\to \si{kg}\).
+\paragraph*{Mass scale per unit \(L_{\text{tot}}\) (numerical).}
+\[
+\frac{u\,\pi\rc^3}{c^2}
+=
+\frac{(2.329\times 10^{30})\,[\si{J.m^{-3}}]\cdot \pi(1.40897\times 10^{-15}\ \si{m})^{3}}{(2.9979\times 10^{8}\ \si{m.s^{-1}})^{2}}
+\approx 2.28\times 10^{-31}\ \si{kg}.
+\]
+Including \(4/\alpha_{\mathrm{fs}}\approx 5.48\times 10^{2}\) sets the observed lepton/baryon scale once \(L_{\text{tot}}(e)\) is calibrated.
+
+% =======================
+% Particle classes
+% =======================
+\section*{Knot Topologies for Standard Particles}
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Designation & Representative knot & \(b\) & \(g\) & \(n\) \\
+\midrule
+Electron \(e^-\) & Trefoil (\(3_1\), torus) & 3 & 1 & 1 \\
+Muon \(\mu^-\) & Cinquefoil (\(5_1\), torus) & 5 & 2 & 1 \\
+Proton \(p\) & 3-component chiral compound & 3 & 2 & 3 \\
+Neutron \(n\) & as proton, different core strengths & 3 & 2 & 3 \\
+Photon \(\gamma\) & Unknot (closed loop) & 1 & 0 & 1 \\
+\bottomrule
+\end{tabular}
+\caption{SST classification parameters \((b,g,n)\) used in Eq.~\eqref{eq:mass-law}.}
+\label{tab:sst-classes}
+\end{table}
+
+\paragraph*{Proton–neutron split (internal geometry).}
+Let \(s_u\approx 2.828\), \(s_d\approx 3.164\) denote geometric swirl volumes (e.g., from hyperbolic data of candidate subknots \(5_2,6_1\)). With global scale \(2\pi^2\kappa_R\) (e.g., \(\kappa_R\!\approx\!2\)):
+\begin{align*}
+L_{\text{tot}}^{(p)} &= \lambda_b\,(2s_u+s_d)\,(2\pi^2\kappa_R),\\
+L_{\text{tot}}^{(n)} &= \lambda_b\,(s_u+2s_d)\,(2\pi^2\kappa_R),
+\end{align*}
+preserving \((b,g,n)\) while shifting masses via internal geometry.
+
+% =======================
+% Rosetta: Lambda-CDM dictionary
+% =======================
+\section*{SST \(\leftrightarrow\) \(\Lambda\)CDM: Minimal Dictionary}
+\begin{itemize}
+  \item \textbf{Effective Hubble rate:}
+  \(
+  1+z = S_t^{-1}(\mathrm{em})/S_t^{-1}(\mathrm{obs})
+  \Rightarrow
+  H_{\text{eff}}(t) \equiv \frac{d}{dt}\ln(1+z) = -\frac{d}{dt}\ln S_t.
+  \)
+  \item \textbf{Distances:} Use \(H_{\text{eff}}(z)\) in FRW distance integrals,
+  \(D_L(z)=(1+z)\int_0^z \frac{c\,dz'}{H_{\text{eff}}(z')}\),
+  with small corrections if \(S_t\) varies along the line of sight.
+  \item \textbf{BAO/CMB:} Coherence correlation length plays the role of a standard ruler; freeze-out of swirl modes maps to acoustic peaks.
+  \item \textbf{Growth:} Growth rate \(f\sigma_8\) encodes build-up of coherent domains under reconnection and shear of \(\vswirl\).
+\end{itemize}
+
+% =======================
+% Falsifiability
+% =======================
+\section*{Observational Consequences and Falsifiers}
+\begin{tcolorbox}[colback=white,colframe=black,title=Falsifiable predictions]
+\begin{itemize}
+  \item \textbf{SN\,Ia host dependence:} After standardization, Hubble residuals correlate with local density (voids vs. clusters) via \(\Delta S_t\).
+  \item \textbf{Strong-lens time delays:} Inferred \(H_0\) shifts with environmental \(S_t\); joint modeling predicts a sign/magnitude.
+  \item \textbf{Redshift drift (Sandage test):} \(\dot z=H_{\text{eff},0}-H_{\text{eff}}(z)/(1+z)\). SST curves differ if \(S_t\) evolves non-FRW-like.
+  \item \textbf{BAO AP anisotropy:} Directional \(S_t\) gradients generate Alcock–Paczyński distortions at \(10^{-3}\!-\!10^{-2}\).
+  \item \textbf{GW speed:} \(c_{\mathrm{GW}}=c\) (baseline \(c_{13}=0\)); persistent \(c_{\mathrm{GW}}\neq c\) falsifies this sector. % \cite{GW170817}
+\end{itemize}
+\end{tcolorbox}
+
+% =======================
+% Canonical constants table
+% =======================
+\section*{Canonical Constants (SI)}
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+Quantity & Symbol & Value \\
+\midrule
+Swirl core radius & \(\rc\) & \rcval \\
+Effective density & \(\rhof\) & \rhofval \\
+Core density & \(\rho_{\text{core}}\) & \rhocoreval \\
+Swirl speed (char.) & \(\vnorm\) & \vswirlval \\
+Speed of light & \(c\) & \cval \\
+Fine structure const. & \(\alpha_{\mathrm{fs}}\) & \alphafsval \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% =======================
+% Implementation notes
+% =======================
+\section*{Implementation Notes (Data Fits)}
+\begin{enumerate}
+  \item Calibrate \(L_{\text{tot}}(e)\) from \(M_e\) using Eq.~\eqref{eq:mass-law}.
+  \item Fix \(\lambda_b,\kappa_R\) on \((e,\mu,p)\); predict remaining leptons/hadrons and isotope splittings.
+  \item Infer \(H_{\text{eff}}(z)\) non-parametrically from SN\,Ia; compare with BAO ruler from coherence correlation length.
+  \item Cross-validate with time-delay lenses and CMB acoustic scale to bound line-of-sight variations in \(S_t\).
+\end{enumerate}
+
+% =======================
+% Bibliography notes (non-original ideas; copy into .bib)
+% =======================
+% @book{Batchelor1967,
+%   author = {Batchelor, G. K.},
+%   title = {An Introduction to Fluid Dynamics},
+%   publisher = {Cambridge Univ. Press},
+%   year = {1967}
+% }
+% @book{Saffman1992,
+%   author = {Saffman, Philip G.},
+%   title = {Vortex Dynamics},
+%   publisher = {Cambridge Univ. Press},
+%   year = {1992}
+% }
+% @article{Einstein1905,
+%   author = {Einstein, A.},
+%   title = {Zur Elektrodynamik bewegter K{\"o}rper},
+%   journal = {Annalen der Physik},
+%   year = {1905},
+%   volume = {17},
+%   pages = {891--921},
+%   doi = {10.1002/andp.19053221004}
+% }
+% @article{GW170817,
+%   author = {Abbott, B. P. and others (LIGO/Virgo)},
+%   title = {GW170817: Observation of Gravitational Waves from a Binary Neutron Star Inspiral},
+%   journal = {Phys. Rev. Lett.},
+%   year = {2017},
+%   volume = {119},
+%   pages = {161101},
+%   doi = {10.1103/PhysRevLett.119.161101}
+% }
+
+\end{document}

@@ -81,6 +81,7 @@
 \newcommand{\OmegaCore}{\Omega_{\mathrm{core}}}
 \newcommand{\bg}{\mathrm{bg}}
 \newcommand{\core}{\mathrm{core}}
+\newcommand{\Vol}{\operatorname{Vol}}   % now \Vol_{\!\mathbb{H}}(K) works
 
 % ===============================
 % Policy: the golden constant is only allowed via hyperbolic functions.
@@ -135,7 +136,7 @@
     \maketitle
 
     	\section*{Preface: Reader Pathways}
-	This document formalizes SST in a self-contained manner, but it is structured to accommodate different levels of reader expertise.
+	This document formalizes SST in a self-contained manner, but it is structured to accommodate different levels of reader expertise.\\
         \textbf{Beginner-level readers} are encouraged to focus on the physical descriptions and boxed highlights in the main text, skipping the more technical derivations (which are relegated to the appendices and side notes).\\
         \textbf{Expert readers} can delve into the detailed derivations and dimensional analyses in the appendices to verify consistency and connect SST formulas to classical limits.\\
         \textbf{Active researchers} should consult the formal axiomatic system section and appendices for the rigorous foundation, as well as the traceability tables and glossary that link each canonical statement to established physics or experimental context. Throughout the text, important equations, axioms, and theorems are presented in numbered, boxed form for quick reference. Pedagogical sidebars can be expanded in future versions to provide intuitive explanations, historical notes, or illustrative diagrams without interrupting the flow of the formal development.
@@ -170,11 +171,11 @@ When the information complexity $\mathcal{I}_{\mathrm{swirl}}$ exceeds the Guard
 the swirl condensate forms as an incompressible, inviscid medium on $\mathbb{R}^3$ with absolute time $t$.
 Primary constants lock in by resonance:
 \[
-\kappa = 2\pi r_c v_\circ,
+\kappa = 2\pi r_c \vnorm,
 \qquad
-\tau_{\mathrm{beat}} = \frac{2\pi r_c}{v_\circ},
+\tau_{\mathrm{beat}} = \frac{2\pi r_c}{\vnorm},
 \qquad
-\rho_{\!f} = \frac{\rho_{\!m} r_c}{v_\circ}\,\Omega
+\rho_{\!f} = \frac{\rho_{\!m} r_c}{\vnorm}\,\Omega
 \]
 marking the birth of physical time and the circulation quantum.
 \hfill (STC Stage 8)
@@ -196,7 +197,7 @@ Q(K) = T_3(K) + \frac{Y(K)}{2}
 with $Q$ the electric charge, $T_3$ weak isospin, and $Y$ hypercharge.
 Fermion masses arise as soliton energies:
 \[
-m_{K} = \rho_{\!f} v_\circ^{2}\, \Vol_{\!\mathbb{H}}(K)\,\phi^{-2k}
+m_{K} = \rho_{\!f} \vnorm^{2}\, \Vol_{\!\mathbb{H}}(K)\,\phi^{-2k}
 \]
 where $\Vol_{\!\mathbb{H}}(K)$ is the hyperbolic complement volume of $K$
 and $\phi^{-2k}$ encodes Golden-layer suppression.
@@ -225,22 +226,22 @@ F(r) \propto \frac{1}{r^{2}}
 and fixes $\pi$ geometrically.
 The entire condensate enters a global resonance, locking all constants of nature.
 
-\begin{tcolorbox}[title=Zero–Parameter Principle (Canonical),colback=blue!5!white,colframe=blue!75!black]
+\begin{tcolorbox}[title=Zero–Parameter Principle (Canonical),colframe=blue!75!black]
 \textbf{Statement (Axiom):}
 All dimensional constants of nature are determined by the condensate state, its circulation quantum,
 and the allowed topological sectors:
 \begin{aligned}
 \text{Primary Scale:}\qquad &
-\mathbf{v}_{\!\boldsymbol{\circlearrowleft}} \equiv v_\circ,
+\mathbf{v}_{\!\boldsymbol{\circlearrowleft}} \equiv \vnorm,
 \qquad
-\kappa = 2\pi r_c v_\circ \\[4pt]
+\kappa = 2\pi r_c \vnorm \\[4pt]
 \text{Effective Density:}\qquad &
-\rho_{\!f} = \frac{\rho_{\!m}\, r_c}{v_\circ}\, \Omega
+\rho_{\!f} = \frac{\rho_{\!m}\, r_c}{\vnorm}\, \Omega
 \qquad (\text{coarse-grain rule}) \\[4pt]
 \text{Mass Functional:}\qquad &
-m_K = \rho_{\!f} v_\circ^{2}\, \Vol_{\!\mathbb{H}}(K)\,\phi^{-2k} \\[4pt]
+m_K = \rho_{\!f} \vnorm^{2}\, \Vol_{\!\mathbb{H}}(K)\,\phi^{-2k} \\[4pt]
 \text{Gravitational Coupling:}\qquad &
-G_{\mathrm{swirl}} = \frac{v_\circ c^{5} t_p^{2}}{2 F_{\mathrm{max}} r_c^{2}} \\[4pt]
+G_{\mathrm{swirl}} = \frac{\vnorm c^{5} t_p^{2}}{2 F_{\mathrm{max}} r_c^{2}} \\[4pt]
 \text{Fine-Structure Constant:}\qquad &
 \alpha = \alpha_{\mathrm{DSI}}\!\bigl(\omega_{\mathrm{DSI}}\bigr),
 \qquad
@@ -248,7 +249,7 @@ G_{\mathrm{swirl}} = \frac{v_\circ c^{5} t_p^{2}}{2 F_{\mathrm{max}} r_c^{2}} \\
 \end{aligned}
 
 \textbf{Corollary:}
-Once $v_\circ$, $r_c$, and $\rho_{\!f}$ are fixed by a single calibration
+Once $\vnorm$, $r_c$, and $\rho_{\!f}$ are fixed by a single calibration
 (e.g. $m_e$), the full mass spectrum and coupling strengths follow with no free parameters.
 See STC Stages 12–13 (Gauss-closure \& Universal Resonance)~\cite{Goldau2025_STC}.
 \end{tcolorbox}
@@ -295,6 +296,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
     \item \textbf{Research Track.} Conjectures or alternatives pending proof or axiomatization.
     \end{itemize}
     Items may be promoted or demoted between classes only upon satisfying or failing the Canonicality Tests.
+
     \subsection*{Canonicality Tests (all required)}
     \begin{enumerate}
     \item \textbf{Derivability} from $\mathcal{P},\mathcal{D}$ via $\mathcal{R}$.
@@ -349,6 +351,38 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 
 	\section{Core Axioms (SST)}
 	SST is built on a set of core axioms that establish its physical framework. These axioms, numbered below, are stated in plain language and form the starting postulates of the theory (they are considered \emph{canonical} by definition).
+%================================================
+% Axiom 0: Logical Substrate (Pre-Swirl Potential)
+%================================================
+    \begin{tcolorbox}[title=Axiom 0: Logical Substrate (Pre-Swirl Potential)]
+    Before the emergence of space, time, or condensate, there exists a
+    \emph{Haar-neutral}, scale-free state space $\mathcal{S}$ of possible circulation states
+    $\{\Gamma_i\}$. This pre-physical substrate encodes only relational constraints:
+    \[
+        \Gamma \mapsto -\Gamma,
+        \qquad
+        \Gamma_1 + \Gamma_2 + \Gamma_3 = 0 \ (\mathrm{mod}\ 2\pi),
+    \]
+    representing a global $\mathbb{Z}_2$ \emph{chirality symmetry} and
+    $\mathbb{Z}_3$ \emph{triadic closure}.
+    No metric structure (no lengths, durations, or energies) is yet defined.
+    This axiom specifies that:
+    \begin{enumerate}
+    \item Circulation states are allowed only in $\pm$ pairs (matter/antimatter duality).
+    \item The sum of any three circulations must close to zero modulo $2\pi$, ensuring
+    triplet stability (precursor to baryon confinement).
+    \item Any potential $V[\Gamma]$ defined on $\mathcal{S}$ must satisfy
+    $V[\Gamma]=V[-\Gamma]$ and $V[\Gamma_1,\Gamma_2,\Gamma_3] =
+    V[\Gamma_1+\Gamma_2+\Gamma_3\ (\mathrm{mod}\ 2\pi)]$.
+    \end{enumerate}
+    This stage is purely ontological: it fixes the logical rule set within which the
+    swirl condensate (Stage~2) will later form and evolve.
+    \end{tcolorbox}
+
+% Citation for STC mapping
+    \noindent\textbf{Citation:}
+    See \emph{The Simplicity Codex}~\cite{Goldau2025_STC} (Stages~1--3: Primordial Symmetry
+    and Triadic Closure) for the information-theoretic basis of these constraints.
 
 	\begin{enumerate}\itemsep 4pt
 	\item \textbf{Swirl Medium (Absolute Space-Time):} Physics is formulated in Euclidean $\mathbb{R}^3$ space with an absolute time parameter. All dynamics occur in a frictionless, incompressible condensate called the \emph{swirl medium}, which acts as a universal substratum for motion (analogous to a perfect fluid with no viscosity or compressibility).
@@ -411,13 +445,106 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
     \begin{align*}
     m_W &= 80.377~\mathrm{GeV}, & m_Z &= 91.1876~\mathrm{GeV},\\
     \sin^2\theta_W &= 0.23121 \pm 0.00004, & v_\Phi &\approx 246.22~\mathrm{GeV},\\
-    v_\circ &= 1.09384563\times10^{6}~\mathrm{m/s}, & r_c &= 1.40897017\times10^{-15}~\mathrm{m},\\
+    \vnorm &= 1.09384563\times10^{6}~\mathrm{m/s}, & r_c &= 1.40897017\times10^{-15}~\mathrm{m},\\
     \rho_f &= 7.0\times10^{-7}~\mathrm{kg/m^3}, & \rho_m &= 3.8934358266918687\times10^{18}~\mathrm{kg/m^3},\\
     F_{\rm EM}^{\max} &= 2.9053507\times10^{1}~\mathrm{N}, & F_{\rm G}^{\max} &= 3.02563\times10^{43}~\mathrm{N}.
     \end{align*}
     \end{tcolorbox}
     \noindent\emph{Notes:} Gauge entries follow PDG world averages; fluid entries follow the canonical coarse-graining protocols and prior CANON calibrations \cite{PDG2024,Iskandarani2025Canon034,Iskandarani2025Hydrogen}.
 % [STATUS: Empirical] [SOURCE: v0.4.4 §6.1 & constants table]
+% ===================== (1) MAIN TEXT: place after your Chronos–Kelvin/Clock transport section
+    \subsection*{VI.A\quad Kairos Bifurcations in Swirl Time \;(\emph{Research})}
+        \addcontentsline{toc}{subsection}{VI.A\;\;Kairos Bifurcations in Swirl Time (Research)}
+
+        \paragraph{Claim.}
+            In addition to the continuous advance of Chronos time $\tau$ and the cyclic Swirl Clock $\SwirlClock$,
+            there exist critical thresholds---\emph{Kairos moments}---at which the time evolution undergoes a bifurcation (phase jump).
+
+        \paragraph{Rosetta (SST vocabulary).}
+            \emph{Chronos} $\to$ local proper time $\tau$ (and absolute time $N$);
+            \emph{Kairos} $\to$ a topological phase jump in $\SwirlClock$ when a critical swirl excitation is exceeded.
+            All quantities are expressed in SST notation ($\rhoF$, $\rc$, $\SwirlClock$).
+
+        \paragraph{Dimensionally consistent threshold.}
+            We anchor the characteristic angular frequency to quantum scales via
+            \[
+                \omega \;=\; \alpha\,\omega_C, \qquad
+                \omega_C \;=\; \frac{m_e c^2}{\hbar},
+            \]
+            and posit the Kairos threshold as
+            \begin{equation}
+            \boxed{\;\;\omega^2 \;\gtrsim\; \frac{c^2}{\rc^2}\;}\,.
+            \label{eq:kairos-threshold}
+            \end{equation}
+
+        \paragraph{Schwarzian correction in the time action.}
+            The effective local time flow is modeled by
+            \begin{equation}
+            \frac{d\tau}{dN}
+            \;=\;
+            \sqrt{1-\frac{\vnorm^2}{c^2}}
+            \;+\;
+            \varepsilon\,\{\SwirlClock,\,N\},
+            \qquad
+            \{\SwirlClock,\,N\}
+            =
+            \frac{\SwirlClock{'''}}{\SwirlClock{'}}
+            -\frac{3}{2}\!\left(\frac{\SwirlClock{''}}{\SwirlClock{'}}\right)^{\!2},
+            \label{eq:schwarzian}
+            \end{equation}
+            where the Schwarzian captures nonlinear sensitivity which, near \eqref{eq:kairos-threshold}, can trigger a phase jump in $\SwirlClock$.
+
+        \paragraph{Mini numeric example (Canon constants).}
+            With $c=2.9979\times10^8\,\mathrm{m/s}$, $\hbar=1.0546\times10^{-34}\,\mathrm{J\,s}$,
+            $m_e=9.1094\times10^{-31}\,\mathrm{kg}$, $\alpha=7.297\times10^{-3}$ and $\rc=1.40897\times10^{-15}\,\mathrm{m}$,
+            \[
+                \omega_C \!\approx\! 7.76\times10^{20}\ \mathrm{s^{-1}},
+                \quad
+                \omega=\alpha\omega_C \!\approx\! 5.67\times10^{18}\ \mathrm{s^{-1}},
+                \quad
+                \omega^2 \!\approx\! 3.21\times10^{37}\ \mathrm{s^{-2}},
+            \]
+            \[
+                \frac{c^2}{\rc^2}\!\approx\! 4.53\times10^{46}\ \mathrm{s^{-2}},
+                \qquad
+                \frac{\omega^2}{c^2/\rc^2}\!\approx\! 7.1\times10^{-10}.
+            \]
+            Thus, without additional mechanisms, the threshold is not crossed in situ, motivating the \emph{Research} status.
+
+        \paragraph{Easing lemmas (routes to reachability).}
+            \begin{itemize}
+            \item \textbf{Lemma A (Fractal amplification; link to $D_{\mathrm{swirl}}$).}
+            For multiscale coherence, replace
+            $\displaystyle \frac{c^2}{\rc^2}\to \frac{c^2}{\rc^2}\!\left(\frac{\rc}{r_{\mathrm{eff}}}\right)^{3-D_{\mathrm{swirl}}}$,
+            with $2.6\!\lesssim\!D_{\mathrm{swirl}}\!\lesssim\!2.9$ and $r_{\mathrm{eff}}\!>\!\rc$,
+            lowering the effective threshold.
+
+            \item \textbf{Lemma B (Coherent knot pack).}
+            For $n$ phase-locked knots,
+            $\displaystyle \omega_{\mathrm{eff}}^2 \;\simeq\; n\,\xi(n)\,\omega^2$,
+            with $\xi(n)=1-\beta\log n$ (coherence suppression from the Canon).
+            Moderate $n$ (\emph{mesoscopic} coherence) can lift $\omega_{\mathrm{eff}}^2$ over the lowered threshold.
+
+            \item \textbf{Lemma C (Resonant pump via Schwarzian).}
+            In \eqref{eq:schwarzian} the parameter $\varepsilon$ may increase locally under phase-locking (large $\SwirlClock{'}$, small $\SwirlClock{''}$),
+            temporarily reducing the effective threshold and triggering a Kairos jump.
+            \end{itemize}
+
+        \paragraph{Falsifiers \& minimal experiment.}
+            \emph{Falsify} by the absence of any non-analytic $\SwirlClock$ phase jump under controlled resonant pumping
+            (BEC/fluid analogue) at parameters predicted by Lemmas A–C.
+            \emph{Minimal test}: toroidal condensate with driven knot configuration; sweep pump strength ($\varepsilon$) and $n$ (coupling);
+            look for hysteresis/jumps in the $\SwirlClock$ lock-in frequency.
+
+        \paragraph{Status.}
+            \emph{Research}. The threshold is dimensionally sound and numerically quantified;
+            Lemmas A–C provide a clear path to \emph{Calibration} via simulation/analogue experiments.
+
+% --- Optional compact Rosetta note at subsection end
+            \vspace{0.5em}
+            \noindent\emph{Rosetta note (provenance).} VAM “Kairos $\kappa$” $\mapsto$ SST phase jump in $\SwirlClock$;
+            VAM energy/gradient trigger $\mapsto$ SST threshold $\omega^2\!\gtrsim\!c^2/\rc^2$ in \eqref{eq:kairos-threshold}.
+            \vspace{0.75em}
 
 %========================================================================================
 % CLASSICAL INVARIANTS: CHRONOS–KELVIN + CLOCK–RADIUS TRANSPORT (Canonical)
@@ -1737,7 +1864,134 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 %========================================================================================
 % END OF SKELETON — BEGIN MAIN TEXT
 %========================================================================================
-% ...existing code...
+
+% =========================================================
+% SST: Invariant Mass from the Canonical Lagrangian
+% =========================================================
+
+    \section*{Appendix C: Invariant Mass from the Canonical Lagrangian}
+
+    Starting from the schematic Lagrangian
+    \[
+        \mathcal{L}_{\text{SST}}
+        = \rhof\!\left(\tfrac{1}{2}\vswirl^2 - \Phi_{\text{swirl}}\right)
+        + \tfrac{1}{4}F_{\mu\nu}F^{\mu\nu}
+        + \big(\alpha C(K)+\beta L(K)+\gamma \mathcal{H}(K)\big)
+        + \rhof \ln\!\sqrt{1-\tfrac{\|\boldsymbol\omega\|^2}{c^2}}
+        + \Delta p(\text{swirl}),
+    \]
+    the \emph{mass sector} reduces, under the slender-tube approximation, to an invariant energy functional
+    \[
+        E(K)= u\,V(K)\,\Xi_{\text{top}}(K),\qquad
+        u=\tfrac{1}{2}\rho_{\text{core}}\;v_{\circlearrowleft}^{2},
+    \]
+    with $u$ the swirl energy density scale on the core, $V(K)$ the effective tube volume of the swirl string, and $\Xi_{\text{top}}(K)$ a dimensionless topological multiplier summarizing discrete combinatorial and contact/helicity corrections. In SST we adopt
+    \[
+        V(K)\;=\;\pi r_c^2 \underbrace{\big(L_{\textrm phys}\big)}_{=\,r_c\,L_{\textrm tot}}
+        \;=\;\pi r_c^3\,L_{\textrm tot},
+    \]
+    where $r_c$ is the core radius and $L_{\textrm tot}$ is the \emph{dimensionless ropelength}. The rest mass is $M=E/c^2$.
+
+    \paragraph{Canonical multiplier.}
+        Guided by the EM coupling and SST’s discrete scaling rules, we take
+        \[
+            \Xi_{\text{top}}(K)=\frac{4}{\alpha_{\textrm fs}}\;b^{-3/2}\;\varphi^{-g}\;n^{-1/\varphi},
+        \]
+        where $b,g,n$ are the integer topology labels used in the Canon (e.g. torus index, layer, linkage count), $\alpha_{\textrm fs}$ is the fine-structure constant, and $\varphi$ the golden ratio. Collecting factors, the \textbf{invariant mass law} used in the code is
+        \begin{equation*}
+        \boxed{M(K)=\frac{4}{\alpha_{\textrm fs}}\;b^{-3/2}\;\varphi^{-g}\;n^{-1/\varphi}\;
+        \frac{u\,\pi r_c^3 L_{\textrm tot}}{c^2},
+            \qquad
+            u=\tfrac{1}{2}\rho_{\text{core}}v_{\circlearrowleft}^2.
+        }\label{eq:SST-invariant-mass}
+        \end{equation*}
+
+    \paragraph{Leptons (solved $L_{\textrm tot}$).}
+        For a lepton with labels $(b,g,n)$ and known mass $M_\ell^{\textrm(\exp)}$, invert \eqref{eq:SST-invariant-mass}:
+        \[
+            L_{\textrm tot}^{(\ell)} \;=\;
+            \frac{M_\ell^{\textrm(\exp)}\,c^2}{\big(\tfrac{4}{\alpha_{\textrm fs}}\,b^{-3/2}\varphi^{-g}n^{-1/\varphi}\big)\,u\,\pi r_c^3}.
+        \]
+
+    \paragraph{Baryons (exact closure).}
+        Let the proton and neutron ropelengths be
+        \[
+            L_p=\lambda_b\,(2s_u+s_d)\,\mathcal S,\qquad
+            L_n=\lambda_b\,(s_u+2s_d)\,\mathcal S,\qquad
+            \mathcal S=2\pi^2\kappa_R,\;\;\kappa_R=2,
+        \]
+        with $(s_u,s_d)$ dimensionless sector weights and $\lambda_b$ a sector scale (set to $1$ in exact-closure).
+        Imposing $M_p^{\textrm(\exp)}=M_p$ and $M_n^{\textrm(\exp)}=M_n$ in \eqref{eq:SST-invariant-mass} yields a \emph{linear} $2\times2$ system for $(s_u,s_d)$:
+        \[
+            \begin{bmatrix}
+            2 & 1\\[2pt]
+            1 & 2
+            \end{bmatrix}
+            \begin{bmatrix}
+            s_u\\ s_d
+            \end{bmatrix}
+
+            =
+            \frac{1}{K}
+            \begin{bmatrix}
+            M_p^{\textrm(\exp)}\\ M_n^{\textrm(\exp)}
+            \end{bmatrix},
+            \qquad
+            K=\Big[\tfrac{4}{\alpha_{\textrm fs}}\,3^{-3/2}\,\varphi^{-2}\,3^{-1/\varphi}\Big]\frac{u\,\pi r_c^3\,\mathcal S}{c^2}.
+        \]
+        Solving gives
+        \[
+            s_u=\frac{2M_p^{\textrm(\exp)}-M_n^{\textrm(\exp)}}{3K},
+            \qquad
+            s_d=\frac{M_p^{\textrm(\exp)}}{K}-2s_u.
+        \]
+
+    \paragraph{Composites (no binding).}
+        For an atom with proton number $Z$ and neutron number $N$ (atomic mass includes $Z$ electrons),
+        \[
+            M_{\textrm atom}^{(\textrm pred)} = Z\,M_p+N\,M_n+Z\,M_e,\quad
+            M_{\textrm mol}^{(\textrm pred)}=\sum_{\text{atoms}}M_{\textrm atom}^{(\textrm pred)}.
+        \]
+        Deviations from experiment in atoms/molecules correspond to \emph{binding energies} not included in this baseline (nuclear $\sim\!8\,{\textrm MeV}$ per nucleon; molecular $\sim{\textrm eV}$).
+
+% ---------------------------------------------------------
+    \subsection{Benchmarks (exact\_closure mode)}
+    \label{sec:benchmarks-exact-closure}
+    The following table was generated by the Python file listed after it.
+    \emph{Errors in atoms/molecules = missing binding energy contribution, not model failure.}
+
+    \begin{table}[H]
+    \centering
+    \caption{Invariant-kernel mass benchmarks (exact\_closure). \emph{Errors in atoms/molecules = missing binding energy contribution, not model failure.}}
+    \begin{tabular}{lccc}
+    \toprule
+    Species & Known mass (kg) & Predicted mass (kg) & Error (\%)\\
+    \midrule
+    electron e- & 9.109384e-31 & 9.109384e-31 & 0.0000\\
+    muon $\mu$- & 1.883532e-28 & 1.883532e-28 & 0.0000\\
+    tau $\tau$- & 3.167540e-27 & 3.167540e-27 & 0.0000\\
+    proton p & 1.672622e-27 & 1.672622e-27 & 0.0000\\
+    neutron n & 1.674927e-27 & 1.674927e-27 & 0.0000\\
+    Hydrogen-1 atom & 1.673533e-27 & 1.673533e-27 & 0.0000\\
+    Helium-4 atom & 6.646477e-27 & 6.689952e-27 & 0.6549\\
+    Carbon-12 atom & 1.992647e-26 & 2.005276e-26 & 0.6330\\
+    Oxygen-16 atom & 2.656017e-26 & 2.674532e-26 & 0.6980\\
+    H$_2$ molecule & 3.367403e-27 & 3.347066e-27 & -0.6040\\
+    H$_2$O molecule & 2.991507e-26 & 3.009885e-26 & 0.6139\\
+    CO$_2$ molecule & 7.305355e-26 & 7.354340e-26 & 0.6704\\
+    \bottomrule
+    \end{tabular}\label{tab:benchmarks-exact-closure}
+    \end{table}
+
+% ---------------------------------------------------------
+    \subsection*{Notes}
+    \begin{itemize}
+    \item Elementary entries are exact by construction in exact\_closure mode (leptons solved from $L_{\textrm tot}$; $p,n$ from closure).
+    \item Composite errors track omitted binding: nuclear $\mathcal O(10^{-3})$–$\mathcal O(10^{-2})$, molecular $\mathcal O(10^{-9})$.
+    \end{itemize}
+
+% ---------------------------------------------------------
+
 
 
 

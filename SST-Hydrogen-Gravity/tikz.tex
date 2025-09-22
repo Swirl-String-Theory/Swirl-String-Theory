@@ -1,8 +1,10 @@
 \documentclass[11pt]{article}
+\begin{document}
 \begin{figure}[t]
 \usepackage{tikz}
+\usepackage{amsmath}
 \usetikzlibrary{arrows.meta,calc,decorations.markings,decorations.pathmorphing}
-
+\usetikzlibrary{knots,hobby,intersections,pathreplacing,shapes.geometric,spath3}
 % Styling helpers
 \tikzset{
     axisline/.style={very thick, black},
@@ -15,7 +17,7 @@
     labelbox/.style={fill=white, inner sep=2pt, rounded corners=2pt},
 }
 
-\usetikzlibrary{knots,hobby,calc,intersections,decorations.pathreplacing,shapes.geometric,spath3}
+
 \centering
 \begin{tikzpicture}[scale=0.9]
 
@@ -78,3 +80,5 @@ Panel (d): very large loop outside annulus: net linking cancels, $\Gamma\approx 
 
 \end{tikzpicture}
 \end{figure}
+
+\end{document}

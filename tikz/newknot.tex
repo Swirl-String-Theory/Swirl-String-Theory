@@ -1,0 +1,60 @@
+\documentclass[tikz,border=5pt]{standalone}
+% ------- TikZ Preamble -------
+\RequirePackage{tikz}
+\usetikzlibrary{knots,hobby,calc,intersections,decorations.pathreplacing,shapes.geometric,spath3}
+\usepackage{tikz-knot}
+% ------- Shared styles (from your preamble) -------
+\tikzset{
+    knot diagram/every strand/.append style={ultra thick, black},
+%               every path/.style={black,line width=2pt},
+%               every node/.style={transform shape,knot crossing,inner sep=1.5pt},
+%               every knot/.style={line cap=round,line join=round,very thick},
+%               strand/.style={line cap=round,line join=round,line width=3pt,draw=black},
+%               over/.style={preaction={draw=white,line width=6.5pt}},
+%               sst/ring A/.style={draw=black, line width=3pt},
+%               sst/ring B/.style={draw=black,  line width=3pt},
+%               sst/ring C/.style={draw=black, line width=3pt},
+}
+
+% ------- Guides toggle -------
+\newif\ifsstguides
+% \sstguidestrue
+
+% ------- Helper: label & skeleton for points P1..Pn -------
+\newcommand{\SSTGuidesPoints}[2]{% #1=basename (e.g. P), #2=last index
+  \ifsstguides
+    \foreach \i in {1,...,#2}{
+      \fill[blue] (#1\i) circle (1.2pt);
+      \node[blue,font=\scriptsize,above] at (#1\i) {\i};
+    }
+    \draw[gray!40, dashed]
+    \foreach \i [remember=\i as \lasti (initially 1)] in {2,...,#2,1} { (#1\lasti)--(#1\i) };
+  \fi
+}
+
+
+\begin{document}
+\begin{tikzpicture}[use Hobby shortcut]
+
+    \coordinate (P1) at (0, 2);
+    \coordinate (P2) at (-2, 0);
+    \coordinate (P3) at (0, 0);
+    \coordinate (P4) at (1, 1);
+    \coordinate (P5) at (0, 2);
+    \coordinate (P6) at (0, 2); % = P1
+
+    \begin{knot}[
+        consider self intersections,
+        clip width=5pt, clip radius=3pt,
+        ignore endpoint intersections=false,
+        draft mode=crossings % uncomment to see numbers
+    ]
+    \strand
+    ([closed] P1)..(P2)..(P3)..(P4)..(P5)..(P6);
+    \end{knot}
+    \SSTGuidesPoints{P}{6}
+
+\end{tikzpicture}
+
+
+\end{document}
