@@ -4,11 +4,11 @@
 %! Affiliation = Independent Researcher, Groningen, The Netherlands
 %! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
 %! ORCID = 0009-0006-1686-3961
-%! DOI = 10.5281/zenodo.17155855
+%! DOI = 10.5281/zenodo.17155854
 
 \newcommand{\paperversion}{\textbf{v0.0.1}} % Semantic versioning: vMAJOR.MINOR.PATCH
 \newcommand{\papertitle}{Long-Distance Swirl Gravity from Chiral Swirling Knots with Central Holes}
-\newcommand{\paperdoi}{10.5281/zenodo.17155855}
+\newcommand{\paperdoi}{10.5281/zenodo.17155854}
 
 %========================================================================================
 % PACKAGES AND DOCUMENT CONFIGURATION
@@ -189,24 +189,24 @@ This quantization is expressed by the Swirl Clock \(\SwirlClock\), and its persi
 
 
 \section{Chiral Swirling Knots and Central Holes}
-    Consider a chiral knot $K$ embedded in $\mathbb{R}^3$, such as:
+    Consider a chiral knot $K$ embedded in $\mathbb{R}^3$, such as~\ref{fig:knot-gallery}:
 
 
 
 
-        \begin{figure}[t]
+        \begin{figure}[htbp]
         \centering
         \subfloat[$3_1$ (trefoil)\label{fig:3-1}]{
-            \includegraphics[width=0.22\linewidth]{3_1.png}}
+            \includegraphics[width=0.22\linewidth]{3_1}}
         \hfill
         \subfloat[$5_1$ (cinquefoil)\label{fig:5-1}]{
-            \includegraphics[width=0.22\linewidth]{5_1.png}}
+            \includegraphics[width=0.22\linewidth]{5_1}}
         \hfill
         \subfloat[$5_2$ (cinquefoil twist)\label{fig:5-2}]{
-            \includegraphics[width=0.22\linewidth]{5_2.png}}
+            \includegraphics[width=0.22\linewidth]{5_2}}
         \hfill
         \subfloat[$6_1$ (stevedore)\label{fig:6-1}]{
-            \includegraphics[width=0.22\linewidth]{6_1.png}}
+            \includegraphics[width=0.22\linewidth]{6_1}}
         \caption{Canonical knot gallery.}
         \label{fig:knot-gallery}
         \end{figure}
@@ -221,10 +221,28 @@ This quantization is expressed by the Swirl Clock \(\SwirlClock\), and its persi
     A defining feature is that all these knots possess a \emph{central hole} threaded by a straight axis (taken as the $z$-axis).
     This axis is the ``fabric line'' of flat space: it is the singularity in the analytic swirl potential.
 
+
+        \begin{figure}[t]
+        \centering
+        \begin{tikzpicture}[scale=1.0,>=Latex]
+            % Stacked leaves
+        \foreach \y in {0,0.9,1.8,2.7}{
+            \draw[rounded corners=8pt,thick] (-3,\y) -- (3,\y) -- (2.5,\y+0.5) -- (-3.5,\y+0.5) -- cycle;
+            \node[gray] at (3.4,\y+0.25) {$\Sigma_{t}$};
+        }
+% Foliation vector u
+        \draw[->,very thick,blue] (0,-0.2) -- (0,3.4) node[right] {$u^\mu \parallel \partial^\mu T$};
+% Projection hint
+        \draw[->,thick] (-1.3,1.3) -- (-0.5,1.3) node[above] {$h^\mu{}_\nu$};
+        \end{tikzpicture}
+        \caption{Preferred foliation by the clock field $T(x)$ with unit timelike $u^\mu$, and spatial projector $h_{\mu\nu}=g_{\mu\nu}+u_\mu u_\nu$.}
+        \end{figure}
+
+
 % ============================
 % Figure: Trefoil + central axis + circulation loops (clean, layered)
 % ============================
-        \begin{figure}[t]
+        \begin{figure}[htbp]
         \centering
 % Preamble requirement (once per document):
 % \usetikzlibrary{decorations.markings}
@@ -305,21 +323,34 @@ This quantization is expressed by the Swirl Clock \(\SwirlClock\), and its persi
 %   sin(3θ) < 0  => "under" segments
 % We split [0, 2π] at θ = k·π/3.
 % ------------------------
-% UNDER segments first (drawn behind):
-        \draw[knotunder, samples=300, domain={60}:{120}, smooth, variable=\t]
-        plot ({( \R + \rtube*cos(3*\t) )*cos(\t)}, {( \R + \rtube*cos(3*\t) )*sin(\t)});
-        \draw[knotunder, samples=300, domain={180}:{240}, smooth, variable=\t]
-        plot ({( \R + \rtube*cos(3*\t) )*cos(\t)}, {( \R + \rtube*cos(3*\t) )*sin(\t)});
-        \draw[knotunder, samples=300, domain={300}:{360}, smooth, variable=\t]
-        plot ({( \R + \rtube*cos(3*\t) )*cos(\t)}, {( \R + \rtube*cos(3*\t) )*sin(\t)});
+% parameters (numeric, no units)
+        \def\R{3.20}
+        \def\rtube{0.95}
 
-% OVER segments (on top):
-        \draw[knotover, knotarrows, samples=300, domain={0}:{60}, smooth, variable=\t]
-        plot ({( \R + \rtube*cos(3*\t) )*cos(\t)}, {( \R + \rtube*cos(3*\t) )*sin(\t)});
-        \draw[knotover, knotarrows, samples=300, domain={120}:{180}, smooth, variable=\t]
-        plot ({( \R + \rtube*cos(3*\t) )*cos(\t)}, {( \R + \rtube*cos(3*\t) )*sin(\t)});
-        \draw[knotover, knotarrows, samples=300, domain={240}:{300}, smooth, variable=\t]
-        plot ({( \R + \rtube*cos(3*\t) )*cos(\t)}, {( \R + \rtube*cos(3*\t) )*sin(\t)});
+% helper functions (degrees)
+        \tikzset{
+            declare function={
+                Rx(\ang)= (\R + \rtube*cos(3*\ang))*cos(\ang);
+                Ry(\ang)= (\R + \rtube*cos(3*\ang))*sin(\ang);
+            }
+        }
+
+% --- UNDER segments first (behind) ---
+        \draw[knotunder, samples=240, smooth, variable=\ang, domain=60:120]
+        plot ({Rx(\ang)}, {Ry(\ang)});
+        \draw[knotunder, samples=240, smooth, variable=\ang, domain=180:240]
+        plot ({Rx(\ang)}, {Ry(\ang)});
+        \draw[knotunder, samples=240, smooth, variable=\ang, domain=300:360]
+        plot ({Rx(\ang)}, {Ry(\ang)});
+
+% --- OVER segments (on top) ---
+        \draw[knotover, knotarrows, samples=240, smooth, variable=\ang, domain=0:60]
+        plot ({Rx(\ang)}, {Ry(\ang)});
+        \draw[knotover, knotarrows, samples=240, smooth, variable=\ang, domain=120:180]
+        plot ({Rx(\ang)}, {Ry(\ang)});
+        \draw[knotover, knotarrows, samples=240, smooth, variable=\ang, domain=240:300]
+        plot ({Rx(\ang)}, {Ry(\ang)});
+
 
 
 % ------------------------
@@ -341,37 +372,62 @@ This quantization is expressed by the Swirl Clock \(\SwirlClock\), and its persi
 
 
 \section{Cauchy Integral and Circulation Quantization}
-    Let $C$ be a closed loop in the $x$--$y$ plane encircling the $z$-axis.
-    By Cauchy's integral theorem, for an analytic swirl potential $W(z)=\Phi+i\Psi$,
-    \begin{equation}
-    \oint_C \vswirl \cdot d\mathbf{l} =
-    \begin{cases}
-    0, & \text{if no singularity inside,}\\[4pt]
-    2\pi i\, \mathrm{Res}\!\left(\frac{dW}{dz}, z=0\right), & \text{if axis enclosed.}
-    \end{cases}
-    \end{equation}
-    In SST, the residue corresponds to the circulation quantum
-    \begin{equation}
-    \kappa = 2\pi\, v_c\, r_c,
-    \end{equation}
-    where $v_c$ is the swirl speed at the core boundary $r_c$.
+        Let $C$ be a closed loop in the $x$–$y$ plane encircling the $z$-axis. For an analytic swirl potential $W(z)=\Phi+i\Psi$ in a simply connected region,
+        \begin{equation}
+        \oint_C \vswirl \cdot d\mathbf{l} =
+        \begin{cases}
+        0, & \text{if no singularity inside,}\\[4pt]
+        2\pi i\, \mathrm{Res}\!\left(\frac{dW}{dz}, z=0\right), & \text{if the axis is enclosed.}
+        \end{cases}
+        \end{equation}
+        In SST we identify the residue with a circulation quantum $\kappa$. Independently of the complex-potential language, Kelvin’s theorem fixes circulation on any material loop; both viewpoints agree on the integer plateau:
+        \begin{equation}
+        \Gamma_C = n\,\kappa \quad \text{if the loop links $n$ times with the core.}
+        \end{equation}
 
-    If the knot winds around the axis $n$ times (its \emph{linking number}),
-    \begin{equation}
-    \GammaC = n \kappa.
-    \end{equation}
-    This is the Cauchy--Kelvin equivalence: long-distance swirl circulation is locked to integer multiples of $\kappa$ by topology.
+        \begin{tcolorbox}[title=\textbf{Canonical identification of $\kappa$ (SST)}]
+        We adopt the equivalence
+        \[
+            \boxed{\;\kappa \equiv \frac{h}{m_{\text{eff}}} \;=\; 2\pi\, r_c\, v_c\;}
+        \]
+        which gives a direct bridge between the quantum of circulation and core kinematics. Hence
+        \[
+            m_{\text{eff}} \;=\; \frac{h}{2\pi r_c v_c}\,.
+        \]
+        \textbf{Numerics (SI):} with $r_c=\qty{1.40897017e-15}{m}$ and $v_c=\lVert \mathbf{v}_{\swirlarrow}\rVert=\qty{1.09384563e6}{m/s}$,
+        \[
+            \kappa=2\pi r_c v_c=\qty{9.6836192e-9}{m^2/s},\qquad
+            m_{\text{eff}}=\frac{h}{\kappa}=\qty{6.842555e-26}{kg}\approx\qty{38.384}{GeV/c^2}.
+        \]
+        \end{tcolorbox}
+
+        \noindent\emph{Status/limits:} Dimensions are consistent ($[\kappa]=L^2T^{-1}$). For loops whose spanning disk intersects the torus annulus of the filament, $\Gamma$ plateaus at $n\kappa$; for loops entirely outside, $\Gamma\approx 0$ (as illustrated in Fig.~\ref{fig:fourpanel-3D-cartoon}).
+
+        \begin{tcolorbox}[title=\textbf{Swirl–EM correspondence (operational note)}]
+        In the Canon’s swirl–EM mapping, time-varying core areal density acts as a “source” via a term of the form $b^{\swirlarrow}=G^{\swirlarrow}\,\partial_t \varrho^{\swirlarrow}$, providing a handle for experimental couplings. Dynamics on the central line that modulate $\varrho^{\swirlarrow}$ can therefore seed measurable EM-like responses without curving space, consistent with the flat-space treatment used here.
+        \end{tcolorbox}
+
 
 \section{Composite Baryon Tubes}
-    Inside baryons, three quark knots (e.g.\ $5_2$, $5_2$, $6_1$) meet at a Y-shaped junction, forming a single composite swirl tube.
+    Inside baryons, three quark knots (e.g.\ $5_2$, $5_2$, $6_1$ see fig~\ref{fig:5-2},~\ref{fig:6-1}) meet at a Y-shaped junction, forming a single composite swirl tube (see fig~\ref{fig:baryon_composite_tube}).
+
+
+
+\begin{figure}[htbp]
+    \centering
+    \subfloat[Top view of 3 quarck knots\label{fig:baryon}]{
+        \includegraphics[width=0.3\linewidth]{sst_three_knot_180_speed_stagnation}}
+    \subfloat[3D view of 3 quarck knots\label{fig:baryon3d1}]{
+        \includegraphics[width=0.3\linewidth]{sst_three_knot_3d_streamlines_colored_ULTRALIGHT}}
+    \subfloat[Composite tube\label{fig:baryon_composite_tube}]{
+
 
 
 % ============================
 % Figure 2 (rotated): Baryon composite tube merging vertically on the z-axis
 % ============================
-        \begin{figure}[t]
-        \centering
-        \begin{tikzpicture}[scale=1.0, line cap=round, line join=round]
+
+        \begin{tikzpicture}[scale=0.5, line cap=round, line join=round]
 
 % ---------- Styles ----------
         \tikzset{
@@ -431,121 +487,123 @@ This quantization is expressed by the Swirl Clock \(\SwirlClock\), and its persi
         \node[align=left, labelbox, anchor=west] at (0.2,2.8) {Composite tube on \(z\)-axis\\[-2pt]
         \(\Gamma_{\text{baryon}}=3\kappa\)\\[-2pt]
         \(v_{\theta,\mathrm{eff}}=3\,v_c\)};
-        \node[align=left, labelbox, anchor=east] at (3.9,-3.9) {Additivity (Kelvin): \(\ \Gamma=\sum_i \Gamma_i\)};
+        \node[align=left, labelbox, anchor=east] at (-1,-0.2) { \(\ \Gamma=\sum_i \Gamma_i\)};
 
         \end{tikzpicture}
-        \caption{Baryon core as a \emph{composite swirl tube} merging vertically on the \(z\)-axis. Three quark tubes (bottom) join via a Y-junction into a single tube along \(+z\). Circulation adds linearly, \(\Gamma_{\rm baryon}=3\kappa\), so the effective tangential swirl is \(v_{\theta,\mathrm{eff}} = 3 v_c\) while the core radius remains \(\approx r_c\).}
-        \label{fig:baryon_composite_tube}
-        \end{figure}
-
-
+    }
+        \caption{Baryon core as a \emph{composite swirl tube}. Three quark tubes (bottom) join via a Y-junction into a single tube along $+z$. Circulation adds linearly, $\Gamma_{\rm baryon}=3\kappa$, hence $v_{\theta,\rm eff}=\Gamma_{\rm baryon}/(2\pi r_{\rm eff})$ with $r_{\rm eff}\approx r_c$ to leading order.}
+    \label{fig:three-knot-gallery}
+\end{figure}
 
     Each quark knot $i$ has circulation $\Gamma_i = \kappa$ around the central axis (Fig.~\ref{fig:baryon_composite_tube}).
-    By Kelvin's theorem, circulation is additive:
-    \begin{equation}
-    \Gamma_{\mathrm{baryon}} = \Gamma_1 + \Gamma_2 + \Gamma_3
-    = 3 \kappa.
-    \end{equation}
-    Since $\Gamma = 2\pi r_c v_\theta$, this means the effective swirl velocity is tripled:
-    \begin{equation}
-    v_{\theta,\mathrm{eff}} = \frac{\Gamma_{\mathrm{baryon}}}{2\pi r_c} = 3 v_c,
-    \end{equation}
-    while the core radius $r_c$ remains essentially unchanged.
-    The baryon thus behaves as a single tube with three times the circulation and a deeper pressure well.
+        By Kelvin additivity,
+        \begin{equation}
+        \Gamma_{\mathrm{baryon}}=\Gamma_1+\Gamma_2+\Gamma_3=3\kappa.
+        \end{equation}
+        Since $\Gamma=2\pi r\,v_\theta$,
+        \begin{equation}
+        \boxed{\;
+        v_{\theta,\mathrm{eff}}=\frac{\Gamma_{\mathrm{baryon}}}{2\pi\,r_{\mathrm{eff}}}
+            =\frac{3\kappa}{2\pi\,r_{\mathrm{eff}}}\,,
+            \;}
+        \end{equation}
+        with $r_{\mathrm{eff}}$ the effective core radius of the merged tube. In the thin-core, near-Rankine limit $r_{\mathrm{eff}}\approx r_c$ to leading order (so that $v_{\theta,\mathrm{eff}}\approx 3 v_c$ holds as a first-order estimate), while the deeper pressure well is set by the increased $\Gamma$.
 
-    \paragraph{Swirl Clock scaling.}
+        \paragraph{Swirl Clock scaling.}
         The Swirl Clock relation becomes
         \begin{equation}
         dt_{\mathrm{local}} = dt_\infty \sqrt{1 - \frac{(3 v_c)^2}{c^2}},
         \end{equation}
         predicting a more pronounced local time dilation, consistent with the larger rest mass of baryons relative to single quark knots.
 
+            \emph{Analogy (for intuition).} Three equal water whirls feed one outlet: the hole may widen slightly, but the combined spin deepens the whirl and speeds the rim roughly threefold.
 
-%-------------------------------------------
-% 4-panel cartoon (same scale / same view)
-%-------------------------------------------
-\begin{figure}[t]
-\centering
-
-% -------- helper macro: one panel --------------
-% args: #1 = loop radius, #2 = ON/OFF style, #3 = caption text under panel
-\newcommand{\OnePanel}[3]{%
-    \begin{tikzpicture}[x=1cm,y=1cm,scale=0.60]
-    % parameters (shared across all panels)
-    \def\R{3.2}   % major radius (center of torus band)
-    \def\r{1.1}   % half-thickness of torus band
-    \def\tilt{0.55}% yscale to hint 3D tilt of torus
-    \def\RL{#1}   % test loop radius
-
-    % axes (same in all panels)
-    \draw[axes,->] (-0.25,0) -- (6.8,0) node[below right] {$x$};
-    \draw[axes,->] (0,-3.0) -- (0,3.0) node[left] {$y$};
-
-    % central axis marker (z coming out of page)
-    \fill (0,0) circle(2pt);
-    \node[below left] at (0,0) {\footnotesize central axis ($z$)};
-
-    % --- torus "band" with a little 3D hint (tilted annulus) ---
-    % outer and inner tilted ellipses (yscale = tilt)
-    \begin{scope}[yscale=\tilt]
-    \draw[very thick, gray!40] (0,0) circle (\R+\r);
-    \draw[very thick, gray!40] (0,0) circle (\R-\r);
-    % faint fill between ellipses for depth cue
-    \path[fill=gray!10,draw=none] (0,0) circle (\R+\r);
-    \clip (0,0) circle (\R+\r);
-    \fill[white] (0,0) circle (\R-\r);
-    \end{scope}
-
-    % --- schematic trefoil projection with over/under cues ---
-    % front arc (solid), back arc (dashed + lighter) to hint 3D crossing
-    % This is a clean cartoon, not exact geometry.
-    % Back (far) lobe:
-    \draw[knotline, dashed, opacity=0.35]
-    plot[smooth cycle, tension=0.9]
-    coordinates {
-        ({\R+0.2},  0.10)
-        ({\R-0.4},  0.95)
-        ({\R+0.6},  0.85)
-        ({\R+0.3}, -0.9)
-        ({\R-0.9}, -1.05)
-    };
-    % Front (near) lobe with arrows (swirl direction)
-    \draw[knotline]
-    plot[smooth cycle, tension=0.9]
-    coordinates {
-        ({\R},     0.00)
-        ({\R-0.6}, 1.00)
-        ({\R+0.8}, 0.80)
-        ({\R+0.4},-1.00)
-        ({\R-0.8},-1.20)
-    };
-    % flow arrows along the visible lobe
-    \foreach \t/\L in {0/0.35, 60/0.35, 180/0.35}{
-        \draw[looparrow, blue!70]
-        ({\R+0.7*cos(\t)},{0.1+0.9*sin(\t)}) --
-        ++({0.7*cos(\t+25)*\L},{0.7*sin(\t+25)*\L});
-    }
-
-% --- test loop (the circulation contour) ---
-    \draw[#2] (0,0) circle (\RL);
-
-    % panel caption (under)
-    \node at (3.0,-2.7) {\small #3};
-    \end{tikzpicture}%
-}
-
-% --------- lay out four panels on one row ----------
-\OnePanel{0.55}{testloopOFF}{(a)\; very small loop $\Rightarrow\ \Gamma=0$}\hspace{0.9cm}
-\OnePanel{2.65}{testloopON}{(b)\; inside torus band $\Rightarrow\ \Gamma=-3\,\kappa$}\hspace{0.9cm}
-\OnePanel{3.25}{testloopON}{(c)\; still inside band $\Rightarrow\ \Gamma=-3\,\kappa$}\hspace{0.9cm}
-\OnePanel{4.60}{testloopOFF}{(d)\; far outside $\Rightarrow\ \Gamma\approx 0$}
-
-\caption{Four identical-scale, top-down panels. The gray tilted annulus hints at the torus where the trefoil lives (donut seen at an angle).
-The blue curve is a schematic trefoil; dashed parts are “behind” (3D cue).
-The green \textbf{test loops} (b,c) lie \emph{within} the torus band and measure the plateau \(\Gamma=\mathrm{Lk}\cdot\kappa=\pm 3\,\kappa\) (sign by orientation).
-Red loops (a,d) do not link the filament \(\Rightarrow \Gamma\approx 0\).}
-\label{fig:fourpanel-3D-cartoon}
-\end{figure}
+%
+%%-------------------------------------------
+%% 4-panel cartoon (same scale / same view)
+%%-------------------------------------------
+%\begin{figure}[htbp]
+%\centering
+%
+%% -------- helper macro: one panel --------------
+%% args: #1 = loop radius, #2 = ON/OFF style, #3 = caption text under panel
+%\newcommand{\OnePanel}[3]{%
+%    \begin{tikzpicture}[x=1cm,y=1cm,scale=0.60]
+%    % parameters (shared across all panels)
+%    \def\R{3.2}   % major radius (center of torus band)
+%    \def\r{1.1}   % half-thickness of torus band
+%    \def\tilt{0.55}% yscale to hint 3D tilt of torus
+%    \def\RL{#1}   % test loop radius
+%
+%    % axes (same in all panels)
+%    \draw[axes,->] (-0.25,0) -- (6.8,0) node[below right] {$x$};
+%    \draw[axes,->] (0,-3.0) -- (0,3.0) node[left] {$y$};
+%
+%    % central axis marker (z coming out of page)
+%    \fill (0,0) circle(2pt);
+%    \node[below left] at (0,0) {\footnotesize central axis ($z$)};
+%
+%    % --- torus "band" with a little 3D hint (tilted annulus) ---
+%    % outer and inner tilted ellipses (yscale = tilt)
+%    \begin{scope}[yscale=\tilt]
+%    \draw[very thick, gray!40] (0,0) circle (\R+\r);
+%    \draw[very thick, gray!40] (0,0) circle (\R-\r);
+%    % faint fill between ellipses for depth cue
+%    \path[fill=gray!10,draw=none] (0,0) circle (\R+\r);
+%    \clip (0,0) circle (\R+\r);
+%    \fill[white] (0,0) circle (\R-\r);
+%    \end{scope}
+%
+%    % --- schematic trefoil projection with over/under cues ---
+%    % front arc (solid), back arc (dashed + lighter) to hint 3D crossing
+%    % This is a clean cartoon, not exact geometry.
+%    % Back (far) lobe:
+%    \draw[knotline, dashed, opacity=0.35]
+%    plot[smooth cycle, tension=0.9]
+%    coordinates {
+%        ({\R+0.2},  0.10)
+%        ({\R-0.4},  0.95)
+%        ({\R+0.6},  0.85)
+%        ({\R+0.3}, -0.9)
+%        ({\R-0.9}, -1.05)
+%    };
+%    % Front (near) lobe with arrows (swirl direction)
+%    \draw[knotline]
+%    plot[smooth cycle, tension=0.9]
+%    coordinates {
+%        ({\R},     0.00)
+%        ({\R-0.6}, 1.00)
+%        ({\R+0.8}, 0.80)
+%        ({\R+0.4},-1.00)
+%        ({\R-0.8},-1.20)
+%    };
+%    % flow arrows along the visible lobe
+%    \foreach \t/\L in {0/0.35, 60/0.35, 180/0.35}{
+%        \draw[looparrow, blue!70]
+%        ({\R+0.7*cos(\t)},{0.1+0.9*sin(\t)}) --
+%        ++({0.7*cos(\t+25)*\L},{0.7*sin(\t+25)*\L});
+%    }
+%
+%% --- test loop (the circulation contour) ---
+%    \draw[#2] (0,0) circle (\RL);
+%
+%    % panel caption (under)
+%    \node at (3.0,-2.7) {\small #3};
+%    \end{tikzpicture}%
+%}
+%
+%% --------- lay out four panels on one row ----------
+%\OnePanel{0.55}{testloopOFF}{(a)\; very small loop $\Rightarrow\ \Gamma=0$}\hspace{0.9cm}
+%\OnePanel{2.65}{testloopON}{(b)\; inside torus band $\Rightarrow\ \Gamma=-3\,\kappa$}\hspace{0.9cm}
+%\OnePanel{3.25}{testloopON}{(c)\; still inside band $\Rightarrow\ \Gamma=-3\,\kappa$}\hspace{0.9cm}
+%\OnePanel{4.60}{testloopOFF}{(d)\; far outside $\Rightarrow\ \Gamma\approx 0$}
+%
+%\caption{Four identical-scale, top-down panels. The gray tilted annulus hints at the torus where the trefoil lives (donut seen at an angle).
+%The blue curve is a schematic trefoil; dashed parts are “behind” (3D cue).
+%The green \textbf{test loops} (b,c) lie \emph{within} the torus band and measure the plateau \(\Gamma=\mathrm{Lk}\cdot\kappa=\pm 3\,\kappa\) (sign by orientation).
+%Red loops (a,d) do not link the filament \(\Rightarrow \Gamma\approx 0\).}
+%\label{fig:fourpanel-3D-cartoon}
+%\end{figure}
 
 
 \section{Swirl Gravity and Molecular Attraction}
