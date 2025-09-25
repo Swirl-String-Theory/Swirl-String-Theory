@@ -4,7 +4,8 @@
 %! Affiliation = Independent Researcher, Groningen, The Netherlands
 %! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
 %! ORCID = 0009-0006-1686-3961
-%! DOI = 10.5281/zenodo.17172376
+%! DOI = 10.5281/zenodo.16980376
+
 
 % ===============================================================
 % SST Rosetta: VAM-to-SST Translation Guide for Symbols, Macros, and Constants
@@ -12,13 +13,14 @@
 
 % === Metadata ===
 \newcommand{\papertitle}{SST Rosetta: VAM-to-SST Translation Guide for Symbols, Macros, and Constants}
-\newcommand{\paperdoi}{10.5281/zenodo.17172376}
+\newcommand{\paperdoi}{10.5281/zenodo.16980376}
 
 % Standalone mode
 \documentclass[11pt]{article}
-\usepackage{amssymb}
 \input{../template/SSTstyle.sty}
 \input{../template/SST_appendix_setup.sty}
+\usepackage{amsmath,amssymb,siunitx,tcolorbox,booktabs}
+\sisetup{scientific-notation=true,round-mode=figures,round-precision=3}
 
 % ==== Swirl String Theory (SST) macros ====
 % Context-aware subscript symbol; uses math styles, not \scriptsize
@@ -314,7 +316,175 @@
 	The earlier ansatz $d\tau/d\bar t=e^{-r/r_c}$ can be used only as a phenomenological fit; it does not follow from the SR-like form unless one imposes a special $v_\phi(r)$ inconsistent with Rankine.
 
 % ============== End of content =============
+% \vswirl = 1.09384563e6 m/s ; \rc = 1.40897017e-15 m ;
+% \rhoF = 7.0e-7 kg/m^3 ; \rho_core = 3.8934358266918687e18 kg/m^3 ;
+% \FswirlMax = 29.053507 N  (not used directly here).
 
+% Helpful derived scales (used and checked below)
+    \newcommand{\Circulation}{\kappa}
+    \newcommand{\Umax}{U_{\max}}
+    \newcommand{\Uloc}{U_{\text{swirl}}}
+    \newcommand{\chiS}{\chi_{\text{swirl}}}
+
+%======================================================================
+% CARD 1: GR / PPN / GW  →  SST (Swirl–Clock analogue metric)
+%======================================================================
+    \begin{tcolorbox}[title=Rosetta Card: GR/PPN/GW $\to$ Swirl–String Theory (SST)]
+    \textbf{Domain:} weak–field, stationary backgrounds; lensing, Shapiro delay, PPN.
+
+    \textbf{Symbol Dictionary}
+    \begin{tabular}{@{}lll@{}}
+    \toprule
+    GR object & SST counterpart & Notes \\
+    \midrule
+    $g_{\mu\nu}$ (weak field) & analogue metric via Swirl–Clock & matter propagation sector \\
+    $\Phi$ (Newtonian potential) & $\Phi_{\text{SST}}$ from swirl energy fraction & defined below \\
+    $T^{\mu\nu}$ & swirl stress $(\rhoE,p_{\text{swirl}},\ldots)$ & barotropic, inviscid \\
+    $c$ & $\cLight$ & calibrated to luminal signals \\
+    \bottomrule
+    \end{tabular}
+
+    \textbf{EOM / Metric Map (linearized):}
+    \[
+        ds^2_{\text{GR}} \approx -\left(1+\frac{2\Phi}{\cLight^2}\right)\cLight^2 dt^2
+        +\left(1-\frac{2\gamma\,\Phi}{\cLight^2}\right)d\mathbf{x}^2 .
+    \]
+    Define the local swirl energy density and maximum energy density
+    \[
+        \Uloc = \tfrac{1}{2}\rhoF \lVert \vswirl\rVert^2,\qquad
+        \Umax = \rho_{\text{core}}\cLight^2,\qquad
+        \chiS = \frac{\Uloc}{\Umax}\ (\text{dimensionless}),
+    \]
+    and map
+    \[
+        g_{tt} = -\!\left(1-\chiS\right)\cLight^2,\qquad
+        g_{ij} = \left(1+\gamma\,\chiS\right)\delta_{ij}.
+    \]
+    Matching coefficients gives
+    \[
+        \boxed{\ \Phi_{\text{SST}} \equiv -\frac{\Uloc}{2\,\rho_{\text{core}}}\ } \quad\Rightarrow\quad
+        \frac{2\Phi_{\text{SST}}}{\cLight^2} = -\chiS,\ \ \gamma=1\ (\text{Calibration}).
+    \]
+    \emph{Dimensional check:} $[\Uloc]=\mathrm{J/m^3}$, $[\rho_{\text{core}}]=\mathrm{kg/m^3}$, so
+    $\Uloc/\rho_{\text{core}}$ has units $\mathrm{J/kg}=\mathrm{m^2/s^2}$, as required for $\Phi$.
+
+    \textbf{Numerical validation (your constants):}
+    \[
+        \Circulation = 2\pi\rc\lVert\vswirl\rVert
+        = \SI{9.6836e-9}{m^2/s},
+        \quad
+        \Uloc=\tfrac{1}{2}\rhoF \lVert \vswirl\rVert^2=\SI{4.1877e5}{J/m^3},
+    \]
+    \[
+        \Umax = \rho_{\text{core}}\cLight^2 = \SI{3.4992e35}{J/m^3},
+        \quad
+        \chiS = \Uloc/\Umax = \SI{1.1968e-30}{},
+    \]
+    \[
+        \Phi_{\text{SST}} = -\frac{\Uloc}{2\rho_{\text{core}}}
+        = \SI{-5.378e-14}{m^2/s^2},
+        \quad
+        \left|\frac{2\Phi_{\text{SST}}}{\cLight^2}\right|=\SI{1.197e-30}{}.
+    \]
+    Known-limit check: $|\chiS|\ll 1 \Rightarrow$ PPN weak-field holds with $\gamma=1$.
+
+    \textbf{Predictions \& Falsifiers}
+    \begin{itemize}\itemsep2pt
+    \item Lensing/Shapiro from $\Phi_{\text{SST}}$ matches GR to $\mathcal{O}(\chiS)$; deviations scale with spatial gradients of $\Uloc$.
+    \item High-frequency GW propagation luminal (Calib.) $\Rightarrow$ multi-messenger bounds satisfied.
+    \item Falsifier: any measured $\gamma\neq 1$ at $10^{-5}$–$10^{-6}$ in quasi-static fields contradicts this mapping.
+    \end{itemize}
+
+    \textbf{Status:} Calibration \hfill \textbf{Version:} Rosetta~v0.1
+    \end{tcolorbox}
+
+%======================================================================
+% CARD 2: Maxwell / QED  →  SST (multi-director swirl sector)
+%======================================================================
+    \begin{tcolorbox}[title=Rosetta Card: Maxwell/QED $\to$ SST (multi-director swirl)]
+    \textbf{Domain:} radiation sector; vacuum/linear media analogues.
+
+    \textbf{Dictionary:}
+    \begin{tabular}{@{}lll@{}}
+    \toprule
+    EM object & SST counterpart & Notes \\
+    \midrule
+    $A_\mu$ & director phase gradient $\partial_\mu\theta$ & Abelian sector \\
+    $F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu$ & swirl curvature of director field & circulation quantized \\
+    Charge $q$ & knot/link index (topological) & integer invariants \\
+    Flux quantum & $\Circulation=2\pi\rc\lVert\vswirl\rVert$ & \SI{9.6836e-9}{m^2/s} \\
+    Poynting $\mathbf{S}$ & energy flux of Kelvin–swirl waves & $\sim \Uloc\,\mathbf{v}_{\rm ph}$ \\
+    \bottomrule
+    \end{tabular}
+
+    \textbf{Lagrangian/EOM map (linearized, uniform background):}
+    \[
+        \mathcal{L}_{\text{EM}}=-\tfrac14 F_{\mu\nu}F^{\mu\nu}
+        \ \longleftrightarrow\
+        \mathcal{L}_{\text{SST}}^{(\theta)}=\tfrac12\!\left[\frac{1}{\cLight^2}(\partial_t\theta)^2-\lvert\nabla\theta\rvert^2\right]\Umax,
+    \]
+    yielding the wave equation
+    \[
+        \partial_t^2\theta-\cLight^2\nabla^2\theta=0
+        \quad(\text{calibrated luminal phase speed}).
+    \]
+    In inhomogeneous multi-director fields, polarization-dependent phase shifts (vacuum-like birefringence) enter via curvature of the director manifold.
+
+    \textbf{Numerical anchor:} circulation quantum $\Circulation=\SI{9.6836e-9}{m^2/s}$ fixes the smallest swirl-flux unit consistent with $\rc$ and $\vswirl$.
+
+    \textbf{Dimensional checks:} $\mathcal{L}_{\text{SST}}^{(\theta)}$ has units of energy density by the factor $\Umax$.
+
+    \textbf{Predictions \& Falsifiers}
+    \begin{itemize}\itemsep2pt
+    \item Plane-wave dispersion $\omega=\cLight k$ in uniform regions; gradients in $\theta$ produce tiny polarization-dependent delays $\propto\nabla^2\theta/\Umax$.
+    \item Falsifier: vacuum birefringence above current bounds in high-energy astrophysical spectra would contradict the calibration.
+    \end{itemize}
+
+    \textbf{Status:} Canonical (kinematics) / Research (multi-director birefringence) \hfill \textbf{Version:} Rosetta~v0.1
+    \end{tcolorbox}
+
+%======================================================================
+% CARD 3: Einstein–Æther / Khronon EFT  →  SST (Swirl–Clock foliation)
+%======================================================================
+    \begin{tcolorbox}[title=Rosetta Card: Einstein–Æther/Khronon $\to$ SST (Swirl–Clock)]
+    \textbf{Domain:} preferred-frame EFTs; GW constraints; PPN.
+
+    \textbf{Dictionary:}
+    \begin{tabular}{@{}lll@{}}
+    \toprule
+    EA field & SST counterpart & Notes \\
+    \midrule
+    Unit timelike $u^\mu$ & normalized Swirl–Clock four-velocity & picks foliation \\
+    $c_i$ couplings & effective foliation elasticities & mapped by calibration \\
+    $c_T$ (spin-2 GW speed) & luminal by construction & enforce $c_{13}\!=\!c_1{+}c_3\simeq 0$ \\
+    \bottomrule
+    \end{tabular}
+
+    \textbf{Action map (symbolic):}
+    \[
+        S_{\ae}=\frac{1}{16\pi G}\!\int\! d^4x\sqrt{-g}\!\left[-R
+        -K^{\ \ mn}_{ab}\nabla^a u_m \nabla^b u_n
+        +\lambda(u^\mu u_\mu+1)\right],
+    \]
+    \[
+        K^{\ \ mn}_{ab}=c_1 g_{ab}g^{mn}+c_2\delta_a^{\ m}\delta_b^{\ n}+c_3\delta_a^{\ n}\delta_b^{\ m}
+        +c_4 u_a u_b g^{mn}.
+    \]
+    \textbf{GW calibration:} impose $c_{13}=0\Rightarrow c_T^2=1$ (luminal spin-2). Spin-1 and spin-0 mode speeds are functions of $c_i$ (see table in source); choose parameter ranges that avoid instabilities/Čerenkov bounds.
+
+    \textbf{Numerical anchor (GW170817 class):}
+    \[
+        |c_T-1|\lesssim 10^{-15}\ \Rightarrow\ |c_{13}|\lesssim 10^{-15}\quad(\text{imposed}).
+    \]
+
+    \textbf{Predictions \& Falsifiers}
+    \begin{itemize}\itemsep2pt
+    \item With $c_{13}\!=\!0$, SST’s Swirl–Clock foliation is consistent with coincident GW–EM arrival.
+    \item Dipole/monopole radiation channels are suppressed by calibration choices; detection at current pulsar-timing sensitivity would falsify this mapping.
+    \end{itemize}
+
+    \textbf{Status:} Calibration (GW speed) / Research (spin-0/1 sector) \hfill \textbf{Version:} Rosetta~v0.1
+    \end{tcolorbox}
 
 % Added ready-to-compile bibliography for this Rosetta (uncomment to use):
 	\bibliographystyle{unsrt}

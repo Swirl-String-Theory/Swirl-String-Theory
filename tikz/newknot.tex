@@ -2,7 +2,7 @@
 % ------- TikZ Preamble -------
 \RequirePackage{tikz}
 \usetikzlibrary{knots,hobby,calc,intersections,decorations.pathreplacing,shapes.geometric,spath3}
-\usepackage{tikz-knot}
+
 % ------- Shared styles (from your preamble) -------
 \tikzset{
     knot diagram/every strand/.append style={ultra thick, black},
@@ -47,7 +47,7 @@
         consider self intersections,
         clip width=5pt, clip radius=3pt,
         ignore endpoint intersections=false,
-        draft mode=crossings % uncomment to see numbers
+%        draft mode=crossings % uncomment to see numbers
     ]
     \strand
     ([closed] P1)..(P2)..(P3)..(P4)..(P5)..(P6);

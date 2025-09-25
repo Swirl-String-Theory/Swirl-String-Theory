@@ -1343,6 +1343,62 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
         Eq.~\eqref{eq:SST-Lambda}, canonically linking baryonic microstructure to cosmic
         acceleration.
 
+        % === Canon Insert: SBSL Swirl–Compression Differential =======================
+        \begin{corollary}[SBSL swirl–compression differential]
+        For two SBSL conditions $A,B$ with matched collapse geometry $\alpha\equiv R_0/R_{\min}$ and composition (thus fixed $\gamma_{\rm mix}$), the percent-level temperature change obeys
+        \[
+            \boxed{
+                \left[\frac{\Delta T}{T}\right]^{\rm SBSL}_{B-A}
+                = 3\ln\alpha\,(\gamma_{\rm mix}-1)\,p_{\ae}\!\left(\frac{1}{p_A}-\frac{1}{p_B}\right)
+            }\,,
+        \]
+        valid to leading order in $p_{\ae}\ll p_{A,B}$.
+        \end{corollary}
+
+    \paragraph{Definitions (SST/Rosetta).}
+        \[
+            p_{\ae}\;\equiv\;\tfrac12\,\rho_f\,v_{\circ}^{\,2}\,\Phi_e(T_e),
+            \qquad
+            \gamma_{\rm mix}\;\equiv\; \frac{C_p^{\rm mix}}{C_v^{\rm mix}},
+            \qquad
+            \alpha=\frac{R_0}{R_{\min}},
+        \]
+        where $\rho_f$ is the fluid density on the macro layer, $v_{\circ}$ is the calibrated core swirl–speed scale, and $\Phi_e(T_e)\in[0,1]$ is an optional electron–engagement switch (unity when hot electrons are present). A canonical smooth choice is
+        \[
+            \Phi_e(T_e)=1-\exp\!\Big[-(T_e/T_\star)^q\Big],\quad
+            T_\star=\frac{m_e v_{\circ}^{\,2}}{2k_B},\;\; q\in[1,2].
+        \]
+
+    \paragraph{Dimensional check.}
+        $\ln\alpha$, $(\gamma_{\rm mix}-1)$ are dimensionless; $p_{\ae}/p$ is dimensionless; hence $\Delta T/T$ is dimensionless.
+
+    \paragraph{Experiment-ready diagnostic.}
+        Given fitted temperatures $T_A,T_B$,
+        \[
+            \left(\frac{\Delta T}{T}\right)^{\rm obs}_{B-A}=\frac{T_B-T_A}{T_A},\qquad
+            \widehat{\chi}=\frac{\big(\Delta T/T\big)^{\rm obs}_{B-A}}{
+                3\ln\alpha\,(\gamma_{\rm mix}-1)\,p_{\ae}\big(\frac{1}{p_A}-\frac{1}{p_B}\big)}\,.
+        \]
+        \emph{Decision rule:} $\widehat{\chi}\approx 1$ supports swirl hardening; $\widehat{\chi}\ll 1$ bounds $p_{\ae}$ (or $\Phi_e$); $\widehat{\chi}\gg 1$ indicates uncontrolled changes (e.g. $\alpha$ or composition) or missing baseline physics.
+
+% Optional: note on limits
+    \paragraph{Validity.} Small-perturbation regime $p_{\ae}\ll p_{A,B}$; fixed $\alpha$ and composition (thus fixed $\gamma_{\rm mix}$).
+% ============================================================================
+
+% References (non-original facts/ideas cited)
+% Keep VAM/SST term as original; cite SBSL facts & continuum fits.
+        \begin{thebibliography}{9}
+        \bibitem{BrennerHL2002}
+        M.~P.~Brenner, S.~Hilgenfeldt, and D.~Lohse,
+        \newblock Single-bubble sonoluminescence,
+        \newblock \emph{Rev. Mod. Phys.} \textbf{74}, 425–484 (2002). doi:10.1103/RevModPhys.74.425
+
+        \bibitem{FlanniganSuslick2006}
+        D.~J.~Flannigan and K.~S.~Suslick,
+        \newblock Measurement of pressure and density inside a single sonoluminescing bubble,
+        \newblock \emph{Phys. Rev. Lett.} \textbf{96}, 204301 (2006). doi:10.1103/PhysRevLett.96.204301
+        \end{thebibliography}
+
 
         %================================================
     \paragraph{Lemma (Retarded switch-on with Heaviside) — Canonical.}
