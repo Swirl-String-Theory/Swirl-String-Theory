@@ -1,32 +1,12 @@
-\documentclass[tikz,border=5pt]{standalone}
-% ------- TikZ Preamble -------
+\documentclass[tikz]{standalone}
 \RequirePackage{tikz}
-\usetikzlibrary{knots,hobby,calc,intersections,decorations.pathreplacing,decorations.markings,shapes.geometric,spath3}
-\tikzset{ knot diagram/every strand/.append style={ultra thick, black}}
-
-\newcommand{\SSTGuidesPoints}[2]{% #1=basename (e.g. P), #2=last index
-  \ifsstguides
-    \foreach \i in {1,...,#2}{
-      \fill[blue] (#1\i) circle (1.2pt);
-      \node[blue,font=\scriptsize,above] at (#1\i) {\i};
-    }
-    \draw[gray!40, dashed]
-    \foreach \i [remember=\i as \lasti (initially 1)] in {2,...,#2,1} { (#1\lasti)--(#1\i) };
-  \fi
-}
-% ------- TikZ Preamble -------
-
+\usetikzlibrary{hobby,decorations.markings}
 
 \begin{document}
-
-
-
-
-
 \begin{tikzpicture}[use Hobby shortcut, line cap=round, line join=round, scale=1.05]
 
 % ---- controls ----
-\def\Amp{0.130000}
+\def\Amp{0.13}
 \def\Turns{4}        % can be non-integer; extrema logic still works
 \def\Samples{400}
 \def\Wth{2.5pt}
@@ -43,15 +23,15 @@
 }
 
 % ---- coordinates ----
-\coordinate (P1) at (0, -1);
-\coordinate (P2) at (-2, 1);
-\coordinate (P3) at (0, 3);
-\coordinate (P4) at (0, 1);
-\coordinate (P5) at (0, 1);
-\coordinate (P6) at (0, 3);
-\coordinate (P7) at (2, 1);
-\coordinate (P8) at (0, -1);
-\coordinate (P9) at (0, -1); % = P1
+\coordinate (P1) at (-2.0,-2.0);
+\coordinate (P2) at (-2.0, 2.0);
+\coordinate (P3) at ( 1.0,-0.5);
+\coordinate (P4) at (-1.0,-0.5);
+\coordinate (P5) at ( 2.0, 2.0);
+\coordinate (P6) at ( 2.0,-2.0);
+\coordinate (P7) at (-1.0, 0.5);
+\coordinate (P8) at ( 1.0, 0.5);
+\coordinate (P9) at (-2.0,-2.0); % = P1
 \def\KPATH{([closed] P1)..(P2)..(P3)..(P4)..(P5)..(P6)..(P7)..(P8)..(P9)}
 
 % ---- build two offset coordinate lists ----
@@ -97,11 +77,4 @@
 }
 
 \end{tikzpicture}
-
-
-
-
-
-
-
 \end{document}

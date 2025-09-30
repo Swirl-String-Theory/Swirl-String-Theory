@@ -64,8 +64,10 @@ def velocity_from_segments(P, Pseg, dLseg, Gam):
     return v
 
 # ---------- load curves ----------
-ax52,bx52,ay52,by52,az52,bz52 = load_fseries('../SST_Mathematical_Proof_Python/Knots_FourierSeries/5_2/knot.5_2.fseries')
-ax61,bx61,ay61,by61,az61,bz61 = load_fseries('../SST_Mathematical_Proof_Python/Knots_FourierSeries/6_1/knot.6_1.fseries')
+ax52,bx52,ay52,by52,az52,bz52 = load_fseries(
+    './knot.5_2.fseries')
+ax61,bx61,ay61,by61,az61,bz61 = load_fseries(
+    './knot.6_1.fseries')
 
 t = np.linspace(0,2*np.pi,2400,endpoint=False)
 x52,y52,z52 = fourier_curve(t, ax52,bx52,ay52,by52,az52,bz52)

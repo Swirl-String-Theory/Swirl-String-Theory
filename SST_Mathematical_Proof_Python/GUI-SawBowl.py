@@ -162,7 +162,7 @@ for s in (Rb_slider, Rt_slider, L_slider, H_slider):
 phase_checks.on_clicked(lambda evt: redraw())
 
 
-out_path = "SawShape_GUI.png"
+out_path = "../images/SawShape_GUI.png"
 # Ensure output directory exists
 os.makedirs(os.path.dirname(out_path) or '.', exist_ok=True)
 plt.savefig(out_path, dpi=160, bbox_inches='tight')

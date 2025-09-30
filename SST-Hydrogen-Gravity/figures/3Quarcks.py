@@ -49,8 +49,10 @@ def load_fseries(path):
     ax = arr[:,0]; bx=arr[:,1]; ay=arr[:,2]; by=arr[:,3]; az=arr[:,4]; bz=arr[:,5]
     return ax, bx, ay, by, az, bz
 
-ax52,bx52,ay52,by52,az52,bz52 = load_fseries('../SST_Mathematical_Proof_Python/Knots_FourierSeries/5_2/knot.5_2.fseries')
-ax61,bx61,ay61,by61,az61,bz61 = load_fseries('../SST_Mathematical_Proof_Python/Knots_FourierSeries/6_1/knot.6_1.fseries')
+ax52,bx52,ay52,by52,az52,bz52 = load_fseries(
+    './knot.5_2.fseries')
+ax61,bx61,ay61,by61,az61,bz61 = load_fseries(
+    './knot.6_1.fseries')
 
 def fourier_curve(t, ax, bx, ay, by, az, bz):
     x = np.zeros_like(t, dtype=float)
