@@ -13,7 +13,7 @@
 %========================================================================================
 % PACKAGES AND DOCUMENT CONFIGURATION
 %========================================================================================
-\documentclass[reprint,aps,onecolumn,nofootinbib]{revtex4-2}
+\documentclass[11pt]{article}
 
 % ====== minimal packages ======
 \usepackage{amsmath,amssymb,amsfonts}
@@ -142,23 +142,48 @@
     strand/.style={line cap=round,line join=round,line width=3pt,draw=black},
     over/.style={preaction={draw=white,line width=6.5pt}},
 }
+\newcommand{\titlepageOpen}{
+  \begin{titlepage}
+  \thispagestyle{empty}
+  \centering
+  {\Large\bfseries Long-Distance Swirl Gravity from Chiral Swirling Knots with Central Holes \par}
+  \vspace{1cm}
+  {\Large\itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par}
+  \vspace{0.5cm}
+  {\today \par}
+  \vspace{0.5cm}
+}
 
+% here comes abstract
+\newcommand{\titlepageClose}{
+     \vfill
+      \raggedright % <-- fixes left alignment
+      \null
+      \begin{picture}(0,0)
+      % Adjust position: (x,y) = (left, bottom)
+      \put(0,-45){  % Shift 200pt left, 40pt down
+        \begin{minipage}[b]{0.7\textwidth}
+        \footnotesize % One step bigger than \tiny \scriptsize
+        \renewcommand{\arraystretch}{1.0}
+        \noindent\rule{\textwidth}{0.4pt} \\[0.5em]  % ← horizontal line
+        \textsuperscript{\textbf{*}} Independent Researcher, Groningen, The Netherlands \\
+        Email: \texttt{info@omariskandarani.com} \\
+        ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}} \\
+        DOI: \href{https://doi.org/\paperdoi}{\paperdoi} \\
+        \textbf{Keywords:} Swirl-String Theory, Topological Gravity, Entropic Force, Circulation Quantization, Flat-Space Field Theory
+        \end{minipage}
+      }
+      \end{picture}
+      \end{titlepage}
+}
 
 \begin{document}
-    \title{\papertitle }
-    \author{Omar Iskandarani}
-    \affiliation{Independent Researcher, Groningen, The Netherlands}
-    \thanks{ORCID: 0009-0006-1686-3961,\\
-            DOI: \paperdoi \\
-            Version: \paperversion \\
-    \textbf{Keywords:} Swirl-String Theory, Topological Gravity, Entropic Force, Circulation Quantization, Flat-Space Field Theory
-    }
-    \date{\today}
+\titlepageOpen
 
     \begin{abstract}
     In Swirl–String Theory (SST), long-range attraction arises from the topology of \emph{chiral swirling knots}—vortex filaments including the trefoil (\(3_1\)), cinquefoil (\(5_1\)), \(5_2\), and stevedore (\(6_1\)). Each knot surrounds a straight rotation axis that carries the circulation. By Cauchy’s integral theorem~\cite{ahlforsComplexAnalysis1979,cauchy1825}, loops that link this axis exhibit an integer plateau of circulation, which we record with the Swirl Clock \(\SwirlClock\). When two composite tubes (e.g., the proton cores in H\(_2\)) share a central axis across an equal-pressure boundary, additive circulation deepens the common pressure well, consistent with attraction between neutral molecules in flat space~\cite{london1930,casimirpolder1948}. A crisp laboratory discriminator follows from the swirl–EM correspondence: topology changes in the swirl network generate geometry-independent, discrete electromotive impulses of fixed magnitude, \(\Delta\Phi=\pm\Phi_\star\)~\cite{DeaverFairbank1961,LittleParks1962}, with sign set by chirality. Non-integral steps, geometry-dependent amplitudes, or persistence without verified linking would falsify this mechanism.
     \end{abstract}
-    \maketitle
+
 
 \section{Chiral Swirling Knots and Central Holes}
     Consider a chiral knot $K$ embedded in $\mathbb{R}^3$, such as Fig.~\ref{fig:knot-gallery}:
@@ -184,6 +209,7 @@
     The core tube of radius $r_c$ supports a tangential swirl velocity $\vswirl$, defining the \emph{Swirl Clock} $\SwirlClock$.
 
     A key structural feature is a \emph{central hole} threaded by a straight axis (taken as the $z$-axis), along which the analytic swirl potential is singular.
+\titlepageClose
 
     \begin{figure}[t]
         \centering
@@ -198,126 +224,17 @@
         \caption{Preferred foliation by the clock field $T(x)$ with unit timelike $u^\mu$, and spatial projector $h_{\mu\nu}=g_{\mu\nu}+u_\mu u_\nu$.}\label{fig:foliation}
     \end{figure}
 
-
     % ============================
     % Figure: Trefoil + central axis + circulation loops (clean, layered)
     % ============================
+
     \begin{figure}[htbp]
-        \centering
-        \begin{tikzpicture}[scale=0.90, line cap=round, line join=round]
-            % ------------------------
-            % Parameters
-            % ------------------------
-            \def\R{3.20}      % major radius (to center of tube)
-            \def\rtube{0.95}  % tube radius (for planar projection amplitude)
-            \def\Rin{\R-\rtube}
-            \def\Rout{\R+\rtube}
-
-            % ------------------------
-            % Styles
-            % ------------------------
-            \tikzset{
-                axisline/.style={->, line width=0.6pt, black!70},
-                annulusfill/.style={fill=gray!10, even odd rule},
-                annulusline/.style={draw=gray!55, line width=0.6pt},
-                corecircle/.style={draw=black!70, line width=0.8pt},
-                outercircle/.style={draw=black!60, line width=0.8pt, dash pattern=on 3pt off 2pt},
-                labelbox/.style={fill=white, draw=black!20, rounded corners=2pt, inner sep=3pt},
-                knotunder/.style={draw=blue!45!black, line width=1.4pt},
-                knotover/.style={
-                    draw=blue!80!black, line width=1.4pt,
-                    preaction={draw=white, line width=3.2pt, line cap=round}
-                },
-                knotarrows/.style={
-                    postaction={decorate},
-                    decoration={
-                        markings,
-                        mark=at position 0.18 with {\arrow{Latex}},
-                        mark=at position 0.52 with {\arrow{Latex}},
-                        mark=at position 0.86 with {\arrow{Latex}}
-                    }
-                }
-            }
-
-            % ------------------------
-            % Axes (x-y plane view)
-            % ------------------------
-            \draw[axisline] (-0.3,0) -- (6.8,0) node[below right] {$x$};
-            \draw[axisline] (0,-3.6) -- (0,3.6) node[left] {$y$};
-
-            % Central rotational axis marker (z comes out of plane at origin)
-            \fill[black] (0,0) circle(2pt);
-            \node[below left] at (0,0) {\small central axis ($z$)};
-
-            % ------------------------
-            % Torus annulus (projection band)
-            % ------------------------
-            \fill[annulusfill] (0,0) circle (\Rout) (0,0) circle (\Rin);
-            \draw[annulusline] (0,0) circle (\Rin);
-            \draw[annulusline] (0,0) circle (\Rout);
-            \node[labelbox, align=left] at (\R,-2.35) {\footnotesize torus annulus $[R-\!r,\,R+\!r]$};
-
-            % ------------------------
-            % Circulation test loops in z=0 plane
-            % ------------------------
-            \foreach \RR in {2.10, 2.60, 3.20} {
-                \draw[corecircle] (0,0) circle (\RR);
-            }
-            \node[labelbox] at (2.10, 1.25) {\(\Gamma \approx -3\,\kappa\)};
-            \node[labelbox] at (2.60,-1.25) {\(\Gamma \approx -3\,\kappa\)};
-            \node[labelbox] at (3.20, 1.25) {\(\Gamma \approx -3\,\kappa\)};
-
-            \draw[outercircle] (0,0) circle (4.6);
-            \node[labelbox] at (4.6,-1.25) {\(\Gamma \approx 0\)};
-
-            % ------------------------
-            % Trefoil T(2,3) projection on torus: parametric planar curve
-            % x(θ) = (R + r cos(3θ)) cos θ
-            % y(θ) = (R + r cos(3θ)) sin θ
-            % Over/under decided by sign of z(θ) = r sin(3θ):
-            %   sin(3θ) > 0  => "over" segments
-            %   sin(3θ) < 0  => "under" segments
-            % We split [0, 2π] at θ = k·π/3.
-            % ------------------------
-            % parameters (numeric, no units)
-            \def\R{3.20}
-            \def\rtube{0.95}
-
-            \tikzset{
-              declare function={
-                rad(\x)=\x*pi/180;
-                Rx(\t)=(\R + \rtube*cos(3*rad(\t) r))*cos(rad(\t) r);
-                Ry(\t)=(\R + \rtube*cos(3*rad(\t) r))*sin(rad(\t) r);
-              }
-            }
-
-            % --- UNDER segments first (behind) ---
-            \draw[knotunder, samples=180, smooth, variable=\ang, domain=60:120]
-              plot ({1cm*Rx(\ang)}, {1cm*Ry(\ang)});
-            \draw[knotunder, samples=180, smooth, variable=\ang, domain=180:240]
-              plot ({1cm*Rx(\ang)}, {1cm*Ry(\ang)});
-            \draw[knotunder, samples=180, smooth, variable=\ang, domain=300:360]
-              plot ({1cm*Rx(\ang)}, {1cm*Ry(\ang)});
-
-            % --- OVER segments (on top) ---
-            \draw[knotover, knotarrows, samples=180, smooth, variable=\ang, domain=0:60]
-              plot ({1cm*Rx(\ang)}, {1cm*Ry(\ang)});
-            \draw[knotover, knotarrows, samples=180, smooth, variable=\ang, domain=120:180]
-              plot ({1cm*Rx(\ang)}, {1cm*Ry(\ang)});
-            \draw[knotover, knotarrows, samples=180, smooth, variable=\ang, domain=240:300]
-              plot ({1cm*Rx(\ang)}, {1cm*Ry(\ang)});
-
-
-            \node[align=left, labelbox, anchor=south east] at (6.6,3.4) {\footnotesize
-            Trefoil \(3_1\) (torus-knot projection)\\
-            meridional winding \(q=3\)\\
-            \(\Rightarrow\ \Gamma=\mathrm{Lk}\cdot\kappa=\pm 3\,\kappa\)
-            };
-        \end{tikzpicture}
-        \caption{Trefoil knot with central axis and circulation loops in the \(z{=}0\) plane.
-        Loops whose spanning disk intersects the filament within the torus annulus measure a plateau \(\Gamma=\mathrm{Lk}\cdot\kappa=\pm 3\,\kappa\) (sign by orientation).
-        Loops outside the annulus do not enclose the filament and give \(\Gamma\approx 0\).}
-        \label{fig:trefoil_axis_plateau_clean}
+      \centering
+      \includegraphics[width=0.7\linewidth]{figures/trefoil_axis_plateu}
+            \caption{Trefoil knot with central axis and circulation loops in the \(z{=}0\) plane.
+            Loops whose spanning disk intersects the filament within the torus annulus measure a plateau \(\Gamma=\mathrm{Lk}\cdot\kappa=\pm 3\,\kappa\) (sign by orientation).
+            Loops outside the annulus do not enclose the filament and give \(\Gamma\approx 0\).}
+            \label{fig:trefoil_axis_plateau_clean}
     \end{figure}
 
 
@@ -363,9 +280,9 @@
 
     \begin{figure}[htbp]
         \centering
-        \subfloat[Top view of 3 quarck knots\label{fig:baryon}]{
+        \subfloat[Top view of 3 quark knots\label{fig:baryon}]{
             \includegraphics[width=0.3\linewidth]{figures/sst_three_knot_180_speed_stagnation}}
-        \subfloat[3D view of 3 quarck knots\label{fig:baryon3d1}]{
+        \subfloat[3D view of 3 quark knots\label{fig:baryon3d1}]{
             \includegraphics[width=0.3\linewidth]{figures/sst_three_knot_3d_streamlines_colored_ULTRALIGHT}}
         \subfloat[Composite tube\label{fig:baryon_composite_tube}]{
 
@@ -381,7 +298,7 @@
                 \draw[axisline, ->] (0,-5.2) -- (0,4.2) node[left] {$z$};
                 \draw[axisline, ->] (-4.2,0) -- (4.2,0) node[below right] {$x$};
                 \fill (0,0) circle (2pt);
-                \node[below right] at (0,0) {\small central axis};
+
 
                 % ---------- Three incoming quark tubes (from -z, merging to z-axis) ----------
                 \draw[tube, blue!70]
@@ -417,6 +334,7 @@
                 }
 
                 % ---------- Labels ----------
+                \node[below right] at (0,0) {\small central axis};
                 \node[align=left, labelbox, anchor=west] at (-3.9,-4.6) {Three quark tubes\\[-2pt]
                     \(\Gamma_1=\Gamma_2=\Gamma_3=\kappa\)};
                 \node[align=left, labelbox, anchor=west] at (0.2,2.8) {Composite tube on \(z\)-axis\\[-2pt]
@@ -430,7 +348,7 @@
     \end{figure}
 
     Each quark knot $i$ has circulation $\Gamma_i = \kappa$ around the central axis (Fig.~\ref{fig:baryon_composite_tube}).
-        By Kelvin additivity,
+    By Kelvin’s theorem (linearity of circulation),
         \begin{equation}
             \Gamma_{\mathrm{baryon}}=\Gamma_1+\Gamma_2+\Gamma_3=3\kappa.
         \end{equation}
@@ -477,7 +395,8 @@
         The modified Faraday law~\cite{Iskandarani2025EMG} with the swirl–induced source term~\eqref{eq:modified-faraday} is derived in a companion manuscript~\cite{Iskandarani2025EMG}. There, it is shown that $G_{\!\boldsymbol{\circlearrowleft}}$ is quantized in Weber units and identified with a flux quantum~\cite{DeaverFairbank1961,LittleParks1962}, $G_{\!\boldsymbol{\circlearrowleft}} = \Phi_\star \in \{h/e,\,h/2e\}$. In the present work we focus on experimental implications.
 
 
-\section{Experimental Realization of Swirl-Induced Electromotive Impulses}
+\section{Experimental Realization of Swirl-Induced Electromotive \mbox{Impulses}
+}
 \label{sec:exp-impulses}
 
     \subsection{Prediction}
@@ -599,10 +518,10 @@
 
 
     \subsection{Swirl Entropy as Informational Field}
-        We define a swirl-based entropy field $S_{(x^\mu)}^{\swirlarrow} $ as a logarithmic function of the swirl areal density $\rho_\swirlarrow = \nabla \cdot \vec{a}$:
+        We define a swirl-based entropy field $S_{(x^\mu)}^{\swirlarrow} $ as a logarithmic function of the swirl areal density $\rho_{\swirlarrow} = \nabla \cdot \vec{a}$:
 
         \begin{equation}
-            S_{(x^\mu)}^{\swirlarrow} = k_B \cdot \log\left(1 + \frac{\rho_\swirlarrow(x^\mu)}{\rho_0}\right)
+            S_{(x^\mu)}^{\swirlarrow} = k_B \cdot \log\left(1 + \frac{\rho_{\swirlarrow}(x^\mu)}{\rho_0}\right)
         \end{equation}
 
         Here, $\rho_0$ is a baseline density. The field $S^{\swirlarrow} $ plays the role of a local entropy density, similar to that on a holographic screen in entropic gravity.
@@ -645,7 +564,7 @@
             dt_\text{local} = dt_\infty \sqrt{1 - \frac{v^2}{c^2}},
         \end{equation}
 
-        consistent with entropic gravity, where time slows in regions of higher information density, i.e., larger $\rho_\swirlarrow$.
+        consistent with entropic gravity, where time slows in regions of higher information density, i.e., larger $\rho_{\swirlarrow}$.
 
     \subsection{R/T Phase Transition and Information Localization}
         SST posits two phases:
@@ -663,7 +582,7 @@
                 \toprule
                 \textbf{SST Concept} & \textbf{Entropic Gravity Analog} & \textbf{Interpretation} \\
                 \midrule
-                $\rho_\swirlarrow$ & Entropy density & Local information field \\
+                $\rho_{\swirlarrow}$ & Entropy density & Local information field \\
                 Swirl clock & Gravitational redshift & Entropic time rate \\
                 $\Delta p$ & Entropic force & Gradient of entropy \\
                 $\kappa$ & Info unit / bit & Mass from information \\
