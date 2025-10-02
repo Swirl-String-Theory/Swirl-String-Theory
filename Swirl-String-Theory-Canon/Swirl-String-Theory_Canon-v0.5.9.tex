@@ -45,15 +45,12 @@
 % swirl arrows (context-aware)
 \newcommand{\swirlarrow}{%
     \mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}%
-    {\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}%
-    {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
-    {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
+         {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
 }
 \newcommand{\swirlarrowcw}{%
     \mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}%
-    {\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}%
-    {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}%
-    {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}%
+         {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}%
+
 }
 
 % Canonical symbols
@@ -93,6 +90,25 @@
     \textbf{Golden (hyperbolic)}:\ \(\ln\phi=\xig\), hence \(\phi=\phig\).
     \ \emph{(Equivalently, \(\phi=\phialg\); the algebraic form is derivative.)}%
 }
+
+
+
+
+
+\newcommand{\vswirltext}{\mathbf{v}_{\mathrm{swirl}}}
+
+% Misc
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ee}{\mathrm{e}}
+% Theorem-like environments (only if absent)
+\makeatletter
+\@ifundefined{theorem}{\newtheorem{theorem}{Theorem}}{}
+\@ifundefined{corollary}{\newtheorem{corollary}{Corollary}}{}
+\@ifundefined{definition}{\newtheorem{definition}{Definition}}{}
+\@ifundefined{lemma}{\newtheorem{lemma}{Lemma}}{}
+\makeatother
+
+
 \usepackage{graphicx}
 
 \begin{document}
@@ -917,6 +933,46 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 	where $u_{\text{swirl}} = \frac{1}{2}\rho_f v_{\circ}^2$ is the swirl energy density and $W_i$ are dimensionless weights of the three director sectors. Numerically this is close to observed $246$ GeV. SST thus not only unifies gauge couplings conceptually but also accounts for the symmetry-breaking scale without fine-tuning. The small 5\% discrepancy could be due to higher-order effects or slight differences in $W_i$, but being in the ballpark is encouraging.
 
 	In summary, SST’s gauge sector aligns with the Standard Model: it has the correct gauge group, explains charge assignments via knot topology, and even offers an origin for coupling values and scales. In SST, these features stem from geometry and elasticity of the swirl medium.
+
+
+\section{Coherence Conductivity and Chirality in 1D (Patch)}
+\addcontentsline{toc}{section}{XII.B Coherence Conductivity and Chirality in 1D (Patch)}
+
+
+    \paragraph{Setting.} Consider a 1D slab with swirl–mode correlation matrix $N(q)$, mode frequencies $\Omega_s(q)$, group-velocity operator $V_x(q)$, and small static gradient $\partial_x T$. Let linewidths be $\gamma_s(q)$ and define $\Gamma_{ss'}\equiv\tfrac12(\gamma_s+\gamma_{s'})$ and detuning $\delta\equiv\Omega_{s'}-\Omega_s$ for a near-degenerate pair $s\neq s'$.
+
+
+    \begin{corollary}[Coherence conductivity in 1D; \emph{Canonical}]
+    \label{cor:kappaC1D}
+    The linear-response, off-diagonal contribution to thermal conductivity is
+    \begin{equation}
+    \boxed{\;\kappa^{(\mathrm C)}_{1\mathrm D}
+    =\sum_{q}\sum_{s\neq s'}\frac{\big(\Omega_s+\Omega_{s'}\big)\,\Gamma_{ss'}\,\big|V^{(x)}_{ss'}\big|^2}{4\delta^2+\Gamma_{ss'}^2}
+    \left(-\frac{\partial n_B}{\partial T}\right)
+    \; +\; \mathcal O(|M|^2)\;,}
+    \end{equation}
+    where $n_B$ is the Bose function and $M$ denotes weak electron–swirl vertices (Born–Markov), whose leading corrections are of order $|M|^2$. This expression reduces to Peierls and to Allen–Feldman in the appropriate limits \cite{Peierls1929,AllenFeldman1993,Simoncelli2019Unified,Hardy1963}.
+    \end{corollary}
+
+
+    \paragraph{Dimensional check.} $[V^{(x)}]^2\sim\mathrm{m^2/s^2}$, $[\Omega]\sim\mathrm{s^{-1}}$, $[-\partial n_B/\partial T]\sim\mathrm{K^{-1}}$, and the 1D density of states sum contributes $\sim \mathrm{s/m}$, giving $[\kappa]=\mathrm{W\,m^{-1}\,K^{-1}}$.
+
+
+    \paragraph{Proof sketch (Canonical).} Linearize the unified correlation equation \cite{Simoncelli2019Unified} in steady state about $N^{(0)}(T)$, project onto the near-degenerate $2\times2$ block, solve for $N^{(1)}_{ss'}$ with source $-\tfrac12 V^{(x)}_{ss'}\,\partial_x N^{(0)}$, and insert into $J_x=\mathrm{Tr}\,\tfrac12\{V_x, N\}\,\Omega$ \cite{Hardy1963}. Off-diagonal terms produce the Lorentzian factor $(4\delta^2+\Gamma^2)^{-1}$. Coupling to electrons adds $\mathcal O(|M|^2)$ corrections with the same denominator.
+
+
+    \begin{corollary}[Chirality-odd nonreciprocity; \emph{Canonical (conditional)}]
+    \label{cor:nonrec}
+    If a chiral drive induces a phase $V^{(x)}_{ss'}\to \big|V^{(x)}_{ss'}\big|\,\ee^{i\phi_\chi}$, the forward/backward conductivity difference satisfies
+    \begin{equation}
+    \boxed{\;\Delta\kappa_{\rm asym}\equiv \big[\kappa^{(\mathrm C)}\big]_{\rightarrow}-\big[\kappa^{(\mathrm C)}\big]_{\leftarrow}
+    \;\propto\;\frac{\Gamma_{ss'}}{4\delta^2+\Gamma_{ss'}^2}\,\Im\!\big\{\big(V^{(x)}_{ss'}\big)^2\big\}\;,}
+    \end{equation}
+    which flips sign under $\phi_\chi\to-\phi_\chi$ and vanishes when $\delta\gg\Gamma$.
+    \end{corollary}
+    \emph{Status.} Canonical once the chiral-drive operator is defined in the device Lagrangian; otherwise treat as Constitutive.
+
+
 
 %========================================================================================
 % SWIRL PRESSURE LAW (Euler Corollary, Canonical)
@@ -1759,6 +1815,20 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 
 
 
+
+
+
+% =============================================================
+% === Appendix: 2×2 near-degenerate block derivation ===
+% =============================================================
+\section*{ 2\texttimes 2 near-degenerate solution (sketch)}
+\addcontentsline{toc}{section}{Appendix A: 2×2 near-degenerate solution (sketch)}
+Write $N=N^{(0)}+N^{(1)}$, steady state, and restrict to $\{s,s'\}$. With source $S\equiv -\tfrac12 V_x\partial_x N^{(0)}$ and damping $\Gamma$, the linearized equations read
+\begin{align}
+(i\delta+\Gamma)\,N^{(1)}_{ss'} &= S_{ss'} + \mathcal O(|M|^2),\\
+\gamma_s\,N^{(1)}_{ss} + 2\,\Im\{V^{(x)}_{ss'}N^{(1)}_{s's}\} &= S^{(\mathrm{pop})}_s.
+\end{align}
+Solving for $N^{(1)}_{ss'}$ and inserting into $J_x=\mathrm{Tr}\,\tfrac12\{V_x,N\}\,\Omega$ yields Cor.~\ref{cor:kappaC1D}; a complex phase in $V^{(x)}_{ss'}$ gives Cor.~\ref{cor:nonrec}. Electron–swirl terms enter as $\mathcal O(|M|^2)$ corrections with the same Lorentzian denominator.
 
 
 
