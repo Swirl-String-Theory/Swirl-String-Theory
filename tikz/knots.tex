@@ -27,6 +27,36 @@
     over/.style={preaction={draw=white,line width=6.5pt}},
 % DO NOT set a global "every path" here; it breaks internal clip paths.
 }
+% ------- TikZ Guide Lines -------
+\newcommand{\SSTGuidesPoints}[2]{% #1=basename (e.g. P), #2=last index
+    \foreach \i in {1,...,#2}{
+      \fill[blue] (#1\i) circle (1.2pt);
+      \node[blue,font=\scriptsize,above] at (#1\i) {\i};
+    }
+    \draw[gray!40, dashed]
+    \foreach \i [remember=\i as \lasti (initially 1)] in {2,...,#2,1} { (#1\lasti)--(#1\i) };
+}
+% ------- TikZ Guide Lines -------
+\makeatletter
+% Compat shim for older TikZ < 3.1.9 that lack \tikz@curveto@auto
+\providecommand\tikz@curveto@auto{\tikz@curve@to@auto}
+% (Rarely needed, but harmless if present)
+\providecommand\tikz@lineto@auto{\tikz@line@to@auto}
+\makeatother
+% make TikZ expose the newest features its version supports
+\tikzset{compat=newest}
+
+% be explicit about the libs hobby depends on
+\usetikzlibrary{
+  topaths,      % needed by hobby’s auto-curves
+  hobby,
+  intersections,
+  calc,
+  decorations.pathreplacing,
+  shapes.geometric,
+  knots,
+  spath3
+}
 
 
 \begin{document}
