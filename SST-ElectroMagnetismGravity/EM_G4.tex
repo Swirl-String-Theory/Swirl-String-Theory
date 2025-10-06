@@ -1,4 +1,3 @@
-
 \documentclass[12pt]{article}
 % ====== minimal packages ======
 \usepackage{amsmath,amssymb,amsfonts}
@@ -61,15 +60,14 @@
 SST (Swirl--String Theory) is an emergent framework that models fundamental particles and forces as manifestations of a fictitious incompressible fluid medium \cite{Iskandarani2025Canon}. In SST, matter corresponds to quantized vortex filaments (``swirl strings'') in a universal condensate, and macroscopic forces arise from collective fluid dynamics rather than spacetime curvature. For example, previous works have shown that gravity can be interpreted as an emergent effect of coherent rotating flows in this medium \cite{Iskandarani2025RotatingFrame}. By calibrating the theory's constants, the effective gravitational coupling $\Gswirl$ in SST can be set equal to Newton's constant $G{N}$, reproducing Newtonian gravity in the appropriate limit \cite{Iskandarani2025Canon}. This picture aligns with ideas of entropic or emergent gravity \cite{Verlinde2011,Verlinde2017,Jacobson1995,Padmanabhan2010} by attributing gravitational phenomena to an underlying informational field (the swirl medium) rather than a fundamental spacetime interaction.
 
 
-% [TIKZ-SUGGESTION-1: High-level schematic of SST: background ``swirl medium'' with several closed vortex loops (unknotted & knotted), arrows indicating local swirl velocity. Place near here.]
+% [TIKZ-SUGGESTION-1: High-level schematic of SST: background ``swirl medium'' with several closed vortex loops (unknottedknotted), arrows indicating local swirl velocity. Place near here.]
 
 
 A central premise of SST is that each swirl string carries quantized circulation. In fact, the circulation of the swirl velocity field $\mathbf{v}_{\swirlarrow}$ around any closed loop $C$ is constrained to integer multiples of a fundamental quantum $\kappa$:
 
 \begin{equation}\label{eq:circulation}
 
-\Gamma ;=; \oint_C \mathbf{v}_{\swirlarrow}\cdot d\boldsymbol{\ell} ;=; n,\kappa, \qquad n \in \mathbb{Z},,
-
+\Gamma = \oint_C \mathbf{v}_{\swirlarrow}\cdot d\boldsymbol{\ell} = n\kappa, \qquad n \in \mathbb{Z},
 \end{equation}
 
 with $\kappa$ identified as $h/m_\text{eff}$ for some characteristic mass scale $m_\text{eff}$. This postulate echoes Onsager's and Feynman's discovery of quantized vortex circulation in superfluids and is a cornerstone of the SST model \cite{Onsager1949,Feynman1955}. Topologically, swirl strings are permitted only in discrete knot or link types, such that quantum numbers (mass, charge, spin, etc.) correspond to topological invariants of the vortex filament rather than to eigenstates of quantum operators \cite{Iskandarani2025Canon}. This topological quantization gives SST a concrete combinatorial foundation distinct from field-theoretic approaches.
@@ -124,20 +122,143 @@ Classical Faraday induction tells us that a changing magnetic flux through a loo
 
 \subsection*{Modified Faraday's Law}
 
+    \begin{figure}[htbp]
+    \begin{tcolorbox}[colback=gray!10, colframe=black, title={Canonical Reference}]
+    This electromagnetic map follows the Swirl–Electromagnetic Bridge
+    of the Swirl String Theory Canon v0.5.10 (§XI–XII). Each equation
+    corresponds to a canonical relation between swirl quantities
+    $\mathbf{E},\mathbf{B},\bm{\eta},\bm{\varrho}_{\swirlarrow}$ and
+    their emergent Maxwell analogues.
+    \end{tcolorbox}
+
+    \centering
+        \resizebox{0.9\textwidth}{!}{
+        \begin{tikzpicture}[
+            node distance=0.5 and 0.5,
+            every node/.style={draw, rounded corners, align=center, minimum height=2},
+            arrow/.style={-{Latex[length=2]}, thick},
+            garrow/.style={-{Latex[length=2]}, thick, dashed}
+        ]
+% ---------------- TOP LAYER ----------------
+% ---------------- center left curl (Faraday) ----------------
+        \node(Faraday)
+        {
+            \small$\nabla \times \mathbf{E} = -\,\partial_t \mathbf{B} \;-\; \mathbf{b}_{\swirlarrow}$\\
+        \tiny $[\nabla\times\mathbf E]=\tfrac{V}{m^{2}},\ [\partial_t\mathbf B]=\tfrac{T}{s}$};
+
+% ---------------- left: field E ----------------
+        \node[left=of Faraday]  (E)
+        {
+            \small$\mathbf{E}$\\
+        \tiny $[\mathbf E]=\tfrac{V}{m}$
+        };
+
+% ---------------- center right:  b ----------------
+        \node[right=of Faraday] (b)
+        {
+            \small $\mathbf b_{\swirlarrow}=\mathcal G_{\swirlarrow}\,\partial_t\bm{\varrho}_{\swirlarrow}$\\
+        \tiny  $[\mathbf b_{\swirlarrow}]=\tfrac{V}{m^{2}}$};
+
+% ---------------- right: swirl density rho ----------------
+        \node[right=of b] (rho)
+        {
+            \small swirl density $\bm{\varrho}_{\swirlarrow}$\\
+        \tiny  $[\bm{\varrho}_{\swirlarrow}]=\tfrac{1}{m^{2}}$};
+
+
+% ---------------- Middle layer ----------------
+% ---------------- left: conduction accumulation ----------------
+        \node[below=of E] (Eta)
+        {
+            \small $\bm{\eta} = (\mathcal K_E * \mathbf E)$\\
+        \tiny  $\mathcal K_E = \varepsilon = \frac{C}{Vm}$};
+
+% ---------------- center left right D, B ----------------
+        \node[below=of Faraday] (D)
+        {
+            \small $\varepsilon\,\mathbf{E} = \mathbf{D}$\\
+        \tiny  $[\varepsilon]=\tfrac{F}{m},\ [\mathbf D]=\tfrac{C}{m^{2}}$};
+
+        \node[below=of b] (B)
+        {
+            \small $\mathbf{B}=\mu\,\mathbf{H}$\\
+        \tiny  $[\mathbf B]=T,\ [\mu]=\tfrac{N}{A^{2}}$};
+
+% ---------------- right: susceptibility ----------------
+        \node[below=of rho] (C)
+        {
+            \small $\chi_H\,\mathbf{H} = \bm{\varrho}_{\swirlarrow}$\\
+        \tiny  $[\chi_H]=\tfrac{1}{Am}$};
+
+% ---------------- Bottom layer ----------------
+% --- bottom-left areal density (now the visible card) ---
+        \node[below=of Eta] (EtaBottom)
+        {
+            \small $\bm{\eta}$\\
+        \tiny  $[\bm{\eta}]=\tfrac{C}{m^{2}}$};
+
+% --- flying source card below (derivative step) ---
+        \node[below=of D] (Jsrc)
+        {
+            \small $\mathcal G_{\textrm el}\, \partial_t \bm{\eta} = \mathbf{j}$\\
+        \tiny  $\mathcal G_{\textrm el}=1~\tfrac{A \, s}{C},\ [\mathbf j]=\tfrac{A}{m^{2}}$};
+
+% ---------------- Ampère curl ----------------
+        \node[below=of  B] (Ampere)
+        {
+            \small $\mathbf{j} + \partial_t \mathbf{D} = \nabla \times \mathbf{H}$\\
+        \tiny  $[\partial_t\mathbf D]=\tfrac{A}{m^{2}},\ [\nabla\times\mathbf H]=\tfrac{A}{m^{2}}$};
+
+% ---------------- right bottom: H ----------------
+        \node[below=of C] (H)
+        {
+            \small $\mathbf{H}$\\
+        \tiny  $[\mathbf H]=\tfrac{A}{m}$};
+
+
+% ---------------- arrows (same geometry as your framework) ----------------
+        \draw[arrow] (E) -- (D);
+        \draw[arrow] (C) -- (rho);
+        \draw[arrow] (H) -- (Ampere);
+        \draw[arrow] (E) -- (Faraday);
+        \draw[arrow] (Faraday) -- (B);
+        \draw[arrow] (Ampere) -- (D);
+        \draw[arrow] (B) -- (H);
+        \draw[arrow] (H) -- (C);
+
+% --- replaced Ohm path by the mirrored left ladder ---
+        \draw[arrow] (E) -- (Eta);          % kernel stage
+        \draw[arrow] (Eta) -- (EtaBottom);  % field -> areal density (visible bottom card)
+        \draw[arrow] (EtaBottom) -- (Jsrc); % derivative to source (flying)
+        \draw[arrow] (Jsrc) -- (Ampere);    % feeds Ampère
+
+% --- long-range mediation on the right stays ---
+        \draw[arrow] (rho) --  (b);
+        \draw[arrow] (b) -- (Faraday);
+
+        \end{tikzpicture}
+        }
+        \caption{\textbf{Swirl–EM Coupling Diagram.}
+        A causal and dimensional flowchart representing the dynamic interaction between electromagnetic fields and quantized vortex dynamics in the swirl medium.
+        Top layer: Faraday’s law is extended with a swirl-coupling backreaction term \( \mathbf{b}_{\swirlarrow} = \mathcal{G}_{\swirlarrow} \, \partial_t \bm{\varrho}_{\swirlarrow} \), induced by a time-varying swirl density \( \bm{\varrho}_{\swirlarrow} \).
+        Middle layer: Constitutive relations for field–matter coupling, including permittivity \( \varepsilon \) and susceptibility \( \chi_H \).
+        Bottom layer: Areal accumulation, source current \( \mathbf{j} \), and the modified Ampère law.
+        All dimensionalities are shown for physical consistency. This diagram serves as the canonical causal model for Swirl–String Theory's EM sector.}
+        \label{fig:swirl_em_causal}
+    \end{figure}
+
 We are now equipped to state the central theoretical result: a time-varying swirl density $\rho_{\swirlarrow}(x,t)$ induces an extra curl of the electric field. In differential form, the modified Faraday law can be written as:
 
 \begin{equation}\label{eq:faraday-mod}
 
-\nabla \times \mathbf{E} ;=; -,\frac{\partial \mathbf{B}}{\partial t};-;\mathbf{b}_{\swirlarrow},,
-
+\nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t} - \mathbf{b}_{\swirlarrow},
 \end{equation}
 
 where the additional term $\mathbf{b}{\swirlarrow}$ is given by
 
 \begin{equation}\label{eq:b_swirl}
 
-\mathbf{b}_{\swirlarrow} ;=; \mathcal{G}{\swirlarrow};\frac{\partial \rho_{\swirlarrow}}{\partial t};\hat{\mathbf{n}},.
-
+\mathbf{b}_{\swirlarrow} = \mathcal{G}_{\swirlarrow} \frac{\partial \rho_{\swirlarrow}}{\partial t} \hat{\mathbf{n}},
 \end{equation}
 
 Here $\hat{\mathbf{n}}$ is the local unit normal (orientation) of the swirl filaments, chosen according to the right-hand rule (so that $\hat{\mathbf{n}}$ points in the direction of the vortex circulation axis)\footnote{Fixes orientation $\hat{\mathbf n}$ by the right-hand rule for the added source term.}. Equations~\eqref{eq:faraday-mod} and \eqref{eq:b_swirl} encapsulate the swirl--EMF coupling: whenever the areal density of swirl strings changes with time, an electromotive curl $\mathbf{b}_{\swirlarrow}$ appears in the electric field. This is entirely analogous to how a changing magnetic field ($\partial_t \mathbf{B}$) induces an electric curl in the standard Faraday’s law. In effect, the term $\Gswirl\partial_t \rho_{\swirlarrow},\hat{\mathbf{n}}$ plays the role of a \emph{source term for $\nabla \times \mathbf{E}$}, acting like an effective time-varying magnetic field produced by the swirl medium itself\footnote{Interprets $\mathcal G_{!\circlearrowleft}\partial_t\rho_{!\circlearrowleft}\hat{\mathbf n}$ as a source for $\nabla\times\mathbf E$.}\footnote{Frames that source as an effective time-varying magnetic field from the medium.}. A detailed derivation of Eqs.~\eqref{eq:faraday-mod}--\eqref{eq:b_swirl} from first principles is provided in \textbf{Appendix~\ref{app:Faraday}}. Here we will discuss the meaning and implications of this result.
@@ -180,7 +301,7 @@ To build intuition, consider a scenario of \emph{flux compression} in the swirl 
 An important consequence of the modified Faraday law is the possibility of \emph{electromotive transients tied to topological events}. In particular, whenever the topology of the swirl string network changes (via nucleation of a new loop, annihilation of a loop, or reconnection between loops), there is a sudden localized change in $\rho_{\swirlarrow}$. Such events are essentially non-adiabatic: a new piece of vortex appears or disappears in a region, giving $\partial_t \rho_{\swirlarrow}$ a pulse or delta-function character in time. Equation~\eqref{eq:faraday-mod} predicts that these events will produce correspondingly pulsed $\nabla \times \mathbf{E}$ fields, i.e. short bursts of electric circulation. An observer could in principle detect these as voltage spikes in a conducting loop that links the region. This is the theoretical basis for the experimental predictions we make in the next section.
 
 
-We close this section by addressing the identification of $\Gswirl$ with a flux quantum. In solid-state superconductors, magnetic flux is quantized in units of $h/2e$ due to Cooper pairing; in normal metal rings, one might expect quantization in units of $h/e$ if single electrons set the scale. The SST framework does not inherently involve electric charge or superconductivity; however, the swirl medium's excitations could couple to electromagnetic fields in ways analogous to charged particles. If each swirl string carries an effective ``charge'' of $2e$ (two elementary charges, perhaps corresponding to a pair of some excitation), then one would naturally get $\Phi{0}=h/2e$ as the quantum. If instead a single electron's worth of flux is involved, $\Phi_{0}$ might be $h/e$. For generality, one can consider $\Phi_{0}\in{h/e,;h/2e}$ as the candidate fundamental impulse quantum\footnote{Declares the allowed set $\Phi_0\in{h/e,h/2e}$ pending experiment.}. In the remainder of this paper, we will use $\Phi_{0}=h/2e$ (the smaller quantum) as the canonical choice, consistent with the normalization in \cite{Iskandarani2025RotatingFrame,Iskandarani2025FluxComp}. Ultimately, this is an issue to be settled by experiment: observing an impulse corresponding to $\approx2.07\times10^{-15}$~Wb would suggest paired charges, whereas $\approx4.14\times10^{-15}$~Wb would indicate single-charge coupling. In either case, the existence of quantized impulses is the key prediction, to which we now turn.
+We close this section by addressing the identification of $\Gswirl$ with a flux quantum. In solid-state superconductors, magnetic flux is quantized in units of $h/2e$ due to Cooper pairing; in normal metal rings, one might expect quantization in units of $h/e$ if single electrons set the scale. The SST framework does not inherently involve electric charge or superconductivity; however, the swirl medium's excitations could couple to electromagnetic fields in ways analogous to charged particles. If each swirl string carries an effective ``charge'' of $2e$ (two elementary charges, perhaps corresponding to a pair of some excitation), then one would naturally get $\Phi{0}=h/2e$ as the quantum. If instead a single electron's worth of flux is involved, $\Phi_{0}$ might be $h/e$. For generality, one can consider $\Phi_{0}\in{h/e,;h/2e}$ as the candidate fundamental impulse quantum\footnote{Declares the allowed set $\Phi_0\in{h/e,h/2e}$ pending experiment.}. In the remainder of this paper, we will use $\Phi_{0}=h/2e$ (the smaller quantum) as the canonical choice, consistent with the normalization in \cite{Iskandarani2025RotatingFrame}. Ultimately, this is an issue to be settled by experiment: observing an impulse corresponding to $\approx2.07\times10^{-15}$~Wb would suggest paired charges, whereas $\approx4.14\times10^{-15}$~Wb would indicate single-charge coupling. In either case, the existence of quantized impulses is the key prediction, to which we now turn.
 
 
 \section{Experimental Outlook}\label{sec:experimental}
@@ -194,8 +315,7 @@ Whenever a swirl string is nucleated, annihilated, or reconfigured in a way that
 
 \begin{equation}\label{eq:impulse}
 
-\Delta \Phi ;=; \pm,\Delta N,\Phi_{0},,
-
+\Delta \Phi = \pm \Delta N \,\Phi_{0},
 \end{equation}
 
 where $\Phi_{0} = \Gswirl$ is the fundamental flux quantum introduced earlier. The $\pm$ sign is determined by the chirality (orientation) of the vortex relative to the loop’s orientation\footnote{Ties the sign of $\Delta\Phi$ to vortex chirality/orientation.}\footnote{Clarifies loop orientation conventions; flip circulation $\Rightarrow$ flip sign, magnitude fixed.}. Equation~\eqref{eq:impulse} is essentially a restatement of the quantization argument we made: the electromotive impulse comes in integer multiples of $\Phi{0}$. The change $\Delta \Phi$ is independent of the loop's geometry or size, so long as the loop is threaded by the vortex; only the fact of linking (topology) and the number of vortices matter. This is a topologically protected quantization. In practical terms, Eq.~\eqref{eq:impulse} means that a coil or circuit linked to the region of a swirl event will see a sudden voltage induced such that the time-integral of that voltage (which equals $\Delta \Phi$) is $\Phi_{0}$ times an integer.
@@ -211,7 +331,8 @@ To get a sense of scale, take $\Phi_{0}=h/2e\approx2.07\times10^{-15}$~Wb. If th
 
 \subsection{Candidate Platforms for Testing}
 
-Directly manipulating the hypothetical ``swirl medium’’ of SST (if it indeed underlies the vacuum) is not currently feasible. However, we can seek analogues in laboratory systems where quantized vortices and their dynamics can be controlled. Three promising condensed-matter platforms have been identified \cite{Iskandarani2025FluxComp}:
+Directly manipulating the hypothetical ``swirl medium’’ of SST (if it indeed underlies the vacuum) is not currently feasible. However, we can seek analogues in laboratory systems where quantized vortices and their dynamics can be controlled. Three promising condensed-matter platforms have been identified \cite{Deaver1961,Doll1961}
+
 
 
 \begin{itemize}
@@ -266,7 +387,7 @@ To robustly test the quantized impulse prediction, one needs to gather a distrib
 \end{enumerate}
 
 
-Using this protocol, one would look for several key signatures \cite{Iskandarani2025FluxComp}:
+Using this protocol, one would look for several key signatures in the data:
 
 \begin{itemize}
 
@@ -289,7 +410,7 @@ These stringent criteria ensure that any false positives (e.g. inductive pickup 
 
 \subsection{Atomic and Astrophysical Considerations}
 
-Beyond laboratory condensed matter, it is worth considering other domains where swirl–EMF coupling might manifest. One suggestion \cite{Iskandarani2025FluxComp} is to look at hydrogenic or atomic systems. In an atom, the electron’s wavefunction in SST is associated with a swirl string that can transition between extended (R-phase) and localized (T-phase) configurations. Such transitions (analogous to an electron changing orbitals or a wavefunction collapse) would be accompanied by a reconfiguration of the swirl string topology. SST predicts that this could lead to tiny, quantized impulses of EMF in the surrounding vacuum. While these would be extremely small (far below thermal noise in a typical setting), high-precision spectroscopy might detect subtle energy shifts or anomalous correlations. For example, a high-resolution spectroscopic study of hydrogen or hydrogen anion (H$^{-}$) might find that spectral lines have an ultra-fine structure or jitter that corresponds to the emission of $\Phi_{0}$ flux bursts. Embedding a micro-coil near an atomic sample and synchronizing readings with known transitions could be an exotic, though challenging, test\footnote{Atomic-scale idea: micro-coil near atoms to look for tiny $\Phi_0$ bursts synced to transitions.}\footnote{Acknowledges extreme difficulty/likely null at current sensitivity; included as a stretch goal.}.
+Beyond laboratory condensed matter, it is worth considering other domains where swirl–EMF coupling might manifest. One suggestion is to look at hydrogenic or atomic systems. In an atom, the electron’s wavefunction in SST is associated with a swirl string that can transition between extended (R-phase) and localized (T-phase) configurations. Such transitions (analogous to an electron changing orbitals or a wavefunction collapse) would be accompanied by a reconfiguration of the swirl string topology. SST predicts that this could lead to tiny, quantized impulses of EMF in the surrounding vacuum. While these would be extremely small (far below thermal noise in a typical setting), high-precision spectroscopy might detect subtle energy shifts or anomalous correlations. For example, a high-resolution spectroscopic study of hydrogen or hydrogen anion (H$^{-}$) might find that spectral lines have an ultra-fine structure or jitter that corresponds to the emission of $\Phi_{0}$ flux bursts. Embedding a micro-coil near an atomic sample and synchronizing readings with known transitions could be an exotic, though challenging, test\footnote{Atomic-scale idea: micro-coil near atoms to look for tiny $\Phi_0$ bursts synced to transitions.}\footnote{Acknowledges extreme difficulty/likely null at current sensitivity; included as a stretch goal.}.
 
 
 On cosmic scales, SST’s framework has been applied to galaxy rotation curves and a possible ``dark matter analogue'' \cite{Iskandarani2025RotatingFrame}. If large-scale swirl flows account for flat galactic rotation profiles, then one might expect that major topological events (like vortex line reconnections during galaxy mergers or in active galactic nuclei) could produce transient electromagnetic signals. These could conceivably contribute to phenomena like fast radio bursts or other transient signals if one flux quantum $\Phi_{0}$ is scaled up by enormous $N$ (number of coherent segments) at astrophysical scales\footnote{Astro angle: large-scale reconnections could sum many $\Phi_0$ events to macroscopic transients.}\footnote{Caution: no current evidence of quantized astrophysical flux steps; proposed signature to watch.}. While highly speculative, the quantized nature of such signals—if ever observed—would be a telltale sign linking back to the microscopic $\Phi_{0}$ scale. It is striking that a laboratory-scale prediction ($\sim10^{-15}$~Wb impulses) could, in principle, have echoes in cosmic events when multiplied by Avogadro-scale numbers of vortices. This cross-scale coherence is a unique feature of SST’s topological approach, though we stress that current evidence for such astrophysical quantization is lacking.
@@ -298,7 +419,7 @@ On cosmic scales, SST’s framework has been applied to galaxy rotation curves a
 In summary, the experimental outlook for swirl–EMF coupling spans from table-top superconductor experiments to precision atomic measurements and even alludes to cosmological tests. The most immediate and controlled tests are in the condensed matter domain, where the necessary quantized vortices and sensitive magnetometers are readily available. The upcoming generation of experiments can thus probe the very foundation of SST by either detecting or refuting the existence of quantized EMF impulses due to vortex topology changes.
 
 
-\section{Conclusion & Discussion}\label{sec:conclusion}
+\section{Conclusion and Discussion}\label{sec:conclusion}
 
 We have presented a unified theoretical and experimental investigation of the coupling between swirl dynamics and electromotive force in the Swirl--String Theory canon. On the theoretical side, we derived a modified Faraday's law [Eq.~\eqref{eq:faraday-mod}] that incorporates an additional term due to time-varying swirl string density. This result conceptually unifies rotating-frame phenomena (such as emergent gravity in the swirl medium) with classical electromagnetic induction, showing that both effects arise from a common fluid–topological substrate. In doing so, we identified a universal coupling constant $\Gswirl$ which we argued to be equal to the fundamental magnetic flux quantum $\Phi{0}=h/2e$. The derivations of the key results—the swirl–EMF law, the vortex nucleation threshold, and flux impulse quantization—are provided in Appendices~\ref{app:Faraday}--\ref{app:Impulse} for completeness. Notably, the \emph{conceptual novelty} of this work lies in recognizing that the swirl medium does not merely mimic gravitational effects (as shown in prior SST research \cite{Iskandarani2025RotatingFrame}), but also exhibits an intrinsic coupling to electromagnetic phenomena. This extends SST as a candidate for a unified framework where one medium underlies multiple interactions, drawing a parallel to the early idea of a ``single fluid'' unification of forces.
 
@@ -329,8 +450,7 @@ Consider a closed conducting loop $\mathcal{C}$ (or simply a notional mathematic
 
 \begin{equation}\label{eq:faraday-integral}
 
-\oint_{\mathcal{C}} \mathbf{E}\cdot d\boldsymbol{\ell} ;=; -,\frac{d}{dt}\int_{\mathcal{S}} \mathbf{B}\cdot d\mathbf{A},,
-
+\oint_{\mathcal{C}} \mathbf{E}\cdot d\boldsymbol{\ell} = -\frac{d}{dt}\int_{\mathcal{S}} \mathbf{B}\cdot d\mathbf{A},
 \end{equation}
 
 where $\mathbf{B}$ is the magnetic field (either the actual magnetic field, or any effective magnetic field present in the region). Now, suppose $\mathcal{S}$ is pierced by $N(t)$ swirl strings at time $t$. These could be physical vortex lines in the hypothetical swirl medium that lie along some direction through $\mathcal{S}$. Each such crossing is topologically akin to a thread passing through a soap film bounded by a loop: it links the loop $\mathcal{C}$. If $N$ changes with time, it means vortex lines are either appearing, disappearing, or moving across the boundary of $\mathcal{S}$.
@@ -340,11 +460,10 @@ We define the total \emph{swirl flux} through $\mathcal{S}$ as $\Phi_{!\circlear
 
 \begin{equation}\label{eq:app-faraday-mod-int}
 
-\oint_{\mathcal{C}} \mathbf{E}\cdot d\boldsymbol{\ell} ;=; -,\frac{d\Phi_{B}}{dt} ;-; \frac{d\Phi_{!\circlearrowleft}}{dt},,
-
+\oint_{\mathcal{C}} \mathbf{E}\cdot d\boldsymbol{\ell} = -\frac{d\Phi_{B}}{dt} - \frac{d\Phi_{!\circlearrowleft}}{dt},
 \end{equation}
 
-with $\Phi_{!\circlearrowleft} = N,\Phi_\text{line}$. Writing $N(t)=\int_{\mathcal{S}}\rho_{\swirlarrow},dA$ gives $\frac{d\Phi_{!\circlearrowleft}}{dt}=\Phi_\text{line}\int_{\mathcal S}\partial_t\rho_{\swirlarrow},dA$. Introduce a vector field $\mathbf{b}\text{{\swirlarrow}=\Phi}\text{line},\partial_t\rho_{\swirlarrow}\hat{\mathbf n}$ so that $\int_{\mathcal S}\mathbf{b}\text{{\swirlarrow}!\cdot d\mathbf A=\frac{d\Phi}{!\circlearrowleft}}{dt}$. Then Stokes' theorem yields the differential form in the main text.
+with $\Phi_{!\circlearrowleft} = N,\Phi_\text{line}$. Writing $N(t)=\int_{\mathcal{S}}\rho_{\swirlarrow},dA$ gives $\frac{d\Phi_{!\circlearrowleft}}{dt}=\Phi_\text{line}\int_{\mathcal S}\partial_t\rho_{\swirlarrow},dA$. Introduce a vector field $\mathbf{b}_{\swirlarrow} = \Phi_\text{line} \, \partial_t \rho_{\swirlarrow} \, \hat{\mathbf n}$ so that $\int_{\mathcal S} \mathbf{b}_{\swirlarrow} \cdot d\mathbf{A} = \frac{d\Phi_{!\circlearrowleft}}{dt}$. Then Stokes' theorem yields the differential form in the main text.
 
 
 A subtlety is linear additivity (well-separated vortices). Orientation/chirality enters via $\hat{\mathbf n}$, flipping the sign of the impulse as discussed.
@@ -601,3 +720,4 @@ For a loop $\mathcal C$ linked by one filament whose linking changes by $\Delta 
 \bibliography{EM_G}
 \bibliographystyle{unsrt}
 \end{document}
+

@@ -13,7 +13,7 @@
 %========================================================================================
 % PACKAGES AND DOCUMENT CONFIGURATION
 %========================================================================================
-\documentclass[reprint,aps,onecolumn,nofootinbib]{revtex4-2}
+\documentclass[10pt,reprint,aps,onecolumn,nofootinbib]{revtex4-2}
 
 % ====== minimal packages ======
 \usepackage{amsmath,amssymb,amsfonts}
@@ -29,6 +29,8 @@
 \usepackage{lmodern}
 \usepackage{booktabs}
 \usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,decorations.pathmorphing}
 
 % ===== Gauge sector macros =====
 \newcommand{\Tr}{\mathrm{Tr}}
@@ -110,6 +112,7 @@
 
 
 \usepackage{graphicx}
+\usepackage{textcomp}
 
 \begin{document}
 
@@ -683,6 +686,131 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 		\end{flushleft}
 	\end{table}
 
+    \begin{figure}[htbp]
+    \begin{tcolorbox}[colback=gray!10, colframe=black, title={Canonical Reference}]
+    This electromagnetic map follows the Swirl–Electromagnetic Bridge
+    of the Swirl String Theory Canon v0.5.10 (§XI–XII). Each equation
+    corresponds to a canonical relation between swirl quantities
+    $\mathbf{E},\mathbf{B},\bm{\eta},\bm{\varrho}_{\swirlarrow}$ and
+    their emergent Maxwell analogues.
+    \end{tcolorbox}
+
+    \centering
+    \resizebox{0.9\textwidth}{!}{
+        \begin{tikzpicture}[
+            node distance=0.5 and 0.5,
+            every node/.style={draw, rounded corners, align=center, minimum height=2},
+            arrow/.style={-{Latex[length=2]}, thick},
+            garrow/.style={-{Latex[length=2]}, thick, dashed}
+        ]
+% ---------------- TOP LAYER ----------------
+% ---------------- center left curl (Faraday) ----------------
+        \node(Faraday)
+        {
+            \small$\nabla \times \mathbf{E} = -\,\partial_t \mathbf{B} \;-\; \mathbf{b}_{\swirlarrow}$\\
+        \tiny $[\nabla\times\mathbf E]=\tfrac{V}{m^{2}},\ [\partial_t\mathbf B]=\tfrac{T}{s}$};
+
+% ---------------- left: field E ----------------
+        \node[left=of Faraday]  (E)
+        {
+            \small$\mathbf{E}$\\
+        \tiny $[\mathbf E]=\tfrac{V}{m}$
+        };
+
+% ---------------- center right:  b ----------------
+        \node[right=of Faraday] (b)
+        {
+            \small $\mathbf b_{\swirlarrow}=\mathcal G_{\swirlarrow}\,\partial_t\bm{\varrho}_{\swirlarrow}$\\
+        \tiny  $[\mathbf b_{\swirlarrow}]=\tfrac{V}{m^{2}}$};
+
+% ---------------- right: swirl density rho ----------------
+        \node[right=of b] (rho)
+        {
+            \small swirl density $\bm{\varrho}_{\swirlarrow}$\\
+        \tiny  $[\bm{\varrho}_{\swirlarrow}]=\tfrac{1}{m^{2}}$};
+
+
+% ---------------- Middle layer ----------------
+% ---------------- left: conduction accumulation ----------------
+        \node[below=of E] (Eta)
+        {
+            \small $\bm{\eta} = (\mathcal K_E * \mathbf E)$\\
+        \tiny  $\mathcal K_E = \varepsilon = \frac{C}{Vm}$};
+
+% ---------------- center left right D, B ----------------
+        \node[below=of Faraday] (D)
+        {
+            \small $\varepsilon\,\mathbf{E} = \mathbf{D}$\\
+        \tiny  $[\varepsilon]=\tfrac{F}{m},\ [\mathbf D]=\tfrac{C}{m^{2}}$};
+
+        \node[below=of b] (B)
+        {
+            \small $\mathbf{B}=\mu\,\mathbf{H}$\\
+        \tiny  $[\mathbf B]=T,\ [\mu]=\tfrac{N}{A^{2}}$};
+
+% ---------------- right: susceptibility ----------------
+        \node[below=of rho] (C)
+        {
+            \small $\chi_H\,\mathbf{H} = \bm{\varrho}_{\swirlarrow}$\\
+        \tiny  $[\chi_H]=\tfrac{1}{Am}$};
+
+% ---------------- Bottom layer ----------------
+% --- bottom-left areal density (now the visible card) ---
+        \node[below=of Eta] (EtaBottom)
+        {
+            \small $\bm{\eta}$\\
+        \tiny  $[\bm{\eta}]=\tfrac{C}{m^{2}}$};
+
+% --- flying source card below (derivative step) ---
+        \node[below=of D] (Jsrc)
+        {
+            \small $\mathcal G_{\textrm el}\, \partial_t \bm{\eta} = \mathbf{j}$\\
+        \tiny  $\mathcal G_{\textrm el}=1~\tfrac{A \, s}{C},\ [\mathbf j]=\tfrac{A}{m^{2}}$};
+
+% ---------------- Ampère curl ----------------
+        \node[below=of  B] (Ampere)
+        {
+            \small $\mathbf{j} + \partial_t \mathbf{D} = \nabla \times \mathbf{H}$\\
+        \tiny  $[\partial_t\mathbf D]=\tfrac{A}{m^{2}},\ [\nabla\times\mathbf H]=\tfrac{A}{m^{2}}$};
+
+% ---------------- right bottom: H ----------------
+        \node[below=of C] (H)
+        {
+            \small $\mathbf{H}$\\
+        \tiny  $[\mathbf H]=\tfrac{A}{m}$};
+
+
+% ---------------- arrows (same geometry as your framework) ----------------
+        \draw[arrow] (E) -- (D);
+        \draw[arrow] (C) -- (rho);
+        \draw[arrow] (H) -- (Ampere);
+        \draw[arrow] (E) -- (Faraday);
+        \draw[arrow] (Faraday) -- (B);
+        \draw[arrow] (Ampere) -- (D);
+        \draw[arrow] (B) -- (H);
+        \draw[arrow] (H) -- (C);
+
+% --- replaced Ohm path by the mirrored left ladder ---
+        \draw[arrow] (E) -- (Eta);          % kernel stage
+        \draw[arrow] (Eta) -- (EtaBottom);  % field -> areal density (visible bottom card)
+        \draw[arrow] (EtaBottom) -- (Jsrc); % derivative to source (flying)
+        \draw[arrow] (Jsrc) -- (Ampere);    % feeds Ampère
+
+% --- long-range mediation on the right stays ---
+        \draw[arrow] (rho) --  (b);
+        \draw[arrow] (b) -- (Faraday);
+
+        \end{tikzpicture}
+    }
+    \caption{\textbf{Swirl–EM Coupling Diagram.}
+    A causal and dimensional flowchart representing the dynamic interaction between electromagnetic fields and quantized vortex dynamics in the swirl medium.
+    Top layer: Faraday’s law is extended with a swirl-coupling backreaction term \( \mathbf{b}_{\swirlarrow} = \mathcal{G}_{\swirlarrow} \, \partial_t \bm{\varrho}_{\swirlarrow} \), induced by a time-varying swirl density \( \bm{\varrho}_{\swirlarrow} \).
+    Middle layer: Constitutive relations for field–matter coupling, including permittivity \( \varepsilon \) and susceptibility \( \chi_H \).
+    Bottom layer: Areal accumulation, source current \( \mathbf{j} \), and the modified Ampère law.
+    All dimensionalities are shown for physical consistency. This diagram serves as the canonical causal model for Swirl–String Theory's EM sector.}
+    \label{fig:swirl_em_causal}
+    \end{figure}
+
 	The first group in Table~\ref{tab:constants} are new SST constants:
 	\textbf{$v_{\circ}$} is the swirl core speed scale (the approximate tangential speed of the fluid at radius $r_c$ from a string’s center). It sets the circulation quantum via $\kappa = 2\pi r_c v_{\circ}$ and is calibrated so SST reproduces known atomic spectra (hydrogen energy levels, etc.).
 	\textbf{$r_c$} is the core radius of a string, roughly the radius of the “solid-body” rotating core of a vortex filament. It is calibrated at the order of $10^{-15}$ m (the Fermi scale).
@@ -731,6 +859,81 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 % Check: [units ok; limit → Newtonian]
 
 % [STATUS: Canonical] [SOURCE: v0.4.4 §5]
+% ============================================================
+    \section{Genus-2 Foliation and Topological Compactification}
+% ============================================================
+
+    \textbf{Status: Canonical (Constructive Example)}
+
+    \noindent
+    We illustrate a canonical closed foliation compatible with the Chronos–Kelvin and Swirl Quantization
+    invariants.  Consider a regular dodecagon~(12-gon) fundamental domain in $\mathbb H^2$, whose
+    six pairs of edges are identified by hyperbolic isometries to form a compact genus-2 surface
+    $\Sigma_2$.  Each paired edge carries a fixed swirl-phase offset of the Swirl Clock
+    $S_t^{\boldsymbol{\circlearrowleft}}$, defining six independent circulation integrals
+    $\Gamma_i$ that obey the quantization rule
+    \begin{equation}
+    \oint_{\gamma_i}\mathbf v_{\!\boldsymbol{\circlearrowleft}}\!\cdot d\boldsymbol\ell
+    = 2\pi n_i\,\kappa_{\text{SST}},\qquad
+    \kappa_{\text{SST}}=\lVert\mathbf v_{\!\boldsymbol{\circlearrowleft}}\rVert\,r_c,
+    \quad n_i\in\mathbb Z .
+    \end{equation}
+    The set $\{\Gamma_i\}_{i=1}^{6}$ thus forms a basis for the first homology group
+    $H_1(\Sigma_2,\mathbb Z)$, providing a discrete topological charge vector for the
+    background foliation.
+
+    \vspace{0.5em}
+    \noindent
+    \textbf{Definition (Genus-2 Swirl Quantization).}
+    On $\Sigma_2$, the joint invariants
+    \begin{equation}
+    R^2\omega = \mathrm{const},
+    \qquad
+    \Gamma_i = 2\pi n_i\,\kappa_{\text{SST}}
+    \end{equation}
+    define the allowed large-scale swirl modes.  The polygonal edge identifications act as
+    holonomies of the swirl-clock field, ensuring periodic boundary conditions for
+    $S_t^{\boldsymbol{\circlearrowleft}}$ and compact global energy density
+    $\rho_{\!E}=\tfrac{1}{2}\rho_{\!f}\lVert\mathbf v_{\!\boldsymbol{\circlearrowleft}}\rVert^2$.
+
+    \vspace{0.5em}
+    \noindent
+    \textbf{Cosmological Interpretation.}
+    The 12-gon compactification provides a two-dimensional toy model of a finite,
+    multiply-connected universe.  Its three pairs of geodesic moduli $(\ell_j,\tau_j)$
+    (Fenchel–Nielsen parameters) determine the large-scale swirl spectrum, introducing a
+    lowest eigenmode $k_{\min}\!\sim\!2\pi/L_{\text{topo}}$ that suppresses power on scales
+    $>\!L_{\text{topo}}$.  In the 3-D extension, the dodecahedral space corresponds to the
+    rest-frame foliation ($v\!=\!0$), while a moving observer through the swirl medium
+    experiences an anisotropic deformation toward a horn-torus topology with
+    pinch ratio
+    \begin{equation}
+    p(v)=\sqrt{1-\frac{v^2}{c^2}},
+    \end{equation}
+    interpreted as a geometric manifestation of Lorentz contraction within the SST
+    framework.
+
+    \vspace{0.5em}
+    \noindent
+    \textbf{Physical Implication.}
+    Motion relative to the swirl frame thus produces a measurable anisotropy:
+    as $v$ increases, one topological cycle shrinks (horn pinch), suppressing
+    swirl-mode propagation along the motion direction.
+    This geometric deformation gives a macroscopic explanation of time dilation and
+    Doppler anisotropy as topological effects of foliation motion.
+
+    \vspace{0.5em}
+    \noindent
+    \textbf{Falsifiable Prediction.}
+    Finite-topology foliations yield distinctive signatures in swirl-coupled observables,
+    including (i) infrared cutoff and mode repetition in the cosmic swirl-pressure spectrum,
+    and (ii) matched-circle correlations analogous to those sought in the CMB.
+    Simulations enforcing the above quantization on the 12-gon domain can test these
+    predictions directly.
+
+% ---- reference placeholder for a future TikZ diagram ----
+% (insert 12-gon with paired edges labeled a1,b1,a2,b2,a3,b3)
+% and horn-torus deformation sketch
 
 
 
@@ -1121,6 +1324,62 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 %================================================
 % SST ADDITION: Coherence-Modulated Duality Ellipse
 %================================================
+    \section{Swirl–Tensor Correspondence and External Vortex Field Theories}
+    \label{sec:swirl_tensor_correspondence}
+
+    \subsection*{Canonical Definition: Swirl–Tensor Mapping}
+
+        Let $\omega_{\mu\nu} \in \mathfrak{g} \otimes \Lambda^2$ denote a rank-2 antisymmetric tensor field valued in a Lie algebra $\mathfrak{g}$ (e.g., $\mathfrak{su}(3) \oplus \mathfrak{su}(2) \oplus \mathfrak{u}(1)$). We define the \textbf{canonical swirl–tensor mapping} as:
+        \begin{equation}
+        \omega_{\mu\nu}^{(a)} \;\longleftrightarrow\; \epsilon_{\mu\nu\rho\sigma} \left( \mathbf{v}_{\!\boldsymbol{\circlearrowleft}}^{(a)} \wedge \partial^\rho \mathbf{v}^{\sigma}_{\!\boldsymbol{\circlearrowleft}} \right) + \text{torsional terms}
+        \end{equation}
+        where superscript $(a)$ indexes swirl-string orientations in internal symmetry space. This construction translates gauge curvature into topological swirl curvature.
+
+    \subsection*{Research-Track Conjecture: VFT–SST Relation}
+
+        The \textit{Vortex Field Theory} (Dziabura, 2025) posits a unified topovortex field $\omega_{\mu\nu}$ whose decomposition yields gravitational and gauge fields. Within SST, we propose the correspondence:
+        \begin{align}
+        \omega_{\mu\nu}^{\text{grav}} &= \lambda\, \partial_\mu \theta \, \partial_\nu \theta \quad \longleftrightarrow \quad
+        g_{ij}^{(\text{eff})} = \delta_{ij} + \frac{1}{\rho_{\!f}} \, \partial_i \partial_j P(\vec{\omega}) \\
+        \mathcal{L}_{\text{int}} &\supset \varepsilon^{\mu\nu\rho\sigma} f^{abc} \omega^a_{\mu\nu} \omega^b_{\rho\sigma} \theta^c \quad \longleftrightarrow \quad \mathcal{H}_{\text{swirl}} = \int \mathbf{v}_{\!\boldsymbol{\circlearrowleft}} \cdot \left( \nabla \times \mathbf{v}_{\!\boldsymbol{\circlearrowleft}} \right) d^3x
+        \end{align}
+        where $f^{abc}$ are Lie algebra structure constants and $\mathcal{H}_{\text{swirl}}$ denotes the helicity of the swirl field.
+
+    \subsection*{Canonical Summary Table}
+
+        \begin{center}
+        \renewcommand{\arraystretch}{1.25}
+        \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Concept} & \textbf{VFT (Dziabura)} & \textbf{SST} \\
+        \hline
+        \textbf{Medium} & Vacuum phase manifold & Incompressible swirl condensate \\
+        \textbf{Gravity} & $\partial_\mu \theta \partial_\nu \theta$ & $\nabla_i \nabla_j P(\vec{\omega})$ \\
+        \textbf{Gauge Fields} & $\omega_{\mu\nu}^{a}$ & $\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}^{(a)}$ excitations \\
+        \textbf{Time} & Not specified & $S_t^{\!\boldsymbol{\circlearrowleft}} = \sqrt{1 - \|\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\|^2 / c^2}$ \\
+        \textbf{Topology} & Chern–Simons terms & Knot helicity, twist, writhe \\
+        \textbf{Mass} & Not derived & $M = \frac{1}{2} \rho_{\!f} \|\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\|^2 \, V$ \\
+        \hline
+        \end{tabular}
+        \end{center}
+
+    \subsection*{Canonical Corollary: Tensor Gauge Equivalence}
+
+        \textbf{Corollary.} Any antisymmetric rank-2 gauge field theory $\omega_{\mu\nu} \in \mathfrak{g} \otimes \Lambda^2$ with helicity couplings admits a coarse-grained SST embedding as a multichiral swirl-string bundle, where:
+        \begin{itemize}
+        \item spacetime indices $\mu\nu$ encode vorticity plane orientation;
+        \item internal index $a$ labels swirl-string director axes;
+        \item knot invariants ($\mathcal{H}, C, L, \Vol_{\!\mathbb{H}}$) determine mass-energy spectrum.
+        \end{itemize}
+
+    \subsection*{Status Tags}
+
+        \begin{itemize}
+        \item \textbf{Definition (Canonical):} Swirl–tensor mapping.
+        \item \textbf{Conjecture (Research Track):} VFT–SST tensor correspondence.
+        \item \textbf{Corollary (Canon Candidate):} Tensor gauge embedding of swirl dynamics.
+        \item \textbf{Reference:} Dziabura (2025), “A Strong Topovortex Unified Theory”.
+        \end{itemize}
 
 
 
@@ -1463,19 +1722,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
     \paragraph{Validity.} Small-perturbation regime $p_{\ae}\ll p_{A,B}$; fixed $\alpha$ and composition (thus fixed $\gamma_{\rm mix}$).
 % ============================================================================
 
-% References (non-original facts/ideas cited)
-% Keep VAM/SST term as original; cite SBSL facts & continuum fits.
-        \begin{thebibliography}{9}
-        \bibitem{BrennerHL2002}
-        M.~P.~Brenner, S.~Hilgenfeldt, and D.~Lohse,
-        \newblock Single-bubble sonoluminescence,
-        \newblock \emph{Rev. Mod. Phys.} \textbf{74}, 425–484 (2002). doi:10.1103/RevModPhys.74.425
 
-        \bibitem{FlanniganSuslick2006}
-        D.~J.~Flannigan and K.~S.~Suslick,
-        \newblock Measurement of pressure and density inside a single sonoluminescing bubble,
-        \newblock \emph{Phys. Rev. Lett.} \textbf{96}, 204301 (2006). doi:10.1103/PhysRevLett.96.204301
-        \end{thebibliography}
 
 
         %================================================
@@ -1854,15 +2101,6 @@ Solving for $N^{(1)}_{ss'}$ and inserting into $J_x=\mathrm{Tr}\,\tfrac12\{V_x,N
 
 
 
-% =============================================================
-% === Bibliography anchors (non-original ideas) ===
-% =============================================================
-\begin{thebibliography}{9}
-\bibitem{Peierls1929} R. Peierls, Ann. Phys. \textbf{395}, 1055 (1929).
-\bibitem{AllenFeldman1993} P. B. Allen and J. L. Feldman, Phys. Rev. B \textbf{48}, 12581 (1993).
-\bibitem{Simoncelli2019Unified} M. Simoncelli, N. Marzari, and F. Mauri, Nat. Phys. \textbf{18}, 1180 (2022); arXiv:1901.01964.
-\bibitem{Hardy1963} R. J. Hardy, Phys. Rev. \textbf{132}, 168 (1963).
-\end{thebibliography}
 
 
 
