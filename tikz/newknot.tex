@@ -21,12 +21,10 @@
 
 
 
-
-
 \begin{tikzpicture}[use Hobby shortcut, line cap=round, line join=round, scale=1.05]
 
 % ---- controls ----
-\def\Amp{0.130000}
+\def\Amp{0.13}
 \def\Turns{4}        % can be non-integer; extrema logic still works
 \def\Samples{400}
 \def\Wth{2.5pt}
@@ -43,16 +41,19 @@
 }
 
 % ---- coordinates ----
-\coordinate (P1) at (0, -1);
-\coordinate (P2) at (-2, 1);
-\coordinate (P3) at (0, 3);
-\coordinate (P4) at (0, 1);
-\coordinate (P5) at (0, 1);
-\coordinate (P6) at (0, 3);
-\coordinate (P7) at (2, 1);
-\coordinate (P8) at (0, -1);
-\coordinate (P9) at (0, -1); % = P1
-\def\KPATH{([closed] P1)..(P2)..(P3)..(P4)..(P5)..(P6)..(P7)..(P8)..(P9)}
+\coordinate (P1) at (0, 2);
+\coordinate (P2) at (-1, 1);
+\coordinate (P3) at (-1, 0);
+\coordinate (P4) at (1, -1);
+\coordinate (P5) at (2, 0);
+\coordinate (P6) at (0, 0.75);
+\coordinate (P7) at (-2, 0);
+\coordinate (P8) at (-1, -1);
+\coordinate (P9) at (1, 0);
+\coordinate (P10) at (1, 1);
+\coordinate (P11) at (0, 2);
+\coordinate (P12) at (0, 2); % = P1
+\def\KPATH{([closed] P1)..(P2)..(P3)..(P4)..(P5)..(P6)..(P7)..(P8)..(P9)..(P10)..(P11)..(P12)}
 
 % ---- build two offset coordinate lists ----
 \newcommand{\MakeStrandCoords}[5]{%
@@ -97,9 +98,6 @@
 }
 
 \end{tikzpicture}
-
-
-
 
 
 
