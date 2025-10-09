@@ -29,7 +29,7 @@
 {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
 {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}
 }%
-\newcommand{\Gswirl}{\mathcal{G}\swirlarrow}
+\newcommand{\Gswirl}{\mathcal{G}_{\swirlarrow}}
 
 
 \usepackage{graphicx}
@@ -216,25 +216,21 @@ Classical Faraday induction tells us that a changing magnetic flux through a loo
         \tiny  $[\mathbf H]=\tfrac{A}{m}$};
 
 
-% ---------------- arrows (same geometry as your framework) ----------------
-        \draw[arrow] (E) -- (D);
-        \draw[arrow] (C) -- (rho);
-        \draw[arrow] (H) -- (Ampere);
-        \draw[arrow] (E) -- (Faraday);
-        \draw[arrow] (Faraday) -- (B);
-        \draw[arrow] (Ampere) -- (D);
-        \draw[arrow] (B) -- (H);
-        \draw[arrow] (H) -- (C);
-
-% --- replaced Ohm path by the mirrored left ladder ---
-        \draw[arrow] (E) -- (Eta);          % kernel stage
-        \draw[arrow] (Eta) -- (EtaBottom);  % field -> areal density (visible bottom card)
-        \draw[arrow] (EtaBottom) -- (Jsrc); % derivative to source (flying)
-        \draw[arrow] (Jsrc) -- (Ampere);    % feeds Ampère
-
-% --- long-range mediation on the right stays ---
-        \draw[arrow] (rho) --  (b);
-        \draw[arrow] (b) -- (Faraday);
+% ---------------- arrows  ----------------
+        \draw[arrow] (E)       --  (D)             ;
+        \draw[arrow] (rho)       --  (C)             ;
+        \draw[arrow] (H)       --  (Ampere)        ;
+        \draw[arrow] (E)       --  (Faraday)       ;
+        \draw[arrow] (B)       --  (Faraday)       ;
+        \draw[arrow] (D)       --  (Ampere)        ;
+        \draw[arrow] (H)       --  (B)             ;
+        \draw[arrow] (C)       --  (H)             ;
+        \draw[arrow] (Eta)       --  (E)             ;
+        \draw[arrow] (EtaBottom)       --  (Eta)           ;
+        \draw[arrow] (Jsrc)       --  (EtaBottom)     ;
+        \draw[arrow] (Ampere)       --  (Jsrc)          ;
+        \draw[arrow] (b)       --  (rho)            ;
+        \draw[arrow] (Faraday)       --  (b)             ;
 
         \end{tikzpicture}
         }
