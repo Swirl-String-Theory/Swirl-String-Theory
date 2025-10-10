@@ -123,12 +123,18 @@ Classical Faraday induction tells us that a changing magnetic flux through a loo
 \subsection*{Modified Faraday's Law}
 
     \begin{figure}[htbp]
-    \begin{tcolorbox}[colback=gray!10, colframe=black, title={Canonical Reference}]
-    This electromagnetic map follows the Swirl–Electromagnetic Bridge
-    of the Swirl String Theory Canon v0.5.10 (§XI–XII). Each equation
-    corresponds to a canonical relation between swirl quantities
-    $\mathbf{E},\mathbf{B},\bm{\eta},\bm{\varrho}_{\swirlarrow}$ and
-    their emergent Maxwell analogues.
+    \begin{tcolorbox}[colback=gray!10, colframe=black, title={Canonical Reference: Swirl–Electromagnetic Bridge}]
+    This schematic follows the canonical Swirl–Electromagnetic Bridge of the
+    \textit{Swirl String Theory Canon} v0.5.10 (§XI–XII).
+    It depicts the bidirectional correspondence between the swirl-medium quantities
+    $\mathbf{E}$, $\mathbf{B}$, $\bm{\eta}$, and $\bm{\varrho}_{\swirlarrow}$
+    and their emergent Maxwell analogues.
+    The swirl density $\bm{\varrho}_{\swirlarrow}$ acts as the mechanical dual of the magnetic flux density $\mathbf{B}$,
+    while the swirl susceptibility $\chi_H$ and permittivity $\bm{\varepsilon}$
+    define the medium’s constitutive closure.
+    All relations preserve dimensional homology across the mechanical–electromagnetic bridge,
+    ensuring canonical symmetry under the mapping
+    $\{\mathbf{E},\mathbf{D}\} \leftrightarrow \{\mathbf{B},\bm{\varrho}_{\swirlarrow}\}$.
     \end{tcolorbox}
 
     \centering
@@ -144,76 +150,77 @@ Classical Faraday induction tells us that a changing magnetic flux through a loo
         \node(Faraday)
         {
             \small$\nabla \times \mathbf{E} = -\,\partial_t \mathbf{B} \;-\; \mathbf{b}_{\swirlarrow}$\\
-        \tiny $[\nabla\times\mathbf E]=\tfrac{V}{m^{2}},\ [\partial_t\mathbf B]=\tfrac{T}{s}$};
+            \tiny $[\nabla\times\mathbf E]=\tfrac{V}{m^{2}},\ [\partial_t\mathbf B]=\tfrac{T}{s}$
+        };
 
 % ---------------- left: field E ----------------
         \node[left=of Faraday]  (E)
         {
             \small$\mathbf{E}$\\
-        \tiny $[\mathbf E]=\tfrac{V}{m}$
+            \tiny $[\mathbf E]=\tfrac{V}{m}$
         };
 
 % ---------------- center right:  b ----------------
         \node[right=of Faraday] (b)
         {
             \small $\mathbf b_{\swirlarrow}=\mathcal G_{\swirlarrow}\,\partial_t\bm{\varrho}_{\swirlarrow}$\\
-        \tiny  $[\mathbf b_{\swirlarrow}]=\tfrac{V}{m^{2}}$};
+            \tiny  $[\mathbf b_{\swirlarrow}]=\tfrac{V}{m^{2}}$};
 
 % ---------------- right: swirl density rho ----------------
         \node[right=of b] (rho)
         {
             \small swirl density $\bm{\varrho}_{\swirlarrow}$\\
-        \tiny  $[\bm{\varrho}_{\swirlarrow}]=\tfrac{1}{m^{2}}$};
+            \tiny  $[\bm{\varrho}_{\swirlarrow}]=\tfrac{N}{m^{2}}$};
 
 
 % ---------------- Middle layer ----------------
 % ---------------- left: conduction accumulation ----------------
         \node[below=of E] (Eta)
         {
-            \small $\bm{\eta} = (\mathcal K_E * \mathbf E)$\\
-        \tiny  $[\mathcal K_E] = \bm{\varepsilon} = \frac{C}{Vm}$};
+            \small $\bm{\eta} = (\bm{\varepsilon} \mathbf E)$\\
+            \tiny  $[\bm{\varepsilon}] = \frac{C}{Vm}$};
 
 % ---------------- center left right D, B ----------------
         \node[below=of Faraday] (D)
         {
             \small $\bm{\varepsilon}\,\mathbf{E} = \mathbf{D}$\\
-        \tiny  $[\bm{\varepsilon}]=\tfrac{F}{m},\ [\mathbf D]=\tfrac{C}{m^{2}}$};
+            \tiny  $[\bm{\varepsilon}]=\tfrac{F}{m},\ [\mathbf D]=\tfrac{C}{m^{2}}$};
 
         \node[below=of b] (B)
         {
             \small $\mathbf{B}=\mu\,\mathbf{H}$\\
-        \tiny  $[\mathbf B]=T,\ [\mu]=\tfrac{N}{A^{2}}$};
+            \tiny  $[\mathbf B]=T,\ [\mu]=\tfrac{N}{A^{2}}$};
 
 % ---------------- right: susceptibility ----------------
         \node[below=of rho] (C)
         {
             \small $\chi_H\,\mathbf{H} = \bm{\varrho}_{\swirlarrow}$\\
-        \tiny  $[\chi_H]=\tfrac{1}{Am}$};
+            \tiny  $[\chi_H]=\tfrac{N}{Am}$};
 
 % ---------------- Bottom layer ----------------
 % --- bottom-left areal density (now the visible card) ---
         \node[below=of Eta] (EtaBottom)
         {
             \small $\bm{\eta}$\\
-        \tiny  $[\bm{\eta}]=\tfrac{C}{m^{2}}$};
+            \tiny  $[\bm{\eta}]=\tfrac{C}{m^{2}}$};
 
 % --- flying source card below (derivative step) ---
         \node[below=of D] (Jsrc)
         {
             \small $\mathcal G_{\textrm el}\, \partial_t \bm{\eta} = \mathbf{j}$\\
-        \tiny  $[\mathcal G_{\textrm el}]=1~\tfrac{A \, s}{C},\ [\mathbf j]=\tfrac{A}{m^{2}}$};
+            \tiny  $[\mathcal G_{\textrm el}]=1~\tfrac{A \, s}{C},\ [\mathbf j]=\tfrac{A}{m^{2}}$};
 
 % ---------------- Ampère curl ----------------
         \node[below=of  B] (Ampere)
         {
             \small $\mathbf{j} + \partial_t \mathbf{D} = \nabla \times \mathbf{H}$\\
-        \tiny  $[\partial_t\mathbf D]=\tfrac{A}{m^{2}},\ [\nabla\times\mathbf H]=\tfrac{A}{m^{2}}$};
+            \tiny  $[\partial_t\mathbf D]=\tfrac{A}{m^{2}},\ [\nabla\times\mathbf H]=\tfrac{A}{m^{2}}$};
 
 % ---------------- right bottom: H ----------------
         \node[below=of C] (H)
         {
             \small $\mathbf{H}$\\
-        \tiny  $[\mathbf H]=\tfrac{A}{m}$};
+            \tiny  $[\mathbf H]=\tfrac{A}{m}$};
 
 
 % ---------------- arrows  ----------------
@@ -234,12 +241,24 @@ Classical Faraday induction tells us that a changing magnetic flux through a loo
 
         \end{tikzpicture}
         }
-        \caption{\textbf{Swirl–EM Coupling Diagram.}
-        A causal and dimensional flowchart representing the dynamic interaction between electromagnetic fields and quantized vortex dynamics in the swirl medium.
-        Top layer: Faraday’s law is extended with a swirl-coupling backreaction term \( \mathbf{b}_{\swirlarrow} = \mathcal{G}_{\swirlarrow} \, \partial_t \bm{\varrho}_{\swirlarrow} \), induced by a time-varying swirl density \( \bm{\varrho}_{\swirlarrow} \).
-        Middle layer: Constitutive relations for field–matter coupling, including permittivity \( \varepsilon \) and susceptibility \( \chi_H \).
-        Bottom layer: Areal accumulation, source current \( \mathbf{j} \), and the modified Ampère law.
-        All dimensionalities are shown for physical consistency. This diagram serves as the canonical causal model for Swirl–String Theory's EM sector.}
+        \caption{\textbf{Canonical Swirl–Electromagnetic Coupling Diagram.}
+        Causal and dimensional structure of the electromagnetic sector within the
+        Swirl–String framework.
+        The top layer extends Faraday’s law with a swirl-induced backreaction term
+            $\mathbf{b}_{\swirlarrow} = \mathcal{G}_{\swirlarrow} \,\partial_t \bm{\varrho}_{\swirlarrow}$,
+            encoding the electromotive response to time-varying swirl density in the medium.
+            The middle layer represents the constitutive closure:
+            $\mathbf{D} = \bm{\varepsilon}\mathbf{E}$ and
+            $\mathbf{B} = \mu\mathbf{H}$,
+            together with the mechanical correspondence
+            $\bm{\varrho}_{\swirlarrow} = \chi_H \mathbf{H}$.
+            The bottom layer completes the circuit with areal accumulation
+            $\bm{\eta}$, source current $\mathbf{j}$, and the modified Ampère curl.
+            All dimensionalities are shown for canonical homology between mechanical
+            (swirl) and electromagnetic sectors, establishing the
+            \emph{Swirl–Electromagnetic Bridge} that underlies the
+            flat-space emergence of Maxwellian dynamics.}
+
         \label{fig:swirl_em_causal}
     \end{figure}
 
@@ -470,7 +489,7 @@ A subtlety is linear additivity (well-separated vortices). Orientation/chirality
 
 \section*{Appendix B: Vortex Nucleation Threshold}\label{app:Threshold}
 
-This Appendix addresses the conditions required for a new swirl string (vortex loop) to spontaneously nucleate. A rough threshold is $\omega_{\text{crit}}\approx c/r_c$; with $r_c \sim 1.4\times10^{-15}$ m\footnote{Re-anchors the canonical $r_c$ used in threshold estimates.}\footnote{Checks $c/r_c\sim10^{23},\mathrm{s^{-1}}$ as the critical angular speed.}. Energy-density comparisons using $\rho_m$ and $\rho_f$ are delicate: $\rho_m$ (mass-equivalent) is enormous\footnote{Cites core mass-equivalent density $\rho_m$ used in a crude energy threshold.}\footnote{Notes limitation of that comparison (relativistic vs non-relativistic).}, while $\rho_f$ is the ambient medium density\footnote{Gives ambient medium density $\rho_f$ used in kinetic estimate.}\footnote{Notes $\rho_f$ is a canon parameter, not ordinary matter density.}. The identity $\rho_m c^2=\tfrac12\rho_f {v^\circ}^2$\footnote{Provides $\rho_m c^2=\frac12\rho_f {v^\circ}^2$ to correct the naive energy comparison.} with $v^\circ\approx1.09\times10^6$ m/s\footnote{Anchors $v^\circ\approx 1.09\times10^6$ m/s used in that identity.} is helpful. The swirl-clock factor $S_t=\sqrt{1-v^2/c^2}$\footnote{Uses swirl-clock factor as an intuitive freezing'' criterion ($S_t\to 0$).}:contentReference[oaicite:67]{index=67}\footnote{Connects impossibility of $v>c$ to defect formation.} motivates a defect-formation threshold. A dimensionless “Kairos” analysis gives $\omega^2\gtrsim c^2/r_c^2$:contentReference[oaicite:68]{index=68}\footnote{Brings in the Compton-frequency yardstick for $\omega$.}:contentReference[oaicite:69]{index=69}\footnote{States the dimensionless threshold $\omega^2\gtrsim c^2/r_c^2$ (Kairos).}. Easing lemmas: coherent packing:contentReference[oaicite:70]{index=70}\footnote{Lemma B: coherent multi-vortex packing can lower effective drive.}, resonant pumping:contentReference[oaicite:71]{index=71}\footnote{Lemma C: resonant pumping can transiently boost local $\omega$.}. Kairos'' marks the critical moment\footnote{``Kairos'' label for the critical moment of topological change.}\footnote{Operational note: this threshold is not reached inadvertently in lab conditions.}.
+This Appendix addresses the conditions required for a new swirl string (vortex loop) to spontaneously nucleate. A rough threshold is $\omega_{\text{crit}}\approx c/r_c$; with $r_c \sim 1.4\times10^{-15}$ m\footnote{Re-anchors the canonical $r_c$ used in threshold estimates.}\footnote{Checks $c/r_c\sim10^{23},\mathrm{s^{-1}}$ as the critical angular speed.}. Energy-density comparisons using $\rho_m$ and $\rho_f$ are delicate: $\rho_m$ (mass-equivalent) is enormous\footnote{Cites core mass-equivalent density $\rho_m$ used in a crude energy threshold.}\footnote{Notes limitation of that comparison (relativistic vs non-relativistic).}, while $\rho_f$ is the ambient medium density\footnote{Gives ambient medium density $\rho_f$ used in kinetic estimate.}\footnote{Notes $\rho_f$ is a canon parameter, not ordinary matter density.}. The identity $\rho_m c^2=\tfrac12\rho_f {v^\circ}^2$\footnote{Provides $\rho_m c^2=\frac12\rho_f {v^\circ}^2$ to correct the naive energy comparison.} with $v^\circ\approx1.09\times10^6$ m/s\footnote{Anchors $v^\circ\approx 1.09\times10^6$ m/s used in that identity.} is helpful. The swirl-clock factor $S_t=\sqrt{1-v^2/c^2}$\footnote{Uses swirl-clock factor as an intuitive freezing'' criterion ($S_t\to 0$).}\footnote{Connects impossibility of $v>c$ to defect formation.} motivates a defect-formation threshold. A dimensionless “Kairos” analysis gives $\omega^2\gtrsim c^2/r_c^2$\footnote{Brings in the Compton-frequency yardstick for $\omega$.}\footnote{States the dimensionless threshold $\omega^2\gtrsim c^2/r_c^2$ (Kairos).}. Easing lemmas: coherent packing\footnote{Lemma B: coherent multi-vortex packing can lower effective drive.}, resonant pumping\footnote{Lemma C: resonant pumping can transiently boost local $\omega$.}. Kairos'' marks the critical moment\footnote{``Kairos'' label for the critical moment of topological change.}\footnote{Operational note: this threshold is not reached inadvertently in lab conditions.}.
 
 
 % [TIKZ-SUGGESTION-12: Plot of $\omega$ vs $r$ with $v(r)=\omega r$ and shaded region where $v\ge c$; vertical line at $r_c$.]
