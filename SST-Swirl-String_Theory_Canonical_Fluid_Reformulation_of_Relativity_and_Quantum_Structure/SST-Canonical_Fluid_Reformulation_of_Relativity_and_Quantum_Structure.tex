@@ -834,6 +834,29 @@ SST provides a geometric derivation of quantum numbers based on knot topology~ \
     \subsection*{Suggested Platforms: BECs, Superconductors, Chiral Molecules}
         Controlled vortex manipulation in type-II superconducting films or ultracold BECs provides analogues for testing the quantized EMF impulse using SQUID magnetometers~ \cite{EM_G}. High-resolution attosecond spectroscopy offers a platform to probe the Swirl Clock’s influence on chiral dynamics~ \cite{sstAttosecondPhotoionization}.
 
+    % ==== Macros as above ====
+
+\section{Experimental Testability and Falsifiable Setups}
+\label{sec:SST-falsifiability}
+
+\subsection{Swirl-Clock Dilation under Chiral Driving}
+    SST predicts
+    \[
+        \frac{dt_{\text{local}}}{dt_\infty}=\sqrt{1-\frac{\lVert\vswirl\rVert^2}{c^2}}.
+    \]
+    Numerics: \(\lVert\vswirl\rVert/c\approx 3.6487\times10^{-3}\Rightarrow dt_{\text{local}}/dt_\infty\approx 0.9999933436\)
+    (\(6.66\times10^{-6}\) fractional dilation).
+    \textbf{Protocol:} attosecond pump–probe on chiral targets; flip light helicity shot-to-shot; measure helicity-odd delay \(\Delta t\).
+    \textbf{Thresholds:} \(<100\) as pulses; \(15\text{–}60\) eV; avoid saturation. \textbf{Falsifier:} no helicity-odd component within error after fluence normalization.
+
+\subsection{\(R\leftrightarrow T\) Transition Map in Knotted Coils}
+    Drive a trefoil-like current path; track reconnection-induced topology flips in B-dot arrays and SQUID flux steps \(\Delta\Phi=n\Phi_\star\).
+    \textbf{Falsifier:} absence of discrete \(\Delta\Phi\) statistics correlated with near-contact events.
+
+\subsection{Swirl-Pressure Force Proxy}
+    \(\mathbf{a}_{\text{eff}}=-\nabla p/\rhoF\) with \([\mathbf{a}]=\mathrm{m\,s^{-2}}\).
+    \textbf{Protocol:} 3-phase coil below a torsion balance plate; compare \(F_z=\int_A \Delta p\,dA\) to CFD. \textbf{Falsifier:} null result tracking \(\Delta p\to 0\).
+
     % Physical constants (numerics used in text, not redefining units)
     % \vswirl ≈ 1.09384563e6 m/s, \rc ≈ 1.40897017e-15 m, \rhoF = 7.0e-7 kg/m^3
     % ================================================
@@ -873,62 +896,70 @@ SST provides a geometric derivation of quantum numbers based on knot topology~ \
 
 % ==== Macros as above ====
 
-\section{Scale Dependence: Running Couplings and Topological \texorpdfstring{$\beta$}{beta}-Functions}
+
+\section{Running Couplings and Topological \texorpdfstring{$\beta$}{beta}-Functions}
 \label{sec:SST-RG}
 
-\paragraph{Claim.} Couplings $g_i(\mu)$ inherit scale dependence from swirl-string self-interaction and near-contact topology. We posit
-    \begin{equation}
-    \mu\frac{d g_i}{d\mu} \equiv \beta_i(g,\mu)
-    = -\frac{b_i}{2\pi}g_i^3 \;+\; \kappa_i\,\frac{\mathcal{H}(K)+\alpha\,\mathcal{C}(K)}{( \mu\,\rc )^{2}}\,g_i \;+\; \mathcal{O}(g_i^5),
-    \label{eq:beta}
-    \end{equation}
-    where $\mathcal{H}(K)$ is helicity (dimensionless), $\mathcal{C}(K)$ a near-contact count, $\rc$ the core scale, and $b_i$ reduce to SM values in the Standard-Model limit. The second term is an SST topological correction suppressed by $(\mu \rc)^{-2}$, ensuring decoupling for $\mu\rc\gg 1$.
+We propose
+\[
+    \mu\frac{d g_i}{d\mu} = -\frac{b_i}{2\pi}g_i^3\;+\;\kappa_i\,\frac{\mathcal{H}(K)+\alpha\,\mathcal{C}(K)}{(\mu\rc)^2}\,g_i+\mathcal{O}(g_i^5),
+\]
+with \(\mathcal{H}\) helicity (dimensionless), \(\mathcal{C}\) near-contacts (dimensionless count).
+As \(\mu\rc\to\infty\) the SST correction decouples, recovering SM running (asymptotic freedom for SU(3), screening for U(1)).
+\textbf{Falsifier:} precision extractions of \(g_i(\mu)\) show no universal \((\mu\rc)^{-2}\) tail.
 
-\paragraph{Asymptotics.} For SU(3) ($i=3$), $b_3>0$ gives asymptotic freedom as in QCD; for U(1), screening persists ($b_1<0$), with SST corrections testable at $\mu\sim \rc^{-1}$.
-
-\paragraph{Falsifier.} Extract $g_i(\mu)$ from lattice-matched event shapes and compare with \eqref{eq:beta} fits including a universal $(\mu\rc)^{-2}$ tail; absence of any such tail within errors falsifies the proposed correction.
 
 % ==== Macros as above ====
 
-\section{Canonical Quantization of the Swirl Field and Directors}
+\section{Canonical Quantization of \texorpdfstring{$\vswirl$}{v_swirl} and Directors}
 \label{sec:SST-quantization}
 
-\paragraph{Fields and Constraints.} Let $\vswirl(\mathbf{x},t)$ be divergence-free and $\{\hat{d}_a(\mathbf{x},t)\}_{a=1}^3$ the internal directors with $\hat{d}_a^\dagger \hat{d}_a=1$. A minimal Hamiltonian density (research track) is
-    \begin{equation}
-    \mathcal{H}=\frac{\rhoF}{2}\,\lVert \vswirl\rVert^2 + \frac{\lambda}{2}\sum_a \lVert \nabla \hat{d}_a\rVert^2 + \gamma\,\omega\cdot\mathbf{S}(\hat{d}) + \mathcal{V}_{\text{topo}}[K],
-    \end{equation}
-    with vorticity $\omega\!=\!\nabla\times \vswirl$ and spin-like $\mathbf{S}$ from director currents.
+\paragraph{Fields.}
+    Incompressible \(\vswirl(\mathbf{x},t)\) with \(\nabla\cdot\vswirl=0\),
+    directors \(\hat d_a(\mathbf{x},t)\) with \(\hat d_a^\dagger\hat d_a=1\).
+    Hamiltonian density (prototype):
+    \[
+        \mathcal{H}=\frac{\rhoF}{2}\lVert\vswirl\rVert^2+\frac{\lambda}{2}\sum_a \lVert\nabla \hat d_a\rVert^2+\gamma\,(\nabla\times\vswirl)\cdot\mathbf{S}(\hat d)+\mathcal{V}_{\text{topo}}.
+    \]
 
-\paragraph{Equal-Time Algebra.} Using the transverse projector $P_{ij}(\mathbf{k})=\delta_{ij}-k_i k_j/k^2$,
-    \begin{align}
-    \big[ v_i(\mathbf{x},t), \Pi_j(\mathbf{y},t)\big] &= i\hbar\, P_{ij}(-i\nabla)\,\delta^{(3)}(\mathbf{x}-\mathbf{y}),\\
-    \big[ \hat{d}_a(\mathbf{x}), \hat{d}_b^\dagger(\mathbf{y})\big] &= \delta_{ab}\,\delta^{(3)}(\mathbf{x}-\mathbf{y}),\quad
-    \big[ \hat{d}_a(\mathbf{x}), \hat{d}_b(\mathbf{y})\big]=0,
-    \end{align}
-    with $\Pi$ the momentum density conjugate to $\vswirl$ and incompressibility enforced by a Lagrange multiplier (pressure).
-
-\paragraph{Quanta.} Linearizing about a stationary background yields transverse modes with creation/annihilation operators $a_{\mathbf{k},\lambda}^{(\text{swirl})}$ and internal director excitations $b_{\mathbf{k},r}^{(a)}$. \emph{Particles} (knotted solitons) appear as nonperturbative Fock-space dressings; counting is by homotopy class $K$.
-
-\paragraph{Falsifier.} If transverse mode spectra deviate from the predicted projector-enforced dispersion in Sec.~\ref{sec:SST-GW}, quantization scheme is invalid.
+\paragraph{Equal-time algebra.}
+    Let \(\Pi\) be conjugate to \(\vswirl\). With transverse projector \(P_{ij}=\delta_{ij}-\partial_i\partial_j/\nabla^2\),
+    \[
+        [ v_i(\mathbf{x}), \Pi_j(\mathbf{y})]= i\hbar\,P_{ij}\,\delta^{(3)}(\mathbf{x}-\mathbf{y}),\quad
+        [ \hat d_a(\mathbf{x}), \hat d_b^\dagger(\mathbf{y})]=\delta_{ab}\,\delta^{(3)}(\mathbf{x}-\mathbf{y}).
+    \]
+    Linearization yields transverse quanta \(a_{\mathbf{k},\lambda}\) and internal modes \(b_{\mathbf{k},r}^{(a)}\).
+    \textbf{Falsifier:} measured dispersion violating the projector-enforced spectrum.
 
 % ==== Macros as above ====
 
-\section{Mass Generation: Scalar Swirl Condensate vs. Topological Tension}
-\label{sec:SST-mass}
+\section{Mass Generation: Scalar Condensate vs. Topological Tension}
+\label{sec:SST-mass-gen}
 
 \subsection{Scalar Swirl Condensate (Higgs-analogue)}
-    Introduce $S(x)$ with potential $V(S)=\lambda\big(|S|^2-S_0^2\big)^2$. Couplings
-    \begin{equation}
-    \mathcal{L}\supset |D_\mu S|^2 - V(S) - y_K\,S\,\Psi_K^\dagger \Psi_K + \text{h.c.}
-    \end{equation}
-    generate masses $m_K = y_K S_0$ for knot species $\Psi_K$ after $\langle S\rangle=S_0$.
+    Introduce a real/complex scalar $S(x)$ with symmetry-breaking potential
+    \[
+        V(S)=\lambda\big(|S|^2-S_0^2\big)^2,\qquad [\lambda]=1,\ [S]=\mathrm{energy}^{1/2}\mathrm{length}^{-3/2}
+    \]
+    and Yukawa-like couplings to knot species $\Psi_K$,
+    \[
+        \mathcal{L}\supset |D_\mu S|^2 - V(S) - y_K\,S\,\Psi_K^\dagger\Psi_K + \text{h.c.},
+    \]
+    producing \(m_K = y_K S_0\) after \(\langle S\rangle=S_0\). \emph{Dimensional check:}
+    \([y_K S_0]=\) energy ⇒ \(m_K\) has mass units. \emph{Falsifier:} a single \(S_0\) and \(\{y_K\}\) fail to fit leptons and quarks simultaneously.
 
-\subsection{Topological Mass from Line Tension}
-    Alternatively, the knot mass follows from swirl tension $\mathcal{T}$ and curvature contact energy,
-    \begin{equation}
-    m_K c^2 = \alpha\,\mathcal{C}(K) + \beta\,\mathcal{L}(K) + \gamma\,\mathcal{H}(K),
-    \end{equation}
-    with $\mathcal{L}$ length, $\mathcal{C}$ contact count, $\mathcal{H}$ helicity. \textbf{Falsifier:} a global fit that fails for leptons+quarks simultaneously.
+\subsection{Topological Tension Mechanism}
+    Define a swirl tension scale from fluid pressure times core radius
+    \[
+        \mathcal{T}_0 \equiv \rhoF\,\lVert\vswirl\rVert^2\,\rc,\quad [\mathcal{T}_0]=\mathrm{N\,m^{-1}}.
+    \]
+    Numerically, \(\mathcal{T}_0 \approx 7.0\times10^{-7}\cdot(1.09384563\times10^{6})^2\cdot 1.40897017\times10^{-15}\ \mathrm{N\,m^{-1}}
+\approx 1.18\times10^{-9}\ \mathrm{N\,m^{-1}}\).
+    Assuming a slender-tube knot of length \(\mathcal{L}(K)\), with contact/helicity corrections,
+    \[
+        m_K c^2=\beta\,\mathcal{T}_0\,\mathcal{L}(K)\;+\;\alpha\,\mathcal{C}(K)\;+\;\gamma\,\mathcal{H}(K),
+    \]
+    with \(\mathcal{C}\) dimension energy, \(\mathcal{H}\) dimensionless. \emph{Dimensional check:} \(\mathcal{T}_0\mathcal{L}\) is energy. \emph{Falsifier:} a global fit fails across \((e,\mu,\tau,u,d,s,\ldots)\) with one common \(\{\alpha,\beta,\gamma\}\).
 
 % ==== Macros as above ====
 
@@ -953,22 +984,41 @@ $\gamma$ & unknot & $(0,0,0)$ & $\mathbf{1}$ & $\mathbf{1}$ & $0$ & $0$\\
 \paragraph{Falsifier.} Any row where $Q$ computed from the SST mapping disagrees with the SM value rules out that mapping.
 % ==== Macros as above ====
 
-\section{Gravitational Waves in SST: Dispersion and Bounds}
+\section{Gravitational Waves and Lorentz-Breaking Bounds}
 \label{sec:SST-GW}
 
-Linearizing the Euler–SST equations about a homogeneous state with preferred clock, transverse swirl perturbations $\mathbf{u}_\perp$ obey
-\begin{equation}
-\partial_t^2 \mathbf{u}_\perp - c^2 \nabla^2 \mathbf{u}_\perp
-+ \eta_2\, c^2 \rc^{2}\,\nabla^4 \mathbf{u}_\perp + \cdots = 0,
-\label{eq:GW-disp}
-\end{equation}
-giving
-\begin{equation}
-\omega^2 = c^2 k^2 \Big( 1 + \eta_2 (\rc k)^2 + \mathcal{O}((\rc k)^4)\Big).
-\end{equation}
-\textbf{Constraint:} GW170817+$\gamma$-ray counterpart enforces $|\omega/k - c|/c \lesssim 10^{-15}$ at $f\sim 10^2$ Hz, implying $|\eta_2| (\rc k)^2 \lesssim 10^{-15}$. With $\rc=1.41\times 10^{-15}$ m and $k=2\pi f/c$, this yields $|\eta_2|\lesssim 10^{11}$ (very weak), motivating higher-frequency constraints (pulsar timing, LISA). \textbf{Falsifier:} measurable frequency-dependent GW speed beyond this bound.
+Linearized transverse swirl obeys
+\[
+    \partial_t^2 \mathbf{u}_\perp - c^2 \nabla^2 \mathbf{u}_\perp
+    + \eta_2\,c^2\rc^2\nabla^4 \mathbf{u}_\perp + \cdots = 0,
+    \quad\Rightarrow\quad
+    \omega^2=c^2k^2\big(1+\eta_2(\rc k)^2+\cdots\big).
+\]
+At \(f=100\ \mathrm{Hz}\), \(k=2\pi f/c\approx 2.095\times10^{-6}\ \mathrm{m^{-1}}\),
+\(\rc k\approx 2.953\times10^{-21}\), \((\rc k)^2\approx 8.72\times10^{-42}\).
+GW170817 enforces \(|v_g-c|/c\lesssim10^{-15}\Rightarrow |\eta_2|(\rc k)^2\lesssim10^{-15}\),
+hence \(|\eta_2|\lesssim 1.1\times10^{26}\) (very weak at LIGO band).
+\textbf{Implication:} high-frequency probes (if available) are needed; any measurable \(v_g(f)\) beyond this expansion falsifies the linear SST wave sector.
+
 
 % ==== Macros as above ====
+% ==== Macros as above ====
+
+\section{Cosmological Embedding: Dark Matter and Dark Energy}
+\label{sec:SST-cosmo}
+
+\subsection{Swirl-Foam Dark Matter}
+    A gas of weakly radiative knotted excitations (“swirl foam”) with negligible pressure acts as DM: \(w\approx 0\).
+    Effective radial acceleration
+    \[
+        a_r(r)=a_{\text{Newt}}(r)-\frac{1}{\rhoF}\partial_r p_{\text{foam}}(r).
+    \]
+    \textbf{Falsifier:} inability to fit high–surface-brightness galaxies with one universal foam parameter.
+
+\subsection{Network-Tension Dark Energy}
+    A percolating large-scale string network contributes \(p_{\text{eff}}\simeq -\rho_{\text{tension}}\) (\(w\approx -1+\varepsilon\)).
+    \textbf{Falsifier:} SNe/BAO/CMB joint fits excluding any constant-tension component.
+
 
 \section{Cosmology: Baryogenesis and Dark Sector in SST}
 \label{sec:SST-cosmology}
@@ -988,18 +1038,20 @@ giving
 
 % ==== Macros as above ====
 
-\section{Numerical Program: CFD + Topology Tracking}
+\section{Numerical Program: Swirl–Knot Dynamics and EM Coupling}
 \label{sec:SST-sim}
 
-\paragraph{Algorithmic Steps.}
-    \begin{enumerate}
-    \item Incompressible solver (pressure Poisson) with Rankine-core regularization at scale $\rc$.
-    \item Vortex-line advection; adaptive remeshing; explicit reconnection rule when separation $<\chi\,\rc$.
-    \item Topological diagnostics: helicity $\mathcal{H}$, writhe, linking; compute near-contact $\mathcal{C}$.
-    \item EM coupling: Biot–Savart magnetic field and induced fields to recover $\Delta\Phi=n\Phi_\star$ statistics.
-    \item Parameter scans over drive helicity and frequency to map $R\leftrightarrow T$ transitions in real time.
-    \end{enumerate}
-    \textbf{Falsifier:} failure to reproduce predicted $\Delta \Phi$ quantization or the helicity-odd attosecond delay map from Sec.~\ref{sec:SST-falsifiability}.
+\paragraph{Algorithm.}
+    (1) Incompressible solver with Rankine-core regularization at \(\rc\).
+    (2) Vortex-line advection; adaptive remeshing; reconnection when separation \(<\chi\,\rc\).
+    (3) Topological diagnostics: helicity \(\mathcal{H}\), writhe, linking; near-contacts \(\mathcal{C}\).
+    (4) EM coupling via Biot–Savart; predict SQUID steps \(\Delta\Phi=n\Phi_\star\).
+    (5) Sweep drive helicity/frequency to map \(R\leftrightarrow T\) transitions.
+
+\paragraph{Dimensionless groups.}
+    \(\mathrm{He}=\lVert\vswirl\rVert/c,\ \mathrm{Kn}=\rc/L,\)
+    \(\mathrm{St}=\omega_{\text{drive}} L/\lVert\vswirl\rVert.\)
+    \textbf{Falsifier:} failure to reproduce \(\Delta\Phi\) quantization and helicity-odd delay maps.
 
 % ==== Macros as above ====
 
@@ -1222,6 +1274,48 @@ SST is offered as a \emph{candidate} unification in which gravity, gauge fields,
     ``Measurements of $\Omega$ and $\Lambda$ from 42 High-Redshift Supernovae,''
     Astrophys. J. \textbf{517}, 565 (1999).
     doi:10.1086/307221
+    @book{Popper1959,
+    author = {Karl Popper}, title = {The Logic of Scientific Discovery},
+    year = {1959}, publisher = {Hutchinson}
+    }
+    @article{Abbott2017GW170817,
+    author = {B. P. Abbott et al.},
+    title = {GW170817: Observation of Gravitational Waves from a Binary Neutron Star Inspiral},
+    journal = {Phys. Rev. Lett.}, year = {2017}, volume = {119}, pages = {161101},
+    doi = {10.1103/PhysRevLett.119.161101}
+    }
+    @book{Dirac1964,
+    author = {P. A. M. Dirac}, title = {Lectures on Quantum Mechanics},
+    year = {1964}, publisher = {Yeshiva University}
+    }
+    @book{WeinbergQFT1995,
+    author = {Steven Weinberg}, title = {The Quantum Theory of Fields, Vol. I},
+    year = {1995}, publisher = {Cambridge University Press}
+    }
+    @article{GrossWilczek1973,
+    author = {D. J. Gross and F. Wilczek},
+    title = {Ultraviolet Behavior of Non-Abelian Gauge Theories},
+    journal = {Phys. Rev. Lett.}, year = {1973}, volume = {30}, pages = {1343},
+    doi = {10.1103/PhysRevLett.30.1343}
+    }
+    @article{Politzer1973,
+    author = {H. D. Politzer},
+    title = {Reliable Perturbative Results for Strong Interactions?},
+    journal = {Phys. Rev. Lett.}, year = {1973}, volume = {30}, pages = {1346},
+    doi = {10.1103/PhysRevLett.30.1346}
+    }
+    @article{Riess1998,
+    author = {A. G. Riess et al.},
+    title = {Observational Evidence from Supernovae for an Accelerating Universe},
+    journal = {Astron. J.}, year = {1998}, volume = {116}, pages = {1009},
+    doi = {10.1086/300499}
+    }
+    @article{Perlmutter1999,
+    author = {S. Perlmutter et al.},
+    title = {Measurements of $\Omega$ and $\Lambda$ from 42 High-Redshift Supernovae},
+    journal = {Astrophys. J.}, year = {1999}, volume = {517}, pages = {565},
+    doi = {10.1086/307221}
+    }
 
     \end{thebibliography}
 
@@ -1721,9 +1815,35 @@ SST is offered as a \emph{candidate} unification in which gravity, gauge fields,
         Classical derivations and analogies: \cite{Saffman1992,Batchelor1967,LandauFM}.
         Hamiltonian structure background: \cite{Salmon1988,Morrison1998}.
 
+\section{Appendix: Benchmark Knot–Representation Table}\label{app:knot-rep-table}
+    \begin{table}[t]
+    \centering
+    \small
+    \caption{Benchmark map $(K, L, S, \chi, \mathrm{wr}, g)\mapsto (R_3,R_2,Y,Q)$ with
+        $Y=\alpha_Y\chi+\beta_Y\,\mathrm{wr}+\gamma_Y g$ and $(\alpha_Y,\beta_Y,\gamma_Y)=(\tfrac{2}{3},0,-\tfrac{1}{2})$.
+        Electric charge $Q=T_3+Y$ with $T_3=\pm\tfrac12$ for $R_2=\mathbf{2}$.
+        Lepton candidate $K_\ell$ has $(L,S,\chi,\mathrm{wr},g)=(6,3,0,0,1)$; quark candidate $K_q$ has $(4,3,+1,0,1)$.}
+    \label{tab:knot-rep-benchmark}
+    \begin{tabular}{lcccccccccc}
+    \toprule
+    Species & $K$ & $L$ & $S$ & $\chi$ & $\mathrm{wr}$ & $g$ & $R_3$ & $R_2$ & $Y$ & $Q$ \\
+    \midrule
+    $\nu_{e\,L}$  & $K_\ell$ & $6$ & $3$ & $0$ & $0$ & $1$ & $\mathbf{1}$ & $\mathbf{2}$ & $-\tfrac{1}{2}$ & $+\tfrac{1}{2}+(-\tfrac{1}{2})=0$ \\
+    $e_{L}$       & $K_\ell$ & $6$ & $3$ & $0$ & $0$ & $1$ & $\mathbf{1}$ & $\mathbf{2}$ & $-\tfrac{1}{2}$ & $-\tfrac{1}{2}+(-\tfrac{1}{2})=-1$ \\
+    \addlinespace[0.25em]
+    $u_{L}^{(r)}$ & $K_q$    & $4$ & $3$ & $+1$& $0$ & $1$ & $\mathbf{3}$ & $\mathbf{2}$ & $+\tfrac{1}{6}$ & $+\tfrac{1}{2}+(+\tfrac{1}{6})=+\tfrac{2}{3}$ \\
+    $u_{L}^{(g)}$ & $K_q$    & $4$ & $3$ & $+1$& $0$ & $1$ & $\mathbf{3}$ & $\mathbf{2}$ & $+\tfrac{1}{6}$ & $+\tfrac{1}{2}+(+\tfrac{1}{6})=+\tfrac{2}{3}$ \\
+    $u_{L}^{(b)}$ & $K_q$    & $4$ & $3$ & $+1$& $0$ & $1$ & $\mathbf{3}$ & $\mathbf{2}$ & $+\tfrac{1}{6}$ & $+\tfrac{1}{2}+(+\tfrac{1}{6})=+\tfrac{2}{3}$ \\
+    $d_{L}^{(r)}$ & $K_q$    & $4$ & $3$ & $+1$& $0$ & $1$ & $\mathbf{3}$ & $\mathbf{2}$ & $+\tfrac{1}{6}$ & $-\tfrac{1}{2}+(+\tfrac{1}{6})=-\tfrac{1}{3}$ \\
+    $d_{L}^{(g)}$ & $K_q$    & $4$ & $3$ & $+1$& $0$ & $1$ & $\mathbf{3}$ & $\mathbf{2}$ & $+\tfrac{1}{6}$ & $-\tfrac{1}{2}+(+\tfrac{1}{6})=-\tfrac{1}{3}$ \\
+    $d_{L}^{(b)}$ & $K_q$    & $4$ & $3$ & $+1$& $0$ & $1$ & $\mathbf{3}$ & $\mathbf{2}$ & $+\tfrac{1}{6}$ & $-\tfrac{1}{2}+(+\tfrac{1}{6})=-\tfrac{1}{3}$ \\
+    \bottomrule
+    \end{tabular}
+    \end{table}
 
 
-\newpage
+
+    \newpage
 \section{Appendix: Swirl–Electromagnetic Unit Bridge Table}
     \begin{figure}[htbp]
     \centering
