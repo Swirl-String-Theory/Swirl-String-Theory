@@ -75,6 +75,12 @@
 \newcommand{\rc}{r_c}                                    % string core radius
 \newcommand{\Lam}{\Lambda}                               % Swirl Coulomb constant
 \newcommand{\Om}{\Omega_{\swirlarrow}}                   % swirl angular frequency
+\makeatletter
+\@ifundefined{theorem}{\newtheorem{theorem}{Theorem}}{}
+\@ifundefined{corollary}{\newtheorem{corollary}{Corollary}}{}
+\@ifundefined{definition}{\newtheorem{definition}{Definition}}{}
+\@ifundefined{lemma}{\newtheorem{lemma}{Lemma}}{}
+\makeatother
 
 \begin{document}
 \title{\papertitle}
@@ -330,7 +336,7 @@ We model electromagnetism as an emergent response of the swirl medium to topolog
                         every node/.style={draw, rounded corners, align=center, minimum height=2},
                         arrow/.style={-{Latex[length=2]}, thick},
                         garrow/.style={-{Latex[length=2]}, thick, dashed}
-                        unittext/.style={ font=\tiny\color{gray!60}
+                        unittext/.style={ font=\tiny\color{gray!60}}
                     ]
                     % ---------------- TOP LAYER ----------------
                     \node(Faraday)
@@ -413,24 +419,28 @@ We model electromagnetism as an emergent response of the swirl medium to topolog
                     };
 
                     % ---------------- arrows  ----------------
-                    \draw[arrow] (E)       --  (D)             ;
-                    \draw[arrow] (rho)       --  (C)             ;
-                    \draw[arrow] (H)       --  (Ampere)        ;
-                    \draw[arrow] (E)       --  (Faraday)       ;
-                    \draw[arrow] (B)       --  (Faraday)       ;
-                    \draw[arrow] (D)       --  (Ampere)        ;
-                    \draw[arrow] (H)       --  (B)             ;
-                    \draw[arrow] (C)       --  (H)             ;
-                    \draw[arrow] (Eta)       --  (E)             ;
-                    \draw[arrow] (EtaBottom)       --  (Eta)           ;
-                    \draw[arrow] (Jsrc)       --  (EtaBottom)     ;
-                    \draw[arrow] (Ampere)       --  (Jsrc)          ;
-                    \draw[arrow] (b)       --  (rho)            ;
-                    \draw[arrow] (Faraday)       --  (b)             ;
-
+                    \draw[arrow] (E) --  (D)             ;
+                    \draw[arrow] (rho) --  (C)             ;
+                    \draw[arrow] (H) --  (Ampere)        ;
+                    \draw[arrow] (E) --  (Faraday)       ;
+                    \draw[arrow] (B) --  (Faraday)       ;
+                    \draw[arrow] (D) --  (Ampere)        ;
+                    \draw[arrow] (H) --  (B)             ;
+                    \draw[arrow] (C) --  (H)             ;
+                    \draw[arrow] (Eta) --  (E)             ;
+                    \draw[arrow] (EtaBottom) --  (Eta)           ;
+                    \draw[arrow] (Jsrc) --  (EtaBottom)     ;
+                    \draw[arrow] (Ampere) --  (Jsrc)          ;
+                    \draw[arrow] (b) --  (rho)            ;
+                    \draw[arrow] (Faraday) --  (b)             ;
+                }
                 \end{tikzpicture}
+
+            \caption{\textbf{Canonical Swirl–Electromagnetic Coupling Diagram.} Causal and dimensional structure of the electromagnetic sector within the Swirl–String framework. The top layer extends Faraday’s law with a swirl-induced backreaction term $\mathbf{b}_{\swirlarrow} = \mathcal{G}_{\swirlarrow} \,\partial_t \bm{\varrho}_{\swirlarrow}$, encoding the electromotive response to time-varying swirl density in the medium. The middle layer represents the constitutive closure: $\mathbf{D} = \bm{\varepsilon}\mathbf{E}$ and $\mathbf{B} = \mu\mathbf{H}$, together with the mechanical correspondence $\bm{\varrho}_{\swirlarrow} = \chi_H \mathbf{H}$. The bottom layer completes the circuit with areal accumulation $\bm{\eta}$, source current $\mathbf{j}$, and the modified Ampère curl. All dimensionalities are shown for canonical homology between mechanical (swirl) and electromagnetic sectors, establishing the \emph{Swirl–Electromagnetic Bridge} that underlies the flat-space emergence of Maxwellian dynamics.
             }
-            \caption{\textbf{Canonical Swirl–Electromagnetic Coupling Diagram.} Causal and dimensional structure of the electromagnetic sector within the Swirl–String framework. The top layer extends Faraday’s law with a swirl-induced backreaction term $\mathbf{b}_{\swirlarrow} = \mathcal{G}_{\swirlarrow} \,\partial_t \bm{\varrho}_{\swirlarrow}$, encoding the electromotive response to time-varying swirl density in the medium. The middle layer represents the constitutive closure: $\mathbf{D} = \bm{\varepsilon}\mathbf{E}$ and $\mathbf{B} = \mu\mathbf{H}$, together with the mechanical correspondence $\bm{\varrho}_{\swirlarrow} = \chi_H \mathbf{H}$. The bottom layer completes the circuit with areal accumulation $\bm{\eta}$, source current $\mathbf{j}$, and the modified Ampère curl. All dimensionalities are shown for canonical homology between mechanical (swirl) and electromagnetic sectors, establishing the \emph{Swirl–Electromagnetic Bridge} that underlies the flat-space emergence of Maxwellian dynamics.}
+
+
+
         \end{figure}
 
 
@@ -614,8 +624,9 @@ SST is offered as a \emph{candidate} unification in which gravity, gauge fields,
     \bibitem{Han2025} Han, M., Ji, J.-B., Blech, A., Goetz, R. E., Allison, C., Greenman, L., Koch, C. P., W\"orner, H. J., Attosecond control and measurement of chiral photoionization dynamics, Nature, 2025, doi:10.1038/s41586-025-09455-4, online 27 Aug 2025.
     \bibitem{Krausz2009} Krausz, Ferenc, Ivanov, Misha, Attosecond physics, Rev. Mod. Phys., 81, 163--234, 2009, doi:10.1103/RevModPhys.81.163.
     \bibitem{Beaulieu2018} Beaulieu, S. et al., Attosecond-resolved photoionization of chiral molecules, Science, 358, 1288--1294, 2018, doi:10.1126/science.aao5624.
-
-
+    \bibitem{Lyu2019LeidenfrostFate} S.~Lyu, V.~Mathai, Y.~Wang, B.~Sobac, P.~Colinet, D.~Lohse, and C.~Sun,``Final fate of a Leidenfrost droplet: Explosion or takeoff,'' \emph{Science Advances} \textbf{5}, eaav8081 (2019), \href{https://doi.org/10.1126/sciadv.aav8081}{doi:10.1126/sciadv.aav8081}.
+    \bibitem{Celestini2012TakeOff} F.~Celestini, T.~Frisch, and Y.~Pomeau, ``Take Off of Small Leidenfrost Droplets,'' \emph{Phys.\ Rev.\ Lett.} \textbf{109}, 034501 (2012).
+    \bibitem{Celestini2012ElectroLeidenfrost} F.~Celestini and G.~Kirstetter, ``Effect of an Electric Field on a Leidenfrost Droplet,'' \emph{arXiv:1203.4799} (2012).
 
     \end{thebibliography}
 
@@ -739,45 +750,155 @@ S=\int d^4x\;\mathcal{L}
     \noindent\emph{Analogy (brief).}
     Four Lego plates (clock, vorticity, gauge, matter) lock together; a slim adapter brick (the bridge term) lets the swirl plate drive the EM plate.
 
+% ==========================================================
+\section{Swirl Cushion Stability and Leidenfrost Analogy}\label{sec:swirl-cushion-leidenfrost}
+
+    \begin{tcolorbox}[colframe=black, title={Canonical Context}]
+    In Swirl--String Theory (SST), short--range repulsion and levitation arise from
+    pressure wells sustained by the outer irrotational envelope of a swirl string.
+    The stability of this envelope determines whether a structure ``floats'' above
+    its substrate or collapses into direct contact.  An experimentally accessible
+    analogue exists in the Leidenfrost effect, where a liquid droplet levitates on
+    its own vapor cushion.  The breakdown of that film, leading either to smooth
+    takeoff or explosive contact, maps directly onto the stability limits of the
+    SST swirl cushion.
+    \end{tcolorbox}
+
+    \subsection{Empirical Leidenfrost Scaling}
+
+    Experiments by Lyu~\emph{et~al.}~\cite{Lyu2019LeidenfrostFate}
+    demonstrate that a Leidenfrost droplet of radius~$R$ transitions from
+    stable levitation to explosion at a critical size~$R_{\!\times}$ that
+    depends on the surface contaminant fraction~$\phi$ as
+    \begin{equation}
+    \boxed{%
+    \frac{R_{\!\times}}{R_0} \propto \phi^{-1/3}},
+    \label{eq:Rphi-law}
+    \end{equation}
+    with $R_0$ a reference radius.
+    Clean, small droplets ($\phi\!\to\!0$) lift off smoothly, whereas
+    contaminated or larger droplets collapse violently.
+    This one--third power law defines a dimensionless invariant that can be
+    translated into the swirl--string formalism.
+
+    \subsection{SST Translation: Pressure--Film Criterion}
+
+    In SST, the levitating envelope is modeled as a thin region where the
+    swirl--pressure difference
+    \begin{equation}
+    \Delta p_{\mathrm{film}}
+    \;\simeq\;
+    \rho_{\!f}\,
+    \lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert^{2}\,
+    \Theta(\phi,R)
+    \label{eq:film-pressure}
+    \end{equation}
+    balances the combined capillary and hydrostatic loads,
+    \begin{equation}
+    \Delta p_{\mathrm{film}}
+    \;\gtrsim\;
+    \frac{\gamma}{R} + \rho_{\ell} g R.
+    \label{eq:film-balance}
+    \end{equation}
+    Here $\Theta(\phi,R)\!\in\!(0,1]$ is an effective \emph{transmissivity}
+    representing partial blockage of swirl flow through the thin layer.
+    When contaminants or phase disorder increase~$\phi$, $\Theta$ decreases
+    and the cushion fails once Eq.~\eqref{eq:film-balance} can no longer be
+    satisfied.
+
+    Combining Eqs.~\eqref{eq:Rphi-law}--\eqref{eq:film-balance} yields
+    a canonical stability condition
+    \begin{equation}
+    \Theta(\phi,R)
+    \simeq
+    1 - \kappa \!\left(
+    \phi \frac{R}{R_0}
+    \right)^{\!m},
+    \qquad
+    m\simeq 1,
+    \end{equation}
+    so that the empirical $1/3$~exponent corresponds to the point where
+    $\Delta p_{\mathrm{film}}$ drops below the restoring
+    swirl--pressure $\rho_{\!f}\lVert\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert^{2}$.
+
+    \subsection{Numerical Consistency}
+
+    Using canonical constants
+    $\rho_{\!f}=7.0\times10^{-7}\,\mathrm{kg\,m^{-3}}$
+    and
+    $\lVert\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert
+    =1.09384563\times10^{6}\,\mathrm{m\,s^{-1}}$,
+    one obtains
+    \[
+    \rho_{\!f}\lVert\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert^{2}
+    \approx 8.4\times10^{5}\ \mathrm{Pa},
+    \]
+    which exceeds typical capillary pressures
+    ($\gamma/R\!\sim\!70$ Pa for $R=1$ mm) by four orders of magnitude.
+    Thus a reduction of $\Theta$ below $10^{-3}$ suffices to collapse the
+    swirl cushion, consistent with the measured instability threshold.
+
+    \subsection{Interpretation and Analogy}
+
+    The vapor film of a Leidenfrost drop functions as a miniature
+    \emph{swirl cushion}: it stores mechanical energy in a confined,
+    pressurized layer sustained by circulation.
+    Contamination or local disorder reduces the transmissivity~$\Theta$,
+    analogous to phase decoherence in a swirl envelope.
+    When $\Theta$ falls below the critical value set by
+    Eq.~\eqref{eq:film-balance}, the envelope implodes,
+    releasing the stored pressure in a rapid outburst.
+    The same criterion governs collapse of larger SST structures or
+    levitating devices when the outer swirl envelope becomes phase--clogged
+    or thermally decoherent.
+
+    \begin{tcolorbox}[colframe=black, title={Physical Analogy}]
+    A Leidenfrost droplet is like a hovercraft riding on a swirl of vapor.
+    Clean air holes keep it afloat; a few crumbs block them, and it crashes.
+    \end{tcolorbox}
+
+% ==========================================================
+
 
 \section{Appendix: Swirl–Electromagnetic Unit Bridge Table}
-\begin{figure}[htbp]
-\centering
-\begin{tikzpicture}
-\tikzset{
-    tablecell/.style={
-        draw, align=center, font=\scriptsize,
-        text height=1.9ex, text depth=.6ex,
-        inner sep=2pt, minimum height=0.9cm
+    \begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+    \tikzset{
+        tablecell/.style={
+            draw, align=center, font=\scriptsize,
+            text height=1.9ex, text depth=.6ex,
+            inner sep=2pt, minimum height=0.9cm
+        }
     }
-}
-\matrix[matrix of nodes,
-    nodes={draw, align=center, font=\scriptsize, text width=3.2cm, minimum height=0.9cm},
-    column sep=0.2cm, row sep=0.2cm,
-    column 1/.style={nodes={text width=3.5cm, fill=gray!10}},
-    column 2/.style={nodes={fill=blue!5}},
-    column 3/.style={nodes={text width=1.5cm, fill=green!5}},
-    column 4/.style={nodes={text width=1.5cm, fill=yellow!10}},
-    column 5/.style={nodes={fill=orange!7}}
-] (m) {
-    \textbf{Swirl Quantity} & \textbf{EM Analogue} & \textbf{Symbol} & \textbf{Units} & \textbf{Meaning} \\
-    Swirl field & Electric field & $\EE$ & $\tfrac{V}{m}$ & Field strength \\
-    Swirl impulse density & Magnetic flux rate & $\vect{b}_{\circlearrowleft}$ & $\tfrac{V}{m^2}$ & Swirl impulse rate \\
-    Swirl charge density & Magnetic flux density & $\rho_{\circlearrowleft}$ & $\tfrac{N}{m^2}$ & Force per area \\
-    Swirl coupling gain & EM impulse gain & $\mathcal{G}_{\circlearrowleft}$ & $\tfrac{V\cdot s}{N}$ & Coupling constant \\
-    Swirl susceptibility & Magnetic susceptibility & $\chi_H$ & $\tfrac{N}{A \cdot m}$ & Medium response \\
-    Swirl permittivity & Dielectric permittivity & $\mathcal{K}_E = \varepsilon$ & $\tfrac{C}{V \cdot m}$ & Areal response \\
-    Areal swirl charge & Electric displacement & $\eta$ & $\tfrac{C}{m^2}$ & Areal swirl charge \\
-    Swirl current source & Current density & $\jj$ & $\tfrac{A}{m^2}$ & Swirl-induced current \\
-    Charge-to-current gain & Swirl gain & $\mathcal{G}_{\mathrm{el}}$ & $\tfrac{A \cdot s}{C}$ & Converts $\partial_t \eta$ to $\jj$ \\
-    Swirl H-field & Magnetic field & $\HH$ & $\tfrac{A}{m}$ & Swirl $H$ analog \\
-    Swirl permeability & Magnetic permeability & $\mu$ & $\tfrac{N}{A^2}$ & Magnetic conductivity \\
-    Swirl D-field & Electric displacement & $\DD$ & $\tfrac{C}{m^2}$ & Field-induced charge \\
-    Swirl B-field & Magnetic flux density & $\BB$ & $T$ & Magnetic field strength \\
-};
-\end{tikzpicture}
-\caption{Canonical Swirl–Electromagnetic Unit Bridge Table.}
-\label{fig:swirl_em_units}
-\end{figure}
+    \matrix[matrix of nodes,
+        nodes={draw, align=center, font=\scriptsize, text width=3.2cm, minimum height=0.9cm},
+        column sep=0.2cm, row sep=0.2cm,
+        column 1/.style={nodes={text width=3.5cm, fill=gray!10}},
+        column 2/.style={nodes={fill=blue!5}},
+        column 3/.style={nodes={text width=1.5cm, fill=green!5}},
+        column 4/.style={nodes={text width=1.5cm, fill=yellow!10}},
+        column 5/.style={nodes={fill=orange!7}}
+    ] (m) {
+        \textbf{Swirl Quantity} & \textbf{EM Analogue} & \textbf{Symbol} & \textbf{Units} & \textbf{Meaning} \\
+        Swirl field & Electric field & $\EE$ & $\tfrac{V}{m}$ & Field strength \\
+        Swirl impulse density & Magnetic flux rate & $\vect{b}_{\circlearrowleft}$ & $\tfrac{V}{m^2}$ & Swirl impulse rate \\
+        Swirl charge density & Magnetic flux density & $\rho_{\circlearrowleft}$ & $\tfrac{N}{m^2}$ & Force per area \\
+        Swirl coupling gain & EM impulse gain & $\mathcal{G}_{\circlearrowleft}$ & $\tfrac{V\cdot s}{N}$ & Coupling constant \\
+        Swirl susceptibility & Magnetic susceptibility & $\chi_H$ & $\tfrac{N}{A \cdot m}$ & Medium response \\
+        Swirl permittivity & Dielectric permittivity & $\mathcal{K}_E = \varepsilon$ & $\tfrac{C}{V \cdot m}$ & Areal response \\
+        Areal swirl charge & Electric displacement & $\eta$ & $\tfrac{C}{m^2}$ & Areal swirl charge \\
+        Swirl current source & Current density & $\jj$ & $\tfrac{A}{m^2}$ & Swirl-induced current \\
+        Charge-to-current gain & Swirl gain & $\mathcal{G}_{\mathrm{el}}$ & $\tfrac{A \cdot s}{C}$ & Converts $\partial_t \eta$ to $\jj$ \\
+        Swirl H-field & Magnetic field & $\HH$ & $\tfrac{A}{m}$ & Swirl $H$ analog \\
+        Swirl permeability & Magnetic permeability & $\mu$ & $\tfrac{N}{A^2}$ & Magnetic conductivity \\
+        Swirl D-field & Electric displacement & $\DD$ & $\tfrac{C}{m^2}$ & Field-induced charge \\
+        Swirl B-field & Magnetic flux density & $\BB$ & $T$ & Magnetic field strength \\
+    };
+    \end{tikzpicture}
+    \caption{Canonical Swirl–Electromagnetic Unit Bridge Table.}
+    \label{fig:swirl_em_units}
+    \end{figure}
+    }
 
 \end{document}
