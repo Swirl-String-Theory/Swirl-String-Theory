@@ -1334,7 +1334,131 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 % Check: [units ok; limit → Newtonian]
     Full working is provided in Appendix~F.
 
-% [STATUS: Canonical] [SOURCE: v0.4.4 §1]
+
+
+    \section{XXIV+. Canonical Closure for the Gamma Coil (S40, $+11,-9$): Helicity and Lift Routes}
+    \label{sec:GammaCoilClosure}
+
+    \subsection*{Scope and Linkage to Canon}
+        This section provides a \emph{canonical, falsifiable} bridge from coil geometry to (i) quantized circulation/helicity and (ii) lift via swirl pressure. It uses the Chronos--Kelvin and swirl quantization structure (Kelvin invariants, \S~VI--VII), Canon constants (\S~VIII), and the Swirl--EM bridge (\S~XI--XII). %
+        \emph{References in Canon:} invariants and pseudo-metric (\S~VI--VII) :contentReference[oaicite:0]{index=0}, constants and $\rho_{\!f}$ normalization (\S~VIII) :contentReference[oaicite:1]{index=1}, Swirl--EM mapping (\S~XI--XII) :contentReference[oaicite:2]{index=2}, and Euler radial balance (Swirl Pressure Law, \S~XVIII) :contentReference[oaicite:3]{index=3}.
+
+    \subsection{Definitions (Geometry and Symbols) [Definition]}
+        \label{subsec:GammaDefs}
+        Let $R$ be the outer coil radius (projected footprint), $A=\pi R^2$ the effective lift area (correct with factor $\eta_A\le 1$ if shielding/ground effects reduce it), and $r_s$ the solid-body core radius of the induced swirl (Rankine core). We adopt the Gamma coil (slot $S=40$, short-pitch step $+11/-9$) whose net linkage count is
+        \[
+            \chi \equiv 40+11-9=42\qquad(\text{dimensionless}).
+        \]
+        House constants: $\vswirl$, $\rc$, $\rhoF$ from \S~VIII; circulation quantum $\kappa_{\rm SST} \equiv 2\pi \rc\,\vnorm$ (cf. \S~VII quantization) :contentReference[oaicite:4]{index=4}:contentReference[oaicite:5]{index=5}.
+
+    \subsection{Route A: Helicity/Quantization Closure [Theorem]}
+        \label{subsec:HelicityRoute}
+        For thin, coherently linked tubes with identical circulation $\Gamma$,
+        \begin{equation}
+        \boxed{\ \mathcal{H} \;\approx\; 2\,\Gamma^{2}\, \chi\ }\qquad [\mathcal{H}]={\rm m^4\,s^{-2}},\ [\Gamma]={\rm m^2\,s^{-1}}.
+        \end{equation}
+        \textbf{Dimensional check:} $[\mathbf{u}\!\cdot\!\boldsymbol{\omega}]={\rm m\,s^{-2}}$, $\int dV\to{\rm m^3}$ $\Rightarrow\ {\rm m^4\,s^{-2}}$.
+        Impose SST circulation quantization (\S~VII):
+        \begin{equation}
+        \boxed{\ \Gamma = n\,\kappa_{\rm SST},\qquad \kappa_{\rm SST}=2\pi \rc\,\vnorm\ }\quad\Rightarrow\quad
+        \boxed{\ \mathcal{H}=2\,\chi\,n^2\,\kappa_{\rm SST}^{2}\ }.
+        \end{equation}
+        \textbf{Known-limit:} macroscopic $\Gamma\!\gg\!\kappa_{\rm SST}\Rightarrow$ effectively continuous $n$ (still a \emph{consistency} test of $(\rc,\vnorm)$).
+
+    \subsection{Route B: Lift--Vorticity (Swirl Pressure) Closure [Theorem]}
+        \label{subsec:LiftRoute}
+        From Euler radial balance (Swirl Pressure Law, \S~XVIII),
+        \[
+            \frac{1}{\rhoF}\frac{d p}{dr}=\frac{v_\theta^2(r)}{r}\,,
+        \]
+        so a near-center pressure deficit $\Delta p \simeq \tfrac{1}{2}\rhoF\,v_\theta^2$ produces lift
+        \begin{equation}
+        \boxed{\ F_{\rm req}=\Delta p\,A\;,\qquad v_\theta(R)=\sqrt{\frac{2F_{\rm req}}{\rhoF\,A}}\ }\quad\Rightarrow\quad
+        \boxed{\ \Omega_{\rm req}=\frac{v_\theta(r_s)}{r_s}\ ,\ \ \Gamma_{\rm req}\approx 2\pi r_s\,v_\theta(r_s)\ }.
+        \end{equation}
+        \textbf{Dimensional check:} $[F]=\rm N$, $[\rhoF v^2 A]=\rm (kg\,m^{-3})(m^2\,s^{-2})\,m^2=N$.
+        \textbf{Known-limits:} (i) weak-swirl $v\!\ll\!c$ recovers Bernoulli; (ii) cap $v_\theta\le \vnorm$ (from \S~VIII constants); (iii) local actuator bound $F_{\rm elem}\le F_{\text{swirl}}^{\max}$ (\S~VIII table). :contentReference[oaicite:6]{index=6}:contentReference[oaicite:7]{index=7}
+
+        \paragraph{Swirl--EM bridge variant.}
+            Using \S~XI--XII mapping, $\Delta p=\eta\,\langle B^2\rangle/(2\mu_0)$ yields the equivalent field target
+            \begin{equation}
+            \boxed{\ B_{\rm req}=\sqrt{\frac{2\mu_0\,F_{\rm req}}{\eta\,A}}\ ,\qquad
+            v_{\theta,{\rm eq}}=\sqrt{\frac{\eta}{\mu_0\rhoF}}\;B_{\rm RMS}\ }.
+            \end{equation}
+            This provides a laboratory transduction between measured $B$ and the hydrodynamic $v_\theta$. :contentReference[oaicite:8]{index=8}
+
+    \subsection{Design Specialization: Gamma Coil with $r_s\simeq 0.4R$ [Calibration]}
+    \label{subsec:GammaSpec}
+    Empirically and by boundary forcing arguments, a boundary-driven ring forms a Rankine core with %
+    $r_s/R\in[0.3,0.5]$; we adopt the realistic starting point
+    \[
+        \boxed{\ r_s \equiv 0.4\,R\ }.
+    \]
+    Then, for a target lift $F_{\rm req}=m g$ and $A=\pi R^2$,
+    \[
+        v_\theta(R)=\sqrt{\frac{2 m g}{\rhoF \pi R^2}},\quad
+        \Omega_{\rm req}=\frac{v_\theta(0.4R)}{0.4R},\quad
+        \Gamma_{\rm req}\approx 2\pi (0.4R)\,v_\theta(0.4R),
+    \]
+    \[
+        \mathcal{H}\approx 2\chi\,\Gamma_{\rm req}^{2},\qquad n=\Gamma_{\rm req}/\kappa_{\rm SST},\quad \kappa_{\rm SST}=2\pi \rc\,\vnorm.
+    \]
+    \textbf{Caps/feasibility (pass/fail):}
+    \begin{equation}
+    \boxed{\ v_\theta(R)\ \le\ \vnorm\ }\quad\text{and}\quad
+    \boxed{\ F_{\rm req}\ \le\ \min\!\Big(\tfrac{1}{2}\rhoF \vnorm^{2} A,\ N_{\rm act}\,F_{\text{swirl}}^{\max}\Big) }.
+    \end{equation}
+    All symbols appear in the Canon constants table (\S~VIII). :contentReference[oaicite:9]{index=9}
+
+    \subsection{Falsifiers and Empirical Promotion Rule [Corollary]}
+    \label{subsec:Falsifiers}
+    \begin{enumerate}\itemsep4pt
+    \item (\textbf{Speed cap}) If $v_\theta(R)>\vnorm$ is required for the target $F_{\rm req}$ at given $A$, the design is \emph{forbidden} by Canon constants.
+    \item (\textbf{Local cap}) If any segment must exceed $F_{\text{swirl}}^{\max}$, design is \emph{forbidden} even if area cap passes.
+    \item (\textbf{Quantization}) If measured $\Gamma$ gives $n=\Gamma/\kappa_{\rm SST}$ \emph{non-integer} beyond uncertainty, either $(\rc,\vnorm)$ or the constitutive mapping fails.
+    \end{enumerate}
+    \emph{Promotion rule:} Promote design and constants if (i) lift matches prediction within error, (ii) caps respected, (iii) $n\in\mathbb{Z}$ within error; otherwise demote constants/design.
+
+    \subsection{Bench Card (explicit units) [Ready-to-use]}
+    \label{subsec:BenchCard}
+    \[
+        \boxed{\
+            \begin{aligned}
+            & A=\pi R^2\;[{\rm m^2}],\quad F_{\rm req}=m g\;[{\rm N}],\\
+            & v_\theta(R)=\sqrt{2F_{\rm req}/(\rhoF A)}\;[{\rm m\,s^{-1}}],\\
+            & \Omega_{\rm req}=v_\theta(r_s)/r_s\;[{\rm s^{-1}}],\\
+            & \Gamma_{\rm req}\approx 2\pi r_s\,v_\theta(r_s)\;[{\rm m^2\,s^{-1}}],\\
+            & \mathcal{H}\approx 2\chi\,\Gamma_{\rm req}^{2}\;[{\rm m^4\,s^{-2}}],\\
+            & n=\Gamma_{\rm req}/(2\pi \rc\,\vnorm)\;[\text{dimensionless}].
+            \end{aligned}
+        }
+    \]
+
+    \paragraph{Kid-level analogy (pedagogical).}
+        Two matched “fans” (coils) stir the medium; the middle dips (low pressure) and pushes the plate up. The math here just says how fast you must stir to lift a given weight, and checks that your fan can spin that fast.
+
+    \subsection*{Notes on provenance (non-original elements)}
+    Helicity–linking scaling and circulation quantization are standard in ideal-fluid vortex dynamics; Euler radial balance is classical. See BibTeX below.
+
+    \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.55\textwidth]{S40_double_star_best}
+    \caption{S40, +11/–9 Gamma-coil geometry used for helicity–lift closure (§XVIII-A).}
+    \end{figure}
+% ===== BibTeX for non-original material =====
+% (add to your .bib or the Canon "References" section)
+    \begin{thebibliography}{9}
+    \bibitem{Moffatt1969}
+    H.~K.~Moffatt, ``The degree of knottedness of tangled vortex lines,'' \emph{J. Fluid Mech.} \textbf{35}, 117--129 (1969). doi:10.1017/S0022112069000991.
+    \bibitem{Batchelor1967}
+    G.~K.~Batchelor, \emph{An Introduction to Fluid Dynamics} (Cambridge Univ. Press, 1967).
+    \bibitem{Saffman1992}
+    P.~G.~Saffman, \emph{Vortex Dynamics} (Cambridge Univ. Press, 1992).
+    \bibitem{Onsager1949}
+    L.~Onsager, ``Statistical Hydrodynamics,'' \emph{Nuovo Cimento} \textbf{6} (Suppl. 2), 279--287 (1949).
+    \bibitem{Feynman1955}
+    R.~P.~Feynman, ``Application of quantum mechanics to liquid helium,'' in \emph{Progress in Low Temperature Physics}, Vol.~1 (1955), pp.~17--53.
+    \end{thebibliography}
 
 %========================================================================================
 % GAUGE/EWSB SECTOR: EMPIRICAL-FIRST BOX + THEORY (Empirical + Canonical)
