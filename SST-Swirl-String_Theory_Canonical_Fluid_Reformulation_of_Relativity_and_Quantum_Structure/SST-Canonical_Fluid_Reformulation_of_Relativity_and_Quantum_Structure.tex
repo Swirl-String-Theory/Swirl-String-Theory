@@ -1001,8 +1001,6 @@ hence \(|\eta_2|\lesssim 1.1\times10^{26}\) (very weak at LIGO band).
 \textbf{Implication:} high-frequency probes (if available) are needed; any measurable \(v_g(f)\) beyond this expansion falsifies the linear SST wave sector.
 
 
-% ==== Macros as above ====
-% ==== Macros as above ====
 
 \section{Cosmological Embedding: Dark Matter and Dark Energy}
 \label{sec:SST-cosmo}
@@ -1023,20 +1021,55 @@ hence \(|\eta_2|\lesssim 1.1\times10^{26}\) (very weak at LIGO band).
 \section{Cosmology: Baryogenesis and Dark Sector in SST}
 \label{sec:SST-cosmology}
 
-\subsection{Chiral Swirl Condensation and Baryogenesis}
-    SST permits chirality imbalance during early condensation. A minimal set of Sakharov-like conditions arises via (i) CP-odd helicity functional in $\mathcal{V}_{\text{topo}}$, (ii) out-of-equilibrium reconnection cascades, (iii) effective baryon number violation through knot fusion/splitting maps. \textbf{Falsifier:} no net leptogenesis/baryogenesis in kinetic simulations with realistic cooling ramps.
+    \subsection{Chiral Swirl Condensation and Baryogenesis}
+        SST permits chirality imbalance during early condensation. A minimal set of Sakharov-like conditions arises via (i) CP-odd helicity functional in $\mathcal{V}_{\text{topo}}$, (ii) out-of-equilibrium reconnection cascades, (iii) effective baryon number violation through knot fusion/splitting maps. \textbf{Falsifier:} no net leptogenesis/baryogenesis in kinetic simulations with realistic cooling ramps.
 
-\subsection{Dark Matter as Swirl Foam}
-    Sub-radiative, weakly coupled knotted excitations form a \emph{swirl foam} with equation of state $w\approx 0$. Predict rotation curves via
+    \subsection{Dark Matter as Swirl Foam}
+        Sub-radiative, weakly coupled knotted excitations form a \emph{swirl foam} with equation of state $w\approx 0$. Predict rotation curves via
+        \[
+            a_r(r)=a_{\text{Newt}}(r)-\frac{1}{\rhoF}\,\partial_r p_{\text{foam}}(r).
+        \]
+        \textbf{Falsifier:} inability to fit high-surface-brightness galaxies with one universal foam parameter.
+
+    \subsection{Dark Energy as Network Tension}
+        A percolating string-network tension gives $p_{\text{eff}}\approx -\rho_{\text{tension}}$, i.e., $w\approx -1+\varepsilon$. \textbf{Falsifier:} SNe/BAO/CMB fit excludes any constant-tension component.
+
+\section{Meta-Topology and Cosmogenetic Hierarchy in SST}
+\label{sec:SST-metacosmo}
+
+    \subsection{Swirl Genesis and Knot Nucleation}
+        We hypothesize that the early swirl condensate underwent a vacuum topology shift, spontaneously nucleating closed string loops—knotted excitations—through a stochastic tangle-unwinding process. Topological charge conservation implies metastable knot species \(K_i\), which self-assemble into higher complexity via reconnection cascades and chirality bifurcation.
+
+        \paragraph{Initial condition:} a high-temperature isotropic swirl field with $\lVert\vswirl\rVert/c \sim \mathcal{O}(1)$, cooling into knotted sectors.
+
+    \subsection{Golden-Ratio Mass Ladder}
+    A recursive meta-knot hierarchy emerges via geometric self-similarity of swirl modes. The scaling law is governed by the \emph{hyperbolic golden ratio}
     \[
-        a_r(r)=a_{\text{Newt}}(r)-\frac{1}{\rhoF}\,\partial_r p_{\text{foam}}(r).
+        \varphi_H = \frac{1 + \sqrt{5}}{2},\quad \log m_n \propto n \log \varphi_H.
     \]
-    \textbf{Falsifier:} inability to fit high-surface-brightness galaxies with one universal foam parameter.
+    We propose the mass of the $n$-th family knot obeys:
+    \[
+        m_n = m_0 \cdot \varphi_H^n,
+    \]
+    with $m_0$ fixed by a benchmark species (e.g. electron or neutrino). This generates approximately exponential spacing in log-mass consistent with Standard Model families.
 
-\subsection{Dark Energy as Network Tension}
-    A percolating string-network tension gives $p_{\text{eff}}\approx -\rho_{\text{tension}}$, i.e., $w\approx -1+\varepsilon$. \textbf{Falsifier:} SNe/BAO/CMB fit excludes any constant-tension component.
+    \textbf{Falsifier:} experimental mass ratios incompatible with any $\log m_n \propto n$ model, or inability to fit generations under any $\varphi_H$-based ladder.
 
-% ==== Macros as above ====
+    \subsection{Hierarchy from Contact and Helicity Correction}
+    Total knot energy receives corrections from near-contact terms \(\mathcal{C}(K)\) and helicity terms \(\mathcal{H}(K)\), as in:
+    \[
+        m_K c^2 = \beta\,\mathcal{T}_0\,\mathcal{L}(K)\;+\;\alpha\,\mathcal{C}(K)\;+\;\gamma\,\mathcal{H}(K),
+    \]
+    linking topological complexity directly to the mass scale.
+
+    \textbf{Implication:} The \emph{meta-knot} tree acts as an ultraviolet completion for the mass hierarchy, replacing fine-tuned Yukawa couplings with a topological recursion.
+
+    \subsection{Interpretation and Cosmological Implications}
+    This cosmogenetic program frames knot species as frozen memory of early-universe swirl dynamics. Their distributions imprint both the dark sector (via knot abundance) and visible matter (via meta-hierarchy). Spontaneous symmetry breaking is topological, not field-theoretic.
+
+    \textbf{Falsifier:} Absence of any observable imprint of knot quantization in high-energy scattering or dark sector dynamics.
+
+
 
 \section{Numerical Program: Swirl–Knot Dynamics and EM Coupling}
 \label{sec:SST-sim}

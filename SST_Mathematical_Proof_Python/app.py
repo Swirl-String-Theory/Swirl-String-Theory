@@ -1,6 +1,7 @@
 # Streamlit app to explore and run SST modules
-import json, sys, pathlib, importlib.util, runpy, inspect
+import json, sys, pathlib, importlib.util, runpy, inspect, re
 import streamlit as st
+import subprocess, time, threading
 
 APP_DIR = pathlib.Path(__file__).resolve().parent
 SRC_DIR = APP_DIR / ""
@@ -35,10 +36,86 @@ def load_module_from_path(abs_path: pathlib.Path):
 def nice_name(rel_path: str) -> str:
     return rel_path.replace("\\\\", "/")
 
+# ---- Process & logging helpers ----
+if "proc_map" not in st.session_state:
+    st.session_state["proc_map"] = {}   # key -> subprocess.Popen
+if "log_map" not in st.session_state:
+    st.session_state["log_map"] = {}    # key -> list[str]
+if "auto_scroll" not in st.session_state:
+    st.session_state["auto_scroll"] = True
+
+def _script_key(rel: str) -> str:
+    return rel.replace("\\\\","/")
+
+def _is_running(key: str) -> bool:
+    p = st.session_state["proc_map"].get(key)
+    return bool(p) and (p.poll() is None)
+
+def _append_log(key: str, text: str):
+    st.session_state["log_map"].setdefault(key, [])
+    st.session_state["log_map"][key].append(text)
+
+def _launch_script(abs_path: pathlib.Path):
+    key = _script_key(str(abs_path.relative_to(SRC_DIR)))
+    # Ensure buffer
+    st.session_state["log_map"][key] = []
+    # Start subprocess with realtime stdout+stderr
+    cmd = [sys.executable, "-u", str(abs_path)]
+    p = subprocess.Popen(
+        cmd,
+        cwd=str(abs_path.parent),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        stdin=subprocess.PIPE,
+        text=True,
+        bufsize=1,
+    )
+    st.session_state["proc_map"][key] = p
+
+    def _reader():
+        try:
+            for line in p.stdout:
+                _append_log(key, line.rstrip("\n"))
+        except Exception as e:
+            _append_log(key, f"<<reader error: {e}>>")
+        finally:
+            rest = p.stdout.read()
+            if rest:
+                for ln in rest.splitlines():
+                    _append_log(key, ln)
+            rc = p.poll()
+            _append_log(key, f"<<process exited with code {rc}>>")
+
+    t = threading.Thread(target=_reader, daemon=True)
+    t.start()
+    return key
+
+def _send_stdin(key: str, text: str):
+    p = st.session_state["proc_map"].get(key)
+    if p and p.poll() is None and p.stdin:
+        try:
+            p.stdin.write(text + "\n")
+            p.stdin.flush()
+        except Exception as e:
+            _append_log(key, f"<<stdin error: {e}>>")
+
+def _stop_script(key: str):
+    p = st.session_state["proc_map"].get(key)
+    if not p: 
+        return
+    try:
+        if p.poll() is None:
+            p.terminate()
+            try:
+                p.wait(timeout=2)
+            except subprocess.TimeoutExpired:
+                p.kill()
+    except Exception as e:
+        _append_log(key, f"<<terminate error: {e}>>")
+
 def sidebar_summary(idx):
     st.sidebar.header("SST Explorer")
     st.sidebar.write(f"Discovered **{len(idx)}** Python files")
-    # Quick filters
     only_st = st.sidebar.checkbox("Only modules that import Streamlit", value=False)
     return [m for m in idx if (not only_st or m.get("imports_streamlit"))]
 
@@ -68,7 +145,7 @@ def home_tab(filtered_idx):
                     st.write(f"- `{c['name']}`")
 
 def module_runner_tab(idx):
-    st.header("Module Runner")
+    st.header("Module Runner / Script Runner")
     items = [m["path"] for m in idx]
     choice = st.selectbox("Choose a module", items, index=0 if items else None)
     if not choice:
@@ -78,29 +155,61 @@ def module_runner_tab(idx):
     rel = selected["path"]
     abs_path = SRC_DIR / rel
     st.code(read_text(abs_path)[:2000] + ("\n... (truncated)" if abs_path.stat().st_size > 2000 else ""), language="python")
+
     candidate = selected.get("candidate")
-    if st.button("Run module entrypoint" + (f" `{candidate}`" if candidate else ""), disabled=not candidate):
-        try:
-            mod = load_module_from_path(abs_path)
-            func = None
-            if candidate and hasattr(mod, candidate):
-                func = getattr(mod, candidate)
-            elif hasattr(mod, "st_app"):
-                func = getattr(mod, "st_app")
-            elif hasattr(mod, "main"):
-                func = getattr(mod, "main")
-            elif hasattr(mod, "app"):
-                func = getattr(mod, "app")
-            if callable(func):
-                func()
-            else:
-                st.warning("No callable entrypoint found.")
-        except Exception as e:
-            st.exception(e)
+    colA, colB = st.columns(2)
+
+    # --- Entrypoint runner (same-process import) ---
+    with colA:
+        st.subheader("Entrypoint (inline)")
+        st.caption("Runs `st_app()`, `main()`, or `app()` inside this Streamlit process, if present.")
+        if st.button("Run module entrypoint" + (f" `{candidate}`" if candidate else ""), disabled=not candidate):
+            try:
+                mod = load_module_from_path(abs_path)
+                func = None
+                if candidate and hasattr(mod, candidate):
+                    func = getattr(mod, candidate)
+                elif hasattr(mod, "st_app"):
+                    func = getattr(mod, "st_app")
+                elif hasattr(mod, "main"):
+                    func = getattr(mod, "main")
+                elif hasattr(mod, "app"):
+                    func = getattr(mod, "app")
+                if callable(func):
+                    func()
+                else:
+                    st.warning("No callable entrypoint found.")
+            except Exception as e:
+                st.exception(e)
+
+    # --- Script runner (subprocess) with live logs ---
+    with colB:
+        st.subheader("Run as Script (subprocess)")
+        st.caption("Launches `python -u <file>.py` and streams stdout/stderr below. Works even without a `main()`.")
+        key = _script_key(rel)
+        cols = st.columns(3)
+        if cols[0].button("▶️ Start script", key="start_"+key):
+            _launch_script(abs_path)
+        if cols[1].button("⏹ Stop", key="stop_"+key, disabled=not _is_running(key)):
+            _stop_script(key)
+        clear_req = cols[2].button("🧹 Clear logs", key="clear_"+key)
+        if clear_req:
+            st.session_state["log_map"][key] = []
+
+        with st.expander("Send stdin (optional)"):
+            send_txt = st.text_input("Line to send", key="stdin_"+key)
+            if st.button("Send", key="send_"+key, disabled=not _is_running(key)):
+                _send_stdin(key, send_txt or "")
+
+        if _is_running(key):
+            st.autorefresh(interval=1000, key="refresh_"+key)
+
+        logs = "\n".join(st.session_state["log_map"].get(key, []))
+        st.checkbox("Auto-scroll", key="auto_scroll")
+        st.text_area("Logs", value=logs, height=300, key="logsbox_"+key)
 
 def function_explorer_tab(idx):
     st.header("Function Explorer")
-    # Build a flat list of (module, function)
     flat = []
     for m in idx:
         for f in m["functions"]:
@@ -117,7 +226,6 @@ def function_explorer_tab(idx):
     st.write(f"**Function:** `{f['name']}` · requires **{f.get('required_pos_args',0)}** positional args")
     if f.get("doc"):
         st.code(f["doc"])
-    # Allow running only if zero required args
     if f.get("required_pos_args",0) == 0 and st.button("Run this function"):
         try:
             mod = load_module_from_path(abs_path)
@@ -156,7 +264,7 @@ def search_tab(idx):
             for match in re.finditer(q, text, flags=re.IGNORECASE):
                 start = max(0, match.start()-80)
                 end = min(len(text), match.end()+80)
-                snippet = text[start:end].replace("\n","↩")
+                snippet = text[start:end].replace("\\n","↩")
                 results.append((rel, snippet))
                 if len(results) >= 200:
                     break
@@ -168,7 +276,7 @@ def search_tab(idx):
         with st.expander(rel):
             st.write(snip)
 
-tabs = st.tabs(["🏠 Home","▶️ Module Runner","🔎 Function Explorer","📄 Code Viewer","🔍 Search"])
+tabs = st.tabs(["🏠 Home","▶️ Module/Script Runner","🔎 Function Explorer","📄 Code Viewer","🔍 Search"])
 
 idx = load_index()
 filtered_idx = sidebar_summary(idx)
