@@ -1,6 +1,4 @@
 import math
-from pylatex import Document, Section, Tabular, NoEscape, Package
-
 
 class PhysicalConstant:
     def __init__(self, latex, value, unit, quantity, uncertainty):
@@ -15,12 +13,11 @@ class PhysicalConstant:
 # Dictionary of physical constants
 constants_dict = {
     "C_e": PhysicalConstant(r"C_e", 1093845.63, "m s^-1", "Vortex-Tangential-Velocity", "exact"),
-    "rhoMass": PhysicalConstant(r"\rho_\text{\ae}^\text{(mass)}",  3.8934358266918687e+18, "kg m^-3", "Æther Mass-Equivalent Density", "exact"),
-    "rhoFluid": PhysicalConstant(r"\rho_\text{\ae}^\text{(fluid)}",  7.0e-7, "kg m^-3", "Æther Fluid Vacuum Density", "exact"),
-    "rhoEnergy": PhysicalConstant(r"\rho_\text{\ae}^\text{(energy)}",  3.49924562e+35, "J m^-3", "Æther Energy Density", "exact"),
-    "F_max": PhysicalConstant(r"F_\text{\ae}^\text{max}", 29.053507, "N", "Maximum force", "exact"),
+    "rhoM": PhysicalConstant(r"\rho_{\!m}",  3.8934358266918687e+18, "kg m^-3", "Æther Mass-Equivalent Density", "exact"),
+    "rhoF": PhysicalConstant(r"\rho_{\!f}",  7.0e-7, "kg m^-3", "Æther Fluid Vacuum Density", "exact"),
+    "rhoE": PhysicalConstant(r"\rho_{\!E}",  3.49924562e+35, "J m^-3", "Æther Energy Density", "exact"),
+    "F_max": PhysicalConstant(r"F^{\max}_{\mkern-1mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}", 29.053507, "N", "Maximum force", "exact"),
     "r_c": PhysicalConstant(r"r_c", 1.40897017e-15, "m", "Vortex-Core radius", "exact"),
-    "F_Coulomb": PhysicalConstant(r"F_\text{Coulomb}", 29.053507, "N", "Maximum Coulomb Force", "exact"),
     "F_GRmax": PhysicalConstant(r"F_\text{gr}^\text{max}", 3.0256389108455157e+43, "N", "Maximum Universal Force", "exact"),
     "c": PhysicalConstant(r"c", 299792458, "m s^-1", "Speed of light in vacuum", "exact"),
     "G": PhysicalConstant(r"G", 6.67430e-11, "m^3 kg^-1 s^-2", "Newtonian constant of gravitation", "2.2e-5"),
@@ -65,13 +62,12 @@ constants_dict = {
 C_e = constants_dict["C_e"].value # Vortex-Core Tangential Velocity (m/s)
 R_c = constants_dict["R_c"].value
 r_c = constants_dict["r_c"].value  # Coulomb barrier (m)
-rhoMass = constants_dict["rhoMass"].value
-rhoEnergy = constants_dict["rhoEnergy"].value
-rhoFluid = constants_dict["rhoFluid"].value
+rhoM = constants_dict["rhoM"].value
+rhoE = constants_dict["rhoE"].value
+rhoF = constants_dict["rhoF"].value
 F_max = constants_dict["F_max"].value
 varepsilon_0 = constants_dict["varepsilon_0"].value
 F_GRmax = constants_dict["F_GRmax"].value
-F_Cmax = constants_dict["F_Coulomb"].value  # Maximum force (N)
 c = constants_dict["c"].value
 G = constants_dict["G"].value
 h = constants_dict["h"].value
@@ -109,40 +105,3 @@ fR_ = constants_dict["fR_"].value
 sigma = constants_dict["sigma"].value
 b = constants_dict["b"].value
 pi = math.pi
-
-
-# # Create a LaTeX document
-# doc = Document("physical_constants_latex")
-#
-# doc.append(NoEscape(r"""
-# \begin{table}[H]
-#     \centering
-#     \footnotesize
-#     \raggedright
-#     \renewcommand{\arraystretch}{1.2}
-#     \begin{tabular}{|p{1.5cm}|p{6cm}|p{2.5cm}|p{2cm}|p{2cm}|}
-#         \hline
-#         \textbf{Symbol} & \textbf{Quantity} & \textbf{Value} & \textbf{Unit} & \textbf{Uncertainty} \\
-#         \hline
-# """))
-#
-# for const in constants_dict.values():
-#     latex_clean = const.latex.replace(r"\ae", r"\text{\ae}")
-#     row = rf"${latex_clean}$ & {const.quantity} & {const.value:.8e} & {const.unit.replace('Ω', r'\Omega')} & {const.uncertainty} \\ \hline"
-#     doc.append(NoEscape(row))
-#
-# doc.append(NoEscape(r"""
-#     \end{tabular}
-#     \caption{Table of physical constants used in the Vortex Æther Model (VAM).}
-#     \label{tab:physical_constants}
-# \end{table}
-# """))
-#
-# latex_pdf_path = "physical_constants_latex.pdf"
-# doc.packages.append(Package("float"))  # For [H]
-# doc.packages.append(Package('fancyhdr'))
-# doc.append(NoEscape(r"\small"))
-# doc.preamble.append(NoEscape(r'\pagestyle{fancy}'))
-# doc.preamble.append(NoEscape(r'\fancyhf{}'))
-# doc.generate_pdf(latex_pdf_path.replace(".pdf", ""), clean_tex=False, compiler='pdflatex')
-#
