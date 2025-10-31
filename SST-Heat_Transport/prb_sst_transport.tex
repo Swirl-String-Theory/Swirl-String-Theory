@@ -536,15 +536,15 @@
                 arr/.style={-Latex}
             ]
                 % Nodes
-                \node[box] (start) at (0,20) {Electron--swirl coupling $\hat M$\\(see App.~A)};
-                \node[box, below=of start, xshift=-60mm, fill=black!3] (clock) at (-45,0) {Clock (quadratic)\\ $\tilde g \propto (\rc^2/2c^2)\,\omega_e\,\omega_0\,\omega_s^{\rm zpf}$\\ \scriptsize negligible in bars};
-                \node[box, below=of start, fill=black!3] (press) at (0,0) {Pressure-like (energy density)\\ $g \propto \rho_f V_e\,|\mathbf v_0|\,v_s^{\rm zpf}/\hbar$\\ \scriptsize SAW/MEMS target};
-                \node[box, below=of start, xshift=60mm, fill=black!] (gauge) at (45,0) {Emergent gauge (minimal)\\ $g \propto g_{\rm swirl}\!\int \!\langle \hat J^\mu\rangle W_{\mu,s}^{\rm zpf}$\\ \scriptsize model-dependent};
+                \node[box] (start) {Electron--swirl coupling $\hat M$\\(see App.~A)};
+                \node[box, below=of start, xshift=-60mm, fill=black!3] (clock) {Clock (quadratic)\\ $\tilde g \propto (\rc^2/2c^2)\,\omega_e\,\omega_0\,\omega_s^{\rm zpf}$\\ \scriptsize negligible in bars};
+                \node[box, below=of start, fill=black!3] (press) {Pressure-like (energy density)\\ $g \propto \rho_f V_e\,|\mathbf v_0|\,v_s^{\rm zpf}/\hbar$\\ \scriptsize SAW/MEMS target};
+                \node[box, below=of start, xshift=60mm, fill=black!3] (gauge) {Emergent gauge (minimal)\\ $g \propto g_{\rm swirl}\!\int \!\langle \hat J^\mu\rangle W_{\mu,s}^{\rm zpf}$\\ \scriptsize model-dependent};
 
                 \draw[arr] (start) -- (clock);
                 \draw[arr] (start) -- (press);
                 \draw[arr] (start) -- (gauge);
-                \node[box, below=16mm of press, fill=black!5] (obs) at (0,-22) {Observable:\\ $\Delta\kappa(\delta,\Gamma)$, $\;\Delta\kappa_{\rm asym}$ (null-test)};
+                \node[box, below=16mm of press, fill=black!5] (obs)  {Observable:\\ $\Delta\kappa(\delta,\Gamma)$, $\;\Delta\kappa_{\rm asym}$ (null-test)};
 
                 % Arrows
 
@@ -552,39 +552,13 @@
                 \draw[arr] (press.south) -- (obs.north);
                 \draw[arr] (gauge.south) |- (obs.east);
 
-                % Small notes
-                \node[note] at (0,27) {Summary of App.~A (operator content) and App.~B.3 (null-test)};
+
             \end{tikzpicture}
             \caption{Operator channels that feed the coherence kernel. Pressure-like coupling is the practical mesoscopic route; the quadratic Clock term is negligible for bars; gauge‐like coupling is model-dependent.}
             \label{fig:channel_map}
         \end{figure}
 
-    \subsection*{B.2\quad Coupling-channel summary table}
-        \noindent
-        \begin{figure}[h]
-            \centering
-            \begin{tikzpicture}[
-                node distance=8mm,
-                box/.style={draw, rounded corners, align=center, inner sep=8pt},
-                arr/.style={-Latex}
-            ]
-                \node[box] (start) {testo};
-                \node[box, below=of start, xshift=-60mm, fill=black!3] (clock) {Clock (quadratic)\\$\tilde g\!\sim\!(\rc^2/2c^2)\,\omega_e\omega_0\,\omega_s^\textrm{zpf}\,\mathcal O_s$\\\footnotesize Negligible in bars};
-                \node[box, below=of start, fill=black!3] (press) {Pressure-like (energy density)\\$g\!\sim\!(\Lambda_e/\hbar)\,\rho_{\!f} V_e\,|\mathbf v_0|\,v_s^\textrm{zpf}\,\mathcal O_s$\\\footnotesize SAW/MEMS target};
-                \node[box, below=of start, xshift=60mm, fill=black!3] (gauge) {Emergent gauge (minimal)\\$g\!\sim\!g_\textrm{swirl}\hbar^{-1}\!\int\!\langle \hat J^\mu\rangle W^\textrm{zpf}_\mu\,\mathcal O_s$\\\footnotesize model-dependent};
 
-                \draw[arr] (start) -- (clock);
-                \draw[arr] (start) -- (press);
-                \draw[arr] (start) -- (gauge);
-
-                \node[box, below=16mm of press, fill=black!5] (obs) {Observable: $\Delta\kappa(\delta,\Gamma)$ and\\chirality asymmetry $\Delta\kappa_\textrm{asym}$\\(null-test; App.~B.3)};
-                \draw[arr] (clock.south) |- (obs.west);
-                \draw[arr] (press.south) -- (obs.north);
-                \draw[arr] (gauge.south) |- (obs.east);
-            \end{tikzpicture}
-            \caption{See App.~A for operator/scaling details, App.~B.3 for chirality null-test, and App.~C for ontology/clock/$\Omega_0$ map.}
-            \label{fig:channel_flow}
-        \end{figure}
 
     \subsection*{B.3\quad Standalone falsifiable prediction (chirality flip null-test)}
         Define the forward/backward asymmetry from the 3-phase drive as
