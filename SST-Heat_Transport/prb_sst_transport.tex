@@ -12,7 +12,7 @@
 %========================================================================================
 % PACKAGES AND DOCUMENT CONFIGURATION
 %========================================================================================
-\documentclass[aps,prb,preprint,amsmath,amssymb]{revtex4-2} % switch to "reprint" for two-column look
+\documentclass[aps,prb,preprint,amsmath,amssymb]{revtex4-2}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{siunitx}
@@ -21,7 +21,11 @@
 \usepackage{physics}
 \usepackage{amssymb}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta,positioning,fit}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{caption}
+
+\usetikzlibrary{arrows.meta,positioning,fit,calc,backgrounds}
 % ---------- TikZ house styles (paste once) ----------
 \tikzset{
     axis/.style   ={->,>=Latex,line width=0.6pt},
@@ -64,14 +68,16 @@
 
     \author{Omar Iskandarani}
     \affiliation{Independent Researcher, Groningen, The Netherlands}
-    \thanks{ORCID: 0009-0006-1686-3961, DOI: \paperdoi}
+    \thanks{ORCID: 0009-0006-1686-3961\; | \; DOI: \paperdoi}
     \date{\today}
 
     \begin{abstract}
-        I present a self-contained treatment of electron–swirl transport within Swirl–String Theory (SST). The analysis (i) derives a perturbative steady-state solution to the coupled density-matrix equations in 1D, (ii) makes quantitative tabletop predictions (materials, geometries, signal levels), and (iii) states \emph{early falsifiability criteria}, with a \emph{chirality null-test} as the primary check. Electrons are modeled as trefoil-knotted swirl strings\footnote{Background on the SST topology–spectrum mapping (leptons as trefoil class $T(2,3)$) and the Swirl Clock formalism is provided in the author’s canonical notes and taxonomy (see Appendices C.1–C.2 for a concise summary).} $T(2,3)$ with chiral assignment; coherence/decoherence are governed by the Swirl Clock factor. Numerical scales are anchored by canonical SST values $\vswirl=\vswirlVal\,\si{m/s}$, $\rc=\rcVal\,\si{m}$, $\rhoF=\rhoFVal\,\si{kg/m^3}$, and the \emph{natural frequency} $\Omega_0\!\equiv\!\vswirl/\rc\!=\!7.76\times10^{20}\,\si{s^{-1}}$ (SI conversion rules summarized in App.~C.3). The coherence contribution to thermal transport recovers Peierls and Allen–Feldman limits while enabling a chirality-dependent nonreciprocity that is directly testable via phase-sequence reversal (details in Sec.~\ref{sec:falsifiability} and App.~B.3).
+        I present a self-contained treatment of electron--swirl transport within \emph{Swirl--String Theory (SST)}. The analysis (i) derives a \emph{perturbative, steady-state} solution to the coupled density-matrix equations in 1D, (ii) makes \emph{quantitative} predictions for tabletop experiments with explicit materials, geometries, and signal levels, and (iii) states clear \emph{falsifiability criteria}. The framework reproduces the Peierls (population) and Allen--Feldman (coherence) limits \cite{Peierls1929,AllenFeldman1993,Simoncelli2022} while embedding electrons as \emph{swirl strings} (knotted vortex filaments) coupled to swirl modes. Kinematic time-rate variations locally modulate the electronic Hamiltonian through the \emph{Swirl Clock} factor \cite{Madelung1927,Pati2000}. The swirl clock \( \S_t^{\boldsymbol{\circlearrowleft}} \) corresponds to a scalar time-foliation field (khronon) whose gradient defines the local time direction, analogous to the preferred foliation in Einstein–Æther and Hořava–Lifshitz gravity \cite{Jacobson2001,Blas2011}.
+        Numerical scales are anchored by SST canonical values $\vswirl=\vswirlVal\,\si{m/s}$, $\rc=\rcVal\,\si{m}$, and $\rhoF=\rhoFVal\,\si{kg/m^3}$. For compactness, some intermediate results are given in units of the SST frequency $\Omega_0$; all final predictions are reported in SI units.
     \end{abstract}
 
     \maketitle
+    \noindent\textit{Authorial note.—} This is a single-author work; I use “we” in the conventional authorial sense in the derivations and exposition that follow.
 
     \section{Scales from SST}
         SST fixes a characteristic core-swirl frequency and an associated energy density,
@@ -79,20 +85,21 @@
             \Omega_0 \equiv \frac{\vswirl}{\rc} \approx 7.76\times10^{20}\,\si{s^{-1}},\qquad
             \rhoE \equiv \tfrac12\,\rhoF\,\vswirl^2 \approx 4.19\times10^{5}\,\si{J/m^3}.
         \end{align}
-        For readability, any normalized rate $\hat r$ reported in $\Omega_0$ units converts as $r_\textrm{SI}=\hat r\,\Omega_0$ and $\tau_\textrm{SI}=\hat \tau/\Omega_0$; see App.~C.3 for a concise SI map.
+        When it aids readability, rates are reported in \(\Omega_0\) units; conversion uses \(r_{\rm SI}=\hat r\,\Omega_0\) and \(\tau_{\rm SI}=\hat\tau/\Omega_0\) (see App.~C.3). Spatial gradients in the Swirl Clock act as a multiplicative modulation in the electronic Hamiltonian \(H_e\) and do not change how observables are reported in SI.
 
         Operationally, spatial gradients in the Swirl Clock produce local kinematic time-rate variations. These enter the electronic Hamiltonian $H_e$ multiplicatively as a modulation factor and do not alter the SI reporting of observables. Where it improves readability, I normalize rates to $\Omega_0$; experimental benchmarks and error budgets remain in SI.
 
-        \paragraph*{Reader’s roadmap.}
-            Falsifiability is emphasized early: Sec.~\ref{sec:falsifiability} introduces a chirality \emph{null-test} based on forward/backward nonreciprocity, while App.~B.3 derives its sign flip under phase reversal. The operator vertex and rate scalings are summarized in App.~A; electron ontology, Swirl Clock, and the $\Omega_0\!\leftrightarrow$SI map are collected in App.~C.
+        \paragraph*{Roadmap.}
+            Section~\ref{sec:falsifiability} states the falsifiability logic up front and defines the chirality null test. Section~II derives the 1D coupled transport and the coherence term in \(\kappa\); Sec.~III links \(\Delta\kappa/\kappa\) to a measurable \(\Delta(\Delta T)\) in a bar. Section~IV gives quantitative benchmarks and device recipes. Appendices collect the operator content and scalings (App.~A), the null-test derivation and layouts (App.~B), and the SST ontology, clock, and \(\Omega_0\!\leftrightarrow\)SI map (App.~C).
 
     \section{Coupled transport in 1D and perturbative solution}
-        I adopt the unified density-matrix equation for bosonic modes $N(\mathbf R,\mathbf q)$ \cite{Simoncelli2022} and extend it to a charged two-level system (``electron'') with density matrix $f$:
+        We adapt the unified density-matrix framework for bosons \(N(\mathbf R,\mathbf q)\)~\cite{Simoncelli2022} to a charged two-level ``electron'' with density matrix \(f\), coupled in the Born–Markov rotating-wave limit:
         \begin{align}
-            \partial_t N &= -i[\Omega,N] - \Gamma_\mathrm{b} \circ (N-N^{(0)}) - \tfrac12\{ V_x \partial_x, N\},\label{eq:Ndyn}\\
-            \partial_t f &= -i[H_e,f] - \Gamma_\mathrm{e}\circ(f-f^{(0)}) - \tfrac12\{ v_{e,x}\partial_x, f\} + \mathcal C_{e\leftrightarrow b},\label{eq:fdyn}
+            \partial_t N &= -i[\Omega,N] - \Gamma_\mathrm{b} \circ (N-N^{(0)}) - \tfrac12\{V_x\partial_x, N\}, \label{eq:Ndyn}\\
+            \partial_t f &= -i[H_e,f] - \Gamma_\mathrm{e}\circ(f-f^{(0)}) - \tfrac12\{v_{e,x}\partial_x, f\} + \mathcal C_{e\leftrightarrow b}, \label{eq:fdyn}\\
+            \mathcal C_{e\leftrightarrow b} &\equiv -\frac{i}{\hbar}[M, f\!\otimes\! N]_{\mathrm{RWA}}. \nonumber
         \end{align}
-        with diagonal damping superoperators $\Gamma_\mathrm{b}$ and $\Gamma_\mathrm{e}$. The electron--swirl coupling is treated in the Born--Markov, rotating-wave approximation,
+        For a small, uniform \(\partial_x T\) and a time-independent state, we linearize around \(N^{(0)}(T)\) and \(f^{(0)}(T)\). In a near-degenerate two-branch bosonic subspace \(s,s'\) with detuning \(\delta=\Omega_{s'}-\Omega_s\) and one electronic transition \(\Delta\), the off-diagonal coherence obeys
         \begin{equation}
             \mathcal C_{e\leftrightarrow b} \equiv -\frac{i}{\hbar}[M, f\otimes N]_{\mathrm{RWA}}\,.
         \end{equation}
@@ -116,28 +123,27 @@
             \begin{equation}
                 \boxed{\;\kappa^{(\mathrm C)}_{\!\,1\mathrm D}\;=\;\sum_{q}\sum_{s\neq s'} \frac{(\Omega_s+\Omega_{s'})\;\Gamma_{ss'}\; |V^{(x)}_{ss'}|^2}{4\delta^2+\Gamma_{ss'}^2}\;\bigg(-\frac{\partial n_B}{\partial T}\bigg)\; +\; \mathcal O(|M|^2)\;,}\label{eq:kC}
             \end{equation}
-            (Operator content for the electron–swirl vertex and its channel-dependent rate scalings are detailed in App.~A; chirality/null-test observables in App.~B.3; ontology/clock and $\Omega_0$ conversion in App.~C.)
+            with $\Gamma_{ss'}=\tfrac12(\gamma_s+\gamma_{s'})$ and $n_B$ the Bose function. Equation~\eqref{eq:kC} reduces to Peierls (no off-diagonals) and to Allen--Feldman (flat bands, $V_{ss}\!\to\!0$) in the appropriate limits \cite{Peierls1929,AllenFeldman1993,Simoncelli2022}. The $\mathcal O(|M|^2)$ terms add an \emph{electron-assisted} channel that shares the Lorentzian denominator and peaks at small detuning.
 
-        with $\Gamma_{ss'}=\tfrac12(\gamma_s+\gamma_{s'})$ and $n_B$ the Bose function. Equation~\eqref{eq:kC} reduces to Peierls (no off-diagonals) and to Allen--Feldman (flat bands, $V_{ss}\!\to\!0$) in the appropriate limits \cite{Peierls1929,AllenFeldman1993,Simoncelli2022}. The $\mathcal O(|M|^2)$ terms add an \emph{electron-assisted} channel that shares the Lorentzian denominator and peaks at small detuning.
-
-    \section{1D slab: temperature field and $\Delta\kappa/\kappa$}
-        For a bar of length $L$, cross-section $A$, and conductivity $\kappa=\kappa^{(\mathrm P)}+\kappa^{(\mathrm C)}$, a steady power $P$ applied at $x=0$ with a sink at $x=L$ gives a uniform gradient $\partial_x T = -P/(\kappa A)$ and hence
+    \section{1D slab: temperature field and \(\Delta\kappa/\kappa\)}
+        For a bar of length \(L\), cross-section \(A\), and conductivity \(\kappa=\kappa^{(\mathrm P)}+\kappa^{(\mathrm C)}\), a steady power \(P\) at \(x=0\) with a sink at \(x=L\) sets
         \begin{equation}
-            \Delta T \equiv T(0)-T(L) = \frac{P\,L}{\kappa A}\,.
+            \partial_x T = -\frac{P}{\kappa A}, \qquad
+            \Delta T \equiv T(0)-T(L) = \frac{P\,L}{\kappa A}.
         \end{equation}
-        A small SST-induced change $\Delta\kappa$ then produces
+        A small change \(\Delta\kappa\) gives
         \begin{equation}
-            \boxed{\;\Delta(\Delta T) \approx -\frac{\Delta\kappa}{\kappa}\,\Delta T\;,}\label{eq:deltaT}
+            \boxed{\;\Delta(\Delta T) \approx -\frac{\Delta\kappa}{\kappa}\,\Delta T\;,} \label{eq:deltaT}
         \end{equation}
-        valid for $|\Delta\kappa|\ll\kappa$. Equations~\eqref{eq:kC} and \eqref{eq:deltaT} directly connect a measured temperature drop to the microscopic parameters $\delta,\Gamma,$ and $V_{ss'}$.
+        which ties the measured temperature drop directly to \(\delta,\Gamma\), and \(V_{ss'}\) through Eq.~\eqref{eq:kC}.
 
-    \section{Falsifiability \& Chirality Null-Test}
-        \label{sec:falsifiability}
-        The electron–swirl interpretation is \emph{falsified} under the stated drive if any hold:
+    \section{Falsifiability and a chirality null test}
+    \label{sec:falsifiability}
+        The electron–swirl interpretation is \emph{falsified} under the stated drive if any of the following hold:
         \begin{enumerate}
-            \item \textbf{No Lorentzian detuning.} $\Delta\kappa(\delta)$ lacks the $(4\delta^2+\Gamma^2)^{-1}$ peak of Eq.~\eqref{eq:kC} at fixed current.
-            \item \textbf{No chirality asymmetry (null-test).} Define $\Delta\kappa_\textrm{asym}\!\equiv\![\Delta\kappa]_{\rightarrow}-[\Delta\kappa]_{\leftarrow}$. Reversing the 3-phase sequence $(0,120^\circ,240^\circ)\!\leftrightarrow\!(0,240^\circ,120^\circ)$ must flip $\textrm{sgn}(\Delta\kappa_\textrm{asym})$ within $3\sigma$. Absence of sign inversion falsifies a chiral coupling (derivation: App.~B.3).
-            \item \textbf{Scaling mismatch.} The signal fails to scale as $|V^{(x)}_{ss'}|^2$ (coil current squared) or fails to track $\Gamma$ (controlled disorder).
+            \item \textbf{Missing detuning peak.} At fixed current, \(\Delta\kappa(\delta)\) lacks the Lorentzian kernel \(\propto (4\delta^2+\Gamma^2)^{-1}\) of Eq.~\eqref{eq:kC}.
+            \item \textbf{No chirality asymmetry.} Define \(\Delta\kappa_\mathrm{asym} \equiv [\Delta\kappa]_{\rightarrow}-[\Delta\kappa]_{\leftarrow}\). Reversing the 3-phase sequence \((0,120^\circ,240^\circ)\!\leftrightarrow\!(0,240^\circ,120^\circ)\) must flip \(\mathrm{sgn}(\Delta\kappa_\mathrm{asym})\) within \(3\sigma\); failure to invert the sign falsifies a chiral coupling (App.~B.3).
+            \item \textbf{Scaling mismatch.} The signal fails to scale as \(|V^{(x)}_{ss'}|^2\) (coil-current squared) or fails to track \(\Gamma\) under controlled disorder.
         \end{enumerate}
         \emph{Operator structure and rate scaling for electron assistance are summarized in App.~A; electron ontology/clock and $\Omega_0\!\leftrightarrow$SI mapping in App.~C.}
 
@@ -188,58 +194,120 @@
         \textbf{Quantum hybrid (SAW/MEMS).} On 128$^\circ$ Y-cut LiNbO$_3$, use an IDT pair to define a \SI{3}{GHz} SAW mode and couple it capacitively to a superconducting qubit \cite{Aspelmeyer2014,Manenti2017}. Pattern shallow quasi-periodic notches to enhance $V^{(x)}_{ss'}$ and tune the detuning $\delta$.
         (Geometry and numerical guide: App.~B.4.)
 
-        \begin{figure}[t]
-            \centering
-            \begin{tikzpicture}[x=1mm,y=1mm]
-                % Bar geometry
-                \draw[bar] (0,0) rectangle (100,12);
-                \node[lbl] at (50,14) {$L$};
-                \draw[axis] (-5,0) -- (-5,12) node[above] {$y$};
-                \draw[axis] (-5,0) -- (105,0) node[right] {$x$};
 
-                % Heater @ x=0
-                \draw[heater] (-8,-2) rectangle (0,14);
-                \node[note] at (-4,16) {Heater \\ ($P$)};
+    \FloatBarrier
+    \begin{figure}[h] % or [H]
+        \centering
+        \begin{tikzpicture}[x=1mm,y=1mm,>=Latex]
 
-                % Heat sink @ x=L
-                \draw[sink] (100,-2) rectangle (112,14);
-                % simple fins
-                \foreach \y in {1,5,9}{
-                    \draw[thinline] (112,\y) -- (118,\y);
-                }
-                \node[note] at (114,16) {Sink};
+%------------- styles -------------
+            \tikzset{
+                axis/.style   = {-Latex, semithick},
+                bar/.style    = {draw, fill=black!5, rounded corners=0.7mm},
+                heater/.style = {draw, fill=red!20},
+                sink/.style   = {draw, fill=blue!20},
+                coilA/.style  = {draw, very thick},
+                coilB/.style  = {draw, very thick, dashed},
+                coilC/.style  = {draw, very thick, dotted},
+                arr/.style    = {-Latex, semithick},
+                thinline/.style = {semithick},
+                lbl/.style    = {font=\footnotesize, fill=white, inner sep=1pt, text opacity=1, fill opacity=1},
+                note/.style   = {font=\scriptsize, fill=white, inner sep=1pt, text opacity=1, fill opacity=1},
+                box/.style    = {draw, rounded corners=1mm, fill=white, align=left, font=\scriptsize, inner sep=3pt},
+                eqbox/.style  = {draw, rounded corners=1mm, fill=white, align=left, font=\footnotesize, inner sep=3pt}
+            }
 
-                % 3-phase coil around mid section (schematic wraps)
-                \begin{scope}[shift={(50,6)}]
-                    \draw[coilA] (-28,10) arc (180:360:28 and 10);
-                    \draw[coilB] (-28,10)++(0,-3) arc (180:360:28 and 7);
-                    \draw[coilC] (-28,10)++(0,-6) arc (180:360:28 and 4);
-                    \node[note] at (0,13.5) {3-phase coil};
-                    \node[note] at (-22,11.8) {$A$};
-                    \node[note] at (-22,8.8) {$B$};
-                    \node[note] at (-22,5.8) {$C$};
+%------------- layout constants -------------
+            \def\L{120}   % bar length in mm
+            \def\H{16}    % bar height in mm
 
-                    % phase order (forward)
-                    \draw[arr] (-18,17) -- (-6,17) node[midway,above,sloped] {\scriptsize $(0,120^\circ,240^\circ)$};
-                    \node[note,anchor=west] at (-6,17) {forward};
+%------------- bar and axes -------------
+            \draw[bar] (0,0) rectangle (\L,\H);
+            \node[lbl,anchor=south] at (\L-2,\H+2) {$L$};
+
+            \draw[axis] (-8,0) -- (-8,\H) node[above, note] {$y$};
+            \draw[axis] (-8,0) -- (\L+8,0) node[right, note] {$x$};
+
+%------------- heater (x=0) -------------
+            \draw[heater] (-10,-3) rectangle (0,\H+3);
+            \node[note,anchor=south] at (-5,\H+5) {Heater\\($P$)};
+
+%------------- sink (x=L) -------------
+            \draw[sink] (\L,-3) rectangle (\L+12,\H+3);
+            \foreach \y in {1,6,11} { \draw[thinline] (\L+12,\y) -- (\L+18,\y); }
+            \node[note,anchor=south west] at (\L+13,\H+5) {Sink};
+
+%------------- 3-phase coil (schematic arcs in side view) -------------
+            \begin{scope}[shift={(60,8)}] % center near mid-bar
+                \draw[coilA] (-32,10) arc (180:360:32 and 10);
+                \draw[coilB] (-32,10)++(0,-3.5) arc (180:360:32 and 6.5);
+                \draw[coilC] (-32,10)++(0,-7) arc (180:360:32 and 3);
+                % phase tags (left) to avoid overlaps
+                \node[note,anchor=east] at (-36,10) {$A$};
+                \node[note,anchor=east] at (-36,6.5) {$B$};
+                \node[note,anchor=east] at (-36,3) {$C$};
+            \end{scope}
+
+%------------- cross-section inset (shows real wrap & chirality) -------------
+            \begin{scope}[shift={(40,65)}] % move as needed
+                \node[draw, rounded corners=1mm, fill=white, inner sep=2pt, anchor=north east] (cs) at (0,0) {};
+                \begin{scope}[shift={(-14,-10)}]
+                    \draw[fill=black!5] (0,0) circle (9);         % bar cross-section
+                    \foreach \ang/\lab in {90/A,-30/B,210/C}{
+                        \draw[very thick] (\ang:9.3) -- (\ang:12.3); % phase strap
+                        \fill (\ang:12.8) circle (0.7);              % terminal
+                        \node[font=\scriptsize,anchor=\ang-180] at (\ang:13.8) {\lab};
+                    }
+                    % rotation arrow (forward)
+                    \draw[-Latex,semithick] (135:6.5) arc (135:-225:6.5);
                 \end{scope}
+                \node[font=\scriptsize,anchor=south east] at (-2,2) {cross-section under coil};
+            \end{scope}
 
-                % Temperature gradient label
-                \draw[arr] (15,-7) -- (85,-7) node[midway,below] {$\partial_x T = -P/(\kappa A)$};
+% coil caption & phase order label
+            \node[box,anchor=south] (coiltag) at (60,27) {3-phase coil};
+            \draw[arr] (coiltag.south) -- ++(0,-8.5);
+            \draw[arr] (76,27) -- (96,27)
+            node[midway,above,font=\scriptsize] {(0,$120^\circ$,$240^\circ$)};
+            \node[note,anchor=west] at (96,27) {forward};
 
-                % Readout options
-                \node[box] at (20,27) {IR camera / \\ thermistor chain};
-                \draw[arr] (20,21) -- (20,12.5);
+%------------- Delta-T bracket -------------
+            \draw[thinline] (2,22) -- (2,25) -- (\L-2,25) -- (\L-2,22);
+            \node[lbl,anchor=south] at (\L/2,26.5) {$\Delta T = T(0)-T(L)$};
 
-                % Delta T bracket
-                \draw[thinline] (2,15) -- (2,18) -- (98,18) -- (98,15);
-                \node[lbl] at (50,19.5) {$\Delta T = T(0)-T(L)$};
+%------------- sensor/readout -------------
+            \node[box,anchor=south west] (sens) at (6,32) {IR camera /\\ thermistor chain};
+            \draw[arr] (sens.south) to[out=-90,in=90] (20,\H+0.5);
 
-            \end{tikzpicture}
-            \caption{Thermal bar experiment. A small heater at $x{=}0$ and a sink at $x{=}L$ set a uniform gradient. A 3-phase coil drives near-degenerate modes; forward phase order $(0,120^\circ,240^\circ)$ is shown.}
-            \label{fig:thermal_bar}
-        \end{figure}
+%------------- gradient equation -------------
+            \draw[arr] (15,-10) -- (\L-15,-10)
+            node[midway,below,yshift=-1] {$\partial_x T = -\dfrac{P}{\kappa A}$};
 
+%------------- legend for the three T(x) traces -------------
+            \node[box,anchor=north west] (leg) at (2,-16) {%
+                \begin{tikzpicture}[x=1mm,y=1mm,baseline=(L.base)]
+                    \draw[very thick] (0,0)--(8,0); \node[anchor=west] at (10,0) {\scriptsize forward on};
+                    \draw[very thick,dashed] (0,-4)--(8,-4); \node[anchor=west] at (10,-4) {\scriptsize reverse on};
+                    \draw[very thick,dotted] (0,-8)--(8,-8); \node[anchor=west] at (10,-8) {\scriptsize drive off};
+                    \node (L) at (0,0) {};
+                \end{tikzpicture}
+            };
+
+%------------- minimal equations box -------------
+            \node[eqbox,anchor=south east] at (\L+18,42) {%
+                $\displaystyle I_A=I_0\cos(\omega t)$\\[1pt]
+                $\displaystyle I_B=I_0\cos(\omega t-120^\circ)$\\[1pt]
+                $\displaystyle I_C=I_0\cos(\omega t-240^\circ)$\\[4pt]
+                $\displaystyle \mathbf{B}_\perp(t)\propto
+                \hat{y}\cos(\omega t)+\hat{z}\sin(\omega t)$ \ {\scriptsize(forward)}\\[-1pt]
+                {\scriptsize Amplitude }\(\propto \mu_0 n I_0\) \text{ (T)}
+            };
+
+        \end{tikzpicture}
+        \caption{Thermal bar experiment. A small heater at $x{=}0$ and a sink at $x{=}L$ set a uniform gradient. A wrapped 3-phase coil (phases A–C) drives a rotating transverse field; the inset shows the cross-section and forward phase order $(0,120^\circ,240^\circ)$. Curvature of $T(x)$ under the coil indicates spatially varying $\kappa(x)$.}
+        \label{fig:thermal_bar}
+    \end{figure}
+    \FloatBarrier
 
     \section{Error and noise budget}
         \begin{itemize}
@@ -254,7 +322,8 @@
         In the Jaynes--Cummings limit \cite{Jaynes1963}, the same vertices $M$ and $V_{ss'}$ that enhance $\kappa^{(\mathrm C)}$ optimize state transfer between electron and swirl modes. In a hybrid device, the \emph{coherence peak} (small $\delta$, moderate $\Gamma$) can be used to channel heat away from a qubit while maintaining phase coherence, paralleling engineered reservoirs \cite{Breuer2002,Aspelmeyer2014}.
 
     \section{Conclusions}
-        This work provides closed-form transport expressions together with concrete device geometries, signal estimates, a noise budget, and falsifiability criteria. The package enables immediate lab tests for coherence-mediated electron--swirl transport in SST and constrains the topological parity implied by the canonical $\boldsymbol{\vswirl}$ definition.
+        We provide closed-form transport expressions, device-level estimates, and falsifiable predictions for coherence-mediated electron–swirl transport in SST. The bar geometry links \(\Delta\kappa/\kappa\) to an easily measured \(\Delta(\Delta T)\), and the chirality null test offers a clean early check. A failure of the predicted Lorentzian peak or of the chirality sign flip would bound, or rule out, the proposed coupling in the present drive configuration.
+
 
         \begin{acknowledgments}
             I thank the classical foundations of vortex hydrodynamics and unified transport \cite{Madelung1927,Peierls1929,AllenFeldman1993,Simoncelli2022} for inspiration.
@@ -280,6 +349,7 @@
 % --- PRB Supplemental Material reference (numbered) ---
         \noindent\textbf{Supplemental Material.}
         See Supplemental Material at [URL will be inserted by publisher] for: (i) constants table (\texttt{constants.csv}); (ii) benchmark specifications (\texttt{benchmarks.csv}); (iii) notebooks for $\kappa^{(\mathrm C)}$ validation and $3\sigma$ noise budget; and (iv) environment file. All materials are mirrored at \doi{\paperdoi}.
+
 % --- Main References (with titles, PRB style) ---
         \begin{thebibliography}{99}\setlength{\itemsep}{1pt}
             \bibitem{Peierls1929}
@@ -316,6 +386,12 @@
             J. H. White, ``Self-linking and the Gauss integral in higher dimensions,'' Am. J. Math. \textbf{91}, 693 (1969).
             \bibitem{Kauffman1991}
             L. H. Kauffman, \textit{Knots and Physics} (World Scientific, 1991).
+            \bibitem{Jacobson2001}
+            T. Jacobson and D. Mattingly, ``Gravity with a dynamical preferred frame,'' Phys. Rev. D \textbf{64}, 024028 (2001).
+            \bibitem{Blas2011}
+            D. Blas, O. Pujolàs, and S. Sibiryakov, ``Models of non-relativistic quantum gravity: The good, the bad and the healthy,'' J. High Energy Phys. \textbf{2011}, 018 (2011).
+
+
         \end{thebibliography}
 
 
@@ -348,8 +424,8 @@
             \label{eq:M-operator}
         \end{align}
         Here \(g_s,\tilde g_{ss'}\) have units of \(\mathrm{s^{-1}}\) (so that \(\hat M\) has units of energy). The commutator \(({-}\ii/\hbar)[\hat M,\;f\!\otimes\!N]\) is the interaction superoperator in the master equation. Chirality reversal flips the sign of the overlap (Sec.~A.3), \(g_s\to \chi_\mathrm{ch}\,g_s\) with \(\chi_\mathrm{ch}=\pm1\).
-
-        \begin{figure}[t]
+        \FloatBarrier
+        \begin{figure}[H]
             \centering
             \begin{tikzpicture}[x=1mm,y=1mm]
                 % LEFT: forward
@@ -381,6 +457,7 @@
             \caption{Chirality null-test. Reversing the 3-phase sequence flips the sign of the forward/backward asymmetry $\Delta\kappa_{\rm asym}$.}
             \label{fig:chirality_nulltest}
         \end{figure}
+        \FloatBarrier
 
     \subsection*{A.2\quad Three physical channels and their scaling}
         All vertices reduce to overlap integrals between an electron operator density and a mode field; they differ by the field that enters and by the small parameter.
@@ -528,7 +605,8 @@
 
     \subsection*{B.2\quad Coupling-channel summary table}
         \noindent
-        \begin{figure}[h]
+        \FloatBarrier
+        \begin{figure}[H]
             \centering
             \begin{tikzpicture}[
                 node distance=8mm,
@@ -557,7 +635,7 @@
             \caption{Operator channels that feed the coherence kernel. Pressure-like coupling is the practical mesoscopic route; the quadratic Clock term is negligible for bars; gauge‐like coupling is model-dependent.}
             \label{fig:channel_map}
         \end{figure}
-
+        \FloatBarrier
 
 
     \subsection*{B.3\quad Standalone falsifiable prediction (chirality flip null-test)}
@@ -598,7 +676,8 @@
         \]
         confirming mesoscopic observability while remaining negligible in bulk bars with atomic \(V_e\).
 
-        \begin{figure}[h]
+        \FloatBarrier
+        \begin{figure}[H]
             \centering
             \begin{tikzpicture}[x=1mm,y=1mm]
                 % Substrate
@@ -639,7 +718,7 @@
             \caption{SAW/MEMS geometry for mesoscopic electron-assisted coupling. IDTs define a GHz SAW. Shallow notches tune near-degeneracy ($\delta\!\sim\!\Gamma$). A mesoscopic island at an antinode maximizes the overlap.}
             \label{fig:saw_mems}
         \end{figure}
-
+        \FloatBarrier
 
     \subsection*{B.5\quad Data-analysis checklist (practical)}
         \begin{enumerate}\itemsep2pt
