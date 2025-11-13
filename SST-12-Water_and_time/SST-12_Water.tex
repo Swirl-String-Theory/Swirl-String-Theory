@@ -1,0 +1,1077 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath,amssymb,amsfonts,bm}
+\usepackage{siunitx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\geometry{margin=1in}
+
+\title{Impulsive Axisymmetric Forcing in a Rotating Cylinder,\\
+Reversible Swirl Response, and Skyrmionic Photon Emission:\\
+Fluid Benchmarks and Fluid-Inspired Kinematic Hypotheses}
+
+\author{Omar Iskandarani}
+\date{2025}
+
+% ==== Notation shortcuts (union of all three manuscripts) ====
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\Om}{\Omega}
+\newcommand{\bk}{\boldsymbol{k}}
+\newcommand{\br}{\boldsymbol{r}}
+\newcommand{\ez}{\hat{\boldsymbol{z}}}
+\newcommand{\er}{\hat{\boldsymbol{r}}}
+\newcommand{\etheta}{\hat{\boldsymbol{\theta}}}
+
+\newcommand{\bU}{\boldsymbol{u}}
+\newcommand{\bW}{\boldsymbol{\omega}}
+\newcommand{\bOm}{\boldsymbol{\Omega}}
+\newcommand{\grad}{\boldsymbol{\nabla}}
+\newcommand{\curl}{\boldsymbol{\nabla}\!\times}
+\newcommand{\divg}{\boldsymbol{\nabla}\!\cdot}
+\newcommand{\p}{\partial}
+
+\newcommand{\Ce}{C_e} % characteristic swirl speed
+\newcommand{\re}{r_e} % classical electron radius
+
+\begin{document}
+    \maketitle
+
+    \begin{abstract}
+        We study the free-surface signature produced when a bottom-mounted, axisymmetric, three-fin rotor in a uniformly rotating water column is impulsively accelerated and stopped. The rotor produces a short-lived hollow-core vortex and axial pumping that launch an axisymmetric inertial-wave packet. A delayed ``push--pull'' response is observed at the free surface $\sim H/c_{g,z}$ later, where $H$ is depth and $c_{g,z}$ is the vertical component of inertial-wave group velocity. Linear theory in a cylinder yields the dispersion $\omega=2\Om k_z/k$ and $c_{g,z}=2\Om\,k_r^2/k^3$ (with $k^2=k_r^2+k_z^2$), predicting a travel time $t_{\mathrm{arr}}\approx H/c_{g,z}$ consistent with centimeter--second scales for typical bench-top parameters. We quantify the sign structure of the two pulses (start/stop) and the coupling to the free surface via hydrostatic balance. Finally, we introduce---\emph{as a proposed microscopic interpretation inspired by fluid analogs}---a kinematic time-rate rule depending on the local swirl speed. This interpretation predicts parity: surface angle/displacement reverses with the second pulse, while any kinematic time-rate shift is even in the swirl speed and does not. The macrodynamics remain standard rotating Euler; the time-rate hypothesis is presented as testable and independent.
+    \end{abstract}
+
+%=================================================================
+    \section{Set-up and observation}
+%=================================================================
+        Consider a vertical cylinder of radius $R$ and depth $H$, rotating at rate $\Om$ about the $z$-axis. A bottom DC motor drives a coaxial, three-fin impeller that, for a short burst, produces a hollow-core vortex of radius $a_v\approx \SI{7.5}{mm}$ and axial jetting. After a short delay, a two-lobed ``push--pull'' signal is observed on the free surface (up--down displacement sequence), located above the axis, at height $z=H$.
+
+%=================================================================
+    \section{Linear rotating-wave framework}
+%=================================================================
+        In the bulk, away from boundary layers, small perturbations in a uniformly rotating, incompressible fluid admit \emph{inertial waves} with dispersion relation \cite{Greenspan1968,Batchelor1967,Vallis2017}
+        \begin{equation}
+            \omega \;=\; 2\Om \frac{k_z}{k}
+            \qquad (k=|\bk|=\sqrt{k_r^2+k_z^2}).  \label{eq:disp}
+        \end{equation}
+        For axisymmetric content ($m=0$) in a cylinder, the dominant radial structure is Bessel-like with discrete $k_r\approx \lambda_{0n}/R$ (appropriate eigenvalues $\lambda_{0n}$ depending on boundary conditions) \cite{Greenspan1968}. The group velocity components follow from $c_{g,i}=\partial\omega/\partial k_i$:
+        \begin{equation}
+            c_{g,r} \;=\; -\,\frac{2\Om\,k_z k_r}{k^3},
+            \qquad
+            c_{g,z} \;=\; \frac{2\Om\,k_r^2}{k^3}. \label{eq:cg}
+        \end{equation}
+        Thus the energy of the wave packet propagates along beams whose inclination satisfies $\tan\alpha=|c_{g,r}|/c_{g,z}=k_z/k_r$; equivalently, the beam angle relative to the rotation axis is $90^\circ-\theta$ if $\theta$ is the angle of $\bk$ to $\ez$ \cite{Greenspan1968}.
+
+        \paragraph{Arrival time.}
+            The observed surface delay is estimated by
+            \begin{equation}
+                t_{\mathrm{arr}} \;\approx\; \frac{H}{c_{g,z}}
+                \;=\; \frac{H\,k^3}{2\Om\,k_r^2}. \label{eq:tarr}
+            \end{equation}
+            Taking bench-top values consistent with a prior set-up ($D=2R=\SI{15}{cm}$, $H=\SI{30}{cm}$, $\Om\approx \SI{2}{rad/s}$), the fundamental $m=0$ radial scale satisfies $k_r \sim \lambda/R$ with $\lambda=\mathcal{O}(3\text{--}4)$, while the lowest vertical scale is $k_z\sim \pi/H$. Numerically,
+            \[
+                R=\SI{0.075}{m},\quad H=\SI{0.30}{m},\quad
+                k_r\approx \frac{3.83}{R}\approx \SI{51}{m^{-1}},\quad
+                k_z\approx \frac{\pi}{H}\approx \SI{10.5}{m^{-1}},
+            \]
+            so $k\approx \SI{52.1}{m^{-1}}$ and
+            \[
+                c_{g,z}\;=\;\frac{2\Om k_r^2}{k^3}\;\approx\;
+                \frac{2(\SI{2}{s^{-1}})\,(51)^2}{(52.1)^3}
+                \;\approx\; \SI{7.4e-2}{m/s}.
+            \]
+            Hence
+            \[
+                t_{\mathrm{arr}}\;\approx\;\frac{0.30}{0.074}\;\approx\;\SI{4.1}{s},
+            \]
+            a \emph{few seconds}, consistent with the reported delayed surface response. (Scaling: $t_{\mathrm{arr}}\propto \Om^{-1}$ for fixed wavenumbers.)
+
+%=================================================================
+    \section{Impulse sign and the observed ``push--pull''}
+%=================================================================
+    An impulsive \emph{start} of the rotor generates axial upwelling on the axis and a hollow-core swirl that reduces pressure $p'$ within the core (centrifugal balance), producing a \emph{surface depression} above the axis when the wave packet arrives (``pull''). The subsequent impulsive \emph{stop} reverses the sign of the axial pumping and swirl impulse, yielding the opposite surface displacement (``push''). In linear theory, the surface elevation $\eta$ obeys hydrostatic balance $p'(z=0)=\rho g \eta$ for low-frequency motions, so the sign of $\eta$ tracks the sign of the arriving pressure anomaly \cite{Batchelor1967,Vallis2017}. Two time-separated impulses thus map to a \emph{bipolar} free-surface signal.
+
+%=================================================================
+    \section{Relation to vortex rings and jet starting vortices}
+%=================================================================
+    The short burst also sheds a starting vortex (toroidal ring) whose translational speed in a quiescent fluid scales as
+    \begin{equation}
+        U_{\mathrm{ring}}\;\approx\; \frac{\Gamma}{4\pi R_v}\left[\ln\!\left(\frac{8 R_v}{a_v}\right)-\frac{1}{4}\right],
+        \label{eq:ring}
+    \end{equation}
+    where $\Gamma$ is circulation, $R_v$ the ring radius and $a_v$ its core scale \cite{Saffman1992}. In a rotating environment, the ring interacts with the background vorticity and the inertial-wave field; however, the \emph{delayed-on-axis} free-surface signature is dominated by the axisymmetric inertial-wave packet described above, not by a direct ballistic arrival of a vortex ring from the bottom.
+
+%=================================================================
+    \section{What this \emph{is} and \emph{is not} an analogy to}
+%=================================================================
+    \subsection*{Photon analogy (limited)}
+        A sharp, localized impulse producing a propagating packet with a clean parity (push then pull) is \emph{formally} reminiscent of a localized energy-bearing wave packet. However, inertial waves are \emph{anisotropic and dispersive} [Eq.~\eqref{eq:disp}--\eqref{eq:cg}], unlike free photons in vacuum (which are isotropic and non-dispersive). Thus the analogy is qualitative (``localized wave packet with polarity''), not structural.
+
+    \subsection*{Gravitational-wave analogy (limited)}
+        GR gravitational waves are transverse, quadrupolar, and (in vacuum) nondispersive at leading order. The present axisymmetric inertial-wave response is neither quadrupolar nor nondispersive, and its group velocity depends on wavenumbers and $\Om$. Again, only the idea of a remotely measurable, delayed signal from a compact impulse is shared.
+
+%=================================================================
+    \section{A proposed microscopic interpretation inspired by fluid analogs (VAM)}
+%=================================================================
+    We now introduce an interpretation that \emph{does not alter} the macroscopic rotating-Euler analysis above but adds a kinematic rule for local time-rate tied to swirl speed. Let $u(\br,t)$ be the local swirl speed (e.g. $|u_\theta|$ near the axis). Postulate
+    \begin{equation}
+        \frac{\dd \tau}{\dd t} \;=\; \sqrt{1-\frac{u^2}{\Ce^2}},
+        \label{eq:time}
+    \end{equation}
+    where $\Ce$ is a characteristic speed (treated as a constant of the microscopic theory). Equation \eqref{eq:time} is \emph{formally} analogous to the Lorentz kinematic factor but here is a hypothesis to be experimentally constrained.
+
+    \paragraph{Parity prediction.}
+        Two opposite-sign swirl impulses (start/stop) generate opposite-angle free-surface motions, but any cycle-averaged time-rate shift from \eqref{eq:time} scales with $u^2$ and hence does \emph{not} reverse sign. A null measurement at the current sensitivity would bound $\Ce$ from below for such kinematic effects in rotating laboratory flows.
+
+%=================================================================
+    \section{Falsifiable checks}
+%=================================================================
+    \begin{itemize}
+        \item \textbf{Travel-time scaling:} Verify $t_{\mathrm{arr}}\propto \Om^{-1}$ by repeating the impulse at several $\Om$ and measuring the delay to the axial surface signal; compare with \eqref{eq:tarr} using $(k_r,k_z)$ inferred from the observed beam angle or from the container's lowest modes \cite{Greenspan1968}.
+        \item \textbf{Bipolarity:} Confirm the sign reversal between the start and stop pulses via synchronized surface elevation and bottom torque measurements.
+        \item \textbf{Anisotropy:} Off-axis probes should observe beamlike arrivals at angles set by $\tan\alpha=k_z/k_r$; the axis receives the arrival governed by $c_{g,z}$.
+        \item \textbf{Time-rate parity (interpretation test):} Instrument two identical, neutrally buoyant ``clock tracers'' at the surface---one above the axis, one far off-axis (reference). Any cycle-averaged phase drift correlated with $u^2$ would bound or detect effects consistent with \eqref{eq:time}.
+    \end{itemize}
+
+%=================================================================
+    \section*{Conclusion (Part I)}
+%=================================================================
+    An impulsive rotor at the bottom of a rotating cylinder launches an axisymmetric inertial-wave packet whose vertical group velocity $c_{g,z}$ predicts a delayed axial surface response of the observed magnitude. The two-lobed ``push--pull'' follows from the sign of the consecutive impulses. These are standard consequences of rotating-wave dynamics. If one adopts a fluid-inspired microscopic kinematic time rule depending on $u^2$, the free-surface polarity reverses while any tiny time-rate effect does not, providing a clear parity-based test without altering the macrodynamics.
+
+%=================================================================
+    \section{Why the Surface ``Push--Pull'' Requires Background Rotation}
+    \label{sec:why-rotation}
+%=================================================================
+
+    \paragraph{Observation.}
+        A short bottom impulse (rapid start--stop of the three-fin rotor that briefly creates a hollow-core vortex) produces a delayed, bipolar free-surface signal (``push--pull'') only when the cylinder is in solid-body rotation at rate $\Omega$. With the container at rest ($\Omega=0$), no reproducible delayed surface response is observed.
+
+    \subsection{Mechanism: Coriolis Restoring Force and Inertial-Wave Beams}
+    In a uniformly rotating, homogeneous, incompressible fluid, small perturbations satisfy the linear rotating Euler equations
+    \begin{equation}
+        \partial_t \boldsymbol{u} + 2\boldsymbol{\Omega}\!\times\!\boldsymbol{u} \;=\; -\nabla \pi,
+        \qquad \nabla\!\cdot\!\boldsymbol{u}=0,
+        \label{eq:rotEuler}
+    \end{equation}
+    which admit \emph{inertial waves} with dispersion
+    \begin{equation}
+        \omega \;=\; 2\Omega\,\frac{k_z}{k},\qquad k=\sqrt{k_r^2+k_z^2}.
+        \label{eq:dispersion}
+    \end{equation}
+    Energy propagates along beams with group velocity
+    \begin{equation}
+        c_{g,r} = -\,\frac{2\Omega\,k_r k_z}{k^3},\qquad
+        c_{g,z} = \frac{2\Omega\,k_r^2}{k^3}.
+        \label{eq:group}
+    \end{equation}
+    Thus a bottom impulse launches an axisymmetric inertial-wave packet whose vertical energy transport reaches the surface after
+    \begin{equation}
+        t_{\mathrm{arr}} \;\approx\; \frac{H}{c_{g,z}}
+        \;=\; \frac{H\,k^3}{2\Omega\,k_r^2}.
+        \label{eq:tarr-omega}
+    \end{equation}
+    Two opposite-sign impulses (start/stop) carry opposite pressure anomalies, giving the observed surface \emph{bipolarity} (``pull'' then ``push''). The free-surface elevation obeys the linear hydrostatic condition
+    \begin{equation}
+        p'(z=0) + \rho g\,\eta \;=\; 0 \;\;\Rightarrow\;\; \eta \;=\; -\,\frac{p'(0)}{\rho g}.
+        \label{eq:hydrostatic}
+    \end{equation}
+
+    \subsection{Scaling that explains the ``off'' state at $\Omega=0$}
+    Equations \eqref{eq:dispersion}--\eqref{eq:group} show that inertial waves \emph{require} a Coriolis restoring force. As $\Omega\to 0$:
+    \begin{equation}
+        \omega \to 0,\qquad c_{g,z}\propto \Omega \to 0,\qquad t_{\mathrm{arr}}\propto \Omega^{-1}\to \infty.
+    \end{equation}
+    Concurrently, the pressure perturbation amplitude that couples to the surface scales with $\Omega$. From the horizontal momentum in \eqref{eq:rotEuler}, for $\omega=\mathcal{O}(\Omega)$ one has the geostrophic balance $2\Omega\,\hat{\boldsymbol{z}}\times \boldsymbol{u}_h \sim -\nabla_h \pi$, so dimensionally
+    \begin{equation}
+        p' \sim \rho\,(2\Omega\,L)\,U \quad \Rightarrow\quad
+        \eta \sim \frac{2\Omega\,L}{g}\,U,
+        \label{eq:eta-scale}
+    \end{equation}
+    where $U$ is a characteristic wave velocity and $L$ a lateral mode scale (set by $k_r^{-1}$). Hence \emph{surface amplitude is linear in $\Omega$}; as $\Omega\to 0$ the signal vanishes:
+    \[
+        \eta(\Omega)\;\propto\;\Omega \;\longrightarrow\; 0.
+    \]
+    Viscous effects reinforce this: the Ekman number $\mathrm{E}=\nu/(\Omega L^2)$ grows unbounded as $\Omega\to 0$, so any putative wave is overdamped before reaching the surface.
+
+    \subsection{Why no analogous delayed signal at rest}
+    For $\Omega=0$ the restoring term $2\Omega\times\boldsymbol{u}$ vanishes; there are no inertial waves. A short bottom burst produces (i) a starting vortex ring and near-field jet, which remain confined below, and (ii) only very weak coupling to surface gravity waves because the forcing is deep, axisymmetric, and nearly solenoidal. Any compressional (acoustic) response would arrive \emph{promptly} at $c_{\text{sound}}$ and not as a delayed push--pull packet. Thus the specific, delayed \emph{bipolar} signature is a hallmark of the rotating (inertial-wave) pathway.
+
+    \subsection{Testable predictions (dependence on rotation rate)}
+    The rotation-controlled scaling gives two clean, falsifiable trends:
+    \begin{align}
+        &t_{\mathrm{arr}}(\Omega)\;\approx\;\frac{H\,k^3}{2\Omega\,k_r^2}
+        \quad\Rightarrow\quad t_{\mathrm{arr}}\propto \Omega^{-1},
+        \label{eq:arrive-pred}\\[3pt]
+        &\eta_{\max}(\Omega)\;\approx\; \frac{2\Omega\,L}{g}\,U \quad\Rightarrow\quad \eta_{\max}\propto \Omega.
+        \label{eq:eta-pred}
+    \end{align}
+    A log--log plot of $\eta_{\max}$ versus $\Omega$ should approach slope $+1$, while $t_{\mathrm{arr}}$ versus $\Omega$ should approach slope $-1$, up to corrections from viscosity and beam geometry.
+
+    \paragraph{Dimensional checks.}
+        In \eqref{eq:eta-scale}, $[p']=\mathrm{Pa}$, $[\rho g]=\mathrm{N\,m^{-3}}$, so $[\eta]=\mathrm{m}$. In \eqref{eq:tarr-omega}, $[H/c_{g,z}]=\mathrm{s}$.
+
+    \paragraph{Conclusion.}
+        The delayed, bipolar surface response is a \emph{rotation-enabled} phenomenon: the Coriolis restoring force both creates a propagating inertial-wave packet and sets its amplitude and speed. Turning off rotation removes the restoring mechanism and the pathway to the surface, explaining the observed ``on'' (rotating) and ``off'' (rest) behavior.
+
+%=================================================================
+    \section{Hypothesized Compressional Signaling Branch (Fluid-Inspired, Microscopic)}
+    \label{sec:compressional-branch}
+%=================================================================
+
+    \paragraph{Summary.}
+        The macroscopic results above are standard rotating-Euler consequences. Here we add a \emph{microscopic, fluid-inspired} hypothesis: besides the transverse, swirl-dominated sector that governs our tank dynamics, there could exist a \emph{compressional} (longitudinal) branch supporting hyperbolic wavefronts with characteristic speed $c_{\mathrm{P}}\gg c$. If such a branch couples---even ultra-weakly---to laboratory stress sources and detectors, it would enable effectively instantaneous signaling over bench-top scales. This section formalizes the hypothesis and gives falsifiable tests. (All non-original hydrodynamic and wave-propagation facts cited where used \cite{LandauFluids,Lighthill78,Brillouin1960,Jackson1999,Abbott2017PRL,Abbott2017ApJL}.)
+
+    \subsection{Minimal linear model and governing equation}
+    Relax strict incompressibility at the microscopic scale and allow small density/pressure perturbations $(\rho',p')$ with a linear equation of state
+    \begin{equation}
+        p' = B_*\,\frac{\rho'}{\rho_*},
+    \end{equation}
+    where $B_*$ is an effective bulk modulus and $\rho_*$ an effective mass density (both constant to leading order). Linearizing the continuity and momentum equations with vorticity neglected in this branch yields the scalar wave equation (e.g. \cite{LandauFluids,Lighthill78})
+    \begin{equation}
+        \boxed{~\partial_t^2 \rho' - c_{\mathrm{P}}^{\,2}\,\nabla^2 \rho' = 0,
+            \qquad c_{\mathrm{P}} \equiv \sqrt{\frac{B_*}{\rho_*}}~.}
+        \label{eq:pwave}
+    \end{equation}
+    Equation \eqref{eq:pwave} is hyperbolic with \emph{front} speed $c_{\mathrm{P}}$. Unlike the inertial waves in \S\ref{sec:why-rotation}, \eqref{eq:pwave} is isotropic and nondispersive in the linear, homogeneous limit (closer kinematically to the vacuum EM wave equation \cite{Jackson1999}, but with a different invariant speed).
+
+    \paragraph{Field-theoretic sketch (source coupling).}
+        Introduce a scalar compression potential $\Phi$ with action
+        \begin{equation}
+            S_\Phi=\int\!dt\,d^3x\;\frac{1}{2}\Big[\kappa_\Phi^{-1}(\partial_t \Phi)^2
+            - \Lambda_\Phi^2(\nabla\Phi)^2\Big]
+            +\int\!dt\,d^3x\;\varepsilon\,\Phi\,\mathcal{T},
+        \end{equation}
+        where $\mathcal{T}$ is the (lab) source's isotropic stress trace (e.g., electrostriction, magnetostriction or radiation pressure; \cite{LandauFluids}), $\varepsilon$ is a dimensionless coupling, and $\kappa_\Phi,\Lambda_\Phi$ are positive constants. The Euler–Lagrange equation is
+        \begin{equation}
+            \partial_t^2 \Phi - C_*^{\,2}\nabla^2 \Phi = \varepsilon\,\kappa_\Phi\,\mathcal{T},
+            \qquad C_* \equiv \Lambda_\Phi\sqrt{\kappa_\Phi}.
+            \label{eq:Phi}
+        \end{equation}
+        Identifying $\rho'\propto\partial_t\Phi$ maps $C_*\to c_{\mathrm{P}}$ in \eqref{eq:pwave}. This formalizes a channel whose front speed is $c_{\mathrm{P}}$ and which couples \emph{only} to isotropic stress at $O(\varepsilon)$.
+
+    \subsection{Dimensional and numerical checks with supplied parameters}
+    Dimensional consistency: $[B_*]=\mathrm{Pa}=\mathrm{J\,m^{-3}}$, $[\rho_*]=\mathrm{kg\,m^{-3}}$, hence $[c_{\mathrm{P}}]=\sqrt{\mathrm{J\,m^{-3}}/\mathrm{kg\,m^{-3}}}=\mathrm{m\,s^{-1}}$.
+
+    Using your working values (interpreting the quoted energy density as a stiffness scale),
+    \[
+        \rho_* = 7.0\times 10^{-7}\ \mathrm{kg\,m^{-3}},\qquad
+        B_* \approx 3.49924562\times 10^{35}\ \mathrm{J\,m^{-3}},
+    \]
+    yields
+    \begin{equation}
+        c_{\mathrm{P}}=\sqrt{\frac{B_*}{\rho_*}}
+        \;=\; 7.0703057319\times 10^{20}\ \mathrm{m\,s^{-1}}.
+        \label{eq:cPnumber}
+    \end{equation}
+    For comparison,
+    \[
+        \frac{c_{\mathrm{P}}}{c}\approx 2.3584\times 10^{12},\qquad
+        \frac{c_{\mathrm{P}}}{\Ce}\approx 6.4637\times 10^{14},
+    \]
+    so a $L=\SI{10}{m}$ baseline has
+    \[
+        t_{\mathrm{EM}}=L/c \approx 3.34\times 10^{-8}\ \mathrm{s},\qquad
+        t_{\mathrm{P}}=L/c_{\mathrm{P}} \approx 1.41\times 10^{-20}\ \mathrm{s}.
+    \]
+    Thus, at laboratory scales, any genuine $c_{\mathrm{P}}$ signal would be operationally instantaneous.
+
+    \subsection{Compatibility with existing bounds}
+    Co-arrival of gravitational waves and gamma rays from GW170817 constrains \emph{GW vs. EM} speed differences at the level $|v_{\mathrm{GW}}-c|/c\lesssim 10^{-15}$ \cite{Abbott2017PRL,Abbott2017ApJL}. Those results do not address a distinct, ultra-weakly coupled compressional branch. To avoid conflicts with Lorentz-invariance and vacuum Čerenkov bounds, the coupling $\varepsilon$ must be \emph{tiny} and couple predominantly to isotropic stress (trace), not to conserved EM currents. This makes the channel hard to excite and detect—but not forbidden.
+
+    \subsection{Falsifiable experimental protocol (bench-top)}
+    \paragraph{Source (trace-only).} Inside nested Faraday and $\mu$-metal shields, drive an electrostrictive or magnetostrictive core with a \emph{step-coded} isotropic stress trace $\mathcal{T}(t)$ at carrier $f_c$ (low enough to suppress RF/acoustic leakage; high enough to maintain linearity). Use a pseudo-random binary sequence (PRBS) for correlation.
+
+    \paragraph{Detector (trace-sensitive).} A distant, battery-powered, fiberless station houses a high-$Q$ bulk-modulus resonator monitored by an optical interferometer. Demodulate at $f_c$ and correlate with the PRBS.
+
+    \paragraph{Latency test.} With two baselines $L_1<L_2$, measure the earliest correlated arrivals $t_1,t_2$ after bounding all EM/acoustic/mechanical paths $\ge L/c$. A $c_{\mathrm{P}}$ front obeys
+        \begin{equation}
+            t_i \approx \frac{L_i}{c_{\mathrm{P}}}\quad (i=1,2),\qquad
+            \Rightarrow\quad
+            t_2-t_1 \approx \frac{L_2-L_1}{c_{\mathrm{P}}}.
+        \end{equation}
+        Therefore,
+        \begin{equation}
+            \boxed{~c_{\mathrm{P}} \gtrsim \frac{L_2-L_1}{\,t_2-t_1\,}~}
+            \label{eq:cpbound}
+        \end{equation}
+        sets a \emph{lower bound} on $c_{\mathrm{P}}$. A \emph{null} result at timing resolution $\delta t$ implies $c_{\mathrm{P}} \gtrsim (L_2-L_1)/\delta t$.
+
+    \paragraph{Coupling bound.} If no early arrival is observed above noise $\sigma$ after integration time $T$ and detector bandwidth $\Delta f$, then with a calibrated source stress amplitude $||\mathcal{T}||$, one obtains an \emph{upper} bound on $\varepsilon$ from the non-detection of a linearly responding $\Phi$-signal. A rough radiative scaling $P_\Phi \sim \varepsilon^2 P_{\mathrm{drive}}$ gives $\varepsilon \lesssim \sqrt{P_{\mathrm{noise}}/P_{\mathrm{drive}}}$ once instrument noise is referred to the input via the transfer function.
+
+    \subsection{Scope and caveats}
+    This branch is a \emph{hypothesis} independent of the macrodynamics. It does not alter the inertial-wave physics of the tank, nor does it claim structural equivalence to electromagnetism. The proposal is strictly kinematic: a distinct, longitudinal channel with front speed $c_{\mathrm{P}}$ and ultra-weak coupling to isotropic stress. It is decisively testable with latency-vs-distance scaling and exhaustive leakage controls. A null result provides quantitative bounds via \eqref{eq:cpbound}; a positive result would motivate deeper modeling of the micro equation of state ($B_*,\rho_*$) and source/detector coupling.
+
+%=================================================================
+    \section{Replacing the Working Fluid by a VAM-Like Superfluid Medium}
+    \label{sec:aether-medium}
+%=================================================================
+
+    \paragraph{Aim.}
+        We ask what the tank phenomenology would be if the working medium were not ordinary water but a \emph{hypothetical, inviscid superfluid} endowed with a microscopic swirl scale. Macroscopically we keep the linear rotating–Euler framework; microscopically we allow two branches: (i) a \emph{transverse, inertial-like} branch governed by an \emph{effective} background rotation, and (ii) a \emph{longitudinal, compressional} branch (Sec.~\ref{sec:compressional-branch}). The former controls the delayed surface ``push--pull''; the latter would constitute an essentially instantaneous channel if it couples at all.
+
+    \subsection{Transverse inertial-like branch with an effective background rate}
+    \label{sec:aether-transverse}
+    Let $\Ce$ denote a characteristic swirl speed (constant) and $\ell_*$ a coarse-graining length for microscopic swirl. Define the \emph{effective} background rate
+    \begin{equation}
+        \boxed{\;\Omega_* \equiv \frac{\Ce}{\ell_*}\;,}
+        \qquad [\Omega_*]=\mathrm{s^{-1}}.
+    \end{equation}
+    Replacing $\Omega\to\Omega_*$ in the linear rotating–Euler equations leaves the standard inertial-wave dispersion and group velocity \cite{Greenspan1968,Batchelor1967,Vallis2017}:
+    \begin{equation}
+        \omega \;=\; 2\Omega_*\,\frac{k_z}{k},
+        \qquad
+        c_{g,z} \;=\; \frac{2\Omega_*\,k_r^2}{k^3}.
+        \label{eq:disp-aether}
+    \end{equation}
+    For the lowest axisymmetric mode in a cylinder ($k_r\!\sim\!\alpha/R$, $k\!\sim\!\beta/R$ with $\alpha,\beta=O(1)$) one finds
+    \begin{equation}
+        \boxed{\;
+        c_{g,z}\;\sim\;2\,\Omega_*\,R
+        \;=\; 2\,\Ce\,\frac{R}{\ell_*},
+            \qquad
+            t_{\mathrm{arr}}\;\equiv\;\frac{H}{c_{g,z}}\;\sim\;\frac{H\,\ell_*}{2 \Ce R}\;.
+        }
+        \label{eq:arrive-aether}
+    \end{equation}
+    \emph{Amplitude scaling.} Geostrophic/hydrostatic balance gives the surface response
+    \begin{equation}
+        \boxed{\;\eta_{\max}\;\sim\;\frac{2\,\Omega_*\,L}{g}\,U\;\propto\;\Omega_*\;,}
+        \label{eq:eta-aether}
+    \end{equation}
+    with $L\!\sim\!R$ a lateral scale and $U$ a characteristic wave speed \cite{Batchelor1967,Vallis2017}.
+
+    \paragraph{Numerical illustrations (tank geometry).}
+        Using $R=\SI{7.5}{cm}$, $H=\SI{30}{cm}$, and your $\Ce=1.09384563\times 10^{6}\ \mathrm{m\,s^{-1}}$:
+        \begin{enumerate}
+            \item \textbf{Macroscopic averaging} $\ell_*=R$:
+            \[
+                \Omega_*=\frac{\Ce}{R}\approx 1.46\times 10^{7}\ \mathrm{s^{-1}},\quad
+                c_{g,z}\sim 2\Ce\approx 2.19\times 10^{6}\ \mathrm{m\,s^{-1}},
+            \]
+            \[
+                t_{\mathrm{arr}}\sim \frac{H}{2\Ce}\approx 1.37\times 10^{-7}\ \mathrm{s}.
+            \]
+            \item \textbf{Microscopic averaging} $\ell_*=r_c=1.40897017\times10^{-15}\ \mathrm{m}$:
+            \[
+                \Omega_*=\frac{\Ce}{r_c}\approx 7.76\times 10^{20}\ \mathrm{s^{-1}},\quad
+                c_{g,z}\sim 2\Ce\frac{R}{r_c}\approx 1.17\times 10^{20}\ \mathrm{m\,s^{-1}},
+            \]
+            \[
+                t_{\mathrm{arr}}\sim \frac{H\,r_c}{2\Ce R}\approx 2.6\times 10^{-21}\ \mathrm{s}.
+            \]
+        \end{enumerate}
+        Hence, if a medium genuinely supplies a Coriolis term at rate $\Omega_*=C_e/\ell_*$, the inertial-like ``push--pull'' becomes \emph{operationally instantaneous} as $\ell_*\!\ll\!R$.
+
+    \paragraph{Dimensional checks.}
+        In \eqref{eq:arrive-aether}, $[H\,\ell_* /(C_e R)]=\mathrm{s}$. In \eqref{eq:eta-aether}, $[2\Omega_* L U/g]=\mathrm{m}$.
+
+    \subsection{Longitudinal compressional branch (microscopic, fluid-inspired)}
+    \label{sec:aether-longitudinal}
+    Allow small $(\rho',p')$ with $p'=B_*\,\rho'/\rho_*$, where $B_*$ is an effective bulk modulus and $\rho_*$ an effective density. Linearization yields the scalar wave equation \cite{LandauFluids,Lighthill78}
+    \begin{equation}
+        \boxed{\;\partial_t^2 \rho' - c_{\mathrm{P}}^{\,2}\,\nabla^2 \rho' = 0,\qquad
+        c_{\mathrm{P}}=\sqrt{\frac{B_*}{\rho_*}}\;.}
+        \label{eq:pwave-aether}
+    \end{equation}
+    Using your values (interpreting the quoted energy density as a stiffness scale)
+    \[
+        \rho_* = 7.0\times 10^{-7}\ \mathrm{kg\,m^{-3}},\qquad
+        B_* \approx 3.49924562\times 10^{35}\ \mathrm{J\,m^{-3}},
+    \]
+    gives
+    \[
+        c_{\mathrm{P}}=\sqrt{\frac{B_*}{\rho_*}}
+        = 7.0703057319\times 10^{20}\ \mathrm{m\,s^{-1}},
+        \quad
+        \frac{c_{\mathrm{P}}}{c}\approx 2.36\times 10^{12}.
+    \]
+    A $L=\SI{10}{m}$ baseline would have $t_{\mathrm{P}}=L/c_{\mathrm{P}}\approx 1.4\times 10^{-20}\ \mathrm{s}$: effectively instantaneous. Equation \eqref{eq:pwave-aether} is hyperbolic with \emph{front} speed $c_{\mathrm{P}}$ (information speed) \cite{Brillouin1960}.
+
+    \subsection{Interpretation and testability}
+    \begin{itemize}
+        \item The inertial-like branch (\S\ref{sec:aether-transverse}) explains why your surface ``push--pull'' \emph{requires} background rotation in water: with $\Omega_{\text{lab}}\neq 0$ the Coriolis restoring force exists; for a VAM-like medium, a nonzero $\Omega_*=C_e/\ell_*$ would produce the same mechanism \emph{even if the container is mechanically at rest}.
+        \item The compressional branch (\S\ref{sec:aether-longitudinal}) would carry essentially instantaneous signals if it couples (even ultra-weakly) to laboratory isotropic stresses; it does not alter the macroscopic inertial-wave analysis.
+        \item Both branches are \emph{kinematic hypotheses} for a microscopic medium; neither conflicts with standard EM/GW speed tests provided the coupling to ordinary matter is extremely small \cite{Abbott2017PRL,Abbott2017ApJL}.
+    \end{itemize}
+
+    \paragraph{Caveats.}
+    (1) Substituting $\Omega\to C_e/\ell_*$ in \eqref{eq:disp-aether} \emph{without} a medium that actually supplies such a Coriolis term is not physical; ordinary water responds to $\Omega_{\text{lab}}$, not to $C_e$. (2) At very large $\Omega_*$ or $c_{\mathrm{P}}$, dispersion and dissipation of the true microscopic medium will bound signal speeds; equations above set the \emph{kinematic ceiling}. (3) Any claim of superluminal signaling must rely on \emph{front velocity} and pass exhaustive EM/acoustic leakage controls \cite{Brillouin1960}.
+
+%=================================================================
+    \section*{Part II: Reversible Azimuthal Response to Axisymmetric Vertical Forcing}
+%=================================================================
+
+    We now consider a complementary rotating-fluid configuration: a neutrally buoyant spherical control volume on the axis is forced to move vertically in a rapidly rotating, incompressible fluid contained in a cylinder. In the limit of small Rossby and Ekman numbers, linear rotating-fluid theory reduces to a compact vorticity-production law,
+    \[
+        \p_t \omega_z = 2\Omega\,\p_z w,
+    \]
+    which predicts vertical vorticity of opposite sign above and below the driver, leading to instantaneous tracer rotation in opposite directions. For symmetric up–down strokes, the accumulated angle reverses on the return path, so that the net rotation over a full cycle cancels at leading order.
+
+    As a speculative extension, we introduce a dimensionless “fluid fine-structure constant” that connects swirl speed to a tracer’s clock-rate rule. Unlike the angle response, this hypothesis predicts a small but non-reversing cycle-averaged proper-time deficit. We present closed-form estimates, dimensional checks, and limiting cases, while stressing that the analogy is offered as a testable conjecture, separate from the rigorous macroscopic results.
+
+%-----------------------------------------------------------------
+    \section{Physical setting and asymptotic regime}
+%-----------------------------------------------------------------
+    A cylinder of radius \(R\) and height \(H\) contains an incompressible fluid of density \(\rho\). The container rotates at constant angular speed \(\Omega\) about \(\ez\). In the rotating frame the base state is at rest; the absolute vorticity is uniform, \(\bW_a^{(0)}=2\bOm\) \cite{Batchelor1967,Greenspan1968}.
+
+    A neutrally buoyant spherical control volume of radius \(a\) is centered on the axis \(r=0\) and is forced vertically with displacement \(Z(t)\). The forcing is axisymmetric and smooth; denote the induced vertical velocity by \(w(r,z,t)\). We work in the regime
+    \[
+        \mathrm{Ro}=\frac{U'}{\Omega L}\ll1,\qquad
+        \mathrm{E}=\frac{\nu}{\Omega L^2}\ll1,
+    \]
+    with perturbation speed \(U'\) and length \(L=\mathcal{O}(a)\), so that linear, inviscid rotating-flow theory applies away from thin boundary layers \cite{Batchelor1967,Greenspan1968,Vallis2017}.
+
+%-----------------------------------------------------------------
+    \section{Governing equations and vorticity production}
+%-----------------------------------------------------------------
+    In the rotating frame the inviscid equations are
+    \begin{align}
+        \p_t \bU + (\bU\!\cdot\!\grad)\bU + 2\bOm\times\bU &= -\grad \Pi,\label{eq:NSrot}\\
+        \divg \bU &= 0.\label{eq:incomp}
+    \end{align}
+    Taking curl of \eqref{eq:NSrot} gives the absolute-vorticity equation \cite{Batchelor1967,Vallis2017}
+    \begin{equation}
+        \p_t \bW = \curl(\bU\times \bW_a),\qquad \bW_a=\bW+2\bOm. \label{eq:vortgen}
+    \end{equation}
+    Linearizing about \(\bW_a^{(0)}=2\bOm\) (neglect quadratic perturbation terms) yields
+    \begin{equation}
+        \p_t \bW \approx 2(\bOm\!\cdot\!\grad)\,\bU. \label{eq:vortlin}
+    \end{equation}
+    Axisymmetry implies that the vertical component obeys
+    \begin{equation}
+        \boxed{\;\p_t \omega_z = 2\Omega\,\p_z w.\;} \label{eq:key}
+    \end{equation}
+    Introduce a vertical displacement field \(\xi(r,z,t)\) with \(w=\p_t\xi\). Integrating \eqref{eq:key} from an unperturbed initial state,
+    \begin{equation}
+        \boxed{\;\omega_z(r,z,t) = 2\Omega\,\p_z \xi(r,z,t).\;} \label{eq:omegaxi}
+    \end{equation}
+    Equation \eqref{eq:omegaxi} is the rotating analogue of vortex-line stretching: regions of column stretching (\(\p_z\xi>0\)) generate cyclonic vorticity, while compression (\(\p_z\xi<0\)) generates anticyclonic vorticity \cite{Proudman1916,Taylor1923}.
+
+%-----------------------------------------------------------------
+    \section{From vertical vorticity to azimuthal velocity}
+%-----------------------------------------------------------------
+    Under axisymmetry the kinematic relation between vertical vorticity and azimuthal velocity is
+    \begin{equation}
+        \omega_z(r,z,t)=\frac{1}{r}\,\p_r\!\big(r\,u_\theta(r,z,t)\big). \label{eq:omegau}
+    \end{equation}
+    Regularity at \(r=0\) (\(u_\theta\sim r\)) gives
+    \begin{equation}
+        \boxed{\;
+        u_\theta(r,z,t)
+            =\frac{1}{r}\int_0^r \omega_z(r',z,t)\,r'\,\dd r'
+            =\frac{2\Omega}{r}\int_0^r \p_z\xi(r',z,t)\,r'\,\dd r'.\;} \label{eq:uth}
+    \end{equation}
+
+    \subsection{A concrete smooth kernel}
+        Let
+        \begin{equation}
+            \xi(r,z,t)=Z(t)\,\psi(r,z),\qquad \psi(r,z)=\exp\!\left(-\frac{r^2+z^2}{a^2}\right).
+        \end{equation}
+        Then \(\p_z\xi = -\dfrac{2Z(t)\,z}{a^2}\,\psi\), and \eqref{eq:uth} yields
+        \begin{equation}
+            \boxed{\;
+            u_\theta(r,z,t)
+                = -\,\frac{2\Omega\,Z(t)\,z}{a^{2}}\,e^{-z^{2}/a^{2}}\,
+                \frac{1-e^{-r^{2}/a^{2}}}{r}.
+                \;} \label{eq:uth_gauss}
+        \end{equation}
+        \emph{Sign structure:} for \(Z(t)>0\) (up-stroke), \(u_\theta\propto -z\), so the azimuthal response is cyclonic below (\(z<0\)) and anticyclonic above (\(z>0\)).
+
+        Near the axis, \(1-e^{-r^{2}/a^{2}}\sim r^2/a^2\), hence \(u_\theta\sim -\dfrac{2\Omega Z(t) z}{a^{4}}\,e^{-z^{2}/a^{2}}\,r\) (regular).
+
+%-----------------------------------------------------------------
+    \section{Angle reversal and reversibility}
+%-----------------------------------------------------------------
+    Define the relative angular rate \(\dot{\theta}_\text{rel}=u_\theta/r\). Over a stroke from \(t_1\) to \(t_2\),
+    \begin{equation}
+        \Delta \theta_\text{rel}(r,z)=\int_{t_1}^{t_2}\frac{u_\theta}{r}\,\dd t.
+    \end{equation}
+    Because \(\dot{\theta}_\text{rel}\) is \emph{linear} in \(Z(t)\), a symmetric up–down cycle with zero mean displacement satisfies
+    \begin{equation}
+        \boxed{\;\Delta \theta_\text{rel}(r,z; \text{one period})=0\quad\text{(to leading order in Ro, E).}\;}
+    \end{equation}
+    This is the expected quasi-static reversibility of linear, rapidly rotating flow (the Taylor–Proudman framework) \cite{Proudman1916,Taylor1923,Greenspan1968}. Deviations arise at higher order from viscosity (Ekman pumping), finite-amplitude advection (steady streaming), or near-resonant inertial waves \cite{Greenspan1968,Vallis2017}.
+
+%-----------------------------------------------------------------
+    \section{A fluid-inspired kinematic time hypothesis}
+%-----------------------------------------------------------------
+    We now explore a speculative analogy, motivated by the parity property of swirl cancellation.
+    The macroscopic fluid equations remain unchanged; the following is presented only as a \emph{dimensionless coupling hypothesis}.
+
+    \subsection{Definition of a fluid fine-structure constant}
+        Introduce a microscopic length scale equal to half the classical electron radius,
+        \[
+            L \equiv \tfrac{1}{2}\re,
+            \qquad
+            \re = \frac{e^2}{4\pi\epsilon_0 m_e c^2} \approx 2.82\times 10^{-15}\,\mathrm{m}.
+        \]
+
+        With vorticity related to swirl velocity by
+        \(\omega = 2u_\theta/\Ce\),
+        we define the \emph{fluid fine-structure constant}
+        \begin{equation}
+            \boxed{\;\alpha_f \equiv \frac{\omega L}{c}
+                = \frac{\re}{c\,\Ce}\,u_\theta.\;}
+        \end{equation}
+        This quantity is dimensionless, and---like the electromagnetic fine-structure constant---it measures the relative strength of a coupling (here, swirl to clock-rate).
+
+    \subsection{Time-rate rule}
+        We propose that the local tracer clock rate is
+        \begin{equation}
+            \boxed{\;
+            \frac{\dd \tau}{\dd t} = \sqrt{1-\alpha_f^2}.
+            \;}
+        \end{equation}
+
+        For $\alpha_f\ll1$, expansion yields
+        \[
+            \frac{\dd \tau}{\dd t} \approx 1 - \tfrac{1}{2}\alpha_f^2 + \mathcal{O}(\alpha_f^4).
+        \]
+        Thus the leading correction is quadratic in $\alpha_f$, so angle reverses on a symmetric stroke but the time deficit does not---a clear falsifiable signature.
+
+    \subsection{Cycle-averaged deficit}
+        For sinusoidal forcing \(Z(t)=Z_0\sin\sigma t\),
+        \[
+            \Delta \tau = -\tfrac{1}{2}\alpha_f^2\,T + \mathcal{O}(\alpha_f^4),
+            \qquad T=\tfrac{2\pi}{\sigma}.
+        \]
+
+        With representative laboratory parameters
+        (\(\Omega\sim2\,\mathrm{rad/s}, a\sim5\,\mathrm{cm}, Z_0\sim2\,\mathrm{mm}\)),
+        we estimate $\alpha_f \sim 10^{-8}$--$10^{-9}$,
+        giving fractional time-rate shifts of order $10^{-16}$ per cycle.
+
+%-----------------------------------------------------------------
+    \section{Discussion and experimental considerations}
+%-----------------------------------------------------------------
+    The macroscopic prediction of opposite-sign swirl and cycle reversibility can be demonstrated directly with simple tracer experiments. For instance, dye or ink layers placed at $\pm z_0$ should rotate in opposite directions during a stroke, with the motions canceling once the driver returns. Such a setup offers a clear and even classroom-level illustration of angle cancellation in rotating flows.
+
+    The speculative time-rate analogy points to a different outcome: a cycle-averaged deficit of order $\alpha_f^2$ that does not reverse. Detecting such a subtle effect would require synchronized tracer clocks capable of fractional timing resolution on the order of $10^{-16}$ per cycle—far beyond current experimental capabilities, but in principle measurable. Even a null result would be informative, since it would place bounds on $\alpha_f$ and therefore limit the analogy.
+
+    \section*{Conclusion (Part II)}
+    We have analyzed the azimuthal response of a vertically forced, axisymmetric driver in a rapidly rotating fluid. The theory predicts opposite-sign vertical vorticity above and below the driver, producing tracer motions that cancel over a symmetric cycle. This reversibility is consistent with classical rotating-flow dynamics in the low-Rossby, low-Ekman regime.
+
+    As a complementary exploration, we introduced a dimensionless \emph{fluid fine-structure constant} $\alpha_f$ together with a kinematic time-rate rule. While the resulting prediction—a minuscule but non-reversing time deficit quadratic in $\alpha_f$—remains far below present experimental resolution, it is nonetheless falsifiable in principle. Framed in this way, the analogy connects the present work to the analogue-gravity tradition while keeping a clear distinction between established macroscopic dynamics and speculative microscopic interpretation.
+
+    \subsection*{Appendix A: Details for the Gaussian kernel}
+        With \(\psi=\exp(-(r^2+z^2)/a^2)\),
+        \[
+            \p_z\xi = Z(t)\,\p_z\psi = -\frac{2Z(t)\,z}{a^2} e^{-(r^2+z^2)/a^2}.
+        \]
+        Inserting into \eqref{eq:uth}:
+        \[
+            u_\theta(r,z,t)=\frac{2\Omega}{r}\int_0^r \left(-\frac{2Z(t)\,z}{a^2}e^{-(r'^2+z^2)/a^2}\right) r'\,\dd r'.
+        \]
+        The radial integral evaluates to
+        \[
+            \int_0^r e^{-r'^2/a^2}\,r'\,\dd r'=\frac{a^2}{2}\left(1-e^{-r^2/a^2}\right),
+        \]
+        giving the stated result \eqref{eq:uth_gauss}. The near-axis expansion follows from \(1-e^{-r^2/a^2}\sim r^2/a^2\).
+
+    \subsection*{Appendix B: When reversibility can fail (order estimates)}
+        Let \(\epsilon\sim \mathrm{Ro}\) be a small parameter. Viscous corrections scale as \(\mathcal{O}(\mathrm{E}^{1/2})\) in bulk via Ekman pumping. Quadratic advection \((\bU\!\cdot\!\grad)\bU\) introduces steady streaming at \(\mathcal{O}(\epsilon^2)\), yielding a nonzero mean angle per cycle. Near the inertial band \(|\sigma-2\Omega|\ll 2\Omega\), wave radiation produces phase lags \(\mathcal{O}(\epsilon)\) that also break exact reversal \cite{Greenspan1968}. Operating with \(\sigma\ll 2\Omega\), \(\epsilon\ll1\), and small \(\mathrm{E}\) ensures the leading-order predictions.
+
+%=================================================================
+    \section*{Part III: Skyrmionic Photon Emission from Knotted Swirl Sources}
+%=================================================================
+
+    Recent demonstrations of \emph{single-photon skyrmions} in spin–orbit–engineered semiconductor microcavities and per-photon conservation of orbital angular momentum (OAM) in nonlinear down-conversion provide a rigorous template for a Vortex \AE ther Model (VAM) theory of photon emission from knotted swirl sources. We (i) map optical skyrmion topology to VAM vortex charge, (ii) define a projection law from normalized vorticity to single-photon Stokes fields, (iii) formulate OAM selection rules for multiphoton channels as a VAM ``radiative vertex,'' and (iv) anchor the emission frequency scale to $C_{e}/r_{c}$ with numerical validation using the user's constants. The resulting framework yields falsifiable predictions: topological spectroscopy of knotted emitters, chirality--helicity control at fixed OAM additivity, robustness of skyrmion number in propagation, and Purcell-tunable topological textures.
+
+%-----------------------------------------------------------------
+    \section{From optical skyrmions to VAM topology}
+%-----------------------------------------------------------------
+    Optical skyrmions synthesized by superposing Laguerre–Gaussian (LG) cavity modes with opposite circular polarizations carry an integer topological charge (skyrmion number) computed from the local Stokes vector field \cite{Ma2025NanoPhotonSkyrmions,Shen2024NatPhoton,Allen1992OAM}. Denote the normalized Stokes vector by $\hat{\vec S}(\mathbf{k}\!_\perp)$ across the transverse $k$-plane. The optical skyrmion number is
+    \begin{equation}
+    {N}_{\mathrm{sk}}^{(\mathrm{ph})} = \frac{1}{4\pi} \int d^{2}k_\perp \;
+    \hat{\vec{S}} \cdot \left( \partial_{k_x} \hat{\vec{S}} \times \partial_{k_y} \hat{\vec{S}} \right) \in \mathbb{Z}
+    \label{eq:Nsk}
+    \end{equation}
+    In VAM, particle-like configurations are knotted vortex tubes of an incompressible, inviscid \ae ther. Let $\boldsymbol{\omega}=\nabla\times \mathbf{v}$ be the vorticity, and $\hat{\boldsymbol{\omega}}=\boldsymbol{\omega}/|\boldsymbol{\omega}|$. We define the \emph{vortex topological charge} on an emitting cross-section $\Sigma$ by
+    \begin{equation}
+        H_{\mathrm{vortex}}[\hat{\boldsymbol{\omega}}|\Sigma] \equiv
+        \frac{1}{4\pi}\int_{\Sigma}\hat{\boldsymbol{\omega}}\cdot
+        \left( \partial_x \hat{\boldsymbol{\omega}} \times \partial_y \hat{\boldsymbol{\omega}} \right) \, dx \, dy
+        \label{eq:Hvortex}
+    \end{equation}
+
+    \textbf{Conclusion 1 (topological inheritance).} A skyrmionic single-photon emitted by a knotted swirl inherits the integer topology of the emitter:
+    \begin{equation}
+        \boxed{N_{\mathrm{sk}}^{(\mathrm{ph})} = H_{\mathrm{vortex}}[\hat{\boldsymbol{\omega}}|\Sigma]}
+        \qquad\text{(projection equivalence).}
+        \label{eq:projection_equivalence}
+    \end{equation}
+    This identifies the observed single-photon skyrmions \cite{Ma2025NanoPhotonSkyrmions} with VAM’s topological sector (cf.\ helicity concepts in vortex dynamics \cite{Moffatt1969Helicity}).
+
+%-----------------------------------------------------------------
+    \section{Projection law: from swirl to Stokes}
+%-----------------------------------------------------------------
+    Let the (transverse) swirl-aligned polarization source on $\Sigma$ be
+    \begin{equation}
+        \mathbf{p}(\mathbf{r}) = p_0(\mathbf{r}) \, \hat{\boldsymbol{\omega}}_\perp(\mathbf{r})
+    \end{equation}
+    where $\hat{\boldsymbol{\omega}}_\perp$ is the component orthogonal to the radiation direction. The far-field Jones vector in mode space is given by a projected Huygens–Kirchhoff integral (dimensionally: field amplitude)
+    \begin{equation}
+        \mathbf{E}(\mathbf{k}) \propto \int_{\Sigma} d^{2}r \; \mathbf{P}_\perp(\hat{\mathbf{k}}) \, \mathbf{p}(\mathbf{r}) \, e^{-i\mathbf{k}\cdot \mathbf{r}}, \qquad \mathbf{P}_\perp = \mathbf{I} - \hat{\mathbf{k}} \hat{\mathbf{k}}^\top
+        \label{eq:HK}
+    \end{equation}
+    Expanding $\mathbf{E}$ in the LG basis $u_{p,\ell}(\mathbf{r})$ \cite{Allen1992OAM}, with circular unit vectors $\hat{e}_\sigma$ ($\sigma=\pm 1$),
+    \begin{equation}
+        A_{p\ell\sigma} = \int_{\Sigma} d^{2}r \;
+        \left( \hat{e}_\sigma^* \cdot \mathbf{P}_\perp \hat{\boldsymbol{\omega}}_\perp \right)
+        u_{p,\ell}(\mathbf{r}) \, e^{i\Phi(\mathbf{r})}
+        \label{eq:modal_overlap}
+    \end{equation}
+    and the Stokes field $S_i(\mathbf{k})=\mathbf{E}^\dagger\sigma_i\mathbf{E}/(\mathbf{E}^\dagger\mathbf{E})$ produces $N_{\mathrm{sk}}^{(\mathrm{ph})}$ via \eqref{eq:Nsk}.
+
+    \textbf{Conclusion 2 (LG synthesis in VAM).} The same SAM--OAM mixing (spin--orbit coupling) used to build optical skyrmions in microcavities \cite{Ma2025NanoPhotonSkyrmions,Shen2024NatPhoton} is reproduced by \eqref{eq:modal_overlap}: knotted swirl geometry sets the LG superposition ${A_{p\ell\sigma}}$, hence the emitted photon’s skyrmionic Stokes texture.
+
+    \paragraph{Dimensional check.} $\mathbf{P}_\perp$ is dimensionless; $u_{p,\ell}$ is normalized mode amplitude; $e^{-i\mathbf{k}\cdot\mathbf{r}}$ dimensionless; $d^2 r$ gives area. $\mathbf{p}$ carries the source amplitude. Thus $A_{p\ell\sigma}$ has the correct field-amplitude dimension (arbitrary global normalization fixed by radiometry).
+
+%-----------------------------------------------------------------
+    \section{VAM radiative vertex: OAM additivity and chirality}
+%-----------------------------------------------------------------
+    Experiments show per-photon OAM conservation in SPDC: $\ell_p=\ell_s+\ell_i$ via the azimuthal integral and a commuting OAM operator \cite{Kopf2025OAMConservation,Walborn2010SPDCReview}. VAM adopts the same symmetry logic for a knotted source of azimuthal index $\ell_{\rm src}$:
+    \begin{equation}
+        \boxed{\ell_{\rm src} = \sum_{j=1}^{n} \ell_j \quad \text{for an $n$-photon channel}}
+        \label{eq:oam_additivity}
+    \end{equation}
+    with no strict conservation law on the radial indices $p_j$ (set by overlap waists and geometry), exactly as in SPDC \cite{Walborn2010SPDCReview}.
+
+    \textbf{Conclusion 3 (chirality--helicity rule).} In VAM, ccw (matter) swirl $\Rightarrow \sigma=+1$ photon helicity; cw (antimatter) swirl $\Rightarrow \sigma=-1$. External control that flips swirl chirality flips photon helicity while preserving \eqref{eq:oam_additivity}---mirroring polarity control of single-photon skyrmions in cavities \cite{Ma2025NanoPhotonSkyrmions}.
+
+%-----------------------------------------------------------------
+    \section{Frequency and energy scale from VAM constants}
+%-----------------------------------------------------------------
+    Define the fundamental swirl eigenfrequency
+    \begin{equation}
+        \boxed{\Omega_{0} \equiv \frac{C_{e}}{r_{c}}}, \qquad [\Omega_0] = \mathrm{s^{-1}}
+        \label{eq:Omega0}
+    \end{equation}
+
+    Numerically, with the supplied constants
+    \[
+        C_e = 1.09384563\times 10^{6}\ \mathrm{m\,s^{-1}},\qquad
+        r_c = 1.40897017\times 10^{-15}\ \mathrm{m},
+    \]
+    one finds
+    \begin{equation}
+        \Omega_0 = \frac{C_e}{r_c}
+        \simeq 7.77\times 10^{20}\ \mathrm{s^{-1}}.
+        \label{eq:Omega0-num}
+    \end{equation}
+    The corresponding energy scale for a single quantum is
+    \begin{equation}
+        E_0 = \hbar \Omega_0
+        \simeq 8.2\times 10^{-14}\ \mathrm{J}
+        \simeq 5.1\times 10^{5}\ \mathrm{eV}
+        = 0.511\ \mathrm{MeV},
+        \label{eq:E0}
+    \end{equation}
+    i.e.\ numerically equal to the electron rest energy. This is taken as a
+    \emph{kinematic anchor}: the simplest identification is that the
+    $m=1$ line of the swirl spectrum matches the electron rest scale.
+
+    \paragraph{Quantized line set.}
+        Let $m\in\mathbb{Z}_{\ge 1}$ label axial swirl harmonics of a knotted
+        source, and let $\delta\omega_\ell$ denote an $m$-independent
+        multiplet splitting associated with transverse structure (e.g.\ OAM
+        index $\ell$ and cavity/geometric shifts). A minimal ansatz is
+        \begin{equation}
+            \boxed{~
+            \omega_{m\ell} = m\,\Omega_0 + \delta\omega_\ell,
+                \qquad
+                E_{m\ell} = \hbar\omega_{m\ell} = m\,E_0 + \delta E_\ell.~
+            }
+            \label{eq:omegamell}
+        \end{equation}
+        To leading order, $m$ organizes a ladder at integer multiples of
+        $E_0$, while $\delta E_\ell$ encodes knot class, OAM, and environment.
+
+    \paragraph{Dimensional check.}
+        In \eqref{eq:Omega0}, $[C_e/r_c]=(\mathrm{m\,s^{-1}})/\mathrm{m}=
+    \mathrm{s^{-1}}$. In \eqref{eq:E0}, $[\hbar\Omega_0]=
+    (\mathrm{J\,s})\,\mathrm{s^{-1}}=\mathrm{J}$.
+
+    \subsection{Mapping VAM photon classes to laboratory observables}
+    At the level of kinematics, three “photon classes’’ are singled out:
+
+    \begin{enumerate}
+        \item \textbf{Rest-anchored photons ($m=1$).}
+        Lines with $m=1$ and small $|\delta E_\ell|$ are tied to the
+        $0.511\ \mathrm{MeV}$ scale via \eqref{eq:E0}. In a VAM-inspired
+        reading, these arise from swirl-string excitations that are
+        topologically bound to an electron-class knot but radiatively
+        on-shell as photons.
+
+        \item \textbf{Higher-harmonic photons ($m>1$).}
+        The $m>1$ set generalizes to multi-quantum swirl windings. In
+        principle, VAM permits $m=2$ at $\approx 1.022\ \mathrm{MeV}$, etc.,
+        subject to stability and coupling. In practice, this ladder is shaped
+        by selection rules in the radiative vertex and by available energy.
+
+        \item \textbf{Topological multiplets ($\delta E_\ell$).}
+        Within a fixed $m$, different knot classes and OAM indices $(p,\ell)$
+        map to small shifts $\delta E_\ell$. These splittings are expected to
+        be much smaller than $E_0$, and they carry the “topological
+        spectroscopy’’ content.
+    \end{enumerate}
+
+    \paragraph{Analogy for a 10-year-old.}
+        Think of $E_0$ as the “pitch’’ of a guitar string that sets the base
+        note. The integer $m$ chooses higher octaves (same note, higher
+        pitch), while $\ell$ is like different ways of plucking that slightly
+        detune or color the sound without moving it to a completely different
+        note.
+
+
+%-----------------------------------------------------------------
+    \section{Falsifiable predictions for skyrmionic photon emission}
+%-----------------------------------------------------------------
+
+    Collecting the ingredients \eqref{eq:Nsk}--\eqref{eq:projection_equivalence},
+    \eqref{eq:HK}--\eqref{eq:modal_overlap}, \eqref{eq:oam_additivity}, and
+    \eqref{eq:omegamell}, we obtain a set of concrete predictions.
+
+    \subsection{P1: Topological spectroscopy of knotted emitters}
+        For a fixed emitter geometry with vortex charge
+        $H_{\mathrm{vortex}}[\hat{\boldsymbol{\omega}}|\Sigma]=Q$,
+        Eq.~\eqref{eq:projection_equivalence} implies
+        \begin{equation}
+            \boxed{~
+            N_{\mathrm{sk}}^{(\mathrm{ph})} = Q\quad
+            \text{for all emitted single photons that inherit the same
+            mode family}.~
+            }
+        \end{equation}
+        Experimentally, this means that the skyrmion number extracted from
+        Stokes tomography of single photons should be \emph{locked} to the
+        topological sector of the underlying emitter, independent of moderate
+        changes in pump power, cavity $Q$, and collection angle, provided the
+        emission channel (LG family) is unchanged.
+
+    \subsection{P2: Chirality--helicity control at fixed OAM additivity}
+        The vertex rule \eqref{eq:oam_additivity} enforces
+        \[
+            \ell_{\rm src} = \sum_{j=1}^{n}\ell_j
+        \]
+        for an $n$-photon channel, matching observed OAM conservation in
+        SPDC-like processes \cite{Kopf2025OAMConservation,Walborn2010SPDCReview}.
+        In VAM, ccw vs.\ cw swirl corresponds to matter vs.\ antimatter
+        chirality. The mapping
+        \[
+            \text{ccw swirl} \;\Rightarrow\; \sigma=+1,\qquad
+            \text{cw swirl} \;\Rightarrow\; \sigma=-1
+        \]
+        gives:
+
+        \begin{equation}
+            \boxed{~
+            \text{Flipping swirl chirality at the source flips photon helicity
+                $(\sigma\to-\sigma)$ while preserving OAM additivity
+                \eqref{eq:oam_additivity}.~
+            }
+        \end{equation}
+
+        \noindent
+        A direct test is to engineer a platform where the same OAM-resolved
+        emission process can be driven with opposite swirl chirality (e.g.\
+        reversing a circulating pump mode in a microcavity
+        \cite{Ma2025NanoPhotonSkyrmions,Shen2024NatPhoton}) and verify that:
+        (i) the OAM distribution $\{\ell_j\}$ is unchanged, while
+        (ii) the circular polarization (helicity) flips, and thus the sign of
+        $N_{\mathrm{sk}}^{(\mathrm{ph})}$ in propagation reverses.
+
+    \subsection{P3: Robust skyrmion number under propagation and moderate disorder}
+        Because $N_{\mathrm{sk}}^{(\mathrm{ph})}$ is a homotopy invariant
+        \cite{Ma2025NanoPhotonSkyrmions,Shen2024NatPhoton}, the VAM mapping
+        predicts:
+
+        \begin{equation}
+            \boxed{~
+            N_{\mathrm{sk}}^{(\mathrm{ph})}\ \text{is invariant under smooth
+            propagation through linear, weakly disordered media that do not
+            close the Stokes-vector “gap’’.}~
+            }
+        \end{equation}
+
+        Operationally, this means that if a skyrmionic photon is sent through
+        moderate index disorder, the measured skyrmion number at the output
+        should remain quantized and equal to the input value up to rare
+        topology-changing events (e.g.\ mode mixing that crosses a singular
+        configuration). This mirrors the robustness of helicity in knotted
+        vorticity fields \cite{Moffatt1969Helicity}.
+
+    \subsection{P4: Purcell-tunable topological textures}
+        The overlap amplitude \eqref{eq:modal_overlap} is shaped by the local
+        density of states (LDOS) at the emitter, and hence by the Purcell
+        factor $F_P$ in a cavity environment \cite{Purcell1946,BornWolf1999}.
+        Within VAM, tuning $F_P$ changes the relative weights of the LG
+        components without altering the underlying vortex charge, so:
+
+        \begin{equation}
+            \boxed{~
+            \text{Purcell tuning reshapes the skyrmion texture (size, contrast)
+                but not its integer charge } N_{\mathrm{sk}}^{(\mathrm{ph})}.~
+            }
+        \end{equation}
+
+        A direct falsifier is the observation of continuous deformation of
+        $N_{\mathrm{sk}}^{(\mathrm{ph})}$ across non-singular parameter
+        changes in the cavity that preserve the knot class of the underlying
+        swirl source.
+
+    \subsection{P5: Line assignments near the electron rest scale}
+        Given \eqref{eq:E0} and \eqref{eq:omegamell}, VAM motivates the
+        following assignment:
+
+        \begin{equation}
+            \boxed{~
+            m=1\ \text{line} \Rightarrow E_{1\ell}\approx
+            m_e c^2 \quad (\text{up to }|\delta E_\ell|\ll E_0).~
+            }
+        \end{equation}
+
+        Any consistent embedding of VAM into QED must ensure that:
+        (i) radiative corrections and self-energy shifts do not destroy this
+        match, and
+        (ii) higher harmonics $m\ge 2$ either decouple or appear as
+        short-lived, strongly suppressed channels. Observationally, the
+        absence of a clean, equally spaced ladder at $(2,3,\dots)\times
+    0.511\ \mathrm{MeV}$ in high-precision spectroscopy constrains
+        $|\delta E_\ell|$ and/or the couplings of $m>1$ sectors.
+
+        \paragraph{Analogy for a 10-year-old.}
+            Imagine tiny “spinning knots’’ that can flick pieces of their motion
+            away as light. The way they are tied (knot type) decides the pattern
+            on the light; how fast they spin decides the color (energy). Changing
+            the room’s acoustics (cavity) makes the pattern fuzzier or sharper,
+            but not a different kind of knot.
+
+
+%-----------------------------------------------------------------
+    \section{Minimal experimental roadmap}
+%-----------------------------------------------------------------
+
+    \subsection{E1: Re-analyzing single-photon skyrmion data}
+        Existing experiments on single-photon skyrmions in microcavities and
+        structured beams
+        \cite{Ma2025NanoPhotonSkyrmions,Shen2024NatPhoton,Allen1992OAM}
+        already implement much of the machinery required to test VAM’s
+        selection rules:
+
+        \begin{itemize}
+            \item Re-express measured Stokes fields as functions of a reconstructed
+            $\hat{\boldsymbol{\omega}}_\perp$ model and check the projection
+            equivalence \eqref{eq:projection_equivalence}.
+            \item Verify that $N_{\mathrm{sk}}^{(\mathrm{ph})}$ remains tied to a
+            discrete set of emitter configurations, not to continuously tunable
+            pump amplitudes or detunings (except at topology-changing points).
+            \item Look for channels where swirl chirality can be flipped while
+            probing helicity and OAM additivity independently.
+        \end{itemize}
+
+    \subsection{E2: Swirl-based emitters at non-optical frequencies}
+        In a more literal fluid-inspired realization, one can design
+        macroscopic swirl sources (e.g.\ helical acoustic or mechanical
+        lattices) that couple to photonic modes via electro-optic, magneto-
+        optic, or piezo-optic effects. The VAM framework predicts:
+
+        \begin{itemize}
+            \item A direct relation between the winding structure of the emitter
+            and the skyrmion number of the generated photons.
+            \item Controllability of helicity via the sense of mechanical swirl
+            or driven rotation, while preserving OAM additivity.
+        \end{itemize}
+
+        Although such systems operate many orders of magnitude below the
+        fundamental frequency $\Omega_0$, they provide a clean testbed for
+        the purely topological aspects (P1–P4) independent of the absolute
+        energy scale (P5).
+
+    \subsection{E3: Cross-checks with high-energy data}
+        At the $\sim\mathrm{MeV}$ scale, the identification
+        $E_0\simeq m_e c^2$ is sharply tested by existing QED precision data.
+        A consistent VAM embedding must reproduce:
+
+        \begin{itemize}
+            \item The electron mass and anomalous magnetic moment at current
+            precision.
+            \item The absence of extra stable spectral lines at
+            $n\times 0.511\ \mathrm{MeV}$, $n>1$, with appreciable strength.
+        \end{itemize}
+
+        These constraints do not falsify the topological mapping itself, but
+        they carve out the allowed parameter space for how $\delta E_\ell$
+        and higher-$m$ couplings can appear.
+
+
+%-----------------------------------------------------------------
+    \section*{Global Conclusion}
+%-----------------------------------------------------------------
+
+    \paragraph{Part I.}
+        We showed that an impulsive axisymmetric rotor in a rotating water
+        tank launches an inertial-wave packet whose vertical group velocity
+        \eqref{eq:cg} predicts the delayed, bipolar surface “push--pull’’
+        signal. The dependence $t_{\mathrm{arr}}\propto\Omega^{-1}$ and
+        $\eta_{\max}\propto\Omega$ explains why the phenomenon switches off
+        at $\Omega=0$. A fluid-inspired, $u^{2}$-based time-rate hypothesis
+        was framed as a parity test that does not modify macrodynamics.
+
+    \paragraph{Part II.}
+        We analyzed the azimuthal response to axisymmetric vertical forcing
+        in a rapidly rotating fluid. The vorticity production law
+        $\p_t\omega_z=2\Omega\,\p_z w$ implies opposite-sign swirl above and
+        below the driver, and linear reversibility yields zero net angle over
+        a symmetric stroke, modulo small higher-order corrections. A
+        dimensionless “fluid fine-structure constant’’ and associated
+        time-rate rule were introduced as a speculative, but in-principle
+        falsifiable, analogy.
+
+    \paragraph{Part III.}
+        We connected recent demonstrations of single-photon skyrmions and
+        per-photon OAM conservation to a VAM-style picture of photon emission
+        from knotted swirl sources. A projection law from vorticity to Stokes
+        fields links the skyrmion number of emitted photons to a vortex
+        topological charge. A radiative vertex with OAM additivity and
+        chirality–helicity mapping was formulated, and a fundamental
+        frequency scale $\Omega_0=C_e/r_c$ was numerically identified with
+        the electron rest energy. This yields explicit, testable predictions
+        for topological spectroscopy, chirality control, robustness under
+        propagation, and consistency with high-precision QED.
+
+    \paragraph{Overall.}
+        Throughout, the macroscopic fluid equations remain standard. The
+        VAM-inspired elements are deliberately segregated as kinematic
+        hypotheses: they either pass laboratory tests or they do not. This
+        separation keeps the classical rotating-flow benchmarks intact while
+        making the fluid-inspired microscopic ideas quantitatively
+        falsifiable rather than purely metaphorical.
+
+%-----------------------------------------------------------------
+    \section*{Acknowledgments}
+%-----------------------------------------------------------------
+    The fluid-mechanics and wave arguments draw on classical treatments
+    of rotating flows, vorticity dynamics, and wave propagation
+    \cite{Batchelor1967,Greenspan1968,Saffman1992,Vallis2017,
+        LandauFluids,Lighthill78,Brillouin1960,Jackson1999}. The topological
+    photon aspects are inspired by recent experimental and theoretical
+    work on optical skyrmions and photon OAM
+    \cite{Allen1992OAM,Ma2025NanoPhotonSkyrmions,Shen2024NatPhoton,
+        Kopf2025OAMConservation,Walborn2010SPDCReview,Moffatt1969Helicity}.
+    Gravitational-wave speed constraints from GW170817
+    \cite{Abbott2017PRL,Abbott2017ApJL} guide the discussion of
+    additional signaling branches.
+
+
+
+%=================================================================
+    \begin{thebibliography}{99}
+%=================================================================
+
+        \bibitem{Batchelor1967}
+        G.~K.~Batchelor,
+        \newblock \emph{An Introduction to Fluid Dynamics},
+        \newblock Cambridge University Press, Cambridge (1967).
+
+        \bibitem{Greenspan1968}
+        H.~P.~Greenspan,
+        \newblock \emph{The Theory of Rotating Fluids},
+        \newblock Cambridge University Press, Cambridge (1968).
+
+        \bibitem{Saffman1992}
+        P.~G.~Saffman,
+        \newblock \emph{Vortex Dynamics},
+        \newblock Cambridge University Press, Cambridge (1992).
+
+        \bibitem{Vallis2017}
+        G.~K.~Vallis,
+        \newblock \emph{Atmospheric and Oceanic Fluid Dynamics}, 2nd ed.,
+        \newblock Cambridge University Press, Cambridge (2017).
+
+        \bibitem{LandauFluids}
+        L.~D.~Landau and E.~M.~Lifshitz,
+        \newblock \emph{Fluid Mechanics}, 2nd ed.,
+        \newblock Pergamon Press, Oxford (1987).
+
+        \bibitem{Lighthill78}
+        M.~J.~Lighthill,
+        \newblock \emph{Waves in Fluids},
+        \newblock Cambridge University Press, Cambridge (1978).
+
+        \bibitem{Brillouin1960}
+        L.~Brillouin,
+        \newblock \emph{Wave Propagation and Group Velocity},
+        \newblock Academic Press, New York (1960).
+
+        \bibitem{Jackson1999}
+        J.~D.~Jackson,
+        \newblock \emph{Classical Electrodynamics}, 3rd ed.,
+        \newblock Wiley, New York (1999).
+
+        \bibitem{Abbott2017PRL}
+        B.~P.~Abbott \emph{et al.} (LIGO Scientific Collaboration and Virgo Collaboration),
+        \newblock ``GW170817: Observation of Gravitational Waves from a Binary Neutron Star Inspiral'',
+        \newblock Phys.\ Rev.\ Lett.\ \textbf{119}, 161101 (2017).
+
+        \bibitem{Abbott2017ApJL}
+        B.~P.~Abbott \emph{et al.},
+        \newblock ``Multi-messenger Observations of a Binary Neutron Star Merger'',
+        \newblock Astrophys.\ J.\ Lett.\ \textbf{848}, L12 (2017).
+
+        \bibitem{Proudman1916}
+        J.~Proudman,
+        \newblock ``On the motion of solids in a liquid possessing vorticity'',
+        \newblock Proc.\ R.\ Soc.\ Lond.\ A \textbf{92}, 408--424 (1916).
+
+        \bibitem{Taylor1923}
+        G.~I.~Taylor,
+        \newblock ``Experiments on the motion of solid bodies in rotating fluids'',
+        \newblock Proc.\ R.\ Soc.\ Lond.\ A \textbf{104}, 213--218 (1923).
+
+        \bibitem{Allen1992OAM}
+        L.~Allen, M.~W.~Beijersbergen, R.~J.~C.~Spreeuw, and J.~P.~Woerdman,
+        \newblock ``Orbital angular momentum of light and the transformation of Laguerre–Gaussian laser modes'',
+        \newblock Phys.\ Rev.\ A \textbf{45}, 8185--8189 (1992).
+
+        \bibitem{Moffatt1969Helicity}
+        H.~K.~Moffatt,
+        \newblock ``The degree of knottedness of tangled vortex lines'',
+        \newblock J.\ Fluid Mech.\ \textbf{35}, 117--129 (1969).
+
+        \bibitem{Ma2025NanoPhotonSkyrmions}
+        X.~Ma \emph{et al.},
+        \newblock ``Single-photon optical skyrmions in spin–orbit–engineered microcavities'',
+        \newblock (Nano/Photonics journal, 2025; details to be specified).
+
+        \bibitem{Shen2024NatPhoton}
+        Y.~Shen \emph{et al.},
+        \newblock ``Topological textures of structured photons'',
+        \newblock (Nature Photonics, 2024; details to be specified).
+
+        \bibitem{Kopf2025OAMConservation}
+        T.~Kopf \emph{et al.},
+        \newblock ``Per-photon orbital-angular-momentum conservation in down-conversion'',
+        \newblock (journal and details to be specified, 2025).
+
+        \bibitem{Walborn2010SPDCReview}
+        S.~P.~Walborn, C.~H.~Monken, S.~Padua, and P.~H.~Souto Ribeiro,
+        \newblock ``Spatial correlations in parametric down-conversion'',
+        \newblock Phys.\ Rep.\ \textbf{495}, 87--139 (2010).
+
+        \bibitem{Purcell1946}
+        E.~M.~Purcell,
+        \newblock ``Spontaneous emission probabilities at radio frequencies'',
+        \newblock Phys.\ Rev.\ \textbf{69}, 681 (1946).
+
+        \bibitem{BornWolf1999}
+        M.~Born and E.~Wolf,
+        \newblock \emph{Principles of Optics}, 7th ed.,
+        \newblock Cambridge University Press, Cambridge (1999).
+
+%=================================================================
+    \end{thebibliography}
+%=================================================================
+
+\end{document}
