@@ -12,27 +12,40 @@
 %========================================================================================
 % PACKAGES AND DOCUMENT CONFIGURATION
 %========================================================================================
-\documentclass[aps,prb,preprint,amsmath,amssymb]{revtex4-2}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{siunitx}
-\usepackage{graphicx}
+\documentclass[11pt]{article}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+% ====== minimal packages ======
+\usepackage{amsmath,amssymb,amsfonts}
 \usepackage{bm}
 \usepackage{physics}
-\usepackage{amssymb}
+\usepackage{microtype}
+\usepackage{tcolorbox}
+
+
+% ==== Packages ====
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{booktabs}
+\usepackage[utf8]{inputenc}
+\usepackage[caption=false]{subfig}
+
+
+\usepackage{siunitx}
+\usepackage{graphicx}
+
 \usepackage{tikz}
 \usepackage{float}
 \usepackage{placeins}
-\usepackage{amsmath}
-\usepackage{tcolorbox}
+
 \usetikzlibrary{knots,intersections,decorations.pathreplacing,3d,calc,arrows.meta,positioning,decorations.pathmorphing}
 \usepackage{pgfmath}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
-\usepackage{lmodern}
+
 \usepackage{mathtools}
 \usepackage[normalem]{ulem}
 \usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
 
 %=================================================================
 %====================  Rosetta v0.6 / Canon macro layer (aliases)  ====================
@@ -87,27 +100,70 @@
 % \providecommand{\Vortex}{\text{swirl}}
 %======================================================================================
 
+\newcommand{\titlepageOpen}{
+    \begin{titlepage}
+    \thispagestyle{empty}
+    \centering
+    {\Large\bfseries Revisiting Structured Space: \\  From Einstein to a Swirl–String Framework \par }
+    \vspace{1cm}
+    {\Large\itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par}
+    \vspace{0.5cm}
+    {\today \par}
+    \vspace{0.5cm}
+}
 
+% here comes abstract
+\newcommand{\titlepageClose}{
+
+    \raggedright % <-- fixes left alignment
+    \null
+    \begin{picture}(0,0)
+    % Adjust position: (x,y) = (left, bottom)
+    \put(0,-45){  % Shift 200pt left, 40pt down
+        \begin{minipage}[b]{\textwidth}
+        \footnotesize % One step bigger than \tiny \scriptsize
+        \renewcommand{\arraystretch}{1.0}
+        \noindent\rule{\textwidth}{0.4pt} \\[0.5em]  % ← horizontal line
+        \textsuperscript{\textbf{*}} Independent Researcher, Groningen, The Netherlands \\
+        Email: \texttt{info@omariskandarani.com} \\
+        ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}} \\
+        DOI: \href{https://doi.org/\paperdoi}{\paperdoi} \\
+
+        \end{minipage}
+    }
+    \end{picture}
+    \end{titlepage}
+}
+\providecommand{\authorcontributions}[1]{}
+\providecommand{\funding}[1]{}
+\providecommand{\institutionalreview}[1]{}
+\providecommand{\informedconsent}[1]{}
+\providecommand{\dataavailability}[1]{}
+\providecommand{\supplementary}[1]{}
+\providecommand{\conflictsofinterest}[1]{}
+\providecommand{\abbreviations}[2]{}
+\providecommand{\reftitle}[1]{}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 % MDPI metadata block
-\affiliation{$^{1}$ \\ Independent Researcher, Groningen, The Netherlands;  info@omariskandarani.com}
-\corres{Correspondence: info@omariskandarani.com}
-\title{Revisiting Structured Space: From Einstein to a Swirl–String Framework}
-\author{Omar Iskandarani}
-\thanks{ORCID: 0009-0006-1686-3961, DOI: \paperdoi}
-\date{\today}
+    \titlepageOpen
+
+
 %=================================================================
 % Abstract — rewritten in Rosetta v0.6 mainstream language
-\abstract{This paper revisits Einstein’s later remarks on a structured space and proposes a modern realization in a swirl–string framework with preferred foliation. The medium is modeled as an incompressible, inviscid condensate supporting quantized circulation along closed filaments (swirl strings). Gravitational and inertial phenomena arise from swirl-induced pressure gradients and coherent circulation, with local time scaling governed by the tangential swirl speed. Mass corresponds to localized topological tension, and attraction emerges from Bernoulli-like pressure deficits sustained by circulation invariants. The framework yields testable predictions for clock behavior, frame-dragging analogues, and vorticity-coupled fields, with analog implementations in superfluids and optical platforms. We argue that “structured space” is neither obsolete nor purely geometric: it is a dynamic, quantized substrate amenable to precise modeling and experiment.}
-
+\begin{abstract}
+This paper revisits Einstein’s later remarks on a structured space and proposes a modern realization in a swirl–string framework with preferred foliation. The medium is modeled as an incompressible, inviscid condensate supporting quantized circulation along closed filaments (swirl strings). Gravitational and inertial phenomena arise from swirl-induced pressure gradients and coherent circulation, with local time scaling governed by the tangential swirl speed. Mass corresponds to localized topological tension, and attraction emerges from Bernoulli-like pressure deficits sustained by circulation invariants. The framework yields testable predictions for clock behavior, frame-dragging analogues, and vorticity-coupled fields, with analog implementations in superfluids and optical platforms. We argue that “structured space” is neither obsolete nor purely geometric: it is a dynamic, quantized substrate amenable to precise modeling and experiment.
+\end{abstract}
+    \vfill
+    \paragraph{keyword} emergent gravity; topological fluid dynamics; analogue gravity; swirl strings; preferred foliation; time dilation; structured vacuum
 % Keywords — neutralized (no “\AE ther”, no “Vortex”)
-\keyword{emergent gravity; topological fluid dynamics; analogue gravity; swirl strings; preferred foliation; time dilation; structured vacuum}
+    \noindent\paragraph{\textit{Authorial note.—}} This is a single-author work; I use “we” in the conventional authorial sense in the derivations and exposition that follow.
+        \vspace{0.5cm}
 
+        \titlepageClose
 
 
 %-----------------------------
@@ -124,7 +180,7 @@
 
         Through a topological–dynamical synthesis, the framework offers explicit, testable predictions that connect historical field theory to contemporary advances~\cite{SST-Canonical-Fluid,SST-Heat-Transport,SST-Hydrogen-Gravity}, and aligns with analogue-gravity programs where fluid systems mimic effective relativistic metrics~\cite{barcelo2005}. This trajectory is summarized in Figure~\ref{fig:history-temporal-ontology}, which maps milestones in the conceptualization of time—from classical notions and introspective accounts to relativized geometry and a layered temporality in filamentary circulation.
 
-    \begin
+    \begin{figure}[htbp]
     \resizebox{\textwidth}{!}{%
         \centering
         \scriptsize
@@ -211,9 +267,10 @@
             };
 
         \end{tikzpicture}
+    }
         \caption{\textbf{Historical progression of time concepts from metaphysics to field theory.} The diagram traces Western ontologies of time—from eternal being and motion--based time, through Newtonian absolutes and Einsteinian relativity, to a swirl--string layered temporal framework: absolute foliation \( \Nabs \), proper time \( \tau \), and internal swirl clock \( \Sswirl \).}
         \label{fig:history-temporal-ontology}
-    }
+    \end{figure}
 
         Unlike modern field theories that dispense with any substrate, this approach treats structured space as a dynamically active medium through which geometry, forces, and phases propagate—resonating with dynamical-space models that treat space as a flow~\cite{cahill2003dynamical}.
 
@@ -331,9 +388,11 @@
         so \(d\tau \approx 0.99999334\,dt\) for this characteristic swirl speed (units: \(d\tau,dt\) in s; \(v_t\) in m\,s\(^{-1}\)).
 
         Figure~\ref{fig:history-time-simultaneity} sketches the evolution of simultaneity—from Newtonian absolutes to relativistic geometrization and to a layered temporal ontology in filamentary media. Swirl clocks advance more slowly in regions of high \(v_t\), reproducing time dilation, redshift, and frame-dragging as fluid-mechanical consequences rather than axiomatic spacetime symmetries~\cite{SST-Canonical-Fluid}.
+\begin{figure}[htbp]
+    \centering
 
     \resizebox{\textwidth}{!}{%
-        \centering
+
         \scriptsize
         \begin{tikzpicture}
             \scriptsize
@@ -419,8 +478,9 @@
             };
 
         \end{tikzpicture}
-        \caption{\textbf{Chronology of simultaneity theories across physics and philosophy.} From ancient views (change vs.\ inner sense), through Newton’s absolute simultaneity and Einstein’s frame--dependent proper time, to a swirl--string causal layering. The model introduces a physically grounded sequence culminating in measurable, observer--dependent time \((\tau)\) and discrete topological updates \((\Ktop)\).}\label{fig:history-time-simultaneity}
     }
+        \caption{\textbf{Chronology of simultaneity theories across physics and philosophy.} From ancient views (change vs.\ inner sense), through Newton’s absolute simultaneity and Einstein’s frame--dependent proper time, to a swirl--string causal layering. The model introduces a physically grounded sequence culminating in measurable, observer--dependent time \((\tau)\) and discrete topological updates \((\Ktop)\).}\label{fig:history-time-simultaneity}
+\end{figure}
 
         \vspace{0.8em}
         \noindent\textbf{Temporal sequence (foliation-based)}
@@ -498,7 +558,7 @@
             \item \textbf{Topological time \(\Ktop\):} Discrete updates associated with reconnection or bifurcation events; these produce non-analytic changes (phase slips, time “jumps”) in \(\Sswirl\) or \(\Tv\). Accessible in analogue systems and potentially in astrophysical signals as phase anomalies~\cite{SST-Canon-0.5.10,barcelo2005,volovik2003universe}.
         \end{itemize}
 
-        \begin{figure}[htb]
+        \begin{figure}[htbp]
             \centering
             \includegraphics[width=0.7\textwidth]{figures/TemporalOntologyKairosMoment}
             \caption{\textbf{Swirl–clock phase with a topological disruption.}
@@ -527,8 +587,8 @@
 
         \begin{figure}[!ht]
             \centering
-            \footnotesize
-            \scalebox{0.75}{
+            \resizebox{\textwidth}{!}{%
+                \scriptsize
                 \begin{tikzpicture}[
                     box/.style = {draw, rounded corners, minimum width=2.0cm, minimum height=0.8cm, font=\small, align=center},
                     arrow/.style = {->, thick},   node distance=1.0cm and 1.5cm
@@ -600,8 +660,9 @@
         \subsection*{Wave–Particle Duality Reconsidered}
             The historical wave–particle tension is reinterpreted as an artifact of viewing filamentary excitations in a structured medium. Particles are knotted, topologically stable vorticity configurations; wave-like behavior follows from interference, circulation, and swirl-phase dynamics—no dual ontology required~\cite{SST-Canonical-Fluid}. See Fig.~\ref{fig:WaveParticleDuality}.
 
-        \resizebox{\textwidth}{!}{%
+        \begin{figure}[htbp]
             \centering
+        \resizebox{\textwidth}{!}{%
             \scriptsize
             \begin{tikzpicture}
                 \scriptsize
@@ -685,8 +746,9 @@
                 };
 
             \end{tikzpicture}
-            \caption{\textbf{Intellectual trajectory of wave--particle duality:} from corpuscles and classical waves to quantum dualities and a unified filamentary picture. In a swirl--string framework, excitations are quantized circulation in a structured, incompressible, inviscid medium; wave and particle aspects are limits of the same dynamical structure.}\label{fig:WaveParticleDuality}
         }
+            \caption{\texorpdfstring{\textbf{Intellectual trajectory of wave--particle duality:} from corpuscles and classical waves to quantum dualities and a unified filamentary picture. In a swirl--string framework, excitations are quantized circulation in a structured, incompressible, inviscid medium; wave and particle aspects are limits of the same dynamical structure.}}\label{fig:WaveParticleDuality}
+        \end{figure}
 
 %--------------------- G: calibration note ---------------------
         \subsection*{Swirl–Newton correspondence and the role of \(G\)}
@@ -753,45 +815,21 @@
         \vspace{6pt}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        \authorcontributions{Conceptualization, O.I.; methodology, O.I.; software, O.I.; validation, O.I.; formal analysis, O.I.; investigation, O.I.; resources, O.I.; data curation, O.I.; writing—original draft preparation, O.I.; writing—review and editing, O.I.; visualization, O.I.; supervision, O.I.; project administration, O.I. The author has read and agreed to the published version of the manuscript. The swirl–string framework has been developed continuously since 2014, with public drafts and early derivations accessible via \href{https://docs.google.com/document/d/1ILtqum7WZuvKa3tFXKdw666gtKORZ4X8WGsonBCLAqg}{Google Docs} and the \href{https://github.com/bg-omar/VAM}{project repository}.}
+        \paragraph{authorcontributions}{Conceptualization, O.I.; methodology, O.I.; software, O.I.; validation, O.I.; formal analysis, O.I.; investigation, O.I.; resources, O.I.; data curation, O.I.; writing—original draft preparation, O.I.; writing—review and editing, O.I.; visualization, O.I.; supervision, O.I.; project administration, O.I. The author has read and agreed to the published version of the manuscript. The swirl–string framework has been developed continuously since 2014, with public drafts and early derivations accessible via \href{https://docs.google.com/document/d/1ILtqum7WZuvKa3tFXKdw666gtKORZ4X8WGsonBCLAqg}{Google Docs} and the \href{https://github.com/bg-omar/VAM}{project repository}.}
 
-        \funding{This research received no external funding. The APC was funded by the author.}
+\paragraph{funding}{This research received no external funding. The APC was funded by the author.}
 
-        \institutionalreview{Not applicable.}
+\paragraph{institutionalreview}{Not applicable.}
 
-        \informedconsent{Not applicable.}
+\paragraph{informedconsent}{Not applicable.}
 
-        \dataavailability{All data supporting the findings of this study are contained within the article and its cited references. No additional datasets were generated.}
+\paragraph{dataavailability}{All data supporting the findings of this study are contained within the article and its cited references. No additional datasets were generated.}
 
-        \acknowledgments{The author thanks M. Bakker for steadfast support and constructive discussion. The author also acknowledges the assistance of OpenAI’s ChatGPT (GPT-4o, August 2025 release) for LaTeX formatting, TikZ diagram refinement, and stylistic editing; all AI-assisted content was critically reviewed and approved by the author.}
+\paragraph{acknowledgments}{The author thanks M. Bakker for steadfast support and constructive discussion. The author also acknowledges the assistance of OpenAI’s ChatGPT (GPT-4o, August 2025 release) for LaTeX formatting, TikZ diagram refinement, and stylistic editing; all AI-assisted content was critically reviewed and approved by the author.}
 
-        \supplementary{Additional materials and versioned components are hosted at: \url{https://github.com/bg-omar/VAM} (main repository) and \url{https://github.com/bg-omar/VAMcore} (simulation library). For previous versions or related papers, see the Zenodo community or DOI-linked records from the concept DOI: \href{https://doi.org/10.5281/zenodo.16616699}{10.5281/zenodo.16616699}.}
+        \paragraph{supplementary}{Additional materials and versioned components are hosted at: \url{https://github.com/bg-omar/VAM} (main repository) and \url{https://github.com/bg-omar/VAMcore} (simulation library). For previous versions or related papers, see the Zenodo community or DOI-linked records from the concept DOI: \href{https://doi.org/10.5281/zenodo.16616699}{10.5281/zenodo.16616699}.}
 
-        \conflictsofinterest{The author declares no conflicts of interest. The funders had no role in the design of the study; in the collection, analyses, or interpretation of data; in the writing of the manuscript; or in the decision to publish the results.}
-
-% Optional: abbreviations without banned terms
-        \abbreviations{Abbreviations}{
-            The following abbreviations are used in this manuscript:\\[2pt]
-            \begin{tabular}{@{}ll}
-                GR & General Relativity \\
-                SR & Special Relativity \\
-                EM & Electromagnetism \\
-                QFT & Quantum Field Theory \\
-                QED & Quantum Electrodynamics \\
-                SM & Standard Model \\
-                BEC & Bose–Einstein Condensate \\
-                MZI & Mach–Zehnder Interferometer \\
-                CMB & Cosmic Microwave Background \\
-                IR & Infrared \\
-                PDF & Probability Density Function \\
-                LHS & Left-Hand Side \\
-                RHS & Right-Hand Side \\
-                DOI & Digital Object Identifier \\
-                GPT & Generative Pre-trained Transformer \\
-                TLA & Three-Letter Acronym \\
-                LD & Linear Dichroism \\
-                MDPI & Multidisciplinary Digital Publishing Institute \\
-            \end{tabular}}
+        \paragraph{conflictsofinterest}{The author declares no conflicts of interest. The funders had no role in the design of the study; in the collection, analyses, or interpretation of data; in the writing of the manuscript; or in the decision to publish the results.}
 
 %===========================
 % Appendices (titles neutralized)
@@ -1192,5 +1230,10 @@
             \bibitem{knot_theroy_in_fluid}
             Moffatt, H. K., \& Ricca, R. L. (1992). Applications of Knot Theory in Fluid Mechanics. \textit{Proc. Symp. Appl. Math.}, \textbf{45}, 3–20.
 
+            %--- Add missing bibliography item inside the existing thebibliography block ---
+            \bibitem{hossenfelder2018lost}
+            Hossenfelder, S. (2018).
+            \textit{Lost in Math: How Beauty Leads Physics Astray}.
+            Basic Books.
             \end{thebibliography}
 \end{document}
