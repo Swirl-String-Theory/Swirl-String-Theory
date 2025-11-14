@@ -4,11 +4,11 @@
 %! Affiliation = Independent Researcher, Groningen, The Netherlands
 %! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
 %! ORCID = 0009-0006-1686-3961
-%! DOI = 10.5281/zenodo.17155748
+%! DOI = 10.5281/zenodo.17607006
 
 \newcommand{\canonversion}{\textbf{v0.5.10}} % Semantic versioning: vMAJOR.MINOR.PATCH
 \newcommand{\papertitle}{Swirl String Theory (SST) Canon \canonversion}
-\newcommand{\paperdoi}{10.5281/zenodo.17155748}
+\newcommand{\paperdoi}{10.5281/zenodo.17607006}
 
 %========================================================================================
 % PACKAGES AND DOCUMENT CONFIGURATION
@@ -31,6 +31,16 @@
 \usepackage[utf8]{inputenc}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,calc,fit,decorations.pathmorphing}
+% Tables and Figures
+\usepackage{float}
+
+
+% TOC Customization
+\usepackage{tocloft}
+\setcounter{tocdepth}{1}
+\renewcommand{\cftsecfont}{\footnotesize}
+\renewcommand{\cftsubsecfont}{\footnotesize\itshape}
+\renewcommand{\cftsecleader}{\cftdotfill{5}}
 
 % ===== Gauge sector macros =====
 \newcommand{\Tr}{\mathrm{Tr}}
@@ -39,7 +49,7 @@
 \newcommand{\GsA}{G^a_{\mu\nu}}
 \newcommand{\WsI}{W^i_{\mu\nu}}
 \newcommand{\Bmn}{B_{\mu\nu}}
-
+\sloppy
 % ===============================
 % Macros (canonicalized)
 % ===============================
@@ -125,7 +135,7 @@
 
 \begin{document}
 
-	\title{Swirl String Theory (SST) Canon \canonversion}
+	\title{Swirl String Theory (SST) Canon \canonversion: \\ Core Axioms, Postulates, Constants, Master Equations, and Lagrangian Framework}
 	\author{Omar Iskandarani}
 	\affiliation{Independent Researcher, Groningen, The Netherlands}
     \thanks{ORCID: 0009-0006-1686-3961, DOI: \paperdoi}
@@ -157,9 +167,6 @@
             with photons realized as \emph{pulsed torsional R-phase excitations} (rotational wave packets of the swirl director field). Torus knots correspond to leptons (e.g. electron = $3_1$), and chiral hyperbolic knots to quarks (proton = $5_2+5_2+6_1$ composite). Linked knots describe nuclei and bound states. \\
 
         \end{tabular}
-
-
-		\emph{Keywords:} vortex dynamics; topological fluid; quantum topology; emergent gauge theory; time dilation; wavefunction collapse
     \end{abstract}
     \maketitle
 
@@ -3790,12 +3797,6 @@ Solving for $N^{(1)}_{ss'}$ and inserting into $J_x=\mathrm{Tr}\,\tfrac12\{V_x,N
 %================================================
 % References
 %================================================
-        \nocite{*}
-
-        \bibliography{canon_swirl_string_theory}
-            \bibliographystyle{unsrt}
-
-
 
     \bibliographystyle{unsrt}
     \begin{thebibliography}{99}
