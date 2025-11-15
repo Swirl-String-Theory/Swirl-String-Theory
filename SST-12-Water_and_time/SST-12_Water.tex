@@ -1,5 +1,16 @@
-% !TEX program = pdflatex
-\documentclass[12pt]{article}
+%! Author = Omar Iskandarani
+%! Date = Nov 15, 2025
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.17619573
+
+\newcommand{\paperdoi}{10.5281/zenodo.17619573}
+\newcommand{\papertitle}{Impulsive Axisymmetric Forcing in a Rotating Cylinder,\\
+Reversible Swirl Response, and Skyrmionic Photon Emission:\\
+Fluid Benchmarks and Fluid-Inspired Kinematic Hypotheses}
+
+\documentclass[11pt]{article}
 \usepackage{amsmath,amssymb,amsfonts,bm}
 \usepackage{siunitx}
 \usepackage[hidelinks]{hyperref}
@@ -32,23 +43,58 @@
 \newcommand{\grad}{\boldsymbol{\nabla}}\newcommand{\curl}{\boldsymbol{\nabla}\!\times}\newcommand{\divg}{\boldsymbol{\nabla}\!\cdot}
 \newcommand{\p}{\partial}
 
+
+\newcommand{\titlepageOpen}{
+    \begin{titlepage}
+    \thispagestyle{empty}
+    \centering
+    \ifdefined\standalonechapter
+    {\Large\bfseries \appendixtitle \par}
+    \else
+        {\Large\bfseries \papertitle \par}
+    \fi
+    \vspace{1cm}
+    {\Large\itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par}
+    \vspace{0.5cm}
+    {\today \par}
+    \vspace{0.5cm}
+}
+
+% here comes abstract
+\newcommand{\titlepageClose}{
+    \vfill
+    \raggedright % <-- fixes left alignment
+    \null
+    \begin{picture}(0,0)
+    % Adjust position: (x,y) = (left, bottom)
+    \put(0,-45){  % Shift 200pt left, 40pt down
+        \begin{minipage}[b]{0.7\textwidth}
+        \footnotesize % One step bigger than \tiny \scriptsize
+        \renewcommand{\arraystretch}{1.0}
+        \noindent\rule{\textwidth}{0.4pt} \\[0.5em]  % ← horizontal line
+        \textsuperscript{\textbf{*}} Independent Researcher, Groningen, The Netherlands \\
+        Email: \texttt{info@omariskandarani.com} \\
+        ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}} \\
+        DOI: \href{https://doi.org/\paperdoi}{\paperdoi} \\
+        License: CC-BY-NC 4.0 International \\
+        \end{minipage}
+    }
+    \end{picture}
+    \end{titlepage}
+}
 % ---- Canonical identities (Rosetta) ----
 %  \rhoE = 1/2 \, \rhof \, \|\bm v\|^2; \qquad \rhoM = \rhoE/c^2; \qquad \Omegazero = \|\vSwirl\|/\rc.
 
 %=============== Title and metadata =================
-\title{Impulsive Axisymmetric Forcing in a Rotating Cylinder,\\
-Reversible Swirl Response, and Skyrmionic Photon Emission:\\
-Fluid Benchmarks and Fluid-Inspired Kinematic Hypotheses\\[2pt]
-\large (SST Canon + Rosetta 1:1 Translation with Mainstream Glosses)}
-\author{Omar Iskandarani}
-\date{2025}
+
 
 \begin{document}
-    \maketitle
+    \titlepageOpen
 
     \begin{abstract}
-        We present a one-to-one Swirl--String Theory (SST) translation of a rotating-tank impulse experiment and skyrmionic-photon framework. All sections/equations from the original are preserved, with SST terms added via Rosetta mapping and mainstream physics glosses inline. Macrodynamics remain standard rotating Euler; SST introduces (i) bookkeeping of swirl energy/mass densities and (ii) the canonical \emph{Swirl Clock} $\dd\tau/\dd t=\sqrt{1-v^2/c^2}$ alongside the legacy $\sqrt{1-u^2/\Ce^2}$ hypothesis (kept as an explicit, testable variant). Dimensional checks and numerics use $\|\vSwirl\|=1.09384563\times10^6\,\mathrm{m\,s^{-1}}$, $\rc=1.40897017\times10^{-15}\,\mathrm{m}$, $\rhof=7.0\times10^{-7}\,\mathrm{kg\,m^{-3}}$.
+        We present a one-to-one Swirl--String Theory (SST) translation of a rotating-tank impulse experiment and skyrmionic-photon framework. All sections/equations from the original are preserved, with SST terms added via Rosetta mapping and mainstream physics glosses inline. Macrodynamics remain standard rotating Euler; SST introduces (i) bookkeeping of swirl energy/mass densities and (ii) the canonical \emph{Swirl Clock} \( \dd\tau/\dd t=\sqrt{1-v^2/c^2} \) alongside the legacy  \( \sqrt{1-u^2/\Ce^2} \) hypothesis (kept as an explicit, testable variant). Dimensional checks and numerics use  \( \|\vSwirl\|=1.09384563\times10^6\,\mathrm{m\,s^{-1}} \),  \( \rc=1.40897017\times10^{-15}\,\mathrm{m} \),  \( \rhof=7.0\times10^{-7}\,\mathrm{kg\,m^{-3}} \).
     \end{abstract}
+
 
 %=================================================================
     \section*{Rosetta card (SST $\leftrightarrow$ mainstream)}
@@ -68,7 +114,7 @@ Fluid Benchmarks and Fluid-Inspired Kinematic Hypotheses\\[2pt]
         Consider a vertical cylinder of radius $R$ and depth $H$, rotating at rate $\Omega$ about $z$. A bottom DC motor drives a three-fin impeller that briefly produces a hollow-core vortex of radius $a_v\approx\SI{7.5}{mm}$ and axial jetting. After a delay $\sim H/c_{g,z}$, a two-lobed "push--pull" on-axis surface signal appears at $z=H$.
 
         \paragraph{SST map.} Energy in the packet that reaches the surface is tracked as $\rhoE=\tfrac{1}{2}\,\rhof\,\|\bU'\|^2$ and mass-equivalent density $\rhoM=\rhoE/c^2$ (bookkeeping only).
-
+            \titlepageClose
 %=================================================================
     \section{Linear rotating-wave framework}
 %=================================================================
