@@ -3,9 +3,11 @@
 %! Affiliation = Independent Researcher, Groningen, The Netherlands
 %! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
 %! ORCID = 0009-0006-1686-3961
-%! DOI = 10.5281/zenodo.17619164
+%! DOI = 10.5281/zenodo.17624514
 
-\newcommand{\paperdoi}{10.5281/zenodo.17619164}
+\newcommand{\paperdoi}{10.5281/zenodo.17624514}
+\newcommand{\papertitle}{Rotational Kinetic Energy Density and an Effective Mass Relation in Incompressible Fluids}
+
 
 %========================================================================================
 % PACKAGES AND DOCUMENT CONFIGURATION
@@ -19,14 +21,47 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 
-\title{Rotational Kinetic Energy Density and an Effective Mass Relation in Incompressible Fluids}
-\author{Omar Iskandarani}
-\affiliation{Independent Researcher, Groningen, The Netherlands}
-\thanks{ORCID: 0009-0006-1686-3961, DOI: \paperdoi}
-\date{\today}
+
+\newcommand{\titlepageOpen}{
+    \begin{titlepage}
+    \thispagestyle{empty}
+    \centering
+    \ifdefined\standalonechapter
+    {\Large\bfseries \appendixtitle \par}
+    \else
+        {\Large\bfseries \papertitle \par}
+    \fi
+    \vspace{1cm}
+    {\Large\itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par}
+    \vspace{0.5cm}
+    {\today \par}
+    \vspace{0.5cm}
+}
+
+% here comes abstract
+\newcommand{\titlepageClose}{
+    \vfill
+    \raggedright % <-- fixes left alignment
+    \null
+    \begin{picture}(0,0)
+    % Adjust position: (x,y) = (left, bottom)
+    \put(0,-45){  % Shift 200pt left, 40pt down
+        \begin{minipage}[b]{0.7\textwidth}
+        \footnotesize % One step bigger than \tiny \scriptsize
+        \renewcommand{\arraystretch}{1.0}
+        \noindent\rule{\textwidth}{0.4pt} \\[0.5em]  % ← horizontal line
+        \textsuperscript{\textbf{*}} Independent Researcher, Groningen, The Netherlands \\
+        Email: \texttt{info@omariskandarani.com} \\
+        ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}} \\
+        DOI: \href{https://doi.org/\paperdoi}{\paperdoi}
+        \end{minipage}
+    }
+    \end{picture}
+    \end{titlepage}
+}
 
 \begin{document}
-    \maketitle
+    \titlepageOpen
 
     \begin{abstract}
         Kinetic energy contributes to inertia and gravitational mass through the relativistic relation
@@ -41,6 +76,9 @@
         The result provides a transparent classical example of how rotational motion modifies the mass density at order $(v/c)^2$.
         We discuss the connection with relativistic continuum mechanics and provide numerical estimates for laboratory and astrophysical regimes.
     \end{abstract}
+
+    \titlepageClose
+
 
     \section{Introduction}
         The equivalence between energy and mass, expressed by $E = mc^2$, implies that kinetic, field, and binding energies contribute to the inertia and gravitational mass of extended systems~\cite{Einstein1905,Tolman1934,LL_FieldTheory}.

@@ -1211,11 +1211,13 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
                     % ==== MIDDLE LAYER ====
                     \node[below=of E] (Eta)
                     {\small $\eta = \mathcal K_E \vec{E}$\\
-                    \tiny \textcolor{gray}{ $[\mathcal K_E = \varepsilon] = \frac{C}{V\,m}$}};
+                    \tiny \textcolor{gray}{ $[\mathcal K_E = \varepsilon] = \frac{C}{V\,m}$\\
+                    \tiny \textcolor{gray}{\textit{electret:} $\eta_0(\mathbf{x})$ frozen during poling}}; % NEW
 
                     \node[below=of Faraday] (D)
                     {\small $\varepsilon \vec{E} = \vec{D}$\\
-                    \tiny \textcolor{gray}{ $[\varepsilon]=\tfrac{F}{m},\ [\vec{D}]=\tfrac{C}{m^{2}}$}};
+                    \tiny \textcolor{gray}{ $[\varepsilon]=\tfrac{F}{m},\ [\vec{D}]=\tfrac{C}{m^{2}}$\\
+                    \tiny \textcolor{gray}{\textit{electret:} $\vec{D} = \varepsilon\vec{E} + \vec{D}_{\mathrm{el}}$}}; % NEW
 
                     \node[below=of b] (B)
                     {\small $\vec{B} = \mu \vec{H}$\\
@@ -1223,7 +1225,8 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 
                     \node[below=of rho] (C)
                     {\small $\chi_H \vec{H} = \rho_{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}$\\
-                    \tiny \textcolor{gray}{ $[\chi_H]=\tfrac{N}{A\,m}$}};
+                    \tiny \textcolor{gray}{ $[\chi_H]=\tfrac{N}{A\,m}$\\
+                    \tiny \textcolor{gray}{\textit{magnets:} $\rho_{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}$ from magnetization}}; % NEW
 
                     % ==== BOTTOM LAYER ====
                     \node[below=of Eta] (EtaBottom)
@@ -1259,8 +1262,22 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
                     \draw[arrow] (Faraday) -- (b);
                 \end{tikzpicture}
             \end{adjustbox}
-            \caption{\textbf{Canonical Swirl–Electromagnetic Coupling Diagram.} Causal and dimensional structure of the electromagnetic sector within the Swirl–String framework. The top layer extends Faraday’s law with a swirl-induced backreaction term $\mathbf{b}_{\swirlarrow} = \mathcal{G}_{\swirlarrow} \,\partial_t \bm{\varrho}_{\swirlarrow}$, encoding the electromotive response to time-varying swirl density in the medium. The middle layer represents the constitutive closure: $\mathbf{D} = \bm{\varepsilon}\mathbf{E}$ and $\mathbf{B} = \mu\mathbf{H}$, together with the mechanical correspondence $\bm{\varrho}_{\swirlarrow} = \chi_H \mathbf{H}$. The bottom layer completes the circuit with areal accumulation $\bm{\eta}$, source current $\mathbf{j}$, and the modified Ampère curl. All dimensionalities are shown for canonical homology between mechanical (swirl) and electromagnetic sectors, establishing the \emph{Swirl–Electromagnetic Bridge} that underlies the flat-space emergence of Maxwellian dynamics.
-            }
+            \caption{\textbf{Canonical Swirl–Electromagnetic Coupling Diagram.}
+            Causal and dimensional structure of the electromagnetic sector within the Swirl–String framework.
+            The top layer extends Faraday’s law with a swirl-induced backreaction term
+                $\mathbf{b}_{\swirlarrow} = \mathcal{G}_{\swirlarrow} \,\partial_t \bm{\varrho}_{\swirlarrow}$,
+                encoding the electromotive response to time-varying swirl density in the medium.
+                The middle layer represents the constitutive closure:
+                $\mathbf{D} = \bm{\varepsilon}\mathbf{E}$ and $\mathbf{B} = \mu\mathbf{H}$,
+                together with the mechanical correspondence $\bm{\varrho}_{\swirlarrow} = \chi_H \mathbf{H}$.
+                Electrets appear as frozen offsets $\eta_0,\mathbf{D}_{\mathrm{el}}$ on the left branch
+                (permanent polarization), while permanent magnets correspond to nonzero
+                $\bm{\varrho}_{\swirlarrow}$ on the right branch.
+                The bottom layer completes the circuit with areal accumulation $\bm{\eta}$,
+                source current $\mathbf{j}$, and the modified Ampère curl.
+                All dimensionalities are shown for canonical homology between mechanical (swirl)
+                and electromagnetic sectors, establishing the \emph{Swirl–Electromagnetic Bridge}
+                that underlies the flat-space emergence of Maxwellian dynamics.}
             \label{fig:swirl_em_causal}
         \end{figure*}
 
