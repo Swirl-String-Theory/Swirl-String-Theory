@@ -1,15 +1,16 @@
 %! Author = Omar Iskandarani
-%! Date = Nov 15, 2025
+%! Date = Nov 16, 2025
 %! Affiliation = Independent Researcher, Groningen, The Netherlands
 %! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
 %! ORCID = 0009-0006-1686-3961
-%! DOI = 10.5281/zenodo.17619150
+%! DOI = 10.5281/zenodo.17629932
 
-\newcommand{\paperdoi}{10.5281/zenodo.17619150}
+\newcommand{\paperdoi}{10.5281/zenodo.17629932}
+\newcommand{\papertitle}{Rotational Kinetic Energy Density and an Effective Mass Relation in Incompressible Fluids}
 
-%========================================================================================
+%==========================================================
 % PACKAGES AND DOCUMENT CONFIGURATION
-%========================================================================================
+%==========================================================
 \documentclass[11pt]{article}
 
 \usepackage{amsmath,amssymb,amsfonts,bm}
@@ -19,14 +20,37 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 
-\title{Rotational Kinetic Energy Density and an Effective Mass Relation in Incompressible Fluids}
-\author{Omar Iskandarani}
-\affiliation{Independent Researcher, Groningen, The Netherlands}
-\thanks{ORCID: 0009-0006-1686-3961, DOI: \paperdoi}
-\date{\today}
+\newcommand{\titlepageOpen}{
+    \begin{titlepage}
+    \thispagestyle{empty}
+    \centering
+    \Large \bfseries \papertitle \par \vspace{1cm}
+    {\Large \itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par}
+    \vspace{0.5cm}
+    {\today \par}
+    \vspace{0.5cm}
+}
+
+% here comes abstract
+\newcommand{\titlepageClose}{
+    \vfill \raggedright \null
+    \begin{picture}(0,0)
+    \put(0,-45){  % Shift 200pt left, 40pt down
+        \begin{minipage}[b]{0.7\textwidth} \footnotesize
+        \renewcommand{\arraystretch}{1.0}
+        \noindent\rule{\textwidth}{0.4pt} \\[0.5em]
+        \textsuperscript{\textbf{*}} Independent Researcher, Groningen, The Netherlands \\
+        Email: \texttt{info@omariskandarani.com} \\
+        ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}} \\
+        DOI: \href{https://doi.org/\paperdoi}{\paperdoi}
+        \end{minipage}
+    }
+    \end{picture}
+    \end{titlepage}
+}
 
 \begin{document}
-    \maketitle
+    \titlepageOpen
 
     \begin{abstract}
         Kinetic energy contributes to inertia and gravitational mass through the relativistic relation
@@ -41,6 +65,8 @@
         The result provides a transparent classical example of how rotational motion modifies the mass density at order $(v/c)^2$.
         We discuss the connection with relativistic continuum mechanics and provide numerical estimates for laboratory and astrophysical regimes.
     \end{abstract}
+    \titlepageClose
+
 
     \section{Introduction}
         The equivalence between energy and mass, expressed by $E = mc^2$, implies that kinetic, field, and binding energies contribute to the inertia and gravitational mass of extended systems~\cite{Einstein1905,Tolman1934,LL_FieldTheory}.
@@ -236,10 +262,72 @@
             \item benchmark problems for numerical schemes that couple incompressible fluid dynamics to relativistic mass--energy accounting in the low-velocity regime;
             \item conceptual comparisons with fully relativistic treatments of rotating fluids in astrophysical contexts.
         \end{itemize}
+
+        As a complementary single-particle example, Appendix A summarises a semi-classical model in which a photon confined on a toroidal path reproduces the electron charge to within about ten per cent, using only classical electromagnetism and the Compton wavelength as input \cite{Williamson1997}.
+
         Any attempt to attribute fundamental rest mass to internal rotational motion would require additional structural assumptions and a fully relativistic framework, and lies beyond the scope of the present work.
+
 
     \section*{Acknowledgments}
         The author thanks the authors of standard texts on fluid mechanics and relativistic field theory for providing the background material on which this analysis is based.
+
+
+        \appendix
+    \section*{Appendix A: Semi-classical charge estimate from a confined electromagnetic mode}
+
+        In the main text we considered how rotational kinetic energy in an incompressible fluid contributes to an effective mass density via the relation $E = mc^2$ in the nonrelativistic regime.  For completeness, we record here a simple semi-classical construction, due to Williamson and van der Mark \cite{Williamson1997}, which shows how a confined electromagnetic mode can also reproduce the observed magnitude of the electron charge using only classical electromagnetism and the Compton wavelength.
+
+        Consider a photon of wavelength $\lambda$ whose energy
+        \[
+            E_\gamma = \frac{hc}{\lambda}
+        \]
+        is confined to a finite volume $V$ of characteristic size comparable to $\lambda$.  In the model of Ref.~\cite{Williamson1997}, the photon is confined on a toroidal path of length one Compton wavelength $\lambda_C = h/(m_e c)$, with a characteristic radius
+        \[
+            r = \frac{\lambda_C}{4\pi},
+        \]
+        so that the confinement volume is of order $V \sim r^3$.  Equating the photon energy to the integral of the electromagnetic energy density over this volume leads to an average electric-field amplitude of the form
+        \begin{equation}
+            \label{eq:Eavg}
+            \langle E \rangle
+            = \sqrt{\frac{6 h c}{\pi \varepsilon_0 \lambda_C^4}},
+        \end{equation}
+        where $\varepsilon_0$ is the vacuum permittivity.%
+        \footnote{The numerical factor depends on the detailed choice of confinement volume and field profile; Eq.~\eqref{eq:Eavg} corresponds to the specific toroidal geometry considered in \cite{Williamson1997}.}
+
+        To relate this confined field to an effective point charge, one compares $\langle E \rangle$ to the magnitude of the Coulomb field at a radius $r$,
+        \begin{equation}
+            E_{\mathrm{C}}(r) = \frac{q}{4\pi\varepsilon_0 r^2}.
+        \end{equation}
+        Identifying $r = \lambda_C/(4\pi)$ as above and setting $E_{\mathrm{C}}(r) = \langle E \rangle$ yields
+        \begin{equation}
+            q
+            = 4\pi \varepsilon_0 r^2 \langle E \rangle
+            = 4\pi \varepsilon_0 \left(\frac{\lambda_C}{4\pi}\right)^2
+            \sqrt{\frac{6 h c}{\pi \varepsilon_0 \lambda_C^4}}.
+        \end{equation}
+        Using $\lambda_C = h/(m_e c)$ and $h = 2\pi\hbar$, one finds that the dependence on $\lambda_C$ and $m_e$ cancels, giving the closed-form expression
+        \begin{equation}
+            \label{eq:qmodel}
+            q_{\mathrm{model}}
+            = \frac{1}{2\pi}\sqrt{3 \varepsilon_0 \hbar c}.
+        \end{equation}
+        Numerically,
+        \[
+            q_{\mathrm{model}}
+            = \frac{1}{2\pi}\sqrt{3 \varepsilon_0 \hbar c}
+            \simeq 1.46\times 10^{-19}\,\mathrm{C}
+            \simeq 0.91\,e,
+        \]
+        so that this simple confinement picture reproduces the observed elementary charge $e \simeq 1.60\times 10^{-19}\,\mathrm{C}$ at the ten-percent level.
+
+
+
+\paragraph{Very short analogy (for intuition):}
+think of squeezing one “loop” of light into a tiny doughnut; the more tightly you squeeze it, the stronger its electric field gets, until that field at the surface looks almost exactly like the field of a point charge the size of an electron.
+
+
+        The purpose of this appendix is not to advocate a specific microscopic model of the electron, but to illustrate that, even within classical electromagnetism, geometric confinement of a single-wavelength mode can naturally generate particle-like mass and charge scales.  This complements the continuum calculation in the main text, where rotational kinetic energy in an extended medium leads to an effective mass density proportional to $\langle v^2 \rangle / c^2$.
+
 
         \bibliographystyle{unsrt}
         \begin{thebibliography}{99}
@@ -274,6 +362,12 @@
             L.~D. Landau and E.~M. Lifshitz,
             \newblock \emph{Fluid Mechanics},
             \newblock 2nd ed., Pergamon Press, Oxford (1987).
+
+            \bibitem{Williamson1997}
+            J.~G.~Williamson and M.~B.~van der Mark,
+            ``Is the electron a photon with toroidal topology?'',
+            \textit{Ann. Fond. Louis de Broglie} \textbf{22}, 133--160 (1997).
+            Available at \url{https://fondationlouisdebroglie.org/AFLB-222/MARK.TEX2.pdf}.
 
         \end{thebibliography}
 

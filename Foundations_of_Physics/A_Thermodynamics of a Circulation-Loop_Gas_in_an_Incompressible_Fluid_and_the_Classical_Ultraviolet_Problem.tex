@@ -1,11 +1,11 @@
 %! Author = Omar Iskandarani
-%! Date = Nov 16, 2025
+%! Date = Nov 17, 2025
 %! Affiliation = Independent Researcher, Groningen, The Netherlands
 %! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
 %! ORCID = 0009-0006-1686-3961
-%! DOI = 10.5281/zenodo.xxx
+%! DOI = 10.5281/zenodo.17629932
 
-\newcommand{\paperdoi}{10.5281/zenodo.xxx}
+\newcommand{\paperdoi}{10.5281/zenodo.17629932}
 \newcommand{\papertitle}{Thermodynamics of a Circulation-Loop Gas in an Incompressible Fluid and the Classical Ultraviolet Problem}
 
 %==========================================================
@@ -168,6 +168,78 @@
         any nonstandard dynamics or postulates beyond those already present in classical fluid
         mechanics and special relativity.
 
+        \subsection*{Notation and assumptions}
+            \label{subsec:notation-assumptions}
+
+            \paragraph{Notation.}
+
+                Throughout the paper we use the following symbols:
+
+                \begin{table}[h]
+                    \centering
+                    \begin{tabular}{ll}
+                        \hline
+                        Symbol & Meaning \\
+                        \hline
+                        $\rho_f$ & Mass density of the (incompressible, inviscid) fluid \\
+                        $a$      & Core radius of a circulation loop (vortex-ring core thickness) \\
+                        $R$      & Ring radius (distance from ring centreline to symmetry axis) \\
+                        $\Gamma$ & Circulation of a loop, $\Gamma = \oint \boldsymbol{v}\cdot\mathrm{d}\boldsymbol{\ell}$ \\
+                        $M_{\mathrm{eff}}$ & Effective mass of a circulation loop, defined from energy/impulse \\
+                        $v_{\max}$ & Upper bound on tangential speed inside the loop core \\
+                        $\omega_{\max}$ & Maximal internal angular frequency, $\omega_{\max} = v_{\max}/a$ \\
+                        $u$      & Energy density of the effective gas or radiation field \\
+                        $P$      & Pressure of the gas / radiation field \\
+                        $T$      & Temperature, $k_{\mathrm B}$ Boltzmann constant \\
+                        $c$      & Speed of light in vacuum \\
+                        \hline
+                    \end{tabular}
+                    \caption{Main symbols used in the circulation-loop model and its thermodynamic description.}
+                    \label{tab:notation}
+                \end{table}
+
+            \paragraph{Assumptions.}
+
+                The analysis in the main text rests on the following simplifying assumptions:
+
+                \begin{enumerate}
+                    \item \textbf{Incompressible, inviscid background.}
+                    The fluid hosting the circulation loops is taken to be homogeneous,
+                    incompressible, and inviscid; its density is $\rho_f$ and its mean flow
+                    vanishes in the rest frame of the container.
+
+                    \item \textbf{Thin, non-reconnecting loops.}
+                    Vorticity is confined to thin, closed circulation loops (vortex rings) with
+                    core radius $a$ and ring radius $R \gg a$. Loops are assumed not to
+                    reconnect, break, or merge on the timescales of interest.
+
+                    \item \textbf{Dilute gas of loops.}
+                    The number density of loops is sufficiently low that mutual induction,
+                    deformation, and collisions can be neglected in the first approximation.
+                    Each loop can therefore be treated as a quasiparticle with effective mass
+                    $M_{\mathrm{eff}}$ and centre-of-mass momentum $\boldsymbol{p}$.
+
+                    \item \textbf{Bounded tangential speed and maximal internal frequency.}
+                    The tangential speed of fluid elements within each core obeys
+                    $v_\theta \le v_{\max}$, with $v_{\max}<c$. Together with the finite core
+                    radius $a$, this implies a maximal internal angular frequency
+                    $\omega_{\max} = v_{\max}/a$ for rotational motions.
+
+                    \item \textbf{Equipartition / classical limit.}
+                    When we assign an average energy $k_{\mathrm B}T$ per mode or degree of
+                    freedom, we are explicitly in the classical, high-temperature limit of
+                    statistical mechanics (equipartition), and we do \emph{not} impose any
+                    quantum occupancy constraints on the circulation-loop gas.
+
+                    \item \textbf{Isotropy.}
+                    For the radiation-like sector, the ensemble of effective excitations is
+                    assumed to have an isotropic momentum distribution in three dimensions,
+                    so that angular averages such as $\langle \cos^2\theta\rangle = 1/3$ apply.
+                    In $d$ spatial dimensions this generalizes to
+                    $\langle \cos^2\theta\rangle = 1/d$.
+                \end{enumerate}
+
+
     \section{Vortex-loop gas and kinetic theory}
         \label{sec:vortex-gas}
 
@@ -219,10 +291,12 @@
             where $\langle e_{\mathrm{kin}}\rangle$ is the volume-averaged rotational kinetic energy
             density and $c$ is the speed of light.
 
-            In what follows, we treat each vortex loop as a structure with fixed circulation and
-            core size, whose internal degrees of freedom are either frozen or accounted for as a
-            fixed contribution to $M_{\mathrm{eff}}$. The centre-of-mass motion of the loops then
-            admits a standard kinetic description.
+        In what follows, we treat each vortex loop as a structure with fixed circulation and
+        core size, whose internal degrees of freedom are either frozen or accounted for as a
+        fixed contribution to $M_{\mathrm{eff}}$. The centre-of-mass motion of the loops then
+        admits a standard kinetic description. The explicit thin-ring expressions for impulse,
+        kinetic energy, translational speed, and $M_{\mathrm{eff}}$ used in this interpretation
+        are collected in Appendix~\ref{app:vortex-ring-formulas}.
 
         \subsection{Phase space and Hamiltonian}
 
@@ -377,18 +451,17 @@
                 u
                 = \frac{1}{V}\left\langle \sum_{i} E_i \right\rangle
             \end{equation}
-            is the energy density. This is the familiar relation for an isotropic gas of massless
-            particles or photons~\cite{LandauLifshitz_StatPhys,LandauLifshitz_Fields}.
-            In the present context, it applies to any regime in which the relevant vortex-loop
-            excitations propagate at speeds close to $c$ and their energy is dominated by
-            translational motion rather than rest energy.
+        is the energy density. This is the familiar relation for an isotropic gas of massless
+        particles or photons~\cite{LandauLifshitz_StatPhys,LandauLifshitz_Fields}. In the
+        present context, it applies to any regime in which the relevant vortex-loop excitations
+        propagate at speeds close to $c$ and their energy is dominated by translational motion
+        rather than rest energy.
 
-            The crucial point is that Eq.~\eqref{eq:P-u-1over3} follows entirely from the
-            three-dimensional isotropy of the momentum distribution and the kinematics of
-            relativistic particles. It does not depend on the detailed microstructure of the
-            underlying medium. The vortex-loop picture provides a concrete classical realization
-            of such excitations within incompressible Euler flow; the relation $P = \tfrac{1}{3}u$
-            then follows from standard kinetic arguments applied to these effective degrees of freedom.
+        The crucial point is that Eq.~\eqref{eq:P-u-1over3-main} follows entirely from the
+        three-dimensional isotropy of the momentum distribution and the kinematics of
+        relativistic particles. The generalization to $d$ spatial dimensions, yielding
+        $P = u/d$, is derived in Appendix~\ref{app:P-u-over-d}; there the factor $1/3$ is seen
+        to be a special case of the purely geometric factor $1/d$.
 
             \medskip
 
@@ -1083,11 +1156,281 @@
             without modifying Maxwell's equations or the familiar thermodynamic relations that
             emerge from kinetic theory.
 
+
+        \appendix
+
+    \section{Thin vortex-ring formulas}
+    \label{app:vortex-ring-formulas}
+
+    For completeness we collect here the standard expressions for the impulse, kinetic
+    energy, and translational speed of a thin circular vortex ring in an ideal incompressible
+    fluid, as used in the main text. These formulas go back to Kelvin, Helmholtz, Lamb,
+    and are summarized in modern form by Batchelor and Saffman.
+
+    We consider a single circular vortex ring of radius $R$ and core radius $a$,
+    with $a \ll R$, embedded in a homogeneous incompressible fluid of density $\rho_f$.
+    The circulation around the core is denoted by $\Gamma$.
+
+    \subsection{Impulse}
+
+        The hydrodynamic impulse of an isolated thin-core ring, directed along the symmetry
+        axis, has magnitude
+        \begin{equation}
+            I
+            = \rho_f \,\Gamma\, \pi R^2.
+            \label{eq:ring-impulse}
+        \end{equation}
+        This result is independent of the detailed vorticity distribution inside the core, provided
+        the ring is thin and axisymmetric.
+
+    \subsection{Kinetic energy}
+
+        The kinetic energy associated with the flow field of a thin vortex ring with uniform
+        vorticity in the core is, to leading order in $a/R$,\,%
+        \begin{equation}
+            E
+            = \frac{1}{2}\,\rho_f\,\Gamma^2 R
+            \left(
+                \ln\frac{8R}{a} - \frac{7}{4}
+            \right).
+            \label{eq:ring-energy}
+        \end{equation}
+        The logarithmic term reflects the long-range nature of the velocity field; the constant
+        offset $7/4$ depends weakly on the assumed core model (e.g.\ uniform vs.\ Gaussian
+        vorticity).
+
+    \subsection{Translational speed}
+
+        The self-induced translational speed of the ring along its symmetry axis is
+        \begin{equation}
+            U
+            = \frac{\Gamma}{4\pi R}
+            \left(
+                \ln\frac{8R}{a} - \frac{1}{4}
+            \right),
+            \label{eq:ring-speed}
+        \end{equation}
+        again valid for $a/R \ll 1$ and for standard core models. Different core profiles change
+        only the constant term inside the parentheses at this order.
+
+    \subsection{Effective mass}
+
+        In the main text we treat the ring as a quasiparticle with effective mass $M_{\mathrm{eff}}$
+        moving at speed $U$ along the symmetry axis, carrying impulse $I$. It is therefore
+        natural to define the effective mass via \ref{eq:Meff-def}
+        \(          M_{\mathrm{eff}}            \equiv \frac{I}{U}.
+        \)
+        Using Eqs.~\eqref{eq:ring-impulse} and \eqref{eq:ring-speed}, one obtains
+        \begin{equation}
+            M_{\mathrm{eff}}
+            = \frac{\rho_f \,\Gamma\, \pi R^2}
+            {\displaystyle \frac{\Gamma}{4\pi R}
+            \left(\ln\frac{8R}{a} - \frac{1}{4}\right)}
+            = \frac{4\pi^2 \rho_f R^3}
+            {\displaystyle \ln\frac{8R}{a} - \frac{1}{4}}.
+            \label{eq:Meff-explicit}
+        \end{equation}
+        For very slender rings, $\ln(8R/a) \gg 1$, the constant term $1/4$ can be neglected and
+        the effective mass simplifies to
+        \begin{equation}
+            M_{\mathrm{eff}}
+            \approx \frac{4\pi^2 \rho_f R^3}{\ln(8R/a)}.
+        \end{equation}
+        In the main text, only the scaling $M_{\mathrm{eff}} \propto \rho_f R^3$ and the presence
+        of a weak logarithmic dependence on $a/R$ are used; the precise numerical coefficients
+        play no qualitative role in the thermodynamic arguments.
+
+    \section{Pressure and energy density in $d$ dimensions}
+    \label{app:P-u-over-d}
+
+    In the main text we use the relation
+    \begin{equation}
+        P = \frac{1}{3} u
+    \end{equation}
+    for an isotropic ensemble of ultra-relativistic or effectively massless excitations
+    in three spatial dimensions. Here we show that in $d$ spatial dimensions the corresponding
+    relation is
+    \begin{equation}
+        P = \frac{1}{d}\,u,
+    \end{equation}
+    so that the factor $1/3$ is a direct consequence of three-dimensional isotropy rather
+    than any special feature of the circulation-loop model.
+
+    Consider a gas of non-interacting, massless particles (or effective excitations) in
+    $d$ spatial dimensions, contained in a volume $V_d$. Let the energy of a particle with
+    momentum $\boldsymbol{p}$ be
+    \begin{equation}
+        E = c\,|\boldsymbol{p}|,
+    \end{equation}
+    so that the group velocity is
+    \begin{equation}
+        \boldsymbol{v}
+        = \frac{\partial E}{\partial \boldsymbol{p}}
+        = c\,\frac{\boldsymbol{p}}{|\boldsymbol{p}|}.
+    \end{equation}
+    We assume an isotropic momentum distribution, so that all directions of $\boldsymbol{p}$
+    are equally probable.
+
+    \subsection{Energy density}
+
+        Let $f(\boldsymbol{p})$ be the occupation number (particles per phase-space volume)
+        in momentum space. The energy density is
+        \begin{equation}
+            u
+            = \frac{1}{V_d} \int E(\boldsymbol{p})\, f(\boldsymbol{p})\,
+            \mathrm{d}^d p.
+            \label{eq:u-def}
+        \end{equation}
+
+    \subsection{Pressure as momentum flux}
+
+        The pressure is the normal component of the momentum flux across a plane. Without loss
+        of generality, consider the plane orthogonal to the $x$-axis. The contribution of a
+        single particle with momentum $\boldsymbol{p}$ and velocity $\boldsymbol{v}$ to the
+        $x$-component of the momentum flux is $p_x v_x / V_d$. Summing over all particles,
+        \begin{equation}
+            P
+            = \frac{1}{V_d}
+            \int p_x v_x \, f(\boldsymbol{p})\,\mathrm{d}^d p.
+            \label{eq:P-def}
+        \end{equation}
+        For massless particles, $v_x = c\,p_x/|\boldsymbol{p}|$, so
+        \begin{equation}
+            p_x v_x
+            = c\,\frac{p_x^2}{|\boldsymbol{p}|}.
+        \end{equation}
+        It is convenient to write $\boldsymbol{p}$ in spherical coordinates in momentum space:
+        $|\boldsymbol{p}| = p$, and let $\theta$ be the angle between $\boldsymbol{p}$ and the
+        $x$-axis. Then $p_x = p\cos\theta$ and
+        \begin{equation}
+            p_x v_x
+            = c\,\frac{p^2 \cos^2\theta}{p}
+            = c\,p\,\cos^2\theta.
+        \end{equation}
+        Substituting into Eq.~\eqref{eq:P-def},
+        \begin{equation}
+            P
+            = \frac{c}{V_d}
+            \int p\,\cos^2\theta\, f(\boldsymbol{p})\,\mathrm{d}^d p.
+            \label{eq:P-with-cos2}
+        \end{equation}
+
+    \subsection{Isotropic angular average}
+
+        For an isotropic distribution, the angular dependence factorizes:
+        \begin{equation}
+            f(\boldsymbol{p})
+            = f(p),
+        \end{equation}
+        and the average of $\cos^2\theta$ over the unit sphere in $d$ dimensions is
+        \begin{equation}
+            \langle \cos^2\theta \rangle
+            = \frac{1}{d}.
+        \end{equation}
+        This is a standard result: by symmetry,
+        $\langle p_x^2 \rangle = \langle p_y^2 \rangle = \dots = \langle p_d^2 \rangle$, and
+        $\sum_{i=1}^d \langle p_i^2 \rangle = \langle p^2 \rangle$, hence
+        $\langle p_x^2 \rangle = \langle p^2 \rangle/d$ and
+        $\langle \cos^2\theta \rangle = \langle p_x^2/p^2 \rangle = 1/d$.
+
+        Using this in Eq.~\eqref{eq:P-with-cos2}, we can write
+        \begin{equation}
+            P
+            = \frac{c}{V_d}
+            \left\langle \cos^2\theta \right\rangle
+            \int p\, f(p)\,\mathrm{d}^d p
+            = \frac{c}{d V_d}
+            \int p\, f(p)\,\mathrm{d}^d p.
+            \label{eq:P-before-E}
+        \end{equation}
+        Since $E = c p$, the integral
+        $\int p\,f(p)\,\mathrm{d}^d p = (1/c)\int E f(p)\,\mathrm{d}^d p$, and comparing with
+        Eq.~\eqref{eq:u-def} we obtain
+        \begin{equation}
+            u
+            = \frac{1}{V_d}
+            \int E(\boldsymbol{p}) f(\boldsymbol{p})\,\mathrm{d}^d p
+            = \frac{c}{V_d}
+            \int p\, f(p)\,\mathrm{d}^d p.
+        \end{equation}
+        Therefore Eq.~\eqref{eq:P-before-E} becomes
+        \begin{equation}
+            P
+            = \frac{1}{d}\,u.
+        \end{equation}
+
+        Specializing to $d=3$ recovers the familiar relation
+        $P = \tfrac{1}{3}u$ used in the main text. The result is completely general for
+        massless particles with isotropic momentum distributions and does not depend on
+        the details of the circulation-loop model; it is a kinematic statement about
+        momentum flux in $d$-dimensional space.
+
+
     \section*{Acknowledgments}
         The author thanks the authors of standard texts on fluid mechanics and relativistic field theory for providing the background material on which this analysis is based.
 
         \bibliographystyle{unsrt}
         \begin{thebibliography}{99}
+
+            \bibitem{Saffman1992}
+            P.~G.~Saffman,
+            \newblock \emph{Vortex Dynamics},
+            \newblock Cambridge University Press, Cambridge (1992).
+            \newblock doi:10.1017/CBO9780511624063.
+
+            \bibitem{Batchelor1967}
+            G.~K.~Batchelor,
+            \newblock \emph{An Introduction to Fluid Dynamics},
+            \newblock Cambridge University Press, Cambridge (1967).
+
+            \bibitem{Helmholtz1858}
+            H.~Helmholtz,
+            \newblock \emph{On Integrals of the Hydrodynamical Equations which Express Vortex-motion},
+            \newblock Phil.\ Mag.\ \textbf{33}, 485--512 (1867) [translation of 1858 paper].
+
+            \bibitem{Planck1901}
+            M.~Planck,
+            \newblock \emph{On the Law of Distribution of Energy in the Normal Spectrum},
+            \newblock Ann.\ Phys.\ \textbf{4}, 553--563 (1901).
+            \newblock doi:10.1002/andp.19013090310.
+
+            \bibitem{Rayleigh1900}
+            L.~Rayleigh,
+            \newblock \emph{Remarks upon the Law of Complete Radiation},
+            \newblock Phil.\ Mag.\ \textbf{49}, 539--540 (1900).
+            \newblock doi:10.1080/14786440009463878.
+
+            \bibitem{Jeans1905}
+            J.~H.~Jeans,
+            \newblock \emph{The Dynamical Theory of Gases},
+            \newblock Cambridge University Press, Cambridge (1904; 2nd ed.\ 1905).
+
+            \bibitem{LandauStatMech}
+            L.~D.~Landau and E.~M.~Lifshitz,
+            \newblock \emph{Statistical Physics, Part 1},
+            \newblock 3rd ed., Pergamon Press, Oxford (1980).
+
+            \bibitem{ReifStatMech}
+            F.~Reif,
+            \newblock \emph{Fundamentals of Statistical and Thermal Physics},
+            \newblock McGraw--Hill, New York (1965).
+
+            \bibitem{Iskandarani2025Cylinder}
+            O.~Iskandarani,
+            \newblock \emph{Impulsive Axisymmetric Forcing in a Rotating Cylinder, Reversible Swirl Response, and Skyrmionic Photon Fields: Fluid Benchmarks and Fluid-Inspired Kinematic Hypotheses},
+            \newblock preprint (2025), Zenodo:10.5281/zenodo.XXXXXXX.
+
+            \bibitem{PDG2024}
+            Particle Data Group,
+            \newblock \emph{Review of Particle Physics},
+            \newblock Prog.\ Theor.\ Exp.\ Phys.\ \textbf{2024}, 083C01 (2024).
+
+            \bibitem{WeinbergQFT}
+            S.~Weinberg,
+            \newblock \emph{The Quantum Theory of Fields, Vol.\ I},
+            \newblock Cambridge University Press, Cambridge (1995).
+
+
             \bibitem{Einstein1905_Eequalsmc2}
             A.~Einstein,
             \newblock \emph{Ist die Tr\"agheit eines K\"orpers von seinem Energieinhalt abh\"angig?},
