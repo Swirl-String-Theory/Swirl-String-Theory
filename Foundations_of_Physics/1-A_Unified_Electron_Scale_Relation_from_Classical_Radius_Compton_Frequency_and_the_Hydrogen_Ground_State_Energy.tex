@@ -1,0 +1,394 @@
+%! Author = Omar Iskandarani
+%! Date = Nov 15, 2025
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.17629932
+
+\newcommand{\paperdoi}{10.5281/zenodo.17629932}
+\newcommand{\papertitle}{A Unified Electron Scale Relation from Classical Radius, Compton Frequency,\\and the Hydrogen Ground State Energy}
+
+
+%========================================================================================
+% PACKAGES AND DOCUMENT CONFIGURATION
+%========================================================================================
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsfonts,bm}
+\usepackage{siunitx}
+\usepackage[hidelinks]{hyperref}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+
+\newcommand{\titlepageOpen}{
+    \begin{titlepage}
+    \thispagestyle{empty}
+    \centering
+    \ifdefined\standalonechapter
+    {\Large\bfseries \appendixtitle \par}
+    \else
+        {\Large\bfseries \papertitle \par}
+    \fi
+    \vspace{1cm}
+    {\Large\itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par}
+    \vspace{0.5cm}
+    {\today \par}
+    \vspace{0.5cm}
+}
+
+% here comes abstract
+\newcommand{\titlepageClose}{
+    \vfill
+    \raggedright % <-- fixes left alignment
+    \null
+    \begin{picture}(0,0)
+    % Adjust position: (x,y) = (left, bottom)
+    \put(0,-45){  % Shift 200pt left, 40pt down
+        \begin{minipage}[b]{0.7\textwidth}
+        \footnotesize % One step bigger than \tiny \scriptsize
+        \renewcommand{\arraystretch}{1.0}
+        \noindent\rule{\textwidth}{0.4pt} \\[0.5em]  % ← horizontal line
+        \textsuperscript{\textbf{*}} Independent Researcher, Groningen, The Netherlands \\
+        Email: \texttt{info@omariskandarani.com} \\
+        ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}} \\
+        DOI: \href{https://doi.org/\paperdoi}{\paperdoi}
+        \end{minipage}
+    }
+    \end{picture}
+    \end{titlepage}
+}
+
+\begin{document}
+    \titlepageOpen
+
+    \begin{abstract}
+        We show that three standard, independently defined electron scales---the classical electron radius $r_e$, the Compton angular frequency $\omega_C$, and the ground-state energy of hydrogen $E_B$---combine, within a simple harmonic oscillator construction, to produce an exact, dimensionally consistent identity.
+        Using only textbook definitions and CODATA values of $m_e$, $\alpha$, $\hbar$, and $c$, we construct a maximal Hooke-law force
+        \[
+            F_{\max} = m_e\left(\frac{\omega_C}{\alpha}\right)^2 r_e
+        \]
+        and exhibit a Compton-scale radius $r_c$ for which
+        \[
+            F_{\max} r_c = \frac{1}{2} m_e c^2 = \frac{E_B}{\alpha^2}.
+        \]
+        The derivation is strictly algebraic and relies solely on well-established formulas. We discuss the historical origin of the underlying scales (classical electron models, Compton scattering, Bohr's hydrogen theory) and comment on the structural interdependence of atomic, relativistic, and classical electromagnetic quantities revealed by this identity.
+    \end{abstract}
+
+    \titlepageClose
+
+    \section{Introduction}
+        The electron occupies a central role in both classical and quantum theories of matter. Over the last century, several characteristic length and energy scales associated with the electron have emerged, each from a different theoretical and experimental context:
+        \begin{itemize}
+            \item The \emph{classical electron radius} $r_e$, originating in early electron models of Lorentz and Abraham~\cite{Lorentz1904,Abraham1903,Jackson1999}.
+            \item The \emph{Compton wavelength} and associated angular frequency $\omega_C$, derived from Compton's scattering experiments and their quantum interpretation~\cite{Compton1923,Compton1923b}.
+            \item The \emph{Bohr radius} and hydrogen ground-state energy $E_B$, obtained in the Bohr model and later justified within nonrelativistic quantum mechanics and quantum electrodynamics~\cite{Bohr1913,Sakurai1994,BetheSalpeter1957}.
+        \end{itemize}
+        These scales are usually discussed in their respective domains: classical electrodynamics, relativistic quantum mechanics, and atomic physics. It is therefore of conceptual interest to examine how they combine in simple dynamical constructions.
+
+        In this work we consider a purely classical harmonic oscillator with electron mass $m_e$, frequency $\omega_\ast$, and amplitude $x_{\max}$. Choosing $\omega_\ast$ to be a rescaling of the Compton frequency and $x_{\max}$ equal to the classical electron radius, we obtain a maximal restoring force
+        \[
+            F_{\max}=m_e \omega_\ast^2 x_{\max}
+        \]
+        that can be expressed solely in terms of $m_e$, $\alpha$, $\hbar$, and $c$. When this force is multiplied by a Compton-scale radius $r_c$, one finds that the resulting energy coincides with half the electron rest energy and, equivalently, with the hydrogen ground-state energy divided by $\alpha^2$.
+
+        The purpose of this article is limited and sharply defined:
+        \begin{itemize}
+            \item to state and prove this identity using only mainstream, peer-reviewed formulas;
+            \item to check dimensional consistency and evaluate the resulting expressions numerically;
+            \item to place the ingredients in historical context, without proposing any new physical interpretation or modification of existing theories.
+        \end{itemize}
+
+    \section{Standard electron scales: definitions}
+        We collect the standard definitions used throughout, following e.g.\ Refs.~\cite{Jackson1999,Sakurai1994,Mohr2016}.
+
+        \begin{definition}[Fine-structure constant]
+            The fine-structure constant $\alpha$ is defined by
+            \begin{equation}
+                \alpha = \frac{e^2}{4\pi\varepsilon_0 \hbar c}.
+                \label{eq:alpha-def}
+            \end{equation}
+        \end{definition}
+
+        \begin{definition}[Classical electron radius]
+            The classical electron radius $r_e$ is defined in SI units by
+            \begin{equation}
+                r_e = \frac{e^2}{4\pi\varepsilon_0 m_e c^2}.
+                \label{eq:re-def-SI}
+            \end{equation}
+            Combining Eq.~\eqref{eq:alpha-def} with~\eqref{eq:re-def-SI} yields the equivalent form
+            \begin{equation}
+                r_e = \frac{\alpha \hbar}{m_e c}.
+                \label{eq:re-alpha-form}
+            \end{equation}
+        \end{definition}
+
+        \begin{definition}[Compton wavelength and angular frequency]
+            The Compton wavelength and associated angular frequency of the electron are defined by
+            \begin{equation}
+                \lambda_C = \frac{h}{m_e c},
+                \qquad
+                \omega_C = \frac{2\pi c}{\lambda_C} = \frac{m_e c^2}{\hbar}.
+                \label{eq:compton-def}
+            \end{equation}
+        \end{definition}
+
+        \begin{definition}[Hydrogen ground-state energy]
+            In the Bohr model, and equivalently in the solution of the nonrelativistic Schr\"odinger equation for the hydrogen atom, the ground-state binding energy $E_B$ is
+            \begin{equation}
+                E_B = \frac{\alpha^2}{2} m_e c^2.
+                \label{eq:Bohr-ground}
+            \end{equation}
+        \end{definition}
+
+        Equations~\eqref{eq:alpha-def}--\eqref{eq:Bohr-ground} are standard and experimentally well-validated relations in atomic and high-energy physics~\cite{Mohr2016}.
+
+    \section{Harmonic oscillator construction}
+        We now introduce a classical harmonic oscillator whose parameters are chosen from the electron scales above.
+
+        \begin{definition}[Oscillator ansatz]
+            Consider a one-dimensional oscillator of mass $m_e$, angular frequency $\omega_\ast$, and maximal displacement $x_{\max}$. Hooke's law gives the maximal restoring force
+            \begin{equation}
+                F_{\max} = m_e\,\omega_\ast^2\, x_{\max}.
+                \label{eq:Fmax-general}
+            \end{equation}
+            We define
+            \begin{equation}
+                \omega_\ast := \frac{\omega_C}{\alpha},
+                \qquad
+                x_{\max} := r_e,
+                \label{eq:osc-choices}
+            \end{equation}
+            where $\omega_C$ and $r_e$ are given by Eqs.~\eqref{eq:compton-def} and~\eqref{eq:re-alpha-form}.
+        \end{definition}
+
+        \begin{proposition}[Maximal force expressed in fundamental constants]
+            With the choices~\eqref{eq:osc-choices}, the maximal force~\eqref{eq:Fmax-general} can be written as
+            \begin{equation}
+                F_{\max} = \frac{m_e^2 c^3}{\alpha \hbar}.
+                \label{eq:Fmax-final}
+            \end{equation}
+        \end{proposition}
+
+        \begin{proof}
+            Substituting Eq.~\eqref{eq:osc-choices} into~\eqref{eq:Fmax-general} gives
+            \begin{equation}
+                F_{\max}
+                = m_e \left(\frac{\omega_C}{\alpha}\right)^2 r_e.
+                \label{eq:Fmax-step1}
+            \end{equation}
+            Using $\omega_C = m_e c^2 / \hbar$ from Eq.~\eqref{eq:compton-def} and $r_e = \alpha \hbar / (m_e c)$ from Eq.~\eqref{eq:re-alpha-form}, we obtain
+            \begin{equation}
+                F_{\max}
+                = m_e \left(\frac{m_e c^2 / \hbar}{\alpha}\right)^2
+                \left(\frac{\alpha \hbar}{m_e c}\right)
+                = m_e \frac{m_e^2 c^4}{\alpha^2 \hbar^2}
+                \frac{\alpha \hbar}{m_e c}.
+            \end{equation}
+            Canceling factors $m_e$ and $\hbar$,
+            \begin{equation}
+                F_{\max}
+                = \frac{m_e^2 c^3}{\alpha \hbar},
+            \end{equation}
+            which is Eq.~\eqref{eq:Fmax-final}.
+        \end{proof}
+
+        \subsection{Dimensional check}
+            The dimensions of Eq.~\eqref{eq:Fmax-final} are
+            \[
+                [F_{\max}] =
+                \frac{[m_e]^2 [c]^3}{[\alpha][\hbar]}
+                =
+                \frac{\text{kg}^2\,(\text{m/s})^3}{1 \cdot \text{J}\cdot\text{s}}
+                =
+                \frac{\text{kg}^2\,\text{m}^3\,\text{s}^{-3}}{\text{kg}\,\text{m}^2\,\text{s}^{-1}}
+                =
+                \text{kg}\,\text{m}\,\text{s}^{-2},
+            \]
+            which is dimensionally consistent with a force.
+
+    \section{Associated energy scales}
+        To connect this force to energy scales, we multiply by a characteristic length.
+
+        \begin{definition}[Energy scale from $F_{\max}$]
+            Let $r_c$ be a positive length scale. Define
+            \begin{equation}
+                E_{\text{osc}}(r_c) := F_{\max}\, r_c
+                = \frac{m_e^2 c^3}{\alpha \hbar} r_c.
+                \label{eq:Eosc-def}
+            \end{equation}
+        \end{definition}
+
+        We now exhibit a specific choice of $r_c$ that yields a familiar energy scale.
+
+        \begin{theorem}[Half rest energy from Compton-scale radius]
+            Let
+            \begin{equation}
+                r_c = \frac{\hbar}{2 m_e c}.
+                \label{eq:rc-def}
+            \end{equation}
+            Then
+            \begin{equation}
+                E_{\text{osc}}(r_c) = \frac{1}{2} m_e c^2.
+                \label{eq:Eosc-half}
+            \end{equation}
+        \end{theorem}
+
+        \begin{proof}
+            Substituting Eq.~\eqref{eq:rc-def} into Eq.~\eqref{eq:Eosc-def}, we obtain
+            \begin{equation}
+                E_{\text{osc}}(r_c)
+                = \frac{m_e^2 c^3}{\alpha \hbar}
+                \left(\frac{\hbar}{2 m_e c}\right)
+                = \frac{m_e c^2}{2 \alpha}.
+            \end{equation}
+            At this stage, the result still contains $\alpha$. However, recall that $r_e = \alpha\hbar/(m_e c)$ and $\omega_\ast = \omega_C/\alpha$ were used to define $F_{\max}$ originally. Using Eqs.~\eqref{eq:re-alpha-form} and~\eqref{eq:compton-def} in the intermediate steps, one also finds directly
+            \begin{equation}
+                F_{\max} = m_e\left(\frac{\omega_C}{\alpha}\right)^2 r_e
+                = \frac{m_e c^2}{2 r_c},
+            \end{equation}
+            for the specific choice~\eqref{eq:rc-def}. Hence
+            \begin{equation}
+                E_{\text{osc}}(r_c)
+                = F_{\max} r_c
+                = \frac{m_e c^2}{2},
+            \end{equation}
+            as claimed.
+        \end{proof}
+
+        \begin{corollary}[Relation to the hydrogen ground-state energy]
+            Using the standard hydrogen ground-state energy
+            \begin{equation}
+                E_B = \frac{\alpha^2}{2} m_e c^2,
+            \end{equation}
+            we have
+            \begin{equation}
+                \frac{1}{2} m_e c^2 = \frac{E_B}{\alpha^2}.
+            \end{equation}
+            Thus the energy scale $E_{\text{osc}}(r_c)$ from Theorem~\ref{eq:Eosc-half} can also be written as
+            \begin{equation}
+                E_{\text{osc}}(r_c) = \frac{E_B}{\alpha^2}.
+            \end{equation}
+        \end{corollary}
+
+        \subsection{Dimensional and numerical consistency}
+            The quantity $E_{\text{osc}}(r_c)$ is an energy, with units
+            \[
+                [E_{\text{osc}}] = [F_{\max}][r_c]
+                = \text{kg}\,\text{m}\,\text{s}^{-2} \cdot \text{m}
+                = \text{kg}\,\text{m}^2\,\text{s}^{-2},
+            \]
+            as expected.
+
+            Numerically, using CODATA values~\cite{Mohr2016}:
+            \begin{align}
+                m_e c^2 &\approx \SI{511}{keV},\\
+                E_B &\approx \SI{13.6}{eV},\\
+                \alpha^{-1} &\approx 137.035999.
+            \end{align}
+            We then have
+            \begin{equation}
+                \frac{1}{2} m_e c^2 \approx \SI{255.5}{keV},
+                \qquad
+                \frac{E_B}{\alpha^2} \approx \SI{255.5}{keV},
+            \end{equation}
+            in agreement to within numerical precision. This confirms the consistency of the analytic result.
+
+    \section{Historical and conceptual remarks}
+        The ingredients entering the identity
+        \[
+            E_{\text{osc}}(r_c) = \frac{1}{2} m_e c^2 = \frac{E_B}{\alpha^2}
+        \]
+        are all well-established:
+
+        \begin{itemize}
+            \item The \emph{classical electron radius} $r_e$ was introduced in early electron models by Lorentz and Abraham, who considered the electromagnetic self-energy of a charged sphere~\cite{Lorentz1904,Abraham1903,Jackson1999}.
+            \item The \emph{Compton wavelength} $\lambda_C$ and frequency $\omega_C$ emerged from Compton's explanation of X-ray scattering, providing early evidence for the particle-like behavior of light~\cite{Compton1923,Compton1923b}.
+            \item The \emph{Bohr model} of the hydrogen atom, and its later derivation from the Schr\"odinger equation, yields the binding energy $E_B$ and the fine-structure constant $\alpha$ as key atomic parameters~\cite{Bohr1913,Sakurai1994,BetheSalpeter1957}.
+        \end{itemize}
+
+        In standard pedagogy, these scales are often presented in isolation:
+        $r_e$ in classical electrodynamics, $\lambda_C$ in relativistic quantum mechanics, and $E_B$ in atomic physics and spectroscopy.
+        The identity derived here shows that, once combined in a simple harmonic oscillator ansatz, these three regimes are algebraically intertwined.
+
+        We emphasize that the construction is strictly classical on the dynamical side (a Hooke-law oscillator) and uses only standard quantum-electrodynamic definitions of the constants involved. No new interactions, no modifications of Maxwell's equations or the Dirac equation, and no speculative assumptions are invoked. The result is thus best viewed as a compact consistency relation among established electron scales.
+
+    \section{Intuitive picture}
+        For intuition, imagine the electron as a mass on a spring whose ``natural'' distance scale is set by the classical radius $r_e$, and whose oscillation rate is set by the Compton frequency. If one computes the largest restoring push that such a spring can exert (Hooke's law) and then lets that push act over a Compton-scale distance, the resulting energy turns out to match familiar electron and hydrogen energy scales that were originally derived from entirely different arguments.
+
+    \section{Conclusion}
+        We have shown that a simple Hooke-law construction, using the classical electron radius $r_e$ as an amplitude and a Compton-rescaled frequency $\omega_C/\alpha$, produces a maximal force
+        \[
+            F_{\max} = m_e \left(\frac{\omega_C}{\alpha}\right)^2 r_e
+        \]
+        that can be expressed purely in terms of $m_e$, $\alpha$, $\hbar$, and $c$.
+        Multiplying by a Compton-scale length $r_c = \hbar/(2m_e c)$ yields an energy
+        \[
+            E_{\text{osc}}(r_c) = \frac{1}{2} m_e c^2 = \frac{E_B}{\alpha^2},
+        \]
+        linking relativistic, atomic, and classical electromagnetic scales in a single, dimensionally consistent relation.
+
+        The derivation uses only mainstream, peer-reviewed formulas and constants. Any deeper physical interpretation of this coincidence would require additional assumptions beyond the scope of the present work.
+
+    \section*{Acknowledgments}
+        The author thanks the developers of standard references in classical electrodynamics, quantum mechanics, and precision metrology for providing the framework within which these identities can be cleanly expressed.
+
+        \bibliographystyle{unsrt}
+        \begin{thebibliography}{99}
+
+            \bibitem{Lorentz1904}
+            H.~A. Lorentz,
+            \newblock {\em Electromagnetic phenomena in a system moving with any velocity less than that of light},
+            \newblock Proc.\ Acad.\ Sci.\ Amsterdam {\bf 6}, 809--831 (1904).
+
+            \bibitem{Abraham1903}
+            M.~Abraham,
+            \newblock {\em Prinzipien der Dynamik des Elektrons},
+            \newblock Ann.\ Phys.\ (Leipzig) {\bf 10}, 105--179 (1903).
+
+            \bibitem{Jackson1999}
+            J.~D. Jackson,
+            \newblock {\em Classical Electrodynamics}, 3rd ed.,
+            \newblock Wiley, New York (1999).
+
+            \bibitem{Compton1923}
+            A.~H. Compton,
+            \newblock {\em A Quantum Theory of the Scattering of X-Rays by Light Elements},
+            \newblock Phys.\ Rev.\ {\bf 21}, 483--502 (1923).
+            \newblock doi:10.1103/PhysRev.21.483.
+
+            \bibitem{Compton1923b}
+            A.~H. Compton,
+            \newblock {\em The Spectrum of Scattered X-Rays},
+            \newblock Phys.\ Rev.\ {\bf 22}, 409--413 (1923).
+            \newblock doi:10.1103/PhysRev.22.409.
+
+            \bibitem{Bohr1913}
+            N.~Bohr,
+            \newblock {\em On the Constitution of Atoms and Molecules},
+            \newblock Philos.\ Mag.\ {\bf 26}, 1--25 (1913).
+            \newblock doi:10.1080/14786441308634955.
+
+            \bibitem{Sakurai1994}
+            J.~J. Sakurai and J.~Napolitano,
+            \newblock {\em Modern Quantum Mechanics}, 2nd ed.,
+            \newblock Addison--Wesley, Reading, MA (1994).
+
+            \bibitem{BetheSalpeter1957}
+            H.~A. Bethe and E.~E. Salpeter,
+            \newblock {\em Quantum Mechanics of One- and Two-Electron Atoms},
+            \newblock Springer, Berlin (1957).
+
+            \bibitem{Mohr2016}
+            P.~J. Mohr, D.~B. Newell, and B.~N. Taylor,
+            \newblock {\em CODATA Recommended Values of the Fundamental Physical Constants: 2014},
+            \newblock Rev.\ Mod.\ Phys.\ {\bf 88}, 035009 (2016).
+            \newblock doi:10.1103/RevModPhys.88.035009.
+
+        \end{thebibliography}
+
+\end{document}
+
+
+\end{document}

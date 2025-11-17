@@ -6,6 +6,9 @@
 %! DOI = 10.5281/zenodo.17619189
 
 \newcommand{\paperdoi}{10.5281/zenodo.17619189}
+\newcommand{\papertitle}{Energy, Impulse, and Stability of Thin Vortex Loops\\
+in Incompressible, Inviscid Fluids}
+
 
 %========================================================================================
 % PACKAGES AND DOCUMENT CONFIGURATION
@@ -19,15 +22,47 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 
-\title{Energy, Impulse, and Stability of Thin Vortex Loops\\
-in Incompressible, Inviscid Fluids}
-\author{Omar Iskandarani}
-\affiliation{Independent Researcher, Groningen, The Netherlands}
-\thanks{ORCID: 0009-0006-1686-3961, DOI: \paperdoi}
-\date{\today}
+
+\newcommand{\titlepageOpen}{
+    \begin{titlepage}
+    \thispagestyle{empty}
+    \centering
+    \ifdefined\standalonechapter
+    {\Large\bfseries \appendixtitle \par}
+    \else
+        {\Large\bfseries \papertitle \par}
+    \fi
+    \vspace{1cm}
+    {\Large\itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par}
+    \vspace{0.5cm}
+    {\today \par}
+    \vspace{0.5cm}
+}
+
+% here comes abstract
+\newcommand{\titlepageClose}{
+    \vfill
+    \raggedright % <-- fixes left alignment
+    \null
+    \begin{picture}(0,0)
+    % Adjust position: (x,y) = (left, bottom)
+    \put(0,-45){  % Shift 200pt left, 40pt down
+        \begin{minipage}[b]{0.7\textwidth}
+        \footnotesize % One step bigger than \tiny \scriptsize
+        \renewcommand{\arraystretch}{1.0}
+        \noindent\rule{\textwidth}{0.4pt} \\[0.5em]  % ← horizontal line
+        \textsuperscript{\textbf{*}} Independent Researcher, Groningen, The Netherlands \\
+        Email: \texttt{info@omariskandarani.com} \\
+        ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}} \\
+        DOI: \href{https://doi.org/\paperdoi}{\paperdoi}
+        \end{minipage}
+    }
+    \end{picture}
+    \end{titlepage}
+}
 
 \begin{document}
-    \maketitle
+    \titlepageOpen
 
     \begin{abstract}
         Vortex rings and vortex loops in incompressible, inviscid fluids are localized structures that carry finite energy, impulse, and helicity and can propagate over long distances with weak distortion.
@@ -43,6 +78,10 @@ in Incompressible, Inviscid Fluids}
         Finally, we outline the extension to general closed filaments, highlighting how the Biot--Savart representation and the helicity invariant underlie the robustness of knotted vortex loops as finite-energy, bound configurations in classical fluid mechanics.
         The analysis uses only incompressible Euler flow and established results from vortex dynamics.
     \end{abstract}
+    \titlepageClose
+
+
+
 
     \section{Introduction}
         Localized vortical structures are a hallmark of fluid flows across a wide range of Reynolds numbers and physical systems, from smoke rings and underwater bubble rings to quantized vortices in superfluids~\cite{Saffman1992,Donnelly1991,Meleshko2010}.
