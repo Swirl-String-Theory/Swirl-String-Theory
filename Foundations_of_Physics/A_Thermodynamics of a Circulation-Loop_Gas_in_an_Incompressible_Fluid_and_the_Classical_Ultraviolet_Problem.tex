@@ -1,0 +1,685 @@
+%! Author = Omar Iskandarani
+%! Date = Nov 16, 2025
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxx
+
+\newcommand{\paperdoi}{10.5281/zenodo.xxx}
+\newcommand{\papertitle}{Thermodynamics of a Circulation-Loop Gas in an Incompressible Fluid and the Classical Ultraviolet Problem}
+
+%==========================================================
+% PACKAGES AND DOCUMENT CONFIGURATION
+%==========================================================
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsfonts,bm}
+\usepackage{siunitx}
+\usepackage[hidelinks]{hyperref}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\titlepageOpen}{
+    \begin{titlepage}
+        \thispagestyle{empty}
+        \centering
+        \Large \bfseries \papertitle \par \vspace{1cm}
+        {\Large \itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par}
+        \vspace{0.5cm}
+        {\today \par}
+        \vspace{0.5cm}
+}
+
+% here comes abstract
+\newcommand{\titlepageClose}{
+        \vfill \raggedright \null
+        \begin{picture}(0,0)
+            \put(0,-45){  % Shift 200pt left, 40pt down
+                \begin{minipage}[b]{0.7\textwidth} \footnotesize
+                    \renewcommand{\arraystretch}{1.0}
+                    \noindent\rule{\textwidth}{0.4pt} \\[0.5em]
+                    \textsuperscript{\textbf{*}} Independent Researcher, Groningen, The Netherlands \\
+                    Email: \texttt{info@omariskandarani.com} \\
+                    ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}} \\
+                    DOI: \href{https://doi.org/\paperdoi}{\paperdoi}
+                \end{minipage}
+            }
+        \end{picture}
+    \end{titlepage}
+}
+
+\begin{document}
+    \titlepageOpen
+
+    \begin{abstract}
+
+    \end{abstract}
+
+    \titlepageClose
+
+
+    \section{Introduction}
+
+        Classical thermodynamics and statistical mechanics provide a remarkably successful macroscopic
+        description of fluids and radiation. The equation of state of an ideal gas,
+        \begin{equation}
+            P V = N k_{\mathrm B} T,
+        \end{equation}
+        and the relation between pressure and energy density for an isotropic radiation field,
+        \begin{equation}
+            P = \frac{1}{3} u(T),
+        \end{equation}
+        are textbook results derived from kinetic arguments and from the stress--energy tensor of
+        relativistic fields~\cite{LandauLifshitz_StatPhys,Reif,LandauLifshitz_Fields}.
+        At the same time, the classical Rayleigh--Jeans treatment of thermal radiation predicts
+        $u(T) \propto T\,\omega_{\max}^2$, diverging as the high-frequency cutoff $\omega_{\max}\to\infty$.
+        The resolution of this ``ultraviolet catastrophe'' by Planck's quantization of oscillator
+        energies is one of the historical starting points of quantum theory~\cite{Planck1901,Rayleigh1900,Jeans1905}.
+
+        In parallel with these developments, classical vortex dynamics has established that
+        incompressible, inviscid fluids support localized vortical structures---thin vortex rings and
+        more general closed vortex loops---with finite energy, impulse, and self-induced translational
+        velocity~\cite{Batchelor1967,Saffman1992}. In recent work, the present author has summarized
+        standard results for the energy and impulse of thin vortex loops and emphasized their
+        ``particle-like'' attributes in purely classical Euler flow~\cite{Iskandarani2025_VortexLoops}.
+        A closed filament of circulation $\Gamma$ and core size $a$ carries a finite kinetic energy
+        $E(\Gamma,R,a)$, an impulse $\boldsymbol{I}$, and an effective mass
+        $M_{\mathrm{eff}} = \|\boldsymbol{I}\|/U$, where $U$ is the self-induced velocity along the loop axis.
+        The existence of such finite-energy, localized structures invites the question of how far
+        one can push a classical ``vortex-particle'' picture within standard continuum mechanics.
+
+        A second, complementary observation is that kinetic energy in extended media contributes to
+        inertia and gravitational mass through the relativistic relation $E = mc^2$.
+        While this statement is encoded in the stress--energy tensor of relativistic fluids,
+        explicit examples in simple incompressible configurations remain pedagogically useful.
+        In Ref.~\cite{Iskandarani2025_RotKE}, an incompressible, inviscid fluid undergoing rigid-body
+        rotation in a finite cylinder was analyzed, and the volume-averaged rotational kinetic energy
+        density $\langle e_{\mathrm{kin}}\rangle$ was related to an effective mass density
+        $\Delta \rho_{\mathrm{eff}} = \langle e_{\mathrm{kin}}\rangle /c^2$ in the nonrelativistic limit.
+        For that geometry one finds the compact result
+        \begin{equation}
+            \frac{\Delta \rho_{\mathrm{eff}}}{\rho}
+            = \frac{1}{4}\left(\frac{v_{\mathrm{edge}}}{c}\right)^2,
+        \end{equation}
+        where $v_{\mathrm{edge}}$ is the tangential speed at the cylinder boundary and $\rho$ is the
+        rest-mass density. This example shows, within standard special relativity, how rotational
+        motion modifies the effective mass density of an incompressible medium at order $(v/c)^2$.
+
+        The purpose of the present paper is to combine these two strands---finite-energy vortex loops
+        and effective mass density from rotational kinetic energy---and to explore the thermodynamics
+        of a dilute gas of vortex loops in an incompressible, inviscid fluid.
+        Our analysis is entirely classical and remains within the framework of Eulerian fluid mechanics,
+        special relativity, and textbook statistical mechanics. We show that:
+
+        \begin{enumerate}
+            \item A gas of weakly interacting, randomly oriented vortex loops with fixed circulation
+            and core size admits a kinetic description in which the usual ideal-gas equation of
+            state $PV = N k_{\mathrm B} T$ is recovered from the momentum flux, without any
+            modification of Boltzmann's constant or of the definition of temperature.
+
+            \item For an isotropic ensemble of ultra-relativistic or effectively massless excitations
+            built from such loops, the standard relation $P = \tfrac{1}{3}u$ follows from the
+            three-dimensional structure of the momentum flux tensor, in direct analogy with
+            the radiation case.
+
+            \item The mechanical spectrum of admissible loop configurations is effectively bounded from
+            above in frequency by the combination of finite core radius, finite circulation, and
+            a characteristic swirl speed, so that the classical Rayleigh--Jeans integral for the
+            energy density remains finite when evaluated over this mechanically constrained mode
+            set. No modification of Maxwell's equations or of the relativistic field equations is
+            assumed; the regularization arises from the kinematics of the vortex degrees of freedom.
+        \end{enumerate}
+
+        From a thermodynamic standpoint, the main result is thus that a purely classical,
+        incompressible fluid with vortex-loop microstructure can reproduce the familiar
+        pressure--volume--temperature relations and the $P = \tfrac{1}{3}u$ relation for an isotropic
+        radiation-like gas, while avoiding the ultraviolet divergence of the naive continuum mode
+        counting. From a conceptual standpoint, the construction provides a concrete mechanical model
+        in which the energy, pressure, and effective mass associated with internal rotational motion
+        can be treated on the same footing as in relativistic continuum mechanics, without invoking
+        any nonstandard dynamics or postulates beyond those already present in classical fluid
+        mechanics and special relativity.
+
+    \section{Vortex-loop gas and kinetic theory}
+        \label{sec:vortex-gas}
+
+        In this section we set up a minimal kinetic model for a dilute gas of vortex loops
+        in an incompressible, inviscid fluid and derive its thermodynamic equation of state.
+        The construction follows standard kinetic theory, with the only nonstandard ingredient
+        being the identification of the microscopic ``particles'' with finite-energy vortex
+        loops in Euler flow.
+
+        \subsection{Vortex-loop kinematics and effective mass}
+
+            We consider a homogeneous, incompressible, inviscid fluid of density $\rho_f$,
+            described by the Euler equations
+            \begin{equation}
+                \frac{\partial \boldsymbol{v}}{\partial t}
+                + (\boldsymbol{v}\cdot\nabla)\boldsymbol{v}
+                = -\frac{1}{\rho_f}\nabla p,
+                \qquad
+                \nabla\cdot\boldsymbol{v} = 0,
+                \label{eq:Euler}
+            \end{equation}
+            where $\boldsymbol{v}(\boldsymbol{x},t)$ is the velocity field and $p(\boldsymbol{x},t)$
+            the pressure. Vorticity is defined as
+            \begin{equation}
+                \boldsymbol{\omega} = \nabla\times\boldsymbol{v}.
+            \end{equation}
+            We assume that vorticity is confined to thin tubes (vortex filaments) of core radius $a$,
+            within which the tangential speed is bounded by a characteristic value $v_0$, and that the
+            flow outside the cores is irrotational.
+
+            Classical vortex dynamics shows that a closed vortex filament of circulation $\Gamma$
+            and large-scale radius $R \gg a$ has finite kinetic energy $E(\Gamma,R,a)$, finite
+            impulse $\boldsymbol{I}$, and a self-induced translational velocity $U$ along its symmetry
+            axis~\cite{Batchelor1967,Saffman1992,Iskandarani2025_VortexLoops}. It is natural to define
+            an effective mass
+            \begin{equation}
+                M_{\mathrm{eff}} \equiv \frac{\|\boldsymbol{I}\|}{U},
+                \label{eq:Meff-def}
+            \end{equation}
+            so that the loop behaves kinematically like a particle of mass $M_{\mathrm{eff}}$ moving
+            with velocity $U$ along its axis. In addition to this translational motion, the fluid
+            inside and near the core carries internal rotational kinetic energy. In the nonrelativistic
+            regime, the contribution of this internal energy to the effective mass density can be
+            expressed, following Ref.~\cite{Iskandarani2025_RotKE}, as
+            \begin{equation}
+                \Delta \rho_{\mathrm{eff}} = \frac{\langle e_{\mathrm{kin}}\rangle}{c^2},
+                \label{eq:Delta-rho-eff}
+            \end{equation}
+            where $\langle e_{\mathrm{kin}}\rangle$ is the volume-averaged rotational kinetic energy
+            density and $c$ is the speed of light.
+
+            In what follows, we treat each vortex loop as a structure with fixed circulation and
+            core size, whose internal degrees of freedom are either frozen or accounted for as a
+            fixed contribution to $M_{\mathrm{eff}}$. The centre-of-mass motion of the loops then
+            admits a standard kinetic description.
+
+        \subsection{Phase space and Hamiltonian}
+
+            We consider $N$ well-separated vortex loops in a container of volume $V$.
+            Let $\boldsymbol{x}_i$ and $\boldsymbol{p}_i$ denote the centre-of-mass position and
+            momentum of the $i$-th loop ($i=1,\dots,N$). In the dilute limit we neglect mutual
+            induction and other interactions between loops, so that the total Hamiltonian factorizes:
+            \begin{equation}
+                H = \sum_{i=1}^{N} \frac{\boldsymbol{p}_i^2}{2M_{\mathrm{eff}}}.
+                \label{eq:H-nonrel}
+            \end{equation}
+            The phase space is the usual $6N$-dimensional space of coordinates and momenta,
+            \begin{equation}
+                \Gamma = \left\{ (\boldsymbol{x}_1,\dots,\boldsymbol{x}_N;\,
+                             \boldsymbol{p}_1,\dots,\boldsymbol{p}_N) \right\},
+            \end{equation}
+            endowed with the Liouville measure
+            \begin{equation}
+                \mathrm{d}\mu(\Gamma)
+                = \prod_{i=1}^{N} \mathrm{d}^3x_i\,\mathrm{d}^3p_i.
+            \end{equation}
+            Importantly, the incompressibility constraint $\nabla\cdot\boldsymbol{v}=0$ is imposed
+            at the level of the underlying Euler flow and affects the detailed form of
+            $M_{\mathrm{eff}}$ and the internal energy of each loop. It does not modify the
+            Liouville measure or the Hamiltonian structure for the centre-of-mass coordinates,
+            which remain those of a dilute gas of classical particles.
+
+        \subsection{Canonical ensemble and partition function}
+
+            We now place the vortex-loop gas in contact with a heat bath at temperature $T$ and
+            describe it within the canonical ensemble. The canonical partition function is
+            \begin{equation}
+                Z_N(T,V)
+                = \frac{1}{N!\,h^{3N}}
+                \int \exp[-\beta H]\,
+                \mathrm{d}^{3N}p\,\mathrm{d}^{3N}x,
+                \qquad \beta = \frac{1}{k_{\mathrm B}T},
+                \label{eq:ZN-def}
+            \end{equation}
+            where $h$ is Planck's constant and $k_{\mathrm B}$ Boltzmann's constant.
+            Inserting the Hamiltonian~\eqref{eq:H-nonrel},
+            \begin{equation}
+                Z_N(T,V)
+                = \frac{1}{N!\,h^{3N}}
+                \prod_{i=1}^{N}
+                \left[
+                    \int_{V} \mathrm{d}^3x_i
+                    \int_{\mathbb{R}^3} \exp\!\left(
+                                                  -\beta\frac{\boldsymbol{p}_i^2}{2M_{\mathrm{eff}}}
+                \right)\mathrm{d}^3p_i
+                \right].
+            \end{equation}
+            The position integrals each yield a factor of $V$, and the momentum integrals are
+            Gaussian:
+            \begin{equation}
+                \int_{\mathbb{R}^3}
+                \exp\!\left(-\beta\frac{\boldsymbol{p}^2}{2M_{\mathrm{eff}}}\right)
+                \mathrm{d}^3p
+                = \left( 2\pi M_{\mathrm{eff}} k_{\mathrm B}T \right)^{3/2}.
+            \end{equation}
+            Hence
+            \begin{equation}
+                Z_N(T,V)
+                = \frac{1}{N!}
+                \left[
+                    \frac{V}{\lambda_T^3}
+                \right]^{\!N},
+                \qquad
+                \lambda_T
+                = \frac{h}{\sqrt{2\pi M_{\mathrm{eff}} k_{\mathrm B}T}},
+                \label{eq:ZN-final}
+            \end{equation}
+            where $\lambda_T$ is the thermal de Broglie wavelength associated with $M_{\mathrm{eff}}$.
+            This is the standard partition function of a classical ideal gas with mass
+            $M_{\mathrm{eff}}$; the vortex nature of the underlying structures is encoded entirely
+            in the value of $M_{\mathrm{eff}}$ and in possible internal-state degeneracies, which
+            we neglect here.
+
+        \subsection{Ideal-gas equation of state}
+
+            The Helmholtz free energy $F(T,V,N)$ is
+            \begin{equation}
+                F(T,V,N)
+                = -k_{\mathrm B}T \ln Z_N(T,V)
+                = -k_{\mathrm B}T
+                \left[
+                    -\ln N! + N\ln V - 3N\ln\lambda_T
+                \right].
+            \end{equation}
+            The pressure is obtained in the usual way as
+            \begin{equation}
+                P
+                = -\left(\frac{\partial F}{\partial V}\right)_{T,N}
+                = k_{\mathrm B}T
+                \left(\frac{\partial \ln Z_N}{\partial V}\right)_{T,N}
+                = k_{\mathrm B}T\,\frac{N}{V}.
+                \label{eq:ideal-gas}
+            \end{equation}
+            Thus the dilute vortex-loop gas obeys the ideal-gas law
+            \begin{equation}
+                P V = N k_{\mathrm B} T,
+            \end{equation}
+            with no modification of the equation of state due to the incompressibility of the underlying
+            fluid. The incompressibility affects the value of $M_{\mathrm{eff}}$ through the
+            kinetic energy of the core and the surrounding flow, but once $M_{\mathrm{eff}}$ is fixed,
+            the centre-of-mass dynamics yields the same $P$--$V$--$T$ relation as for point particles.
+
+        \subsection{Isotropic momentum flux and $P = \tfrac{1}{3}u$}
+
+            We now turn to the relation between pressure and energy density for an isotropic ensemble
+            of excitations. Consider a gas of particles (here, effective vortex-loop quasiparticles)
+            with energies $E$ and momenta $\boldsymbol{p}$, moving with speed $v = |\boldsymbol{v}|$.
+            In kinetic theory, the pressure on a plane normal to the $x$-axis is given by the
+            momentum flux in the $x$-direction,
+            \begin{equation}
+                P
+                = \frac{1}{V}
+                \left\langle \sum_{i} p_{x,i} v_{x,i} \right\rangle,
+            \end{equation}
+            where the average is over all particles in the volume $V$ and $p_{x,i}$, $v_{x,i}$ are
+            the $x$-components of the momentum and velocity of particle $i$.
+            For an isotropic distribution, one can write
+            \begin{equation}
+                p_{x} v_{x} = (\boldsymbol{p}\cdot\boldsymbol{v})\cos^2\theta,
+            \end{equation}
+            where $\theta$ is the angle between $\boldsymbol{p}$ and the $x$-axis. In three dimensions
+            the angular average of $\cos^2\theta$ over the unit sphere is
+            \begin{equation}
+                \langle \cos^2\theta \rangle
+                = \frac{1}{4\pi}\int_0^{2\pi}\!\mathrm{d}\phi
+                \int_0^\pi \cos^2\theta\,\sin\theta\,\mathrm{d}\theta
+                = \frac{1}{3}.
+            \end{equation}
+            Thus,
+            \begin{equation}
+                P
+                = \frac{1}{3V}
+                \left\langle \sum_{i} \boldsymbol{p}_i\cdot\boldsymbol{v}_i \right\rangle.
+            \end{equation}
+            In the ultra-relativistic or effectively massless limit, one has $E_i = c\|\boldsymbol{p}_i\|$
+            and $\|\boldsymbol{v}_i\|=c$, so that $\boldsymbol{p}_i\cdot\boldsymbol{v}_i = E_i$.
+            The pressure therefore becomes
+            \begin{equation}
+                P
+                = \frac{1}{3V}
+                \left\langle \sum_{i} E_i \right\rangle
+                = \frac{1}{3} u,
+                \label{eq:P-u-1over3}
+            \end{equation}
+            where
+            \begin{equation}
+                u
+                = \frac{1}{V}\left\langle \sum_{i} E_i \right\rangle
+            \end{equation}
+            is the energy density. This is the familiar relation for an isotropic gas of massless
+            particles or photons~\cite{LandauLifshitz_StatPhys,LandauLifshitz_Fields}.
+            In the present context, it applies to any regime in which the relevant vortex-loop
+            excitations propagate at speeds close to $c$ and their energy is dominated by
+            translational motion rather than rest energy.
+
+            The crucial point is that Eq.~\eqref{eq:P-u-1over3} follows entirely from the
+            three-dimensional isotropy of the momentum distribution and the kinematics of
+            relativistic particles. It does not depend on the detailed microstructure of the
+            underlying medium. The vortex-loop picture provides a concrete classical realization
+            of such excitations within incompressible Euler flow; the relation $P = \tfrac{1}{3}u$
+            then follows from standard kinetic arguments applied to these effective degrees of freedom.
+
+            \medskip
+
+            In summary, a dilute gas of vortex loops in an incompressible, inviscid fluid admits
+            a standard kinetic description in which the ideal-gas law and the radiation-like
+            relation $P = \tfrac{1}{3}u$ emerge in precisely the same way as for point particles
+            and photons in conventional kinetic theory. The incompressibility of the underlying
+            fluid constrains the internal structure and effective mass of the loops, but does not
+            alter the macroscopic $P$--$V$--$T$ relations obtained from their centre-of-mass motion
+            and isotropic momentum flux.
+
+
+    \section{Mechanically allowed mode set and the classical ultraviolet problem}
+        \label{sec:modes-UV}
+
+        The derivation of the Rayleigh--Jeans law in a cavity rests on two ingredients:
+        (i) the normal-mode structure of Maxwell's equations in a finite volume, and
+        (ii) the assumption that each normal mode behaves as an independent harmonic oscillator
+        carrying an average energy $k_{\mathrm B}T$ in the classical limit.
+        The number of electromagnetic modes with angular frequency between $\omega$ and
+        $\omega+\mathrm{d}\omega$ in a volume $V$ is~\cite{LandauLifshitz_Fields}
+        \begin{equation}
+            g_{\mathrm{EM}}(\omega)\,\mathrm{d}\omega
+            = \frac{V}{\pi^2 c^3}\,\omega^2\,\mathrm{d}\omega,
+            \label{eq:g-EM}
+        \end{equation}
+        so that the classical spectral energy density is
+        \begin{equation}
+            u_{\mathrm{RJ}}(\omega,T)\,\mathrm{d}\omega
+            = \frac{\omega^2}{\pi^2 c^3} k_{\mathrm B}T\,\mathrm{d}\omega.
+            \label{eq:u-RJ}
+        \end{equation}
+        The total energy density $u(T) = \int_0^\infty u_{\mathrm{RJ}}(\omega,T)\,\mathrm{d}\omega$
+        diverges as $\omega^3$ at the upper limit, giving the well-known ultraviolet catastrophe
+        in the purely classical field picture~\cite{Rayleigh1900,Jeans1905,Planck1901}.
+
+        In the present framework, the electromagnetic field is regarded as a macroscopic,
+        irrotational manifestation of the motion of an underlying incompressible fluid with
+        circulation-loop microstructure. Maxwell's equations and their cavity eigenmodes are
+        left intact at the macroscopic level. What changes is the interpretation of the
+        \emph{microstates} underlying a given field configuration: instead of independent
+        field oscillators, the microstates are mechanical configurations of circulation loops.
+        We now show that the kinematics of these loops restricts the set of physically
+        realisable high-frequency modes, effectively regularizing the Rayleigh--Jeans
+        integral without any modification of Maxwell's equations.
+
+        \subsection{Maximal rotational frequency from core size and tangential speed}
+
+            As in Sec.~\ref{sec:vortex-gas}, we consider thin circulation loops (vortex rings)
+            of core radius $a$ embedded in a homogeneous incompressible fluid of density $\rho_f$.
+            Inside the core, the tangential speed $v_\theta(r)$ of the fluid elements is bounded
+            by a characteristic value $v_0$, so that
+            \begin{equation}
+                v_\theta(r) \leq v_0 \quad \text{for } 0 \leq r \leq a.
+            \end{equation}
+            The associated angular frequency at radius $r$ is
+            \begin{equation}
+                \Omega(r) = \frac{v_\theta(r)}{r},
+            \end{equation}
+            so that the maximal angular frequency attainable within the core is bounded by
+            \begin{equation}
+                \Omega_{\max}
+                = \max_{0<r\leq a} \frac{v_\theta(r)}{r}
+                \lesssim \frac{v_0}{a}.
+                \label{eq:Omega-max}
+            \end{equation}
+            This bound is purely kinematic: it expresses the fact that no fluid element can
+            circulate around the core with tangential speed exceeding $v_0$ at a radius smaller
+            than $a$. In particular, it implies a minimal time scale
+            \begin{equation}
+                \tau_{\min} \sim \frac{1}{\Omega_{\max}} \gtrsim \frac{a}{v_0},
+            \end{equation}
+            below which the fluid cannot respond to external forcing or internal excitations
+            without violating the speed bound.
+
+            In the present context, we will denote by
+            \begin{equation}
+                \omega_{\max} \equiv \Omega_{\max}
+            \end{equation}
+            the characteristic maximal angular frequency associated with internal rotational
+            motion in the circulation-loop cores.
+            This frequency provides a mechanical upper bound on how rapidly the substrate
+            can be made to oscillate locally. Any putative field mode with $\omega \gg \omega_{\max}$
+            would require fluid motions inside the cores with periods shorter than $\tau_{\min}$
+            and hence tangential speeds above $v_0$, which are excluded by construction.
+
+        \subsection{Mechanically realizable field modes}
+
+            Maxwell's equations in vacuum (or in a homogeneous dielectric) admit harmonic
+            solutions with arbitrarily large wave number $k$ and frequency
+            $\omega = c k$.
+            In the purely field-theoretic picture, nothing prevents one from populating modes
+            with $k \to \infty$. In the present mechanical picture, however, such field
+            configurations must be realizable as coarse-grained manifestations of the motion
+            of the underlying fluid.
+
+            We will not attempt to derive Maxwell's equations from the fluid model.
+            Instead, we make the following conservative, kinematic assumption:
+
+            \begin{quote}
+                \emph{For a given cavity geometry and boundary conditions, we restrict attention
+                to those electromagnetic normal modes whose spatial and temporal variations can
+                be generated by configurations of circulation loops whose internal rotational
+                frequencies do not exceed $\omega_{\max}$.}
+            \end{quote}
+
+            Operationally, this means that among the continuum of formal cavity eigenmodes,
+            only those with angular frequency $\omega$ up to some effective cutoff
+            \begin{equation}
+                \omega \lesssim \omega_{\max}
+                \label{eq:omega-cut}
+            \end{equation}
+            can actually be excited in thermal equilibrium with the mechanical substrate.
+            Modes with $\omega \gg \omega_{\max}$ exist as mathematical solutions of the field
+            equations, but there is no mechanical microstate in the circulation-loop gas that
+            corresponds to their excitation at finite amplitude; they are therefore excluded
+            from the thermodynamic counting of microstates.
+
+            Equivalently, one may say that the \emph{effective} density of thermally accessible
+            modes is modified from Eq.~\eqref{eq:g-EM} to
+            \begin{equation}
+                g_{\mathrm{eff}}(\omega)
+                = g_{\mathrm{EM}}(\omega)\,f\!\left(\frac{\omega}{\omega_{\max}}\right),
+                \label{eq:g-eff}
+            \end{equation}
+            where $f(x)$ is a dimensionless cutoff function satisfying
+            \begin{equation}
+                f(x) \to 1 \quad (x\ll 1),
+                \qquad
+                f(x) \to 0 \quad (x\gg 1),
+                \label{eq:f-asymptotics}
+            \end{equation}
+            and decaying sufficiently rapidly as $x\to\infty$ to render the total energy finite.
+            The detailed form of $f$ depends on the microphysics of the circulation-loop gas
+            and on how electromagnetic excitations couple to it; for the present discussion,
+            only the existence of such an $f$ with the stated asymptotics is required.
+
+        \subsection{Modified Rayleigh--Jeans spectrum and finiteness of energy}
+
+            With the mechanically constrained mode set~\eqref{eq:g-eff}, the classical
+            Rayleigh--Jeans spectral energy density becomes
+            \begin{equation}
+                u_{\mathrm{eff}}(\omega,T)\,\mathrm{d}\omega
+                = \frac{\omega^2}{\pi^2 c^3} k_{\mathrm B}T\,
+                f\!\left(\frac{\omega}{\omega_{\max}}\right)\mathrm{d}\omega.
+                \label{eq:u-eff}
+            \end{equation}
+            The total energy density is
+            \begin{equation}
+                u(T)
+                = \int_0^\infty u_{\mathrm{eff}}(\omega,T)\,\mathrm{d}\omega
+                = \frac{k_{\mathrm B}T}{\pi^2 c^3}
+                \int_0^\infty \omega^2
+                f\!\left(\frac{\omega}{\omega_{\max}}\right)\mathrm{d}\omega.
+                \label{eq:u-T-integral}
+            \end{equation}
+            By changing variables $x = \omega/\omega_{\max}$, this becomes
+            \begin{equation}
+                u(T)
+                = \frac{k_{\mathrm B}T}{\pi^2 c^3}\,\omega_{\max}^3
+                \int_0^\infty x^2 f(x)\,\mathrm{d}x.
+            \end{equation}
+            Under the mild assumption that the integral
+            \begin{equation}
+                C_f \equiv \int_0^\infty x^2 f(x)\,\mathrm{d}x
+            \end{equation}
+            converges (which follows from the decay of $f$ as $x\to\infty$), we obtain
+            \begin{equation}
+                u(T)
+                = \frac{k_{\mathrm B}T}{\pi^2 c^3}\,\omega_{\max}^3 C_f,
+                \label{eq:u-T-finite}
+            \end{equation}
+            which is finite for all finite $T$ and scales linearly with temperature in the
+            regime where equipartition holds. The ultraviolet divergence of the naive
+            Rayleigh--Jeans integral is thus removed by the mechanical restriction of the
+            mode set; the formal field-theoretic density of states~\eqref{eq:g-EM} is
+            replaced, for thermodynamic purposes, by the effective density~\eqref{eq:g-eff}
+            that accounts for the finite response time and finite core size of the substrate.
+
+            As a simple illustration, consider the sharp-cutoff choice
+            \begin{equation}
+                f(x) =
+                \begin{cases}
+                    1, & 0 \leq x \leq 1,\\[3pt]
+                    0, & x > 1,
+                \end{cases}
+            \end{equation}
+            which encodes the assumption that modes with $\omega \leq \omega_{\max}$ are fully
+            accessible, while those with $\omega > \omega_{\max}$ are inaccessible.
+            In that case,
+            \begin{equation}
+                C_f = \int_0^1 x^2\,\mathrm{d}x = \frac{1}{3},
+            \end{equation}
+            and Eq.~\eqref{eq:u-T-finite} reduces to
+            \begin{equation}
+                u(T)
+                = \frac{k_{\mathrm B}T}{3\pi^2 c^3}\,\omega_{\max}^3.
+                \label{eq:u-RJ-cut}
+            \end{equation}
+            This is precisely the Rayleigh--Jeans result with a hard frequency cutoff
+            at $\omega_{\max}$, now justified mechanically by the finite core size and maximal
+            tangential speed of the circulation loops. For more realistic, smooth cutoff
+            functions $f(x)$ the prefactor $C_f$ changes, but the qualitative conclusion
+            remains: the energy density is finite and scales as $\omega_{\max}^3$.
+
+        \subsection{Maxwell's equations and the role of the substrate}
+
+            It is important to emphasize what has and has not been modified in this construction.
+            At the macroscopic level:
+
+            \begin{itemize}
+                \item The form of Maxwell's equations and their normal-mode solutions in a cavity
+                are left unchanged. The usual mode density~\eqref{eq:g-EM} remains valid
+                as a statement about the spectrum of solutions to the field equations.
+
+                \item The relations $P V = N k_{\mathrm B}T$ and $P = \tfrac{1}{3}u$ for the
+                effective quasiparticles (Sec.~\ref{sec:vortex-gas}) are derived from
+                standard kinetic theory and from the isotropy of the momentum distribution,
+                without any modification of the field equations.
+            \end{itemize}
+
+            What \emph{does} change is the set of microstates that are admitted when one asks
+            how a given electromagnetic field configuration is realized mechanically.
+            In the usual classical treatment, each normal mode is assigned an independent
+            harmonic-oscillator degree of freedom and hence contributes $k_{\mathrm B}T$ to
+            the energy in the classical limit. In the present fluid-based model, the
+            independent microstates are not field amplitudes but configurations of circulation
+            loops obeying the kinematic constraints of incompressible Euler flow. These
+            constraints imply a finite maximal rotational frequency $\omega_{\max}$ and
+            thereby restrict the subset of cavity modes that can be populated in thermal
+            equilibrium with the substrate.
+
+            In this sense, the incompressible fluid with circulation-loop microstructure
+            acts as a \emph{mechanical regulator} of the ultraviolet behavior of classical
+            radiation. The Rayleigh--Jeans divergence does not arise, not because the
+            field equations are altered, but because the assumption of an infinite set of
+            independent harmonic oscillators is replaced by a finite-density set of
+            mechanically realizable excitations whose internal time scales cannot be
+            shorter than $1/\omega_{\max}$.
+
+            From the thermodynamic point of view, the key result of this section is that
+            the ultraviolet behavior of the classical radiation spectrum is rendered finite
+            once the microstate space is defined in terms of circulation loops with finite
+            core radius and bounded tangential speed. The subsequent sections will explore
+            how this mechanical cutoff scale compares with known microscopic scales in
+            high-energy physics and what, if any, observable consequences might arise in
+            astrophysical or cosmological contexts.
+
+
+    \section{Discussion and outlook}
+        We have derived...
+
+    \section*{Acknowledgments}
+        The author thanks the authors of standard texts on fluid mechanics and relativistic field theory for providing the background material on which this analysis is based.
+
+        \bibliographystyle{unsrt}
+        \begin{thebibliography}{99}
+            \bibitem{Einstein1905_Eequalsmc2}
+            A.~Einstein,
+            \newblock \emph{Ist die Tr\"agheit eines K\"orpers von seinem Energieinhalt abh\"angig?},
+            \newblock Annalen der Physik \textbf{323}, 13, 639--641 (1905).
+            \newblock \href{https://doi.org/10.1002/andp.19053231314}{10.1002/andp.19053231314}
+
+            \bibitem{Planck1901}
+            M.~Planck,
+            \newblock \emph{{\"U}ber das Gesetz der Energieverteilung im Normalspectrum},
+            \newblock Annalen der Physik \textbf{309}, 3, 553--563 (1901).
+            \newblock \href{https://doi.org/10.1002/andp.19013090310}{10.1002/andp.19013090310}
+
+            \bibitem{Rayleigh1900}
+            Lord Rayleigh,
+            \newblock \emph{Remarks upon the Law of Complete Radiation},
+            \newblock Philosophical Magazine \textbf{49}, 539--540 (1900).
+            \newblock \href{https://doi.org/10.1080/14786440009463878}{10.1080/14786440009463878}
+
+            \bibitem{Jeans1905}
+            J.~H.~Jeans,
+            \newblock \emph{On the Partition of Energy between Matter and Ether},
+            \newblock Philosophical Magazine \textbf{10}, 91--98 (1905).
+            \newblock \href{https://doi.org/10.1080/14786440509463292}{10.1080/14786440509463292}
+
+            \bibitem{LandauLifshitz_Fields}
+            L.~D.~Landau and E.~M.~Lifshitz,
+            \newblock \emph{The Classical Theory of Fields}, 4th ed.,
+            \newblock Butterworth--Heinemann, 1975.
+
+            \bibitem{LandauLifshitz_StatPhys}
+            L.~D.~Landau and E.~M.~Lifshitz,
+            \newblock \emph{Statistical Physics, Part 1}, 3rd ed.,
+            \newblock Pergamon Press, 1980.
+
+            \bibitem{Reif}
+            F.~Reif,
+            \newblock \emph{Fundamentals of Statistical and Thermal Physics},
+            \newblock McGraw--Hill, 1965.
+
+            \bibitem{Batchelor1967}
+            G.~K.~Batchelor,
+            \newblock \emph{An Introduction to Fluid Dynamics},
+            \newblock Cambridge University Press, 1967.
+
+            \bibitem{Saffman1992}
+            P.~G.~Saffman,
+            \newblock \emph{Vortex Dynamics},
+            \newblock Cambridge University Press, 1992.
+
+            \bibitem{Iskandarani2025_RotKE}
+            Omar Iskandarani,
+            \newblock \emph{Rotational Kinetic Energy Density and an Effective Mass Relation in Incompressible Fluids},
+            \newblock (preprint, Zenodo), 2025.
+            \newblock \href{https://doi.org/10.5281/zenodo.17619150}{10.5281/zenodo.17619150}
+
+            \bibitem{Iskandarani2025_VortexLoops}
+            Omar Iskandarani,
+            \newblock \emph{Energy, Impulse, and Stability of Thin Vortex Loops in Incompressible, Inviscid Fluids},
+            \newblock (preprint, Zenodo), 2025.
+            \newblock \href{https://doi.org/10.5281/zenodo.17619189}{10.5281/zenodo.17619189}
+
+        \end{thebibliography}
+
+\end{document}
