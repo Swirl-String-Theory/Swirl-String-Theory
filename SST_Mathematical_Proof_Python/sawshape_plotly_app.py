@@ -203,6 +203,9 @@ def build_figure(params: CoilParams, show_field: bool, show_even: bool, show_odd
         ),
         legend=dict(orientation="h"),
         margin=dict(l=0, r=0, t=30, b=0),
+        width=None,  # Use container width
+        height=800,  # Fixed height to fill viewport
+        autosize=True,
     )
     return fig
 
@@ -259,4 +262,3 @@ def st_app():
 
 if __name__ == "__main__":
     st_app()
-

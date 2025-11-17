@@ -36,9 +36,11 @@ def read_text(path: pathlib.Path) -> str:
 
 def load_module_from_path(abs_path: pathlib.Path):
     """Load a Python module from an absolute path without relying on packages."""
-    spec = importlib.util.spec_from_file_location(abs_path.stem, abs_path)
+    module_name = f"_sst_{abs_path.stem.replace('-', '_').replace(' ', '_')}_{abs(hash(abs_path)) & 0xFFFF}"
+    spec = importlib.util.spec_from_file_location(module_name, abs_path)
     mod = importlib.util.module_from_spec(spec)
     assert spec and spec.loader, "Could not create module loader"
+    sys.modules[module_name] = mod
     spec.loader.exec_module(mod)
     return mod
 
@@ -104,10 +106,17 @@ def _launch_script(abs_path: pathlib.Path, extra_args: Optional[list[str]] = Non
     st.session_state["log_map"][key] = []
     # Record start time for asset discovery
     st.session_state["start_time_map"][key] = time.time()
-    _mark_poll_window(key)
+    _mark_poll_window(key, seconds=5.0)  # Extended polling window
     # Start subprocess with realtime stdout+stderr
     cmd = [sys.executable, "-u", str(abs_path)] + (extra_args or [])
+    cmd_str = " ".join(cmd)
+    _append_log(key, f">>> Starting: {cmd_str}")
+    _append_log(key, ">>> Output will appear below...")
+    _drain_logs_to_session(key)  # Immediately show startup message
     try:
+        # Force unbuffered output via environment
+        env = os.environ.copy()
+        env["PYTHONUNBUFFERED"] = "1"
         p = subprocess.Popen(
             cmd,
             cwd=str(abs_path.parent),
@@ -115,12 +124,14 @@ def _launch_script(abs_path: pathlib.Path, extra_args: Optional[list[str]] = Non
             stderr=subprocess.STDOUT,
             stdin=subprocess.PIPE,
             text=True,
-            bufsize=1,
+            bufsize=0,  # Unbuffered
             encoding="utf-8",
             errors="replace",
+            env=env,
         )
     except Exception as e:
         _append_log(key, f"<<launch error: {e}>>")
+        _drain_logs_to_session(key)
         return key
     st.session_state["proc_map"][key] = p
     # Optionally prime stdin
@@ -128,22 +139,44 @@ def _launch_script(abs_path: pathlib.Path, extra_args: Optional[list[str]] = Non
         if pre_stdin and p.stdin and p.poll() is None:
             p.stdin.write(pre_stdin + ("" if pre_stdin.endswith("\n") else "\n"))
             p.stdin.flush()
+            _append_log(key, f">>> Pre-sent stdin: {pre_stdin!r}")
+            _drain_logs_to_session(key)
     except Exception as e:
         _append_log(key, f"<<stdin prime error: {e}>>")
+        _drain_logs_to_session(key)
 
     def _reader():
         try:
-            for line in p.stdout:
+            # Read all output - both line-by-line and remaining
+            output_lines = []
+            while True:
+                line = p.stdout.readline()
+                if not line:
+                    # Check if process is still running
+                    if p.poll() is not None:
+                        break
+                    # Process still running but no output yet, wait a bit
+                    time.sleep(0.01)
+                    continue
+                output_lines.append(line.rstrip("\n"))
                 _append_log(key, line.rstrip("\n"))
+            
+            # Read any remaining output after process ends
+            try:
+                rest = p.stdout.read()
+                if rest:
+                    for ln in rest.splitlines():
+                        _append_log(key, ln)
+            except Exception:
+                pass
         except Exception as e:
             _append_log(key, f"<<reader error: {e}>>")
         finally:
-            rest = p.stdout.read()
-            if rest:
-                for ln in rest.splitlines():
-                    _append_log(key, ln)
             rc = p.poll()
-            _append_log(key, f"<<process exited with code {rc}>>")
+            if rc is not None:
+                _append_log(key, f"<<process exited with code {rc}>>")
+            else:
+                _append_log(key, "<<process ended>>")
 
     t = threading.Thread(target=_reader, daemon=True)
     t.start()
@@ -225,11 +258,17 @@ def _maybe_auto_rerun(name: str, interval_sec: float = 1.0):
             # Ignore if rerun not permitted in this context
             pass
 
-def sidebar_summary(idx):
-    st.sidebar.header("SST Explorer")
-    st.sidebar.write(f"Discovered **{len(idx)}** Python files")
-    only_st = st.sidebar.checkbox("Only modules that import Streamlit", value=False)
-    return [m for m in idx if (not only_st or m.get("imports_streamlit"))]
+def sidebar_summary(idx, show_sidebar=True, tab_key=""):
+    """Show global sidebar summary. If show_sidebar=False, just return filtered index."""
+    if show_sidebar:
+        st.sidebar.header("SST Explorer")
+        st.sidebar.write(f"Discovered **{len(idx)}** Python files")
+        # Use unique key based on tab to avoid duplicate element IDs
+        only_st = st.sidebar.checkbox("Only modules that import Streamlit", value=False, key=f"only_st_{tab_key}")
+        return [m for m in idx if (not only_st or m.get("imports_streamlit"))]
+    else:
+        # Just return all if sidebar not shown
+        return idx
 
 # ---- Plotly detection and rendering ----
 _PLOTLY_FN_CANDIDATES = (
@@ -253,6 +292,28 @@ def _file_mentions_plotly(abs_path: pathlib.Path) -> bool:
     try:
         txt = read_text(abs_path)
         return ("plotly" in txt.lower())
+    except Exception:
+        return False
+
+def _file_uses_matplotlib(abs_path: pathlib.Path) -> bool:
+    """Detect if a file uses matplotlib."""
+    try:
+        text = read_text(abs_path)
+        return any(keyword in text.lower() for keyword in [
+            "import matplotlib", "from matplotlib", "plt.", "matplotlib.pyplot",
+            "mpl_toolkits", "fig.add_subplot", "projection='3d'"
+        ])
+    except Exception:
+        return False
+
+def _file_has_3d_plotting(abs_path: pathlib.Path) -> bool:
+    """Detect if a file has 3D plotting (matplotlib or plotly)."""
+    try:
+        text = read_text(abs_path)
+        return any(keyword in text for keyword in [
+            "projection='3d'", "Axes3D", "plotly.graph_objects", "go.Scatter3d",
+            "go.Cone", "go.Surface", "plotly.express", "px.scatter_3d"
+        ])
     except Exception:
         return False
 
@@ -337,26 +398,63 @@ def module_runner_tab(idx):
     with colA:
         st.subheader("Entrypoint (inline)")
         st.caption("Runs `st_app()`, `main()`, or `app()` inside this Streamlit process, if present.")
-        if st.button("Run module entrypoint" + (f" `{candidate}`" if candidate else ""), disabled=not candidate):
+        
+        # Initialize output capture for inline execution
+        inline_key = f"inline_{_script_key(rel)}"
+        if "inline_output" not in st.session_state:
+            st.session_state["inline_output"] = {}
+        if inline_key not in st.session_state["inline_output"]:
+            st.session_state["inline_output"][inline_key] = []
+        
+        # Allow running even without a candidate - for scripts with top-level code
+        run_button_disabled = False  # Allow running any script
+        if st.button("Run module entrypoint" + (f" `{candidate}`" if candidate else " (or top-level code)"), disabled=run_button_disabled):
+            # Clear previous output
+            st.session_state["inline_output"][inline_key] = []
             try:
-                mod = load_module_from_path(abs_path)
-                func = None
-                if candidate and hasattr(mod, candidate):
-                    func = getattr(mod, candidate)
-                elif hasattr(mod, "st_app"):
-                    func = getattr(mod, "st_app")
-                elif hasattr(mod, "main"):
-                    func = getattr(mod, "main")
-                elif hasattr(mod, "app"):
-                    func = getattr(mod, "app")
-                if callable(func):
-                    func()
+                import io
+                import contextlib
+                
+                # Capture stdout and stderr
+                output_buffer = io.StringIO()
+                with contextlib.redirect_stdout(output_buffer), contextlib.redirect_stderr(output_buffer):
+                    # Load module - this executes top-level code
+                    mod = load_module_from_path(abs_path)
+                    
+                    # Try to call entrypoint if it exists
+                    func = None
+                    if candidate and hasattr(mod, candidate):
+                        func = getattr(mod, candidate)
+                    elif hasattr(mod, "st_app"):
+                        func = getattr(mod, "st_app")
+                    elif hasattr(mod, "main"):
+                        func = getattr(mod, "main")
+                    elif hasattr(mod, "app"):
+                        func = getattr(mod, "app")
+                    
+                    if callable(func):
+                        func()
+                
+                # Get captured output
+                captured = output_buffer.getvalue()
+                if captured:
+                    st.session_state["inline_output"][inline_key] = captured.splitlines()
                 else:
-                    st.warning("No callable entrypoint found.")
+                    st.session_state["inline_output"][inline_key] = ["(No output captured - module loaded but produced no stdout/stderr)"]
+                    
             except Exception as e:
+                st.session_state["inline_output"][inline_key] = [f"Error: {str(e)}", f"Traceback: {repr(e)}"]
                 st.exception(e)
+        
+        # Show captured output
+        inline_logs = "\n".join(st.session_state["inline_output"].get(inline_key, []))
+        if inline_logs:
+            st.code(inline_logs, language="text")
+        else:
+            st.info("Click 'Run module entrypoint' to see output here.")
+        
         if not candidate and not any(hasattr(load_module_from_path(abs_path), name) for name in ("st_app","main","app")):
-            st.info("No inline entrypoint found in this module. Use the Script Runner on the right; any new images/HTML saved by the script will appear below.")
+            st.info("No inline entrypoint found. For scripts that just print, use 'Run as Script (subprocess)' on the right.")
 
     # --- Script runner (subprocess) with live logs ---
     with colB:
@@ -367,29 +465,94 @@ def module_runner_tab(idx):
         args_str = argrow[0].text_input("Args", key="args_"+key, placeholder="e.g. exact_closure")
         prein_str = argrow[1].text_input("Pre-send stdin", key="prein_"+key, placeholder="e.g. y")
         argrow[2].caption("Optional arguments and first input lines")
-        cols = st.columns(3)
+        cols = st.columns(4)
         if cols[0].button("▶️ Start script", key="start_"+key):
             extra = [s for s in (args_str or "").split() if s] or None
             _launch_script(abs_path, extra_args=extra, pre_stdin=(prein_str or None))
+            # Don't rerun immediately - let auto-refresh handle it
         if cols[1].button("⏹ Stop", key="stop_"+key, disabled=not _is_running(key)):
             _stop_script(key)
         clear_req = cols[2].button("🧹 Clear logs", key="clear_"+key)
         if clear_req:
             st.session_state["log_map"][key] = []
+        # Test button to verify output capture works
+        if cols[3].button("🧪 Test", key="test_"+key):
+            test_script = pathlib.Path(__file__).parent / "_test_output.py"
+            # Write test script with explicit unbuffered Python
+            test_script.write_text('import sys\nimport time\n# Force unbuffered output\nif hasattr(sys.stdout, "reconfigure"):\n    sys.stdout.reconfigure(line_buffering=True)\nfor i in range(5):\n    print(f"Test line {i+1}", flush=True)\n    time.sleep(0.2)\nprint("Test complete!", flush=True)\n')
+            # Manually set up the same key so output appears in the same log box
+            st.session_state["log_map"][key] = []
+            st.session_state["start_time_map"][key] = time.time()
+            _mark_poll_window(key, seconds=5.0)
+            env = os.environ.copy()
+            env["PYTHONUNBUFFERED"] = "1"
+            p = subprocess.Popen(
+                [sys.executable, "-u", str(test_script)],
+                cwd=str(test_script.parent),
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                stdin=subprocess.PIPE,
+                text=True,
+                bufsize=0,
+                encoding="utf-8",
+                errors="replace",
+                env=env,
+            )
+            st.session_state["proc_map"][key] = p
+            _append_log(key, f">>> Test script started")
+            _drain_logs_to_session(key)
+            def _test_reader():
+                try:
+                    while True:
+                        line = p.stdout.readline()
+                        if not line:
+                            if p.poll() is not None:
+                                break
+                            time.sleep(0.01)
+                            continue
+                        _append_log(key, line.rstrip("\n"))
+                    # Read remaining
+                    try:
+                        rest = p.stdout.read()
+                        if rest:
+                            for ln in rest.splitlines():
+                                _append_log(key, ln)
+                    except Exception:
+                        pass
+                except Exception as e:
+                    _append_log(key, f"<<reader error: {e}>>")
+                finally:
+                    rc = p.poll()
+                    if rc is not None:
+                        _append_log(key, f"<<test exited with code {rc}>>")
+            threading.Thread(target=_test_reader, daemon=True).start()
 
         with st.expander("Send stdin (optional)"):
             send_txt = st.text_input("Line to send", key="stdin_"+key)
             if st.button("Send", key="send_"+key, disabled=not _is_running(key)):
                 _send_stdin(key, send_txt or "")
 
-        if _is_running(key) or _needs_polling(key):
-            _maybe_auto_rerun("module_"+key, interval_sec=1.0)
-
+        proc = st.session_state["proc_map"].get(key)
+        running = _is_running(key)
+        status = "running" if running else (f"exit {proc.returncode}" if proc and proc.poll() is not None else "idle")
+        
         # Drain any background logs to session_state before rendering
-        _drain_logs_to_session(key)
+        had_new = _drain_logs_to_session(key)
         logs = "\n".join(st.session_state["log_map"].get(key, []))
-        st.checkbox("Auto-scroll", key="auto_scroll")
-        st.text_area("Logs", value=logs, height=300, key="logsbox_"+key)
+        log_count = len(st.session_state["log_map"].get(key, []))
+        
+        st.caption(f"Status: {status} | Log lines: {log_count} | Polling: {_needs_polling(key)}")
+        
+        # Use a container that can be updated
+        log_container = st.empty()
+        if logs:
+            log_container.code(logs, language="text")
+        else:
+            log_container.info("No output yet. Click 'Start script' to run. Output will appear here.")
+        
+        # Auto-refresh if running or recently finished or if we just got new logs
+        if running or _needs_polling(key) or had_new:
+            _maybe_auto_rerun("module_"+key, interval_sec=0.5)  # Faster refresh
 
         # Asset preview for scripts (images/HTML created since start)
         st.markdown("**New assets (since start):**")
@@ -483,8 +646,31 @@ def code_viewer_tab(idx):
 def script_gallery_tab(all_paths):
     st.header("Script Gallery (recursive)")
     st.caption("Run any discovered Python script. Logs stream live; images/HTML created in the script folder are displayed automatically.")
-    q = st.text_input("Filter by path substring", "")
+    
+    # Statistics
+    mpl_count = sum(1 for p in all_paths if _file_uses_matplotlib(SRC_DIR / p))
+    plotly_count = sum(1 for p in all_paths if _file_mentions_plotly(SRC_DIR / p))
+    has_3d_count = sum(1 for p in all_paths if _file_has_3d_plotting(SRC_DIR / p))
+    st.caption(f"📊 {mpl_count} use Matplotlib | ⚡ {plotly_count} use Plotly | 🎯 {has_3d_count} have 3D plotting")
+    
+    # Filters
+    col1, col2 = st.columns(2)
+    with col1:
+        q = st.text_input("Filter by path substring", "")
+    with col2:
+        filter_type = st.selectbox("Filter by library", ["All", "Matplotlib only", "Plotly only", "3D plotting", "Matplotlib 3D (needs conversion)"])
+    
     paths = [p for p in all_paths if (q.lower() in p.lower())] if q else all_paths
+    
+    # Apply library filter
+    if filter_type == "Matplotlib only":
+        paths = [p for p in paths if _file_uses_matplotlib(SRC_DIR / p)]
+    elif filter_type == "Plotly only":
+        paths = [p for p in paths if _file_mentions_plotly(SRC_DIR / p)]
+    elif filter_type == "3D plotting":
+        paths = [p for p in paths if _file_has_3d_plotting(SRC_DIR / p)]
+    elif filter_type == "Matplotlib 3D (needs conversion)":
+        paths = [p for p in paths if _file_uses_matplotlib(SRC_DIR / p) and _file_has_3d_plotting(SRC_DIR / p) and not _file_mentions_plotly(SRC_DIR / p)]
     if not paths:
         st.info("No scripts match the current filter.")
         return
@@ -493,8 +679,30 @@ def script_gallery_tab(all_paths):
         key = _script_key(rel)
         sanitized_rel = _sanitize_rel_key(rel)
         safe_key = f"{idx}_{sanitized_rel}"
-        with st.expander(nice_name(rel), expanded=False):
-            cols = st.columns(4)
+        
+        # Detect plotting libraries
+        uses_mpl = _file_uses_matplotlib(abs_path)
+        uses_plotly = _file_mentions_plotly(abs_path)
+        has_3d = _file_has_3d_plotting(abs_path)
+        
+        # Create expander title with badges
+        title = nice_name(rel)
+        badges = []
+        if uses_mpl:
+            badges.append("📊 Matplotlib")
+        if uses_plotly:
+            badges.append("⚡ Plotly")
+        if has_3d:
+            badges.append("🎯 3D")
+        if badges:
+            title += " " + " ".join(badges)
+        
+        with st.expander(title, expanded=False):
+            # Show library info
+            if uses_mpl and has_3d and not uses_plotly:
+                st.info("💡 This script uses Matplotlib 3D. Consider converting to Plotly 3D for better interactivity in Streamlit.")
+            
+            cols = st.columns(5)
             if cols[0].button("▶️ Start", key="gal_start_"+safe_key):
                 _launch_script(abs_path)
             if cols[1].button("⏹ Stop", key="gal_stop_"+safe_key, disabled=not _is_running(key)):
@@ -505,6 +713,24 @@ def script_gallery_tab(all_paths):
             proc = st.session_state["proc_map"].get(key)
             status = "running" if _is_running(key) else (f"exit {proc.returncode}" if proc else "idle")
             cols[3].markdown(f"**Status:** {status}")
+            # Plotly conversion button for matplotlib 3D scripts
+            if uses_mpl and has_3d and not uses_plotly:
+                if cols[4].button("🎯 Try Plotly 3D", key="gal_plotly_"+safe_key):
+                    st.info("⚠️ Automatic conversion is experimental. For best results, manually convert like `rodin_plotly_app.py` or `sawshape_plotly_app.py`.")
+                    st.caption("To convert manually:")
+                    st.code(f"""
+# Example conversion pattern:
+# 1. Replace: import matplotlib.pyplot as plt
+#    With: import plotly.graph_objects as go
+# 2. Replace: fig = plt.figure(); ax = fig.add_subplot(111, projection='3d')
+#    With: fig = go.Figure()
+# 3. Replace: ax.plot3D(x, y, z) 
+#    With: fig.add_trace(go.Scatter3d(x=x, y=y, z=z, mode='lines'))
+# 4. Replace: ax.quiver(x, y, z, u, v, w)
+#    With: fig.add_trace(go.Cone(x=x, y=y, z=z, u=u, v=v, w=w))
+# 5. Replace: plt.show()
+#    With: st.plotly_chart(fig, width='stretch')
+                    """, language="python")
             if _is_running(key) or _needs_polling(key):
                 _maybe_auto_rerun("gal_"+key, interval_sec=1.0)
             with st.expander("Args / Pre-input"):
@@ -590,19 +816,29 @@ def search_tab(idx):
         with st.expander(rel):
             st.write(snip)
 
-tabs = st.tabs(["🏠 Home","▶️ Module/Script Runner","🖼 Script Gallery","⚡ Plotly Gallery","🧲 Rodin 3D","🌀 Saw Coil 3D","🔎 Function Explorer","📄 Code Viewer","🔍 Search"])
+tabs = st.tabs(["🏠 Home","▶️ Module/Script Runner","🖼 Script Gallery","⚡ Plotly Gallery","🧲 Rodin 3D","🌀 Saw Coil 3D","🎯 Saw Bowl 3D","🔗 Fat Knots 3D","⭐ Neutron Star","🔎 Function Explorer","📄 Code Viewer","🔍 Search"])
 
 idx = load_index()
-filtered_idx = sidebar_summary(idx)
+# Only show global sidebar on non-Plotly tabs (tabs 0, 1, 2, 3, 9, 10, 11)
+# Plotly tabs (4-8) will have their own sidebars
+plotly_tab_indices = {4, 5, 6, 7, 8}  # Rodin, Saw Coil, Saw Bowl, Fat Knots, Neutron Star
+# We'll show sidebar conditionally in each tab
+filtered_idx = idx  # Will be filtered in each tab that needs it
 
 with tabs[0]:
+    # Show global sidebar for Home tab
+    filtered_idx = sidebar_summary(idx, tab_key="home")
     home_tab(filtered_idx)
 with tabs[1]:
+    # Show global sidebar for Module Runner tab
+    filtered_idx = sidebar_summary(idx, tab_key="runner")
     module_runner_tab(filtered_idx)
 indexed_paths = [m["path"] for m in idx]
 discovered_paths = discover_py_files_recursively(SRC_DIR)
 all_paths = sorted(set(indexed_paths) | set(discovered_paths))
 with tabs[2]:
+    # Show global sidebar for Script Gallery tab
+    filtered_idx = sidebar_summary(idx, tab_key="gallery")
     script_gallery_tab(all_paths)
 
 def plotly_gallery_tab(paths):
@@ -644,8 +880,11 @@ def plotly_gallery_tab(paths):
                 render_plotly_inline(abs_path)
 
 with tabs[3]:
+    # Show global sidebar for Plotly Gallery tab
+    filtered_idx = sidebar_summary(idx, tab_key="plotly_gallery")
     plotly_gallery_tab(all_paths)
 with tabs[4]:
+    # Plotly apps have their own sidebars - don't show global sidebar
     st.header("Rodin + Dipole Rings (embedded)")
     try:
         rodin_mod = load_module_from_path(SRC_DIR / "rodin_plotly_app.py")
@@ -656,6 +895,7 @@ with tabs[4]:
     except Exception as e:
         st.exception(e)
 with tabs[5]:
+    # Plotly apps have their own sidebars - don't show global sidebar
     st.header("Saw-Shape Coil (embedded)")
     try:
         saw_mod = load_module_from_path(SRC_DIR / "sawshape_plotly_app.py")
@@ -666,10 +906,49 @@ with tabs[5]:
     except Exception as e:
         st.exception(e)
 with tabs[6]:
-    function_explorer_tab(filtered_idx)
+    # Plotly apps have their own sidebars - don't show global sidebar
+    st.header("Saw Bowl 3D (embedded)")
+    try:
+        sawbowl_mod = load_module_from_path(SRC_DIR / "sawbowl_plotly_app.py")
+        if hasattr(sawbowl_mod, "st_app") and callable(getattr(sawbowl_mod, "st_app")):
+            sawbowl_mod.st_app()
+        else:
+            st.error("sawbowl_plotly_app.py does not expose st_app().")
+    except Exception as e:
+        st.exception(e)
 with tabs[7]:
-    code_viewer_tab(filtered_idx)
+    # Plotly apps have their own sidebars - don't show global sidebar
+    st.header("Fat Knots 3D (embedded)")
+    try:
+        fatknots_mod = load_module_from_path(SRC_DIR / "fat_knots_plotly_app.py")
+        if hasattr(fatknots_mod, "st_app") and callable(getattr(fatknots_mod, "st_app")):
+            fatknots_mod.st_app()
+        else:
+            st.error("fat_knots_plotly_app.py does not expose st_app().")
+    except Exception as e:
+        st.exception(e)
 with tabs[8]:
+    # Plotly apps have their own sidebars - don't show global sidebar
+    st.header("Neutron Star Time Dilation (embedded)")
+    try:
+        ns_mod = load_module_from_path(SRC_DIR / "NeutronStarTimeDilation_plotly.py")
+        if hasattr(ns_mod, "st_app") and callable(getattr(ns_mod, "st_app")):
+            ns_mod.st_app()
+        else:
+            st.error("NeutronStarTimeDilation_plotly.py does not expose st_app().")
+    except Exception as e:
+        st.exception(e)
+with tabs[9]:
+    # Show global sidebar for Function Explorer tab
+    filtered_idx = sidebar_summary(idx, tab_key="function_explorer")
+    function_explorer_tab(filtered_idx)
+with tabs[10]:
+    # Show global sidebar for Code Viewer tab
+    filtered_idx = sidebar_summary(idx, tab_key="code_viewer")
+    code_viewer_tab(filtered_idx)
+with tabs[11]:
+    # Show global sidebar for Search tab
+    filtered_idx = sidebar_summary(idx, tab_key="search")
     search_tab(filtered_idx)
 
 def _sanitize_rel_key(rel: str) -> str:

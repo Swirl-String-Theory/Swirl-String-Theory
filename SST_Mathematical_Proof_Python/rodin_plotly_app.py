@@ -217,6 +217,9 @@ def st_app():
         ),
         legend=dict(orientation="h"),
         margin=dict(l=0, r=0, t=30, b=0),
+        width=None,  # Use container width
+        height=800,  # Fixed height to fill viewport
+        autosize=True,
     )
 
     st.plotly_chart(fig, width='stretch')
