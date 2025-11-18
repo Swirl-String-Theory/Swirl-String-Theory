@@ -6,11 +6,15 @@
 %! DOI = 10.5281/zenodo.17619187
 
 \newcommand{\paperdoi}{10.5281/zenodo.17619187}
+\newcommand{\papertitle}{Circulation, Rigid Rotation, and Proper Time Dilation:\\
+A Fluid-Mechanical Representation of Kinematic Redshift}
+
 
 %========================================================================================
 % PACKAGES AND DOCUMENT CONFIGURATION
 %========================================================================================
 \documentclass[11pt]{article}
+
 \usepackage{amsmath,amssymb,amsfonts,bm}
 \usepackage{siunitx}
 \usepackage[hidelinks]{hyperref}
@@ -18,14 +22,47 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 
-\title{Circulation, Rigid Rotation, and Proper Time Dilation:\\
-A Fluid-Mechanical Representation of Kinematic Redshift}
-\author{Omar Iskandarani}
-\affiliation{Independent Researcher, Groningen, The Netherlands}
-\thanks{ORCID: 0009-0006-1686-3961, DOI: \paperdoi}
-\date{\today}
+
+\newcommand{\titlepageOpen}{
+    \begin{titlepage}
+    \thispagestyle{empty}
+    \centering
+    \ifdefined\standalonechapter
+    {\Large\bfseries \appendixtitle \par}
+    \else
+        {\Large\bfseries \papertitle \par}
+    \fi
+    \vspace{1cm}
+    {\Large\itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par}
+    \vspace{0.5cm}
+    {\today \par}
+    \vspace{0.5cm}
+}
+
+% here comes abstract
+\newcommand{\titlepageClose}{
+    \vfill
+    \raggedright % <-- fixes left alignment
+    \null
+    \begin{picture}(0,0)
+    % Adjust position: (x,y) = (left, bottom)
+    \put(0,-45){  % Shift 200pt left, 40pt down
+        \begin{minipage}[b]{0.7\textwidth}
+        \footnotesize % One step bigger than \tiny \scriptsize
+        \renewcommand{\arraystretch}{1.0}
+        \noindent\rule{\textwidth}{0.4pt} \\[0.5em]  % ← horizontal line
+        \textsuperscript{\textbf{*}} Independent Researcher, Groningen, The Netherlands \\
+        Email: \texttt{info@omariskandarani.com} \\
+        ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}} \\
+        DOI: \href{https://doi.org/\paperdoi}{\paperdoi}
+        \end{minipage}
+    }
+    \end{picture}
+    \end{titlepage}
+}
+
 \begin{document}
-    \maketitle
+    \titlepageOpen
 
     \begin{abstract}
         Proper time dilation for moving clocks is a central prediction of special relativity and underlies precision technologies such as the Global Positioning System (GPS).
@@ -45,6 +82,7 @@ A Fluid-Mechanical Representation of Kinematic Redshift}
         We compare the resulting scaling with the weak-field Schwarzschild time-dilation factor and illustrate the magnitudes involved for terrestrial rotation and GPS-like orbits.
         The analysis uses only standard special relativity, elementary general relativity, and classical fluid mechanics.
     \end{abstract}
+    \titlepageClose
 
     \section{Introduction}
         Time dilation for moving and gravitationally bound clocks is one of the most striking and well-tested predictions of relativity~\cite{Einstein1905,Einstein1916,MTW,Will2014}.
