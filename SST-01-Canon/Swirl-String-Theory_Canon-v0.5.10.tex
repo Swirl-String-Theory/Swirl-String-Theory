@@ -55,37 +55,36 @@
 % ===============================
 
 % swirl arrows (context-aware)
-\newcommand{\swirlarrow}{%
-    \mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}%
-         {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
-}
-\newcommand{\swirlarrowcw}{%
-    \mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}%
-         {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}%
-
-}
-
-% Canonical symbols
+\newcommand{\swirlarrow}{ \mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}}
 \newcommand{\vswirl}{\mathbf{v}_{\swirlarrow}}
-\newcommand{\vswirlcw}{\mathbf{v}_{\swirlarrowcw}}
 \newcommand{\SwirlClock}{S_{(t)}^{\swirlarrow}}
+\newcommand{\Fmaxswirl}{F^{\max}_{\mkern-1mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}}
+% swirl arrows Counter Clockwise
+\newcommand{\swirlarrowcw}{ \mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}}
+\newcommand{\vswirlcw}{\mathbf{v}_{\swirlarrowcw}}
 \newcommand{\SwirlClockcw}{S_{(t)}^{\swirlarrowcw}}
+\newcommand{\Fmaxswirlcw}{F^{\max}_{\mkern-1mu\scriptscriptstyle\boldsymbol{\circlearrowright}}}
+
+\newcommand{\Fmax}{\Fmaxswirl} % default maximal force (left swirl)
+\newcommand{\FmaxEM}{F^{\max}_{\mathrm{EM}}}
+\newcommand{\FmaxG}{F_{\mathrm{G}}^{\max}}               % G-like maximal force scale
+
 \newcommand{\omegas}{\boldsymbol{\omega}_{\swirlarrow}}  % swirl vorticity
+\newcommand{\Om}{\Omega_{\swirlarrow}}                   % swirl angular frequency profile
+
 \newcommand{\vscore}{v_{\swirlarrow}}                    % shorthand: |v_swirl| at r=r_c
 \newcommand{\vnorm}{\lVert \vswirl \rVert}               % swirl speed magnitude
+\newcommand{\Ce}{\vswirl}                                % canonical swirl-speed constant
+
 \newcommand{\rhof}{\rho_{\!f}}                           % effective fluid density
 \newcommand{\rhoE}{\rho_{\!E}}                           % swirl energy density
 \newcommand{\rhom}{\rho_{\!m}}                           % mass-equivalent density
 \newcommand{\rc}{r_c}                                    % string core radius (swirl string radius)
-\newcommand{\Fmaxswirl}{F^{\max}_{\mkern-1mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}}
-\newcommand{\Fmaxswirlcw}{F^{\max}_{\mkern-1mu\scriptscriptstyle\boldsymbol{\circlearrowright}}}
-\newcommand{\FmaxEM}{F^{\max}_{\mathrm{EM}}}
-\newcommand{\FmaxG}{F_{\mathrm{G}}^{\max}}               % G-like maximal force scale
+
 \newcommand{\Lam}{\Lambda}                               % Swirl Coulomb constant
-\newcommand{\Om}{\Omega_{\swirlarrow}}                   % swirl angular frequency profile
 \newcommand{\alpg}{\alpha_g}                             % gravitational fine-structure analogue
-\newcommand{\Ce}{C_e} % canonical swirl-speed constant
-\newcommand{\Fmax}{\Fmaxswirl} % default maximal force (left swirl)
+
+
 
 % Status tags (house style)
 \newcommand{\statusResearch}{\textsf{[Research-track]}}
