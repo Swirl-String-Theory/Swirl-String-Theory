@@ -16,9 +16,7 @@
 \usepackage[a4paper,margin=1in]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{microtype}
-\usepackage{setspace}
-\setstretch{1.12}
+
 
 % Convenience macros
 \newcommand{\vcirc}{v_{\!\circlearrowleft}}
@@ -147,6 +145,108 @@
 
         \bigskip
         \noindent\rule{\textwidth}{0.4pt}
+
+        \appendix
+        %========================================================
+% SST GRAVITY MODULATION CHEAT-SHEET (CANON INSERT)
+%========================================================
+
+% --- SST macro prelude (local to this block) ---
+        \newcommand{\rhoE}{\rho_{\!E}}
+        \newcommand{\rhoM}{\rho_{\!m}}
+        \newcommand{\vswirl}{\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}}
+        \newcommand{\vnorm}{\lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert}
+        \newcommand{\rc}{r_c}
+
+        \subsection{SST gravity modulation: summary}
+
+            In Swirl--String Theory (SST), gravity is not a fundamental geometric field but an emergent pressure well of the swirl medium. The local swirl energy density
+            \begin{equation}
+                \rhoE \;=\; \frac{1}{2}\,\rhof\,\vnorm^{2},
+                \qquad
+                \rhoM \;=\; \frac{\rhoE}{c^{2}}
+            \end{equation}
+            acts as an effective source in a Newtonian/weak-field limit,
+            \begin{equation}
+                \nabla^{2} \Phi \;\approx\; 4\pi\,G_{\text{swirl}}\,\rhoM,
+                \label{eq:SST-Poisson}
+            \end{equation}
+            with $G_{\text{swirl}}$ fixed by Canon so that $G_{\text{swirl}}\simeq G_{N}$ in ordinary regimes. Near a core, the swirl-induced pressure deficit
+            \begin{equation}
+                \Delta p \;\approx\; -\,\frac{1}{2}\,\rhocore\,\vnorm^{2}
+            \end{equation}
+            yields a ``gravitational'' acceleration
+            \begin{equation}
+                \mathbf{g}_{\text{SST}}
+                \;=\; -\frac{1}{\rhocore}\,\nabla p
+                \;\approx\; \nabla\!\left(\frac{\vnorm^{2}}{2}\right),
+            \end{equation}
+            so that strengthening gravity corresponds to increasing $\rhoE$ or steepening $\nabla\vnorm^{2}$, while weakening or inverting it corresponds to shallowing or overcompensating this pressure well (e.g.\ via opposite-chirality swirl).
+
+            For a roughly uniform energy density $\rhoE$ in a spherical region of radius $R$, the induced surface acceleration is
+            \begin{equation}
+                g(R) \;\approx\; \frac{4\pi G_{N}}{3c^{2}}\,\rhoE\,R,
+            \end{equation}
+            so the energy density required to generate or cancel a target increment $g_{0}$ is
+            \begin{equation}
+                \rhoE \;\approx\; \frac{3c^{2}\,g_{0}}{4\pi G_{N}\,R}.
+                \label{eq:rhoE-threshold}
+            \end{equation}
+            Even for $g_{0}\sim 0.01\,g$ and $R\sim1~\mathrm{m}$, Eq.~\eqref{eq:rhoE-threshold} gives $\rhoE\sim 10^{25}\,\mathrm{J/m^{3}}$ ($\rhoM\sim 10^{8}\,\mathrm{kg/m^{3}}$), i.e.\ white-dwarf-scale densities. This encodes the core Canon conclusion: \emph{any macroscopic gravity modulation in SST requires astrophysical energy densities in the swirl medium} and is therefore extremely constrained.
+
+            Directional and topological effects enter as mild corrections. If internal swirl defines a symmetry axis, the effective coupling can be written
+            \begin{equation}
+                G_{\text{eff}}(\theta)
+                \;=\; G_{\text{swirl}}\,f(\theta),
+                \qquad
+                f(\theta) \;=\; 1 + \delta f(\theta),
+                \quad |\delta f(\theta)| \ll 1,
+            \end{equation}
+            with $f(\theta)$ encoding how much linking circulation $\Gamma_{\text{link}}$ is shared along angle $\theta$ relative to the swirl axis. Topological ``shielding'' or cancellation corresponds schematically to
+            \begin{equation}
+                \Gamma_{\text{link}}\neq 0
+                \;\Rightarrow\;
+                \Phi(r)\sim -\frac{\Lambda}{r^{2}+\rc^{2}},
+                \qquad
+                \Gamma_{\text{link}}\approx 0
+                \;\Rightarrow\;
+                \Phi(r)\approx 0 \quad (r\gg\rc),
+            \end{equation}
+            i.e.\ arranging swirl so that external loops see vanishing net linking (no long-range attraction). Such configurations are highly energetic and metastable, bounded above by the canonical maximum gravitational force $F_{\text{gr}}^{\max}$.
+
+            Finally, any genuine SST gravity modulation via topology change is \emph{not} silent: the modified Faraday law
+            \begin{equation}
+                \nabla\times\mathbf{E}
+                \;=\;
+                -\,\frac{\partial\mathbf{B}}{\partial t}
+                \;-\;
+                \mathbf{b}_{\!\boldsymbol{\circlearrowleft}},
+                \qquad
+                \mathbf{b}_{\!\boldsymbol{\circlearrowleft}}
+                \;=\;
+                G_{\!\boldsymbol{\circlearrowleft}}\,
+                \frac{\partial\boldsymbol{\rho}_{\!\boldsymbol{\circlearrowleft}}}{\partial t}
+            \end{equation}
+            implies, upon loop integration,
+            \begin{equation}
+                \oint \mathbf{E}\!\cdot d\boldsymbol{\ell}
+                \;=\;
+                -\,\frac{d\Phi_{B}}{dt}
+                \;-\;
+                \frac{d\Phi_{\!\boldsymbol{\circlearrowleft}}}{dt},
+            \end{equation}
+            and a discrete topology change in the swirl field yields a quantized jump
+            \begin{equation}
+                \Delta\Phi_{\!\boldsymbol{\circlearrowleft}}
+                \;=\;
+                \pm\,\Phi_{\ast}.
+            \end{equation}
+            Canon implication: \textbf{any nontrivial SST gravity control via swirl topology must be accompanied by a quantized electromotive impulse $\pm\Phi_{\ast}$}. Absence of such EM signatures rules out claimed gravity modulation within the SST framework.
+
+% (Optional local bibliography if needed)
+% \begin{thebibliography}{9}
+% \bibitem{Jackson1999} J.~D.~Jackson, \emph{Classical Electrodynamics}, 3rd ed., Wiley (1999).
+% \end{thebibliography}
 
         \bibliographystyle{unsrt}
         \begin{thebibliography}{99}

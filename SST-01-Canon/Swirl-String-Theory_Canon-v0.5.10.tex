@@ -740,7 +740,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
             dt_{\text{local}} = dt_{\infty}\,\sqrt{1-\frac{\|\boldsymbol{\omega}\|^2}{c^2}}.
         \]
         \item \textbf{Mass as swirl energy:} Each particle corresponds to a knotted vortex filament, with mass emerging as the energy stored in swirl motion:
-        \[
+        \[d
             M = \frac{1}{\varphi}\cdot \frac{4}{\alpha}\left(\frac{1}{2}\rhof \vswirl^2 V\right),
         \]
         where $\varphi$ is the golden ratio correction factor.
@@ -1424,6 +1424,111 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
             \]
             This relation (a \emph{research-track} formula) connects the rest mass $M$ of a knot $K$ to its topological invariants. $L_{\text{tot}}(K)$ is total string length; $b$ is number of components (link count); $g$ is a genus-related invariant; $n$ is circulation quantum number; $\phi$ is the golden ratio. It suggests, qualitatively: more complex knots (larger $b,g$) have higher mass, and adding circulation quanta ($n$) yields sub-linear mass increase ($n^{-1/\phi}$ factor). This law is not proven (non-canonical); it is included to guide intuition on particle mass hierarchy. It is consistent with generation-wise patterns but awaits formal derivation or empirical support.
 
+
+        %=== SST macros (minimal set for this snippet) =========================
+        \newcommand{\vswirl}{\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}}
+        \newcommand{\rhof}{\rho_{\!f}}
+        \newcommand{\rhoE}{\rho_{\!E}}
+        \newcommand{\rhoM}{\rho_{\!m}}
+        \newcommand{\rc}{r_c}
+
+        \newcommand{\Golden}{\phi}
+        \newcommand{\GoldenSq}{\phi^{2}}
+
+%======================================================================
+% Golden-layer potential in terms of the swirl energy density
+%======================================================================
+
+    \subsection{Discrete golden-layer quantization from a log-periodic potential}
+
+        We take the swirl energy density $\rhoE(\boldsymbol{x})$ as our effective
+        order parameter for the core of a swirl string. For a core of fixed volume
+        $V_{\text{core}} \sim \tfrac{4\pi}{3}\rc^{3}$, the rest energy is
+        \begin{equation}
+            E \approx \rhoE^{(\text{core})}\,V_{\text{core}}.
+        \end{equation}
+        To obtain a tower of discrete \emph{golden} energy levels
+        \begin{equation}
+            E_n = E_0\,\GoldenSq^{\,n},
+            \qquad
+            E_0 = \rhoE^{*} V_{\text{core}},
+        \end{equation}
+        we introduce a log-periodic effective potential for $\rhoE$,
+        \begin{equation}
+            V_{\Golden}(\rhoE)
+            =
+            \Lambda^4
+            \left[
+                1 - \cos\!\left(
+                              \kappa \log\frac{\rhoE}{\rhoE^{*}}
+            \right)
+            \right],
+            \label{eq:Vphi-def}
+        \end{equation}
+        where $\rhoE^{*}$ is a reference energy density, $\Lambda$ is an energy
+        scale (so that $[\Lambda^4]=\text{energy density}$), and
+        \begin{equation}
+            \kappa \equiv \frac{2\pi}{\log\Golden} .
+        \end{equation}
+        The argument of the cosine is dimensionless and $V_{\Golden}$ has units of
+        energy density, so \eqref{eq:Vphi-def} is admissible as an effective
+        potential term in the SST Lagrangian density.
+
+        Defining
+        \begin{equation}
+            y \equiv \log\frac{\rhoE}{\rhoE^{*}},
+        \end{equation}
+        we can rewrite
+        \begin{equation}
+            V_{\Golden}(y)
+            = \Lambda^4\left[1 - \cos(\kappa y)\right].
+        \end{equation}
+        Stationary points satisfy
+        \begin{equation}
+            \frac{\partial V_{\Golden}}{\partial \rhoE}
+            = \Lambda^4 \kappa \,\sin(\kappa y)\,\frac{1}{\rhoE}
+            = 0,
+        \end{equation}
+        so that
+        \begin{equation}
+            \sin(\kappa y_n) = 0
+            \quad\Longrightarrow\quad
+            \kappa y_n = n\pi,\quad n\in\mathbb{Z}.
+        \end{equation}
+        Hence
+        \begin{equation}
+            y_n = \frac{n\pi}{\kappa}
+            = \frac{n\pi}{2\pi}\,\log\Golden
+            = \frac{n}{2}\,\log\Golden,
+        \end{equation}
+        and exponentiation gives
+        \begin{equation}
+            \frac{\rhoE^{(n)}}{\rhoE^{*}}
+            = e^{y_n} = e^{\frac{n}{2}\log\Golden}
+            = \Golden^{n/2}.
+        \end{equation}
+        If we restrict to even $n = 2k$, we obtain the golden-layer tower
+        \begin{equation}
+            \rhoE^{(k)} = \rhoE^{*}\,\GoldenSq^{\,k},
+            \qquad
+            k \in \mathbb{Z},
+            \label{eq:golden-layers-rhoE}
+        \end{equation}
+        and therefore, for fixed $V_{\text{core}}$,
+        \begin{equation}
+            E_k = \rhoE^{(k)} V_{\text{core}}
+            = (\rhoE^{*} V_{\text{core}})\,\GoldenSq^{\,k}
+            = E_0\,\GoldenSq^{\,k}.
+        \end{equation}
+        Thus the log-periodic potential \eqref{eq:Vphi-def} breaks continuous
+        scale invariance in $\rhoE$ down to a discrete subgroup generated by
+        $\rhoE \rightarrow \GoldenSq \rhoE$, and the corresponding core
+        energies form a geometric progression with golden ratio squared.
+        Locally around each minimum, the potential is quadratic, so each layer
+        supports conventional small-amplitude excitations with an $n$-dependent
+        mass parameter.
+
+
 %========================================================================================
 % MASTER EQUATIONS: HYDROGEN SOFT-CORE + BOHR RECOVERY (Canonical + Empirical)
 %========================================================================================
@@ -1877,6 +1982,52 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 
     \textbf{Isolation Note.}
     Pure Canon linkage; no external datasets. Distance law to be promoted upon systematic $d$-sweep confirmation.
+
+
+    \subsection{Working hypothesis: photon--electron topological response}
+
+        We parameterize the photon energy by the dimensionless ratio
+        \begin{equation}
+            x \equiv \frac{\hbar\omega}{m_e c^2}
+            = \frac{\omega}{\omega_C},
+            \qquad
+            \omega_C = \frac{m_e c^2}{\hbar}.
+        \end{equation}
+        In Swirl--String Theory the electron is modeled as a trefoil swirl string
+        confined to a horn torus of core radius $r_c$ with an approximately
+        spherical pressure/energy envelope of radius $R_e\simeq 2 r_c$.  We then
+        adopt the following working hypothesis for the topological response of
+        the electron swirl to incident photons:
+
+        \begin{itemize}
+            \item For $x \ll 1$ (long wavelengths), the photon induces only
+            smooth deformations of the trefoil swirl configuration.  The
+            knot type is preserved; observed phenomena correspond to
+            bound--bound transitions, photoionization, and Thomson-like
+            scattering.
+            \item For $x \sim 1$ (Compton scale), the photon can drive the swirl
+            into a metastable ``three-twist unknot'' configuration: a
+            topologically trivial loop with three helical twists along its
+            length.  This represents a re-folding of the electron swirl
+            that preserves global topological charge but changes the local
+            embedding of the string.
+            \item For $x \gtrsim 1$--2, the injected energy is sufficient to
+            trigger one or more reconnection events of the swirl string.
+            In this regime the three-twist loop can be broken into one or
+            several shorter segments or loops, which subsequently re-form
+            trefoil configurations displaced from their original bound
+            state.  Observationally this corresponds to high-energy
+            Compton scattering, ionization with large momentum transfer,
+            and, above the pair-production threshold $x\ge 2$, creation of
+            $e^+e^-$ pairs in external fields.
+        \end{itemize}
+
+        This picture is presently conjectural.  It must be constrained by the
+        known smooth energy dependence of Compton scattering and
+        photoabsorption cross sections and by numerical SST estimates of the
+        energy gaps between the trefoil ground configuration and the proposed
+        three-twist intermediate state.
+
 
 %========================================================================================
 % HYDROGEN–GRAVITY CONSTRUCTION (Mixed)
