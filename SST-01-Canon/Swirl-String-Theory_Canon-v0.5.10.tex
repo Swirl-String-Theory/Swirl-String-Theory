@@ -41,6 +41,24 @@
 \renewcommand{\cftsecfont}{\footnotesize}
 \renewcommand{\cftsubsecfont}{\footnotesize\itshape}
 \renewcommand{\cftsecleader}{\cftdotfill{5}}
+% Simple compact TOC macro (tight line spacing)
+\newcommand{\compacttoc}{%
+  \begingroup
+  \setlength{\cftparskip}{0pt}%
+  \setlength{\cftbeforesecskip}{0.5pt}%
+  \setlength{\cftbeforesubsecskip}{0.5pt}%
+  \renewcommand{\cftsecfont}{\scriptsize}%
+  \renewcommand{\cftsubsecfont}{\scriptsize\itshape}%
+  \renewcommand{\cftsecpagefont}{\scriptsize}%
+  \renewcommand{\cftsubsecpagefont}{\scriptsize}%
+  \setlength{\cftsecnumwidth}{1.4em}%
+  \setlength{\cftsubsecindent}{1.4em}%
+  \renewcommand{\cftdotsep}{2}%
+  \setlength{\parskip}{0pt}%
+  \linespread{0.80}\selectfont
+  \tableofcontents
+  \endgroup
+}
 
 % ===== Gauge sector macros =====
 \newcommand{\Tr}{\mathrm{Tr}}
@@ -53,10 +71,11 @@
 % ===============================
 % Macros (canonicalized)
 % ===============================
+%=== SST macros (minimal set for this snippet) =========================
 
 % swirl arrows (context-aware)
 \newcommand{\swirlarrow}{ \mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}}
-\newcommand{\vswirl}{\mathbf{v}_{\swirlarrow}}
+\newcommand{\vswirl}{\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}}
 \newcommand{\SwirlClock}{S_{(t)}^{\swirlarrow}}
 \newcommand{\Fmaxswirl}{F^{\max}_{\mkern-1mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}}
 % swirl arrows Counter Clockwise
@@ -76,6 +95,7 @@
 \newcommand{\vnorm}{\lVert \vswirl \rVert}               % swirl speed magnitude
 \newcommand{\Ce}{\vswirl}                                % canonical swirl-speed constant
 
+
 \newcommand{\rhof}{\rho_{\!f}}                           % effective fluid density
 \newcommand{\rhoE}{\rho_{\!E}}                           % swirl energy density
 \newcommand{\rhom}{\rho_{\!m}}                           % mass-equivalent density
@@ -84,6 +104,8 @@
 \newcommand{\Lam}{\Lambda}                               % Swirl Coulomb constant
 \newcommand{\alpg}{\alpha_g}                             % gravitational fine-structure analogue
 
+\newcommand{\Golden}{\phi}
+\newcommand{\GoldenSq}{\phi^{2}}
 
 
 % Status tags (house style)
@@ -108,12 +130,8 @@
 \newcommand{\xigold}{\tfrac{3}{2}\,\xig}
 \newcommand{\GoldenDeclare}{%
     \textbf{Golden (hyperbolic)}:\ \(\ln\phi=\xig\), hence \(\phi=\phig\).
-    \ \emph{(Equivalently, \(\phi=\phialg\); the algebraic form is derivative.)}%
+    \ \emph{(Algebraic form \(\phi=\phialg\) is equivalent.)}%
 }
-
-
-
-
 
 \newcommand{\vswirltext}{\mathbf{v}_{\mathrm{swirl}}}
 
@@ -131,6 +149,7 @@
 
 \usepackage{graphicx}
 \usepackage{textcomp}
+\usepackage{amsthm}
 
 \begin{document}
 
@@ -178,7 +197,9 @@
 
 
         \newpage
-        \tableofcontents
+        % Original: \tableofcontents
+        % Use compact version to save space
+        \compacttoc
         \newpage
 %===============================
 % Sevenfold Genesis of the Swirling Cosmos
@@ -521,7 +542,201 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
     the regularization modifies only higher-order curl terms and does not break canonical invariants.
 
     ---
+%=============================================================================
+% Golden Principle for Discrete Layering in SST
+%=============================================================================
 
+
+    \section{Golden Principle for Discrete Layering}
+    \label{sec:golden-principle}
+
+    In Swirl--String Theory (SST) we introduce a distinguished
+    dimensionless constant $\phi>1$ which controls a discrete hierarchy of
+    mass and energy layers. To avoid any ambiguity or post-hoc tuning, we
+    fix $\phi$ once and for all at the level of the axioms and then derive
+    its role in the layer spectrum.
+
+%---------------------------------------------------------------------------
+    \subsection{Axiom G1: Golden Constant (hyperbolic definition)}
+
+        \GoldenDeclare\ Explicitly,
+        \begin{equation}
+            \xig \equiv \operatorname{asinh}\!\left(\tfrac{1}{2}\right),
+            \qquad
+            \ln\phi = \xig,
+            \qquad
+            \phi = e^{\xig}.
+            \label{eq:phi-hyperbolic-def}
+        \end{equation}
+        By elementary algebra one recovers the familiar quadratic representation
+        \begin{equation}
+            \phi = \frac{1+\sqrt{5}}{2},
+        \end{equation}
+        but in SST this is regarded as a derived identity; the primary
+        definition is the hyperbolic relation \eqref{eq:phi-hyperbolic-def}.
+
+        The associated \emph{golden layer factor} is
+        \begin{equation}
+            \lambda \equiv \phi^{2} = e^{2\xig},
+            \qquad
+            \ln\lambda = 2\xig.
+            \label{eq:lambda-def}
+        \end{equation}
+
+%---------------------------------------------------------------------------
+    \subsection{Axiom G2: Discrete scale invariance and additive composition}
+
+        Let $\{E_n\}_{n\in\mathbb{Z}}$ denote an idealized sequence of
+        dimensionful energy (or mass) levels associated with a particular SST
+        sector (for example, core states of a quantized swirl string). We
+        impose two structural conditions:
+
+        \begin{itemize}
+            \item[(G2a)] \textbf{Discrete scale invariance (DSI).} There exists a
+            scale factor $\lambda>1$ such that
+            \begin{equation}
+                E_{n+1} = \lambda\,E_n,
+                \qquad
+                \forall\,n\in\mathbb{Z}.
+                \label{eq:DSI}
+            \end{equation}
+
+            \item[(G2b)] \textbf{Additive composition (Fibonacci-type rule).} The
+            $(n+1)$-st level is the energetic composite of the two preceding
+            levels:
+            \begin{equation}
+                E_{n+1} = E_n + E_{n-1},
+                \qquad
+                \forall\,n\in\mathbb{Z}.
+                \label{eq:Fibonacci}
+            \end{equation}
+        \end{itemize}
+
+        Assumption (G2a) expresses the presence of a discrete dilation symmetry
+        in the relevant sector, as is standard in systems with discrete scale
+        invariance and log-periodic corrections to scaling
+        \cite{Sornette1998,GluzmanSornette2002}. Assumption (G2b) encodes an
+        additive compositional rule: the $(n+1)$-st configuration is built as a
+        composite of the $n$-th and $(n-1)$-st building blocks, the same
+        structure that underlies Fibonacci sequences and quasicrystalline
+        hierarchies \cite{BaakeGrimm2013}.
+
+%---------------------------------------------------------------------------
+    \subsection{Lemma: Uniqueness of the golden scale factor}
+
+        \textbf{Lemma (Golden Uniqueness).}
+        \emph{Suppose a nontrivial sequence $\{E_n\}$ of real numbers satisfies
+        both discrete scale invariance \eqref{eq:DSI} and additive composition
+        \eqref{eq:Fibonacci}. Then the common ratio $\lambda$ is uniquely fixed
+        to the golden ratio $\phi$.}
+
+        \medskip
+        \noindent\emph{Proof.}
+        Assume $E_n\neq 0$ for some $n$. From \eqref{eq:DSI} we have
+        \begin{equation}
+            E_n = E_0\,\lambda^{n},
+            \qquad
+            \lambda>0.
+            \label{eq:En-geometric}
+        \end{equation}
+        Inserting \eqref{eq:En-geometric} into \eqref{eq:Fibonacci} gives
+        \begin{equation}
+            E_0\lambda^{n+1}
+            = E_0\lambda^n + E_0\lambda^{n-1}.
+        \end{equation}
+        Dividing by $E_0\lambda^{n-1}$ (which is nonzero by assumption) yields
+        \begin{equation}
+            \lambda^{2} = \lambda + 1.
+            \label{eq:golden-quadratic}
+        \end{equation}
+        The quadratic equation \eqref{eq:golden-quadratic} has the two roots
+        \begin{equation}
+            \lambda_{\pm} = \frac{1\pm\sqrt{5}}{2}.
+        \end{equation}
+        The negative root is incompatible with $\lambda>0$, so the unique
+        admissible solution is
+        \begin{equation}
+            \lambda = \frac{1+\sqrt{5}}{2} = \phi.
+        \end{equation}
+        \hfill$\square$
+
+        \medskip
+
+        Equation \eqref{eq:golden-quadratic} shows that once (G2a)--(G2b) are
+        imposed, the scaling factor $\lambda$ is \emph{no longer a tunable
+    parameter}: it is uniquely fixed to $\phi$. In particular, the golden
+        constant is not introduced as a fit to any given spectrum but as the
+        inevitable consequence of the DSI--Fibonacci structure.
+
+%---------------------------------------------------------------------------
+    \subsection{Axiom G3: Golden layer hierarchy}
+
+        Given the lemma, we define the \emph{golden layer hierarchy} by taking
+        the even-index subsequence of the DSI--Fibonacci tower as the physically
+        distinguished set of levels. Concretely,
+        \begin{equation}
+            E_n \equiv E_{2n}^{\text{(tower)}}
+            = E_0\,\lambda^{2n}
+            = E_0\,\phi^{2n},
+            \qquad
+            n\in\mathbb{Z},
+            \label{eq:golden-layer-spectrum}
+        \end{equation}
+        where $E_0$ is a sector-dependent reference energy. In SST applications
+        we typically identify $E_0$ with a core energy
+        \begin{equation}
+            E_0 = \rhoE^{*} V_{\text{core}},
+            \qquad
+            V_{\text{core}} \sim \frac{4\pi}{3}\rc^{3},
+        \end{equation}
+        so that the corresponding swirl energy density levels are
+        \begin{equation}
+            \rhoE^{(n)} = \rhoE^{*}\,\phi^{2n}.
+            \label{eq:rhoE-golden-layers}
+        \end{equation}
+
+        Operationally, \eqref{eq:golden-layer-spectrum} and
+        \eqref{eq:rhoE-golden-layers} define the golden-layer tower used in the
+        SST mass and energy functionals. Any appearance of $\phi^{2n}$ in later
+        sections is to be understood as a direct consequence of Axioms
+        (G1)--(G3) and the Golden Uniqueness Lemma, not as an arbitrary
+        parameter choice.
+
+%---------------------------------------------------------------------------
+    \subsection{Remark: Log-periodic potentials and DSI}
+
+        In sectors where it is useful to describe the golden layering by an
+        effective potential for $\rhoE$, one may implement the DSI encoded by
+        \eqref{eq:rhoE-golden-layers} via a log-periodic term of the form
+        \begin{equation}
+            V_{\phi}(\rhoE)
+            =
+            \Lambda^4 \left[
+                          1 - \cos\!\left(
+                                        \kappa \log\frac{\rhoE}{\rhoE^{*}}
+                \right)
+            \right],
+            \label{eq:Vphi-log-periodic}
+        \end{equation}
+        where $\Lambda$ is an energy scale. The minima of
+        \eqref{eq:Vphi-log-periodic} are separated in $\log\rhoE$ by
+        \begin{equation}
+            \Delta y = \frac{2\pi}{\kappa}.
+        \end{equation}
+        Requiring this spacing to coincide with the golden layer spacing
+        $\Delta y = \ln\lambda = 2\xig$ from \eqref{eq:lambda-def} fixes
+        \begin{equation}
+            \kappa = \frac{2\pi}{\ln\lambda}
+            = \frac{2\pi}{2\xig}
+            = \frac{\pi}{\xig}.
+        \end{equation}
+        Thus $\kappa$ is not an independent dial but is derived from the unique
+        golden scale factor $\lambda=\phi^{2}$ implied by Axioms (G1)--(G3).
+        Log-periodic DSI potentials of the type \eqref{eq:Vphi-log-periodic} are
+        standard in the theory of discrete scale invariance and complex
+        exponents \cite{Sornette1998,GluzmanSornette2002}.
+
+        ---
     \section{Symmetry and Dark-Knot Classification}
     \label{sec:dark-knot}
 
@@ -701,7 +916,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
     \paragraph{Noise budget.} IR NETD 30–50 mK; thermistor readout $<\!\SI{10}{mK}$ @1 s; enclosure drift $\lesssim\SI{0.05}{K}$/10 min; power calibration $<\!\SI{1}{\percent}$. SNR $>3$ for TB-1/TB-2.
 
 
-    \paragraph{Falsifiability.} (i) No Lorentzian peak in $\Delta\kappa(\delta)$ at fixed current; (ii) $|\Delta\kappa_{\rm asym}/\kappa|<3\sigma$; (iii) wrong scaling with current ($\propto |V|^2$) or linewidth $\Gamma$.
+    \paragraph{Falsifiers.} (i) No Lorentzian peak in $\Delta\kappa(\delta)$ at fixed current; (ii) $|\Delta\kappa_{\rm asym}/\kappa|<3\sigma$; (iii) wrong scaling with current ($\propto |V|^2$) or linewidth $\Gamma$.
 
 % ======================================================================
 %  Canon Section: Historical and Conceptual Evolution from VAM to SST
@@ -754,7 +969,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
         During VAM-9 through VAM-15, the model achieved a coherent topological interpretation of all four fundamental interactions.
 
         \begin{itemize}
-        \item \textbf{Electromagnetism as swirl dynamics:} Variations in swirl density $\partial_t\rhof$ generate electromotive effects via a modified Faraday law (\emph{Swirl--EM Bridge}).
+        \item \textbf{Electromagnetism as swirl dynamics:} Variations in swirl density $\partial_t\rho_{\!f}$ generate electromotive effects via a modified Faraday law (\emph{Swirl--EM Bridge}).
         \item \textbf{Gauge reconstruction:} The Standard Model symmetries $\mathrm{SU}(3)\times\mathrm{SU}(2)\times\mathrm{U}(1)$ were mapped to conserved swirl topologies and braid algebraic transformations among filament triplets.
         \item \textbf{Empirical calibration:} Universal constants such as $G$, $\hbar$, and $\alpha$ were expressed through the kernel parameters $(\vswirl,\rc,\rhof)$.
         \end{itemize}
@@ -809,7 +1024,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
         \end{tcolorbox}
 
 % ------------------------------------------------------------
-  
+
 
 
 
@@ -911,7 +1126,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 		{\footnotesize $^{\dagger}$\textit{Note:} $\rho_f$ is chosen as a convenient reference scale $7.0\times10^{-7}$ kg/m$^3$, which corresponds to $10^{-7}$ in SI (mirroring $\mu_0/(4\pi)$). This anchors electromagnetic coupling normalization. The derived values of $\rho_E$ and $\rho_m$ then follow from this choice.}
 		\end{flushleft}
 	\end{table}
-    
+
     \noindent \textit{Discussion:} The first three constants ($v_{\swirlarrow}$, $r_c$, $\rho_f$) are fundamental parameters of the swirl medium, calibrated to reproduce known physical phenomena (atomic spectra, etc.). The effective fluid density $\rho_f$ is extremely low, reflecting the tenuous nature of the swirl medium compared to ordinary matter. The core radius $r_c$ is on the order of a Fermi ($10^{-15}$ m), indicating that swirl strings are extremely thin vortex filaments.
 
 	The first group in Table~\ref{tab:constants} are new SST constants:
@@ -1425,15 +1640,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
             This relation (a \emph{research-track} formula) connects the rest mass $M$ of a knot $K$ to its topological invariants. $L_{\text{tot}}(K)$ is total string length; $b$ is number of components (link count); $g$ is a genus-related invariant; $n$ is circulation quantum number; $\phi$ is the golden ratio. It suggests, qualitatively: more complex knots (larger $b,g$) have higher mass, and adding circulation quanta ($n$) yields sub-linear mass increase ($n^{-1/\phi}$ factor). This law is not proven (non-canonical); it is included to guide intuition on particle mass hierarchy. It is consistent with generation-wise patterns but awaits formal derivation or empirical support.
 
 
-        %=== SST macros (minimal set for this snippet) =========================
-        \newcommand{\vswirl}{\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}}
-        \newcommand{\rhof}{\rho_{\!f}}
-        \newcommand{\rhoE}{\rho_{\!E}}
-        \newcommand{\rhoM}{\rho_{\!m}}
-        \newcommand{\rc}{r_c}
 
-        \newcommand{\Golden}{\phi}
-        \newcommand{\GoldenSq}{\phi^{2}}
 
 %======================================================================
 % Golden-layer potential in terms of the swirl energy density
@@ -1791,7 +1998,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 
     \begin{figure}[h]
     \centering
-    \includegraphics[width=0.55\textwidth]{S40_double_star_best}
+    \includegraphics[width=0.55\textwidth]{proofs/Mod-Gravity 3-Phase Saw-Shaped-Coil - Stack 2 identical with 30 degrees rotation}
     \caption{S40, +11/–9 Gamma-coil geometry used for helicity–lift closure (§XVIII-A).}
     \end{figure}
 
