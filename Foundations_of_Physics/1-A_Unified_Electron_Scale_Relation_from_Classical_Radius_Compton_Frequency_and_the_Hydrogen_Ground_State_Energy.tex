@@ -3,65 +3,39 @@
 %! Affiliation = Independent Researcher, Groningen, The Netherlands
 %! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
 %! ORCID = 0009-0006-1686-3961
-%! DOI = 10.5281/zenodo.17629932
+%! DOI = 10.5281/zenodo.17677325
 
-\newcommand{\paperdoi}{10.5281/zenodo.17629932}
-\newcommand{\papertitle}{A Unified Electron Scale Relation from Classical Radius, Compton Frequency,\\and the Hydrogen Ground State Energy}
+\newcommand{\paperdoi}{10.5281/zenodo.17677325}
+\newcommand{\papertitle}{A Unified Electron Scale Relation from Classical Radius,\\ Compton Frequency,\\and the Hydrogen Ground State Energy}
+\newcommand{\PDFpapertitle}{A Unified Electron Scale Relation from Classical Radius, Compton Frequency, and the Hydrogen Ground State Energy}
 
 %========================================================================================
 % PACKAGES AND DOCUMENT CONFIGURATION
 %========================================================================================
-\documentclass[11pt]{article}
-
-\usepackage{amsmath,amssymb,amsfonts,bm}
+\documentclass[10pt,aps,prd,floatfix,nofootinbib]{revtex4-2} % Added explicit 10pt to suppress size warning
+\usepackage{amsmath,amssymb,amsfonts, bm}
+\usepackage{mathtools}
+\usepackage{graphicx}
 \usepackage{siunitx}
 \usepackage[hidelinks]{hyperref}
-\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[a4paper,margin=2cm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{amsthm}
-
-
-\newcommand{\titlepageOpen}{
-    \begin{titlepage}
-    \thispagestyle{empty}
-    \centering
-    \ifdefined\standalonechapter
-    {\Large\bfseries \appendixtitle \par}
-    \else
-        {\Large\bfseries \papertitle \par}
-    \fi
-    \vspace{1cm}
-    {\Large\itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par}
-    \vspace{0.5cm}
-    {\today \par}
-    \vspace{0.5cm}
-}
-
-% here comes abstract
-\newcommand{\titlepageClose}{
-    \vfill
-    \raggedright % <-- fixes left alignment
-    \null
-    \begin{picture}(0,0)
-    % Adjust position: (x,y) = (left, bottom)
-    \put(0,-45){  % Shift 200pt left, 40pt down
-        \begin{minipage}[b]{0.7\textwidth}
-        \footnotesize % One step bigger than \tiny \scriptsize
-        \renewcommand{\arraystretch}{1.0}
-        \noindent\rule{\textwidth}{0.4pt} \\[0.5em]  % ← horizontal line
-        \textsuperscript{\textbf{*}} Independent Researcher, Groningen, The Netherlands \\
-        Email: \texttt{info@omariskandarani.com} \\
-        ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}} \\
-        DOI: \href{https://doi.org/\paperdoi}{\paperdoi}
-        \end{minipage}
-    }
-    \end{picture}
-    \end{titlepage}
-}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
 
 \begin{document}
-    \titlepageOpen
+    \title{\texorpdfstring{\papertitle}{\PDFpapertitle}}
+    \author{Omar Iskandarani}
+    \affiliation{Independent Researcher, Groningen, The Netherlands}
+    \thanks{info@omariskandarani.com \\
+    ORCID: \href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961} \\
+    DOI: \href{https://doi.org/\paperdoi}{\paperdoi}
+    }
+    \date{\today}
 
     \begin{abstract}
         We show that three standard, independently defined electron scales---the classical electron radius $r_e$, the Compton angular frequency $\omega_C$, and the ground-state energy of hydrogen $E_B$---combine, within a simple harmonic oscillator construction, to produce an exact, dimensionally consistent identity.
@@ -75,8 +49,7 @@
         \]
         The derivation is strictly algebraic and relies solely on well-established formulas. We discuss the historical origin of the underlying scales (classical electron models, Compton scattering, Bohr's hydrogen theory) and comment on the structural interdependence of atomic, relativistic, and classical electromagnetic quantities revealed by this identity.
     \end{abstract}
-
-    \titlepageClose
+    \maketitle
 
     \section{Introduction}
         The electron occupies a central role in both classical and quantum theories of matter. Over the last century, several characteristic length and energy scales associated with the electron have emerged, each from a different theoretical and experimental context:
@@ -155,9 +128,9 @@
             \end{equation}
             We define
             \begin{equation}
-                \omega_\ast := \frac{\omega_C}{\alpha},
+                \omega_\ast \coloneqq \frac{\omega_C}{\alpha},
                 \qquad
-                x_{\max} := r_e,
+                x_{\max} \coloneqq r_e,
                 \label{eq:osc-choices}
             \end{equation}
             where $\omega_C$ and $r_e$ are given by Eqs.~\eqref{eq:compton-def} and~\eqref{eq:re-alpha-form}.
@@ -214,7 +187,7 @@
         \begin{definition}[Energy scale from $F_{\max}$]
             Let $r_c$ be a positive length scale. Define
             \begin{equation}
-                E_{\text{osc}}(r_c) := F_{\max}\, r_c
+                E_{\text{osc}}(r_c) \coloneqq F_{\max}\, r_c
                 = \frac{m_e^2 c^3}{\alpha \hbar} r_c.
                 \label{eq:Eosc-def}
             \end{equation}
@@ -314,7 +287,7 @@
             F_{\max} = m_e \left(\frac{\omega_C}{\alpha}\right)^2 r_e
         \]
         that can be expressed purely in terms of $m_e$, $\alpha$, $\hbar$, and $c$.
-        Multiplying by a Compton-scale length $r_c = \hbar/(2m_e c)$ yields an energy
+        Multiplying by a Compton-scale length \[ r_c = \frac{\alpha\,\hbar}{2 m_e c},\] yields an energy
         \[
             E_{\text{osc}}(r_c) = \frac{1}{2} m_e c^2 = \frac{E_B}{\alpha^2},
         \]
@@ -328,9 +301,10 @@
 
         \appendix
     \section*{Appendix: A candidate gravitational coupling from the electron-scale force}
-        \addcontentsline{toc}{section}{Appendix B: A candidate gravitational coupling from the electron-scale force}
+        \renewcommand{\theequation}{A.\arabic{equation}} % Optional: Number equations A.1, A.2...
+        \setcounter{equation}{0}
 
-        The unified electron scale relation of Appendix~A shows that
+        The unified electron scale relation imply that the maximal force is:
         \begin{equation}
             F_{\max}
             =
@@ -340,21 +314,19 @@
             =
             \frac{\alpha \hbar c}{r_e^2}
             =
-            \frac{4 E_B^{2}}{\alpha^{5} \hbar c},
-            \label{eq:Fmax-unified-appendixB}
+            \frac{4 E_B^{2}}{\alpha^{5} \hbar c}.
+            \label{eq:Fmax-unified-appendix}
         \end{equation}
-        where all symbols have their standard meaning as in the main text and in
-        Appendix~A.
 
         In this appendix we sketch how one can interpret this same force scale as a
         \emph{structural} force in a fluid-based or ``swirl-string'' model of the
         electron, and how, given the Planck time, this leads to a candidate expression
-        for an effective gravitational coupling \(G_{\text{swirl}}\).  This is an
+        for an effective gravitational coupling \(G_{\text{swirl}}\). This is an
         interpretive construction that goes beyond conventional quantum electrodynamics
         and is therefore confined to this appendix.
 
 %---------------------------------------------------------------------------
-        \subsection*{B.1 Structural force scale from a microscopic core}
+        \subsection*{A.1 Structural force scale from a microscopic core}
 
             Suppose we supplement the usual electron scales with two additional structural
             parameters:
@@ -383,7 +355,7 @@
 
             The main-text construction provides an \emph{independent} force scale
             \(F_{\max}\) purely from standard electron quantities
-            [Eq.~\eqref{eq:Fmax-unified-appendixB}].  Identifying the two,
+            [Eq.~\eqref{eq:Fmax-unified-appendix}].  Identifying the two,
             \begin{equation}
                 F_{\max} = F_{\text{swirl}}^{\max},
                 \label{eq:F-identification}
@@ -400,13 +372,12 @@
                 \label{eq:hbar-from-Fmax}
             \end{equation}
             Combining \eqref{eq:hbar-from-Fmax} with the electron-scale expressions of
-            Appendix~A is algebraically equivalent to the unified identity
-            \eqref{eq:Fmax-unified-appendixB}.  What is new here is the possibility to
-            \emph{reinterpret} \(F_{\max}\) as a structural force scale
+            Equation~\eqref{eq:Fmax-unified-appendix} is algebraically equivalent to the unified identity.
+            What is new here is the possibility to \emph{reinterpret} \(F_{\max}\) as a structural force scale
             \(F_{\text{swirl}}^{\max}\).
 
 %---------------------------------------------------------------------------
-        \subsection*{B.2 Planck time and a candidate \(G_{\text{swirl}}\)}
+        \subsection*{A.2 Planck time and a candidate \texorpdfstring{ \(G_{\text{swirl}}\)}{ G\_swirl}}
 
             The Planck time \(t_p\) is defined in terms of the reduced Planck constant
             \(\hbar\), Newton's gravitational constant \(G\), and the speed of light \(c\)
@@ -448,7 +419,7 @@
 
             Equation~\eqref{eq:Gswirl-def} is the candidate ``swirl'' gravitational coupling
             \(G_{\text{swirl}}\) that can be associated with the electron-scale force
-            \(F_{\max}\).  Formally, combining \eqref{eq:Fmax-unified-appendixB},
+            \(F_{\max}\).  Formally, combining \eqref{eq:Fmax-unified-appendix},
             \eqref{eq:Fswirl-def}, and \eqref{eq:Gswirl-def} yields a closed algebraic
             system linking:
             \[
@@ -462,7 +433,7 @@
             \]
 
 %---------------------------------------------------------------------------
-        \subsection*{B.3 Numerical consistency check}
+        \subsection*{A.3 Numerical consistency check}
 
             To illustrate the internal consistency of this construction, take
             \begin{align}
@@ -476,7 +447,7 @@
                 = 2.9053507\times 10^{1}\ \text{N},
             \end{equation}
             where \(F_{\max}\) is evaluated from any of the equivalent forms in
-            Eq.~\eqref{eq:Fmax-unified-appendixB} using CODATA-2018 values for
+            Eq.~\eqref{eq:Fmax-unified-appendix} using CODATA-2018 values for
             \(m_e\), \(\alpha\), \(\hbar\), \(c\), and \(E_B\).\cite{CODATA2018}
 
             Inserting these numbers into \eqref{eq:Gswirl-def} gives
@@ -504,12 +475,12 @@
             \bibitem{Lorentz1904}
             H.~A. Lorentz,
             \newblock {\em Electromagnetic phenomena in a system moving with any velocity less than that of light},
-            \newblock Proc.\ Acad.\ Sci.\ Amsterdam {\bf 6}, 809--831 (1904).
+            \newblock Proc.\ Acad.\ Sci.\ Amsterdam \textbf{6}, 809--831 (1904).
 
             \bibitem{Abraham1903}
             M.~Abraham,
             \newblock {\em Prinzipien der Dynamik des Elektrons},
-            \newblock Ann.\ Phys.\ (Leipzig) {\bf 10}, 105--179 (1903).
+            \newblock Ann.\ Phys.\ (Leipzig) \textbf{10}, 105--179 (1903).
 
             \bibitem{Jackson1999}
             J.~D. Jackson,
@@ -519,19 +490,19 @@
             \bibitem{Compton1923}
             A.~H. Compton,
             \newblock {\em A Quantum Theory of the Scattering of X-Rays by Light Elements},
-            \newblock Phys.\ Rev.\ {\bf 21}, 483--502 (1923).
+            \newblock Phys.\ Rev.\ \textbf{21}, 483--502 (1923).
             \newblock doi:10.1103/PhysRev.21.483.
 
             \bibitem{Compton1923b}
             A.~H. Compton,
             \newblock {\em The Spectrum of Scattered X-Rays},
-            \newblock Phys.\ Rev.\ {\bf 22}, 409--413 (1923).
+            \newblock Phys.\ Rev.\ \textbf{22}, 409--413 (1923).
             \newblock doi:10.1103/PhysRev.22.409.
 
             \bibitem{Bohr1913}
             N.~Bohr,
             \newblock {\em On the Constitution of Atoms and Molecules},
-            \newblock Philos.\ Mag.\ {\bf 26}, 1--25 (1913).
+            \newblock Philos.\ Mag.\ \textbf{26}, 1--25 (1913).
             \newblock doi:10.1080/14786441308634955.
 
             \bibitem{Sakurai1994}
@@ -547,15 +518,14 @@
             \bibitem{Mohr2016}
             P.~J. Mohr, D.~B. Newell, and B.~N. Taylor,
             \newblock {\em CODATA Recommended Values of the Fundamental Physical Constants: 2014},
-            \newblock Rev.\ Mod.\ Phys.\ {\bf 88}, 035009 (2016).
+            \newblock Rev.\ Mod.\ Phys.\ \textbf{88}, 035009 (2016).
             \newblock doi:10.1103/RevModPhys.88.035009.
 
             \bibitem{CODATA2018}
             E.~Tiesinga, P.~J.~Mohr, D.~B.~Newell, and B.~N.~Taylor,
                 {\em CODATA Recommended Values of the Fundamental Physical Constants: 2018},
-            Rev.\ Mod.\ Phys.\ {\bf 93}, 025010 (2021).
+            Rev.\ Mod.\ Phys.\ \textbf{93}, 025010 (2021).
             doi:10.1103/RevModPhys.93.025010.
-
 
         \end{thebibliography}
 

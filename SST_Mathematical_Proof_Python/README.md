@@ -5,7 +5,7 @@ This app explores and runs modules from **SST_Mathematical_Proof_Python** and ad
 ## Quick start
 
 ```bash
-python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
+python -m venv .venv && source .venv\Scripts\activate  
 pip install -r requirements.txt
 streamlit run app.py
 ```
@@ -19,3 +19,9 @@ streamlit run app.py
   - Supports **Stop**, **Clear logs**, and optional **stdin** input
 
 > Runs with working directory = the script’s folder (so relative imports and data paths work).
+
+
+
+For the usages of .fseries in the Canon papers, see the source of the files https://david.fremlin.de/knots/index.htm.
+% lines a_x(j) b_x(j) a_y(j) b_y(j) a_z(j) b_z(j) 
+% corresponding to x(s) = sum a_x(j)cos(js)+b_x(j)sin(js) etc

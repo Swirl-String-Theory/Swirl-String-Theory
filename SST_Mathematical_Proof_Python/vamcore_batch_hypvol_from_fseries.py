@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -----------------------------------------------------------------------------
-# vam_batch_hypvol_from_fseries.py  (VAMbindings-ready)
+# vam_batch_hypvol_from_fseries.py  (SSTbindings-ready)
 #
-# Optional VAM C++ accelerations (if present in vambindings):
+# Optional VAM C++ accelerations (if present in sstbindings):
 #   • hyperbolic_volume_from_pd(...)  -> ./src/hyperbolic_volume.cpp
 #       C++ binding: ./src_bindings/py_hyperbolic_volume.cpp
 #       Example:     ./examples/hyperbolic_volume_example.py
@@ -26,18 +26,18 @@ except Exception:
     HAVE_NP = False
 
 # ---------------------------------------------
-# Try C++-backed VAMbindings (optional)
+# Try C++-backed SSTbindings (optional)
 # ---------------------------------------------
 _VAM_PD = None
 _VAM_HYPVOL = None
 try:
-    from vambindings import hyperbolic_volume_from_pd as _VAM_HYPVOL  # optional
+    from sstbindings import hyperbolic_volume_from_pd as _VAM_HYPVOL  # optional
 except Exception:
     _VAM_HYPVOL = None
 
 try:
     # If your build exposes a faster PD extractor:
-    from vambindings import pd_from_curve as _VAM_PD  # optional
+    from sstbindings import pd_from_curve as _VAM_PD  # optional
 except Exception:
     _VAM_PD = None
 
@@ -55,7 +55,7 @@ if _VAM_HYPVOL is None:
     try:
         from vam_hypvol_no_deps import hyperbolic_volume_from_pd as _PY_HYPVOL
     except ImportError:
-        print("ERROR: Place vam_hypvol_no_deps.py next to this script or provide vambindings.hyperbolic_volume_from_pd.", file=sys.stderr)
+        print("ERROR: Place vam_hypvol_no_deps.py next to this script or provide sstbindings.hyperbolic_volume_from_pd.", file=sys.stderr)
         sys.exit(1)
 else:
     _PY_HYPVOL = None
@@ -355,7 +355,7 @@ def process_file(path, samples=1600, tries=40):
         return dict(status="fail", volume=float('nan'), n_crossings=0, message=str(e))
 
 def main():
-    ap = argparse.ArgumentParser(description="Batch hyperbolic volume for ../Knots_FourierSeries/*/*.fseries (VAMbindings optional accel)")
+    ap = argparse.ArgumentParser(description="Batch hyperbolic volume for ../Knots_FourierSeries/*/*.fseries (SSTbindings optional accel)")
     ap.add_argument("--root", type=str, default="../Knots_FourierSeries", help="Root directory containing subfolders per knot")
     ap.add_argument("--out",  type=str, default="../Knots_FourierSeries/hypvol_results.csv", help="Output CSV path")
     ap.add_argument("--samples", type=int, default=1600, help="Samples along the curve (t-grid)")
