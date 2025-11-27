@@ -157,7 +157,7 @@ import re
 # ──────────────────────────────────────────────────────────────────────────────
 # Constants (Canon-aligned)
 # ──────────────────────────────────────────────────────────────────────────────
-phi: float = (1 + math.sqrt(5)) / 2
+phi: float = math.exp(math.asinh(0.5)) # Golden (hyperbolic) = = (1 + math.sqrt(5)) / 2
 alpha_fs: float = 7.2973525643e-3
 c: float = 299_792_458.0
 v_swirl: float = 1.093_845_63e6
@@ -178,11 +178,10 @@ M_n_actual: float = 1.674_927_498_04e-27   # Neutron
 # ──────────────────────────────────────────────────────────────────────────────
 @dataclass
 class Config:
-    # s_u = Vol_H(5_2), s_d = Vol_H(6_1) (canonical up/down)
     mode: str = "exact_closure"
     kappa_R: float = 2.0
-    fixed_su: float = 2.8281
-    fixed_sd: float = 3.1639
+    fixed_su: float = 2.8281  # s_u = Vol_H(5_2),  (canonical up quark)
+    fixed_sd: float = 3.1639  # s_d = Vol_H(6_1),  (canonical down quark)
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -361,12 +360,14 @@ def _parse_formula(formula: str) -> Dict[str, int]:
 
 def compute_tables(topologies: Dict, cfg: Config) -> pd.DataFrame:
     M_e_pred = master_mass_invariant(topologies["electron"])
+    M_mu_pred = master_mass_invariant(topologies["muon"])
     M_p_pred = master_mass_invariant(topologies["proton"])
     M_n_pred = master_mass_invariant(topologies["neutron"])
 
     rows: List[Tuple[str, float, float, str]] = []
     # Elementary rows
     rows.append(("Electron", M_e_actual, M_e_pred, emoji_marker(100.0*(M_e_pred-M_e_actual)/M_e_actual)))
+    rows.append(("Muon", M_mu_pred, M_mu_actual, emoji_marker(100.0*(M_mu_pred-M_mu_actual)/M_mu_actual)))
     rows.append(("Proton",   M_p_actual, M_p_pred, emoji_marker(100.0*(M_p_pred-M_p_actual)/M_p_actual)))
     rows.append(("Neutron",  M_n_actual, M_n_pred, emoji_marker(100.0*(M_n_pred-M_n_actual)/M_n_actual)))
 
