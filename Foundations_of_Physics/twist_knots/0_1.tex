@@ -7,12 +7,16 @@
 % ==============================================================================
 
 % -- Configuration --
-\def\Wth{2.5pt}          % Strand width
-\def\Core{white}         % Gap color (background color)
+\def\Wth{5.5pt}          % Strand width
+\def\AMP{.1}
+\def\TWISTS{4}        % amount twist per full length
+\def\Samples{40}        % Resolution
+\def\Core{black}         % Gap color (background color)
 \def\Mask{5.0pt}         % Mask width for overlap
 \def\ClrA{black!60!black}      % Strand A Color (Shadow)
 \def\ClrB{red!70!black}  % Strand B Color (Main)
-\def\Samples{400}        % Resolution
+
+
 
 % -- Strand Style --
 \tikzset{
@@ -93,7 +97,7 @@
         ]
 
         \def\KPATH{(0,0) circle (2cm)}
-        \RenderTwist{\KPATH}{2}{0.10} % 6 Turns
+        \RenderTwist{\KPATH}{\TWISTS}{\AMP} % 6 Turns
         \node[font=\bfseries\sffamily] at (0,-2.5) {Unknot ($0_1$)};
         \strand
         \end{knot}

@@ -7,12 +7,16 @@
 % ==============================================================================
 
 % -- Configuration --
-\def\Wth{2pt}          % Strand width
-\def\Core{white}         % Gap color (background color)
+% -- Configuration --
+\def\Wth{1pt}          % Strand width
+\def\AMP{.1}
+\def\TWISTS{5}        % amount twist per full length
+\def\Samples{300}        % Resolution
+\def\Core{black}         % Gap color (background color)
 \def\Mask{5.0pt}         % Mask width for overlap
 \def\ClrA{black!60!black}      % Strand A Color (Shadow)
 \def\ClrB{red!70!black}  % Strand B Color (Main)
-\def\Samples{400}        % Resolution
+
 
 % -- Strand Style --
 \tikzset{
@@ -103,10 +107,10 @@
 
         \begin{knot}[
             consider self intersections,
-        %draft mode=crossings,              % show crossing indices while tuning
+            clip width=5pt,
+            clip radius=3pt,
             ignore endpoint intersections=true,
-%    clip width=5pt, clip radius=3pt,
-            flip crossing/.list={2,4,6,8,10,12,14,16,18,20}        % same over/under pattern as your snippet
+            flip crossing/.list={2,4,6,8,10,12,14,16,18}      % same over/under pattern as your snippet
         ]
 
             \def\KPATH{
@@ -114,7 +118,7 @@
                 ..(P9)..(P10)..(P11)..(P12)..(P13)..(P14)..(P15)
             }
 
-            \RenderTwist{\KPATH}{4}{0.05}
+            \RenderTwist{\KPATH}{\TWISTS}{\AMP}
             \node[font=\bfseries\sffamily] at (0,-3.0) {Up Quark ($5_2$)};
         \end{knot}
     \end{tikzpicture}

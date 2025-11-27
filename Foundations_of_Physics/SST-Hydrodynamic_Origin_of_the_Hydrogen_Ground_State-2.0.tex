@@ -6,18 +6,14 @@
 %! DOI = 10.5281/zenodo.17728292
 
 \newcommand{\paperdoi}{10.5281/zenodo.17728292}
-\newcommand{\papertitle}{Hydrodynamic Origin of the Hydrogen Ground State}
+\newcommand{\papertitle}{The Hydrodynamic Triad: Unifying Gravity, Electromagnetism,
+    and Quantum Mass via a Circulation-Based Vacuum Canon}
 
 %=========================================
 % PREAMBLE, PACKAGES AND DOCUMENT CONFIGURATION
 %=========================================
-\newcommand{\normalarticle}
 
-\ifdefined\normalarticle
-    \documentclass[11pt]{article}
-\else
-    \documentclass[11pt,onecolumn,aps,prd,floatfix,nofootinbib]{revtex4-2}
-\fi
+\documentclass[10pt,onecolumn,aps,prd,floatfix,nofootinbib]{revtex4-2}
 %=========================================
 
 
@@ -32,7 +28,6 @@
 \usepackage{float}   % for [H]
 \usepackage[font=footnotesize,skip=4pt]{caption} % smaller caption, less vertical space
 \usepackage{subfig}    % older
-\usepackage{longtable}
 \usepackage{xcolor}
 
 \usepackage{textcomp}
@@ -87,42 +82,11 @@
 \newcommand{\VolH}[1]{\operatorname{Vol}_{\!\mathbb{H}}(#1)}
 \newcommand{\rhocore}{\rho_{\!\text{core}}}
 %=========================================
-\ifdefined\normalarticle
 
-    \newcommand{\titlepageOpen}{
-        \begin{titlepage}
-        \thispagestyle{empty}
-        \centering
-        \Large \bfseries \papertitle \par \vspace{1cm}
-        {\Large \itshape \textbf{Omar Iskandarani} \par}
-        \noindent \\[0.5em]
-        {\small \textit{Independent Researcher, Groningen, The Netherlands}\textsuperscript{\textbf{*}} \par}\\
-        \vspace{0.5cm}
-        {\today \par}
-        \vspace{0.5cm}
-    }
 
-    \newcommand{\titlepageClose}{
-        \vfill \raggedright \null
-        \begin{picture}(0,0)
-        \put(0,-45){  % Shift 200pt left, 40pt down
-            \begin{minipage}[b]{0.7\textwidth} \footnotesize
-            \renewcommand{\arraystretch}{1.0}
-            %\noindent\rule{\textwidth}{0.4pt} \\[0.5em]
-            \textsuperscript{\textbf{*}}Email: \texttt{info@omariskandarani.com} \\
-            ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}}
-            DOI: \href{https://doi.org/\paperdoi}{\paperdoi}
-            \end{minipage}
-        }
-        \end{picture}
-        \end{titlepage}
-    }
 
     \begin{document}
-        \titlepageOpen
 
-\else
-    \begin{document}
         \title{\papertitle}
         \author{Omar Iskandarani}
         \affiliation{Independent Researcher, Groningen, The Netherlands}
@@ -131,25 +95,19 @@
         DOI: \href{https://doi.org/\paperdoi}{\paperdoi}
         }
         \date{\today}
-\fi
+
+
 
 
     \begin{abstract}
         This research report presents a comprehensive derivation of the hydrogen ground state within the framework of Swirl-String Theory (SST), a hydrodynamic effective field theory that models the vacuum not as an abstract geometric manifold or a probabilistic quantum field, but as a frictionless, incompressible, superfluid-like condensate. By identifying the electron and proton as topologically stable knotted vortex filaments (``swirl strings'') characterized by quantized circulation, the theory recovers the phenomenological predictions of quantum mechanics and general relativity from purely classical fluid-mechanical and topological constraints. The report rigorously establishes the ``Swirl-Coulomb'' potential from the Euler equations of the medium, demonstrating that the $1/r$ electrostatic interaction emerges inevitably from the pressure gradients induced by conserved circulation. Furthermore, the analysis unifies the classical electron radius, the Compton wavelength, and the Bohr radius through a single harmonic oscillator construction rooted in the medium's parameters.\footnote{A full derivation of this construction is given in Ref.~\cite{IskandaraniUnifiedElectronScale2025}.} The derivation yields the hydrogen ground state energy $E_B$ and the fine-structure constant $\alpha$ as emergent geometric ratios, achieving a parameter-free recovery of the Rydberg scale given the medium's calibration. We further extend this analysis to the N1–N2 excitation spectrum, interpreting spectral lines as acoustic resonance shifts caused by the deceleration of the electron knot from its maximum laminar speed. Finally, we derive the mass of the proton from the topological volume of its constituent knots, providing a geometric basis for the hadronic spectrum. This work thereby offers a realist, local, and deterministic account of atomic stability, contrasting sharply with the probabilistic postulates of standard quantum theory while maintaining mathematical consistency with established spectroscopy.
     \end{abstract}
 
-\ifdefined\normalarticle
-        \titlepageClose
-\else
         \maketitle
-\fi
-
 
 %=========================================
 % Title Page End
 %=========================================
-
-
 
     \section*{I. Introduction}
 
@@ -684,14 +642,30 @@ In this zone, the "pressure" of the vacuum (the Bernoulli pressure deficit) beco
             O.~Iskandarani,
             ``Rotational Kinetic Energy Density and an Effective Mass Relation in Incompressible Fluids,''
             preprint, Zenodo (2025).
-
             doi:10.5281/zenodo.17677835
 
-        \end{thebibliography}
+            \bibitem{sst_canon} Swirl String Theory Canon, v2.1, 2025.
+            "Definitions of $\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}$ and Vacuum Viscosity."
+
+            \bibitem{batchelor} G. K. Batchelor, \textit{An Introduction to Fluid Dynamics}, Cambridge University Press, 1967. (Ref. for steady flow conditions).
+
+            \bibitem{magnus} H. G. Magnus, "Über die Abweichung der Geschosse," \textit{Poggendorffs Annalen der Physik}, 1852. (Ref. for aerodynamic lift on spinning bodies).
+
+                \bibitem{fremlinKnots}
+                D. Fremlin. \emph{Symmetry classification of prime knots}, online table.
+                URL: \url{https://david.fremlin.de/knots/table.htm}. Accessed Sept 2025.
+
+                \bibitem{fremlin2018symmetry}
+                D. Fremlin and J. Mala. Symmetry and measurability.
+                \emph{Acta Mathematica Hungarica}, 155(2):449--459, 2018.
+                Springer. DOI: \href{https://doi.org/10.1007/s10474-017-0778-3}{10.1007/s10474-017-0778-3}.
+
+
+            \end{thebibliography}
 \newpage
         \appendix
-\section*{Appendix A:\\ {\normalsize Knot Taxonomy, a Symmetry Classification of Knot-based Swirl String Structures}}\label{sec:knottaxonomy}
-        \begin{abstract}
+\section*{Appendix A: Knot Taxonomy, a Symmetry Classification of Knot-based Swirl String Structures}\label{sec:knottaxonomy}
+        \section*{abstract}
             This note develops a definitive symmetry and topological taxonomy of knots
             as candidate swirl--string configurations in Swirl--String Theory (SST).
             Building on standard knot tables, we organise prime knots (with emphasis on
@@ -710,7 +684,7 @@ In this zone, the "pressure" of the vacuum (the Bernoulli pressure deficit) beco
             hyperbolic knots to represent quark states, while the unknot and links (e.g.\
             Hopf-type) provide bosonic and neutrino templates.
 
-            A central outcome is the introduction of a dimensionless \emph{mass invariant}
+            \paragraph{A central outcome is the introduction of a dimensionless \emph{mass invariant}}
             $\mathcal{I}_{M}(K)$ that depends only on braid index, genus, and component
             count, and which enters the SST invariant mass kernel
             \begin{equation}
@@ -723,7 +697,7 @@ In this zone, the "pressure" of the vacuum (the Bernoulli pressure deficit) beco
             dark-sector excitations.  The taxonomy is designed to be extensible: additional
             prime knots, links, and composite knot graphs can be incorporated without
             altering the underlying classification scheme.
-        \end{abstract}
+
 
 
         \begin{table}[H]
@@ -745,45 +719,41 @@ In this zone, the "pressure" of the vacuum (the Bernoulli pressure deficit) beco
                 \begin{tabular}{lcccccccc}
                 \hline
                 \textbf{ } & $\mathrm{D}_2(r)$ & $\mathrm{D}_{2k}$ & $\mathrm{Z}_{2k}$ & $I$ & reversible & amphichiral & periods & FSG \\
-                \hline
-                \hyperlink{3_1}{$3_1$}                & \checkmark & $D_4, D_6$      & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2, 3$   & $Z_2$ \\
-                \hyperlink{4_1}{$4_1$}                & \checkmark & $D_4$           & $Z_4$               & $I_8$               & \checkmark & \checkmark          & $2$      & $D_8$ \\
-                \hyperlink{5_1}{$5_1$}                & \checkmark & $D_4, D_{10}$   & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2, 5$   & $Z_2$ \\
-                \hyperlink{5_2,6_1,6_2}{$5_2, 6_1, 6_2$} & \checkmark & $D_4$           & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2$      & $D_4$ \\
-                \hyperlink{6_3}{$6_3$}                & \checkmark & $D_4$           & $Z_4$               &                     & \checkmark & \checkmark          & $2$      & $D_8$ \\
-                \hyperlink{7_1}{$7_1$}                & \checkmark & $D_4, D_{14}$   & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2, 7$   & $Z_2$ \\
-                \hyperlink{7_2,7_3}{$7_2, 7_3$}       & \checkmark & $D_4$           & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2$      & $D_4$ \\
-                \hyperlink{7_4}{$7_4$}                & \checkmark & $D_4$           & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2$      & $D_8$ \\
-                \hyperlink{7_5,7_6}{$7_5, 7_6$}       & \checkmark & $D_4$           & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2$      & $D_4$ \\
-                \hyperlink{7_7}{$7_7$}                & \checkmark & $D_4$           & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2$      & $D_8$ \\
-                \hyperlink{8_1,8_2}{$8_1, 8_2$}       & \checkmark & $D_4$           & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2$      & $D_4$ \\
-                \hyperlink{8_3}{$8_3$}                & \checkmark & $D_4$           & $Z_4$               & $I_8$               & \checkmark & \checkmark          & $2$      & $D_8$ \\
-                \hyperlink{8_4,8_5,8_6,8_7,8_8}{$8_4, 8_5, 8_6, 8_7, 8_8$}
+                $3_1$                & \checkmark & $D_4, D_6$      & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2, 3$   & $Z_2$ \\
+                $4_1$                & \checkmark & $D_4$           & $Z_4$               & $I_8$               & \checkmark & \checkmark          & $2$      & $D_8$ \\
+                $5_1$                & \checkmark & $D_4, D_{10}$   & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2, 5$   & $Z_2$ \\
+                $5_2, 6_1, 6_2$      & \checkmark & $D_4$           & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2$      & $D_4$ \\
+                $6_3$                & \checkmark & $D_4$           & $Z_4$               &                     & \checkmark & \checkmark          & $2$      & $D_8$ \\
+                $7_1$                & \checkmark & $D_4, D_{14}$   & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2, 7$   & $Z_2$ \\
+                $7_2, 7_3$           & \checkmark & $D_4$           & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2$      & $D_4$ \\
+                $7_4$                & \checkmark & $D_4$           & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2$      & $D_8$ \\
+                $7_5, 7_6$           & \checkmark & $D_4$           & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2$      & $D_4$ \\
+                $7_7$                & \checkmark & $D_4$           & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2$      & $D_8$ \\
+                $8_1, 8_2$           & \checkmark & $D_4$           & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2$      & $D_4$ \\
+                $8_3$                & \checkmark & $D_4$           & $Z_4$               & $I_8$               & \checkmark & \checkmark          & $2$      & $D_8$ \\
+                $8_4, 8_5, 8_6, 8_7, 8_8$
                 & \checkmark & $D_4$           & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2$      & $D_4$ \\
-                \hyperlink{8_9}{$8_9$}                & \checkmark & $D_4$           &                     & $I_4$               & \checkmark & \checkmark          & $2$      & $D_8$ \\
-                \hyperlink{8_{10}}{$8_{10}$}          & \checkmark & $\text{\texttimes}$ & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & none     & $D_2$ \\
-                \hyperlink{8_{11}}{$8_{11}$}          & \checkmark & $D_4$           & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2$      & $D_4$ \\
-                \hyperlink{8_{12}}{$8_{12}$}          & \checkmark & $D_4$           & $Z_4$               &                     & \checkmark & \checkmark          & $2$      & $D_8$ \\
-                \hyperlink{8_{13},8_{14},8_{15}}{$8_{13}, 8_{14}, 8_{15}$}
+                $8_9$                & \checkmark & $D_4$           &                     & $I_4$               & \checkmark & \checkmark          & $2$      & $D_8$ \\
+                $8_{10}$             & \checkmark & $\text{\texttimes}$ & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & none     & $D_2$ \\
+                $8_{11}$             & \checkmark & $D_4$           & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2$      & $D_4$ \\
+                $8_{12}$             & \checkmark & $D_4$           & $Z_4$               &                     & \checkmark & \checkmark          & $2$      & $D_8$ \\
+                $8_{13}, 8_{14}, 8_{15}$
                 & \checkmark & $D_4$           & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2$      & $D_4$ \\
-                \hyperlink{8_{16}}{$8_{16}$}          & \checkmark & $\text{\texttimes}$ & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & none     & $D_2$ \\
-                \hyperlink{8_{17}}{$8_{17}$}          & $\text{\texttimes}$ & $\text{\texttimes}$ & $\text{\texttimes}$ &               & $\text{\texttimes}$ & \checkmark & none & $D_2$ \\
-                \hyperlink{8_{18}}{$8_{18}$}          & \checkmark & $D_4, D_8$      & $Z_8$               &                     & \checkmark & \checkmark          & $2, 4$   & $D_{16}$ \\
-                \hyperlink{8_{19}}{$8_{19}$}          & \checkmark & $D_4, D_6, D_8$ & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2, 3, 4$& $Z_2$ \\
-                \hyperlink{8_{20}}{$8_{20}$}          & \checkmark & $\text{\texttimes}$ & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & none     & $D_2$ \\
-                \hyperlink{8_{21}}{$8_{21}$}          & \checkmark & $D_4$           & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2$      & $D_4$ \\
-                \hyperlink{12a_{1202}}{$12a_{1202}$}  & \checkmark &                 & $Z_2, Z_6$          &                     & \checkmark & \checkmark          &          & $D_{12}$ \\
-                \hyperlink{15331}{$15331$}            &           &                 & $Z_2$               &                     &           & \checkmark          &          &         \\
-                \hline
+                $8_{16}$             & \checkmark & $\text{\texttimes}$ & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & none     & $D_2$ \\
+                $8_{17}$             & $\text{\texttimes}$ & $\text{\texttimes}$ & $\text{\texttimes}$ &               & $\text{\texttimes}$ & \checkmark & none & $D_2$ \\
+                $8_{18}$             & \checkmark & $D_4, D_8$      & $Z_8$               &                     & \checkmark & \checkmark          & $2, 4$   & $D_{16}$ \\
+                $8_{19}$             & \checkmark & $D_4, D_6, D_8$ & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2, 3, 4$& $Z_2$ \\
+                $8_{20}$             & \checkmark & $\text{\texttimes}$ & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & none     & $D_2$ \\
+                $8_{21}$             & \checkmark & $D_4$           & $\text{\texttimes}$ & $\text{\texttimes}$ & \checkmark & $\text{\texttimes}$ & $2$      & $D_4$ \\
+                $12a_{1202}$         & \checkmark &                 & $Z_2, Z_6$          &                     & \checkmark & \checkmark          &          & $D_{12}$ \\
+                $15331$              &           &                 & $Z_2$               &                     &           & \checkmark          &          &         \\
             \end{tabular}\label{tab:knot-symmetries}
         \end{table}
-            \\
+
         \subsection*{Invariance properties.}
         In SST, these symmetries classify the invariance properties of knotted swirl strings, constraining their physical stability, energy quantization, and possible transformation pathways.
 
-
-        \noindent
-        \paragraph{Remarks.}\\
+        \paragraph{Remarks.}
         Any $D_{2k}$ symmetry ($k\geq2$) implies $D_2(r)$ symmetry; if $k$ is even, period 2 is also present. $D_{2k}$ symmetry further implies $D_{2j}$ for divisors $j$ of $k$. $Z_{2k}$ symmetry entails positive amphichirality; $D_2(r)$ guarantees reversibility. $I_2$ symmetry implies negative amphichirality. These properties map directly to constraints on swirl string energy spectra, fusion/interconversion rules, and topological charge conservation in SST. The ``full symmetry group'' (FSG) is tabulated for comparison, though it may not capture all SST-relevant invariances.
 
         \vspace{1em}
@@ -1090,30 +1060,13 @@ In this zone, the "pressure" of the vacuum (the Bernoulli pressure deficit) beco
 
 
 
-% References
-%=========================================
-    \bibliographystyle{unsrt}
-    \begin{thebibliography}{99}
 
-        \bibitem{fremlinKnots}
-        D. Fremlin. \emph{Symmetry classification of prime knots}, online table.
-        URL: \url{https://david.fremlin.de/knots/table.htm}. Accessed Sept 2025.
-
-        \bibitem{fremlin2018symmetry}
-        D. Fremlin and J. Mala. Symmetry and measurability.
-        \emph{Acta Mathematica Hungarica}, 155(2):449--459, 2018.
-        Springer. DOI: \href{https://doi.org/10.1007/s10474-017-0778-3}{10.1007/s10474-017-0778-3}.
-
-
-    \end{thebibliography}
-
-\newpage
         \section*{Appendix B: SST Responses to Fundamental Objections}
         \label{sec:appendix_sst_extensions}
 
         This appendix addresses three critical phenomenological challenges raised regarding the Swirl String Theory (SST) model of the hydrogen atom: the derivation of excited state quantization ($n>1$), the stability against Larmor radiation, and the origin of fine structure interactions.
 
-        \subsection*{Quantization of Excited States ($n > 1$)}
+        \subsection*{Quantization of Excited States (\texorpdfstring{$n > 1$}{n > 1})}
             Standard quantum mechanics posits that orbital radii scale as $r_n \propto n^2$. In SST, this scaling emerges naturally from the conservation of circulation and the Vacuum Stability Limit.
 
             The ground state ($n=1$) is defined by the maximum laminar tangential velocity, the characteristic swirl speed $\mathbf{v}_{\!\boldsymbol{\circlearrowleft}} \approx \alpha c$. For stable excited states, the orbital circumference $2\pi r_n$ must accommodate an integer number $n$ of twist-phase wavelengths to maintain standing wave resonance. Consequently, the tangential velocity $v_n$ scales harmonically:
@@ -1164,9 +1117,5 @@ In this zone, the "pressure" of the vacuum (the Bernoulli pressure deficit) beco
             \end{equation}
             This derivation provides a classical fluid-mechanical basis for the fine structure splitting without invoking relativistic kinematics of point masses.
 
-            \begin{thebibliography}{9}
-                \bibitem{sst_canon} Swirl String Theory Canon, v2.1, 2025. "Definitions of $\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}$ and Vacuum Viscosity."
-                \bibitem{batchelor} G. K. Batchelor, \textit{An Introduction to Fluid Dynamics}, Cambridge University Press, 1967. (Ref. for steady flow conditions).
-                \bibitem{magnus} H. G. Magnus, "Über die Abweichung der Geschosse," \textit{Poggendorffs Annalen der Physik}, 1852. (Ref. for aerodynamic lift on spinning bodies).
-            \end{thebibliography}
-\end{document}
+
+    \end{document}

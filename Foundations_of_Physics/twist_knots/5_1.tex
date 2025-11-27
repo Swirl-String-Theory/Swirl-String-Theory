@@ -8,11 +8,13 @@
 
 % -- Configuration --
 \def\Wth{2.5pt}          % Strand width
-\def\Core{white}         % Gap color (background color)
+\def\AMP{.1}
+\def\TWISTS{5}        % amount twist per full length
+\def\Samples{240}        % Resolution
+\def\Core{black}         % Gap color (background color)
 \def\Mask{5.0pt}         % Mask width for overlap
 \def\ClrA{black!60!black}      % Strand A Color (Shadow)
 \def\ClrB{red!70!black}  % Strand B Color (Main)
-\def\Samples{400}        % Resolution
 
 % -- Strand Style --
 \tikzset{
@@ -110,7 +112,7 @@
                 ([closed] P1)..(P2)..(P3)..(P4)..(P5)..(P6)..(P7)..(P8)..(P9)..(P10)..(P11)
             }
 
-            \RenderTwist{\KPATH}{4}{0.05}
+            \RenderTwist{\KPATH}{\TWISTS}{\AMP}
             \node[font=\bfseries\sffamily] at (0,-2.5) {Cinquefoil ($5_1$)};
 
 

@@ -7,12 +7,16 @@
 % ==============================================================================
 
 % -- Configuration --
-\def\Wth{2pt}          % Strand width
-\def\Core{white}         % Gap color (background color)
+% -- Configuration --
+\def\Wth{2.5pt}          % Strand width
+\def\AMP{.1}
+\def\TWISTS{6}        % amount twist per full length
+\def\Samples{400}        % Resolution
+\def\Core{black}         % Gap color (background color)
 \def\Mask{5.0pt}         % Mask width for overlap
 \def\ClrA{black!60!black}      % Strand A Color (Shadow)
 \def\ClrB{red!70!black}  % Strand B Color (Main)
-\def\Samples{400}        % Resolution
+
 
 % -- Strand Style --
 \tikzset{
@@ -114,7 +118,7 @@
                 ..(P9)..(P10)..(P11)..(P12)..(P13)..(P14)..(P15)
             }
 
-            \RenderTwist{\KPATH}{4}{0.13}
+            \RenderTwist{\KPATH}{\TWISTS}{\AMP}
             \node[font=\bfseries\sffamily] at (0,-3.0) {Down Quark ($6_1$)};
 
         \end{knot}
