@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.widgets import Slider, RadioButtons, CheckButtons
+from matplotlib.widgets import Slider, RadioButtons, CheckButtons, Button
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib
 matplotlib.use('TkAgg')
@@ -19,12 +19,82 @@ except ImportError:
 V_SWIRL = 1.09384563e6  # m/s
 OMEGA_DEFAULT = 10.9e6  # Hz
 B_SAT_DEFAULT = 5.0     # Tesla
+C_LIGHT = 299792458.0   # m/s
 
 # --- GEOMETRY HELPERS (From Plotly Script) ---
 S_DEFAULT = 40
 STEP_FWD = 11
 STEP_BWD = -9
 POWER = 2.2
+
+class ResonanceAnalyzer:
+    def __init__(self, geometry_phases, V_swirl):
+        """
+        geometry_phases: List of (N, 3) arrays representing the coil wires.
+        V_swirl: Canonical swirl velocity.
+        """
+        self.phases = geometry_phases
+        self.c = 299792458.0 # Speed of light
+        self.v_swirl = V_swirl
+
+    def analyze(self):
+        print("\n--- SST RESONANCE ANALYSIS ---")
+        results = []
+        for i, phase_pts in enumerate(self.phases):
+            # Calculate total wire length
+            diffs = np.diff(phase_pts, axis=0)
+            dists = np.linalg.norm(diffs, axis=1)
+            L_total = np.sum(dists)
+
+            # 1. Electrical Standing Wave (Quarter Wave)
+            # This creates max Voltage (E-field) at the tip of the coil
+            # f = c / lambda
+            f_elec = self.c / (4 * L_total)
+
+            # 2. Acoustic/Vortex Resonance
+            # The frequency required for the signal to travel the wire at V_swirl speed
+            # This is the "Hydraulic" resonance of the vacuum flow
+            f_vortex = self.v_swirl / L_total
+
+            # 3. Pulse Width for "The Kick"
+            # We want the rise time to be faster than the vortex reaction time
+            # t_impact < wire_diameter / v_swirl. Assuming 1mm wire.
+            t_impact = 0.001 / self.v_swirl
+
+            print(f"Phase {i+1}: Length = {L_total:.4f} m")
+            print(f"  > Electrical Res (Carrier):       {f_elec/1e6:.3f} MHz")
+            print(f"  > SST Vortex Res (Pulse Rate):    {f_vortex/1e3:.3f} kHz")
+            print(f"  > Max Effective Rise Time:        {t_impact*1e9:.2f} ns")
+
+            results.append({
+                "L": L_total,
+                "f_elec": f_elec,
+                "f_vortex": f_vortex
+            })
+
+        return results
+
+# --- INTEGRATION HELPER ---
+def run_analysis_tool(app_instance):
+    # Extract geometry from the current app state
+    phases_geo = []
+
+    # Re-generate geometry based on current slider values to ensure we measure what is seen
+    Rb = app_instance.sl_Rb.val
+    Rt = app_instance.sl_Rt.val
+    n_pairs = int(app_instance.sl_L.val)
+    Hc = app_instance.sl_H.val
+
+    for i in range(3):
+        if app_instance.phases_active[i]:
+            pts, _ = generate_bowl_geometry(
+                S_DEFAULT, STEP_FWD, STEP_BWD, n_pairs,
+                Rb, Rt, Hc, app_instance.profile, app_instance.mode, 0.0 # Angle doesn't affect length
+            )
+            phases_geo.append(pts)
+
+    analyzer = ResonanceAnalyzer(phases_geo, V_SWIRL)
+    return analyzer.analyze()
 
 def alternating_skip_indices(S, step_fwd, step_bwd, n_pairs, start=1):
     idx = start
@@ -169,8 +239,56 @@ def compute_sst_physics(phases_geometry, grid_dims, bounds):
         "Bx":Bx_tot/B_mag, "By":By_tot/B_mag, "Bz":Bz_tot/B_mag,
         "mag":B_mag, "shear":shear, "gravity":gravity
     }
+# --- NEW ANALYSIS TOOL ---
+class ResonanceAnalyzer:
+    def __init__(self, geometry_phases, V_swirl):
+        self.phases = geometry_phases
+        self.v_swirl = V_swirl
+        self.c = C_LIGHT
 
-# --- GUI APP ---
+    def analyze(self):
+        print("\n" + "="*40)
+        print("SST RESONANCE & SIGNAL ANALYSIS")
+        print("="*40)
+
+        results = []
+        for i, phase_pts in enumerate(self.phases):
+            # Calculate precise wire length
+            diffs = np.diff(phase_pts, axis=0)
+            dists = np.linalg.norm(diffs, axis=1)
+            L_total = np.sum(dists)
+
+            if L_total == 0: continue
+
+            # 1. Electrical Resonance (Standing Wave)
+            # Target: Quarter-Wave (lambda/4) for max E-field at tips
+            f_elec = self.c / (4 * L_total)
+
+            # 2. Vortex Resonance (Hydraulic Cycle)
+            # Target: Frequency matching fluid transit time across the wire length
+            f_vortex = self.v_swirl / L_total
+
+            # 3. Critical Rise Time (The "Snap")
+            # Max time to switch state before fluid flows around the wire
+            # Based on 1mm wire diameter approximation
+            t_impact = 0.001 / self.v_swirl
+
+            print(f"PHASE {i+1} GEOMETRY:")
+            print(f"  Wire Length:      {L_total:.4f} m")
+            print(f"  Inductance Est:   {(L_total * 1.2):.2f} uH (approx)")
+            print("-" * 30)
+            print(f"REQUIRED SIGNAL PARAMETERS:")
+            print(f"  1. Carrier Freq:  {f_elec/1e6:.3f} MHz (Elec. Resonance)")
+            print(f"  2. Burst Rate:    {f_vortex/1e3:.3f} kHz (Vortex Resonance)")
+            print(f"  3. Max Rise Time: {t_impact*1e9:.2f} ns")
+            print(f"     (If rise time > {t_impact*1e9:.2f} ns, Vacuum Drag = 0)")
+            print("\n")
+
+            results.append((L_total, f_elec, f_vortex))
+
+        return results
+
+# --- UPDATED GUI APP ---
 class SawBowlApp:
     def __init__(self):
         self.fig = plt.figure(figsize=(15, 10))
@@ -190,7 +308,7 @@ class SawBowlApp:
         self.update()
 
     def init_gui(self):
-        # Sliders Area (Bottom)
+        # --- Sliders (Bottom) ---
         ax_Rb = plt.axes([0.15, 0.08, 0.55, 0.03])
         ax_Rt = plt.axes([0.15, 0.04, 0.55, 0.03])
         ax_L  = plt.axes([0.15, 0.005, 0.25, 0.03])
@@ -204,25 +322,31 @@ class SawBowlApp:
         for s in [self.sl_Rb, self.sl_Rt, self.sl_L, self.sl_H]:
             s.on_changed(self.update_wrapper)
 
-        # Control Panel (Right Side)
-        # Mode
+        # --- Control Panel (Right Side) ---
+
+        # 1. Mode
         ax_mode = plt.axes([0.8, 0.75, 0.15, 0.12])
         self.rad_mode = RadioButtons(ax_mode, ('Curved', 'Straight'), active=0)
         self.rad_mode.on_clicked(self.set_mode)
         ax_mode.set_title("Geometry Mode")
 
-        # Profile
+        # 2. Profile
         ax_prof = plt.axes([0.8, 0.55, 0.15, 0.15])
         self.rad_prof = RadioButtons(ax_prof, ('Exponential', 'Linear', 'Inverse Exp'), active=0)
         self.rad_prof.on_clicked(self.set_profile)
         ax_prof.set_title("Bowl Profile")
 
-        # SST View
+        # 3. SST View
         ax_view = plt.axes([0.8, 0.35, 0.15, 0.15])
         self.rad_view = RadioButtons(ax_view,
                                      ('SST Gravity Dilation', 'Beltrami Shear', 'Magnetic Field', 'Geometry Only'), active=2)
         self.rad_view.on_clicked(self.update_wrapper)
         ax_view.set_title("Analysis View")
+
+        # 4. ACTION BUTTONS (New)
+        ax_btn = plt.axes([0.8, 0.25, 0.15, 0.05])
+        self.btn_calc = Button(ax_btn, 'Calc Resonance', color='lightgreen', hovercolor='0.975')
+        self.btn_calc.on_clicked(self.run_resonance_calc)
 
     def set_mode(self, label):
         self.mode = label
@@ -234,6 +358,31 @@ class SawBowlApp:
 
     def update_wrapper(self, val=None):
         self.update()
+
+    def run_resonance_calc(self, event):
+        """Generates geometry from current sliders and runs physics analysis."""
+        # 1. Re-generate current geometry
+        Rb = self.sl_Rb.val
+        Rt = self.sl_Rt.val
+        n_pairs = int(self.sl_L.val)
+        Hc = self.sl_H.val
+
+        phases_geo = []
+        # Check standard angles
+        offsets = [0.0, 2*np.pi/3, 4*np.pi/3]
+
+        for i in range(3):
+            if self.phases_active[i]:
+                # Generate points only
+                pts, _ = generate_bowl_geometry(
+                    S_DEFAULT, STEP_FWD, STEP_BWD, n_pairs,
+                    Rb, Rt, Hc, self.profile, self.mode, offsets[i]
+                )
+                phases_geo.append(pts)
+
+        # 2. Run Analysis
+        analyzer = ResonanceAnalyzer(phases_geo, V_SWIRL)
+        analyzer.analyze()
 
     def update(self):
         self.ax.clear()
@@ -287,9 +436,6 @@ class SawBowlApp:
                 mask = data["mag"] > 0.05
                 cmap = 'coolwarm'
                 scale = 0.1
-
-            # Subsample for clarity
-            sl = (slice(None), slice(None), slice(None))
 
             self.ax.quiver(
                 X[mask], Y[mask], Z[mask],

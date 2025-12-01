@@ -6,7 +6,7 @@
 %! ORCID = 0009-0006-1686-3961
 %! DOI = 10.5281/zenodo.17607006
 
-\newcommand{\canonversion}{\textbf{v0.5.11}} % Semantic versioning: vMAJOR.MINOR.PATCH
+\newcommand{\canonversion}{\textbf{v0.5.12}} % Semantic versioning: vMAJOR.MINOR.PATCH
 \newcommand{\papertitle}{Swirl String Theory (SST) Canon \canonversion}
 \newcommand{\paperdoi}{10.5281/zenodo.17607006}
 
@@ -203,6 +203,12 @@
         % Use compact version to save space
         \compacttoc
         \newpage
+
+%========================================================================================
+% PART I: FOUNDATIONS (Core Canon Spine)
+%========================================================================================
+\part{Foundations}
+
 %===============================
 % Sevenfold Genesis of the Swirling Cosmos
 %===============================
@@ -242,6 +248,8 @@ Primary constants lock in by resonance:
 marking the birth of physical time and the circulation quantum.
 \hfill (STC Stage 8)
 
+\textbf{Technical details:} See Section~\ref{canon58:classical-invariants} (Classical Invariants) and Section~\ref{canon58:rho_f} (Effective Medium) for derivations.
+
 \subsection*{Stage 3: Tangible Chirality and Swirl-Time}
 Knotted swirl strings appear, stabilized by circulation quantization $\Gamma = n\Gamma_0$.
 The swirl clock
@@ -250,6 +258,8 @@ S_t = \sqrt{1 - \frac{v^{2}}{c^{2}}}
 \]
 defines local proper time, with left-handed ($\circlearrowleft$) and right-handed ($\circlearrowright$) knots forming the basis for matter and antimatter.
 \hfill (STC Stage 9)
+
+\textbf{Technical details:} See Section~\ref{canon58:classical-invariants} (Classical Invariants) and Section~\ref{sec:cosmogony-seven} (Core Axioms) for the formal framework.
 
 \subsection*{Stage 4: Topological Charges and Particle Spectrum}
 Topological invariants of knots $(\mathrm{Lk}, \mathrm{Wr}, \mathrm{Tw})$ map to quantum numbers:
@@ -265,6 +275,8 @@ where $\Vol_{\!\mathbb{H}}(K)$ is the hyperbolic complement volume of $K$
 and $\phi^{-2k}$ encodes Golden-layer suppression.
 \hfill (STC Stage 10)
 
+\textbf{Technical details:} See Section~\ref{sec:knot-taxonomy} (Knot Taxonomy) for the particle–knot mapping, and Section~\ref{canon58:hydro-grav} (Hydrogen–Gravity) for mass derivations.
+
 \subsection*{Stage 5: Emergent Interactions (Gauge and Forces)}
 Unknotted excitations of the condensate form the R-phase modes (photons, gluons, W/Z),
 with interactions governed by the emergent gauge group:
@@ -278,6 +290,8 @@ D_\mu = \nabla_\mu + i g_{\mathrm{sw}} W_{\mu}^{a}T^{a}\,.
 \]
 \hfill (STC Stage 11)
 
+\textbf{Technical details:} See Section~\ref{canon58:swirl-em} (Swirl–EM Emergence) and Section~\ref{canon58:lagrangian} (Unified SST Lagrangian) for the formal derivation.
+
 \subsection*{Stage 6: Geometric Closure and Constant Lock-In}
 Global Gauss closure yields the $1/r^{2}$ force law:
 \[
@@ -287,6 +301,8 @@ F(r) \propto \frac{1}{r^{2}}
 \]
 and fixes $\pi$ geometrically.
 The entire condensate enters a global resonance, locking all constants of nature.
+
+\textbf{Technical details:} See Section~\ref{canon58:pressure} (Swirl Pressure Law) and Section~\ref{canon58:gauge-openers} (Gauge/EWSB Sector) for force laws and constant determinations.
 
 \begin{tcolorbox}[title=Zero–Parameter Principle (Canonical),colframe=blue!75!black]
 \textbf{Statement (Axiom):}
@@ -393,38 +409,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
     \end{tcolorbox}
 
 % [STATUS: Canonical] [SOURCE: earlier Canon draft]
-%========================================================================================
-        \begin{figure}[htbp]
-        \centering
-        \setlength{\tabcolsep}{8pt}
-        \renewcommand{\arraystretch}{1.2}
-        \begin{tabular}{ccc}
-        \includegraphics[width=0.04\linewidth]{figures/0_1} &
-        \includegraphics[width=0.04\linewidth]{figures/a3_1} &
-        \includegraphics[width=0.04\linewidth]{figures/4_1} \\
-        \textbf{$0_1$: Unknot} &
-        \textbf{$3_1$: Torus-knot} &
-        \textbf{$4_1$: Achiral-knot} \\
-        \small R-phase photon (torsional pulse) &
-        \small Electron (T-phase lepton) &
-        \small Candidate dark-sector knot \\[4pt]
-        \includegraphics[width=0.04\linewidth]{figures/5_1} &
-        \includegraphics[width=0.04\linewidth]{figures/5_2} &
-        \includegraphics[width=0.04\linewidth]{figures/6_1} \\
-        \textbf{$5_1$: Torus-knot}&
-        \textbf{$5_2$: Twist-knot}&
-        \textbf{$6_1$: Twist-knot}\\
-        \small Higher lepton candidate &
-        \small Up quark &
-        \small Down quark \\[4pt]
-        \includegraphics[width=0.04\linewidth]{figures/7_1} & & \\
-        \textbf{$7_1$: Torus-knot}  & & \\
-        \small Higher-generation quark (strange/charm) & &
-        \end{tabular}
-        \caption{Canonical knot taxonomy in SST. Each image shows the minimal embedding of the corresponding knot and its mapping to a particle family. Unknots (0$_1$) correspond to R-phase bosonic modes such as photons, while knotted states encode fermions (torus knots $\leftrightarrow$ leptons, chiral hyperbolic knots $\leftrightarrow$ quarks). Linked knots describe nuclei and bound states.}
-        \label{fig:knot-taxonomy}
-        \end{figure}
-% [Sidebar: The vortex picture -- a diagram could illustrate a closed swirl string (loop) and its core radius]
+% [Knot taxonomy figure moved to Section~\ref{sec:knot-taxonomy} in Part II]
 
 	\section{Core Axioms (SST)}
 	SST is built on a set of core axioms that establish its physical framework. These axioms, numbered below, are stated in plain language and form the starting postulates of the theory (they are considered \emph{canonical} by definition).
@@ -501,6 +486,10 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 
 	These axioms define the ontological starting point of SST. The swirl medium (Axiom 1) provides the arena, swirl strings (Axiom 2) provide the basic degrees of freedom with quantized circulation and allowed topologies, and the remaining axioms posit how classical forces and quantum behaviors emerge from this framework (gravity from collective flows, time dilation from swirl motion, wave–particle dual phases, and a topological classification of particles).
 
+%========================================================================================
+% PART II: GEOMETRY, FIELDS, AND LAGRANGIAN
+%========================================================================================
+\part{Geometry, Fields, and Lagrangian}
 
 	\section{Formal Structure and Canonical Framework}
 	In addition to physical axioms, SST is formulated as a formal system $S = (P, D, R)$ comprising a set of postulates ($P$), definitions ($D$), and inference rules ($R$). A statement in SST is considered \emph{canonical} if and only if it can be derived from the axioms and definitions using the permitted inference rules, and it is consistent with all previously established canonical statements. The hierarchy of statement types is as follows:
@@ -940,108 +929,12 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 %  Canon Section: Historical and Conceptual Evolution from VAM to SST
 % ======================================================================
 
-    \section{Historical and Conceptual Evolution from the Vortex--Æther Model (VAM) to Swirl--String Theory (SST)}
+    \section{Historical Context}
     \label{sec:HistoryEvolution}
 
+    The Swirl--String Theory (SST) Canon evolved from the earlier Vortex--Æther Model (VAM), which reintroduced classical notions of a continuous physical substrate inspired by Kelvin, Maxwell, and Einstein. The model postulated an incompressible, inviscid superfluid medium whose internal vorticity fields underlie all physical interactions. Key milestones include: VAM-v0.0.x establishing the æther vortex dynamics foundation; VAM-v0.1.x reformulating time and mass in hydrodynamic terms; VAM-v0.2.x achieving a coherent topological interpretation of all four fundamental interactions; and the transition to SST-v0.3.x through v0.5.x, which modernized terminology, formalized the gauge sector, and achieved parameter-free predictions. By version 0.5.10, the Canon reached canonical completeness: every physical quantity derivable from core constants and topological structure.
 
-    \begin{tcolorbox}[colback=gray!5,colframe=black,title={Canonical Context}]
-    This section summarizes the historical evolution of the Vortex--Æther Model (VAM) into the modern Swirl--String Theory (SST), tracing conceptual milestones, canonical refinements, and the consolidation of the theory into a single-source formalism (the Canon).
-    \end{tcolorbox}
-
-% ------------------------------------------------------------
-    \subsection{VAM-v0.0.x: Origins and Empirical-Theoretical Foundations}
-
-        The earliest phase (\textbf{VAM v0.0.x}) reintroduced classical notions of a continuous physical substrate---the \emph{æther}---inspired by Kelvin, Maxwell, and Einstein.
-        The model postulated an incompressible, inviscid, and structured superfluid medium whose internal vorticity fields underlie all physical interactions.
-
-        \begin{itemize}
-        \item \textbf{Æther vortex dynamics:} Matter was conceived as topologically stable vortex knots in this medium, continuing Kelvin's idea of \emph{vortex atoms}~\cite{Kelvin1867}.
-        \item \textbf{Einstein's reinterpretation:} Following Einstein's 1920 Leiden lecture~\cite{Einstein1920}, space was not abandoned as an æther but redefined through local field structure. VAM recovered this interpretation by replacing spacetime curvature with vorticity and pressure gradients.
-        \end{itemize}
-
-        This period established the first link between relativistic kinematics and fluid dynamics, setting the stage for a canonical unification of geometry and swirl mechanics.
-
-% ------------------------------------------------------------
-    \subsection{VAM-v0.1.x: From Relativity to the Master Mass Formula}
-
-        Between VAM-0 and VAM-8, the model reformulated both time and mass in hydrodynamic terms.
-
-        \begin{itemize}
-        \item \textbf{Temporal stratification:} Time was decomposed into Absolute Æther-Time ($N$), Local Proper-Time ($\tau$), and the \emph{Swirl Clock phase} $S(t)$.
-        Time dilation arises from local rotational energy:
-        \[
-            dt_{\text{local}} = dt_{\infty}\,\sqrt{1-\frac{\|\boldsymbol{\omega}\|^2}{c^2}}.
-        \]
-        \item \textbf{Mass as swirl energy:} Each particle corresponds to a knotted vortex filament, with mass emerging as the energy stored in swirl motion:
-        \[d
-            M = \frac{1}{\varphi}\cdot \frac{4}{\alpha}\left(\frac{1}{2}\rhof \vswirl^2 V\right),
-        \]
-        where $\varphi$ is the golden ratio correction factor.
-        \end{itemize}
-
-        This phase culminated in the \textbf{Master Mass Formula}, unifying rest energy, swirl energy, and topological invariants.
-
-% ------------------------------------------------------------
-    \subsection{VAM-v0.2.x: Unified Framework and Topological Quantization}
-
-        During VAM-9 through VAM-15, the model achieved a coherent topological interpretation of all four fundamental interactions.
-
-        \begin{itemize}
-        \item \textbf{Electromagnetism as swirl dynamics:} Variations in swirl density $\partial_t\rho_{\!f}$ generate electromotive effects via a modified Faraday law (\emph{Swirl--EM Bridge}).
-        \item \textbf{Gauge reconstruction:} The Standard Model symmetries $\mathrm{SU}(3)\times\mathrm{SU}(2)\times\mathrm{U}(1)$ were mapped to conserved swirl topologies and braid algebraic transformations among filament triplets.
-        \item \textbf{Empirical calibration:} Universal constants such as $G$, $\hbar$, and $\alpha$ were expressed through the kernel parameters $(\vswirl,\rc,\rhof)$.
-        \end{itemize}
-
-        The theory entered an empirically falsifiable domain by predicting quantized EM impulses ($\Delta\Phi=\pm\Phi_0$) from knot reconnections.
-
-% ------------------------------------------------------------
-    \subsection{VAM-v0.3.x $\rightarrow$ SST-v0.3.x: Rebranding and Canonical Consolidation}
-
-        A decisive transition occurred when VAM was restructured into \textbf{Swirl--String Theory (SST)}, enabling compatibility with modern field-theoretic language while retaining its hydrodynamic core.
-
-        \begin{itemize}
-        \item \textbf{Terminological modernization:} The term ``æther'' was replaced by \emph{swirl medium}, and ``vortex filament'' by \emph{swirl string}, aligning terminology with relativistic field theory.
-        \item \textbf{Mathematical translation:} The swirl field was reformulated in terms of Kalb--Ramond two-form fields $B_{\mu\nu}$ and their quantized string analogues.
-        \item \textbf{Canonical source:} The \emph{SST Canon} became the sole normative reference for equations, constants, and symmetries, enforcing dimensional consistency and limit recovery.
-        \end{itemize}
-
-        This stage transformed an empirically motivated model into a self-consistent canonical theory.
-
-% ------------------------------------------------------------
-    \subsection{SST-v0.3.x to v0.5.10: Canonical Maturation and Predictive Consolidation}
-
-        The progression from SST v0.3.x to v0.5.10 marks the full canonical maturation of the theory.
-
-        \begin{enumerate}
-        \item \textbf{v0.3.x -- Structural Canon:}
-        \begin{itemize}
-        \item Defined the \emph{Swirl--Electromagnetic Bridge}.
-        \item Introduced the \emph{R$\leftrightarrow$T phase duality}, identifying radiative and tangible phases as wave--particle complements.
-        \end{itemize}
-
-        \item \textbf{v0.4.x -- Gauge and Topological Canon:}
-        \begin{itemize}
-        \item Formalized the swirl-gauge homomorphism to $\mathfrak{su}(3)\oplus\mathfrak{su}(2)\oplus\mathfrak{u}(1)$.
-        \item Introduced the mass functional $E_{\rm eff}=\alpha C(K)+\beta L(K)+\gamma \mathcal{H}(K)$ for knot selection.
-        \item Linked chirality (clockwise vs.\ counterclockwise) to matter--antimatter asymmetry.
-        \end{itemize}
-
-        \item \textbf{v0.5.x -- Canonical Unification:}
-        \begin{itemize}
-        \item Achieved parameter-free predictions using only $(\vswirl,\rc,\rhof)$.
-        \item Derived the electroweak symmetry-breaking scale $v_\Phi\approx259.5~\text{GeV}$ within $5.4\%$ of the measured value.
-        \item Consolidated the \emph{Knot Taxonomy}, classifying leptons as torus knots and quarks as chiral hyperbolic knots.
-        \end{itemize}
-        \end{enumerate}
-
-        By version 0.5.10, the Canon had reached a state of closure: every physical quantity was derivable from the core constants and topological structure, fulfilling the criterion of \textbf{canonical completeness}.
-
-% ------------------------------------------------------------
-        \begin{tcolorbox}[colback=gray!5,colframe=black,title={Summary Analogy}]
-        In mechanical analogy, the evolution from VAM to SST mirrors the shift from observing whirlpools to understanding the entire ocean: the local rotations remain, but the governing equations now describe the full medium with its internal symmetries.
-        \end{tcolorbox}
-
-% ------------------------------------------------------------
+    \textbf{Full historical timeline:} See Appendix~\ref{app:history} for the complete VAM-to-SST evolution with detailed version milestones.
 
 
 
@@ -1337,7 +1230,45 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 % (insert 12-gon with paired edges labeled a1,b1,a2,b2,a3,b3)
 % and horn-torus deformation sketch
 
+%========================================================================================
+% KNOT TAXONOMY (Canonical)
+%========================================================================================
+    \section{Knot Taxonomy}\label{sec:knot-taxonomy}
+    
+    The canonical mapping between topological knot classes and particle families is central to SST. Each particle type corresponds to a specific knot topology, with unknotted excitations representing bosonic modes and knotted states encoding fermions.
 
+        \begin{figure}[htbp]
+        \centering
+        \setlength{\tabcolsep}{8pt}
+        \renewcommand{\arraystretch}{1.2}
+        \begin{tabular}{ccc}
+        \includegraphics[width=0.04\linewidth]{figures/0_1} &
+        \includegraphics[width=0.04\linewidth]{figures/a3_1} &
+        \includegraphics[width=0.04\linewidth]{figures/4_1} \\
+        \textbf{$0_1$: Unknot} &
+        \textbf{$3_1$: Torus-knot} &
+        \textbf{$4_1$: Achiral-knot} \\
+        \small R-phase photon (torsional pulse) &
+        \small Electron (T-phase lepton) &
+        \small Candidate dark-sector knot \\[4pt]
+        \includegraphics[width=0.04\linewidth]{figures/5_1} &
+        \includegraphics[width=0.04\linewidth]{figures/5_2} &
+        \includegraphics[width=0.04\linewidth]{figures/6_1} \\
+        \textbf{$5_1$: Torus-knot}&
+        \textbf{$5_2$: Twist-knot}&
+        \textbf{$6_1$: Twist-knot}\\
+        \small Higher lepton candidate &
+        \small Up quark &
+        \small Down quark \\[4pt]
+        \includegraphics[width=0.04\linewidth]{figures/7_1} & & \\
+        \textbf{$7_1$: Torus-knot}  & & \\
+        \small Higher-generation quark (strange/charm) & &
+        \end{tabular}
+        \caption{Canonical knot taxonomy in SST. Each image shows the minimal embedding of the corresponding knot and its mapping to a particle family. Unknots (0$_1$) correspond to R-phase bosonic modes such as photons, while knotted states encode fermions (torus knots $\leftrightarrow$ leptons, chiral hyperbolic knots $\leftrightarrow$ quarks). Linked knots describe nuclei and bound states.}
+        \label{fig:knot-taxonomy}
+        \end{figure}
+
+    \textbf{Classification rules:} Unknotted excitations correspond to bosonic modes, with photons realized as pulsed torsional R-phase excitations. Torus knots correspond to leptons (e.g., electron = $3_1$), and chiral hyperbolic knots to quarks (proton = $5_2+5_2+6_1$ composite). Linked knots describe nuclei and bound states. See Core Axioms (Section~\ref{canon58:governance}) for the formal statement.
 
 	\section{The Swirl–Electromagnetic Bridge}
 	One of SST’s significant achievements is showing that classical electromagnetic fields can be interpreted as emergent collective behaviors of the swirl medium. In particular, changes in the distribution of swirl strings can induce electromagnetic effects. To formalize this, we introduce a density field to characterize how swirl strings populate space:
@@ -1523,66 +1454,10 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
     \section{Engineered Bulk Signaling Channel (BASC)}
     \label{sec:BASC}
 
-    \paragraph{Scope.}
-        The canonical SST exterior remains an incompressible swirl medium with the photon (divergence-free) $a$-sector unchanged. We introduce a \emph{bounded} conversion region $T\subset\mathbb{R}^3$ (an instrument, not a new axiom) in which a scalar bulk field $p(\mathbf{x},t)$ is permitted. Outside $T$, all Canon constraints remain as written.
+    \paragraph{Summary.}
+        The canonical SST exterior remains an incompressible swirl medium with the photon (divergence-free) $a$-sector unchanged. We introduce a \emph{bounded} conversion region $T\subset\mathbb{R}^3$ (an instrument, not a new axiom) in which a scalar bulk field $p(\mathbf{x},t)$ is permitted. Inside $T$, the bulk field obeys $\partial_t^2 p - c_b^{\,2}\,\nabla^2 p = S(\mathbf{x},t)$ with $c_b = \sqrt{K_b/\rho_f}$, where $K_b$ is an effective bulk modulus. For a compact source, the far field is $p(r,t) \simeq (\rho_f/4\pi r)\,\dot{Q}(t_r)$ with $1/r$ decay. Swirl$\to$bulk transduction via small-signal modulation yields $p_{\mathrm{amp}}(r) = (\rho_f\,\beta\,\mathcal{G}\,\varepsilon_0/4\pi r)\,\omega^{2}$, where $\mathcal{G}\propto r_{\mathrm{eff}}^{\,2}\,\ell$ scales quadratically with bundle radius. The exterior medium remains incompressible; BASC is confined to $T$ and does not alter exterior axioms.
 
-    \subsection*{Field equation and propagation speed}
-    Inside $T$, the bulk (compressive) field obeys the scalar wave equation
-    \begin{equation}
-        \partial_t^2 p - c_b^{\,2}\,\nabla^2 p \;=\; S(\mathbf{x},t),
-        \qquad
-        c_b \;\equiv\; \sqrt{\frac{K_b}{\rho_f}},
-        \label{eq:B1}
-    \end{equation}
-    where $K_b$ is an effective (engineered) bulk modulus of the conversion jacket and $\rho_f$ is the SST effective fluid density (as defined in the Canon/Rosetta).
-    \emph{Dimensional check:} $[K_b/\rho_f]=\mathrm{m}^2\mathrm{s}^{-2}$, hence $[c_b]=\mathrm{m\,s^{-1}}$.
-
-    \subsection*{Compact (monopole) source and far field}
-    Let $Q(t)=\int_{\partial T} v_n\,\mathrm{d}A$ be the volume velocity driven by the transducer (normal velocity $v_n$ over $\partial T$). A compact source at $\mathbf{x}_0$ is represented by
-    \begin{equation}
-        S(\mathbf{x},t)\;=\; -\,\rho_f\,\dot{Q}(t)\,\delta(\mathbf{x}-\mathbf{x}_0).
-        \label{eq:B2}
-    \end{equation}
-    Then the far field (retarded time $t_r=t-r/c_b$, $r=\|\mathbf{x}-\mathbf{x}_0\|$) is
-    \begin{equation}
-        p(r,t) \;\simeq\; \frac{\rho_f}{4\pi r}\,\dot{Q}(t_r),
-        \label{eq:B3}
-    \end{equation}
-    and for a harmonic drive $Q(t)=Q_0\cos\omega t$,
-    \begin{equation}
-        p_{\mathrm{amp}}(r)\;=\;\frac{\rho_f\,\omega\,Q_0}{4\pi r},
-        \qquad
-        P\;=\;\frac{\rho_f\,\omega^2 Q_0^2}{8\pi\,c_b}.
-        \label{eq:B4}
-    \end{equation}
-    Equations \eqref{eq:B3}–\eqref{eq:B4} are the standard monopole laws (with $\rho_f,c_b$ playing the roles of density and phase speed in the propagation medium).
-
-    \subsection*{Swirl$\to$bulk transduction (small-signal)}
-    Let the swirl bundle in $T$ have base azimuthal speed $u_\theta^{(0)}(\mathbf{x})$ and a small fractional modulation $\varepsilon(t)=\varepsilon_0\cos\omega t$. Linearized Bernoulli ($\delta p\simeq -\rho_f\,u_\theta^{(0)}\,\delta u_\theta$) and a conversion jacket of stiffness $K_c$ (compliance $\beta\equiv K_c^{-1}$) yield
-    \begin{equation}
-        Q_0 \;=\; \beta\,\omega\,\mathcal{G}\,\varepsilon_0,
-        \qquad
-        \mathcal{G}\;\equiv\;\int_{V_s}\rho_f\,\big(u_\theta^{(0)}\big)^2\,\mathrm{d}V.
-        \label{eq:B5}
-    \end{equation}
-    For a coherent vortex bundle of effective radius $r_{\mathrm{eff}}$ and loop length $\ell$ with $u_\theta^{(0)}(r)\approx C_e\,e^{-r/r_c}$,
-    \begin{equation}
-        \mathcal{G}_{\mathrm{loop}}
-        \;=\;
-        \frac{\pi}{2}\,\rho_f\,C_e^{2}\,r_{\mathrm{eff}}^{\,2}\,\ell.
-        \label{eq:B6}
-    \end{equation}
-    Combining \eqref{eq:B4} and \eqref{eq:B5} gives the observable scaling law
-    \begin{equation}
-        p_{\mathrm{amp}}(r)
-        \;=\;
-        \frac{\rho_f\,\beta\,\mathcal{G}\,\varepsilon_0}{4\pi r}\;\omega^{2},
-        \label{eq:B7}
-    \end{equation}
-    predicting $1/r$ decay, quadratic growth with $\omega$, linear growth with compliance $\beta$, and quadratic growth with bundle radius via $\mathcal{G}\propto r_{\mathrm{eff}}^{2}$.
-
-    \subsection*{Separation from the photon sector}
-    The exterior medium remains the incompressible SST swirl fluid; the photon $a$-sector stays divergence-free with speed $c$ as in the Canon. BASC is confined to $T$ and does not alter exterior axioms or the EM mapping.
+    \textbf{Full derivation:} See Appendix~\ref{app:BASC} for complete field equations, transduction laws, and scaling relations.
 
 
 
@@ -1605,6 +1480,25 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 % Check: [units ok; limit → Newtonian]
 
 % [STATUS: Canonical (form); couplings Empirical/Research]
+
+    \subsection{Canonical Hamiltonian Density}
+    \label{subsec:hamiltonian-density}
+    
+    The Hamiltonian density of the swirl condensate is
+    \[
+        \mathcal{H}_{\mathrm{SST}} =
+        \frac{1}{2} \rho_{\!f} \lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert^2
+        + \frac{1}{2} \rho_{\!f} r_c^{2} \lVert \boldsymbol{\omega} \rVert^{2}
+        + \frac{1}{2} \rho_{\!f} r_c^{4} \lVert \nabla \boldsymbol{\omega} \rVert^{2}
+        + \lambda\,(\nabla \cdot \mathbf{v}_{\!\boldsymbol{\circlearrowleft}}),
+    \]
+    where the third term captures gradient-energy contributions (string tension renormalization)
+    and $\lambda$ enforces incompressibility. This form is explicitly Kelvin-compatible:
+    its functional derivative w.r.t.\ $\mathbf{v}$ recovers the Euler equation and preserves
+    the Chronos--Kelvin invariant. Each term has units of energy density (J/m$^3$). In the weak-swirl limit $r_c \to 0$,
+    only the kinetic energy term survives, recovering the classical Euler Hamiltonian.
+    
+    \textbf{Full derivation:} See Appendix~\ref{canon58:appA} for the complete canonical form and dimensional analysis.
 
     \section{Master Equations and Canonical Relations}
         We now summarize several core results of SST in one place. These “master equations” are canonical relations derived in the theory, each capturing an important physical relationship. They are presented with boxed equations for quick reference; detailed derivations and discussions are provided in the appendices and references.
@@ -2040,112 +1934,10 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
     \section{Canonical Closure for the Gamma Coil (S40, $+11,-9$): Helicity and Lift Routes}
     \label{sec:GammaCoilClosure}
 
-    \subsection*{Scope and Linkage to Canon}
-        This section provides a \emph{canonical, falsifiable} bridge from coil geometry to (i) quantized circulation/helicity and (ii) lift via swirl pressure. It uses the Chronos--Kelvin and swirl quantization structure (Kelvin invariants, \S~VI--VII), Canon constants (\S~VIII), and the Swirl--EM bridge (\S~XI--XII). %
-        \emph{References in Canon:} invariants and pseudo-metric (\S~VI--VII) :contentReference[oaicite:0]{index=0}, constants and $\rho_{\!f}$ normalization (\S~VIII) :contentReference[oaicite:1]{index=1}, Swirl--EM mapping (\S~XI--XII) :contentReference[oaicite:2]{index=2}, and Euler radial balance (Swirl Pressure Law, \S~XVIII) :contentReference[oaicite:3]{index=3}.
+    \paragraph{Summary.}
+        This section provides a canonical, falsifiable bridge from coil geometry to quantized circulation/helicity and lift via swirl pressure. For the Gamma coil (slot $S=40$, step $+11/-9$) with net linkage $\chi=42$, Route A yields $\mathcal{H} \approx 2\,\Gamma^{2}\,\chi$ with quantized circulation $\Gamma = n\,\kappa_{\rm SST}$ where $\kappa_{\rm SST} = 2\pi \rc\,\vnorm$. Route B connects lift $F_{\rm req}$ to swirl pressure via $v_\theta(R)=\sqrt{2F_{\rm req}/(\rhoF A)}$ and $\Gamma_{\rm req}\approx 2\pi r_s\,v_\theta(r_s)$ with $r_s\simeq 0.4R$. Design constraints require $v_\theta(R)\le \vnorm$ and $F_{\rm req}\le \min(\tfrac{1}{2}\rhoF \vnorm^{2} A, N_{\rm act}\,F_{\text{swirl}}^{\max})$. Falsifiers include speed cap violations and non-integer quantization $n=\Gamma/\kappa_{\rm SST}$.
 
-    \subsection{Definitions (Geometry and Symbols) [Definition]}
-        \label{subsec:GammaDefs}
-        Let $R$ be the outer coil radius (projected footprint), $A=\pi R^2$ the effective lift area (correct with factor $\eta_A\le 1$ if shielding/ground effects reduce it), and $r_s$ the solid-body core radius of the induced swirl (Rankine core). We adopt the Gamma coil (slot $S=40$, short-pitch step $+11/-9$) whose net linkage count is
-        \[
-            \chi \equiv 40+11-9=42\qquad(\text{dimensionless}).
-        \]
-        House constants: $\Gamma_0$, $\rc$, $\rhoF$ from \S~VIII (primitive triplet); circulation quantum $\kappa_{\rm SST} \equiv \Gamma_0 = 2\pi \rc\,\vnorm$ (cf. \S~VII quantization) :contentReference[oaicite:4]{index=4}:contentReference[oaicite:5]{index=5}.
-
-    \subsection{Route A: Helicity/Quantization Closure [Theorem]}
-        \label{subsec:HelicityRoute}
-        For thin, coherently linked tubes with identical circulation $\Gamma$,
-        \begin{equation}
-        \boxed{\ \mathcal{H} \;\approx\; 2\,\Gamma^{2}\, \chi\ }\qquad [\mathcal{H}]={\rm m^4\,s^{-2}},\ [\Gamma]={\rm m^2\,s^{-1}}.
-        \end{equation}
-        \textbf{Dimensional check:} $[\mathbf{u}\!\cdot\!\boldsymbol{\omega}]={\rm m\,s^{-2}}$, $\int dV\to{\rm m^3}$ $\Rightarrow\ {\rm m^4\,s^{-2}}$.
-        Impose SST circulation quantization (\S~VII):
-        \begin{equation}
-        \boxed{\ \Gamma = n\,\kappa_{\rm SST},\qquad \kappa_{\rm SST} \equiv \Gamma_0 = 2\pi \rc\,\vnorm\ }\quad\Rightarrow\quad
-        \boxed{\ \mathcal{H}=2\,\chi\,n^2\,\kappa_{\rm SST}^{2}\ }.
-        \end{equation}
-        \textbf{Known-limit:} macroscopic $\Gamma\!\gg\!\kappa_{\rm SST}\Rightarrow$ effectively continuous $n$ (still a \emph{consistency} test of $(\rc,\vnorm)$).
-
-    \subsection{Route B: Lift--Vorticity (Swirl Pressure) Closure [Theorem]}
-        \label{subsec:LiftRoute}
-        From Euler radial balance (Swirl Pressure Law, \S~XVIII),
-        \[
-            \frac{1}{\rhoF}\frac{d p}{dr}=\frac{v_\theta^2(r)}{r}\,,
-        \]
-        so a near-center pressure deficit $\Delta p \simeq \tfrac{1}{2}\rhoF\,v_\theta^2$ produces lift
-        \begin{equation}
-        \boxed{\ F_{\rm req}=\Delta p\,A\;,\qquad v_\theta(R)=\sqrt{\frac{2F_{\rm req}}{\rhoF\,A}}\ }\quad\Rightarrow\quad
-        \boxed{\ \Omega_{\rm req}=\frac{v_\theta(r_s)}{r_s}\ ,\ \ \Gamma_{\rm req}\approx 2\pi r_s\,v_\theta(r_s)\ }.
-        \end{equation}
-        \textbf{Dimensional check:} $[F]=\rm N$, $[\rhoF v^2 A]=\rm (kg\,m^{-3})(m^2\,s^{-2})\,m^2=N$.
-        \textbf{Known-limits:} (i) weak-swirl $v\!\ll\!c$ recovers Bernoulli; (ii) cap $v_\theta\le \vnorm$ (from \S~VIII constants); (iii) local actuator bound $F_{\rm elem}\le F_{\text{swirl}}^{\max}$ (\S~VIII table). :contentReference[oaicite:6]{index=6}:contentReference[oaicite:7]{index=7}
-
-        \paragraph{Swirl--EM bridge variant.}
-            Using \S~XI--XII mapping, $\Delta p=\eta\,\langle B^2\rangle/(2\mu_0)$ yields the equivalent field target
-            \begin{equation}
-            \boxed{\ B_{\rm req}=\sqrt{\frac{2\mu_0\,F_{\rm req}}{\eta\,A}}\ ,\qquad
-            v_{\theta,{\rm eq}}=\sqrt{\frac{\eta}{\mu_0\rhoF}}\;B_{\rm RMS}\ }.
-            \end{equation}
-            This provides a laboratory transduction between measured $B$ and the hydrodynamic $v_\theta$. :contentReference[oaicite:8]{index=8}
-
-    \subsection{Design Specialization: Gamma Coil with $r_s\simeq 0.4R$ [Calibration]}
-    \label{subsec:GammaSpec}
-    Empirically and by boundary forcing arguments, a boundary-driven ring forms a Rankine core with %
-    $r_s/R\in[0.3,0.5]$; we adopt the realistic starting point
-    \[
-        \boxed{\ r_s \equiv 0.4\,R\ }.
-    \]
-    Then, for a target lift $F_{\rm req}=m g$ and $A=\pi R^2$,
-    \[
-        v_\theta(R)=\sqrt{\frac{2 m g}{\rhoF \pi R^2}},\quad
-        \Omega_{\rm req}=\frac{v_\theta(0.4R)}{0.4R},\quad
-        \Gamma_{\rm req}\approx 2\pi (0.4R)\,v_\theta(0.4R),
-    \]
-    \[
-        \mathcal{H}\approx 2\chi\,\Gamma_{\rm req}^{2},\qquad n=\Gamma_{\rm req}/\kappa_{\rm SST},\quad \kappa_{\rm SST} \equiv \Gamma_0 = 2\pi \rc\,\vnorm.
-    \]
-    \textbf{Caps/feasibility (pass/fail):}
-    \begin{equation}
-    \boxed{\ v_\theta(R)\ \le\ \vnorm\ }\quad\text{and}\quad
-    \boxed{\ F_{\rm req}\ \le\ \min\!\Big(\tfrac{1}{2}\rhoF \vnorm^{2} A,\ N_{\rm act}\,F_{\text{swirl}}^{\max}\Big) }.
-    \end{equation}
-    All symbols appear in the Canon constants table (\S~VIII). :contentReference[oaicite:9]{index=9}
-
-    \subsection{Falsifiers and Empirical Promotion Rule [Corollary]}
-    \label{subsec:Falsifiers}
-    \begin{enumerate}\itemsep4pt
-    \item (\textbf{Speed cap}) If $v_\theta(R)>\vnorm$ is required for the target $F_{\rm req}$ at given $A$, the design is \emph{forbidden} by Canon constants.
-    \item (\textbf{Local cap}) If any segment must exceed $F_{\text{swirl}}^{\max}$, design is \emph{forbidden} even if area cap passes.
-    \item (\textbf{Quantization}) If measured $\Gamma$ gives $n=\Gamma/\kappa_{\rm SST}$ \emph{non-integer} beyond uncertainty, either $(\rc,\vnorm)$ or the constitutive mapping fails.
-    \end{enumerate}
-    \emph{Promotion rule:} Promote design and constants if (i) lift matches prediction within error, (ii) caps respected, (iii) $n\in\mathbb{Z}$ within error; otherwise demote constants/design.
-
-    \subsection{Bench Card (explicit units) [Ready-to-use]}
-    \label{subsec:BenchCard}
-    \[
-        \boxed{\
-            \begin{aligned}
-            & A=\pi R^2\;[{\rm m^2}],\quad F_{\rm req}=m g\;[{\rm N}],\\
-            & v_\theta(R)=\sqrt{2F_{\rm req}/(\rhoF A)}\;[{\rm m\,s^{-1}}],\\
-            & \Omega_{\rm req}=v_\theta(r_s)/r_s\;[{\rm s^{-1}}],\\
-            & \Gamma_{\rm req}\approx 2\pi r_s\,v_\theta(r_s)\;[{\rm m^2\,s^{-1}}],\\
-            & \mathcal{H}\approx 2\chi\,\Gamma_{\rm req}^{2}\;[{\rm m^4\,s^{-2}}],\\
-            & n=\Gamma_{\rm req}/(2\pi \rc\,\vnorm)\;[\text{dimensionless}].
-            \end{aligned}
-        }
-    \]
-
-    \paragraph{Kid-level analogy (pedagogical).}
-        Two matched “fans” (coils) stir the medium; the middle dips (low pressure) and pushes the plate up. The math here just says how fast you must stir to lift a given weight, and checks that your fan can spin that fast.
-
-    \subsection*{Notes on provenance (non-original elements)}
-    Helicity–linking scaling and circulation quantization are standard in ideal-fluid vortex dynamics; Euler radial balance is classical. See BibTeX below.
-
-    \begin{figure}[h]
-    \centering
-    \includegraphics[width=0.55\textwidth]{proofs/Mod-Gravity 3-Phase Saw-Shaped-Coil - Stack 2 identical with 30 degrees rotation}
-    \caption{S40, +11/–9 Gamma-coil geometry used for helicity–lift closure (§XVIII-A).}
-    \end{figure}
+    \textbf{Full derivation:} See Appendix~\ref{app:GammaCoil} for complete geometry definitions, helicity/lift routes, design specialization, and bench cards.
 
 
 %========================================================================================
@@ -2166,8 +1958,23 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 
 % [STATUS: Empirical + Canonical] [SOURCE: v0.4.4 §6.1]
 
+%========================================================================================
+% PART III: GRAVITY, HYDROGEN, AND COSMOLOGY
+%========================================================================================
+\part{Gravity, Hydrogen, and Cosmology}
+
     \section{Swirl Gravitation and the Hydrogen-Gravity Mechanism}
         Gravity, in SST, is an emergent attractive force from pressure and flow fields of the swirl medium, not fundamental geometry. We have seen a single swirl string can create a $1/r$ potential analogous to gravity or electrostatics. Now consider how two neutral composite objects (like two hydrogen molecules) attract gravitationally in SST.
+
+        \begin{tcolorbox}[title=Swirl Gravitational Coupling $G_{\text{swirl}}$]
+        The effective gravitational coupling in SST is given by
+        \[
+            G_{\text{swirl}} = \frac{\vnorm c^{5} t_p^{2}}{2 F_{\mathrm{max}} r_c^{2}} \approx G_N,
+        \]
+        where $\vnorm$ is the canonical swirl speed, $r_c$ is the core radius, $F_{\mathrm{max}}$ is the maximal force constant, and $t_p$ is the Planck time. This identity connects the swirl constants to Newton's gravitational constant $G_N$. 
+        
+        \textbf{Full derivation:} See Appendix~\ref{app:Gloop} for the complete derivation of the swirl$\to$bulk coupling.
+        \end{tcolorbox}
 
         \begin{tcolorbox}[title=Theorem 7.1: Hydrogen-Gravity Mechanism (Swirl Attraction in Flat Space)]
         Chiral knotted swirl strings generate quantized long-range circulation leading to mutual attraction. Consider a hydrogen molecule analog in SST: each hydrogen atom consists of a composite proton (two $5_2$ up-quark knots + one $6_1$ down-quark knot) and a $3_1$ electron knot, linked into a bound state. The composite carries a net chiral circulation along a central swirl axis. Let $C$ be a large loop encircling this axis. Cauchy’s integral theorem applied to an analytic swirl potential $W(z) = \Phi + i\Psi$ yields:
@@ -2214,126 +2021,13 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 % Canon v0.5.10+qc (proposed)
 % Anchors: Radiation sector, Kelvin-compatible 𝓗, Swirl Clock
 % ===========================================
-    \section{Quantum Computing Sector}
-    \subsection*{Canon Corollary: Visibility–Rate Normalization (Radiation Sector)}
+    \section{Quantum Computing Sector (Preview)}
+    \label{sec:quantum-computing-preview}
 
-    \textbf{Claim (Rosetta).}
-    Define a \emph{monitoring rate} $\Gamma$ [\si{s^{-1}}] that compresses the kernel integral of §XXVI into an intensive scalar so that the interferometric visibility over an interaction time $\tau$ obeys
-    \[
-        V(\tau)=\exp(-\Gamma\,\tau)\,.
-    \]
+    \paragraph{Overview.}
+        SST provides a framework for quantum computing using R/T phase transitions. The canonical transition rate from R-phase to T-phase is given by the kernel law (Section~\ref{canon58:measurement}). Key components include: (1) Visibility–Rate Normalization: $V(\tau)=\exp(-\Gamma\,\tau)$ with monitoring rate $\Gamma$ [\si{s^{-1}}] compressing the kernel integral; (2) Two-Level Control: R/T dynamics with Rabi rate $\Omega_R$ and relaxation $\gamma_{R,T}$, driven by the radiation sector with Swirl Clock timing; (3) Linkage Entanglement: Two SST qubits coupled by shared circulation implement exchange ($g_{\rm link}$) and $ZZ$-type ($\chi$) interactions with distance-dependent rates $g_{\rm link}\sim d^{-3}$ for far-field coupling.
 
-    \textbf{Canonical Mapping.}
-    From §XXVI, the collapse/visibility law yields $-\ln V = \tau\!\int\!\!\int \chi(\mathbf r,\omega)\,u(\mathbf r,\omega)\,F(\Delta K,\omega)\, d\omega\, d^3r$. We \emph{define}
-    \[
-        \Gamma \;\equiv\; \int\!\!\int \chi(\mathbf r,\omega)\,u(\mathbf r,\omega)\,F(\Delta K,\omega)\, d\omega\, d^3r \quad[\si{s^{-1}}] .
-    \]
-
-    \textbf{Derivable Model (equations).}
-    \[
-        V(\tau) = e^{-\Gamma \tau} ,\qquad T_2 \equiv \Gamma^{-1} .
-    \]
-    Dimensions: $[\Gamma]=\si{s^{-1}}$, $[\tau]=\si{s}$, dimensionless $V$.
-
-    \textbf{Scalings.}
-    \;$\Gamma \propto$ detector loading, field intensity, and overlap $F(\Delta K,\omega)$. For series monitors, $\Gamma_{\rm tot}\!=\!\sum_i \Gamma_i$.
-
-    \textbf{Predictions \& Falsifiers.}
-    (1) $\ln V$ linear in $\tau$. (2) Doubling monitor strength doubles $\Gamma$. (3) Removing the monitor ($\Gamma\!\to\!0$) restores $V\!\to\!1$.
-
-    \textbf{Minimal Experiment / Calibration Plan.}
-    Ramsey (or spin-echo) on a single SST qubit; sweep readout coupling; fit slope of $\ln V(\tau)$ to extract $\Gamma$.
-
-    \textbf{Status \& Anchor.}
-    \textbf{Status: Constitutive (from §XXVI kernel) → Canon Corollary.} Anchor: Radiation sector.
-
-    \textbf{Numerics \& Bounds (SI).}
-    Report $\Gamma$ [\si{s^{-1}}], $T_2$ [\si{s}]; require $0\!\le\!V\!\le\!1$ and linearity over chosen $\tau$-window.
-
-    \textbf{Confounders \& Controls.}
-    Background $\Gamma_{\rm bg}$, amplitude drift, pulse errors; mitigate via interleaved reference and randomized phases.
-
-    \textbf{Isolation Note.}
-    No external postulates; this is a definition that \emph{recovers} the §XXVI kernel.
-
-% -------------------------------------------
-
-    \subsection*{Constitutive Model: SST Two-Level (R/T) Control Equations}
-
-    \textbf{Claim (Rosetta).}
-    The R/T two-level manifold admits canonical driven dynamics with on-resonance Rabi rate $\Omega_R$ and relaxation $\gamma_{R,T}$, all within the radiation sector and Swirl Clock timing.
-
-    \textbf{Canonical Mapping.}
-    Levels are distinct extrema of $E_{\rm eff}[K]$ (Kelvin-compatible $\mathcal H$). Drive couples via impedance to the radiation sector; lab time relates to local time by the Swirl Clock factor $S_t$.
-
-    \textbf{Derivable Model (equations).}
-    \[
-        \begin{aligned}
-            \dot c_R &= -\tfrac{i}{2}\,\Omega_R\, c_T - \tfrac{\gamma_R}{2}\,c_R,\\
-            \dot c_T &= -\tfrac{i}{2}\,\Omega_R\, c_R - \Big(\tfrac{\gamma_T}{2}+ i\Delta\Big) c_T,\\
-            V(\tau) &= e^{-\Gamma \tau},\quad \; \Gamma\ \text{as in XXVI.A}.
-        \end{aligned}
-    \]
-    All rates in \si{s^{-1}}; $\Omega_R\!\propto$ drive amplitude (impedance overlap), $\Delta$ detuning [\si{s^{-1}}].
-
-    \textbf{Scalings.}
-    $T_\pi=\pi/\Omega_R$ (on resonance); decoherence envelope $\sim e^{-(\Gamma+\tfrac{1}{2}(\gamma_R+\gamma_T))\tau}$; require $\Omega_R \ll c/r_c$.
-
-    \textbf{Predictions \& Falsifiers.}
-    (1) Linear $\Omega_R$ vs control amplitude (small-signal). (2) Nutation vs $\Delta$ matches two-level lineshape. (3) Ramsey $V$ follows XXVI.A; failure falsifies mapping.
-
-    \textbf{Minimal Experiment / Calibration Plan.}
-    Single ring-string with weak drive/readout; $\pi$-pulse calibration for $\Omega_R$; Ramsey/echo for $\Gamma$ and $\gamma$; report SI power.
-
-    \textbf{Status \& Anchor.}
-    \textbf{Status: Constitutive (from Lagrangian sectors).} Anchors: Radiation sector, Kelvin-compatible $\mathcal H$, Swirl Clock.
-
-    \textbf{Numerics \& Bounds (SI).}
-    Constrain $\Omega_R \lesssim 10^{-2} c/r_c$; tabulate $\{\Omega_R,\Delta,\gamma_{R,T},\Gamma\}$ in \si{s^{-1}}.
-
-    \textbf{Confounders \& Controls.}
-    Drive-induced $\Gamma$ (measurement load), cross-talk, geometry tolerances; power sweeps + detuning maps.
-
-    \textbf{Isolation Note.}
-    No external $\hbar$ needed; all quantities are frequencies and energies defined in Canon units.
-
-% -------------------------------------------
-
-    \subsection*{Research Corollary: Linkage Entanglement Bus and Gate Rates}
-
-    \textbf{Claim (Rosetta).}
-    Two SST qubits (R/T) coupled by a \emph{linkage} constraint (shared circulation) implement exchange-type and $ZZ$-type interactions with distance-dependent rate $g_{\rm link}(d)$.
-
-    \textbf{Canonical Mapping.}
-    Coupling arises from the Kelvin-compatible Hamiltonian density via mutual swirl-inductance $M_{\!S}(d)$ and curvature of $E_{\rm eff}[K_1,K_2]$ with respect to phase variables.
-
-    \textbf{Derivable Model (equations).}
-    \[
-        H_{\rm int} = \hbar_{\rm eff}\, g_{\rm link}(d)\big(\sigma_+^{(1)}\sigma_-^{(2)}+\sigma_-^{(1)}\sigma_+^{(2)}\big)
-        + \hbar_{\rm eff}\,\chi(d)\,\sigma_z^{(1)}\sigma_z^{(2)} ,
-    \]
-    with the understanding that observable gate \emph{frequencies} $\{g_{\rm link},\chi\}$ are reported directly in \si{s^{-1}} and $\hbar_{\rm eff}$ is bookkeeping for dimensions (cancels in rates).
-
-    \textbf{Scalings.}
-    $g_{\rm link}\!\propto\! M_{\!S}(d)\,\partial^2 E_{\rm eff}/\partial\phi_1 \partial\phi_2$; for loop-like coupling, $g_{\rm link}\sim d^{-3}$ (far-field). Gate times: $t_{\rm iSWAP}\!\simeq\!\pi/(2 g_{\rm link})$, $t_{ZZ}\!\simeq\!\pi/|\chi|$.
-
-    \textbf{Predictions \& Falsifiers.}
-    (1) Vacuum swap oscillations at $2g_{\rm link}$. (2) Power-law $g_{\rm link}(d)$ consistent with design; wrong exponent falsifies the coupling model. (3) Parametric drive activates targeted $\{XX,ZZ\}$ terms only.
-
-    \textbf{Minimal Experiment / Calibration Plan.}
-    Two rings at variable separation $d$; extract $g_{\rm link}$ from swap dynamics; map $g_{\rm link}(d)$; demonstrate parametric selectivity.
-
-    \textbf{Status \& Anchor.}
-    \textbf{Status: Research.} Anchor: Kelvin-compatible $\mathcal H$ (interaction sector).
-
-    \textbf{Numerics \& Bounds (SI).}
-    Report $\{g_{\rm link},\chi\}$ [\si{s^{-1}}], $t_{\rm gate}$ [\si{s}], and monitor $t_{\rm gate}\!\ll\! T_1,T_2$.
-
-    \textbf{Confounders \& Controls.}
-    Spurious bus modes; detuning drift; inadvertent monitoring (extra $\Gamma$); use shielding, notch filters, interleaved RB.
-
-    \textbf{Isolation Note.}
-    Pure Canon linkage; no external datasets. Distance law to be promoted upon systematic $d$-sweep confirmation.
+    \textbf{Full development:} See Appendix~\ref{app:quantum-computing} for complete derivations of visibility normalization, two-level control equations, linkage entanglement bus, gate rates, and experimental protocols.
 
 
     \subsection{Working hypothesis: photon--electron topological response}
@@ -2944,6 +2638,126 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 
 % Check: [units ok; limit → n/a]
 
+    \section{Invariant Mass from the Canonical Lagrangian}
+    \label{sec:invariant-mass}
+
+    Starting from the schematic Lagrangian
+    \[
+        \mathcal{L}_{\text{SST}}
+        = \rhof\!\left(\tfrac{1}{2}\vswirl^2 - \Phi_{\text{swirl}}\right)
+        + \tfrac{1}{4}F_{\mu\nu}F^{\mu\nu}
+        + \big(\alpha C(K)+\beta L(K)+\gamma \mathcal{H}(K)\big)
+        + \rhof \ln\!\sqrt{1-\tfrac{\|\boldsymbol\omega\|^2}{c^2}}
+        + \Delta p(\text{swirl}),
+    \]
+    the \emph{mass sector} reduces, under the slender-tube approximation, to an invariant energy functional
+    \[
+        E(K)= u\,V(K)\,\Xi_{\text{top}}(K),\qquad
+        u=\tfrac{1}{2}\rho_{\text{core}}\;v_{\circlearrowleft}^{2},
+    \]
+    with $u$ the swirl energy density scale on the core, $V(K)$ the effective tube volume of the swirl string, and $\Xi_{\text{top}}(K)$ a dimensionless topological multiplier summarizing discrete combinatorial and contact/helicity corrections. In SST we adopt
+    \[
+        V(K)\;=\;\pi r_c^2 \underbrace{\big(L_{\textrm phys}\big)}_{=\,r_c\,L_{\textrm tot}}
+        \;=\;\pi r_c^3\,L_{\textrm tot},
+    \]
+    where $r_c$ is the core radius and $L_{\textrm tot}$ is the \emph{dimensionless ropelength}. The rest mass is $M=E/c^2$.
+
+    \paragraph{Canonical multiplier.}
+        Guided by the EM coupling and SST's discrete scaling rules, we take
+        \[
+            \Xi_{\text{top}}(K)=\frac{4}{\alpha_{\textrm fs}}\;b^{-3/2}\;\varphi^{-g}\;n^{-1/\varphi},
+        \]
+        where $b,g,n$ are the integer topology labels used in the Canon (e.g. torus index, layer, linkage count), $\alpha_{\textrm fs}$ is the fine-structure constant, and $\varphi$ the golden ratio. Collecting factors, the \textbf{invariant mass law} used in the code is
+        \begin{equation*}
+        \boxed{M(K)=\frac{4}{\alpha_{\textrm fs}}\;b^{-3/2}\;\varphi^{-g}\;n^{-1/\varphi}\;
+        \frac{u\,\pi r_c^3 L_{\textrm tot}}{c^2},
+            \qquad
+            u=\tfrac{1}{2}\rho_{\text{core}}v_{\circlearrowleft}^2.
+        }\label{eq:SST-invariant-mass}
+        \end{equation*}
+
+    \paragraph{Leptons (solved $L_{\textrm tot}$).}
+        For a lepton with labels $(b,g,n)$ and known mass $M_\ell^{\textrm(\exp)}$, invert \eqref{eq:SST-invariant-mass}:
+        \[
+            L_{\textrm tot}^{(\ell)} \;=\;
+            \frac{M_\ell^{\textrm(\exp)}\,c^2}{\big(\tfrac{4}{\alpha_{\textrm fs}}\,b^{-3/2}\varphi^{-g}n^{-1/\varphi}\big)\,u\,\pi r_c^3}.
+        \]
+
+    \paragraph{Baryons (exact closure).}
+        Let the proton and neutron ropelengths be
+        \[
+            L_p=\lambda_b\,(2s_u+s_d)\,\mathcal S,\qquad
+            L_n=\lambda_b\,(s_u+2s_d)\,\mathcal S,\qquad
+            \mathcal S=2\pi^2\kappa_R,\;\;\kappa_R=2,
+        \]
+        with $(s_u,s_d)$ dimensionless sector weights and $\lambda_b$ a sector scale (set to $1$ in exact-closure).
+        Imposing $M_p^{\textrm(\exp)}=M_p$ and $M_n^{\textrm(\exp)}=M_n$ in \eqref{eq:SST-invariant-mass} yields a \emph{linear} $2\times2$ system for $(s_u,s_d)$:
+        \[
+            \begin{bmatrix}
+            2 & 1\\[2pt]
+            1 & 2
+            \end{bmatrix}
+            \begin{bmatrix}
+            s_u\\ s_d
+            \end{bmatrix}
+
+            =
+            \frac{1}{K}
+            \begin{bmatrix}
+            M_p^{\textrm(\exp)}\\ M_n^{\textrm(\exp)}
+            \end{bmatrix},
+            \qquad
+            K=\Big[\tfrac{4}{\alpha_{\textrm fs}}\,3^{-3/2}\,\varphi^{-2}\,3^{-1/\varphi}\Big]\frac{u\,\pi r_c^3\,\mathcal S}{c^2}.
+        \]
+        Solving gives
+        \[
+            s_u=\frac{2M_p^{\textrm(\exp)}-M_n^{\textrm(\exp)}}{3K},
+            \qquad
+            s_d=\frac{M_p^{\textrm(\exp)}}{K}-2s_u.
+        \]
+
+    \paragraph{Composites (no binding).}
+        For an atom with proton number $Z$ and neutron number $N$ (atomic mass includes $Z$ electrons),
+        \[
+            M_{\textrm atom}^{(\textrm pred)} = Z\,M_p+N\,M_n+Z\,M_e,\quad
+            M_{\textrm mol}^{(\textrm pred)}=\sum_{\text{atoms}}M_{\textrm atom}^{(\textrm pred)}.
+        \]
+        Deviations from experiment in atoms/molecules correspond to \emph{binding energies} not included in this baseline (nuclear $\sim\!8\,{\textrm MeV}$ per nucleon; molecular $\sim{\textrm eV}$).
+
+    \subsection{Benchmarks (exact\_closure mode)}
+    \label{sec:benchmarks-exact-closure}
+    The following table was generated by the Python file listed after it.
+    \emph{Errors in atoms/molecules = missing binding energy contribution, not model failure.}
+
+    \begin{table}[H]
+    \centering
+    \caption{Invariant-kernel mass benchmarks (exact\_closure). \emph{Errors in atoms/molecules = missing binding energy contribution, not model failure.}}
+    \begin{tabular}{lccc}
+    \toprule
+    Species & Known mass (kg) & Predicted mass (kg) & Error (\%)\\
+    \midrule
+    electron e- & 9.109384e-31 & 9.109384e-31 & 0.0000\\
+    muon $\mu$- & 1.883532e-28 & 1.883532e-28 & 0.0000\\
+    tau $\tau$- & 3.167540e-27 & 3.167540e-27 & 0.0000\\
+    proton p & 1.672622e-27 & 1.672622e-27 & 0.0000\\
+    neutron n & 1.674927e-27 & 1.674927e-27 & 0.0000\\
+    Hydrogen-1 atom & 1.673533e-27 & 1.673533e-27 & 0.0000\\
+    Helium-4 atom & 6.646477e-27 & 6.689952e-27 & 0.6549\\
+    Carbon-12 atom & 1.992647e-26 & 2.005276e-26 & 0.6330\\
+    Oxygen-16 atom & 2.656017e-26 & 2.674532e-26 & 0.6980\\
+    H$_2$ molecule & 3.367403e-27 & 3.347066e-27 & -0.6040\\
+    H$_2$O molecule & 2.991507e-26 & 3.009885e-26 & 0.6139\\
+    CO$_2$ molecule & 7.305355e-26 & 7.354340e-26 & 0.6704\\
+    \bottomrule
+    \end{tabular}\label{tab:benchmarks-exact-closure}
+    \end{table}
+
+    \subsection*{Notes}
+    \begin{itemize}
+    \item Elementary entries are exact by construction in exact\_closure mode (leptons solved from $L_{\textrm tot}$; $p,n$ from closure).
+    \item Composite errors track omitted binding: nuclear $\mathcal O(10^{-3})$–$\mathcal O(10^{-2})$, molecular $\mathcal O(10^{-9})$.
+    \end{itemize}
+
 	\section{Canonical Status and Outlook}
 	The above sections presented the core axioms and theorems of SST canon \canonversion, integrating pedagogical derivations and ensuring consistency across results from v0.3.4 onward. All relations given in the main text are \emph{canonical} within the SST formal system, except where noted as research conjectures (e.g. the topology–mass law).
 
@@ -2954,6 +2768,11 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 	Nevertheless, SST canon \canonversion \ serves as a solid foundation: a unifying framework tying fluid dynamics, quantum topology, and gauge theory into a single cohesive picture. Future work (v0.6+ series) will likely explore the thermodynamics of the swirl medium (cosmology), rigorous field quantization of emergent gauge fields, and phenomenological predictions (e.g. slight deviations in gravity at certain scales, or patterns in high-energy scattering due to topological conservation). Each step must maintain the \emph{canonical discipline} defined in the formal system section, to preserve the integrity and predictive power of the theory.
 
 % [Sidebar: The road ahead -- perhaps a flowchart of theory components and next steps]
+
+%========================================================================================
+% PART IV: MODULES AND APPLICATIONS (Research Track)
+%========================================================================================
+\part{Modules and Applications}
 
 	\appendix
     \setcounter{section}{0}% start appendices at A
@@ -3820,130 +3639,8 @@ SST is distinguished from GR/QFT by:
     SST regularization check: enforce \(\lVert \boldsymbol{\Omega}\rVert_\infty\le \omega_{\max}\) in the ansatz and recompute \(\mathcal{R}_m\) and spectrum; no admissible singular profile should persist once the cap is imposed.
 % =========================================================
 % SST: Invariant Mass from the Canonical Lagrangian
+% [MOVED TO PART III, Section~\ref{sec:invariant-mass}]
 % =========================================================
-
-    \section{Invariant Mass from the Canonical Lagrangian}
-
-    Starting from the schematic Lagrangian
-    \[
-        \mathcal{L}_{\text{SST}}
-        = \rhof\!\left(\tfrac{1}{2}\vswirl^2 - \Phi_{\text{swirl}}\right)
-        + \tfrac{1}{4}F_{\mu\nu}F^{\mu\nu}
-        + \big(\alpha C(K)+\beta L(K)+\gamma \mathcal{H}(K)\big)
-        + \rhof \ln\!\sqrt{1-\tfrac{\|\boldsymbol\omega\|^2}{c^2}}
-        + \Delta p(\text{swirl}),
-    \]
-    the \emph{mass sector} reduces, under the slender-tube approximation, to an invariant energy functional
-    \[
-        E(K)= u\,V(K)\,\Xi_{\text{top}}(K),\qquad
-        u=\tfrac{1}{2}\rho_{\text{core}}\;v_{\circlearrowleft}^{2},
-    \]
-    with $u$ the swirl energy density scale on the core, $V(K)$ the effective tube volume of the swirl string, and $\Xi_{\text{top}}(K)$ a dimensionless topological multiplier summarizing discrete combinatorial and contact/helicity corrections. In SST we adopt
-    \[
-        V(K)\;=\;\pi r_c^2 \underbrace{\big(L_{\textrm phys}\big)}_{=\,r_c\,L_{\textrm tot}}
-        \;=\;\pi r_c^3\,L_{\textrm tot},
-    \]
-    where $r_c$ is the core radius and $L_{\textrm tot}$ is the \emph{dimensionless ropelength}. The rest mass is $M=E/c^2$.
-
-    \paragraph{Canonical multiplier.}
-        Guided by the EM coupling and SST’s discrete scaling rules, we take
-        \[
-            \Xi_{\text{top}}(K)=\frac{4}{\alpha_{\textrm fs}}\;b^{-3/2}\;\varphi^{-g}\;n^{-1/\varphi},
-        \]
-        where $b,g,n$ are the integer topology labels used in the Canon (e.g. torus index, layer, linkage count), $\alpha_{\textrm fs}$ is the fine-structure constant, and $\varphi$ the golden ratio. Collecting factors, the \textbf{invariant mass law} used in the code is
-        \begin{equation*}
-        \boxed{M(K)=\frac{4}{\alpha_{\textrm fs}}\;b^{-3/2}\;\varphi^{-g}\;n^{-1/\varphi}\;
-        \frac{u\,\pi r_c^3 L_{\textrm tot}}{c^2},
-            \qquad
-            u=\tfrac{1}{2}\rho_{\text{core}}v_{\circlearrowleft}^2.
-        }\label{eq:SST-invariant-mass}
-        \end{equation*}
-
-    \paragraph{Leptons (solved $L_{\textrm tot}$).}
-        For a lepton with labels $(b,g,n)$ and known mass $M_\ell^{\textrm(\exp)}$, invert \eqref{eq:SST-invariant-mass}:
-        \[
-            L_{\textrm tot}^{(\ell)} \;=\;
-            \frac{M_\ell^{\textrm(\exp)}\,c^2}{\big(\tfrac{4}{\alpha_{\textrm fs}}\,b^{-3/2}\varphi^{-g}n^{-1/\varphi}\big)\,u\,\pi r_c^3}.
-        \]
-
-    \paragraph{Baryons (exact closure).}
-        Let the proton and neutron ropelengths be
-        \[
-            L_p=\lambda_b\,(2s_u+s_d)\,\mathcal S,\qquad
-            L_n=\lambda_b\,(s_u+2s_d)\,\mathcal S,\qquad
-            \mathcal S=2\pi^2\kappa_R,\;\;\kappa_R=2,
-        \]
-        with $(s_u,s_d)$ dimensionless sector weights and $\lambda_b$ a sector scale (set to $1$ in exact-closure).
-        Imposing $M_p^{\textrm(\exp)}=M_p$ and $M_n^{\textrm(\exp)}=M_n$ in \eqref{eq:SST-invariant-mass} yields a \emph{linear} $2\times2$ system for $(s_u,s_d)$:
-        \[
-            \begin{bmatrix}
-            2 & 1\\[2pt]
-            1 & 2
-            \end{bmatrix}
-            \begin{bmatrix}
-            s_u\\ s_d
-            \end{bmatrix}
-
-            =
-            \frac{1}{K}
-            \begin{bmatrix}
-            M_p^{\textrm(\exp)}\\ M_n^{\textrm(\exp)}
-            \end{bmatrix},
-            \qquad
-            K=\Big[\tfrac{4}{\alpha_{\textrm fs}}\,3^{-3/2}\,\varphi^{-2}\,3^{-1/\varphi}\Big]\frac{u\,\pi r_c^3\,\mathcal S}{c^2}.
-        \]
-        Solving gives
-        \[
-            s_u=\frac{2M_p^{\textrm(\exp)}-M_n^{\textrm(\exp)}}{3K},
-            \qquad
-            s_d=\frac{M_p^{\textrm(\exp)}}{K}-2s_u.
-        \]
-
-    \paragraph{Composites (no binding).}
-        For an atom with proton number $Z$ and neutron number $N$ (atomic mass includes $Z$ electrons),
-        \[
-            M_{\textrm atom}^{(\textrm pred)} = Z\,M_p+N\,M_n+Z\,M_e,\quad
-            M_{\textrm mol}^{(\textrm pred)}=\sum_{\text{atoms}}M_{\textrm atom}^{(\textrm pred)}.
-        \]
-        Deviations from experiment in atoms/molecules correspond to \emph{binding energies} not included in this baseline (nuclear $\sim\!8\,{\textrm MeV}$ per nucleon; molecular $\sim{\textrm eV}$).
-
-% ---------------------------------------------------------
-    \subsection{Benchmarks (exact\_closure mode)}
-    \label{sec:benchmarks-exact-closure}
-    The following table was generated by the Python file listed after it.
-    \emph{Errors in atoms/molecules = missing binding energy contribution, not model failure.}
-
-    \begin{table}[H]
-    \centering
-    \caption{Invariant-kernel mass benchmarks (exact\_closure). \emph{Errors in atoms/molecules = missing binding energy contribution, not model failure.}}
-    \begin{tabular}{lccc}
-    \toprule
-    Species & Known mass (kg) & Predicted mass (kg) & Error (\%)\\
-    \midrule
-    electron e- & 9.109384e-31 & 9.109384e-31 & 0.0000\\
-    muon $\mu$- & 1.883532e-28 & 1.883532e-28 & 0.0000\\
-    tau $\tau$- & 3.167540e-27 & 3.167540e-27 & 0.0000\\
-    proton p & 1.672622e-27 & 1.672622e-27 & 0.0000\\
-    neutron n & 1.674927e-27 & 1.674927e-27 & 0.0000\\
-    Hydrogen-1 atom & 1.673533e-27 & 1.673533e-27 & 0.0000\\
-    Helium-4 atom & 6.646477e-27 & 6.689952e-27 & 0.6549\\
-    Carbon-12 atom & 1.992647e-26 & 2.005276e-26 & 0.6330\\
-    Oxygen-16 atom & 2.656017e-26 & 2.674532e-26 & 0.6980\\
-    H$_2$ molecule & 3.367403e-27 & 3.347066e-27 & -0.6040\\
-    H$_2$O molecule & 2.991507e-26 & 3.009885e-26 & 0.6139\\
-    CO$_2$ molecule & 7.305355e-26 & 7.354340e-26 & 0.6704\\
-    \bottomrule
-    \end{tabular}\label{tab:benchmarks-exact-closure}
-    \end{table}
-
-% ---------------------------------------------------------
-    \subsection*{Notes}
-    \begin{itemize}
-    \item Elementary entries are exact by construction in exact\_closure mode (leptons solved from $L_{\textrm tot}$; $p,n$ from closure).
-    \item Composite errors track omitted binding: nuclear $\mathcal O(10^{-3})$–$\mathcal O(10^{-2})$, molecular $\mathcal O(10^{-9})$.
-    \end{itemize}
-
-% ---------------------------------------------------------
 
     \section{Derivation of the Swirl$\to$Bulk Coupling \texorpdfstring{$\mathcal{G}_{\text{loop}}$}{G\_loop}}
     \label{app:Gloop}
