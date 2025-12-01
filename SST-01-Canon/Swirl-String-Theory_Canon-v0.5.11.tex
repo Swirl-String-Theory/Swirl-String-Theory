@@ -6,7 +6,7 @@
 %! ORCID = 0009-0006-1686-3961
 %! DOI = 10.5281/zenodo.17607006
 
-\newcommand{\canonversion}{\textbf{v0.5.10.2}} % Semantic versioning: vMAJOR.MINOR.PATCH
+\newcommand{\canonversion}{\textbf{v0.5.11}} % Semantic versioning: vMAJOR.MINOR.PATCH
 \newcommand{\papertitle}{Swirl String Theory (SST) Canon \canonversion}
 \newcommand{\paperdoi}{10.5281/zenodo.17607006}
 
@@ -42,6 +42,8 @@
 \renewcommand{\cftsubsecfont}{\footnotesize\itshape}
 \renewcommand{\cftsecleader}{\cftdotfill{5}}
 % Simple compact TOC macro (tight line spacing)
+%\renewcommand\cftsecpresnum{Chapter\space} % name before title
+%\setlength{\cftsecnumwidth}{\widthof{Chapter XX: }}% calculate width to leave enough room
 \newcommand{\compacttoc}{%
   \begingroup
   \setlength{\cftparskip}{0pt}%
@@ -51,7 +53,7 @@
   \renewcommand{\cftsubsecfont}{\scriptsize\itshape}%
   \renewcommand{\cftsecpagefont}{\scriptsize}%
   \renewcommand{\cftsubsecpagefont}{\scriptsize}%
-  \setlength{\cftsecnumwidth}{1.4em}%
+  \setlength{\cftsecnumwidth}{2.8em}%
   \setlength{\cftsubsecindent}{1.4em}%
   \renewcommand{\cftdotsep}{2}%
   \setlength{\parskip}{0pt}%
@@ -176,7 +178,7 @@
         \begin{tabular}{r@{\quad}p{0.75\linewidth}}
             \textbf{1.} & \textbf{Swirl Medium:} Physics is formulated on $\mathbb{R}^3$ with absolute reference time. Dynamics occur in a frictionless, incompressible \emph{swirl condensate}, which serves as a universal substrate. \\
             \textbf{2.} & \textbf{Swirl Strings (Circulation and Topology):} Particles and field quanta correspond to closed vortex filaments (\emph{swirl strings}). The circulation of the swirl velocity around any closed loop is quantized: \\
-            & $\displaystyle \Gamma = \oint \mathbf{v}_{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}} \cdot d\boldsymbol{\ell} = n\,\kappa,\qquad n\in\mathbb{Z},\qquad \kappa = \frac{h}{m_{\text{eff}}}.$ \\
+            & $\displaystyle \Gamma = \oint \mathbf{v}_{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}} \cdot d\boldsymbol{\ell} = n\,\Gamma_0,\qquad n\in\mathbb{Z},\qquad \Gamma_0 = 2\pi r_c \vnorm.$ \\
             & Discrete quantum numbers (mass, charge, spin) track to the topological invariants of the swirl string. \\
             \textbf{3.} & \textbf{String-induced gravitation:} Macroscopic attraction emerges from coherent swirl flows and swirl-pressure gradients. The effective gravitational coupling $G_{\text{swirl}}$ is fixed by canonical constants. \\
             \textbf{4.} & \textbf{Swirl Clocks:} Local proper-time rate depends on tangential swirl speed $v$, ticking slower by the factor $S_t=\sqrt{\,1-v^2/c^2\,}$ relative to an observer at rest in the medium. \\
@@ -231,7 +233,7 @@ When the information complexity $\mathcal{I}_{\mathrm{swirl}}$ exceeds the Guard
 the swirl condensate forms as an incompressible, inviscid medium on $\mathbb{R}^3$ with absolute time $t$.
 Primary constants lock in by resonance:
 \[
-\kappa = 2\pi r_c \vnorm,
+\Gamma_0 = 2\pi r_c \vnorm,
 \qquad
 \tau_{\mathrm{beat}} = \frac{2\pi r_c}{\vnorm},
 \qquad
@@ -241,7 +243,7 @@ marking the birth of physical time and the circulation quantum.
 \hfill (STC Stage 8)
 
 \subsection*{Stage 3: Tangible Chirality and Swirl-Time}
-Knotted swirl strings appear, stabilized by circulation quantization $\Gamma = n\kappa$.
+Knotted swirl strings appear, stabilized by circulation quantization $\Gamma = n\Gamma_0$.
 The swirl clock
 \[
 S_t = \sqrt{1 - \frac{v^{2}}{c^{2}}}
@@ -390,7 +392,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
     $S_t=\sqrt{1-(\omega r_c/c)^2}$ along the core \cite{Batchelor1967,Saffman1992}. % Canonical
     \end{tcolorbox}
 
-% [STATUS: Canonical] [SOURCE: v0.4.4 §3]
+% [STATUS: Canonical] [SOURCE: earlier Canon draft]
 %========================================================================================
         \begin{figure}[htbp]
         \centering
@@ -823,10 +825,9 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
     \end{align*}
     \end{tcolorbox}
     \noindent\emph{Notes:} Gauge entries follow PDG world averages; fluid entries follow the canonical coarse-graining protocols and prior CANON calibrations \cite{PDG2024,Iskandarani2025Canon034,Iskandarani2025Hydrogen}.
-% [STATUS: Empirical] [SOURCE: v0.4.4 §6.1 & constants table]
+% [STATUS: Empirical] [SOURCE: earlier Canon constants table]
 % ===================== (1) MAIN TEXT: place after your Chronos–Kelvin/Clock transport section
-    \subsection*{VI.A\quad Kairos Bifurcations in Swirl Time \;(\emph{Research})}
-        \addcontentsline{toc}{subsection}{VI.A\;\;Kairos Bifurcations in Swirl Time (Research)}
+    \subsection{Kairos Bifurcations in Swirl Time \;(\emph{Research})}
 
         \paragraph{Claim.}
             In addition to the continuous advance of Chronos time $\tau$ and the cyclic Swirl Clock $\SwirlClock$,
@@ -919,9 +920,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
             \vspace{0.75em}
 
 
-    \subsection*{Calibrations: Thermal Bar and Nonreciprocity (Patch)}
-    \addcontentsline{toc}{section}{IV.E Calibrations: Thermal Bar and Nonreciprocity (Patch)}
-
+    \subsection{Calibrations: Thermal Bar and Nonreciprocity}
 
     \paragraph{Protocol TB-1 (Borosilicate).} $L=\SI{50}{mm}$, $A=\SI{1e-4}{m^2}$, $\kappa\approx\SI{1.1}{W\,m^{-1}\,K^{-1}}$, heater power $P=\SI{20}{mW}$. Baseline $\Delta T = PL/(\kappa A)\approx\SI{9}{K}$. With engineered degeneracy tuned to $\delta\lesssim\Gamma$, target $\Delta\kappa/\kappa\approx-\SI{2}{\percent}$, giving $\Delta(\Delta T)\approx+\SI{0.18}{K}$ (IR NETD 30–50 mK).
 
@@ -1075,7 +1074,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
     yielding $dt_{\text{local}}/dt_\infty = \sqrt{1 - v_\theta^2/c^2}$. % Check: [units ok; limit → Newtonian]
     \end{tcolorbox}
 
-% [STATUS: Canonical] [SOURCE: v0.4.4 §1]
+% [STATUS: Canonical] [SOURCE: earlier Canon draft]
 
     \section{Classical Invariants and Swirl Quantization}
 	Under Axiom 1 (inviscid, incompressible medium with absolute time), the standard results of classical vortex dynamics apply. In particular, Euler’s equations for an inviscid barotropic fluid yield several conservation laws that carry over into SST as special cases:
@@ -1165,7 +1164,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 	\]
 	Plugging in calibrated $\rho_f$ and $v_{\swirlarrow}$, $\rhoE \approx 3.14\times10^{5}~\text{J/m}^3$ and $\rho_m \approx 3.89\times10^{18}~\text{kg/m}^3$ (as listed). These indicate the energy and relativistic mass density associated with the swirl medium's motion at $v_{\swirlarrow}$.
 
-	Several constants are derived combinations. The \textbf{swirl Coulomb constant} $\Lambda$ is defined by the Triad construction (Hydrodynamic Triad, Eq.~(33)) as $\Lambda = 4\pi\,\rho_m\,\lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert r_c^{3}$. $\Lambda$ has units of J·m and sets the strength of the swirl-induced potential (analogous to $e^2/4\pi\epsilon_0$). With given calibrations, $\Lambda$ is on order $10^{-45}$ J·m, which yields the correct scale for atomic binding when inserted into the swirl potential.
+	Several constants are derived combinations. The \textbf{swirl Coulomb constant} $\Lambda$ is defined by the Triad construction (Hydrodynamic Triad, Eq.~(33)) as $\Lambda = 4\pi\,\rho_m\,\lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert r_c^{3}$. $\Lambda$ has units of J·m and sets the strength of the swirl-induced potential (analogous to $e^2/4\pi\epsilon_0$). With given calibrations, $\Lambda$ is approximately $2.3\times 10^{-28}$ J·m, which yields the correct scale for atomic binding when inserted into the swirl potential.
 
 	The \textbf{maximal force constant} $F_{\!EM}^{\max}$ is derived from the primitive set via $F_{\text{max}}^{\text{swirl}} = \chi_F\rho_{\!f}\Gamma_0^2$ (Triad Eq.~(9)), not an independent parameter. $F_{\!G}^{\max}$ is a theoretical upper bound on force magnitudes in the gravitational interaction. $F_{\!G}^{\max}\approx3.03\times10^{43}$ N matches the conjectured maximum force $c^4/4G_N$ from general relativity. $F_{\!EM}^{\max}\approx2.9\times10^1$ N is much smaller; it characterizes the maximum strength of emergent electromagnetic forces producible by swirl dynamics. These appear when relating $G_{\text{swirl}}$ to $G_N$ (Appendix A shows $F_{\!EM}^{\max}$ ensures $G_{\text{swirl}}\approx G_N$).
 
@@ -1790,7 +1789,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
     a Circulation-Based Vacuum Canon'' (HT)~\cite{IskandaraniTriad2025}. The present Canon records only the resulting master equations and their status.
     \end{tcolorbox}
 
-% [STATUS: Canonical + Empirical] [SOURCE: v0.4.4 §1]
+% [STATUS: Canonical + Empirical] [SOURCE: earlier Canon draft]
 
 
 
@@ -1856,8 +1855,6 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 
 
 \section{Coherence Conductivity and Chirality in 1D (Patch)}
-\addcontentsline{toc}{section}{XII.B Coherence Conductivity and Chirality in 1D (Patch)}
-
 
     \paragraph{Setting.} Consider a 1D slab with swirl–mode correlation matrix $N(q)$, mode frequencies $\Omega_s(q)$, group-velocity operator $V_x(q)$, and small static gradient $\partial_x T$. Let linewidths be $\gamma_s(q)$ and define $\Gamma_{ss'}\equiv\tfrac12(\gamma_s+\gamma_{s'})$ and detuning $\delta\equiv\Omega_{s'}-\Omega_s$ for a near-degenerate pair $s\neq s'$.
 
@@ -2040,7 +2037,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 
 
 
-    \section{XXIV+. Canonical Closure for the Gamma Coil (S40, $+11,-9$): Helicity and Lift Routes}
+    \section{Canonical Closure for the Gamma Coil (S40, $+11,-9$): Helicity and Lift Routes}
     \label{sec:GammaCoilClosure}
 
     \subsection*{Scope and Linkage to Canon}
@@ -2217,8 +2214,8 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 % Canon v0.5.10+qc (proposed)
 % Anchors: Radiation sector, Kelvin-compatible 𝓗, Swirl Clock
 % ===========================================
-
-    \section*{XXVI.A Canon Corollary: Visibility–Rate Normalization (Radiation Sector)}
+    \section{Quantum Computing Sector}
+    \subsection*{Canon Corollary: Visibility–Rate Normalization (Radiation Sector)}
 
     \textbf{Claim (Rosetta).}
     Define a \emph{monitoring rate} $\Gamma$ [\si{s^{-1}}] that compresses the kernel integral of §XXVI into an intensive scalar so that the interferometric visibility over an interaction time $\tau$ obeys
@@ -2261,7 +2258,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 
 % -------------------------------------------
 
-    \section*{XXVI.B Constitutive Model: SST Two-Level (R/T) Control Equations}
+    \subsection*{Constitutive Model: SST Two-Level (R/T) Control Equations}
 
     \textbf{Claim (Rosetta).}
     The R/T two-level manifold admits canonical driven dynamics with on-resonance Rabi rate $\Omega_R$ and relaxation $\gamma_{R,T}$, all within the radiation sector and Swirl Clock timing.
@@ -2302,7 +2299,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 
 % -------------------------------------------
 
-    \section*{XXVI.C Research Corollary: Linkage Entanglement Bus and Gate Rates}
+    \subsection*{Research Corollary: Linkage Entanglement Bus and Gate Rates}
 
     \textbf{Claim (Rosetta).}
     Two SST qubits (R/T) coupled by a \emph{linkage} constraint (shared circulation) implement exchange-type and $ZZ$-type interactions with distance-dependent rate $g_{\rm link}(d)$.
@@ -2396,7 +2393,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
     Canonical: local swirl attraction via $\Delta p$. % [STATUS: Canonical]
     Research: extension to long-range gravity remains conjectural. % [STATUS: Research]
 
-% [SOURCE: v0.4.4 §1]
+% [SOURCE: earlier Canon draft]
 
 	\section{Wave–Particle Duality and Quantum Measurement}
 	SST offers a natural framework for quantum wave–particle duality via its dual-phase concept (Axiom 5). The extended R-phase corresponds to wave-like behavior (delocalized, interfering), and the T-phase corresponds to particle-like behavior (localized, definite).
@@ -2602,7 +2599,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
         (iii) Thin-core, inviscid, incompressible, barotropic assumptions retain Kelvin/Helmholtz invariants.
 
 %------------------------------------------------
-    \subsection{Calibration (numerical, v0.5.8 constants)}
+    \subsection{Calibration (numerical, Canon constants)}
     \label{subsec:Calibration-DE}
 
     Using the Rosetta identification $\vnorm|_{r=\rc}\equiv C_e$ and your constants
@@ -2959,6 +2956,9 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 % [Sidebar: The road ahead -- perhaps a flowchart of theory components and next steps]
 
 	\appendix
+    \setcounter{section}{0}% start appendices at A
+    \renewcommand{\thesection}{\Alph{section}}
+    \renewcommand{\theHsection}{\Alph{section}} % if you use hyperref
 	\section{Derivation of Chronos–Kelvin Invariant (Axiom 1)}
 	Kelvin’s theorem states for an inviscid, barotropic fluid, the circulation $\Gamma$ around any material loop moving with the fluid remains constant:
 	\[
@@ -3155,9 +3155,10 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 
 
     \section{Effective Density $\rho_f$ Derivation}
+	\subsection{Coarse-Graining Argument}
 	The effective fluid density $\rho_f$ can be rationalized by coarse-graining many swirl strings. This derivation connects the microscopic properties of a single vortex to a macroscopic density of the medium.
 
-	Suppose a volume has many thin vortex filaments (swirl strings), with areal density $\nu$ (strings per cross-sectional area). Each string has core radius $r_c$, line mass (mass per length) $\mu_* = \rho_m \pi r_c^2$ (taking $\rho_m$ as the mass-equivalent density, so each unit length of core “contains” mass $\rho_m \pi r_c^2$), and circulation $\Gamma_* \approx 2\pi r_c v_{\swirlarrow}$. The total mass per volume contributed by these strings is $\mu_*\nu$ (mass per length times number per area). We identify this with $\rho_f$:
+	Suppose a volume has many thin vortex filaments (swirl strings), with areal density $\nu$ (strings per cross-sectional area). Each string has core radius $r_c$, line mass (mass per length) $\mu_* = \rho_m \pi r_c^2$ (taking $\rho_m$ as the mass-equivalent density, so each unit length of core "contains" mass $\rho_m \pi r_c^2$), and circulation $\Gamma_* \approx 2\pi r_c v_{\swirlarrow}$. The total mass per volume contributed by these strings is $\mu_*\nu$ (mass per length times number per area). We identify this with $\rho_f$:
 	\[
 		\rho_f = \mu_* \nu = \rho_m \pi r_c^2 \nu\,.
 	\]
@@ -3185,7 +3186,19 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 	\[
 		\rho_f = \rho_m \frac{r_c\,\langle \omega_{\swirlarrow}\rangle}{2\,v_{\swirlarrow}}\,.
 	\]
-	This shows that a very small $r_c$ or very large average $\langle \omega_{\swirlarrow}\rangle$ yields a very small $\rho_f$ (intuitively, if the core is tiny or the vortices are extremely intense, the medium appears very “light” on average). Plugging in representative values (using $r_c$ and $v_{\swirlarrow}$ from Table~\ref{tab:constants} and $\langle \omega_{\swirlarrow}\rangle$ on the order of $10^3$–$10^4$ s$^{-1}$ for a coarse-grained astrophysical swirl distribution), one obtains $\rho_f \sim 10^{-7}$ kg/m$^3$, consistent with our chosen value. In practice, $\rho_f$ was anchored to $10^{-7}$ to align SST’s emergent EM with real-world $\mu_0$ and $\epsilon_0$ (see footnote in Table~\ref{tab:constants}).
+	Equivalently, defining a coarse–grained angular rate
+	\[
+		\Omega \equiv \frac{1}{2}\,\langle \omega_{\swirlarrow}\rangle,
+	\]
+	we can rewrite this as
+	\[
+		\rho_{\!f} = \frac{\rho_{\!m}\, r_c}{\vnorm}\,\Omega,
+	\]
+	which matches the coarse–graining rule stated in the main text.
+	This shows that a very small $r_c$ or very large average $\langle \omega_{\swirlarrow}\rangle$ yields a very small $\rho_f$ (intuitively, if the core is tiny or the vortices are extremely intense, the medium appears very "light" on average). Plugging in representative values (using $r_c$ and $v_{\swirlarrow}$ from Table~\ref{tab:constants} and $\langle \omega_{\swirlarrow}\rangle$ on the order of $10^3$–$10^4$ s$^{-1}$ for a coarse-grained astrophysical swirl distribution), one obtains $\rho_f \sim 10^{-7}$ kg/m$^3$, consistent with our chosen value.
+
+	\subsection{Calibration to Electromagnetism}
+	In practice, $\rho_f$ was anchored to $10^{-7}$ to align SST's emergent EM with real-world $\mu_0$ and $\epsilon_0$ (see footnote in Table~\ref{tab:constants}).
 
 	\section{Electromagnetic Emergence via $\mathbf{a}(x,t)$}
 	In Corollary 4.2, we introduced $\mathbf{a}(x,t)$ with $\vswirl = \partial_t \mathbf{a}$, $\mathbf{b}_{\swirlarrow} = \nabla \times \mathbf{a}$, $\nabla \cdot \mathbf{a}=0$. We claimed that small oscillations of $\mathbf{a}$ obey the wave equation identical to free-space Maxwell’s equations. Here we derive that result.
@@ -3268,7 +3281,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 		\item[\textbf{String taxonomy:}] Mapping of knot types to particle classes:
 		Bosons = unknotted loops; leptons = torus knots; quarks = chiral hyperbolic knots; composites (hadrons/nuclei) = linked knots.
 		\item[\textbf{Chirality:}] Handedness of swirl circulation (CCW vs CW). In SST, matter vs antimatter differ by swirl chirality (e.g. trefoil vs its mirror image).
-		\item[\textbf{Circulation quantum $\Gamma_0$:}] Primitive quantum of circulation, $\Gamma_0 \approx 6.4\times 10^{3}~\mathrm{m^2/s}$. Appears in $\Gamma = n\Gamma_0$. The notation $\kappa_{\text{SST}} \equiv \Gamma_0$ is also used. In the Rosetta mapping to conventional superfluid notation, $\Gamma_0$ matches $h/m_{\text{eff}}$, but within SST $\Gamma_0$ is treated as primitive.
+		\item[\textbf{Circulation quantum $\Gamma_0$:}] Primitive quantum of circulation, $\Gamma_0 \approx 6.4\times 10^{3}~\mathrm{m^2/s}$. Appears in $\Gamma = n\Gamma_0$. In the Rosetta mapping to conventional superfluid notation, $\Gamma_0$ matches $h/m_{\text{eff}}$, but within SST $\Gamma_0$ is treated as primitive.
 		\item[\textbf{Swirl Coulomb constant $\Lambda$:}] Constant in swirl potential; $\Lambda = 4\pi \rho_m \lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert r_c^{3}$ (Triad Eq.~(33)). Sets strength of $V_{\text{SST}}(r)$.
 		\item[\textbf{Swirl areal density $\varrho_{\swirlarrow}$:}] Coarse-grained density of vortex cores per unit area (flux of swirl strings). Its time-variation sources $\mathbf{E}$ via $G_{\swirlarrow}\partial_t \varrho_{\swirlarrow}$ term.
 		\item[\textbf{$G_{\swirlarrow}$:}] Dimensionless swirl–EM coupling constant. Introduced as coefficient in $\mathbf{b}_{\swirlarrow}=G_{\swirlarrow}\partial_t \varrho_{\swirlarrow}$. Identified with flux quantum $h/2e$ in units.
@@ -3304,7 +3317,6 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 % === Appendix: 2×2 near-degenerate block derivation ===
 % =============================================================
 \section{ 2\texttimes 2 near-degenerate solution (sketch)}
-\addcontentsline{toc}{section}{2×2 near-degenerate solution (sketch)}
 Write $N=N^{(0)}+N^{(1)}$, steady state, and restrict to $\{s,s'\}$. With source $S\equiv -\tfrac12 V_x\partial_x N^{(0)}$ and damping $\Gamma$, the linearized equations read
 \begin{align}
 (i\delta+\Gamma)\,N^{(1)}_{ss'} &= S_{ss'} + \mathcal O(|M|^2),\\
@@ -3635,32 +3647,16 @@ SST is distinguished from GR/QFT by:
         \label{canon58:dim-checks}
         \end{table}
 
-%================================================
-    \section{Derivation of $\rho_{\!f}$}
-% [STATUS: Canonical]
-    \label{canon58:appC}
-    Following v0.4.4, coarse-grain a representative ensemble of $N_{\mathrm{str}}$
-    solid-body strings per area $A$:
-    \[
-        \rho_{\!f} = \mu^{*}\,\nu, \quad
-        \mu^{*} = \rho_{\!m} \pi r_c^{2}, \quad
-        \nu = \frac{N_{\mathrm{str}}}{A}.
-    \]
-    Using $\Gamma^{*} = 2\pi r_c v_{\!\boldsymbol{\circlearrowleft}}$,
-    \[
-        \rho_{\!f} = \rho_{\!m} r_c^{2} v_{\!\boldsymbol{\circlearrowleft}}^{-1} \langle \omega \rangle,
-    \]
-    where $\langle \omega \rangle$ is the ensemble-averaged vorticity magnitude.
-    For a uniformly rotating distribution with angular speed $\Omega$,
-    \[
-        \rho_{\!f} = \rho_{\!m} r_c \frac{v_{\!\boldsymbol{\circlearrowleft}}}{\Omega}.
-    \]
-    This result (Eq.~\eqref{canon58:box-rho_f}) links bulk density to micro-geometry.
 
 %================================================
     \section{Hydrogen Soft-Core Numerics}
 % [STATUS: Canonical]
     \label{canon58:appD}
+    We adopt the Swirl-Coulomb constant $\Lambda$ as defined in Eq.~(33) of the Hydrodynamic Triad~[14],
+    \[
+        \Lambda = 4\pi \rho_{\!m} \lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert r_c^{3},
+    \]
+    and evaluate its numerical value using the canonical constants of Table~\ref{tab:constants}.
     Given $\Lambda = 4\pi \rho_{\!m} \lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert r_c^{3}$ (Triad Eq.~(33)),
     evaluate
     \[
@@ -4128,252 +4124,252 @@ SST is distinguished from GR/QFT by:
     \label{app:knot_protection}
 %================================================
 
-    \paragraph{Motivation.}
-        Recent studies in superfluid and optical systems demonstrate that knotted excitations admit distinct dynamical fates: some classes persist indefinitely (protected), while others decay through reconnections (unprotected). This appendix canonizes these insights into the SST framework, refining the topological taxonomy of swirl strings.
+        \paragraph{Motivation.}
+            Recent studies in superfluid and optical systems demonstrate that knotted excitations admit distinct dynamical fates: some classes persist indefinitely (protected), while others decay through reconnections (unprotected). This appendix canonizes these insights into the SST framework, refining the topological taxonomy of swirl strings.
 
-%------------------------------------------------
-    \subsection{Canonical Classes of Stability}
-%------------------------------------------------
+    %------------------------------------------------
+        \subsection{Canonical Classes of Stability}
+    %------------------------------------------------
 
-    \begin{definition}[Knot Stability Class]
-        Let $K$ denote a swirl string configuration with circulation $\Gamma = n \kappa$. The \emph{stability class} $\sigma(K)$ is defined as
+        \begin{definition}[Knot Stability Class]
+            Let $K$ denote a swirl string configuration with circulation $\Gamma = n \kappa$. The \emph{stability class} $\sigma(K)$ is defined as
+            \[
+                \sigma(K) \in \{ \text{Protected}, \text{Metastable}, \text{Forbidden} \},
+            \]
+            according to its dynamical response under admissible SST evolution (incompressible, inviscid, barotropic medium with absolute time).
+        \end{definition}
+
+        \begin{itemize}
+            \item \textbf{Protected.} $K$ is preserved under reconnection attempts. Typical example: non-Abelian $Q_8$-linked strings \cite{Annala2025}.
+            \item \textbf{Metastable.} $K$ undergoes reconnections but conserves partial helicity via writhe transfer \cite{Kleckner2016}.
+            \item \textbf{Forbidden.} $K$ immediately relaxes to the unknot (trivial state), corresponding to topologies not supported by quantized circulation.
+        \end{itemize}
+
+        \begin{corollary}[Protection Criterion]
+            A knot $K$ is \emph{Protected} if its fundamental group representation admits a non-Abelian factorization into $Q_8 \subset \pi_1(S^3 \setminus K)$. Otherwise, it is \emph{Metastable} or \emph{Forbidden}.
+        \end{corollary}
+
+    %------------------------------------------------
+        \subsection{Helicity Redistribution and Kairos Events}
+    %------------------------------------------------
+
+        \begin{axiom}[Helicity Conversion]
+            During reconnection (a non-ideal event), total helicity is partially preserved by redistribution:
+            \[
+                H = \int \mathbf{v}_{\!\boldsymbol{\circlearrowleft}} \cdot \boldsymbol{\omega}\, dV
+                \;\;\longrightarrow\;\;
+                H' = H_{\text{writhe}} + H_{\text{coil}} ,
+            \]
+            where linking number contributions decay, but writhe persists as helical coils \cite{Ricca1996,Kleckner2016}.
+        \end{axiom}
+
+        \begin{definition}[Kairos Event]
+            A \emph{Kairos event} $\kappa$ is an irreversible transition in the knot class of a swirl string:
+            \[
+                K \;\mapsto\; K' \qquad (\kappa: \text{topological bifurcation}).
+            \]
+            Physically, this corresponds to a reconnection, where $\sigma(K)$ demotes from Protected $\to$ Metastable $\to$ Forbidden.
+        \end{definition}
+
+    %------------------------------------------------
+        \subsection{Fractional Swirl Clocks and Optical Knots}
+    %------------------------------------------------
+
+        \begin{theorem}[Fractional Swirl Clock Winding]
+            Polarization-induced fractional torus knots correspond to fractional swirl-clock states:
+            \[
+                S_t^{(\gamma)} = e^{i \gamma \theta}, \qquad \gamma \in \mathbb{Q}\;\text{ or }\;\mathbb{R}.
+            \]
+            \]
+            For $\gamma \in \mathbb{Q}$, $S_t^{(\gamma)}$ corresponds to a closed rational knot; for $\gamma \notin \mathbb{Q}$, it defines a quasi-periodic optical excitation.
+        \end{theorem}
+
+        This provides a canonical mechanism for photon helicity and polarization entanglement, extending Axiom 6 (Photon = R-phase torsional pulse) to include fractional winding modes.
+
+    %------------------------------------------------
+        \subsection{Hyperbolic Energy Volume Equivalence}
+    %------------------------------------------------
+
+        \begin{axiom}[Energy–Volume Correspondence]
+            For hyperbolic knots $K$, the mass-equivalent density $\rho_{\!m}$ fixes an effective energy-volume relation:
+            \[
+                E(K) \;\sim\; \rho_{\!m}\,\Vol_{\!\mathbb{H}}(K),
+            \]
+            where $\Vol_{\!\mathbb{H}}(K)$ is the hyperbolic 3-volume computed via triangulation \cite{Purcell2025,Petersen2024}.
+        \end{axiom}
+
+        This establishes a computable route from triangulated character varieties to SST mass functionals.
+
+    %------------------------------------------------
+        \subsection{Canonical Status}
+    %------------------------------------------------
+
+        \begin{itemize}
+            \item Protection Criterion: \textbf{Canonical Corollary}.
+            \item Helicity Conversion Axiom: \textbf{Canonical}.
+            \item Kairos Event: \textbf{Definition (Canonical)}.
+            \item Fractional Swirl Clock Winding: \textbf{Research Track (promotable)}.
+            \item Energy–Volume Correspondence: \textbf{Research Track (empirical support)}.
+        \end{itemize}
+
+    %------------------------------------------------
+    %================================================
+        \subsection{Canonicality Tests for New Items}
+        \label{app:knot_protection:tests}
+    %================================================
+    % (Macros assumed loaded per Rosetta/Canon prelude)
+
+        \paragraph{Legend (Canonicality Tests).}
+        (1) Derivable from axioms/defs; (2) Dimensional consistency; (3) Symmetry compliance (Galilean, incompressible);
+            (4) Recovery limits (Kelvin, Newton/Coulomb, linear optics); (5) Non-contradiction with canonical results;
+            (6) Parameter discipline (no ad hoc fits beyond calibrations).
+
+    %-------------- K.1 Protection Criterion -----------------
+        \subsubsection{Protection Criterion (Corollary)}
+        \emph{Statement (from subsection 1).} If $\pi_1(S^3\!\setminus\!K)$ admits a non-Abelian factorization with $Q_8$, then $K$ is \textbf{Protected}.
+
+        \textbf{Canonicality Tests.}
+        \begin{enumerate}
+            \item \textbf{Derivable}: From Axiom 2 (swirl strings/topology + quantized $\Gamma$) and group-theoretic obstruction to strand exchange in non-Abelian classes. ✓
+            \item \textbf{Dimensions}: Purely topological/group-theoretic; no units. ✓
+            \item \textbf{Symmetry}: Compatible with incompressible Euler and Kelvin freezing (no reconnection in ideal limit). ✓
+            \item \textbf{Recovery}: In the Abelian case $\Rightarrow$ standard reconnection channels reappear (matches viscous/quantum-fluid literature). ✓
+            \item \textbf{Non-contradiction}: Consistent with Canon §VI (Kelvin, helicity) and the Chronos–Kelvin invariant. ✓
+            \item \textbf{Parameters}: No new parameters introduced. ✓
+        \end{enumerate}
+
+    %-------------- K.2 Helicity Conversion Axiom ------------
+        \subsubsection{Helicity Conversion (Axiom)}
+        \emph{Statement (from .2).} During a non-ideal reconnection (Kairos event),
         \[
-            \sigma(K) \in \{ \text{Protected}, \text{Metastable}, \text{Forbidden} \},
+            H=\!\int \mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\!\cdot\!\boldsymbol{\omega}\, dV
+            \;\to\; H' = H_{\text{writhe}} + H_{\text{coil}}
         \]
-        according to its dynamical response under admissible SST evolution (incompressible, inviscid, barotropic medium with absolute time).
-    \end{definition}
+        (i.e.\ linking contribution decreases; writhe/coil increase).
 
-    \begin{itemize}
-        \item \textbf{Protected.} $K$ is preserved under reconnection attempts. Typical example: non-Abelian $Q_8$-linked strings \cite{Annala2025}.
-        \item \textbf{Metastable.} $K$ undergoes reconnections but conserves partial helicity via writhe transfer \cite{Kleckner2016}.
-        \item \textbf{Forbidden.} $K$ immediately relaxes to the unknot (trivial state), corresponding to topologies not supported by quantized circulation.
-    \end{itemize}
+        \textbf{Canonicality Tests.}
+        \begin{enumerate}
+            \item \textbf{Derivable}: From helicity transport + non-ideal source at reconnection; consistent with literature. ✓
+            \item \textbf{Dimensions}: $[\mathbf{v}]=\mathrm{m\,s^{-1}},\; [\boldsymbol{\omega}]=\mathrm{s^{-1}}\Rightarrow [\mathbf{v}\!\cdot\!\boldsymbol{\omega}]=\mathrm{m\,s^{-2}}$; $\int dV$ adds $\mathrm{m^3}$; hence $[H]=\mathrm{m^4\,s^{-2}}$. Writhe/coil terms share units. ✓
+            \item \textbf{Symmetry}: Galilean and incompressible constraints preserved except at localized non-ideal region. ✓
+            \item \textbf{Recovery}: Ideal limit (no reconnection) $\Rightarrow H$ conserved (Kelvin/Helmholtz). ✓
+            \item \textbf{Non-contradiction}: Agrees with Canon §VI; refines behavior only at Kairos. ✓
+            \item \textbf{Parameters}: No new fits; purely kinematic/topological. ✓
+        \end{enumerate}
 
-    \begin{corollary}[Protection Criterion]
-        A knot $K$ is \emph{Protected} if its fundamental group representation admits a non-Abelian factorization into $Q_8 \subset \pi_1(S^3 \setminus K)$. Otherwise, it is \emph{Metastable} or \emph{Forbidden}.
-    \end{corollary}
+    %-------------- K.2 Kairos Event (Definition) ------------
+        \subsubsection{Kairos Event (Definition)}
+        \emph{Statement (from K.2).} A \emph{Kairos} $\kappa$ is an irreversible topological bifurcation $K\mapsto K'$ (reconnection).
 
-%------------------------------------------------
-    \subsection{Helicity Redistribution and Kairos Events}
-%------------------------------------------------
+        \textbf{Canonicality Tests.}
+        \begin{enumerate}
+            \item \textbf{Derivable}: Definition extending Rosetta’s time ontology ($\mathcal{N},\nu_0,\tau,S(t),T_v,\kappa$). ✓
+            \item \textbf{Dimensions}: Topological/time-mode label; unitless. ✓
+            \item \textbf{Symmetry}: Explicitly marks breakdown of ideal invariants; consistent with framework. ✓
+            \item \textbf{Recovery}: No reconnection $\Rightarrow$ no Kairos; reverts to ideal transport. ✓
+            \item \textbf{Non-contradiction}: Compatible with Canon’s Chronos–Kelvin law and helicity remarks. ✓
+            \item \textbf{Parameters}: No parameters added. ✓
+        \end{enumerate}
 
-    \begin{axiom}[Helicity Conversion]
-        During reconnection (a non-ideal event), total helicity is partially preserved by redistribution:
+    %-------------- K.3 Fractional Swirl Clock ----------------
+        \subsubsection{Fractional Swirl Clock Winding (Theorem, Research Track)}
+        \emph{Statement (from K.3).} Polarization-driven fractional winding:
         \[
-            H = \int \mathbf{v}_{\!\boldsymbol{\circlearrowleft}} \cdot \boldsymbol{\omega}\, dV
-            \;\;\longrightarrow\;\;
-            H' = H_{\text{writhe}} + H_{\text{coil}} ,
+            S_t^{(\gamma)} = e^{i\gamma\theta}, \qquad \gamma\in\mathbb{Q}\;\text{or}\;\mathbb{R}.
         \]
-        where linking number contributions decay, but writhe persists as helical coils \cite{Ricca1996,Kleckner2016}.
-    \end{axiom}
 
-    \begin{definition}[Kairos Event]
-        A \emph{Kairos event} $\kappa$ is an irreversible transition in the knot class of a swirl string:
+        \textbf{Canonicality Tests.}
+        \begin{enumerate}
+            \item \textbf{Derivable}: Maps optical polarization winding to swirl-clock phase (Axiom 5: R-phase photon). Needs formal variational link for promotion. △
+            \item \textbf{Dimensions}: Phase is unitless; $\theta$ angle unitless. ✓
+            \item \textbf{Symmetry}: Respects medium kinematics; adds internal phase structure; no Galilean violation. ✓
+            \item \textbf{Recovery}: $\gamma=\pm 1 \Rightarrow$ standard photon helicity $\pm 1$; rational $\gamma$ $\Rightarrow$ closed fractional torus-knot; irrational $\Rightarrow$ quasi-periodic. ✓
+            \item \textbf{Non-contradiction}: Extends Canon photon sector without conflict. ✓
+            \item \textbf{Parameters}: $\gamma$ is geometric (no fitted constants). ✓
+        \end{enumerate}
+
+    %-------------- K.4 Energy–Volume Correspondence ---------
+        \subsubsection{Energy–Volume Correspondence (Axiom, Research Track)}
+        \emph{Corrected statement (dimensional form).}
         \[
-            K \;\mapsto\; K' \qquad (\kappa: \text{topological bifurcation}).
+            \boxed{\;E(K)\;\simeq\;\rho_{\!E}\,\Vol_{\!\mathbb{H}}(K)\;=\;c^{2}\,\rho_{\!m}\,\Vol_{\!\mathbb{H}}(K)\;}
         \]
-        Physically, this corresponds to a reconnection, where $\sigma(K)$ demotes from Protected $\to$ Metastable $\to$ Forbidden.
-    \end{definition}
+        with $\rho_{\!E}=\tfrac12 \rho_{\!f}\,\lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert^{2}$ and $\rho_{\!m}=\rho_{\!E}/c^{2}$.
 
-%------------------------------------------------
-    \subsection{Fractional Swirl Clocks and Optical Knots}
-%------------------------------------------------
+        \textbf{Canonicality Tests.}
+        \begin{enumerate}
+            \item \textbf{Derivable}: Plausible coarse-grained identification linking hyperbolic geometry to stored swirl energy; needs derivation from Canon Hamiltonian density for promotion. △
+            \item \textbf{Dimensions}: $[\rho_{\!E}]=\mathrm{J\,m^{-3}},\; [\Vol_{\!\mathbb{H}}]=\mathrm{m^3}\Rightarrow [E]=\mathrm{J}$. Also $c^{2}\rho_{\!m}=\rho_{\!E}$. ✓
+            \item \textbf{Symmetry}: Uses canonical densities; respects incompressibility and gauge bridge. ✓
+            \item \textbf{Recovery}: For slender tubes, reduces to core+envelope energetics (Rosetta) with $\Vol_{\!\mathbb{H}}$ as geometric proxy. ✓
+            \item \textbf{Non-contradiction}: No clash with Canon §VII constants or §VI invariants. ✓
+            \item \textbf{Parameters}: No extra fits beyond canonical $\rho_{\!f}$ and $c$. ✓
+        \end{enumerate}
 
-    \begin{theorem}[Fractional Swirl Clock Winding]
-        Polarization-induced fractional torus knots correspond to fractional swirl-clock states:
+    %-------------- K.7.6 Numerical sanity check -------------
+        \subsubsection{Numerical Sanity Check (Core clock rate)}
+        Using calibrated values (Canon/Rosetta): $v_\circ=1.09384563\times 10^{6}\,\mathrm{m\,s^{-1}}$,
+        $r_c=1.40897017\times 10^{-15}\,\mathrm{m}$,
         \[
-            S_t^{(\gamma)} = e^{i \gamma \theta}, \qquad \gamma \in \mathbb{Q}\;\text{ or }\;\mathbb{R}.
+            \Omega_{\text{core}}=\frac{v_\circ}{r_c}\approx
+            \frac{1.09384563\times 10^{6}}{1.40897017\times 10^{-15}}
+            \approx 7.763\times 10^{20}\ \mathrm{s^{-1}},
         \]
-        \]
-        For $\gamma \in \mathbb{Q}$, $S_t^{(\gamma)}$ corresponds to a closed rational knot; for $\gamma \notin \mathbb{Q}$, it defines a quasi-periodic optical excitation.
-    \end{theorem}
-
-    This provides a canonical mechanism for photon helicity and polarization entanglement, extending Axiom 6 (Photon = R-phase torsional pulse) to include fractional winding modes.
-
-%------------------------------------------------
-    \subsection{Hyperbolic Energy Volume Equivalence}
-%------------------------------------------------
-
-    \begin{axiom}[Energy–Volume Correspondence]
-        For hyperbolic knots $K$, the mass-equivalent density $\rho_{\!m}$ fixes an effective energy-volume relation:
-        \[
-            E(K) \;\sim\; \rho_{\!m}\,\Vol_{\!\mathbb{H}}(K),
-        \]
-        where $\Vol_{\!\mathbb{H}}(K)$ is the hyperbolic 3-volume computed via triangulation \cite{Purcell2025,Petersen2024}.
-    \end{axiom}
-
-    This establishes a computable route from triangulated character varieties to SST mass functionals.
-
-%------------------------------------------------
-    \subsection{Canonical Status}
-%------------------------------------------------
-
-    \begin{itemize}
-        \item Protection Criterion: \textbf{Canonical Corollary}.
-        \item Helicity Conversion Axiom: \textbf{Canonical}.
-        \item Kairos Event: \textbf{Definition (Canonical)}.
-        \item Fractional Swirl Clock Winding: \textbf{Research Track (promotable)}.
-        \item Energy–Volume Correspondence: \textbf{Research Track (empirical support)}.
-    \end{itemize}
-
-%------------------------------------------------
-%================================================
-    \subsection{Canonicality Tests for New Items}
-    \label{app:knot_protection:tests}
-%================================================
-% (Macros assumed loaded per Rosetta/Canon prelude)
-
-    \paragraph{Legend (Canonicality Tests).}
-    (1) Derivable from axioms/defs; (2) Dimensional consistency; (3) Symmetry compliance (Galilean, incompressible);
-        (4) Recovery limits (Kelvin, Newton/Coulomb, linear optics); (5) Non-contradiction with canonical results;
-        (6) Parameter discipline (no ad hoc fits beyond calibrations).
-
-%-------------- K.1 Protection Criterion -----------------
-    \subsubsection{Protection Criterion (Corollary)}
-    \emph{Statement (from subsection 1).} If $\pi_1(S^3\!\setminus\!K)$ admits a non-Abelian factorization with $Q_8$, then $K$ is \textbf{Protected}.
-
-    \textbf{Canonicality Tests.}
-    \begin{enumerate}
-        \item \textbf{Derivable}: From Axiom 2 (swirl strings/topology + quantized $\Gamma$) and group-theoretic obstruction to strand exchange in non-Abelian classes. ✓
-        \item \textbf{Dimensions}: Purely topological/group-theoretic; no units. ✓
-        \item \textbf{Symmetry}: Compatible with incompressible Euler and Kelvin freezing (no reconnection in ideal limit). ✓
-        \item \textbf{Recovery}: In the Abelian case $\Rightarrow$ standard reconnection channels reappear (matches viscous/quantum-fluid literature). ✓
-        \item \textbf{Non-contradiction}: Consistent with Canon §VI (Kelvin, helicity) and the Chronos–Kelvin invariant. ✓
-        \item \textbf{Parameters}: No new parameters introduced. ✓
-    \end{enumerate}
-
-%-------------- K.2 Helicity Conversion Axiom ------------
-    \subsubsection{Helicity Conversion (Axiom)}
-    \emph{Statement (from .2).} During a non-ideal reconnection (Kairos event),
-    \[
-        H=\!\int \mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\!\cdot\!\boldsymbol{\omega}\, dV
-        \;\to\; H' = H_{\text{writhe}} + H_{\text{coil}}
-    \]
-    (i.e.\ linking contribution decreases; writhe/coil increase).
-
-    \textbf{Canonicality Tests.}
-    \begin{enumerate}
-        \item \textbf{Derivable}: From helicity transport + non-ideal source at reconnection; consistent with literature. ✓
-        \item \textbf{Dimensions}: $[\mathbf{v}]=\mathrm{m\,s^{-1}},\; [\boldsymbol{\omega}]=\mathrm{s^{-1}}\Rightarrow [\mathbf{v}\!\cdot\!\boldsymbol{\omega}]=\mathrm{m\,s^{-2}}$; $\int dV$ adds $\mathrm{m^3}$; hence $[H]=\mathrm{m^4\,s^{-2}}$. Writhe/coil terms share units. ✓
-        \item \textbf{Symmetry}: Galilean and incompressible constraints preserved except at localized non-ideal region. ✓
-        \item \textbf{Recovery}: Ideal limit (no reconnection) $\Rightarrow H$ conserved (Kelvin/Helmholtz). ✓
-        \item \textbf{Non-contradiction}: Agrees with Canon §VI; refines behavior only at Kairos. ✓
-        \item \textbf{Parameters}: No new fits; purely kinematic/topological. ✓
-    \end{enumerate}
-
-%-------------- K.2 Kairos Event (Definition) ------------
-    \subsubsection{Kairos Event (Definition)}
-    \emph{Statement (from K.2).} A \emph{Kairos} $\kappa$ is an irreversible topological bifurcation $K\mapsto K'$ (reconnection).
-
-    \textbf{Canonicality Tests.}
-    \begin{enumerate}
-        \item \textbf{Derivable}: Definition extending Rosetta’s time ontology ($\mathcal{N},\nu_0,\tau,S(t),T_v,\kappa$). ✓
-        \item \textbf{Dimensions}: Topological/time-mode label; unitless. ✓
-        \item \textbf{Symmetry}: Explicitly marks breakdown of ideal invariants; consistent with framework. ✓
-        \item \textbf{Recovery}: No reconnection $\Rightarrow$ no Kairos; reverts to ideal transport. ✓
-        \item \textbf{Non-contradiction}: Compatible with Canon’s Chronos–Kelvin law and helicity remarks. ✓
-        \item \textbf{Parameters}: No parameters added. ✓
-    \end{enumerate}
-
-%-------------- K.3 Fractional Swirl Clock ----------------
-    \subsubsection{Fractional Swirl Clock Winding (Theorem, Research Track)}
-    \emph{Statement (from K.3).} Polarization-driven fractional winding:
-    \[
-        S_t^{(\gamma)} = e^{i\gamma\theta}, \qquad \gamma\in\mathbb{Q}\;\text{or}\;\mathbb{R}.
-    \]
-
-    \textbf{Canonicality Tests.}
-    \begin{enumerate}
-        \item \textbf{Derivable}: Maps optical polarization winding to swirl-clock phase (Axiom 5: R-phase photon). Needs formal variational link for promotion. △
-        \item \textbf{Dimensions}: Phase is unitless; $\theta$ angle unitless. ✓
-        \item \textbf{Symmetry}: Respects medium kinematics; adds internal phase structure; no Galilean violation. ✓
-        \item \textbf{Recovery}: $\gamma=\pm 1 \Rightarrow$ standard photon helicity $\pm 1$; rational $\gamma$ $\Rightarrow$ closed fractional torus-knot; irrational $\Rightarrow$ quasi-periodic. ✓
-        \item \textbf{Non-contradiction}: Extends Canon photon sector without conflict. ✓
-        \item \textbf{Parameters}: $\gamma$ is geometric (no fitted constants). ✓
-    \end{enumerate}
-
-%-------------- K.4 Energy–Volume Correspondence ---------
-    \subsubsection{Energy–Volume Correspondence (Axiom, Research Track)}
-    \emph{Corrected statement (dimensional form).}
-    \[
-        \boxed{\;E(K)\;\simeq\;\rho_{\!E}\,\Vol_{\!\mathbb{H}}(K)\;=\;c^{2}\,\rho_{\!m}\,\Vol_{\!\mathbb{H}}(K)\;}
-    \]
-    with $\rho_{\!E}=\tfrac12 \rho_{\!f}\,\lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert^{2}$ and $\rho_{\!m}=\rho_{\!E}/c^{2}$.
-
-    \textbf{Canonicality Tests.}
-    \begin{enumerate}
-        \item \textbf{Derivable}: Plausible coarse-grained identification linking hyperbolic geometry to stored swirl energy; needs derivation from Canon Hamiltonian density for promotion. △
-        \item \textbf{Dimensions}: $[\rho_{\!E}]=\mathrm{J\,m^{-3}},\; [\Vol_{\!\mathbb{H}}]=\mathrm{m^3}\Rightarrow [E]=\mathrm{J}$. Also $c^{2}\rho_{\!m}=\rho_{\!E}$. ✓
-        \item \textbf{Symmetry}: Uses canonical densities; respects incompressibility and gauge bridge. ✓
-        \item \textbf{Recovery}: For slender tubes, reduces to core+envelope energetics (Rosetta) with $\Vol_{\!\mathbb{H}}$ as geometric proxy. ✓
-        \item \textbf{Non-contradiction}: No clash with Canon §VII constants or §VI invariants. ✓
-        \item \textbf{Parameters}: No extra fits beyond canonical $\rho_{\!f}$ and $c$. ✓
-    \end{enumerate}
-
-%-------------- K.7.6 Numerical sanity check -------------
-    \subsubsection{Numerical Sanity Check (Core clock rate)}
-    Using calibrated values (Canon/Rosetta): $v_\circ=1.09384563\times 10^{6}\,\mathrm{m\,s^{-1}}$,
-    $r_c=1.40897017\times 10^{-15}\,\mathrm{m}$,
-    \[
-        \Omega_{\text{core}}=\frac{v_\circ}{r_c}\approx
-        \frac{1.09384563\times 10^{6}}{1.40897017\times 10^{-15}}
-        \approx 7.763\times 10^{20}\ \mathrm{s^{-1}},
-    \]
-    consistent with the Chronos–Kelvin usage of $v_\theta=\Omega r$ at $r=r_c$.
+        consistent with the Chronos–Kelvin usage of $v_\theta=\Omega r$ at $r=r_c$.
 
 %------------------------------------------------
 
 %----------------------------------------
-    \section{Addendum: Multipoles, Photon Note, \(G_{\text{swirl}}\) Identity, Taxonomy}
+    \section{Multipoles, Photon Note, \texorpdfstring{\(G_{\text{swirl}}\)}{G_swirl} Identity, Taxonomy}
 %----------------------------------------
 
-    \subsection{Multipole selection for p-filament torus bundles \statusResearch}
-        \textbf{Lemma (Discrete-symmetry selection).}
-        Consider \(p\) identical, slender filaments laid on the \emph{same} torus-knot path with equal poloidal phase offsets \(\Delta\phi=2\pi/p\). Let \(v_\theta(\theta;r)\) denote the induced tangential speed on a circular probe ring (plane \(z=0\), radius \(r\)) centered on the bundle. Then, for \(r\) larger than the bundle radius \(a\) (no reconnection, inviscid, incompressible),
+        \subsection{Multipole selection for p-filament torus bundles \statusResearch}
+            \textbf{Lemma (Discrete-symmetry selection).}
+            Consider \(p\) identical, slender filaments laid on the \emph{same} torus-knot path with equal poloidal phase offsets \(\Delta\phi=2\pi/p\). Let \(v_\theta(\theta;r)\) denote the induced tangential speed on a circular probe ring (plane \(z=0\), radius \(r\)) centered on the bundle. Then, for \(r\) larger than the bundle radius \(a\) (no reconnection, inviscid, incompressible),
+            \[
+                v_\theta(\theta;r)\;=\;\frac{p\,\Gamma}{2\pi r}\Bigl[1+\varepsilon_p(r)\cos\!\big(p(\theta-\theta_0)\big)\Bigr]
+                \;+\;\mathcal{O}\!\big(\varepsilon_p^2\big),
+            \]
+            with \(\Gamma\) the single-filament circulation, \(\theta_0\) a geometry-set phase, and a dimensionless shape factor \(\varepsilon_p(r)\) satisfying
+            \[
+                0<\varepsilon_p(r)=\mathcal{O}\!\big((a/r)^p\big)\quad\text{as}\quad r/a\to\infty.
+            \]
+            \emph{Sketch.} By discrete rotational symmetry (\(C_p\)), only harmonics \(m=kp\) survive in the Fourier series of \(v_\theta(\theta;r)\). Far-field Biot–Savart superposition fixes the mean \(\bar v_\theta(r)=p\Gamma/(2\pi r)\). The leading anisotropy arises from the first nontrivial \(m=p\) multipole of a \(p\)-point ring, with amplitude controlled by the bundle compactness \(a/r\). This is consistent with Canon’s tube energetics and Rankine matching and refines near-field angular structure without altering far-field \(1/r\) decay.
+
+            \paragraph{Remark.}
+                For \(p=3\) (three-thread bundle), the dominant cross-sectional modulation is hexapolar:
+                \(\,v_\theta(\theta;r)=\bar v_\theta(r)\big[1+\varepsilon_3(r)\cos 3(\theta-\theta_0)\big]\).
+
+    %----------------------------------------
+        \subsection{Photon sector: torsional packet does not require global rotation \statusCanonical}
+        \textbf{Clarification.}
+        In Canon, the photon is a \emph{pulsed torsional} (R-phase) excitation of the director field governed by a transverse wave equation for a vector potential \(\mathbf a\) with \(\nabla\!\cdot\!\mathbf a=0\) and \(\vswirl=\partial_t\mathbf a\). This free-wave form holds wherever the medium is incompressible and reconnection-free; it \emph{does not} assume a globally rotating background. A nonzero background swirl may Doppler-shift phases or induce birefringent-like corrections, but it is not a prerequisite for propagation.
+
+    %----------------------------------------
+        \subsection{Closed-form identity for \(G_{\text{swirl}}\) \statusCalibration}
+        \textbf{Master identity (algebraic).}
         \[
-            v_\theta(\theta;r)\;=\;\frac{p\,\Gamma}{2\pi r}\Bigl[1+\varepsilon_p(r)\cos\!\big(p(\theta-\theta_0)\big)\Bigr]
-            \;+\;\mathcal{O}\!\big(\varepsilon_p^2\big),
-        \]
-        with \(\Gamma\) the single-filament circulation, \(\theta_0\) a geometry-set phase, and a dimensionless shape factor \(\varepsilon_p(r)\) satisfying
-        \[
-            0<\varepsilon_p(r)=\mathcal{O}\!\big((a/r)^p\big)\quad\text{as}\quad r/a\to\infty.
-        \]
-        \emph{Sketch.} By discrete rotational symmetry (\(C_p\)), only harmonics \(m=kp\) survive in the Fourier series of \(v_\theta(\theta;r)\). Far-field Biot–Savart superposition fixes the mean \(\bar v_\theta(r)=p\Gamma/(2\pi r)\). The leading anisotropy arises from the first nontrivial \(m=p\) multipole of a \(p\)-point ring, with amplitude controlled by the bundle compactness \(a/r\). This is consistent with Canon’s tube energetics and Rankine matching and refines near-field angular structure without altering far-field \(1/r\) decay.
-
-        \paragraph{Remark.}
-            For \(p=3\) (three-thread bundle), the dominant cross-sectional modulation is hexapolar:
-            \(\,v_\theta(\theta;r)=\bar v_\theta(r)\big[1+\varepsilon_3(r)\cos 3(\theta-\theta_0)\big]\).
-
-%----------------------------------------
-    \subsection{Photon sector: torsional packet does not require global rotation \statusCanonical}
-    \textbf{Clarification.}
-    In Canon, the photon is a \emph{pulsed torsional} (R-phase) excitation of the director field governed by a transverse wave equation for a vector potential \(\mathbf a\) with \(\nabla\!\cdot\!\mathbf a=0\) and \(\vswirl=\partial_t\mathbf a\). This free-wave form holds wherever the medium is incompressible and reconnection-free; it \emph{does not} assume a globally rotating background. A nonzero background swirl may Doppler-shift phases or induce birefringent-like corrections, but it is not a prerequisite for propagation.
-
-%----------------------------------------
-    \subsection{Closed-form identity for \(G_{\text{swirl}}\) \statusCalibration}
-    \textbf{Master identity (algebraic).}
-    \[
-        \boxed{\quad
-        G_{\text{swirl}}
-            \;=\;
-            \frac{\Ce\,c^{5}\,t_p^{2}}{2\,\Fmax\,\rc^{2}}
-            \quad}
-    \]
-    under the Rosetta identifications \(\Ce\equiv \vnorm\) (canonical swirl speed), \(\rc\) (core radius), and \(\Fmax\) (line-tension bound). This identity is \emph{calibration-equivalent} to Newton’s \(G\) in the Canon and may be listed in the Master Equations alongside the existing statement \(G_{\text{swirl}}\approx G_N\).
-
-    \paragraph{One-line numerics (Canon constants).}
-        Using
-        \(\Ce=1.09384563\times10^{6}\,\mathrm{m/s}\),
-        \(c=2.99792458\times10^{8}\,\mathrm{m/s}\),
-        \(t_p=5.391247\times10^{-44}\,\mathrm{s}\),
-        \(\Fmax=29.053507\,\mathrm{N}\),
-        \(\rc=1.40897017\times10^{-15}\,\mathrm{m}\),
-        \[
+            \boxed{\quad
             G_{\text{swirl}}
-            =\frac{\Ce c^5 t_p^2}{2\Fmax \rc^2}
-            \;=\;6.6743020\times10^{-11}\ \mathrm{m^3\,kg^{-1}\,s^{-2}}
-            \approx G_N.
+                \;=\;
+                \frac{\Ce\,c^{5}\,t_p^{2}}{2\,\Fmax\,\rc^{2}}
+                \quad}
         \]
+        under the Rosetta identifications \(\Ce\equiv \vnorm\) (canonical swirl speed), \(\rc\) (core radius), and \(\Fmax\) (line-tension bound). This identity is \emph{calibration-equivalent} to Newton’s \(G\) in the Canon and may be listed in the Master Equations alongside the existing statement \(G_{\text{swirl}}\approx G_N\).
+
+        \paragraph{One-line numerics (Canon constants).}
+            Using
+            \(\Ce=1.09384563\times10^{6}\,\mathrm{m/s}\),
+            \(c=2.99792458\times10^{8}\,\mathrm{m/s}\),
+            \(t_p=5.391247\times10^{-44}\,\mathrm{s}\),
+            \(\Fmax=29.053507\,\mathrm{N}\),
+            \(\rc=1.40897017\times10^{-15}\,\mathrm{m}\),
+            \[
+                G_{\text{swirl}}
+                =\frac{\Ce c^5 t_p^2}{2\Fmax \rc^2}
+                \;=\;6.6743020\times10^{-11}\ \mathrm{m^3\,kg^{-1}\,s^{-2}}
+                \approx G_N.
+            \]
 
 %----------------------------------------
 % =========================
@@ -4382,183 +4378,183 @@ SST is distinguished from GR/QFT by:
 
     \section{Computing Hyperbolic Volume of Knot Complements (VAM pipeline)}
 
-    \subsection{Overview}
-        Let \(K\subset S^3\) be a hyperbolic knot with complement \(M_K = S^3\setminus N(K)\).
-        Thurston’s program computes a complete, finite–volume hyperbolic metric by solving \emph{gluing} and \emph{completeness} equations for shape parameters \(\{z_j\}_{j=1}^m\in\mathbb{C}\) of an ideal triangulation, then evaluating the Bloch–Wigner sum for the volume \cite{ThurstonNotes,NeumannZagier1985,AdamsWeeks1992}.
+        \subsection{Overview}
+            Let \(K\subset S^3\) be a hyperbolic knot with complement \(M_K = S^3\setminus N(K)\).
+            Thurston’s program computes a complete, finite–volume hyperbolic metric by solving \emph{gluing} and \emph{completeness} equations for shape parameters \(\{z_j\}_{j=1}^m\in\mathbb{C}\) of an ideal triangulation, then evaluating the Bloch–Wigner sum for the volume \cite{ThurstonNotes,NeumannZagier1985,AdamsWeeks1992}.
 
-        Pipeline used in VAM (diagram‐agnostic and dependency-free):
+            Pipeline used in VAM (diagram‐agnostic and dependency-free):
 
-        \begin{enumerate}
-            \item \textbf{PD extraction.} From an embedding \( \mathbf{r}(t)\in\mathbb{R}^3 \) (Fourier series), choose a generic projection to \(\mathbb{R}^2\); detect segment intersections; assign over/under by depth along the view. This yields a PD code \(\mathrm{PD}(K)=\{(a_i,b_i,c_i,d_i)\}_{i=1}^n\) with each label used exactly twice.
-            \item \textbf{Ideal triangulation.} Replace each crossing by an ideal octahedron and split it into five ideal tetrahedra; glue by PD adjacency to get an ideal triangulation \(\mathcal{T}\) with \(m=5n\) tets \cite{ThurstonNotes,AdamsWeeks1992}.
-            \item \textbf{Gluing and completeness.} For each edge \(e\),
-            \begin{equation}
-                \prod_{T_j\ni e} \zeta_{j,e} \;=\; 1,
-                \qquad
-                \zeta_{j,e}\in\{\,z_j,\; z'_j=\tfrac{1}{1-z_j},\; z''_j=1-\tfrac{1}{z_j}\,\},
-                \label{eq:glue}
-            \end{equation}
-            and for cusp cycles \(\gamma\),
-            \begin{equation}
-                \prod_{\gamma\text{ path}} \zeta_{j,\gamma} \;=\; 1,
-                \label{eq:complete}
-            \end{equation}
-            which, in logarithmic form, become linear relations among \(\log z_j\) and \(\log(1-z_j)\) with \(2\pi i\) branch consistency enforced during Newton iteration \cite{NeumannZagier1985}.
-            \item \textbf{Shape solve.} Damped complex Newton on \eqref{eq:glue}–\eqref{eq:complete}, seeded at \(z=e^{i\pi/3}\); enforce \(\Im z_j>0\).
-            \item \textbf{Volume.}
-            \begin{equation}
-                \mathrm{Vol}(M_K) \;=\; \sum_{j=1}^m D(z_j),
-                \qquad
-                D(z) \;=\; \Im\!\operatorname{Li}_2(z) \;+\; \arg(1-z)\,\log|z|,
-                \label{eq:BW}
-            \end{equation}
-            with standard functional reductions for \(\operatorname{Li}_2\) \cite{Lewin1981,NeumannZagier1985}.
-        \end{enumerate}
+            \begin{enumerate}
+                \item \textbf{PD extraction.} From an embedding \( \mathbf{r}(t)\in\mathbb{R}^3 \) (Fourier series), choose a generic projection to \(\mathbb{R}^2\); detect segment intersections; assign over/under by depth along the view. This yields a PD code \(\mathrm{PD}(K)=\{(a_i,b_i,c_i,d_i)\}_{i=1}^n\) with each label used exactly twice.
+                \item \textbf{Ideal triangulation.} Replace each crossing by an ideal octahedron and split it into five ideal tetrahedra; glue by PD adjacency to get an ideal triangulation \(\mathcal{T}\) with \(m=5n\) tets \cite{ThurstonNotes,AdamsWeeks1992}.
+                \item \textbf{Gluing and completeness.} For each edge \(e\),
+                \begin{equation}
+                    \prod_{T_j\ni e} \zeta_{j,e} \;=\; 1,
+                    \qquad
+                    \zeta_{j,e}\in\{\,z_j,\; z'_j=\tfrac{1}{1-z_j},\; z''_j=1-\tfrac{1}{z_j}\,\},
+                    \label{eq:glue}
+                \end{equation}
+                and for cusp cycles \(\gamma\),
+                \begin{equation}
+                    \prod_{\gamma\text{ path}} \zeta_{j,\gamma} \;=\; 1,
+                    \label{eq:complete}
+                \end{equation}
+                which, in logarithmic form, become linear relations among \(\log z_j\) and \(\log(1-z_j)\) with \(2\pi i\) branch consistency enforced during Newton iteration \cite{NeumannZagier1985}.
+                \item \textbf{Shape solve.} Damped complex Newton on \eqref{eq:glue}–\eqref{eq:complete}, seeded at \(z=e^{i\pi/3}\); enforce \(\Im z_j>0\).
+                \item \textbf{Volume.}
+                \begin{equation}
+                    \mathrm{Vol}(M_K) \;=\; \sum_{j=1}^m D(z_j),
+                    \qquad
+                    D(z) \;=\; \Im\!\operatorname{Li}_2(z) \;+\; \arg(1-z)\,\log|z|,
+                    \label{eq:BW}
+                \end{equation}
+                with standard functional reductions for \(\operatorname{Li}_2\) \cite{Lewin1981,NeumannZagier1985}.
+            \end{enumerate}
 
-        \paragraph{Units.} \(\mathrm{Vol}(M_K)\) is a dimensionless topological invariant (Mostow rigidity).
+            \paragraph{Units.} \(\mathrm{Vol}(M_K)\) is a dimensionless topological invariant (Mostow rigidity).
 
-    \subsection{Worked examples: \(5_2\) and \(6_1\)}
-    We record standard reference volumes as baselines; our no-dependency solver (Fourier\(\to\)PD\(\to\)gluing) reproduces these to \(\sim10^{-5}\)–\(10^{-6}\).
+        \subsection{Worked examples: \(5_2\) and \(6_1\)}
+        We record standard reference volumes as baselines; our no-dependency solver (Fourier\(\to\)PD\(\to\)gluing) reproduces these to \(\sim10^{-5}\)–\(10^{-6}\).
 
-    \paragraph{The knot \(5_2\) (three-twist knot).}
-        An alternating hyperbolic twist knot with volume
+        \paragraph{The knot \(5_2\) (three-twist knot).}
+            An alternating hyperbolic twist knot with volume
+            \[
+                \mathrm{Vol}(S^3\setminus 5_2)\;\approx\;2.82812.
+            \]
+            A suitable Dowker/PD code yields the octahedral triangulation, the Newton solve returns a discrete faithful shape set \(\{z_j\}\), and \(\sum_j D(z_j)\) matches the tabulated value.
+
+        \paragraph{The knot \(6_1\) (stevedore knot).}
+            An alternating hyperbolic twist knot with volume
+            \[
+                \mathrm{Vol}(S^3\setminus 6_1)\;\approx\;3.16396.
+            \]
+            The same pipeline applies verbatim.
+
+        \subsection{Numerical notes}
+        \begin{itemize}
+            \item \textbf{Branch control.} Equations are solved in log form with continuous branch tracking; after each Newton step, any \(\Im z_j\le0\) is flipped to maintain positive orientation \cite{NeumannZagier1985}.
+            \item \textbf{Stability.} Use \(|z|\le\tfrac12\) power series for \(\operatorname{Li}_2\); otherwise reduce via
+            \(\operatorname{Li}_2(z)+\operatorname{Li}_2(1-z)=\pi^2/6-\log z\log(1-z)\) and
+            \(\operatorname{Li}_2(z)+\operatorname{Li}_2(1/z)=-\pi^2/6-\tfrac12\log^2(-z)\) \cite{Lewin1981}.
+            \item \textbf{Triangulation size.} The \(5n\)‐tet split is universal and adequate; further Pachner moves are optional.
+        \end{itemize}
+
+        \subsection{VAM normalization and coupling}
+        For VAM we use the signed, normalized hyperbolic “charge”
+        \begin{equation}
+            H_{\mathrm{vol}}(K)\;=\;\sigma\,\frac{\mathrm{Vol}(K)}{\mathrm{Vol}(4_1)},
+            \qquad \mathrm{Vol}(4_1)\approx 2.029883212819307,
+            \label{eq:Hvol}
+        \end{equation}
+        with \(\sigma\in\{+1,-1\}\) set by chirality and \(H_{\mathrm{vol}}=0\) for amphichiral knots.
+        Numerically,
         \[
-            \mathrm{Vol}(S^3\setminus 5_2)\;\approx\;2.82812.
+            H_{\mathrm{vol}}(5_2)\approx 1.393242716,\qquad
+            H_{\mathrm{vol}}(6_1)\approx 1.558690658
+            \quad(\sigma=+1).
         \]
-        A suitable Dowker/PD code yields the octahedral triangulation, the Newton solve returns a discrete faithful shape set \(\{z_j\}\), and \(\sum_j D(z_j)\) matches the tabulated value.
 
-    \paragraph{The knot \(6_1\) (stevedore knot).}
-        An alternating hyperbolic twist knot with volume
-        \[
-            \mathrm{Vol}(S^3\setminus 6_1)\;\approx\;3.16396.
-        \]
-        The same pipeline applies verbatim.
-
-    \subsection{Numerical notes}
-    \begin{itemize}
-        \item \textbf{Branch control.} Equations are solved in log form with continuous branch tracking; after each Newton step, any \(\Im z_j\le0\) is flipped to maintain positive orientation \cite{NeumannZagier1985}.
-        \item \textbf{Stability.} Use \(|z|\le\tfrac12\) power series for \(\operatorname{Li}_2\); otherwise reduce via
-        \(\operatorname{Li}_2(z)+\operatorname{Li}_2(1-z)=\pi^2/6-\log z\log(1-z)\) and
-        \(\operatorname{Li}_2(z)+\operatorname{Li}_2(1/z)=-\pi^2/6-\tfrac12\log^2(-z)\) \cite{Lewin1981}.
-        \item \textbf{Triangulation size.} The \(5n\)‐tet split is universal and adequate; further Pachner moves are optional.
-    \end{itemize}
-
-    \subsection{VAM normalization and coupling}
-    For VAM we use the signed, normalized hyperbolic “charge”
-    \begin{equation}
-        H_{\mathrm{vol}}(K)\;=\;\sigma\,\frac{\mathrm{Vol}(K)}{\mathrm{Vol}(4_1)},
-        \qquad \mathrm{Vol}(4_1)\approx 2.029883212819307,
-        \label{eq:Hvol}
-    \end{equation}
-    with \(\sigma\in\{+1,-1\}\) set by chirality and \(H_{\mathrm{vol}}=0\) for amphichiral knots.
-    Numerically,
-    \[
-        H_{\mathrm{vol}}(5_2)\approx 1.393242716,\qquad
-        H_{\mathrm{vol}}(6_1)\approx 1.558690658
-        \quad(\sigma=+1).
-    \]
-
-    This couples to the VAM mass map
-    \begin{equation}
-        M_{\mathrm{VAM}}
-        \;=\;
-        \frac{4}{\alpha\phi}\,\xi(n)\,
-        H_{\mathrm{vol}}(K)\,
-        \Big(\tfrac{1}{2}\,\rho_{\ae}\,C_e^2\,V_{\text{knot}}\Big),
-        \label{eq:massmap}
-    \end{equation}
-    where \(\xi(n)\) is the coherence factor, \(V_{\text{knot}}\) is the physical æther volume of the vortex core, and \((\alpha,\phi,\rho_{\ae},C_e)\) are the fixed VAM parameters (see main text). The bracket has energy units; the prefactor maps energy to mass via the embedded \(c^{-2}\).
+        This couples to the VAM mass map
+        \begin{equation}
+            M_{\mathrm{VAM}}
+            \;=\;
+            \frac{4}{\alpha\phi}\,\xi(n)\,
+            H_{\mathrm{vol}}(K)\,
+            \Big(\tfrac{1}{2}\,\rho_{\ae}\,C_e^2\,V_{\text{knot}}\Big),
+            \label{eq:massmap}
+        \end{equation}
+        where \(\xi(n)\) is the coherence factor, \(V_{\text{knot}}\) is the physical æther volume of the vortex core, and \((\alpha,\phi,\rho_{\ae},C_e)\) are the fixed VAM parameters (see main text). The bracket has energy units; the prefactor maps energy to mass via the embedded \(c^{-2}\).
 
 
-% === Appendix N3: Rosetta→Code Consistency Rule (Invariant-Mass Sector) ===
+
 
     \section{Rosetta→Code Consistency Rule (Invariant-Mass Sector)}
 
-    \begin{definition}[Effective Densities and Factors]
-        Let $\rho_f$ denote the \emph{free-æther (swirl) density} that normalizes the EM bridge and BASC, and let
-        $\rho_{\text{core}}$ denote the \emph{core mass density} entering the invariant mass kernel via the core swirl energy
-        $u = \tfrac{1}{2}\rho_{\text{core}}\,v_{\circlearrowleft}^2$.
-        Let $S_t=\sqrt{1-v_\theta^2/c^2}$ be the swirl-clock factor from the pseudo-metric.
-    \end{definition}
+        \begin{definition}[Effective Densities and Factors]
+            Let $\rho_f$ denote the \emph{free-æther (swirl) density} that normalizes the EM bridge and BASC, and let
+            $\rho_{\text{core}}$ denote the \emph{core mass density} entering the invariant mass kernel via the core swirl energy
+            $u = \tfrac{1}{2}\rho_{\text{core}}\,v_{\circlearrowleft}^2$.
+            Let $S_t=\sqrt{1-v_\theta^2/c^2}$ be the swirl-clock factor from the pseudo-metric.
+        \end{definition}
 
-    \begin{proposition}[Separation Principle for Implementation]
-        With the canonical invariant mass law
-        \[
-            M(K)=\frac{4}{\alpha_{\!fs}}\; b^{-3/2}\,\varphi^{-g}\,n^{-1/\varphi}\;
-            \frac{u\,\pi r_c^{3}\,L_{\text{tot}}}{c^2},
-            \quad u=\tfrac{1}{2}\rho_{\text{core}}\,v_{\circlearrowleft}^{2},
-        \]
-        the rest-mass must be computed using $\rho_{\text{core}}$ only, while $\rho_f$ appears exclusively in the EM/BASC sector (wave Lagrangian, transduction gain $G_{\rm loop}$, and bulk propagation) and \emph{not} in $M(K)$. The swirl-clock $S_t$ modifies local time rates via the pseudo-metric but does not multiply the rest-mass at fixed topology $K$.
-    \end{proposition}
+        \begin{proposition}[Separation Principle for Implementation]
+            With the canonical invariant mass law
+            \[
+                M(K)=\frac{4}{\alpha_{\!fs}}\; b^{-3/2}\,\varphi^{-g}\,n^{-1/\varphi}\;
+                \frac{u\,\pi r_c^{3}\,L_{\text{tot}}}{c^2},
+                \quad u=\tfrac{1}{2}\rho_{\text{core}}\,v_{\circlearrowleft}^{2},
+            \]
+            the rest-mass must be computed using $\rho_{\text{core}}$ only, while $\rho_f$ appears exclusively in the EM/BASC sector (wave Lagrangian, transduction gain $G_{\rm loop}$, and bulk propagation) and \emph{not} in $M(K)$. The swirl-clock $S_t$ modifies local time rates via the pseudo-metric but does not multiply the rest-mass at fixed topology $K$.
+        \end{proposition}
 
-    \begin{proof}[Dimensional/Canonical Sketch]
-    (i) Canonical mass kernel uses $u=\tfrac12\rho_{\text{core}}v^2$ and $M=E/c^2$ (Appendix C) ✓.
-    (ii) The relation $\rho_E=\tfrac12\rho_f\|v\|^2$, $\rho_m=\rho_E/c^2$ characterizes free-æther EM normalization/BASC, not the core-energy factor in the rest-mass kernel ✓.
-    (iii) The swirl-clock enters kinematics via $dt_{\text{local}}/dt_\infty=\sqrt{1-v_\theta^2/c^2}$, leaving the static rest-mass factor unchanged ✓.
-    \end{proof}
+        \begin{proof}[Dimensional/Canonical Sketch]
+        (i) Canonical mass kernel uses $u=\tfrac12\rho_{\text{core}}v^2$ and $M=E/c^2$ (Appendix C) ✓.
+        (ii) The relation $\rho_E=\tfrac12\rho_f\|v\|^2$, $\rho_m=\rho_E/c^2$ characterizes free-æther EM normalization/BASC, not the core-energy factor in the rest-mass kernel ✓.
+        (iii) The swirl-clock enters kinematics via $dt_{\text{local}}/dt_\infty=\sqrt{1-v_\theta^2/c^2}$, leaving the static rest-mass factor unchanged ✓.
+        \end{proof}
 
-    \paragraph{Minimal Code Patch (if legacy mixing exists)}
-        \begin{align*}
-            u &\leftarrow \tfrac12\,\rho_{\text{core}}\,v_{\circlearrowleft}^{2}, \\
-            M(K) &\leftarrow \frac{4}{\alpha_{\!fs}}\,b^{-3/2}\,\varphi^{-g}\,n^{-1/\varphi}\;
-            \frac{u\,\pi r_c^3\,L_{\text{tot}}}{c^2}, \\
-            &\text{\emph{Remove any factor of $\rho_f$ or $S_t$ from $M(K)$. Keep $\rho_f$ only in EM/BASC routines.}}
-        \end{align*}
+        \paragraph{Minimal Code Patch (if legacy mixing exists)}
+            \begin{align*}
+                u &\leftarrow \tfrac12\,\rho_{\text{core}}\,v_{\circlearrowleft}^{2}, \\
+                M(K) &\leftarrow \frac{4}{\alpha_{\!fs}}\,b^{-3/2}\,\varphi^{-g}\,n^{-1/\varphi}\;
+                \frac{u\,\pi r_c^3\,L_{\text{tot}}}{c^2}, \\
+                &\text{\emph{Remove any factor of $\rho_f$ or $S_t$ from $M(K)$. Keep $\rho_f$ only in EM/BASC routines.}}
+            \end{align*}
 
-    \paragraph{Rosetta→Code Map (practical)}
-        \begin{itemize}
-            \item \textbf{Mass kernel}: $\rho_{\text{core}},\,r_c,\,v_{\circlearrowleft},\,L_{\text{tot}},\,(\alpha_{\!fs},\varphi,b,g,n)$.
-            \item \textbf{Photon/EM sector}: $\rho_f$ in $L_{\text{wave}}=\tfrac12\rho_f\|v\|^2$.
-            \item \textbf{BASC}: $\rho_f$ and $c_b=\sqrt{K_b/\rho_f}$; use $G_{\rm loop}\propto \rho_f C_e^2 r_c^2 \ell$ for transduction.
-            \item \textbf{Clocking/kinematics}: $S_t$ only in time-rate and transport equations.
-        \end{itemize}
+        \paragraph{Rosetta→Code Map (practical)}
+            \begin{itemize}
+                \item \textbf{Mass kernel}: $\rho_{\text{core}},\,r_c,\,v_{\circlearrowleft},\,L_{\text{tot}},\,(\alpha_{\!fs},\varphi,b,g,n)$.
+                \item \textbf{Photon/EM sector}: $\rho_f$ in $L_{\text{wave}}=\tfrac12\rho_f\|v\|^2$.
+                \item \textbf{BASC}: $\rho_f$ and $c_b=\sqrt{K_b/\rho_f}$; use $G_{\rm loop}\propto \rho_f C_e^2 r_c^2 \ell$ for transduction.
+                \item \textbf{Clocking/kinematics}: $S_t$ only in time-rate and transport equations.
+            \end{itemize}
 
-    \paragraph{Consistency Check}
-        Benchmarks generated by the reference Python file remain unchanged in \emph{exact\_closure} mode; composite deviations track omitted binding energies (not model failure).
+        \paragraph{Consistency Check}
+            Benchmarks generated by the reference Python file remain unchanged in \emph{exact\_closure} mode; composite deviations track omitted binding energies (not model failure).
 
 
 
     \section{SST Unruh Scaling and Superradiant Delay}
 
-    In standard quantum field theory, the Unruh temperature is given by
-    \begin{equation}
-        T_{\text{Unruh}}^{\text{std}} =
-        \frac{\hbar a}{2\pi c k_B}.
-    \end{equation}
-    Swirl--String Theory replaces the geometric light speed $c$ by the
-    characteristic swirl speed $\lVert\vswirl\rVert$, yielding
-    \begin{equation}
-        T_{\text{Unruh}}^{\text{SST}} =
-        \frac{\hbar a}{2\pi \lVert\vswirl\rVert k_B}.
-    \end{equation}
-    The ratio is therefore
-    \begin{equation}
-        \frac{T_{\text{Unruh}}^{\text{SST}}}{T_{\text{Unruh}}^{\text{std}}}
-        = \frac{c}{\lVert\vswirl\rVert}.
-    \end{equation}
-    With the canonical values $c = 2.99792458\times 10^{8}\,\mathrm{m/s}$
-    and $\lVert\vswirl\rVert = 1.09384563\times 10^{6}\,\mathrm{m/s}$, one finds
-    \begin{equation}
-        \frac{T_{\text{Unruh}}^{\text{SST}}}{T_{\text{Unruh}}^{\text{std}}}
-        \approx 2.7407\times 10^{2},
-        \qquad
-        \frac{\lVert\vswirl\rVert}{c} \approx 3.65\times 10^{-3}.
-    \end{equation}
-    In the time-resolved superradiance protocol of Deswal \emph{et al.},
-    the superradiant delay time scales as $\tau_d \propto (N\gamma)^{-1}$.
-    If $\gamma$ is proportional to $T_{\text{Unruh}}$, the SST prediction
-    for the delay time satisfies
-    \begin{equation}
-        \frac{\tau_d^{\text{SST}}}{\tau_d^{\text{std}}}
-        \approx \frac{\lVert\vswirl\rVert}{c}
-        \approx 3.65\times 10^{-3}.
-    \end{equation}
-    Thus, for fixed acceleration and cavity parameters, SST predicts an
-    Unruh-seeded superradiant burst occurring roughly three orders of
-    magnitude earlier than in the standard scenario, while the inertial
-    (background) contribution remains cavity-suppressed.
+        In standard quantum field theory, the Unruh temperature is given by
+        \begin{equation}
+            T_{\text{Unruh}}^{\text{std}} =
+            \frac{\hbar a}{2\pi c k_B}.
+        \end{equation}
+        Swirl--String Theory replaces the geometric light speed $c$ by the
+        characteristic swirl speed $\lVert\vswirl\rVert$, yielding
+        \begin{equation}
+            T_{\text{Unruh}}^{\text{SST}} =
+            \frac{\hbar a}{2\pi \lVert\vswirl\rVert k_B}.
+        \end{equation}
+        The ratio is therefore
+        \begin{equation}
+            \frac{T_{\text{Unruh}}^{\text{SST}}}{T_{\text{Unruh}}^{\text{std}}}
+            = \frac{c}{\lVert\vswirl\rVert}.
+        \end{equation}
+        With the canonical values $c = 2.99792458\times 10^{8}\,\mathrm{m/s}$
+        and $\lVert\vswirl\rVert = 1.09384563\times 10^{6}\,\mathrm{m/s}$, one finds
+        \begin{equation}
+            \frac{T_{\text{Unruh}}^{\text{SST}}}{T_{\text{Unruh}}^{\text{std}}}
+            \approx 2.7407\times 10^{2},
+            \qquad
+            \frac{\lVert\vswirl\rVert}{c} \approx 3.65\times 10^{-3}.
+        \end{equation}
+        In the time-resolved superradiance protocol of Deswal \emph{et al.},
+        the superradiant delay time scales as $\tau_d \propto (N\gamma)^{-1}$.
+        If $\gamma$ is proportional to $T_{\text{Unruh}}$, the SST prediction
+        for the delay time satisfies
+        \begin{equation}
+            \frac{\tau_d^{\text{SST}}}{\tau_d^{\text{std}}}
+            \approx \frac{\lVert\vswirl\rVert}{c}
+            \approx 3.65\times 10^{-3}.
+        \end{equation}
+        Thus, for fixed acceleration and cavity parameters, SST predicts an
+        Unruh-seeded superradiant burst occurring roughly three orders of
+        magnitude earlier than in the standard scenario, while the inertial
+        (background) contribution remains cavity-suppressed.
 
-    %======================================================
+%======================================================
 % SST Two-Vacuum Framework for Unruh Superradiance
 %======================================================
     \section{Two-Vacuum Structure and Dual-Burst Unruh Superradiance}
@@ -4574,9 +4570,11 @@ SST is distinguished from GR/QFT by:
     vacua:
     \begin{itemize}
         \item an EM channel (photons, propagation speed $c$),
-        \item a swirl channel (density/pressure excitations, propagation speed
+        \item a swirl channel (vorticity/torsional excitations, propagation speed
         $\lVert\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert$).
     \end{itemize}
+    The swirl sector carries primarily shear (Kelvin-like) vorticity waves rather
+    than compressional sound; density $\rho_{\!f}$ remains effectively constant.
 
     Let $P_e(t)$ be the excited-state population of a single atom in an
     accelerated array. The total decay rate decomposes as
@@ -4686,9 +4684,11 @@ SST is distinguished from GR/QFT by:
         sub-nanosecond temporal resolution.
 
         %======================================================================
-    \subsection{Hydrodynamic Origin of the Hydrogen Ground State}
+    \subsection{Hydrodynamic Origin of the Hydrogen Ground State (Operational Summary)}
         \label{sec:SST_hydrogen_groundstate}
 %======================================================================
+
+        This section summarizes, in compressed form, the full derivation given in Ref.~[14], ``The Hydrodynamic Triad: Unifying Gravity, Electromagnetism, and Quantum Mass via a Circulation-Based Vacuum Canon.''
 
         In conventional quantum mechanics the discrete spectrum of the Hydrogen
         atom,
@@ -4790,7 +4790,7 @@ SST is distinguished from GR/QFT by:
             dynamically as the innermost stable laminar flow configuration permitted
             by the fluid properties of the vacuum.
         %======================================================================
-    \subsection{Hydrodynamic Derivation of the Rydberg Constant}
+    \subsection{Hydrodynamic Derivation of the Rydberg Constant (Summary)}
         \label{sec:SST_rydberg}
 %======================================================================
 
