@@ -4,11 +4,11 @@
 %! Affiliation = Independent Researcher, Groningen, The Netherlands
 %! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
 %! ORCID = 0009-0006-1686-3961
-%! DOI = 10.5281/zenodo.17607006
+%! DOI = 10.5281/zenodo.17789611
 
 \newcommand{\canonversion}{\textbf{v0.5.12}} % Semantic versioning: vMAJOR.MINOR.PATCH
 \newcommand{\papertitle}{Swirl String Theory (SST) Canon \canonversion}
-\newcommand{\paperdoi}{10.5281/zenodo.17607006}
+\newcommand{\paperdoi}{10.5281/zenodo.17789611}
 
 %========================================================================================
 % PACKAGES AND DOCUMENT CONFIGURATION
@@ -47,17 +47,17 @@
 \newcommand{\compacttoc}{%
   \begingroup
   \setlength{\cftparskip}{0pt}%
-  \setlength{\cftbeforesecskip}{0.5pt}%
-  \setlength{\cftbeforesubsecskip}{0.5pt}%
+  \setlength{\cftbeforesecskip}{0.1pt}%
+  \setlength{\cftbeforesubsecskip}{0.1pt}%
   \renewcommand{\cftsecfont}{\scriptsize}%
   \renewcommand{\cftsubsecfont}{\scriptsize\itshape}%
   \renewcommand{\cftsecpagefont}{\scriptsize}%
   \renewcommand{\cftsubsecpagefont}{\scriptsize}%
-  \setlength{\cftsecnumwidth}{2.8em}%
-  \setlength{\cftsubsecindent}{1.4em}%
+  \setlength{\cftsecnumwidth}{3.2em}%
+  \setlength{\cftsubsecindent}{1.0em}%
   \renewcommand{\cftdotsep}{2}%
   \setlength{\parskip}{0pt}%
-  \linespread{0.80}\selectfont
+  \linespread{0.70}\selectfont
   \tableofcontents
   \endgroup
 }
@@ -185,23 +185,144 @@
             \textbf{5.} & \textbf{Dual Phases (Wave–Particle):} Each swirl string has two limiting phases: an extended \emph{R-phase} (unknotted, wave-like) and a localized \emph{T-phase} (knotted, particle-like). Measurement is a dynamical transition between these phases. \\
             \textbf{6.} & \textbf{Taxonomy:} Unknotted excitations correspond to bosonic modes,
             with photons realized as \emph{pulsed torsional R-phase excitations} (rotational wave packets of the swirl director field). Torus knots correspond to leptons (e.g. electron = $3_1$), and chiral hyperbolic knots to quarks (proton = $5_2+5_2+6_1$ composite). Linked knots describe nuclei and bound states. \\
-
+            \subsection*{Preface: Reader Pathways}
+                This document formalizes SST in a self-contained manner, but it is structured to accommodate different levels of reader expertise.\\
+                \textbf{Beginner-level readers} are encouraged to focus on the physical descriptions and boxed highlights in the main text, skipping the more technical derivations (which are relegated to the appendices and side notes).\\
+                \textbf{Expert readers} can delve into the detailed derivations and dimensional analyses in the appendices to verify consistency and connect SST formulas to classical limits.\\
+                \textbf{Active researchers} should consult the formal axiomatic system section and appendices for the rigorous foundation, as well as the traceability tables and glossary that link each canonical statement to established physics or experimental context. Throughout the text, important equations, axioms, and theorems are presented in numbered, boxed form for quick reference. Pedagogical sidebars can be expanded in future versions to provide intuitive explanations, historical notes, or illustrative diagrams without interrupting the flow of the formal development.
         \end{tabular}
     \end{abstract}
-    \maketitle
 
-    	\section*{Preface: Reader Pathways}
-	This document formalizes SST in a self-contained manner, but it is structured to accommodate different levels of reader expertise.\\
-        \textbf{Beginner-level readers} are encouraged to focus on the physical descriptions and boxed highlights in the main text, skipping the more technical derivations (which are relegated to the appendices and side notes).\\
-        \textbf{Expert readers} can delve into the detailed derivations and dimensional analyses in the appendices to verify consistency and connect SST formulas to classical limits.\\
-        \textbf{Active researchers} should consult the formal axiomatic system section and appendices for the rigorous foundation, as well as the traceability tables and glossary that link each canonical statement to established physics or experimental context. Throughout the text, important equations, axioms, and theorems are presented in numbered, boxed form for quick reference. Pedagogical sidebars can be expanded in future versions to provide intuitive explanations, historical notes, or illustrative diagrams without interrupting the flow of the formal development.
+
+
+
+        \maketitle
+
 
 
 
         \newpage
-        % Original: \tableofcontents
+        %\tableofcontents
         % Use compact version to save space
         \compacttoc
+
+
+
+
+
+
+            \subsection*{SST Canon v0.5.12 Glossary}
+
+% TABLE 1: PRIMITIVE & DERIVED CONSTANTS
+                \begin{table}[h!]
+                    \centering
+                    \scriptsize
+                    \caption{Primitive and Derived Canonical Constants (see Section~\ref{sec:canonical-constants})}
+                    \label{tab:glossary-constants}
+
+                    \begin{tabular}{|l|l|l|}
+                        \hline
+                        \textbf{Symbol} & \textbf{Definition} & \textbf{Canonical Value / Relation} \\
+                        \hline
+                        $\Gamma_{0}$ & Primitive Circulation Quantum & $6.4 \times 10^{3} \, \text{m}^{2}\text{s}^{-1}$ (Table~\ref{tab:constants}) \\
+                        \hline
+                        $r_{c}$ & Swirl String Core Radius & $1.40897017 \times 10^{-15} \, \text{m}$ (Table~\ref{tab:constants}) \\
+                        \hline
+                        $\rho_{\!f}$ & Effective Fluid Density & $7.0 \times 10^{-7} \, \text{kg m}^{-3}$ (Table~\ref{tab:constants}) \\
+                        \hline
+                        $\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}$ & Canonical Swirl Speed ($||v_{\mathcal{G}}||$) & $1.09384563 \times 10^{6} \, \text{m s}^{-1}$ (Table~\ref{tab:constants}) \\
+                        \hline
+                        $\rho_{\!m}$ & Mass-Equivalent Density & $\rho_{\!E}/c^2 \approx 3.89 \times 10^{18} \, \text{kg m}^{-3}$ (Table~\ref{tab:constants}) \\
+                        \hline
+                        $\Lambda$ & Swirl Coulomb Constant & $4\pi \rho_{\!m} \mathbf{v}_{\!\boldsymbol{\circlearrowleft}} r_{c}^{3}$ (Eq.~\ref{eq:swirl-coulomb-potential}) \\
+                        \hline
+                        $G_{swirl}$ & Gravitational Coupling & $\frac{\mathbf{v}_{\!\boldsymbol{\circlearrowleft}} c^{5} t_{p}^{2}}{2 F_{\text{max}} r_{c}^{2}} \approx G_{N}$ (Eq.~\ref{eq:swirl-gravity-coupling}) \\
+                        \hline
+                    \end{tabular}
+                \end{table}
+
+% TABLE 2: CORE ONTOLOGY & MECHANICS
+                \begin{table}[h!]
+                    \centering
+                    \scriptsize
+                    \caption{Core Ontology and Hydrodynamic Mechanics (see Section~\ref{sec:cosmogony-seven})}
+                    \label{tab:glossary-ontology}
+                    \renewcommand{\arraystretch}{1.5}
+                    \begin{tabular}{|l|p{9cm}|}
+                        \hline
+                        \textbf{Concept} & \textbf{Canonical Definition} \\
+                        \hline
+                        Swirl Medium & Frictionless, incompressible swirl condensate on $\mathbb{R}^{3}$ with absolute time $t$ (Axiom~\ref{axiom:swirl-medium}). \\
+                        \hline
+                        Swirl String & Closed vortex filament where circulation is quantized ($\Gamma=n\Gamma_0$) and particles are topological knots (Axiom~\ref{axiom:swirl-strings}). \\
+                        \hline
+                        Chronos-Kelvin Invariant & Conservation law generalizing Kelvin's theorem to include time dilation: $\frac{D}{Dt}(R^{2}\omega) = 0$ (Section~\ref{canon58:classical-invariants}). \\
+                        \hline
+                        Swirl Clock ($S_{t}$) & Local proper-time rate factor dependent on tangential swirl speed: $S_{t} = \sqrt{1 - v^{2}/c^{2}}$ (Axiom~\ref{axiom:swirl-clocks}). \\
+                        \hline
+                        Zero-Parameter Principle & Axiom stating all dimensional constants are determined by the triplet $(\Gamma_{0}, \rho_{\!f}, r_{c})$ and topology (Section~\ref{sec:zero-parameter-principle}). \\
+                        \hline
+                        Swirl Pressure Law & Radial pressure gradient sustaining centripetal force: $\frac{dp_{swirl}}{dr} = \rho_{\!f}\frac{v_{\theta}^{2}}{r}$ (Eq.~\ref{eq:swirl-pressure-law}). \\
+                        \hline
+                    \end{tabular}
+                \end{table}
+
+% TABLE 3: PARTICLE & PHASE TAXONOMY
+                \begin{table}[h!]
+                    \centering
+                    \scriptsize
+                    \caption{Topological Phase and Particle Taxonomy (see Section~\ref{sec:knot-taxonomy})}
+                    \label{tab:glossary-taxonomy}
+                    \renewcommand{\arraystretch}{1.5}
+                    \begin{tabular}{|l|l|l|}
+                        \hline
+                        \textbf{Entity} & \textbf{Topological Class} & \textbf{Physical Realization} \\
+                        \hline
+                        R-Phase & Unknotted ($0_1$) & Radiative, wave-like, massless (Bosons) (Axiom~\ref{axiom:dual-phases}). \\
+                        \hline
+                        T-Phase & Knotted & Tangible, particle-like, massive (Fermions) (Axiom~\ref{axiom:dual-phases}). \\
+                        \hline
+                        Photon & Torsional Pulse & Rotating oscillation of the director field (helicity $\pm 1$) (Axiom~\ref{axiom:taxonomy}). \\
+                        \hline
+                        Electron ($e^-$) & Torus Knot ($3_1$) & Trefoil knot; simplest lepton (Axiom~\ref{axiom:taxonomy}). \\
+                        \hline
+                        Up Quark ($u$) & Twist Knot ($5_2$) & Chiral hyperbolic knot (Axiom~\ref{axiom:taxonomy}). \\
+                        \hline
+                        Down Quark ($d$) & Twist Knot ($6_1$) & Chiral hyperbolic knot (Axiom~\ref{axiom:taxonomy}). \\
+                        \hline
+                        Proton & Composite Linkage & $5_2 + 5_2 + 6_1$ (uud) configuration (Axiom~\ref{axiom:taxonomy}). \\
+                        \hline
+                    \end{tabular}
+                \end{table}
+
+% TABLE 4: ADVANCED CONCEPTS & SYMBOLS
+                \begin{table}[h!]
+                    \centering
+        \scriptsize
+                    \caption{Advanced Gauge, Logic, and Field Concepts (see Sections~\ref{sec:golden-principle}, \ref{sec:kairos-bifurcations})}
+                    \label{tab:glossary-advanced}
+                    \renewcommand{\arraystretch}{1.5}
+                    \begin{tabular}{|l|l|p{6cm}|}
+                        \hline
+                        \textbf{Symbol} & \textbf{Term} & \textbf{Definition} \\
+                        \hline
+                        $\phi$ & Golden Principle & Scaling factor $\phi \approx 1.618$ controlling mass/energy layers: $E_{n} = E_{0}\phi^{2n}$ (Eq.~\ref{eq:phi-hyperbolic-def}). \\
+                        \hline
+                        $\mathcal{K}$ & Kairos Event & Topological bifurcation or phase jump in $S_{t}$ (reconnection event) (Section~\ref{sec:kairos-bifurcations}). \\
+                        \hline
+                        $\varrho$ & Swirl Areal Density & Density of vortex cores per unit area; sources emergent EM fields via $\nabla \times \mathbf{E}$ (Definition~\ref{def:swirl-areal-density}). \\
+                        \hline
+                        $\theta_W$ & Weak Mixing Angle & Ratio of director stiffness constants for $U(1)$ and $SU(2)$ sectors (Theorem~\ref{thm:weak-mixing-angle}). \\
+                        \hline
+                        BASC & Bulk Signaling Channel & Engineered region allowing scalar bulk field $p(x,t)$ transduction (Section~\ref{sec:BASC}). \\
+                        \hline
+                        $\omega$ & Vorticity Magnitude & Local vorticity $||\nabla \times \mathbf{v}||$; defines the wave proxy in duality relations (Section~\ref{sec:duality-ellipse-sst}). \\
+                        \hline
+                    \end{tabular}
+                \end{table}
+
+
+
         \newpage
 
 %========================================================================================
@@ -213,7 +334,7 @@
 % Sevenfold Genesis of the Swirling Cosmos
 %===============================
 \section{Sevenfold Genesis of the Swirling Cosmos}
-\label{sec:cosmogony-seven}
+\label{sec:sevenfold-genesis}
 
 \noindent
 \textbf{Canonical Cosmogony (SST · STC Mapped)}
@@ -412,11 +533,13 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 % [Knot taxonomy figure moved to Section~\ref{sec:knot-taxonomy} in Part II]
 
 	\section{Core Axioms (SST)}
+	\label{sec:cosmogony-seven}
 	SST is built on a set of core axioms that establish its physical framework. These axioms, numbered below, are stated in plain language and form the starting postulates of the theory (they are considered \emph{canonical} by definition).
 %================================================
 % Axiom 0: Logical Substrate (Pre-Swirl Potential)
 %================================================
     \begin{tcolorbox}[title=Axiom 0: Logical Substrate (Pre-Swirl Potential)]
+    \label{axiom:logical-substrate}
     Before the emergence of space, time, or condensate, there exists a
     \emph{Haar-neutral}, scale-free state space $\mathcal{S}$ of possible circulation states
     $\{\Gamma_i\}$. This pre-physical substrate encodes only relational constraints:
@@ -447,8 +570,8 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
     and Triadic Closure) for the information-theoretic basis of these constraints.
 
 	\begin{enumerate}\itemsep 4pt
-	\item \textbf{Swirl Medium (Absolute Space-Time):} Physics is formulated in Euclidean $\mathbb{R}^3$ space with an absolute time parameter. All dynamics occur in a frictionless, incompressible condensate called the \emph{swirl medium}, which acts as a universal substratum for motion (analogous to a perfect fluid with no viscosity or compressibility).
-	\item \textbf{Swirl Strings (Circulation \& Topology):} Particles and field quanta correspond to closed vortex filaments ("swirl strings") in the medium. Each such filament may be knotted or linked. The circulation of the swirl velocity field $\vswirl$ around any closed loop $C$ is quantized in integer multiples of the circulation quantum $\Gamma_0$:
+	\item \textbf{Swirl Medium (Absolute Space-Time):}\label{axiom:swirl-medium} Physics is formulated in Euclidean $\mathbb{R}^3$ space with an absolute time parameter. All dynamics occur in a frictionless, incompressible condensate called the \emph{swirl medium}, which acts as a universal substratum for motion (analogous to a perfect fluid with no viscosity or compressibility).
+	\item \textbf{Swirl Strings (Circulation \& Topology):}\label{axiom:swirl-strings} Particles and field quanta correspond to closed vortex filaments ("swirl strings") in the medium. Each such filament may be knotted or linked. The circulation of the swirl velocity field $\vswirl$ around any closed loop $C$ is quantized in integer multiples of the circulation quantum $\Gamma_0$:
 	\[
 		\Gamma \;=\; \oint_{C} \vswirl \cdot d\ell \;=\; n\,\Gamma_0, \qquad n\in \mathbb{Z}\,,
 	\]
@@ -457,14 +580,14 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 	\textit{Rosetta remark.} In the linear mapping to conventional superfluid notation, the circulation quantum
 	$\Gamma_0$ matches the Onsager–Feynman value $h/m_{\text{eff}}$ for the relevant excitation, but within SST
 	we treat $\Gamma_0$ as primitive and regard $h$ as a derived quantity.
-	\item \textbf{String-Induced Gravitation:} Macroscopic gravitational attraction emerges as an effective force resulting from coherent swirl flows and pressure gradients in the medium. In the non-relativistic limit, the effective gravitational coupling $G_{\text{swirl}}$ is fixed by canonical constants such that $G_{\text{swirl}} \approx G_N$ (Newton’s gravitational constant). In essence, what we perceive as gravity is a statistical effect of many swirl strings and their pressure fields rather than a fundamental spacetime curvature.
-	\item \textbf{Swirl Clocks (Local Time Dilation):} The local proper time in a region of the swirl medium depends on the swirl speed in that region. A clock comoving with a swirl string (tangential speed $v$) ticks slower than a clock at rest in the medium by the \emph{swirl clock factor}
+	\item \textbf{String-Induced Gravitation:}\label{axiom:string-gravitation} Macroscopic gravitational attraction emerges as an effective force resulting from coherent swirl flows and pressure gradients in the medium. In the non-relativistic limit, the effective gravitational coupling $G_{\text{swirl}}$ is fixed by canonical constants such that $G_{\text{swirl}} \approx G_N$ (Newton’s gravitational constant). In essence, what we perceive as gravity is a statistical effect of many swirl strings and their pressure fields rather than a fundamental spacetime curvature.
+	\item \textbf{Swirl Clocks (Local Time Dilation):}\label{axiom:swirl-clocks} The local proper time in a region of the swirl medium depends on the swirl speed in that region. A clock comoving with a swirl string (tangential speed $v$) ticks slower than a clock at rest in the medium by the \emph{swirl clock factor}
 	\[
 		S_t \;=\; \sqrt{\,1 - \frac{v^2}{c^2}\,}\,,
 	\]
 	analogous to special relativistic time dilation. Higher swirl velocities (and thus higher local swirl energy density) cause deeper time dilation (slower clocks) relative to an observer at infinity.
-	\item \textbf{Dual Phases (Wave–Particle Complementarity):} Each swirl string has two limiting dynamical phases. In the \emph{R-phase} (“radiative” or \emph{wave-like} phase), the string is unknotted and its circulation is delocalized over an extended loop. In the \emph{T-phase} (“tangible” or \emph{particle-like} phase), the string is knotted and its circulation is localized, carrying rest-mass. Quantum wave–particle duality in SST is thus realized as the ability of a swirl string to transition between these two phases. A quantum measurement corresponds to a rapid transition from an R-phase state to a T-phase state ($R\to T$ “collapse”) or vice versa ($T\to R$ de-localization), typically accompanied by emission or absorption of small swirl excitations (swirl radiation).
-    \item \textbf{Canonical Taxonomy (Particle–Knot Mapping):}
+	\item \textbf{Dual Phases (Wave–Particle Complementarity):}\label{axiom:dual-phases} Each swirl string has two limiting dynamical phases. In the \emph{R-phase} (“radiative” or \emph{wave-like} phase), the string is unknotted and its circulation is delocalized over an extended loop. In the \emph{T-phase} (“tangible” or \emph{particle-like} phase), the string is knotted and its circulation is localized, carrying rest-mass. Quantum wave–particle duality in SST is thus realized as the ability of a swirl string to transition between these two phases. A quantum measurement corresponds to a rapid transition from an R-phase state to a T-phase state ($R\to T$ “collapse”) or vice versa ($T\to R$ de-localization), typically accompanied by emission or absorption of small swirl excitations (swirl radiation).
+    \item \textbf{Canonical Taxonomy (Particle–Knot Mapping):}\label{axiom:taxonomy}
     There is a one-to-one mapping between the topological class of a swirl string and the type of particle or field it represents.
     Delocalized R-phase excitations correspond to unknotted swirl strings and represent massless bosonic quanta — with photons realized as \emph{pulsed torsional oscillations} of the swirl director field (carrying helicity $\pm 1$) rather than static knots.
     Nontrivial torus knots correspond to leptons (e.g. the electron is represented by the trefoil $3_1$ knot).
@@ -485,7 +608,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
         \end{figure}
 
 	These axioms define the ontological starting point of SST. The swirl medium (Axiom 1) provides the arena, swirl strings (Axiom 2) provide the basic degrees of freedom with quantized circulation and allowed topologies, and the remaining axioms posit how classical forces and quantum behaviors emerge from this framework (gravity from collective flows, time dilation from swirl motion, wave–particle dual phases, and a topological classification of particles).
-
+    \newpage
 %========================================================================================
 % PART II: GEOMETRY, FIELDS, AND LAGRANGIAN
 %========================================================================================
@@ -817,6 +940,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 % [STATUS: Empirical] [SOURCE: earlier Canon constants table]
 % ===================== (1) MAIN TEXT: place after your Chronos–Kelvin/Clock transport section
     \subsection{Kairos Bifurcations in Swirl Time \;(\emph{Research})}
+        \label{sec:kairos-bifurcations}
 
         \paragraph{Claim.}
             In addition to the continuous advance of Chronos time $\tau$ and the cyclic Swirl Clock $\SwirlClock$,
@@ -1009,6 +1133,8 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 
 
 	\section{Canonical Constants and Effective Densities}
+	\label{sec:canonical-constants}
+	\label{sec:zero-parameter-principle}
 	SST introduces several new physical constants that characterize properties of the universal swirl medium and its excitations. Some of these constants are defined within the theory (based on canonical definitions), while others are calibrated to empirical values to ensure SST reproduces known physical measurements. Table~\ref{tab:constants} summarizes the primary constants, their values, and their status (definition vs. calibration).
 
 	\begin{table}[ht]
@@ -1273,7 +1399,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 	\section{The Swirl–Electromagnetic Bridge}
 	One of SST’s significant achievements is showing that classical electromagnetic fields can be interpreted as emergent collective behaviors of the swirl medium. In particular, changes in the distribution of swirl strings can induce electromagnetic effects. To formalize this, we introduce a density field to characterize how swirl strings populate space:
 
-	\textbf{Definition 4.1 (Swirl Areal Density).} Let $\varrho_{\swirlarrow}(x,t)$ be the coarse-grained areal density of swirl strings piercing a given surface element at $(x,t)$. In other words, imagine a local patch oriented perpendicular to some direction; $\varrho_{\swirlarrow}$ is the number of vortex cores per unit area threading that patch. This quantity plays the role of a “source” density analogous to electric charge/current density in Maxwell’s equations. Regions where many swirl strings pass through (or where a single string oscillates rapidly, effectively increasing crossing density) act like regions of high charge/current in the emergent fields.
+	\textbf{Definition 4.1 (Swirl Areal Density).}\label{def:swirl-areal-density} Let $\varrho_{\swirlarrow}(x,t)$ be the coarse-grained areal density of swirl strings piercing a given surface element at $(x,t)$. In other words, imagine a local patch oriented perpendicular to some direction; $\varrho_{\swirlarrow}$ is the number of vortex cores per unit area threading that patch. This quantity plays the role of a “source” density analogous to electric charge/current density in Maxwell’s equations. Regions where many swirl strings pass through (or where a single string oscillates rapidly, effectively increasing crossing density) act like regions of high charge/current in the emergent fields.
 
 	A changing swirl areal density will induce an electromotive force in the surrounding medium. This is captured by a modified Faraday’s law:
 
@@ -1510,6 +1636,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
                     \Lambda = 4\pi\,\rho_m\,\lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert r_c^{3}
                 }
             \]
+            \label{eq:swirl-coulomb-potential}
             recovering $-\,\Lambda/r$ for $r \gg r_c$. This is the static potential around a swirl string (T-phase particle). For $r \gg r_c$, it behaves as $-\Lambda/r$ and yields the hydrogen spectral lines. The small core $r_c$ provides a natural softening at $r=0$ (finite central potential). The detailed derivation of this potential from Euler fluid mechanics, the hydrodynamic Schrödinger equation, and the recovery of the Bohr radius, ground-state energy, and Rydberg constant is given in Iskandarani, ``The Hydrodynamic Triad: Unifying Gravity, Electromagnetism, and Quantum Mass via a Circulation-Based Vacuum Canon'' (HT). The present Canon records only the resulting master equations and their status.
 
         \subsection{Swirl Pressure Law (Euler radial balance):}
@@ -1518,6 +1645,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
                     \frac{1}{\rho_f}\,\frac{d p_{\text{swirl}}}{dr} = \frac{v_{\theta}(r)^2}{r}
                 }
             \]
+            \label{eq:swirl-pressure-law}
             for a steady circular swirl. This states that the pressure gradient radially is exactly what provides the centripetal force density for circular motion (Euler’s equation). One solution: a flat rotation curve $v_{\theta}(r)=\text{const}$ yields $p_{\text{swirl}}(r) = p_0 + \rho_f v_{\theta}^2 \ln(r/r_0)$ (a logarithmic profile), invoked as a mechanism for galaxy rotation curves.
 
         \subsection{Swirl Clock (Local Time Dilation):}
@@ -1546,6 +1674,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
                     \;\approx\; G_N
                 }
             \]
+            \label{eq:swirl-gravity-coupling}
             This is the effective gravitational constant emergent in SST. Plugging values from Table~\ref{tab:constants}, $G_{\text{swirl}}\approx 6.67\times10^{-11}$ m$^3$/kg·s$^2 \approx G_N$. The formula ties $G_{\text{swirl}}$ to swirl constants: note $\FmaxEM$ in the denominator, implying a larger allowed EM force would reduce effective $G$. $G_{\text{swirl}}\approx G_N$ shows our constants were consistently calibrated.
 
         \subsection{Topology–Driven Mass Law:}
@@ -1730,6 +1859,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 	The electroweak interaction in SST emerges from an intertwined $SU(2)\times U(1)$ structure coming from two director fields ($\mathbf{U}_2$ and $\vartheta$). A key result is that the electroweak mixing angle $\theta_W$ – an arbitrary parameter in the SM – is here determined by the ratio of $SU(2)$ and $U(1)$ director stiffnesses:
 
 	\begin{tcolorbox}[title=Theorem 6.2: Weak Mixing Angle from First Principles]
+	\label{thm:weak-mixing-angle}
 		The electroweak mixing angle $\theta_W$ arises from the ratio of the swirl medium’s director stiffness constants for the $U(1)$ and $SU(2)$ sectors. In SST:
 		\[
 			\tan^2 \theta_W \;=\; \frac{g'^2}{g^2} \;=\; \frac{\kappa_2}{\kappa_1}\,,
@@ -1957,7 +2087,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 % Check: [units ok; limit → none]
 
 % [STATUS: Empirical + Canonical] [SOURCE: v0.4.4 §6.1]
-
+    \newpage
 %========================================================================================
 % PART III: GRAVITY, HYDROGEN, AND COSMOLOGY
 %========================================================================================
@@ -2768,7 +2898,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 	Nevertheless, SST canon \canonversion \ serves as a solid foundation: a unifying framework tying fluid dynamics, quantum topology, and gauge theory into a single cohesive picture. Future work (v0.6+ series) will likely explore the thermodynamics of the swirl medium (cosmology), rigorous field quantization of emergent gauge fields, and phenomenological predictions (e.g. slight deviations in gravity at certain scales, or patterns in high-energy scattering due to topological conservation). Each step must maintain the \emph{canonical discipline} defined in the formal system section, to preserve the integrity and predictive power of the theory.
 
 % [Sidebar: The road ahead -- perhaps a flowchart of theory components and next steps]
-
+    \newpage
 %========================================================================================
 % PART IV: MODULES AND APPLICATIONS (Research Track)
 %========================================================================================
@@ -2823,8 +2953,9 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 
 	\noindent\textbf{Physical meaning:} As a loop contracts or expands, $R^2 \omega = \text{const}$ implies $\omega$ increases if $R$ decreases (spin-up on contraction, like a skater pulling arms in). The swirl clock factor $S_t$ enters because if the vortex spins fast, time slows locally, affecting how one measures $\omega$ in the lab frame. The invariant including $S_t$ basically says the “circulation with relativistic correction” is constant.
 
-    \section{Swirl Coulomb Potential Derivation}
-    The swirl Coulomb potential
+    \section{Swirl Coulomb Potential Derivation}\label{app:swirl_coulomb}
+
+        The swirl Coulomb potential
     \[
         V_{\text{SST}}(r) = -\frac{\Lambda}{\sqrt{r^2+r_c^2}}
     \]
@@ -2839,28 +2970,43 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
     We seek an effective potential $\Phi(r)$ (per unit test mass) that a small probe swirl
     feels due to this string. In a fluid, forces arise from pressure gradients. For circular
     flow about the $z$–axis, Euler’s radial equation (no external body forces) reads
-    \begin{equation}
-        \frac{1}{\rho_{\!f}}\frac{dp}{dr} = -\frac{v_{\theta}^2(r)}{r}\,,
-    \end{equation}
-    with pressure decreasing inward to provide the centripetal force.
 
-    Define a potential per unit mass $\Phi(r)$ by
-    \begin{equation}
-        \frac{d\Phi}{dr} = \frac{1}{\rho_{\!f}}\,\frac{dp}{dr}\,,
-    \end{equation}
-    so that Euler gives
-    \begin{equation}
-        \frac{d\Phi}{dr} = -\frac{v_{\theta}^2(r)}{r}\,.
-    \end{equation}
-    Integrating from $\infty$ to $r$ and choosing $\Phi(\infty)=0$,
-    \begin{equation}
-        \Phi(r) = -\int_{\infty}^{r} \frac{v_{\theta}(r')^2}{r'}\,dr' \,.
-    \end{equation}
 
-    Far from a vortex filament one has
-    \begin{equation}
-        v_{\theta}(r) \simeq \frac{\Gamma}{2\pi r}\,,
-    \end{equation}
+        In a fluid, forces arise from pressure gradients. For circular flow about the z-axis, Euler's radial equation reads:
+
+        \begin{equation}
+            \frac{1}{\rho_{f}}\frac{dp}{dr}=-\frac{v_{\theta}^{2}(r)}{r}
+            \label{eq:B1}
+        \end{equation}
+
+        Define a potential per unit mass $\Phi(r)$ by:
+
+        \begin{equation}
+            \frac{d\Phi}{dr}=\frac{1}{\rho_{f}}\frac{dp}{dr}
+            \label{eq:B2}
+        \end{equation}
+
+        Substituting Euler's equation (Eq. \ref{eq:B1}) into the potential definition (Eq. \ref{eq:B2}) gives:
+
+        \begin{equation}
+            \frac{d\Phi}{dr}=-\frac{v_{\theta}^{2}(r)}{r}
+            \label{eq:B3}
+        \end{equation}
+
+        Integrating from $\infty$ to $r$ and choosing $\Phi(\infty)=0$:
+
+        \begin{equation}
+            \Phi(r)=-\int_{\infty}^{r}\frac{v_{\theta}(r^{\prime})^{2}}{r^{\prime}}dr^{\prime}
+            \label{eq:B4}
+        \end{equation}
+
+        Far from a vortex filament, the velocity behaves as:
+
+        \begin{equation}
+            v_{\theta}(r) \simeq \frac{\Gamma}{2\pi r}
+            \label{eq:B5}  % <--- This label fixes "Reference `eq:B5' undefined"
+        \end{equation}
+
     for a filament of circulation $\Gamma$. A simple smooth model that matches both
     the near-core and far-field behaviour is
     \begin{equation}
@@ -4949,9 +5095,7 @@ SST is distinguished from GR/QFT by:
 % before the global References section.
 %======================================================
 
-    \section*{XXV. TOPOLOGICAL ORIGIN OF THE ELECTRON ANOMALOUS MAGNETIC MOMENT}
-    \addcontentsline{toc}{section}{XXV Topological Origin of the Electron Anomalous Magnetic Moment}
-
+    \section{TOPOLOGICAL ORIGIN OF THE ELECTRON ANOMALOUS MAGNETIC MOMENT}
     \subsection*{A. Topological Expansion Hypothesis}
 
         In the Swirl--String Theory (SST) framework, the electron is modeled not as a point charge but as a closed toroidal
@@ -5022,6 +5166,8 @@ SST is distinguished from GR/QFT by:
 
     \bibliographystyle{unsrt}
     \begin{thebibliography}{99}
+
+        \bibliography{canon_swirl_string_theory}
         \bibitem{ThurstonNotes}
         W.~P.~Thurston,
         \newblock \emph{The Geometry and Topology of Three-Manifolds},
@@ -5120,11 +5266,7 @@ SST is distinguished from GR/QFT by:
         \newblock doi:10.1119/1.10324.
 
 
-        \bibitem{WangEtAl2025UnstableSingularities}
-        Y.~Wang \emph{et al.}, ``Discovery of Unstable Singularities,''
-        \emph{arXiv:2509.14185} (2025).
-        \bibitem{Moffatt1969}
-        H.~K.~Moffatt, ``The degree of knottedness of tangled vortex lines,'' \emph{J. Fluid Mech.} \textbf{35}, 117--129 (1969). doi:10.1017/S0022112069000991.
+
         \bibitem{Batchelor1967}
         G.~K.~Batchelor, \emph{An Introduction to Fluid Dynamics} (Cambridge Univ. Press, 1967).
         \bibitem{Saffman1992}
@@ -5225,5 +5367,171 @@ SST is distinguished from GR/QFT by:
         Princeton Mathematical Series 35,
         Princeton University Press, Princeton, NJ (1997).
 % permalink: https://press.princeton.edu/books/hardcover/9780691084219/three-dimensional-geometry-and-topology-volume-1
+
+        \bibitem{Sornette1998}
+        D.~Sornette,
+        ``Discrete scale invariance and complex dimensions,''
+        \emph{Physics Reports} \textbf{297}, 239--270 (1998).
+        doi:10.1016/S0370-1573(97)00076-8.
+
+        \bibitem{GluzmanSornette2002}
+        S.~Gluzman and D.~Sornette,
+        ``Log-periodic route to fractal functions,''
+        \emph{Physical Review E} \textbf{65}, 036142 (2002).
+        doi:10.1103/PhysRevE.65.036142.
+
+        \bibitem{BaakeGrimm2013}
+        M.~Baake and U.~Grimm,
+        \emph{Aperiodic Order. Volume~1: A Mathematical Invitation},
+        Encyclopedia of Mathematics and its Applications, Vol.~149
+        (Cambridge University Press, Cambridge, 2013).
+        doi:10.1017/CBO9781139025256.
+
+        \bibitem{Moffatt1969}
+        H.~K.~Moffatt,
+        ``The degree of knottedness of tangled vortex lines,''
+        \emph{Journal of Fluid Mechanics} \textbf{35}(1), 117--129 (1969).
+        doi:10.1017/S0022112069000991.
+
+        \bibitem{WangEtAl2025UnstableSingularities}
+        Y.~Wang, M.~Bennani, J.~Martens, S.~Racani\`ere, S.~Blackwell,
+        A.~Matthews, S.~Nikolov, G.~Cao-Labora, D.~S.~Park, M.~Arjovsky,
+        D.~Worrall, C.~Qin, F.~Alet, B.~Kozlovskii, N.~Toma\v{s}ev,
+        A.~Davies, P.~Kohli, T.~Buckmaster, B.~Georgiev, J.~G\'omez-Serrano,
+        R.~Jiang, and C.-Y.~Lai,
+        ``Discovery of Unstable Singularities,''
+        arXiv:2509.14185 [math.AP] (2025).
+        doi:10.48550/arXiv.2509.14185.
+
+
+        \bibitem{AllenFeldman1993}
+        P. B. Allen and J. L. Feldman,
+        ``Thermal conductivity of disordered harmonic solids,''
+        \textit{Physical Review B}
+        \textbf{48}
+        (1993), 12581.
+
+
+        \bibitem{Buchert2000}
+        Buchert, Thomas,
+        ``On average properties of inhomogeneous fluids in general relativity: Dust cosmologies,''
+        \textit{Gen. Relativ. Gravit.}
+        \textbf{32}
+        (2000), 105--125.
+        doi: 10.1023/A:1001800617177
+
+        \bibitem{Buchert2001}
+        Buchert, Thomas,
+        ``On average properties of inhomogeneous cosmologies,''
+        \textit{Gen. Relativ. Gravit.}
+        \textbf{33}
+        (2001), 1381--1405.
+        doi: 10.1023/A:1012061725841
+
+
+        \bibitem{Englert1996}
+        Englert, B.-G.,
+        ``Fringe Visibility and Which-Way Information: An Inequality,''
+        \textit{Phys. Rev. Lett.}
+        \textbf{77}
+        (1996), 2154--2157.
+        doi: 10.1103/PhysRevLett.77.2154
+
+        \bibitem{Goldau2025_STC}
+        Pieter Goldau,
+        ``The Simplicity Codex''
+        (2025).
+        Sixteen-stage parameter-free ontology, cited as STC
+        doi: 10.5281/zenodo.17068210
+
+        \bibitem{Hardy1963}
+        R. J. Hardy,
+        ``Energy-Flux Operator for a Lattice,''
+        \textit{Physical Review}
+        \textbf{132}
+        (1963), 168.
+
+        \bibitem{Iskandarani2025Canon034}
+        Iskandarani, Omar,
+        ``Swirl-String Theory (SST) Canon v0.3.4: Core Postulates, Constants, and Boxed Master Equations''
+        (Zenodo, 2025).
+        Single source of truth for SST symbols, constants, and canonical equations; required citation for dependent works.
+        doi: 10.5281/zenodo.17014358
+
+        \bibitem{Iskandarani2025Hydrogen}
+        Iskandarani, Omar,
+        ``Long-Distance Swirl Gravity from Chiral Swirling Knots with Central Holes''
+        (Zenodo, 2025).
+        doi: 10.5281/zenodo.17155855
+
+        \bibitem{Iskandarani2025_Lagrangian}
+        Iskandarani, Omar,
+        ``Swirl-String Theory (SST) Lagrangian: Emergent Relativistic EFT with Preferred Foliation''
+        (Zenodo, 2025).
+        doi: 10.5281/zenodo.16956665
+
+        \bibitem{Jackson1999}
+        John David Jackson,
+        \textit{Classical Electrodynamics}
+        (3rd ed.,
+        Wiley, 1999).
+
+        \bibitem{Kelvin1869}
+        W. Thomson (Lord Kelvin),
+        ``On vortex motion,''
+        \textit{Transactions of the Royal Society of Edinburgh}
+        \textbf{25}
+        (1869), 217--260.
+
+        \bibitem{KhatiwadaQian2025}
+        Khatiwada, P. and Qian, X.-F.,
+        ``Wave-particle duality ellipse and application in quantum imaging with undetected photons,''
+        \textit{Phys. Rev. Research}
+        \textbf{7}
+        (2025), 033033.
+        doi: 10.1103/PhysRevResearch.7.033033
+
+        \bibitem{PDG2024}
+        Particle Data Group,
+        ``Review of Particle Physics''
+        (2024).
+
+        \bibitem{Peierls1929}
+        R. Peierls,
+        ``Zur Theorie der spezifischen Wärme,''
+        \textit{Annalen der Physik}
+        \textbf{395}
+        (1929), 1055.
+
+        \bibitem{PeskinSchroeder1995}
+        Michael E. Peskin and Daniel V. Schroeder,
+        \textit{An Introduction to Quantum Field Theory}
+        (Westview Press, 1995).
+
+        \bibitem{Simoncelli2019Unified}
+        M. Simoncelli et al.,
+        ``Unified theory of thermal transport in crystals and disordered solids,''
+        \textit{Nature Physics}
+        \textbf{18}
+        (2022), 1180.
+
+        \bibitem{Weinberg1967}
+        Weinberg, Steven,
+        ``A Model of Leptons,''
+        \textit{Physical Review Letters}
+        \textbf{19}
+        (1967), 1264--1266.
+        doi: 10.1103/PhysRevLett.19.1264
+
+        \bibitem{Zurek2003}
+        Zurek, W. H.,
+        ``Decoherence, einselection, and the quantum origins of the classical,''
+        \textit{Rev. Mod. Phys.}
+        \textbf{75}
+        (2003), 715--775.
+        doi: 10.1103/RevModPhys.75.715
+
+
     \end{thebibliography}
+
 \end{document}
