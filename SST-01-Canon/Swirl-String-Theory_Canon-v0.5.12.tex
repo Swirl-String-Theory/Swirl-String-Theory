@@ -2042,6 +2042,347 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
             \item the role of boundary symmetries (e.g., M\"obius invariance in $\mathbb{H}^2$) as two-dimensional analogues of conformal and gauge symmetries in the full three-dimensional swirl-string background.
         \end{enumerate}
 
+
+        %========================================================
+% Swirl–EM Transduction Mechanism (Canon §XV)
+%========================================================
+
+%--- SST macro prelude (local to this file/section) ------
+        \newcommand{\vswirl}{\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}}
+        \newcommand{\rhoF}{\rho_{\!f}}
+        \newcommand{\rhoE}{\rho_{\!E}}
+        \newcommand{\rhoM}{\rho_{\!m}}
+        \newcommand{\rc}{r_c}
+
+%========================================================
+    \subsection{Swirl–EM Transduction Mechanism and the Echo Delay}
+    \label{sec:swirl_em_transduction}
+
+    In Swirl–String Theory (SST), the Unruh response of accelerated atoms occurs in a
+    two-vacuum environment: a hydrodynamic swirl sector with characteristic speed
+    \(\lVert\vswirl\rVert \ll c\) and density \(\rhoF\), and the usual electromagnetic
+    (EM) sector with propagation speed \(c\).\cite{Unruh1976,Crispino2008,Barcelo2011}
+    Atoms can radiate into both sectors, but standard cavities are only directly
+    sensitive to the EM component. The observed signal is therefore an
+    \emph{echo} of a much stronger but mostly invisible primary burst in the swirl
+    sector.
+
+    This subsection derives the coupled rate equations and the effective
+    Swirl–EM transduction coefficient \(\kappa_{se}\) required to connect a fast
+    (\(\sim 0.1\,\mathrm{ns}\)) primary event to a slow (\(\sim 30\,\mathrm{ns}\))
+    prethermalization signal in high-\(Q\) cavities.
+
+%--------------------------------------------------------
+    \subsubsection{Swirl–EM bridge from the modified Faraday law}
+        \label{subsec:swirl_em_bridge}
+
+        Canon §XV introduces the Swirl–EM bridge as a modification of Faraday’s law,
+        with a swirl-density source term
+        \begin{equation}
+            \nabla \times \mathbf{E}
+            =
+            -\frac{\partial \mathbf{B}}{\partial t}
+            - \mathbf{b},
+            \qquad
+            \mathbf{b}
+            =
+            \mathcal{G}\,\frac{\partial \rho_{\!\sigma}}{\partial t}\,\hat{\mathbf{n}}.
+            \label{eq:modified_faraday_swirl}
+        \end{equation}
+        Here \(\rho_{\!\sigma}\) is the areal density of swirl strings (swirl‐texture
+        density) intersecting an effective surface element, \(\hat{\mathbf{n}}\) is the
+        local surface normal, and \(\mathcal{G}\) is a dimensional coupling constant
+        related to the flux quantum \(h/2e\). A rapid change
+        \(\partial_t \rho_{\!\sigma}\) during a primary swirl burst produces an
+        effective electromotive force (EMF) that pumps the EM normal modes of the
+        cavity.
+
+        During the primary event (on timescales of order \(0.1\,\mathrm{ns}\)) the
+        accelerated atoms generate a \emph{swirl wake}, i.e.\ a localized oscillation
+        of \(\rho_{\!\sigma}(t)\), which drives the cavity via
+        \eqref{eq:modified_faraday_swirl}. For a cavity mode with field profile
+        \(\mathbf{E}_m(\mathbf{x})\), the effective drive amplitude is
+        \begin{equation}
+            \mathcal{E}_m(t)
+            \;\propto\;
+            \int_{\Sigma_m} \mathbf{b}(\mathbf{x},t)\cdot \mathbf{E}_m^*(\mathbf{x})\, dS
+            \;\propto\;
+            \mathcal{G} \,\dot{\rho}_{\!\sigma}(t),
+            \label{eq:mode_drive_from_swirl}
+        \end{equation}
+        where \(\Sigma_m\) is an effective coupling surface and the last proportionality
+        absorbs geometry into a mode-dependent form factor.
+
+%--------------------------------------------------------
+    \subsubsection{Three-level rate model and coupled equations}
+        \label{subsec:three_level_model}
+
+        We coarse-grain the dynamics into three populations:
+        \begin{enumerate}
+            \item Atomic excitations \(N_e(t)\) (accelerated atoms).
+            \item Swirl excitations \(n_S(t)\) (swirl wake or ``swirlons'').
+            \item Cavity photons \(n_{\mathrm{EM}}(t)\).
+        \end{enumerate}
+        The minimal rate model reads
+        \begin{subequations}
+            \label{eq:rate_system_full}
+            \begin{align}
+                \frac{d N_e}{dt}
+                &=
+                -(\Gamma_S + \Gamma_{\mathrm{EM}})\,N_e,
+                \label{eq:dNe_dt}
+                \\
+                \frac{d n_S}{dt}
+                &=
+                \Gamma_S N_e
+                - \gamma_{\mathrm{diss}}\, n_S
+                - \kappa_{se}\, n_S,
+                \label{eq:dnS_dt}
+                \\
+                \frac{d n_{\mathrm{EM}}}{dt}
+                &=
+                \Gamma_{\mathrm{EM}} N_e
+                + \kappa_{se}\, n_S
+                - \gamma_{\mathrm{cav}}\, n_{\mathrm{EM}}.
+                \label{eq:dnEM_dt}
+            \end{align}
+        \end{subequations}
+        Here:
+        \begin{itemize}
+            \item \(\Gamma_S\) is the spontaneous emission rate into the swirl channel.
+            Canonically we set \(\Gamma_S \simeq \eta \,\Gamma_{\mathrm{GR}}\),
+            with \(\eta \approx 274\) obtained from the ratio of characteristic
+            propagation speeds or densities in the two sectors.
+            \item \(\Gamma_{\mathrm{EM}}\) is the standard EM emission rate, of order
+            \(\Gamma_{\mathrm{GR}}\) for GR-based Unruh predictions.
+            \item \(\kappa_{se}\) is the Swirl–EM transduction coefficient: a rate for
+            conversion of swirl excitations into photons.
+            \item \(\gamma_{\mathrm{diss}}\) parameterizes non-radiative damping of
+            swirlons in the cavity walls (conversion to heat).
+            \item \(\gamma_{\mathrm{cav}}\) is the cavity decay rate (photon leakage and
+            detection).
+        \end{itemize}
+
+        On short timescales, \(\Gamma_S \gg \Gamma_{\mathrm{EM}}\), so the atoms
+        primarily dump their energy into the swirl sector:
+        \begin{equation}
+            N_e(t)
+            \simeq
+            N_0\, e^{-(\Gamma_S + \Gamma_{\mathrm{EM}}) t},
+            \qquad
+            t \ll \Gamma_{\mathrm{EM}}^{-1},
+        \end{equation}
+        with \(N_0\) the initial excited population. For the echo problem we may
+        approximate \(N_e(t)\) as dropping sharply to zero and treat
+        \(n_S(t)\) as an initial condition problem.
+
+%--------------------------------------------------------
+    \subsubsection{Echo solution for a decaying swirl pump}
+        \label{subsec:echo_solution}
+
+        Assume that after the primary burst the swirl population has amplitude
+        \(n_S(0) = N_S\) and decays exponentially:
+        \begin{equation}
+            n_S(t)
+            =
+            N_S \, e^{-\lambda t},
+            \qquad
+            \lambda \equiv \gamma_{\mathrm{diss}} + \kappa_{se}.
+            \label{eq:nS_decay}
+        \end{equation}
+        Neglecting the direct EM term \(\Gamma_{\mathrm{EM}} N_e\) during the
+        prethermalization regime, Eq.~\eqref{eq:dnEM_dt} reduces to
+        \begin{equation}
+            \frac{d n_{\mathrm{EM}}}{dt}
+            =
+            \kappa_{se} n_S(t)
+            - \gamma_{\mathrm{cav}}\,n_{\mathrm{EM}}(t),
+            \qquad
+            n_{\mathrm{EM}}(0) = 0.
+            \label{eq:dnEM_dt_reduced}
+        \end{equation}
+        Substituting \eqref{eq:nS_decay} and solving the linear ODE gives
+        \begin{align}
+            n_{\mathrm{EM}}(t)
+            &=
+            \kappa_{se} N_S
+            \int_0^t e^{-\lambda \tau} e^{-\gamma_{\mathrm{cav}} (t-\tau)}\, d\tau
+            \nonumber\\[4pt]
+            &=
+            \frac{\kappa_{se} N_S}{\gamma_{\mathrm{cav}} - \lambda}
+            \left(
+                e^{-\lambda t} - e^{-\gamma_{\mathrm{cav}} t}
+            \right),
+            \qquad
+            \gamma_{\mathrm{cav}} \neq \lambda.
+            \label{eq:nEM_solution}
+        \end{align}
+        This is the canonical \emph{echo} profile:
+        \begin{itemize}
+            \item The rise time is controlled by the slower of
+            \(\lambda^{-1}\) and \(\gamma_{\mathrm{cav}}^{-1}\).
+            \item The peak of \(n_{\mathrm{EM}}(t)\) is \emph{delayed} relative to the
+            primary atomic acceleration event, even if the primary
+            swirl burst is nearly instantaneous.
+            \item The amplitude scales linearly with \(\kappa_{se}\) and with the
+            initial swirl energy \(N_S\).
+        \end{itemize}
+
+        An effective \emph{transduction efficiency} is naturally defined as the
+        fraction of the swirl energy that ends up in photons rather than heat:
+        \begin{equation}
+            \xi
+            \equiv
+            \frac{\text{rate into EM}}{\text{total swirl loss rate}}
+            =
+            \frac{\kappa_{se}}{\gamma_{\mathrm{diss}} + \kappa_{se}}
+            =
+            \frac{\kappa_{se}}{\lambda}.
+            \label{eq:xi_definition}
+        \end{equation}
+        In the experimentally relevant regime where the cavity is a poor
+        swirl–to–EM transducer (\(\kappa_{se} \ll \gamma_{\mathrm{diss}}\)), one has
+        \(\xi \ll 1\) and almost all of the primary Unruh-like energy is lost as
+        non-radiative heat in the boundaries.
+
+%--------------------------------------------------------
+    \subsubsection{Parametrization of \texorpdfstring{\(\kappa_{se}\)}{kappa\_se} via impedance mismatch}
+        \label{subsec:kappa_se_impedance}
+
+        To relate \(\kappa_{se}\) to material properties, we introduce a swirl
+        impedance
+        \begin{equation}
+            Z_S
+            \equiv
+            \rhoF \,\lVert\vswirl\rVert,
+            \label{eq:swirl_impedance}
+        \end{equation}
+        in analogy with acoustic impedance \(Z = \rho c\).\cite{KinslerAcoustics}
+        Using the Canon constants \(\rhoF \approx 7\times 10^{-7}\,\mathrm{kg/m^3}\)
+        and \(\lVert\vswirl\rVert \approx 1.1\times 10^{6}\,\mathrm{m/s}\), one finds
+        \begin{equation}
+            Z_S \approx 0.8\,\mathrm{Rayl},
+            \label{eq:Zs_numeric}
+        \end{equation}
+        a very low impedance.
+
+        Typical rigid cavity walls (metals, glass) have acoustic impedances of order
+        \begin{equation}
+            Z_{\mathrm{bound}}
+            \sim 10^{7}\,\mathrm{Rayl},
+        \end{equation}
+        so there is a severe mismatch \(Z_{\mathrm{bound}} \gg Z_S\). In standard
+        acoustics, the intensity transmission coefficient for a plane wave normally
+        incident on a boundary between media with impedances \(Z_1, Z_2\) is
+        \begin{equation}
+            T_{1\to 2}
+            =
+            \frac{4 Z_1 Z_2}{(Z_1 + Z_2)^2}
+            \simeq
+            \frac{4 Z_1}{Z_2},
+            \qquad Z_2 \gg Z_1.
+            \label{eq:acoustic_transmission}
+        \end{equation}
+        Identifying \(Z_1 \to Z_S\) and \(Z_2 \to Z_{\mathrm{bound}}\), we obtain
+        \begin{equation}
+            T_{S\to \mathrm{bound}}
+            \simeq
+            \frac{4 Z_S}{Z_{\mathrm{bound}}}
+            \sim 10^{-7},
+            \label{eq:swirl_transmission_numeric}
+        \end{equation}
+        i.e.\ only one part in \(10^{7}\) of the swirl intensity is transmitted into
+        the boundary per interaction.
+
+        To convert this into a \emph{rate} \(\kappa_{se}\) with dimensions of
+        \(\mathrm{s}^{-1}\), we introduce a geometric scattering rate \(\kappa_0\),
+        which encodes the encounter frequency of the swirl wake with the boundaries
+        (e.g.\ \(\kappa_0 \sim \lVert\vswirl\rVert/L_{\mathrm{char}}\) for a cavity of
+        characteristic size \(L_{\mathrm{char}}\)). We then define
+        \begin{equation}
+            \kappa_{se}
+            =
+            \kappa_0\, T_{S\to \mathrm{bound}}
+            \simeq
+            \kappa_0\,\frac{4 Z_S}{Z_{\mathrm{bound}}},
+            \label{eq:kappa_se_definition}
+        \end{equation}
+        so that all the material and geometry dependence is explicit. For typical
+        parameters, Eq.~\eqref{eq:kappa_se_definition} implies that
+        \(\kappa_{se} \ll \gamma_{\mathrm{diss}}\), and therefore
+        \(\xi \ll 1\) in Eq.~\eqref{eq:xi_definition}. This quantitatively explains
+        why the primary swirl superradiance burst is effectively invisible to standard
+        EM cavities, and why the observed EM echo matches the much smaller GR/QFT
+        energy scale.
+
+%--------------------------------------------------------
+    \subsubsection{Corollary: Swirl–blindness of standard EM cavities}
+        \label{subsec:swirl_blindness_corollary}
+
+        \paragraph*{Corollary 15.3 (Swirl–blindness condition).}
+            \emph{
+                In electromagnetic cavities where the impedance mismatch between the swirl
+                medium and the physical boundaries is large,
+                \(Z_{\mathrm{bound}} \gg Z_S = \rhoF \lVert\vswirl\rVert\), the primary
+                swirl superradiance burst (\(t \sim 0.1\,\mathrm{ns}\)) is almost completely
+                non-radiatively dissipated in the walls. The observable electromagnetic signal
+                is a secondary transduction echo with the following properties:
+            }
+            \begin{enumerate}
+                \item \emph{Delay:} The peak of \(n_{\mathrm{EM}}(t)\) is controlled by
+                the slower of the swirl decay rate \(\lambda^{-1}\) and the cavity
+                ring-up time \(\gamma_{\mathrm{cav}}^{-1}\), rather than by the
+                intrinsic timescale of the primary Unruh event.
+                \item \emph{Amplitude:} The EM intensity is suppressed by the small
+                transduction efficiency \(\xi\) in Eq.~\eqref{eq:xi_definition}.
+                In the impedance-dominated regime one finds
+                \(\xi \propto 4 Z_S/Z_{\mathrm{bound}} \sim 10^{-7}\), implying that
+                \(\mathcal{O}(10^{-7})\) of the primary swirl energy appears in the
+                EM channel.
+            \end{enumerate}
+            \emph{
+                Experimental access to the primary burst therefore requires
+                impedance-matched hydrodynamic detectors (e.g.\ superfluids or
+                Bose–Einstein condensates), where \(Z_{\mathrm{det}}\) can be tuned to
+                approach \(Z_S\). In such detectors SST predicts a prompt, high-contrast
+                signal at the swirl timescale, in addition to the delayed EM echo.
+            }
+
+%--------------------------------------------------------
+        \paragraph*{SST-specific predictions beyond GR/QFT.}
+
+            The transduction model above leads to several falsifiable predictions that
+            differ sharply from pure GR/QFT treatments of the Unruh effect:
+            \begin{enumerate}
+                \item \textbf{Two-timescale structure.}
+                SST predicts a fast, non-EM primary burst at the swirl sector
+                timescale (\(\sim 0.1\,\mathrm{ns}\)) plus a delayed EM echo
+                governed by \(\lambda^{-1}\) and \(\gamma_{\mathrm{cav}}^{-1}\).
+                GR/QFT in a single-vacuum picture predicts only the slow EM response.
+                \item \textbf{Impedance-controlled amplitude.}
+                The integrated EM yield scales with the acoustic-style mismatch
+                factor \(4 Z_S/Z_{\mathrm{bound}}\). Varying boundary materials
+                (or adding impedance-matching layers) should systematically change
+                the EM echo amplitude at fixed acceleration.
+                \item \textbf{Hydrodynamic detector enhancement.}
+                Replacing rigid mirrors by a tuned hydrodynamic detector with
+                \(Z_{\mathrm{det}} \approx Z_S\) should dramatically enhance the
+                primary signal and collapse the delay between atomic acceleration
+                and detected radiation.
+                \item \textbf{Geometry dependence via \(\kappa_0\).}
+                Changing the cavity size or introducing swirl-transparent channels
+                modifies \(\kappa_0\) and thus the relative weights of the primary
+                and echo signals in a way that cannot be captured by GR/QFT alone.
+            \end{enumerate}
+
+        \paragraph*{Analogy (for intuition).}
+            The two-vacuum system behaves like a drum being struck inside a thick,
+            rigid box. The drumhead (swirl sector) vibrates violently and quickly, but
+            the box walls are so stiff and impedance-mismatched that almost none of that
+            motion turns into audible sound (EM photons). Instead, the box heats up
+            (\(\gamma_{\mathrm{diss}}\)), and only a tiny, delayed \emph{rumble} escapes
+            after the vibrations slowly leak into the air. SST claims that most Unruh
+            energy lives in the drum; standard GR/QFT only sees the faint rumble.
 %========================================================================================
 % SWIRL PRESSURE LAW (Euler Corollary, Canonical)
 %========================================================================================
@@ -2061,7 +2402,7 @@ This recursion drives cosmic structure formation, yielding a fractal universe of
 
 
 
-    \section{Canonical Closure for the Gamma Coil (S40, $+11,-9$): Helicity and Lift Routes}
+    \section{Canonical Closure for the SawShaped Gamma Coil (S40, $+11,-9$): Helicity and Lift Routes}
     \label{sec:GammaCoilClosure}
 
     \paragraph{Summary.}
