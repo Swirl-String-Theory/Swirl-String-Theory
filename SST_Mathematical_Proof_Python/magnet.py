@@ -9,7 +9,7 @@ import plotly.graph_objects as go
 # ----------------------------
 # Geometry & Physics Helpers
 # ----------------------------
-def generate_rodin_starship(R=1.0, r=0.9, num_turns=10, num_points=2000):
+def generate_rodin_coil(R=1.0, r=0.9, num_turns=10, num_points=2000):
     theta = np.linspace(0, num_turns * 2 * np.pi, num_points)
     phi = (2 + 2/5) * theta
     x = (R + r * np.cos(phi)) * np.cos(theta)
@@ -120,7 +120,7 @@ with st.sidebar:
 # Geometry
 bottom_pos, bottom_ori = generate_dipole_ring(ring_radius, num_magnets, z_offset=-0.75, invert=False)
 top_pos, top_ori = generate_dipole_ring(ring_radius, num_magnets, z_offset=0.75, invert=True)
-rx, ry, rz = generate_rodin_starship(R=rodin_major, r=rodin_minor, num_turns=num_turns, num_points=2000)
+rx, ry, rz = generate_rodin_coil(R=rodin_major, r=rodin_minor, num_turns=num_turns, num_points=2000)
 rodin_wire_points = np.stack([rx, ry, rz], axis=-1)
 
 # Grid
