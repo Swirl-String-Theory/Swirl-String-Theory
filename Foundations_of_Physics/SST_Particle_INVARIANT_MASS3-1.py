@@ -110,6 +110,9 @@ Baryon Sector (SST):
 Proton/Neutron derived via 'exact_closure' of quark geometric factors (s_u, s_d)
 scaling the core Master Equation.
 """
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 from __future__ import annotations
 
 import math
@@ -122,7 +125,7 @@ import re
 # ──────────────────────────────────────────────────────────────────────────────
 # Constants (Canon-aligned)
 # ──────────────────────────────────────────────────────────────────────────────
-phi: float = math.exp(math.asinh(0.5)) # Golden (hyperbolic) = = (1 + math.sqrt(5)) / 2
+phi: float = (1 + math.sqrt(5)) / 2
 alpha_fs: float = 7.2973525643e-3
 c: float = 299_792_458.0
 v_swirl: float = 1.093_845_63e6
@@ -143,18 +146,76 @@ M_n_actual: float = 1.674_927_498_04e-27   # Neutron
 # ──────────────────────────────────────────────────────────────────────────────
 @dataclass
 class Config:
+    # s_u = Vol_H(5_2), s_d = Vol_H(6_1) (canonical up/down)
     mode: str = "exact_closure"
     kappa_R: float = 2.0
-    fixed_su: float = 2.8281  # s_u = Vol_H(5_2),  (canonical up quark)
-    fixed_sd: float = 3.1639  # s_d = Vol_H(6_1),  (canonical down quark)
+    fixed_su: float = 2.8281
+    fixed_sd: float = 3.1639
 
+class NuclearBinding:
+    """
+    Models the 'Mass Defect' arising from the constructive interference
+    of swirl fields in a composite nucleus.
+
+    Uses the Semi-Empirical Mass Formula (SEMF) coefficients as
+    phenomenological proxies for SST interaction terms:
+    - Volume Term (a_v): Bulk swirl coherence
+    - Surface Term (a_s): Surface tension deficit
+    - Coulomb Term (a_c): Swirl-pressure repulsion
+    - Symmetry Term (a_a): Isospin/Chirality balance
+    - Pairing Term (a_p): Topological locking efficiency
+    """
+    # Coefficients in MeV (Wapstra/Weizsäcker)
+    a_v = 15.75   # Volume
+    a_s = 17.8    # Surface
+    a_c = 0.711   # Coulomb
+    a_a = 23.7    # Asymmetry
+    a_p = 11.18   # Pairing
+
+    MeV_to_kg = 1.78266192e-30  # Conversion factor (E/c^2)
+
+    @classmethod
+    def get_mass_defect_kg(cls, Z: int, N: int) -> float:
+        """Calculates the mass equivalent of the binding energy to be SUBTRACTED."""
+        if Z <= 1 and N <= 0: return 0.0 # Single proton has no binding defect
+
+        A = Z + N
+
+        # 1. Volume Term (Bulk Coherence)
+        E_v = cls.a_v * A
+
+        # 2. Surface Term (Surface Tension Penalty)
+        E_s = cls.a_s * (A**(2/3))
+
+        # 3. Coulomb Term (Repulsion)
+        E_c = cls.a_c * (Z * (Z - 1)) / (A**(1/3))
+
+        # 4. Asymmetry Term (Chirality Imbalance)
+        E_a = cls.a_a * ((N - Z)**2) / A
+
+        # 5. Pairing Term (Topological Locking)
+        # delta is +1 for even-even, -1 for odd-odd, 0 for odd-A
+        if A % 2 != 0:
+            delta = 0
+        elif Z % 2 == 0:
+            delta = 1  # Even-Even (Most stable)
+        else:
+            delta = -1 # Odd-Odd (Least stable)
+
+        E_p = cls.a_p * delta / (A**(0.5))
+
+        # Total Binding Energy (MeV)
+        E_binding_MeV = E_v - E_s - E_c - E_a + E_p
+
+        # Convert to Mass Defect (kg)
+        # Note: We subtract this from the sum of parts.
+        return E_binding_MeV * cls.MeV_to_kg
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Data Structures for Topology
 # ──────────────────────────────────────────────────────────────────────────────
 @dataclass
 class KnotTopology:
-    """Stores the topological and geometric invariants for a particle."""
     name: str
     b: int  # Braid Index
     g: int  # Seifert Genus
@@ -166,10 +227,6 @@ class KnotTopology:
 # Invariant Master Formula
 # ──────────────────────────────────────────────────────────────────────────────
 def master_mass_invariant(topo: KnotTopology) -> float:
-    """
-    M(T) = (4/α) * b⁻³/² * φ⁻ᵍ * n⁻¹/φ * ( (1/2)ρ v² ) * (π r_c³ L_tot) / c²
-    Returns mass in kg.
-    """
     u = 0.5 * rho_core * v_swirl * v_swirl
     amplification = 4.0 / alpha_fs
     braid_suppression = topo.b ** -1.5
@@ -190,9 +247,7 @@ def master_mass_invariant(topo: KnotTopology) -> float:
 # Calibration helpers
 # ──────────────────────────────────────────────────────────────────────────────
 def solve_for_L_tot(mass_actual: float, topo_base: KnotTopology) -> float:
-    """
-    Generic function to solve for L_tot given a known mass and base topology.
-    """
+    """Generic function to solve for L_tot given a known mass and base topology."""
     u = 0.5 * rho_core * v_swirl ** 2
     prefactor = (
             (4.0 / alpha_fs) *
@@ -207,9 +262,6 @@ def solve_for_L_tot(mass_actual: float, topo_base: KnotTopology) -> float:
 
 
 def baryon_prefactor(b: int, g: int, n: int) -> float:
-    """
-    M(T) = (4/α) * b⁻³/² * φ⁻ᵍ * n⁻¹/φ * ( (1/2)ρ v² ) * (π r_c³ L_tot) / c²
-    """
     u = 0.5 * rho_core * v_swirl * v_swirl
     return (4.0/alpha_fs) * (b ** -1.5) * (phi ** -g) * (n ** (-1.0/phi)) * (u * math.pi * (r_c**3)) / (c*c)
 
@@ -226,14 +278,8 @@ def fit_quark_geom_factors_for_baryons(b: int, g: int, n: int, scaling_factor: f
 # Assembly helpers
 # ──────────────────────────────────────────────────────────────────────────────
 def get_particle_topologies(cfg: Config) -> Dict:
-    """
-    Lepton Generation Calibration
-    Defines the canonical topologies for fundamental particles.
-    Electron: Calibrated using (b=2, g=1, n=1), which are the invariants of the Trefoil Knot (3_1),
-    Muon: Assigned the 5_1 knot topology. We will calculate its L_tot.
-    """
-
-    electron_base = KnotTopology(name="Electron_base (3_1)", b=2, g=1, n=1, L_tot=0.0)
+    # Lepton Generation Calibration
+    electron_base = KnotTopology(name="Electron_base", b=2, g=1, n=1, L_tot=0.0)
     muon_base = KnotTopology(name="Muon_base (5_1)", b=5, g=2, n=1, L_tot=0.0)
     tau_base = KnotTopology(name="Tau_base (7_1)", b=7, g=3, n=1, L_tot=0.0)
 
@@ -260,7 +306,7 @@ def get_particle_topologies(cfg: Config) -> Dict:
     l_tot_n = lam_b * (1.0 * s_u + 2.0 * s_d) * scaling_factor
 
     topologies = {
-        "electron": KnotTopology(name="Electron (3_1)", b=2, g=1, n=1, L_tot=l_tot_e),
+        "electron": KnotTopology(name="Electron", b=2, g=1, n=1, L_tot=l_tot_e),
         "muon":     KnotTopology(name="Muon (5_1)", b=5, g=2, n=1, L_tot=l_tot_mu),
         "tau":      KnotTopology(name="Tau (7_1)", b=7, g=3, n=1, L_tot=l_tot_tau),
         "proton":   KnotTopology(name="Proton",  b=b_bary, g=g_bary, n=n_bary, L_tot=l_tot_p),
@@ -271,6 +317,7 @@ def get_particle_topologies(cfg: Config) -> Dict:
         }
     }
     return topologies
+
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -320,7 +367,7 @@ MOLECULES: Dict[str, float] = {
     "CH4": 16.04, "C6H12O6": 180.16, "NH3": 17.0305, "HCl": 36.46,
     "C2H2": 26.04, "NaCl": 58.44, "CaCO3": 100.0869, "C2H6": 30.07,
     "C2H4": 28.05, "C8H18": 114.23, "C6H6": 78.11, "CH3COOH": 60.052,
-    "H2SO4": 98.079, "C12H22O11": 342.30, "Caffeine": 194.19
+    "H2SO4": 98.079, "C12H22O11": 342.30, "C8H10N4O2" : 194.19
 }
 
 
@@ -340,39 +387,55 @@ def _parse_formula(formula: str) -> Dict[str, int]:
     return counts
 
 def compute_tables(topologies: Dict, cfg: Config) -> pd.DataFrame:
+    # 1. Base Masses (Sum of Parts)
     M_e_pred = master_mass_invariant(topologies["electron"])
-    M_mu_pred = master_mass_invariant(topologies["muon"])
     M_p_pred = master_mass_invariant(topologies["proton"])
     M_n_pred = master_mass_invariant(topologies["neutron"])
 
     rows: List[Tuple[str, float, float, str]] = []
-    # Elementary rows
+
+    # Elementary particles (No binding energy)
     rows.append(("Electron", M_e_actual, M_e_pred, emoji_marker(100.0*(M_e_pred-M_e_actual)/M_e_actual)))
-    rows.append(("Muon", M_mu_pred, M_mu_actual, emoji_marker(100.0*(M_mu_pred-M_mu_actual)/M_mu_actual)))
     rows.append(("Proton",   M_p_actual, M_p_pred, emoji_marker(100.0*(M_p_pred-M_p_actual)/M_p_actual)))
     rows.append(("Neutron",  M_n_actual, M_n_pred, emoji_marker(100.0*(M_n_pred-M_n_actual)/M_n_actual)))
 
-    # Elements
+    # Elements (With Nuclear Binding Correction)
     elements = _elements_from_table()
     for name, (pZ, nN, eE, gmol) in elements.items():
         actual_kg = gmol * 1e-3 / avogadro
-        predicted = pZ * M_p_pred + nN * M_n_pred + eE * M_e_pred
+
+        # Sum of parts
+        mass_sum = pZ * M_p_pred + nN * M_n_pred + eE * M_e_pred
+
+        # SUBTRACT Binding Energy (The "SST Efficiency" Gain)
+        mass_defect = NuclearBinding.get_mass_defect_kg(pZ, nN)
+        predicted = mass_sum - mass_defect
+
         rel_error = 100.0 * (predicted - actual_kg) / actual_kg
         rows.append((name, actual_kg, predicted, emoji_marker(rel_error)))
 
-    # Molecules
+    # Molecules (Sum of Corrected Atoms)
+    # Note: Chemical binding energy (~eV) is negligible compared to Nuclear (~MeV)
+    # so we just sum the corrected atomic masses.
     for mol, gmol in MOLECULES.items():
         counts = _parse_formula(mol)
-        pred = 0.0
+        pred_mol = 0.0
+
         for sym, k in counts.items():
             pZ, nN, eE, _ = elements[sym]
-            pred += k * (pZ * M_p_pred + nN * M_n_pred + eE * M_e_pred)
+
+            # Re-calculate atomic mass with binding for each constituent
+            atom_sum = pZ * M_p_pred + nN * M_n_pred + eE * M_e_pred
+            atom_defect = NuclearBinding.get_mass_defect_kg(pZ, nN)
+            atom_mass_corrected = atom_sum - atom_defect
+
+            pred_mol += k * atom_mass_corrected
+
         actual_kg = gmol * 1e-3 / avogadro
-        rel_error = 100.0 * (pred - actual_kg) / actual_kg
-        rows.append((mol, actual_kg, pred, emoji_marker(rel_error)))
+        rel_error = 100.0 * (pred_mol - actual_kg) / actual_kg
+        rows.append((mol, actual_kg, pred_mol, emoji_marker(rel_error)))
 
     return pd.DataFrame(rows, columns=["Object","Actual Mass (kg)","Predicted Mass (kg)","% Error"])
-
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Main Execution
@@ -410,12 +473,11 @@ def main(mode: str = "exact_closure") -> None:
     ltot_mu = topologies["muon"].L_tot
     ltot_tau = topologies["tau"].L_tot
     print("\n--- Ropelength Analysis ---")
-    print(f"Calibrated L_tot for Electron (3_1): {ltot_e:.6f}")
+    print(f"Calibrated L_tot for Electron: {ltot_e:.6f}")
     print(f"Required L_tot for Muon (5_1):  {ltot_mu:.6f}")
     print(f"Required L_tot for Tau (7_1):   {ltot_tau:.6f}")
     print(f"Ratio (L_mu / L_e):   {ltot_mu / ltot_e:.4f}")
     print(f"Ratio (L_tau / L_mu): {ltot_tau / ltot_mu:.4f}")
-    print(f"Ratio (L_tau / L_e): {ltot_tau / ltot_e:.4f}")
 
     out_csv = f"SST_Invariant_Mass_Results_{mode}.csv"
     df.to_csv(out_csv, index=False)

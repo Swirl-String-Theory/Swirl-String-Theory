@@ -1,10 +1,8 @@
 
 %========================================================================================
-% PART IV: MODULES AND APPLICATIONS (Research Track)
+% PART IV: APPENDIX MODULES AND APPLICATIONS (Research Track)
 %========================================================================================
 \part{Modules and Applications}
-
-
     \section{Derivation of Chronos–Kelvin Invariant (Axiom 1)}
         Kelvin’s theorem states for an inviscid, barotropic fluid, the circulation $\Gamma$ around any material loop moving with the fluid remains constant:
         \[
@@ -372,22 +370,6 @@
 
 
 
-
-
-
-% =============================================================
-% === Appendix: 2×2 near-degenerate block derivation ===
-% =============================================================
-    \section{ 2\texttimes 2 near-degenerate solution (sketch)}
-        Write $N=N^{(0)}+N^{(1)}$, steady state, and restrict to $\{s,s'\}$. With source $S\equiv -\tfrac12 V_x\partial_x N^{(0)}$ and damping $\Gamma$, the linearized equations read
-        \begin{align}
-        (i\delta+\Gamma)\,N^{(1)}_{ss'} &= S_{ss'} + \mathcal O(|M|^2),\\
-        \gamma_s\,N^{(1)}_{ss} + 2\,\Im\{V^{(x)}_{ss'}N^{(1)}_{s's}\} &= S^{(\mathrm{pop})}_s.
-        \end{align}
-        Solving for $N^{(1)}_{ss'}$ and inserting into $J_x=\mathrm{Tr}\,\tfrac12\{V_x,N\}\,\Omega$ yields Cor.~\ref{cor:kappaC1D}; a complex phase in $V^{(x)}_{ss'}$ gives Cor.~\ref{cor:nonrec}. Electron–swirl terms enter as $\mathcal O(|M|^2)$ corrections with the same Lorentzian denominator.
-
-
-
 %=============================================================================
     \section{Coinductive Stability and the Golden Filter}
         \label{sec:coinductive-golden}
@@ -648,22 +630,145 @@
 
                 \end{enumerate}
 
-%========================================================================================
-% APPENDICES (A–I)
-%========================================================================================
-% A) Swirl Hamiltonian Density (full canonical form)
-% B) Detailed Dimensional Analyses & Recovery Limits
-% C) Derivation of ρ_f
-% D) Hydrogen Soft-Core Numerics
-% E) Photon/Unknot Sector
-% F) Swirl Pressure Law — galaxy-scale integrals
-% G) Calibration Protocol Notes
-% H) Experimental Status & Bounds
-% I) Notation, Ontology, Glossary
-% TODO: Add/expand appendices as per checklist
+    \section{Knot Taxonomy}
+    \subsection{Glossary of Symmetry Table Symbols}
+        \label{sec:glossary-of-symmetry-table-symbols}
 
-%================================================
-    \section{Swirl Hamiltonian Density}
+        \begin{description}
+            \item[\( D_2(r) \)] \textbf{Order-2 Dihedral (Reflectional) Symmetry.}
+            The knot (or swirl string) admits a dihedral symmetry of order 2, meaning it is invariant under a 180° rotation and a reflection; this often guarantees \emph{reversibility}.
+
+            \item[\( D_{2k} \)] \textbf{Higher-Order Dihedral Symmetry.}
+            The knot is invariant under the full dihedral group of order \( 2k \), i.e., all rotations by \( 2\pi/k \) and reflections. In SST, this corresponds to invariance under both cyclic flows and chirality-reversing operations.
+
+            \item[\( Z_{2k} \)] \textbf{Cyclic Symmetry of Order \( 2k \).}
+            The knot admits rotational symmetry by \( 2\pi/(2k) \) (and its multiples), but not necessarily reflection symmetry. In SST, such symmetry is associated with periodic phase cycling and often positive amphichirality.
+
+            \item[\( I \)] \textbf{Icosahedral Symmetry or Inversion.}
+            \( I \) often indicates additional point group symmetries (such as icosahedral, dodecahedral, or inversion symmetries), depending on the context. In tables, it may specify inversion axes or particular symmetry orders, e.g., \( I_8 \), \( I_4 \).
+
+            \item[reversible] \textbf{Reversible Knot (Swirl String).}
+            The knot is topologically equivalent to itself with the orientation reversed; in SST, this reflects invariance under reversal of circulation or swirl clock direction.
+
+            \item[amphichiral] \textbf{Amphichiral (Mirror-Image) Symmetry.}
+            The knot is equivalent to its mirror image:
+            \begin{itemize}\item \emph{Positive amphichirality} usually corresponds to cyclic (\( Z_{2k} \)) symmetry.
+            \item \emph{Negative amphichirality} is sometimes indicated by special inversion (\( I_2 \)).
+            \end{itemize}
+
+            \item[periods] \textbf{Periods of Symmetry.}
+            Lists the possible orders of cyclic symmetry—i.e., the integer \( n \) for which the knot is invariant under a \( 2\pi/n \) rotation. In SST, this relates to allowed quantized mode numbers.
+
+            \item[FSG] \textbf{Full Symmetry Group (FSG).}
+            The maximal discrete symmetry group of the knot, encoding all rotational, reflectional, and inversion symmetries. In SST, the FSG constrains the topological conservation laws and fusion/annihilation selection rules for knotted swirl strings.
+        \end{description}
+
+% ===========================
+% Torus invariants by formula (SST)
+% ===========================
+% For a torus knot T(p,q) with coprime p,q:
+%   braid index:  b = \min(p,q)
+%   genus:        g = \frac{(p-1)(q-1)}{2}
+%   crossing #:   c = (p-1)q  (if p<q)
+
+        \subsection{Torus Knots (Lepton Sector)}
+
+            \begin{table}[H]
+                \centering
+                \scriptsize                      % smaller font so it fits
+                \setlength{\tabcolsep}{3pt}      % tighter columns
+                \renewcommand{\arraystretch}{0.9}% tighter rows
+
+                \caption{Torus knots (lepton sector) with SST symmetry data.}
+                \label{tab:torus-lepton}
+
+                \begin{tabular}{lccccccccc}
+                    \toprule
+                    Knot & $D_2(r)$ & $D_{2k}$ & $Z_{2k}$ & $I$
+                    & reversible & amphichiral & Dark & periods & FSG \\
+                    \midrule
+                    \multicolumn{10}{l}{\textbf{SM mapping (SST default, torus ladder):}
+                        $e^- \leftrightarrow T(2,3)\ (=3_1)$,
+                        $\mu^- \leftrightarrow T(2,5)\ (=5_1)$,
+                        $\tau^- \leftrightarrow T(2,7)\ (=7_1)$.} \\
+                    \midrule
+                    $3_1$ ($T(2,3)$), $b\!=\!2$, $g\!=\!1$
+                    & \checkmark & $D_4,D_6$   & $\times$ & $\times$
+                    & \checkmark & $\times$    & no       & $2,3$   & $Z_2$ \\
+                    $5_1$ ($T(2,5)$), $b\!=\!2$, $g\!=\!2$
+                    & \checkmark & $D_4,D_{10}$& $\times$ & $\times$
+                    & \checkmark & $\times$    & no       & $2,5$   & $Z_2$ \\
+                    $7_1$ ($T(2,7)$), $b\!=\!2$, $g\!=\!3$
+                    & \checkmark & $D_4,D_{14}$& $\times$ & $\times$
+                    & \checkmark & $\times$    & no       & $2,7$   & $Z_2$ \\
+                    \bottomrule
+                \end{tabular}
+            \end{table}
+
+            \paragraph{Torus invariants (formula).}
+                For coprime integers $p,q\ge 2$, the torus knot $T(p,q)$ has braid index
+                $b=\min(p,q)$ and genus
+                \(
+                g=\frac{(p-1)(q-1)}{2}.
+                \)
+
+    \subsection*{Hyperbolic Knots (Quark Sector)}
+
+        \begin{table}[H]
+            \centering
+            \footnotesize
+            \setlength{\tabcolsep}{3pt}
+            \renewcommand{\arraystretch}{0.9}
+
+            \caption{Hyperbolic knots (quark sector) with SST symmetry data.}
+            \label{tab:hyperbolic-quark}
+
+            \resizebox{\textwidth}{!}{%
+                \begin{tabular}{lccccccccc}
+                    \toprule
+                    Knot & $D_2(r)$ & $D_{2k}$ & $Z_{2k}$ & $I$
+                    & reversible & amphichiral & Dark & periods & FSG \\
+                    \midrule
+                    \multicolumn{10}{l}{\textbf{SM mapping (SST default, hyperbolic chiral):}
+                    up/down/strange $\leftrightarrow$ chiral hyperbolics
+                        (reps among $6_x,7_x,8_x,\dots$);\ bosons $=$ unknot;
+                        neutrinos $=$ links (e.g.\ Hopf).} \\
+                    \midrule
+                    $4_1$         & \checkmark & $D_4$             & $Z_4$            & $I_8$ & \checkmark & \checkmark & yes+  & $2$       & $D_8$ \\
+                    $5_2, 6_1, 6_2$ & \checkmark & $D_4$             & $\times$         & $\times$ & \checkmark & $\times$   & no    & $2$       & $D_4$ \\
+                    $6_3$         & \checkmark & $D_4$             & $Z_4$            &        & \checkmark & \checkmark & yes+  & $2$       & $D_8$ \\
+                    $7_2, 7_3$    & \checkmark & $D_4$             & $\times$         & $\times$ & \checkmark & $\times$   & no    & $2$       & $D_4$ \\
+                    $7_4$         & \checkmark & $D_4$             & $\times$         & $\times$ & \checkmark & $\times$   & no    & $2$       & $D_8$ \\
+                    $7_5, 7_6$    & \checkmark & $D_4$             & $\times$         & $\times$ & \checkmark & $\times$   & no    & $2$       & $D_4$ \\
+                    $7_7$         & \checkmark & $D_4$             & $\times$         & $\times$ & \checkmark & $\times$   & no    & $2$       & $D_8$ \\
+                    $8_1, 8_2$    & \checkmark & $D_4$             & $\times$         & $\times$ & \checkmark & $\times$   & no    & $2$       & $D_4$ \\
+                    $8_3$         & \checkmark & $D_4$             & $Z_4$            & $I_8$ & \checkmark & \checkmark & yes+  & $2$       & $D_8$ \\
+                    $8_4, 8_5, 8_6, 8_7, 8_8$ & \checkmark & $D_4$ & $\times$         & $\times$ & \checkmark & $\times$   & no    & $2$       & $D_4$ \\
+                    $8_9$         & \checkmark & $D_4$             &                  & $I_4$ & \checkmark & \checkmark & yes+  & $2$       & $D_8$ \\
+                    $8_{10}$      & \checkmark & $\times$          & $\times$         & $\times$ & \checkmark & $\times$   & no    & none      & $D_2$ \\
+                    $8_{11}$      & \checkmark & $D_4$             & $\times$         & $\times$ & \checkmark & $\times$   & no    & $2$       & $D_4$ \\
+                    $8_{12}$      & \checkmark & $D_4$             & $Z_4$            &        & \checkmark & \checkmark & yes+  & $2$       & $D_8$ \\
+                    $8_{13}, 8_{14}, 8_{15}$ & \checkmark & $D_4$ & $\times$         & $\times$ & \checkmark & $\times$   & no    & $2$       & $D_4$ \\
+                    $8_{16}$      & \checkmark & $\times$          & $\times$         & $\times$ & \checkmark & $\times$   & no    & none      & $D_2$ \\
+                    $8_{17}$      & $\times$   & $\times$          & $\times$         &        & $\times$   & \checkmark & yes-- & none      & $D_2$ \\
+                    $8_{18}$      & \checkmark & $D_4, D_8$        & $Z_8$            &        & \checkmark & \checkmark & yes+  & $2,4$     & $D_{16}$ \\
+                    $8_{19}$      & \checkmark & $D_4, D_6, D_8$   & $\times$         & $\times$ & \checkmark & $\times$   & no    & $2,3,4$   & $Z_2$ \\
+                    $8_{20}$      & \checkmark & $\times$          & $\times$         & $\times$ & \checkmark & $\times$   & no    & none      & $D_2$ \\
+                    $8_{21}$      & \checkmark & $D_4$             & $\times$         & $\times$ & \checkmark & $\times$   & no    & $2$       & $D_4$ \\
+                    $12a_{1202}$  & \checkmark &                   & $Z_2, Z_6$       &        & \checkmark & \checkmark & yes+  &           & $D_{12}$ \\
+                    $15331$       &            &                   & $Z_2$            &        &            & \checkmark & yes-- &           &          \\
+                    \bottomrule
+                \end{tabular}%
+            }
+        \end{table}
+% -------------------------
+% Remarks (kept, but tightened)
+% -------------------------
+        \paragraph{Remarks.}
+            Any $D_{2k}$ symmetry $(k\ge 2)$ implies $D_2(r)$ and, if $k$ is even, period $2$; it also implies $D_{2j}$ for each divisor $j$ of $k$. Any $Z_{2k}$ symmetry typically entails \emph{positive} amphichirality (dark sector $=$ yes+); $D_2(r)$ implies reversibility. $I_2$ symmetry indicates \emph{negative} amphichirality (dark sector $=$ yes--). Among prime knots with $\le 8$ crossings, the ones lacking period $2$ ($8_{10}, 8_{16}, 8_{17}, 8_{20}$) have FSG $D_2$. Multiple 3D realizations can witness different symmetry subgroups; FSG (KnotInfo) does not encode periodicity.
+
+\section{Short research status Canonical or Emperical}
+    \subsection{Swirl Hamiltonian Density}
 % [STATUS: Canonical]
         \label{canon58:appA}
         \paragraph{Canonical form.}
@@ -685,7 +790,7 @@
             only the kinetic energy term survives, recovering the classical Euler Hamiltonian.
 
 %================================================
-\section{Dimensional Analyses \& Recovery Limits}
+\subsection{Dimensional Analyses \& Recovery Limits}
 % [STATUS: Canonical]
 \label{canon58:appB}
 \paragraph{Purpose.}
@@ -711,7 +816,7 @@
 
 
 %================================================
-\section{Hydrogen Soft-Core Numerics}
+\subsection{Hydrogen Soft-Core Numerics}
 % [STATUS: Canonical]
 \label{canon58:appD}
 We adopt the Swirl-Coulomb constant $\Lambda$ as defined in Eq.~(33) of the Hydrodynamic Triad~[14],
@@ -730,7 +835,7 @@ produce error bars for $a_0$ and $E_1$; verify agreement with CODATA values
 within $<1\%$. All formulas are taken from the Hydrodynamic Triad paper (HT); see that paper for detailed derivations.
 
 %================================================
-\section{Photon/Unknot Sector}
+\subsection{Photon/Unknot Sector}
 % [STATUS: Canonical]
 \label{canon58:appE}
 Photon states are modeled as unknotted, divergence-free swirl wave packets:
@@ -744,7 +849,7 @@ no reconnection events. Pulsed construction: excite a finite-duration
 torsional wave along the director field to produce a single-photon packet.
 
 %================================================
-\section{Swirl Pressure Law—Galaxy-Scale Integrals}
+\subsection{Swirl Pressure Law—Galaxy-Scale Integrals}
 % [STATUS: Canonical]
 \label{canon58:appF}
 Integrate Euler radial balance
@@ -759,7 +864,7 @@ then match to observed galaxy rotation curves. This log-profile naturally
 produces asymptotically flat rotation curves without dark-matter halos.
 
 %================================================
-\section{Calibration Protocol Notes}
+\subsection{Calibration Protocol Notes}
 % [STATUS: Empirical]
 \label{canon58:appG}
 Document measurement protocols for
@@ -769,7 +874,7 @@ Each constant is traceable to a reproducible procedure, e.g.
 swirl speed from hydrogen spectrum fit, $r_c$ from energy density normalization.
 
 %================================================
-\section{Experimental Status \& Bounds}
+\subsection{Experimental Status \& Bounds}
 % [STATUS: Empirical]
 \label{canon58:appH}
 Summarize current bounds on $\chi_{\mathrm{eff}}^{\max}$,
@@ -777,13 +882,23 @@ precision tests of swirl-clock time dilation,
 and laboratory limits on induced swirl–gravity effects.
 
 %================================================
-\section{Notation, Ontology, Glossary}
+\subsection{Notation, Ontology, Glossary}
 % [STATUS: Canonical]
 \label{canon58:appI}
 Provide a full symbol table, definitions of $\rho_{\!f}$, $\rho_{\!m}$, $\rho_{\!E}$,
 and the complete knot taxonomy (torus knots, twist knots, Hopf links).
 Include a diagrammatic key linking knot types to SM particles for reader reference.
 
+% =============================================================
+% === Appendix: 2×2 near-degenerate block derivation ===
+% =============================================================
+\subsection{ 2\texttimes 2 near-degenerate solution (sketch)}
+Write $N=N^{(0)}+N^{(1)}$, steady state, and restrict to $\{s,s'\}$. With source $S\equiv -\tfrac12 V_x\partial_x N^{(0)}$ and damping $\Gamma$, the linearized equations read
+\begin{align}
+(i\delta+\Gamma)\,N^{(1)}_{ss'} &= S_{ss'} + \mathcal O(|M|^2),\\
+\gamma_s\,N^{(1)}_{ss} + 2\,\Im\{V^{(x)}_{ss'}N^{(1)}_{s's}\} &= S^{(\mathrm{pop})}_s.
+\end{align}
+Solving for $N^{(1)}_{ss'}$ and inserting into $J_x=\mathrm{Tr}\,\tfrac12\{V_x,N\}\,\Omega$ yields Cor.~\ref{cor:kappaC1D}; a complex phase in $V^{(x)}_{ss'}$ gives Cor.~\ref{cor:nonrec}. Electron–swirl terms enter as $\mathcal O(|M|^2)$ corrections with the same Lorentzian denominator.
 
 
 % ----------------------------------------------------------------
@@ -2186,7 +2301,7 @@ swirl energy} ($m_e \mathbf{v}_{\!\boldsymbol{\circlearrowleft}}^2$) to the \emp
             estimate $T \sim 10^{-7}$ for typical metal/glass boundaries is a research-track
             calculation detailed in App.~\ref{app:swirl_em_transduction_impedance}.
 
-            %======================================================
+ %======================================================
 % XXV. Topological Origin of the Electron a_e (Module)
 % Place this in Part IV, after XXIV Unruh / hydrogen summary,
 % before the global References section.
@@ -2253,6 +2368,3 @@ swirl energy} ($m_e \mathbf{v}_{\!\boldsymbol{\circlearrowleft}}^2$) to the \emp
     Research-track status. This module canonizes the \emph{identification} of $C_2$ with a trefoil spectral invariant,
     but treats the exact numerical matching and higher-order $n \ge 3$ terms as research-track, to be constrained against
     full QED $g-2$ data.
-
-% (Optional) You can later append a small local reference note here,
-% or rely on the global References section.

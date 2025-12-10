@@ -63,7 +63,68 @@
     \(\displaystyle D(R^2\omega)/Dt_{\!ae}=0\);
     the regularization modifies only higher-order curl terms and does not break canonical invariants.
 
-    ---
+    \subsection{Relation to khronon and Hořava--Lifshitz clock fields}
+            \label{subsec:swirl_clock_khronon_relation}
+
+            The swirl clock field \(S_t^{\boldsymbol{\circlearrowleft}}(x)\) plays the same
+            geometric role in Swirl--String Theory as the \emph{khronon} (clock field)
+            does in Lorentz-violating extensions of General Relativity such as
+            Einstein--Æther and Hořava--Lifshitz gravity.\cite{Horava2009LifshitzPoint,EinsteinAetherReview}
+            In those frameworks one introduces a scalar time function \(T(x)\) whose
+            level sets define a preferred foliation of spacetime. The associated
+            unit timelike vector field
+            \begin{equation}
+                u_\mu(x)
+                =
+                \frac{\nabla_\mu T(x)}{\sqrt{-\,g^{\alpha\beta}\,\nabla_\alpha T(x)\,\nabla_\beta T(x)}}
+                \,,
+                \label{eq:khronon_unit_vector}
+            \end{equation}
+            enters the low-energy effective action and explicitly breaks local Lorentz
+            invariance down to diffeomorphisms that preserve the foliation.
+
+            In SST, the swirl clock is defined as the local ratio between proper time
+            measured by a comoving matter observer and an asymptotic reference clock,
+            \begin{equation}
+                S_t^{\boldsymbol{\circlearrowleft}}(x)
+                \equiv
+                \frac{d\tau_{\text{local}}}{d\tau_\infty}
+                \,,
+                \label{eq:swirl_clock_def_kinematic}
+            \end{equation}
+            with \(S_t^{\boldsymbol{\circlearrowleft}}(x)\) determined dynamically by the
+            underlying hydrodynamic state (local vorticity and swirl energy density) as
+            derived in the swirl-time sector. A natural khronon-like scalar in SST is then
+            obtained by integrating the swirl clock along the global coordinate time,
+            \begin{equation}
+                T(x)
+                \;\equiv\;
+                \int^{t}
+                S_t^{\boldsymbol{\circlearrowleft}}\!\bigl(t',\mathbf{x}\bigr)\; dt' \,,
+                \label{eq:swirl_clock_khronon_map}
+            \end{equation}
+            so that hypersurfaces of constant \(T\) coincide with iso-chronal slices of
+            the swirl clock. Inserting \eqref{eq:swirl_clock_khronon_map} into
+            \eqref{eq:khronon_unit_vector} yields a unit vector \(u_\mu\) that is
+            \emph{emergent} from the hydrodynamic state rather than a fundamental new
+            field.
+
+            The symmetry pattern of the SST clock sector is therefore identical to that
+            of khronometric and Hořava--Lifshitz models: there exists a preferred time
+            function selecting a foliation, and the low-energy gravitational dynamics
+            are described by a metric \(g_{\mu\nu}\) coupled to a unit timelike vector
+            \(u_\mu\) normal to those slices. The difference is conceptual and
+            dynamical rather than kinematic: in SST, \(S_t^{\boldsymbol{\circlearrowleft}}\)
+            is constrained by incompressible Euler dynamics and conserved vorticity,
+            and thus \(T(x)\) and \(u_\mu\) are derived quantities tied to the swirl
+            energy budget. This allows one to import existing experimental and
+            phenomenological bounds on khronon/Hořava-type clock fields directly into
+            constraints on the SST swirl clock sector, while maintaining the physical
+            interpretation that time dilation arises from structured hydrodynamic flow
+            rather than from an abstract khronon scalar.
+
+
+
 %=============================================================================
 % Golden Principle for Discrete Layering in SST
 %=============================================================================

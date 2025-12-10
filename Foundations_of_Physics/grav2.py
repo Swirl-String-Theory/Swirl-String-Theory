@@ -46,8 +46,8 @@ class SSTCanon:
 # --- 3. Optional C++ Bindings Import ---
 _HAS_SST_BINDINGS = False
 try:
-    import sstbindings
-    from sstbindings import (
+    import swirl_string_core
+    from swirl_string_core import (
         biot_savart_velocity_grid,          # B-field
         biot_savart_vector_potential_grid,  # A-field
         dipole_ring_field_grid              # Dipole B-field

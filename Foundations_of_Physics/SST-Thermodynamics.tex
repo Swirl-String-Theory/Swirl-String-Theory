@@ -27,30 +27,23 @@
 
 % swirl arrows (context-aware)
 \newcommand{\swirlarrow}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}
-\newcommand{\swirlarrowcw}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}
-
-\newcommand{\vswirl}{\mathbf{v}_{\swirlarrow}}
-\newcommand{\vswirlcw}{\mathbf{v}_{\swirlarrowcw}}
-\newcommand{\SwirlClock}{S_{(t)}^{\swirlarrow}}
-\newcommand{\SwirlClockcw}{S_{(t)}^{\swirlarrowcw}}
-
+\newcommand{\vswirl}{\mathbf{v}_{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}}
+\newcommand{\SwirlClock}{S_{(t)}^{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}}
 \newcommand{\Fmaxswirl}{F^{\max}_{\mkern-1mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}}
 \newcommand{\Fmaxswirlcw}{F^{\max}_{\mkern-1mu\scriptscriptstyle\boldsymbol{\circlearrowright}}}
 \newcommand{\Fmax}{\Fmaxswirl}               % default maximal force (left swirl)
 \newcommand{\FmaxEM}{F^{\max}_{\mathrm{EM}}}
 \newcommand{\FmaxG}{F_{\mathrm{G}}^{\max}}   % G-like maximal force scale
-
-\newcommand{\omegas}{\boldsymbol{\omega}_{\swirlarrow}}  % swirl vorticity
-\newcommand{\Om}{\Omega_{\swirlarrow}}                   % swirl angular frequency profile
-
-\newcommand{\vscore}{v_{\swirlarrow}}                    % shorthand: |v_swirl| at r=r_c
-\newcommand{\vnorm}{\lVert \mathbf{v}_{\swirlarrow} \rVert} % swirl speed magnitude
+\newcommand{\omegas}{\boldsymbol{\omega}_{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}}  % swirl vorticity
+\newcommand{\Om}{\Omega_{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}}                   % swirl angular frequency profile
+\newcommand{\vscore}{v_{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}}                    % shorthand: |v_swirl| at r=r_c
+\newcommand{\vnorm}{\lVert \mathbf{v}_{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}} \rVert} % swirl speed magnitude
 \newcommand{\Ce}{\vswirl}                                % canonical swirl-speed constant
 
-\newcommand{\rhof}{\rho_{\!f}}                           % effective fluid density
-\newcommand{\rhoE}{\rho_{\!E}}                           % swirl energy density
-\newcommand{\rhom}{\rho_{\!m}}                           % mass-equivalent density
-\newcommand{\rhoM}{\rho_{\!m}}                           % alias
+\newcommand{\rhof}{\rho_{\!f}} \newcommand{\rhoF}{\rho_{\!f}}                             % effective fluid density
+\newcommand{\rhoe}{\rho_{\!E}} \newcommand{\rhoE}{\rho_{\!E}}                           % swirl energy density
+\newcommand{\rhom}{\rho_{\!m}} \newcommand{\rhoM}{\rho_{\!m}}                           % mass-equivalent density
+
 \newcommand{\rhocore}{\rho_{\text{core}}}                % core density
 \newcommand{\rc}{r_c}                                    % string core radius (swirl string radius)
 
