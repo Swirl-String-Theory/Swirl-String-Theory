@@ -38,9 +38,10 @@ ax1.set_ylabel("Vacuum Pressure Potential (eV)", fontsize=12)
 ax1.set_xlabel("State Density", fontsize=12)
 ax1.set_ylim(-15, 1)
 ax1.set_xticks([])
+ax1.set_xlabel("Quantized State Index", fontsize=12)
 ax1.grid(True, axis='y', linestyle='--', alpha=0.3)
-ax1.text(0.5, -14.5, "Vacuum Ground State Limit", ha='center', color='green', fontsize=9)
-
+ax1.text(0.5, -14.5, r"Vacuum Ground State Limit", ha='center', color='green', fontsize=10)
+ax1.axhline(-13.6, color='green', linestyle='dashed', linewidth=0.8, alpha=0.6)
 # ==========================================
 # Panel 2: The Vacuum Mach Limit (Geometry)
 # ==========================================
@@ -67,12 +68,17 @@ ax2.plot(r_excited*np.cos(theta), r_excited*np.sin(theta), ':', color='blue', li
 # Annotations
 ax2.text(0, 0.3, "Unstable\nTurbulence", ha='center', va='center', color='darkred', fontsize=9)
 ax2.text(0, -1.2, "Maximum Laminar Flow Speed", ha='center', color='green', fontsize=10, fontweight='bold')
+ax2.text(0.8, 0, "Forbidden\nZone", color='darkred', fontsize=9, ha='center', va='center')
 
 # Velocity Arrows on n=1
 arrow_angles = [0, np.pi/2, np.pi, 3*np.pi/2]
 for ang in arrow_angles:
     ax2.arrow(np.cos(ang), np.sin(ang), -0.1*np.sin(ang), 0.1*np.cos(ang),
               head_width=0.05, head_length=0.1, fc='green', ec='green')
+for ang in arrow_angles:
+    ax2.arrow(r_excited*np.cos(ang), r_excited*np.sin(ang),
+              -0.1*np.sin(ang), 0.1*np.cos(ang),
+              head_width=0.05, head_length=0.1, fc='blue', ec='blue')
 
 # Styling
 ax2.set_title("The Vacuum Stability Limit ($\\alpha \\approx 1/137$)", fontsize=14)
@@ -83,5 +89,6 @@ ax2.axis('off')
 ax2.legend(loc='upper right', fontsize=9)
 
 plt.tight_layout()
-plt.savefig('sst_energy_spectrum.png')
+fig.suptitle("Quantized Energy & Stability Structure in Swirl–String Theory", fontsize=16, y=1.02)
+plt.savefig("sst_energy_spectrum.png", dpi=300, bbox_inches='tight')
 plt.show()

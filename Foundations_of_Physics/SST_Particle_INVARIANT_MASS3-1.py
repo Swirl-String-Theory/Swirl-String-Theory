@@ -29,7 +29,7 @@ What changes across modes?
 --------------------------
 Only the **geometric inputs** to L_tot(T) for baryons:
 1) The invariant kernel
-       M(T) = (4/α)·b(T)^{-3/2}·φ^{-g(T)}·n(T)^{-1/φ} · [ (1/2)ρ_core v_swirl^2 ] · [ π r_c^3 L_tot(T) ] / c^2      (Eq. K)
+       M(T) = (4/α)·k(T)^{-3/2}·φ^{-g(T)}·n(T)^{-1/φ} · [ (1/2)ρ_core v_swirl^2 ] · [ π r_c^3 L_tot(T) ] / c^2      (Eq. K)
    is fixed and identical in all modes.
 2) The baryon ropelength mapping uses
        L_tot = scaling_factor · Σ s_i,   with   scaling_factor = 2 π^2 κ_R,   κ_R ≈ 2.                          (Eq. L)
@@ -59,7 +59,11 @@ Symbols:
 - v_swirl    : characteristic swirl speed (Canon: v_swirl ≈ 1.09384563×10^6 m/s)
 - r_c        : core radius of the swirl string
 - c          : speed of light
-- b(T)       : braid index
+- k(T)       : kernel suppression index (dimensionless)
+               For the torus-lepton ladder T(2,q), the code uses k=q, which equals
+               the crossing number c_cross(T(2,q)) and the 2-strand twist exponent.
+               This is NOT the mathematical braid index.
+- b_braid(T) : (optional) true braid index, for reference/reporting only.
 - g(T)       : Seifert genus
 - n(T)       : number of components
 - L_tot(T)   : total ropelength (dimensionless)
@@ -92,7 +96,7 @@ Outputs
 Units & Dimensional Check
 -------------------------
 - u = (1/2) ρ v_swirl^2 has units [J/m^3]; u·V has [J]; division by c^2 gives [kg].
-- The factors (4/α), φ^{-g(T)}, n(T)^{-1/φ}, b(T)^{-3/2} are dimensionless.
+- The factors (4/α), φ^{-g(T)}, n(T)^{-1/φ}, k(T)^{-3/2} are dimensionless.
 
 Purpose
 -------
@@ -102,9 +106,9 @@ Outputs results in the specific "Canonical Mass Summary" style requested.
 
 Topological Basis
 -----------------
-Electron (Ξ): Trefoil (3_1) -> b=2, g=1, n=1
-Muon (Ξ):     Knot 5_1      -> b=5, g=2, n=1
-Tau (Ξ):      Knot 7_1      -> b=7, g=3, n=1
+Electron (Ξ): Trefoil (3_1) -> k=2, g=1, n=1
+Muon (Ξ):     Knot 5_1      -> k=5, g=2, n=1
+Tau (Ξ):      Knot 7_1      -> k=7, g=3, n=1
 
 Baryon Sector (SST):
 Proton/Neutron derived via 'exact_closure' of quark geometric factors (s_u, s_d)
@@ -217,10 +221,13 @@ class NuclearBinding:
 @dataclass
 class KnotTopology:
     name: str
-    b: int  # Braid Index
+    k: int  # Kernel suppression index used in Eq. K (often crossings or other complexity proxy)
+    # Optional: true braid index (e.g., for torus knots T(p,q), b_braid=min(p,q)).
+    # Not used in the mass kernel unless explicitly wired in.
     g: int  # Seifert Genus
     n: int  # Number of Components
     L_tot: float  # Total Ropelength
+    b_braid: int | None = None
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -229,7 +236,7 @@ class KnotTopology:
 def master_mass_invariant(topo: KnotTopology) -> float:
     u = 0.5 * rho_core * v_swirl * v_swirl
     amplification = 4.0 / alpha_fs
-    braid_suppression = topo.b ** -1.5
+    braid_suppression = topo.k ** -1.5
     genus_suppression = phi ** -topo.g
     component_suppression = topo.n ** (-1.0 / phi)
     volume = math.pi * (r_c ** 3) * topo.L_tot
@@ -251,7 +258,7 @@ def solve_for_L_tot(mass_actual: float, topo_base: KnotTopology) -> float:
     u = 0.5 * rho_core * v_swirl ** 2
     prefactor = (
             (4.0 / alpha_fs) *
-            (topo_base.b ** -1.5) *
+            (topo_base.k ** -1.5) *
             (phi ** -topo_base.g) *
             (topo_base.n ** (-1.0 / phi))
     )
@@ -261,13 +268,13 @@ def solve_for_L_tot(mass_actual: float, topo_base: KnotTopology) -> float:
     return numerator / denominator
 
 
-def baryon_prefactor(b: int, g: int, n: int) -> float:
+def baryon_prefactor(k: int, g: int, n: int) -> float:
     u = 0.5 * rho_core * v_swirl * v_swirl
-    return (4.0/alpha_fs) * (b ** -1.5) * (phi ** -g) * (n ** (-1.0/phi)) * (u * math.pi * (r_c**3)) / (c*c)
+    return (4.0/alpha_fs) * (k ** -1.5) * (phi ** -g) * (n ** (-1.0/phi)) * (u * math.pi * (r_c**3)) / (c*c)
 
 
-def fit_quark_geom_factors_for_baryons(b: int, g: int, n: int, scaling_factor: float) -> tuple[float, float]:
-    A = baryon_prefactor(b, g, n)
+def fit_quark_geom_factors_for_baryons(k: int, g: int, n: int, scaling_factor: float) -> tuple[float, float]:
+    A = baryon_prefactor(k, g, n)
     K = A * scaling_factor
     s_u = (2.0 * M_p_actual - M_n_actual) / (3.0 * K)
     s_d = (M_p_actual / K) - 2.0 * s_u
@@ -279,18 +286,18 @@ def fit_quark_geom_factors_for_baryons(b: int, g: int, n: int, scaling_factor: f
 # ──────────────────────────────────────────────────────────────────────────────
 def get_particle_topologies(cfg: Config) -> Dict:
     # Lepton Generation Calibration
-    electron_base = KnotTopology(name="Electron_base", b=2, g=1, n=1, L_tot=0.0)
-    muon_base = KnotTopology(name="Muon_base (5_1)", b=5, g=2, n=1, L_tot=0.0)
-    tau_base = KnotTopology(name="Tau_base (7_1)", b=7, g=3, n=1, L_tot=0.0)
+    electron_base = KnotTopology(name="Electron_base T(2,3)", k=3, b_braid=2, g=1, n=1, L_tot=0.0)
+    muon_base     = KnotTopology(name="Muon_base T(2,5)",     k=5, b_braid=2, g=2, n=1, L_tot=0.0)
+    tau_base      = KnotTopology(name="Tau_base T(2,7)",      k=7, b_braid=2, g=3, n=1, L_tot=0.0)
 
     l_tot_e = solve_for_L_tot(M_e_actual, electron_base)
     l_tot_mu = solve_for_L_tot(M_mu_actual, muon_base)
     l_tot_tau = solve_for_L_tot(M_tau_actual, tau_base)
 
     # Baryon Sector Calibration
-    b_bary, g_bary, n_bary = 3, 2, 3
+    k_bary, g_bary, n_bary = 3, 2, 3
     scaling_factor = 2.0 * (math.pi ** 2) * cfg.kappa_R
-    A_bary = baryon_prefactor(b_bary, g_bary, n_bary)
+    A_bary = baryon_prefactor(k_bary, g_bary, n_bary)
     K = A_bary * scaling_factor
     lam_b = 1.0
 
@@ -300,17 +307,17 @@ def get_particle_topologies(cfg: Config) -> Dict:
         s_u, s_d = cfg.fixed_su, cfg.fixed_sd
         lam_b = M_p_actual / (K * (2.0 * s_u + s_d))
     else: # exact_closure
-        s_u, s_d = fit_quark_geom_factors_for_baryons(b_bary, g_bary, n_bary, scaling_factor)
+        s_u, s_d = fit_quark_geom_factors_for_baryons(k_bary, g_bary, n_bary, scaling_factor)
 
     l_tot_p = lam_b * (2.0 * s_u + 1.0 * s_d) * scaling_factor
     l_tot_n = lam_b * (1.0 * s_u + 2.0 * s_d) * scaling_factor
 
     topologies = {
-        "electron": KnotTopology(name="Electron", b=2, g=1, n=1, L_tot=l_tot_e),
-        "muon":     KnotTopology(name="Muon (5_1)", b=5, g=2, n=1, L_tot=l_tot_mu),
-        "tau":      KnotTopology(name="Tau (7_1)", b=7, g=3, n=1, L_tot=l_tot_tau),
-        "proton":   KnotTopology(name="Proton",  b=b_bary, g=g_bary, n=n_bary, L_tot=l_tot_p),
-        "neutron":  KnotTopology(name="Neutron", b=b_bary, g=g_bary, n=n_bary, L_tot=l_tot_n),
+        "electron": KnotTopology(name="Electron", k=3, b_braid=2, g=1, n=1, L_tot=l_tot_e),
+        "muon":     KnotTopology(name="Muon (T(2,5))", k=5, b_braid=2, g=2, n=1, L_tot=l_tot_mu),
+        "tau":      KnotTopology(name="Tau (T(2,7))",  k=7, b_braid=2, g=3, n=1, L_tot=l_tot_tau),
+        "proton":   KnotTopology(name="Proton",  k=k_bary, g=g_bary, n=n_bary, L_tot=l_tot_p),
+        "neutron":  KnotTopology(name="Neutron", k=k_bary, g=g_bary, n=n_bary, L_tot=l_tot_n),
         "_diag": {
             "mode": cfg.mode, "kappa_R": cfg.kappa_R, "scaling_factor": scaling_factor,
             "A_bary": A_bary, "K": K, "lambda_b": lam_b, "s_u": s_u, "s_d": s_d
@@ -456,9 +463,12 @@ def main(mode: str = "exact_closure") -> None:
     # Pop leptons for separate display
     lepton_topos = {k: topologies.pop(k) for k in ["electron", "muon", "tau"]}
     for p in lepton_topos.values():
-        print(f"{p.name:<12}: b={p.b}, g={p.g}, n={p.n}, L_tot={p.L_tot:.6f}")
+        if p.b_braid is not None:
+            print(f"{p.name:<18}: k={p.k} (kernel), b_braid={p.b_braid}, g={p.g}, n={p.n}, L_tot={p.L_tot:.6f}")
+        else:
+            print(f"{p.name:<18}: k={p.k}, g={p.g}, n={p.n}, L_tot={p.L_tot:.6f}")
     for p in topologies.values(): # Baryons
-        print(f"{p.name:<12}: b={p.b}, g={p.g}, n={p.n}, L_tot={p.L_tot:.6f}")
+        print(f"{p.name:<18}: k={p.k}, g={p.g}, n={p.n}, L_tot={p.L_tot:.6f}")
 
     # Re-add leptons for table generation
     topologies.update(lepton_topos)
