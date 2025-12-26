@@ -1,0 +1,38 @@
+diff --git a/Swirl-String-Theory_Canon-v0.7.6.tex b/Swirl-String-Theory_Canon-v0.7.6.tex
+--- a/Swirl-String-Theory_Canon-v0.7.6.tex
++++ b/Swirl-String-Theory_Canon-v0.7.6.tex
+@@
+-\newcommand{\Tr}{\mathrm{Tr}}
++\providecommand{\Tr}{\mathrm{Tr}}
+@@
+-\newcommand{\dd}{\mathrm{d}}
++\providecommand{\dd}{\mathrm{d}}
+@@
+-\usepackage{tocloft}
++% NOTE (REVTeX): tocloft conflicts with revtex4-2 (\@starttoc already defined).
++% Comment it out and use a simple TOC macro instead.
++%\usepackage{tocloft}
++
++% REVTeX-safe fallback: make \compacttoc just call \tableofcontents.
++\makeatletter
++\@ifundefined{compacttoc}{%
++  \newcommand{\compacttoc}{\tableofcontents}%
++}{%
++  \renewcommand{\compacttoc}{\tableofcontents}%
++}%
++\makeatother
+@@
+-\TrefoilPerturbed{%
+-  \draw[line width=0.6pt]
+-    plot[domain=0:360,samples=260,smooth]
+-      ({sin(\t)+2*sin(2*\t)+(#1)*sin(5*\t)},
+-       {cos(\t)-2*cos(2*\t)+(#1)*cos(4*\t)});
+-}
++\TrefoilPerturbed{%
++  % IMPORTANT: do not use \t as the plot variable (TeX accent macro).
++  % Use an explicit pgfplots variable instead.
++  \draw[line width=0.6pt]
++    plot[domain=0:360,variable=\ang,samples=260,smooth]
++      ({sin(\ang)+2*sin(2*\ang)+(#1)*sin(5*\ang)},
++       {cos(\ang)-2*cos(2*\ang)+(#1)*cos(4*\ang)});
++}

@@ -1,4 +1,4 @@
-# VAM Fourier-Series Batch Processor GUI
+# SST Fourier-Series Batch Processor GUI
 # - Auto-scan on startup and when the root folder changes
 # - Instant preview on selecting a row
 # - Optional column cleanup (drop all-NaN and constant columns) before saving/showing results
@@ -17,19 +17,28 @@ matplotlib.use("TkAgg")
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
-# ---------- VAM constants (user-provided) ----------
-C_e = 1_093_845.63             # m/s
-r_c = 1.40897017e-15           # m
-rho_fluid = 7.0e-7             # kg/m^3
-rho_energy = 3.49924562e35     # J/m^3
-c = 299_792_458.0              # m/s
-alpha = 1/137.035999084
+# ---------- SST constants (Canon-aligned names; values user-provided) ----------
+# House naming:
+#   v_swirl  := characteristic swirl speed  (m/s)
+#   r_c      := core radius                 (m)
+#   rho_f    := effective fluid density     (kg/m^3)
+#   rho_E    := swirl energy density        (J/m^3)
+#   alpha_fs := fine-structure constant     (dimensionless)
+v_swirl = 1_093_845.63         # m/s
+r_c     = 1.40897017e-15       # m
+rho_f   = 7.0e-7               # kg/m^3
+rho_E   = 3.49924562e35        # J/m^3
+c       = 299_792_458.0        # m/s
+alpha_fs = 7.2973525643e-3     # fine-structure constant (CODATA); = 1/137.035999084...
 
 
 phi  = (1 + 5**0.5) / 2
 phi2 = np.exp(np.arcsinh(0.5))   # asinh, not sinh
 
-print(phi, phi2, abs(phi - phi2))
+# If you want to sanity-check the identity φ = exp(asinh(1/2)), set to True.
+DEBUG_CONST_CHECK = False
+if DEBUG_CONST_CHECK:
+    print("phi", phi, "phi2", phi2, "|diff|", abs(phi - phi2))
 
 # Fixed-point equation: varphi = coth(1.5 * ln(varphi))
 def varphi_fixed_point(varphi):
@@ -39,10 +48,13 @@ def varphi_fixed_point(varphi):
 VOL_BASELINE_VALUE = 2.029883212819307  # Vol(4_1)
 
 # Derived per-meter coefficients (kg/m)
-E_density_fluid = 0.5 * rho_fluid * C_e**2
+E_density_fluid = 0.5 * rho_f * v_swirl**2
 tube_area = math.pi * r_c**2
-K_fluid = (4/(alpha*phi)) * (E_density_fluid / c**2) * tube_area   # kg/m
-K_energy = (4/(alpha*phi)) * (rho_energy / c**2) * tube_area       # kg/m
+# In SST terms, these are "mass per arclength" couplings for two density choices:
+#  - K_rhof : uses rho_f via (1/2) rho_f v_swirl^2
+#  - K_rhoE : uses rho_E directly (already J/m^3)
+K_rhof  = (4/(alpha_fs*phi)) * (E_density_fluid / c**2) * tube_area   # kg/m
+K_rhoE  = (4/(alpha_fs*phi)) * (rho_E / c**2) * tube_area             # kg/m
 
 # ---------- Core computations ----------
 def load_matrix_fseries(path):
@@ -400,7 +412,7 @@ def run_batch(root_dir, out_csv, scale=1.0, xi=1.0, b0=3.0, samples=1500,
             sigma = 0.0 if abs(Wr) <= wr_tol else (1.0 if Wr>0 else -1.0)
             sigma_source = "writhe"
 
-        HvX = sigma * max(cr_est - b0, 0.0)
+        HvX = sigma * max(cr_est - b0, 0.0)  # dimensionless swirl-helicity proxy (crossing-based)
         HvVol = np.nan
         if not np.isnan(vol_meta) and sigma != 0.0:
             HvVol = sigma * (vol_meta / VOL_BASELINE_VALUE)
@@ -408,8 +420,8 @@ def run_batch(root_dir, out_csv, scale=1.0, xi=1.0, b0=3.0, samples=1500,
         # Physical scaling
         L_phys = scale * L_series
         H_used = HvX if np.isnan(HvVol) else HvVol
-        M_fluid = xi * H_used * K_fluid * L_phys
-        M_energy = xi * H_used * K_energy * L_phys
+        M_rhof  = xi * H_used * K_rhof * L_phys
+        M_rhoE  = xi * H_used * K_rhoE * L_phys
 
         rows.append({
             "file": os.path.basename(path),
@@ -424,14 +436,14 @@ def run_batch(root_dir, out_csv, scale=1.0, xi=1.0, b0=3.0, samples=1500,
             "crossing_est": int(cr_est),
             "sigma": sigma,
             "sigma_source": sigma_source,
-            "Hvortex_X(b0={:.0f})".format(b0): HvX,
+            "Hswirl_X(b0={:.0f})".format(b0): HvX,
             "hyperbolic_volume_meta": vol_meta,
-            "Hvortex_Vol(Vol/Vol(4_1))": HvVol,
+            "Hswirl_Vol(Vol/Vol(4_1))": HvVol,
             "xi": xi,
-            "K_fluid_kg_per_m": K_fluid,
-            "K_energy_kg_per_m": K_energy,
-            "mass_fluid_kg": M_fluid,
-            "mass_energy_kg": M_energy,
+            "K_rhof_kg_per_m": K_rhof,
+            "K_rhoE_kg_per_m": K_rhoE,
+            "mass_rhof_kg": M_rhof,
+            "mass_rhoE_kg": M_rhoE,
             "type_meta": type_meta,
             "chiral_meta": chiral_meta
         })
@@ -511,7 +523,7 @@ def quick_preview_any(path, profile, b0=3.0, wr_tol=5e-3):
         "writhe": Wr,
         "crossing_est": int(cr_est),
         "sigma_from_writhe": sigma_est,
-        "Hvortex_X_est(b0={:.0f})".format(b0): HvX,
+        "Hswirl_X_est(b0={:.0f})".format(b0): HvX,
         "r": r, "r_t": r_t
     }
 
@@ -570,7 +582,7 @@ QUALITY_PROFILES = {
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("VAM Fourier-Series Processor")
+        self.title("SST Fourier-Series Processor")
         self.geometry("1320x880")
         self.resizable(True, True)
 
@@ -730,7 +742,7 @@ class App(tk.Tk):
         # Footer
         footer = ttk.Frame(self)
         footer.pack(fill="x", **pad)
-        ttk.Label(footer, text=f"K_fluid={K_fluid:.6e} kg/m,  K_energy={K_energy:.6e} kg/m").pack(side="left")
+        ttk.Label(footer, text=f"K_rhof={K_rhof:.6e} kg/m,  K_rhoE={K_rhoE:.6e} kg/m").pack(side="left")
 
         # Apply initial quality
         self.apply_quality_profile(self.var_quality.get())
@@ -911,7 +923,7 @@ class App(tk.Tk):
                     r = d["r"]
                     self.ax3d.plot(r[:,0], r[:,1], r[:,2], linewidth=1.0)
                 self.log("---- Preview ----")
-                for k in ["closure_error","length_series_units","writhe","crossing_est","sigma_from_writhe","Hvortex_X_est(b0={:.0f})".format(float(self.var_b0.get()))]:
+                for k in ["closure_error","length_series_units","writhe","crossing_est","sigma_from_writhe","Hswirl_X_est(b0={:.0f})".format(float(self.var_b0.get()))]:
                     if k in d:
                         self.log(f"{k}: {d[k]}")
 

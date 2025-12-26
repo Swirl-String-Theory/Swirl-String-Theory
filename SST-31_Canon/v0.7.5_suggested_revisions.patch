@@ -1,0 +1,150 @@
+diff --git a/Swirl-String-Theory_Canon.tex b/Swirl-String-Theory_Canon.tex
+--- a/Swirl-String-Theory_Canon.tex
++++ b/Swirl-String-Theory_Canon.tex
+@@
+-\end{document}
++% =====================================================================
++% v0.7.5 additions (Suggested Revisions)
++% NOTE: If not already present in the preamble, ensure:
++%   \usepackage{graphicx}
++% =====================================================================
++
++\section{Numerical Benchmarks (Main-Text Summary)}
++\label{sec:v075-benchmarks}
++
++To separate genuinely predictive content from fitted ``consistency closure'',
++we summarize two evaluation modes:
++(A) a \emph{predictive} mode anchored only by a single electron calibration,
++and (B) an \emph{exact-closure} mode in which baryon-sector geometric factors
++are fixed to reproduce $p$ and $n$ exactly. Full benchmark tables and derivation
++details remain in the Appendix.
++
++\begin{table}[h]
++\centering
++\caption{Benchmark summary (fill the $m_{\rm SST}$ entries from your canonical scripts). Mode A: predictive (electron-only calibration). Mode B: exact-closure (baryons matched by construction).}
++\begin{tabular}{lrrrrc}
++\hline
++Particle & $m_{\rm exp}$ (MeV) & $m_{\rm SST}$ (MeV) & rel.\ error & mode & knot / class \\
++\hline
++$e$   & 0.51099895 & 0.51099895 & 0 & A/B & $3_1$ \\
++$\mu$ & 105.6583745 & \dots & \dots & A & (e.g.\ $T(2,5)$) \\
++$\tau$& 1776.86     & \dots & \dots & A & (e.g.\ $T(2,7)$) \\
++$p$   & 938.272088  & \dots & \dots & A & (e.g.\ $5_2+5_2+6_1$) \\
++$n$   & 939.565420  & \dots & \dots & A & (analogous assignment) \\
++\hline
++$p$   & 938.272088  & 938.272088 & 0 & B & (same as above) \\
++$n$   & 939.565420  & 939.565420 & 0 & B & (same as above) \\
++\hline
++\end{tabular}
++\end{table}
++
++
++\section{Scalar Clock Field Visualization}
++\label{sec:v075-chi-figure}
++
++As an explicit visualization of the scalar clock field $\chi(x)$ in a $2$D slice,
+we include a representative contour plot with $\mathbf{g}=-\nabla \chi$ overlaid.
+This figure is intended as a \emph{presentation anchor} (replace with your SST
+source profile or simulation output when ready).
++
++\begin{figure}[h]
++\centering
++% Place the PNG at: figures/chi_slice_demo.png (or adjust the path below).
++\includegraphics[width=0.78\linewidth]{figures/chi_slice_demo.png}
++\caption{Illustrative 2D slice of $\chi(x,y)$ with $\mathbf{g}=-\nabla\chi$ overlay. Replace with a true SST $\rho_{\rm knot}$ source-profile or simulation output when available.}
++\label{fig:chi-slice}
++\end{figure}
++
++
++\section{Knot-Class to Particle-Candidate Mapping (Main-Text Summary)}
++\label{sec:v075-knotmap}
++
++\begin{table}[h]
++\centering
++\caption{Minimal knot-class $\rightarrow$ particle-candidate summary (expand in Appendix with full taxonomy and invariants used).}
++\begin{tabular}{lll}
++\hline
++Knot class / composition & Candidate & Notes / invariant driver \\
++\hline
++$3_1$ (trefoil) & electron & baseline lepton calibration \\
++$5_2+5_2+6_1$   & proton   & minimal nucleon composite assignment \\
++\dots & \dots & \dots \\
++\hline
++\end{tabular}
++\end{table}
++
++
++\section{Condensed Replies to Philosophical Objections}
++\label{sec:v075-philosophy}
++
++In the interest of readability, each philosophical objection is addressed here
++in a single paragraph (claim $\rightarrow$ SST response $\rightarrow$ falsifiable
++consequence). Extended discussions are moved to Appendix~\ref{app:expanded-philosophy}.
++
++\paragraph{Objection: ``Hydrodynamics is merely analogy.''}
++SST treats the effective incompressible medium as the \emph{primary} ontology,
++with observables tied to conserved currents and coarse-grained invariants rather
++than to point-particle axioms. The falsifiable content is the existence of a
++well-defined far-field momentum flux carried by the clock/foliation sector and
++the associated monopole solution that reproduces an inverse-square law in the
++appropriate limit.
++
++\paragraph{Objection: ``Topology cannot explain quantum discreteness.''}
++Discreteness enters through admissible knot classes and stability selection
++via an effective energy functional over embeddings. A falsifiable consequence is
++that transitions correspond to topology-changing processes with selection rules
++constraining allowed channels; these can be mapped to spectroscopic patterns once
++the effective functional is fixed.
++
++\paragraph{Objection: ``The construction is underdetermined.''}
++The framework is deliberately modular: kinematics (incompressible flow + invariants)
++is fixed, while dynamics is specified by a minimal EFT for the clock/foliation and
++multi-director sectors. Underdetermination is reduced by demanding (i) correct
++Newtonian and QED limits, (ii) internal consistency with benchmark mass ratios,
++and (iii) quantitative predictions for at least one nontrivial observable per sector.
++
++
++\section{Gauge Mapping and Mixing Angles}
++\label{sec:v075-mixing}
++
++The emergence of a minimal $\mathrm{SU}(3)\times\mathrm{SU}(2)\times\mathrm{U}(1)$
++structure from a multi-director sector should be accompanied by an explicit statement
++of what is \emph{predictable} versus what remains \emph{to be fixed} in v0.7.5.
++At the level of an effective electroweak sector with couplings $(g,g')$, the standard
++relations read
++\begin{equation}
++\tan\theta_W=\frac{g'}{g},
++\qquad
++\sin^2\theta_W=\frac{g'^2}{g^2+g'^2}.
++\end{equation}
++In SST language, $g$ and $g'$ are expected to be functions of the corresponding
++director-field stiffnesses / elastic moduli. Thus, $\theta_W$ is \emph{predictable
++in principle} once the minimal quadratic EFT coefficients are specified and matched
++to a benchmark set.
++
++By contrast, CKM/PMNS mixing requires an explicit flavor-basis choice (knot-class
++dictionary) and an interaction Hamiltonian generating a non-diagonal mass matrix;
++mixing angles then follow from diagonalization. v0.7.5 should therefore present a
++short roadmap: (i) define the basis, (ii) write the interaction terms, (iii) state
++which entries are fixed by symmetry and which are phenomenological inputs, and (iv)
++identify at least one testable cross-sector correlation.
++
++
++\appendix
++\section{Expanded Philosophical Rebuttals}
++\label{app:expanded-philosophy}
++
++% Move the long-form versions of the rebuttals here. Keep the main text to one paragraph
++% each, and preserve any historical discussion, interpretational comparisons, and
++% extended commentary in this Appendix.
++
++\subsection{Expanded discussion for Objection 1}
++% (paste the existing long-form text here)
++
++\subsection{Expanded discussion for Objection 2}
++% (paste the existing long-form text here)
++
++\subsection{Expanded discussion for Objection 3}
++% (paste the existing long-form text here)
++
++\end{document}
