@@ -306,3 +306,5 @@ All PDFs and synctex files were moved from the `out/` directory to their corresp
 All papers are now organized in sequentially numbered folders (SST-00 through SST-52) ordered chronologically by creation date, with all related files (source .tex, compiled PDFs, synctex files, dependencies) consolidated in each folder.
 
 
+
+
