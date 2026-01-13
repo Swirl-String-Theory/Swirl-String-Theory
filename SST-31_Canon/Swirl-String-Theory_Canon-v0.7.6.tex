@@ -4,12 +4,12 @@
 %! Affiliation = Independent Researcher, Groningen, The Netherlands
 %! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
 %! ORCID = 0009-0006-1686-3961
-%! DOI = 10.5281/zenodo.17899592
+%! DOI = 10.5281/zenodo.18233522
 
 \newcommand{\canonversion}{v0.7.6} % Semantic versioning: vMAJOR.MINOR.PATCH
 \newcommand{\papertitle}{\textbf{Swirl String Theory (SST) Canon \canonversion:} \\
                          \Large Quantum Measurement, Time, Gravity, and Atomic Mass\\ from Topological Defects}
-\newcommand{\paperdoi}{10.5281/zenodo.17899592}
+\newcommand{\paperdoi}{10.5281/zenodo.18233522}
 
 %========================================================================================
 % PACKAGES AND DOCUMENT CONFIGURATION
@@ -1774,19 +1774,22 @@ components. The final two panels are \emph{placeholders} for a true reconnection
     \newcommand{\PanelSeparated}[3]{% shiftx, shifty, title
         \PanelFrame{#1}{#2}{#3}
         \begin{scope}[shift={(#1,#2)}]
-        % Clip strictly to the panel interior
-        \clip (0.05,0.05) rectangle (\W-0.05,\H-0.05);
+            \begin{scope}[shift={(\Whalf,\Hhalf)},scale=0.70]
+                \clip (-3.55,-3.55) rectangle (3.55,3.55);
 
-        \begin{scope}[shift={(\Whalf,\Hhalf)},scale=0.72]
+                % --- Three separated loop components (schematic) ---
+                % Left: larger loop (label as e-)
+                \draw[line width=0.6pt](-1.5, 0.9) circle [radius=1.10];
+                \node[font=\scriptsize] at (-1.5, 2.25) {$e^{-}$};
 
-        % Two disjoint loops, sized to stay inside the panel
-        \draw[line width=0.6pt] (-1.55, 0.65) circle (1.00);
-        \draw[line width=0.6pt] ( 1.75, 0.10) circle (0.80);
+                % Center: small loop (label as nu)
+                \draw[line width=0.6pt](0.0,-0.2) circle [radius=0.55];
+                \node[font=\scriptsize] at (0.0, 0.75) {$\nu$};
 
-        % Small shed strand
-        \draw[line width=0.6pt] (-0.55,-1.85) -- (0.85,-1.85);
-
-        \end{scope}
+                % Right: small loop (label as anti-nu)
+                \draw[line width=0.6pt](2.4, 0.1) circle [radius=0.55];
+                \node[font=\scriptsize] at (2.4, 1.05) {$\bar{\nu}$};
+            \end{scope}
         \end{scope}
     }
 
@@ -2068,7 +2071,7 @@ The scale $\ell$ is not an external parameter but an \textbf{emergent correlatio
     \item \textbf{Relationality:} The theory remains relational because $\ell$ is defined by the clock field itself. High-frequency clocks (probing small $\ell$) perceive a "grainy" time, while low-frequency clocks (averaging over large $\ell$) perceive a smooth continuum. The "preferred foliation" is locally defined by the fluid's vorticity vector $u^\mu$, which preserves general covariance in the continuum limit.
 \end{itemize}
 
-\subsection*{3. On the "Massive Clock Sector" and Gravity Duality}
+\subsection*{3. On the "Massive Clock Sector" and Gravity Duality}\label{sec:massive-clock-gravity}
 \noindent \textbf{Critique:} \textit{Does the massive clock parameter $\mu_\tau$ imply a new scalar field? Is the TOA field $T(x)$ identical to the SST gravity field $\chi(x)$?}
 
 \noindent \textbf{SST Response:}
