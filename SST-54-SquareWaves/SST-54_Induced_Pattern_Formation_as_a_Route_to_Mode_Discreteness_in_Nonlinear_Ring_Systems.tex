@@ -1,13 +1,3 @@
-%! Author = Omar Iskandarani
-%! Date = 1/10/2026
-%! Affiliation = Independent Researcher, Groningen, The Netherlands
-%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
-%! ORCID = 0009-0006-1686-3961
-%! DOI = 10.5281/zenodo.18204533
-
-\newcommand{\paperdoi}{10.5281/zenodo.18204533}
-\newcommand{\papertitle}{Delay--Induced Pattern Formation as a Route to Mode Discreteness in Nonlinear Ring Systems.}
-
 %==============================================================================
 %   CLASS & PACKAGES
 %==============================================================================
@@ -32,52 +22,34 @@
 \pgfplotsset{compat=1.18}
 \usetikzlibrary{arrows.meta, positioning, calc, decorations.markings}
 \usepackage[most]{tcolorbox}     % Voor mooie kaders (Key Insight box)
+\usepackage{ragged2e}
+
 
 %--- Links & Metadata ---
 \usepackage[colorlinks=true, linkcolor=blue!40!black, citecolor=green!40!black, urlcolor=blue!40!black]{hyperref}
 \usepackage{amssymb}
-
-
-%==============================================================================
-%   MACROS & DEFINITIONS
-%==============================================================================
-
-
-\newcommand{\titlepageOpen}{
-    \begin{titlepage}
-    \thispagestyle{empty}  \centering
-    \Large \bfseries \papertitle \par \vspace{1cm}
-    {\Large \itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par} \vspace{0.5cm}
-    {\today \par}  \vspace{0.5cm}
-}
-
-\newcommand{\titlepageClose}{
-    \vfill \raggedright \null
-    \begin{picture}(0,0)
-    \put(0,-45){  % Shift 200pt left, 40pt down
-        \begin{minipage}[b]{0.7\textwidth} \footnotesize
-        \renewcommand{\arraystretch}{1.0} \noindent\rule{\textwidth}{0.4pt} \\[0.5em]
-        \textsuperscript{\textbf{*}} Independent Researcher, Groningen, The Netherlands \\
-        Email: \texttt{info@omariskandarani.com} \\
-        ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}} \\
-        DOI: \href{https://doi.org/\paperdoi}{\paperdoi}
-        \end{minipage}
-    }
-    \end{picture}
-    \end{titlepage}
-}
+\usepackage{graphicx}
 %=========================================
 % Start Document - Title Page
 %=========================================
-\usepackage{graphicx}
+\title{Delay-induced mode discreteness in nonlinear ring systems}
+\author{Omar Iskandarani}
+\affiliation{Independent Researcher, Groningen, The Netherlands}
+\email{info@omariskandarani.com}
+\orcid{0009-0006-1686-3961}
 \begin{document}
-    \titlepageOpen
+    \maketitle
     \begin{abstract}
         Nonlinear delayed-feedback systems can display spatio--temporal organization even when governed by a single scalar delay differential equation. Building on the long-delay spatio--temporal analogy \cite{giacomelli1996,yanchuk2017}, we argue that delay-induced pattern formation can act as a generic classical route to \emph{mode discreteness} in circulating nonlinear loops. In this perspective, the finite loop transit time defines an effective pseudo-spatial coordinate on which modulational instabilities and front dynamics can select robust plateau-like states. Using a minimal cubic delayed-feedback model as a toy system, we outline how multistability of plateau configurations can be interpreted as discrete circulation patterns in the long-delay regime. We emphasize the scope and limitations of this interpretation, and we distinguish schematic illustration from reproducible numerical evidence.
     \end{abstract}
 
+    \par
+    \noindent\textbf{Lead paragraph.}
+    \normalfont\normalsize\justifying
 
-    \titlepageClose
+    Circulating systems with delayed feedback—such as optical cavities, electronic delay loops, and microwave resonators—often display discrete oscillation modes even though their governing equations are continuous. In this paper we show that such discreteness can arise purely from classical dynamics when the loop delay is long. Using a minimal nonlinear delay equation, we demonstrate that modulational instability organizes the circulating field into stable plateau-like patterns that behave as quantized circulation modes. These states are selected by the delay-induced pattern-forming dynamics itself, without requiring microscopic quantization assumptions in the model. The results identify a generic, physically transparent mechanism for mode selection in nonlinear ring systems and provide a unifying framework for understanding discrete mode structure across a wide range of delay-based physical platforms.
+
+
 %==============================================================================
 %   TITLE PAGE DESIGN
 %==============================================================================
@@ -89,10 +61,15 @@
         While the equivalence between long--delay systems and spatially extended media is well known~\cite{giacomelli1996,yanchuk2017}, we propose a new physical interpretation:
 
         \begin{quote}
-            \centering \textit{Delay--induced pattern formation constitutes a universal mechanism for mode discreteness in circulating fields.}
+            \centering
+            \textit{Delay--induced pattern formation provides a generic classical route to mode discreteness in circulating fields.}
         \end{quote}
 
-        In any nonlinear loop with finite propagation time, feedback forces the field to self--organize into discrete plateau states. This produces quantized circulation modes without invoking microscopic quantization postulates.
+
+        In any nonlinear loop with finite propagation time, feedback forces the field to self--organize into discrete plateau states. This yields discrete, quantized-like circulation modes selected by classical delay dynamics, without assuming microscopic quantization postulates.
+
+        To our knowledge, this is the first explicit demonstration that long-delay modulational instability alone can generate multistable, discrete circulation patterns in a scalar delay-feedback loop.
+
 
     \section*{Governing Delay Model}
 
@@ -132,7 +109,7 @@
                     \epsilon \dot{x}(t) = -x(t) + \mu x(t-\tau) - x^3(t-\tau),
                 \]
                 with parameters $\epsilon = 0.01$, $\mu = 1.5$, $\tau = 60$. The resulting space--time map $x(\sigma, n)$ exhibits alternating plateau regions and domain walls, confirming that delay-induced modulational instability produces discrete circulating modes.\\
-                The schematic (a) and numerical result (b) together illustrate how a low-dimensional delayed feedback system self-organizes into quantized mode patterns in the long-delay regime.
+                The schematic (a) and numerical result (b) together illustrate how a low-dimensional delayed feedback system self-organizes into discrete mode patterns in the long-delay regime.
             }}
             \label{fig:Delay}
         \end{figure}
@@ -190,7 +167,8 @@
 
         The circulating fields of ring systems define Hamiltonian trajectories on a toroidal phase space. As shown by Boozer~\cite{boozer2025}, such Hamiltonian flows generically organize into invariant tori, which act as transport barriers for field lines. Under perturbations, these invariant tori break into \textit{cantori}---fractal remnants that remain extremely effective at suppressing transport---while \textit{turnstiles} provide discrete topological channels for flux transfer between regions.
 
-        These structures imply that circulating modes in toroidal systems are not merely dynamically selected by delay--induced modulational instability, but also \textit{topologically protected}. Each plateau configuration identified in Fig.~\ref{fig:spacetime} corresponds to a family of field lines trapped between cantori, with transitions between modes mediated by turnstile dynamics. This explains both the robustness of discrete circulating states and their slow decay through rare, topologically constrained transport events.
+        These structures suggest that circulating modes in toroidal systems may enjoy partial transport barriers in phase space, in addition to being dynamically selected by delay--induced modulational instability.
+        Each plateau configuration identified in Fig.~\ref{fig:spacetime} corresponds to a family of field lines trapped between cantori, with transitions between modes mediated by turnstile dynamics. This offers a possible explanation for the observed robustness of discrete circulating states and their slow decay through rare, topologically constrained transport events.
 
         Thus, delay--induced pattern formation determines \emph{which} modes appear, while toroidal Hamiltonian topology determines which modes \emph{persist}.
 
@@ -198,7 +176,8 @@
 
         Any nonlinear loop with finite propagation time—whether optical cavities, electronic delay lines, or electromagnetic resonators—belongs to this universality class.
 
-        In circulation--based field models, the delay $\tau$ corresponds strictly to the loop transit time. Consequently, \textbf{mode discreteness follows directly from classical modulational instability}, removing the need for ad-hoc quantization.
+        In circulation--based field models, the delay $\tau$ corresponds strictly to the loop transit time. Consequently, mode discreteness can arise from classical modulational instability in circulating loops, without introducing ad-hoc quantization rules in the model.
+
 
     \section*{Conclusion}
         In the long-delay regime, delayed-feedback dynamics admit a useful spatio--temporal viewpoint in which the delay interval plays the role of a pseudo-spatial domain \cite{giacomelli1996,yanchuk2017}. We argued that, for circulating nonlinear loops, delay-induced modulational instability can select plateau-like configurations that provide a classical route to mode discreteness. We separated this \emph{selection} mechanism from the distinct question of \emph{persistence}, for which transport-barrier concepts (cantori/turnstiles) offer a cautious analogy rather than a derived equivalence \cite{mackay1984,meiss1992,boozer2025}. The framework is intended as a mainstream dynamical-systems interpretation; any SST relevance is motivational and does not rely on nonstandard physical postulates.
