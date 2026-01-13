@@ -14,7 +14,7 @@
 %========================================================================================
 % PACKAGES AND DOCUMENT CONFIGURATION
 %========================================================================================
-\documentclass[10pt,reprint,aps,onecolumn,nofootinbib]{revtex4-2}
+\documentclass[10pt]{article}
 
 % ====== minimal packages ======
 
@@ -42,11 +42,14 @@
 % Tables and Figures
 \usepackage{float}
 \usepackage{import}
-
+\usepackage{tabularx}
+\usepackage{enumitem}
 % ==========================
 % PATCH 0: include utilities
 % ==========================
 \usepackage{appendix}
+
+\usepackage{setspace}
 
 % ==========================
 % PATCH 0b: theorem-like envs
@@ -65,29 +68,6 @@
     citecolor=red,
     urlcolor=blue
 }
-
-
-
-% TOC Customization
-% NOTE (REVTeX): tocloft conflicts with revtex4-2 (\@starttoc already defined).
-% Comment it out and use a simple TOC macro instead.
-%\usepackage{tocloft}
-%\setcounter{tocdepth}{1}
-%\renewcommand{\cftsecfont}{\footnotesize}
-%\renewcommand{\cftsubsecfont}{\footnotesize\itshape}
-%\renewcommand{\cftsecleader}{\cftdotfill{5}}
-% Simple compact TOC macro (tight line spacing)
-%\renewcommand\cftsecpresnum{Chapter\space} % name before title
-%\setlength{\cftsecnumwidth}{\widthof{Chapter XX: }}% calculate width to leave enough room
-
-% REVTeX-safe fallback: make \compacttoc just call \tableofcontents.
-\makeatletter
-\@ifundefined{compacttoc}{%
-  \newcommand{\compacttoc}{\tableofcontents}%
-}{%
-  \renewcommand{\compacttoc}{\tableofcontents}%
-}%
-\makeatother
 
 % ===== Gauge sector macros =====
 \providecommand{\Tr}{\mathrm{Tr}}
@@ -173,46 +153,163 @@
 \newcommand{\gradop}{\nabla}
 \newcommand{\divop}{\nabla\cdot}
 
+% TOC Customization
+\usepackage{tocloft}
+\usepackage{calc} % for \settowidth
+
+\setcounter{tocdepth}{1}
+
+% Fonts
+\renewcommand{\cftsecfont}{\scriptsize}
+\renewcommand{\cftsubsecfont}{\scriptsize\itshape}
+\renewcommand{\cftsecpagefont}{\scriptsize}
+\renewcommand{\cftsubsecpagefont}{\scriptsize}
+
+% Dots
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftdotsep}{4}
+
+% Ensure a visible gap after the number
+\renewcommand{\cftsecaftersnum}{\hspace{0.9em}}
+\renewcommand{\cftsubsecaftersnum}{\hspace{0.9em}}
+
+% Reserve enough number width for the largest Roman numeral you use
+% (adjust XXXVIII if you go beyond 38)
+\newlength{\tocnumw}
+\settowidth{\tocnumw}{\scriptsize XXXVIII\hspace{0.9em}}
+\setlength{\cftsecnumwidth}{\tocnumw}
+\setlength{\cftsubsecindent}{\tocnumw}
+\setlength{\cftsubsecnumwidth}{\tocnumw}
+
+% Compact TOC macro (hard-compact)
+\newcommand{\compacttoc}{%
+    \begingroup
+    % Force font size + line spacing explicitly (this is the real vertical fix)
+    \fontsize{8}{9}\selectfont % try {7.6}{8.4} if you want even tighter
+
+    % No paragraph/list spacing inside TOC
+    \setlength{\parskip}{0pt}%
+    \setlength{\parindent}{0pt}%
+    \setlength{\cftparskip}{0pt}%
+
+    % Remove extra vskips inserted by tocloft
+    \setlength{\cftbeforesecskip}{0pt}%
+    \setlength{\cftbeforesubsecskip}{0pt}%
+
+    % Optional: tighten title spacing if "Contents" creates whitespace
+    \setlength{\cftbeforetoctitleskip}{0pt}%
+    \setlength{\cftaftertoctitleskip}{4pt}%
+
+    \tableofcontents
+    \endgroup
+}
+% Compact list defaults (front page)
+\newlist{canonlist}{enumerate}{1}
+\setlist[canonlist]{label=\textbf{\Roman*.}, leftmargin=*, itemsep=2pt, topsep=2pt, parsep=0pt}
+
+% Box style for frontpage blocks
+\tcbset{
+    canonfront/.style={
+        colback=white,
+        colframe=black!45,
+        boxrule=0.5pt,
+        arc=1.2mm,
+        left=6pt,right=6pt,top=6pt,bottom=6pt,
+    }
+}
+
 
 % Misc
 \providecommand{\dd}{\mathrm{d}}
 \newcommand{\ee}{\mathrm{e}}
-% Theorem-like environments (only if absent)
-\makeatletter
-\@ifundefined{theorem}{\newtheorem{theorem}{Theorem}}{}
-\@ifundefined{corollary}{\newtheorem{corollary}{Corollary}}{}
-\@ifundefined{definition}{\newtheorem{definition}{Definition}}{}
-\@ifundefined{lemma}{\newtheorem{lemma}{Lemma}}{}
-\makeatother
-
 \newcommand{\rhocore}{\rho_{\text{core}}}
 \newcommand{\clockfield}{\chi(x)}
 \newcommand{\swirlfactor}{S_\circ(x)}
 
 
+\newcommand{\titlepageOpen}{
+    \begin{titlepage}
+    \thispagestyle{empty}
+    \centering
+    \Large \bfseries \papertitle \par \vspace{1cm}
+    {\Large \itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par}
+    \vspace{0.5cm}
+    {\today \par}
+    \vspace{0.5cm}
+}
+
+\newcommand{\titlepageClose}{
+    \vfill \raggedright \null
+    \begin{picture}(0,0)
+    \put(0,-45){  % Shift 200pt left, 40pt down
+        \begin{minipage}[b]{0.7\textwidth} \footnotesize
+        \renewcommand{\arraystretch}{1.0}
+        \noindent\rule{\textwidth}{0.4pt} \\[0.5em]
+        \textsuperscript{\textbf{*}} Independent Researcher, Groningen, The Netherlands \\
+        Email: \texttt{info@omariskandarani.com} \\
+        ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}} \\
+        DOI: \href{https://doi.org/\paperdoi}{\paperdoi}
+        \end{minipage}
+    }
+    \end{picture}
+    \end{titlepage}
+}
+
 
 \begin{document}
-
-	\title{\papertitle}
-	\author{Omar Iskandarani}
-	\affiliation{Independent Researcher, Groningen, The Netherlands}
-    \thanks{ORCID: 0009-0006-1686-3961, DOI: \paperdoi}
-	\date{\today}
-
+    \titlepageOpen
     \begin{abstract}
 
-        \noindent We present Version 0.7.0 of the Swirl-String Theory (SST) Canon. This release unifies three historically distinct phenomena---time, gravity, and mass---into a single hydrodynamic framework based on a frictionless, incompressible superfluid condensate. We resolve the "Problem of Time" in quantum mechanics by defining time as a relational observable (event count) derived from a conserved topological current $J^\mu$. We demonstrate that the scalar field mediating this clock synchronization satisfies a Poisson equation, naturally yielding the inverse-square law for gravity without assuming curved spacetime. Finally, we derive the invariant masses of stable particles (protons, electrons) as the integrated swirl energy of topological knots, strictly enforcing the separation between the vacuum fluid density ($\rho_f \sim 10^{-7}$ kg/m$^3$) and the core condensate density ($\rho_{\text{core}} \sim 10^{18}$ kg/m$^3$).
+        \noindent We present Version 0.7.6 of the Swirl-String Theory (SST) Canon. This release unifies three historically distinct phenomena---time, gravity, and mass---into a single hydrodynamic framework based on a frictionless, incompressible superfluid condensate. We resolve the "Problem of Time" in quantum mechanics by defining time as a relational observable (event count) derived from a conserved topological current $J^\mu$. We demonstrate that the scalar field mediating this clock synchronization satisfies a Poisson equation, naturally yielding the inverse-square law for gravity without assuming curved spacetime. Finally, we derive the invariant masses of stable particles (protons, electrons) as the integrated swirl energy of topological knots, strictly enforcing the separation between the vacuum fluid density ($\rho_f \sim 10^{-7}$ kg/m$^3$) and the core condensate density ($\rho_{\text{core}} \sim 10^{18}$ kg/m$^3$).
 
     \end{abstract}
+    \vspace{0.6em}
 
-        \maketitle
+    \begin{minipage}{0.92\textwidth}
+        \scriptsize
+        \begin{tcolorbox}[canonfront,title={This version canonizes the following principles}]
+            \begin{canonlist}
+                \item The foundational hydrodynamic laws, including the Chronos--Kelvin invariant and the Swirl Coulomb constant $\Lambda$.
+                \item The Swirl--Electromagnetic bridge, linking swirl dynamics directly to Maxwell-type structure.
+                \item Emergence of the $\mathrm{SU}(3)\times\mathrm{SU}(2)\times\mathrm{U}(1)$ gauge sector and a first-principles derivation of the weak mixing angle $\theta_W$.
+                \item A parameter-free prediction track for the electroweak symmetry breaking scale (EWSB sector statement).
+                \item A formal dynamical rule for quantum measurement via $R\leftrightarrow T$ phase transitions.
+            \end{canonlist}
+        \end{tcolorbox}
+    \end{minipage}
+
+    \vspace{0.6em}
+
+    \begin{minipage}{0.92\textwidth}
+        \scriptsize
+        \begin{tcolorbox}[canonfront,title={Core Axioms (SST)}]
+            \renewcommand{\arraystretch}{1.15}
+            \begin{tabularx}{\textwidth}{@{}r@{\quad}X@{}}
+                \textbf{1.} & \textbf{Swirl Medium:} Physics is formulated on $\mathbb{R}^3$ with absolute reference time. Dynamics occur in a frictionless, incompressible swirl condensate.\\
+                \textbf{2.} & \textbf{Swirl Strings (Circulation and Topology):} Particles and field quanta correspond to closed filamentary defects (swirl strings). Circulation is quantized:
+                \[
+                    \Gamma=\oint \mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\cdot d\boldsymbol{\ell}=n\,\Gamma_0,\qquad
+                    \Gamma_0=2\pi r_c \,\lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert .
+                \]
+                Discrete quantum numbers track to topological invariants of the swirl string.\\
+                \textbf{3.} & \textbf{String-induced gravitation:} Macroscopic attraction emerges from coherent swirl flows and swirl-pressure gradients. The effective gravitational coupling is fixed by canonical constants.\\
+                \textbf{4.} & \textbf{Swirl Clocks:} Local proper-time rate depends on tangential swirl speed $v$, with factor $S_t=\sqrt{1-v^2/c^2}$.\\
+                \textbf{5.} & \textbf{Dual Phases (Wave--Particle):} Each swirl string admits an extended $R$-phase and a localized $T$-phase; measurement is a dynamical transition between them.\\
+                \textbf{6.} & \textbf{Taxonomy:} Unknotted excitations correspond to bosonic modes; torus knots map to leptonic candidates; chiral hyperbolic knots map to quark-like candidates; linked structures map to nuclei and bound states.\\
+            \end{tabularx}
+        \end{tcolorbox}
+    \end{minipage}
+        \titlepageClose
         \newpage
+
+        \singlespacing
+
         %\tableofcontents
         \compacttoc
-
+        \newpage
 % ======================================================================
     \section*{Canonical Definitions, Primitive Constants, and Operators}
-    \addcontentsline{toc}{section}{Canonical Definitions, Primitive Constants, and Operators}
+    \addcontentsline*{toc}{section}{Canonical Definitions, Primitive Constants, and Operators}
 % ======================================================================
 
 \begin{definition}[Primitive constant triplet]
@@ -1583,9 +1680,9 @@ components. The final two panels are \emph{placeholders} for a true reconnection
 
 \begin{figure}[h]
     \centering
-    
+
     \begin{tikzpicture}[x=1cm,y=1cm]
-    
+
     % ----------------------------
     % Layout parameters (in cm)
     % ----------------------------
@@ -1595,13 +1692,13 @@ components. The final two panels are \emph{placeholders} for a true reconnection
     \pgfmathsetmacro{\Ygap}{1.0}
     \pgfmathsetmacro{\Whalf}{\W/2}
     \pgfmathsetmacro{\Hhalf}{\H/2}
-    
+
     \pgfmathsetmacro{\xA}{0}
     \pgfmathsetmacro{\xB}{\W+\Xgap}
     \pgfmathsetmacro{\xC}{2*(\W+\Xgap)}
     \pgfmathsetmacro{\yTop}{\H+\Ygap}
     \pgfmathsetmacro{\yBot}{0}
-    
+
     % ----------------------------
     % Trefoil projection with perturbation amplitude eps
     % x(t) = sin t + 2 sin 2t + eps sin 5t
@@ -1616,7 +1713,7 @@ components. The final two panels are \emph{placeholders} for a true reconnection
            ({sin(\ang)+2*sin(2*\ang)+(#1)*sin(5*\ang)},
             {cos(\ang)-2*cos(2*\ang)+(#1)*cos(4*\ang)});
      }
-    
+
     % ----------------------------
     % Panel templates
     % ----------------------------
@@ -1626,7 +1723,7 @@ components. The final two panels are \emph{placeholders} for a true reconnection
         \node[font=\small] at (\Whalf,\H+0.35) {#3};
       \end{scope}
     }
-    
+
     \newcommand{\PanelTrefoil}[4]{% shiftx, shifty, title, eps
       \PanelFrame{#1}{#2}{#3}
       \begin{scope}[shift={(#1,#2)}]
@@ -1636,43 +1733,65 @@ components. The final two panels are \emph{placeholders} for a true reconnection
         \end{scope}
       \end{scope}
     }
-    
+
+% ----------------------------
+% Panel: reconnection-like schematic (bounded + clipped)  [USES YOUR \W,\H,\Whalf,\Hhalf]
+% ----------------------------
     \newcommand{\PanelReconnect}[3]{% shiftx, shifty, title
-      \PanelFrame{#1}{#2}{#3}
-      \begin{scope}[shift={(#1,#2)}]
-        \begin{scope}[shift={(\Whalf,\Hhalf)},scale=0.65]
-          \clip (-3.55,-3.55) rectangle (3.55,3.55);
-          % Schematic "reconnection-like" path (placeholder; not topology-preserving)
-          \draw[line width=0.6pt]
-            (-3.2,-1.8)
-            .. controls (-2.4, 1.4) and (-0.3, 2.6) .. ( 1.2, 1.4)
-            .. controls ( 2.5, 0.3) and ( 2.3,-1.1) .. ( 0.6,-1.7)
-            .. controls (-0.7,-2.2) and (-1.8,-2.2) .. (-3.2,-1.8);
-          \draw[line width=0.6pt]
-            (1.0, -0.2)
-            .. controls (2.4, 0.0) and (3.0, 0.9) .. (2.1, 1.5)
-            .. controls (1.4, 2.0) and (0.6, 1.2) .. (0.9, 0.4)
-            .. controls (1.1, 0.0) and (1.1,-0.1) .. (1.0,-0.2);
-          \draw[line width=0.6pt] (0.6,-1.7) -- (3.3,-1.7);
+        \PanelFrame{#1}{#2}{#3}
+        \begin{scope}[shift={(#1,#2)}]
+        % Clip strictly to the panel interior
+        \clip (0.05,0.05) rectangle (\W-0.05,\H-0.05);
+
+        % Draw centered content
+        \begin{scope}[shift={(\Whalf,\Hhalf)},scale=0.62]
+
+        % Compact outer loop (always inside bounds at this scale)
+        \draw[line width=0.6pt]
+        plot[domain=0:360,variable=\ang,samples=240,smooth]
+        ({ 2.05*cos(\ang) + 0.55*cos(2*\ang) },
+            { 1.25*sin(\ang) - 0.35*sin(2*\ang) });
+
+        % Small inner loop (neck/surgery cue)
+        \draw[line width=0.6pt]
+        plot[domain=0:360,variable=\ang,samples=220,smooth]
+        ({ 0.85*cos(\ang) + 0.15*cos(2*\ang) + 0.55 },
+            { 0.55*sin(\ang) - 0.10*sin(2*\ang) + 0.20 });
+
+        % Reconnection marker
+        \fill (-0.25,0.10) circle (0.08);
+
+        % Reference line (kept inside)
+        \draw[line width=0.6pt] (-2.8,-2.25) -- (2.8,-2.25);
+
         \end{scope}
-      \end{scope}
+        \end{scope}
     }
-    
+
+% ----------------------------
+% Panel: separated components (bounded + clipped)  [USES YOUR \W,\H,\Whalf,\Hhalf]
+% ----------------------------
     \newcommand{\PanelSeparated}[3]{% shiftx, shifty, title
-      \PanelFrame{#1}{#2}{#3}
-      \begin{scope}[shift={(#1,#2)}]
-        \begin{scope}[shift={(\Whalf,\Hhalf)},scale=0.70]
-          \clip (-3.55,-3.55) rectangle (3.55,3.55);
-          % Two separated loop components (placeholder)
-          \draw[line width=0.6pt]
-            (-2.8, 0.4) arc[start angle=180,end angle=0,radius=1.6];
-          \draw[line width=0.6pt]
-            ( 1.6,-0.4) arc[start angle=180,end angle=0,radius=1.2];
-          \draw[line width=0.6pt] (-1.2,-1.2) -- (1.0,-1.2);
+        \PanelFrame{#1}{#2}{#3}
+        \begin{scope}[shift={(#1,#2)}]
+        % Clip strictly to the panel interior
+        \clip (0.05,0.05) rectangle (\W-0.05,\H-0.05);
+
+        \begin{scope}[shift={(\Whalf,\Hhalf)},scale=0.72]
+
+        % Two disjoint loops, sized to stay inside the panel
+        \draw[line width=0.6pt] (-1.55, 0.65) circle (1.00);
+        \draw[line width=0.6pt] ( 1.75, 0.10) circle (0.80);
+
+        % Small shed strand
+        \draw[line width=0.6pt] (-0.55,-1.85) -- (0.85,-1.85);
+
         \end{scope}
-      \end{scope}
+        \end{scope}
     }
-    
+
+
+
     % ----------------------------
     % 2x3 panel placement
     % ----------------------------
@@ -1680,18 +1799,18 @@ components. The final two panels are \emph{placeholders} for a true reconnection
     \PanelTrefoil{\xA}{\yTop}{t=0 (base)}{0.00}
     \PanelTrefoil{\xB}{\yTop}{t=0.3}{0.054}  % 0.18*0.3
     \PanelTrefoil{\xC}{\yTop}{t=0.6}{0.108}  % 0.18*0.6
-    
+
     % Bottom row: stronger perturbation + schematic decay panels
     \PanelTrefoil{\xA}{\yBot}{t=0.9}{0.162}  % 0.18*0.9
     \PanelReconnect{\xB}{\yBot}{reconnect}
     \PanelSeparated{\xC}{\yBot}{separated}
-    
+
     \end{tikzpicture}
-    
+
     \caption{Schematic swirl-knot evolution under perturbation and reconnection-like decay (illustrative placeholder). Top row: trefoil-like curve under increasing perturbation amplitude. Bottom row: a reconnection-like transition and separated components. Replace the last two panels with SST evolution output once the perturbation + reconnection/decay rule is fixed.}
     \label{fig:knot-evolution-panel}
     \end{figure}
-    
+
 
 
 \section{Refined $\Xi(K)$ Functional (parametric analytic form)}
@@ -1925,7 +2044,6 @@ The molecule outlier (\texttt{C8H10N4O2}, caffeine) highlights a limitation of a
 
 
 \section{Integrated Response to Critical Inquiry}
-\addcontentsline{toc}{section}{Integrated Response to Critical Inquiry}
 
 \noindent \textbf{Subject:} Addressing the Synthesis of SST Canon v0.7.6 and the Relational TOA Framework \\
 \textbf{Context:} Response to peer-inquiry regarding conservation robustness, scale dependence, and experimental falsifiability of the unified Clock-Gravity sector.
@@ -1990,70 +2108,7 @@ They are dual representations of the same underlying conservation law.
 \end{itemize}
 
 
-\input{part-end_References}
 
-\section{Expanded Philosophical Rebuttals}
-\label{app:expanded-philosophy}
-
-% Move the long-form versions of the rebuttals here. Keep the main text to one paragraph
-% each, and preserve any historical discussion, interpretational comparisons, and
-% extended commentary in this Appendix.
-
-\subsection{Expanded discussion for Objection 1}
-% (paste the existing long-form text here)
-
-\subsection{Expanded discussion for Objection 2}
-% (paste the existing long-form text here)
-
-\subsection{Expanded discussion for Objection 3}
-% (paste the existing long-form text here)
-
-\section{Background References for v0.7.6 Additions}
-\label{app:v076-refs}
-
-\begin{thebibliography}{99}
-
-\bibitem{Moffatt1969}
-H.~K.~Moffatt (1969),
-\textit{The degree of knottedness of tangled vortex lines},
-Journal of Fluid Mechanics \textbf{35}(1), 117--129.
-doi:10.1017/S0022112069000991.
-
-\bibitem{Batchelor1967}
-G.~K.~Batchelor (1967),
-\textit{An Introduction to Fluid Dynamics},
-Cambridge University Press.
-(Helicity and invariants in ideal flow; standard reference.)
-
-\bibitem{Calugareanu1961}
-G.~C\u{a}lug\u{a}reanu (1961),
-\textit{Sur les classes d'isotopie des n{\oe}uds tridimensionnels et leurs invariants},
-Czechoslovak Mathematical Journal \textbf{11}, 588--625.
-
-\bibitem{White1969}
-J.~H.~White (1969),
-\textit{Self-linking and the Gauss integral in higher dimensions},
-American Journal of Mathematics \textbf{91}(3), 693--728.
-doi:10.2307/2373348.
-
-\bibitem{Fuller1971}
-F.~B.~Fuller (1971),
-\textit{The writhing number of a space curve},
-Proceedings of the National Academy of Sciences \textbf{68}(4), 815--819.
-doi:10.1073/pnas.68.4.815.
-
-\bibitem{ArnoldKhesin1998}
-V.~I.~Arnold and B.~A.~Khesin (1998),
-\textit{Topological Methods in Hydrodynamics},
-Springer.
-doi:10.1007/978-1-4612-0639-0.
-
-\bibitem{Jackson1998}
-J.~D.~Jackson (1998),
-\textit{Classical Electrodynamics}, 3rd ed.,
-Wiley.
-(Canonical reference for Maxwell action and field-strength conventions.)
-
-\end{thebibliography}
+        \input{part-end_References}
 
 \end{document}
