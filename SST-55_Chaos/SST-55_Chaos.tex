@@ -1,0 +1,136 @@
+%==============================================================================
+%   CLASS & PACKAGES
+%==============================================================================
+\documentclass[11pt,a4paper]{article}
+
+%--- Geometry & Layout ---
+\usepackage[margin=1in]{geometry}
+\usepackage[parfill]{parskip}
+
+%--- Typography & Math ---
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{newtxtext,newtxmath}
+\usepackage{microtype}
+\usepackage{amsmath,amsfonts,bm}
+\usepackage{physics}
+\usepackage{siunitx}
+
+%--- Graphics & Colors ---
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta, positioning, calc, decorations.markings}
+\usepackage[most]{tcolorbox}
+\usepackage{ragged2e}
+
+
+%--- Links & Metadata ---
+\usepackage[colorlinks=true, linkcolor=blue!40!black, citecolor=green!40!black, urlcolor=blue!40!black]{hyperref}
+\usepackage{amssymb}
+\usepackage{graphicx}
+%=========================================
+% Start Document - Title Page
+%=========================================
+
+\begin{document}
+    \title{Delay-Induced Mode Selection in Circulating Feedback Systems}
+    \author{%
+        Omar Iskandarani\\
+        \small Independent Researcher, Groningen, The Netherlands%
+        \thanks{\texttt{info@omariskandarani.com}. ORCID: 0009-0006-1686-3961}%
+    }
+    \date{\today}
+
+    \maketitle
+    \begin{abstract}
+        Closed circulation loops with finite propagation speeds constitute a generic class of delayed feedback systems. While spatial boundary conditions are traditionally responsible for mode discretization, we argue that temporal circulation delays alone are sufficient to enforce spectral discreteness through dynamical stability. Drawing on analogies with recent advances in bianisotropic homogenization, we derive a minimal phase-oscillator model for a circulating field. We demonstrate that the finite transit time acts as a selection filter, stabilizing a discrete ladder of stability-selected modes without invoking microscopic quantization. These results suggest that delay-induced discreteness is a universal feature of effective field theories in loops, paralleling the emergence of cross-couplings in spatially asymmetric media.
+    \end{abstract}
+
+    \par
+    \noindent
+    \normalfont\normalsize\justifying
+    Closed-loop systems with finite signal propagation times are ubiquitous across physics, engineering, and biology, appearing in contexts ranging from optical ring resonators and phase-locked loops to delayed neural and control networks. Such systems are commonly modeled either through spatial boundary conditions that enforce standing-wave modes, or through delay-differential equations where multistability is treated as a secondary dynamical feature.
+    Here we show that temporal circulation delays play a more fundamental role: even in the absence of spatial structure, delay alone acts as an effective constitutive ingredient enforcing discrete, stability-selected operating states.
+     Framed in the language of modern effective theories, this result places delay-induced mode selection on the same conceptual footing as emergent couplings in homogenized metamaterials, where hidden nonlocality necessitates an expanded macroscopic description.
+
+
+\section*{I. Introduction}
+Classical field theories typically assume local constitutive relations, where fluxes depend only on instantaneous, local gradients. However, the study of metamaterials has fundamentally expanded this view, demonstrating that microscopic structure can induce macroscopic effective properties that defy standard local descriptions. A prominent example is the emergence of bianisotropic cross-couplings—terms that link disparate physical fields, such as momentum and strain in elastodynamics or electric and magnetic fields in electromagnetics.
+
+Recent work by Shmuel and Willis has extended this framework to thermodynamics, showing that spatial asymmetry in heterogeneous media induces thermal bianisotropy, coupling heat flux directly to temperature rather than solely to its gradient. Their exact homogenization method demonstrates that these effective properties are rigorous consequences of ensemble averaging over hidden microstructure.
+
+If spatial asymmetry can generate new effective couplings, it follows that temporal nonlocality—manifested through memory and delay—should induce similarly rich emergent phenomena. In this paper, we apply this logic to circulating feedback loops. Just as spatial homogenization reveals hidden constitutive structure, we show that the history dependence of a circulating field generates discrete, stability-selected operating states.
+
+While multistability in delayed phase oscillators is well known, it is typically treated as a control-theoretic or laser-dynamics phenomenon. Here we reinterpret it as an emergent discretization mechanism analogous to effective constitutive quantization in homogenized media. Unlike recent studies that emphasize delay-induced spatial or spatiotemporal pattern formation, the present work focuses on the minimal phase dynamics of a circulating field and shows that discreteness arises already at the level of a reduced effective description.
+
+\section*{II. Physical Framework}
+We consider a scalar excitation propagating on a closed feedback loop of effective length $L$ with characteristic group velocity $v_g$. When the propagation time becomes comparable to the intrinsic timescale of the field dynamics, the system is more accurately described as a delayed feedback loop with circulation time
+\begin{equation}
+\tau = \frac{L}{v_g}.
+\end{equation}
+
+Unlike static spatial boundary conditions, this finite circulation time introduces temporal nonlocality, fundamentally modifying the spectral properties of the system. This perspective parallels the transition from local Fourier conduction to nonlocal thermal transport models, where finite propagation speeds enforce causality.
+
+\section*{III. Minimal Effective Phase Description with Temporal Nonlocality}
+The purpose of this reduced model is not quantitative prediction for a specific experimental platform, but to expose the minimal dynamical ingredients required for delay-induced spectral discreteness. By isolating the phase degree of freedom, the analysis highlights the constitutive role of temporal nonlocality in enforcing discrete, stability-selected operating states.
+
+Let $\phi(t)$ denote the instantaneous phase of the circulating field. The dynamics are governed by a generic frequency-pulling equation with delayed self-interaction,
+\begin{equation}
+\dot{\phi}(t) = \omega_0 + \kappa \sin\big[\phi(t-\tau) - \phi(t)\big],
+\end{equation}
+where $\omega_0$ is the intrinsic frequency and $\kappa$ is the feedback coupling strength.
+
+\subsection*{A. Emergent Spectral Discreteness}
+We seek uniformly rotating solutions $\phi(t) = \Omega t + \phi_0$. Substitution yields the transcendental condition
+\begin{equation}
+\Omega = \omega_0 - \kappa \sin(\Omega \tau).
+\end{equation}
+
+In the long-delay regime $(\kappa \tau > 1)$, this equation admits multiple stable solutions organized into a discrete ladder,
+\begin{equation}
+\Omega_n \approx \frac{2\pi n}{\tau} + \delta\Omega, \qquad n \in \mathbb{Z}.
+\end{equation}
+
+Geometrically, the integer $n$ counts the number of phase windings accumulated during one circulation time $\tau$, analogous to a topological winding number in ring geometries.
+
+\subsection*{B. Stability and Selection}
+Linearizing about a locked solution yields the variational equation
+\begin{equation}
+\dot{\psi}(t) = -\gamma \psi(t) - \gamma \psi(t-\tau),
+\end{equation}
+with $\gamma = \kappa \cos(\Omega \tau)$. Stability requires
+\begin{equation}
+1 + \kappa \tau \cos(\Omega \tau) > 0.
+\end{equation}
+
+This inequality acts as a dynamical selection rule, suppressing unstable branches and enforcing discrete, robust operating states.
+
+\section*{IV. Discussion}
+The results presented here demonstrate that temporal circulation alone is sufficient to generate discrete mode families through stability constraints, without reliance on spatial standing-wave boundary conditions or microscopic quantization. This mechanism mirrors the emergence of bianisotropic cross-couplings in homogenized metamaterials, where hidden microstructure necessitates an expanded macroscopic description.
+
+This parallels the Willis framework, where effective constitutive relations acquire additional degrees of freedom when microstructural information is averaged out. In the present context, temporal nonlocality plays the role of an effective constitutive ingredient, legitimizing additional dynamical structure at the macroscopic level.
+
+By explicitly incorporating finite circulation time, the model avoids the infinite-speed paradox associated with parabolic transport theories. The resulting dynamics exhibit hyperbolic-like features, akin to second-sound phenomena in nonlocal thermal media.
+
+\section*{V. Conclusion}
+We have shown that delayed feedback in closed circulation loops naturally enforces a discrete set of stable phase-locked states. This discreteness arises from the interplay between nonlinear frequency pulling and delay-induced stability constraints, yielding robust discrete mode families in a purely classical setting. The framework unifies delay dynamics with modern effective-theory approaches, highlighting temporal nonlocality as a generative mechanism for emergent macroscopic structure.
+
+\begin{thebibliography}{99}
+
+\bibitem{Willis2012}
+J.~R.~Willis (2012),
+``The construction of effective relations for waves in a composite,''
+\emph{C. R. Mécanique} \textbf{340}, 181--192.
+
+\bibitem{Yanchuk2017}
+S.~Yanchuk and G.~Giacomelli (2017),
+``Spatio-temporal phenomena in complex systems with time delays,''
+\emph{Journal of Physics A} \textbf{50}, 103001.
+
+\end{thebibliography}
+
+
+
+
+\end{document}
