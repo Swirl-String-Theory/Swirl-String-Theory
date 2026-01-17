@@ -72,6 +72,19 @@ We consider a scalar excitation propagating on a closed feedback loop of effecti
 
 Unlike static spatial boundary conditions, this finite circulation time introduces temporal nonlocality, fundamentally modifying the spectral properties of the system. This perspective parallels the transition from local Fourier conduction to nonlocal thermal transport models, where finite propagation speeds enforce causality.
 
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[>=Stealth, thick]
+  \draw[->] (0,0) circle (2);
+  \node at (2.4,0) {$v_g$};
+  \node at (0,-2.6) {circulation loop};
+  \draw[->] (-1.2,1.6) -- (-0.2,2.2);
+  \node at (-1.5,2.4) {$\tau=L/v_g$};
+\end{tikzpicture}
+\caption{Schematic of a circulating feedback loop with finite propagation time $\tau$. The delayed self-interaction arises from finite signal transit around the loop.}
+\label{fig:circulation_loop}
+\end{figure}
+
 \section*{III. Minimal Effective Phase Description with Temporal Nonlocality}
 The purpose of this reduced model is not quantitative prediction for a specific experimental platform, but to expose the minimal dynamical ingredients required for delay-induced spectral discreteness. By isolating the phase degree of freedom, the analysis highlights the constitutive role of temporal nonlocality in enforcing discrete, stability-selected operating states.
 
@@ -81,16 +94,61 @@ Let $\phi(t)$ denote the instantaneous phase of the circulating field. The dynam
 \end{equation}
 where $\omega_0$ is the intrinsic frequency and $\kappa$ is the feedback coupling strength.
 
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[>=Stealth]
+  \draw[->] (0,0) -- (6,0) node[right] {$t$};
+  \draw[->] (0,0) -- (0,3) node[above] {$\phi(t)$};
+
+  \draw[blue, thick, domain=0:5, samples=100]
+    plot (\x,{1.5+0.8*sin(1.5*\x r)});
+  \draw[dashed] (1.5,0) -- (1.5,3);
+  \node at (1.5,-0.4) {$t-\tau$};
+  \node[blue] at (4.2,2.3) {$\phi(t)$};
+\end{tikzpicture}
+\caption{Phase evolution illustrating delayed self-interaction: the instantaneous phase $\phi(t)$ depends on its value one circulation time earlier.}
+\label{fig:phase_feedback}
+\end{figure}
+
 \subsection*{A. Emergent Spectral Discreteness}
 We seek uniformly rotating solutions $\phi(t) = \Omega t + \phi_0$. Substitution yields the transcendental condition
 \begin{equation}
 \Omega = \omega_0 - \kappa \sin(\Omega \tau).
 \end{equation}
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{fig1_1_120817.png}
+\caption{Discrete intersections correspond to stable phase-locked circulating modes. Finite delay alone enforces spectral discreteness.}
+\label{fig:transcendental}
+\end{figure}
+
 In the long-delay regime $(\kappa \tau > 1)$, this equation admits multiple stable solutions organized into a discrete ladder,
 \begin{equation}
 \Omega_n \approx \frac{2\pi n}{\tau} + \delta\Omega, \qquad n \in \mathbb{Z}.
 \end{equation}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  xlabel={$n$},
+  ylabel={$\Omega_n$},
+  ymajorgrids=true,
+  xmajorgrids=true,
+  width=0.6\textwidth,
+  height=5cm
+]
+\addplot+[only marks, mark size=3pt]
+coordinates {
+(-3,-9.4) (-2,-6.3) (-1,-3.1) (0,0)
+(1,3.1) (2,6.3) (3,9.4)
+};
+\end{axis}
+\end{tikzpicture}
+\caption{Discrete frequency ladder selected by circulation delay, with spacing $\Delta\Omega \approx 2\pi/\tau$.}
+\label{fig:mode_ladder}
+\end{figure}
 
 Geometrically, the integer $n$ counts the number of phase windings accumulated during one circulation time $\tau$, analogous to a topological winding number in ring geometries.
 
@@ -104,12 +162,43 @@ with $\gamma = \kappa \cos(\Omega \tau)$. Stability requires
 1 + \kappa \tau \cos(\Omega \tau) > 0.
 \end{equation}
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{fig1_2_120817.png}
+\caption{Only branches satisfying the stability inequality survive, enforcing discrete, dynamically selected operating states. Regions above the dashed line ($>0$) are stable.}
+\label{fig:stability}
+\end{figure}
+
 This inequality acts as a dynamical selection rule, suppressing unstable branches and enforcing discrete, robust operating states.
 
 \section*{IV. Discussion}
 The results presented here demonstrate that temporal circulation alone is sufficient to generate discrete mode families through stability constraints, without reliance on spatial standing-wave boundary conditions or microscopic quantization. This mechanism mirrors the emergence of bianisotropic cross-couplings in homogenized metamaterials, where hidden microstructure necessitates an expanded macroscopic description.
 
 This parallels the Willis framework, where effective constitutive relations acquire additional degrees of freedom when microstructural information is averaged out. In the present context, temporal nonlocality plays the role of an effective constitutive ingredient, legitimizing additional dynamical structure at the macroscopic level.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\node (a) at (0,0) {
+\begin{tikzpicture}[scale=0.8]
+\draw[->, thick] (0,0)--(2,0);
+\node at (1,-0.5) {space};
+\node at (1,0.5) {spatial microstructure};
+\end{tikzpicture}
+};
+\node (b) at (5,0) {
+\begin{tikzpicture}[scale=0.8]
+\draw[->, thick] (0,0)--(2,0);
+\node at (1,-0.5) {time};
+\node at (1,0.5) {temporal memory};
+\end{tikzpicture}
+};
+\node at (0,-1.5) {(a)};
+\node at (5,-1.5) {(b)};
+\end{tikzpicture}
+\caption{Analogy between spatial homogenization (left) and temporal nonlocality in delayed circulation (right). Both generate emergent effective structure.}
+\label{fig:analogy}
+\end{figure}
 
 By explicitly incorporating finite circulation time, the model avoids the infinite-speed paradox associated with parabolic transport theories. The resulting dynamics exhibit hyperbolic-like features, akin to second-sound phenomena in nonlocal thermal media.
 

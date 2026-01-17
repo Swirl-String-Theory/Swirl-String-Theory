@@ -1,0 +1,845 @@
+%! Author = Omar Iskandarani
+%! Title =  SST-Rosetta-v0.6: Translation Guide for Symbols, Macros, and Constants
+%! Date = 25 August 2025
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.17606846
+
+
+% ===============================================================
+% SST-Rosetta-v0.6: Translation Guide for Symbols, Macros, and Constants
+% ===============================================================
+
+% === Metadata ===
+\newcommand{\papertitle}{Swirl--String Theory Rosetta Stone v0.6: \\Translation Guide for Symbols, Macros, and Constants}
+\newcommand{\paperdoi}{10.5281/zenodo.17606846}
+
+% Standalone mode
+\documentclass[11pt]{article}
+% === Page ===
+\RequirePackage[a4paper, margin=2.5cm]{geometry}
+
+% === Fonts ===
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[english]{babel}
+\RequirePackage{textgreek}
+\RequirePackage{mathpazo}
+\RequirePackage[scaled=0.95]{inconsolata}
+\RequirePackage{helvet}
+
+% === Math ===
+\RequirePackage{amsmath, amssymb, mathrsfs, physics}
+\RequirePackage{siunitx}
+\sisetup{per-mode=symbol}
+
+% === Tables ===
+\RequirePackage{graphicx, float, booktabs}
+\RequirePackage{array, tabularx, multirow, makecell}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\newenvironment{tighttable}[1][]{\begin{table}[H]\centering\renewcommand{\arraystretch}{1.3}\begin{tabularx}{\textwidth}{#1}}{\end{tabularx}\end{table}}
+\RequirePackage{etoolbox}
+\newcommand{\fitbox}[2][\linewidth]{\makebox[#1]{\resizebox{#1}{!}{#2}}}
+
+% === Graphics ===
+\RequirePackage{tikz}
+\usetikzlibrary{3d, calc, arrows.meta, positioning}
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\RequirePackage{xcolor}
+
+% === Code ===
+\RequirePackage{listings}
+\lstset{basicstyle=\ttfamily\footnotesize, breaklines=true}
+
+% === Theorems ===
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+
+% === TOC ===
+\RequirePackage{tocloft}
+\setcounter{tocdepth}{2}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\itshape}
+\renewcommand{\cftsecleader}{\cftdotfill{.}}
+\renewcommand{\contentsname}{\centering \Huge\textbf{Contents}}
+
+% === Sections ===
+\RequirePackage{sectsty}
+\sectionfont{\Large\bfseries\sffamily}
+\subsectionfont{\large\bfseries\sffamily}
+
+% === Bibliography ===
+
+
+% === Links ===
+\RequirePackage{hyperref}
+% --- Fix 4: hyperref metadata ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue,
+    pdftitle={SST-Rosetta-v0.6: Translation Guide for Symbols, Macros, and Constants},
+    pdfauthor={Omar Iskandarani},
+    pdfkeywords={Swirl-String Theory, SST, khronon, preferred foliation, helicity, analogue gravity}
+}
+
+\urlstyle{same}
+\RequirePackage{bookmark}
+
+% === Misc ===
+\RequirePackage[none]{hyphenat}
+\sloppy
+\RequirePackage{empheq}
+\RequirePackage[most]{tcolorbox}
+\newtcolorbox{eqbox}{colback=blue!5!white, colframe=blue!75!black, boxrule=0.6pt, arc=4pt, left=6pt, right=6pt, top=4pt, bottom=4pt}
+\RequirePackage{titling}
+\RequirePackage{amsfonts}
+\RequirePackage{titlesec}
+\RequirePackage{enumitem}
+
+\AtBeginDocument{\RenewCommandCopy\qty\SI}
+
+\pretitle{\begin{center}\LARGE\bfseries}
+\posttitle{\par\end{center}\vskip 0.5em}
+\preauthor{\begin{center}\large}
+\postauthor{\end{center}}
+\predate{\begin{center}\small}
+\postdate{\end{center}}
+
+
+\newcommand{\titlepageOpen}{
+    \begin{titlepage}
+    \thispagestyle{empty}
+    \centering
+    \ifdefined\standalonechapter
+    {\Large\bfseries \appendixtitle \par}
+    \else
+        {\Large\bfseries \papertitle \par}
+    \fi
+    \vspace{1cm}
+    {\Large\itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par}
+    \vspace{0.5cm}
+    {\today \par}
+    \vspace{0.5cm}
+}
+
+% here comes abstract
+\newcommand{\titlepageClose}{
+    \vfill
+    \raggedright % <-- fixes left alignment
+    \null
+    \begin{picture}(0,0)
+    % Adjust position: (x,y) = (left, bottom)
+    \put(0,-45){  % Shift 200pt left, 40pt down
+        \begin{minipage}[b]{0.7\textwidth}
+        \footnotesize % One step bigger than \tiny \scriptsize
+        \renewcommand{\arraystretch}{1.0}
+        \noindent\rule{\textwidth}{0.4pt} \\[0.5em]  % ← horizontal line
+        \textsuperscript{\textbf{*}} Independent Researcher, Groningen, The Netherlands \\
+        Email: \texttt{info@omariskandarani.com} \\
+        ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}} \\
+        DOI: \href{https://doi.org/\paperdoi}{\paperdoi} \\
+        License: CC-BY-NC 4.0 International \\
+        \end{minipage}
+    }
+    \end{picture}
+    \end{titlepage}
+}
+\usepackage{amsmath,amssymb,siunitx,tcolorbox,booktabs}
+\sisetup{scientific-notation=true,round-mode=figures,round-precision=3}
+
+% ==== Swirl String Theory (SST) macros ====
+% Context-aware subscript symbol; uses math styles, not \scriptsize
+\newcommand{\swirlarrow}{%
+	\mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}%
+	{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}%
+	{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
+	{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
+}
+\newcommand{\swirlarrowcw}{%
+	\mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}%
+	{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}%
+	{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}%
+	{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}%
+}
+
+% Canonical symbols (ORIGINAL LINES KEPT)
+\newcommand{\vswirl}{\mathbf{v}_{\swirlarrow}}
+\newcommand{\vswirlcw}{\mathbf{v}_{\swirlarrowcw}}
+\newcommand{\SwirlClock}{S_t^{\swirlarrow}}
+\newcommand{\SwirlClockcw}{S_t^{\swirlarrowcw}}
+\newcommand{\omegas}{\boldsymbol{\omega}_{\swirlarrow}}  % swirl vorticity
+\newcommand{\vscore}{v_s}                                % shorthand: |v_swirl| at r=rs
+\newcommand{\vnorm}{\lVert \mathbf{v}_{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}} \rVert}               % swirl speed magnitude
+\newcommand{\rhoF}{\rho_{\!f}}                           % effective fluid density
+\newcommand{\rhoE}{\rho_{\!E}}                           % swirl energy density (J m^-3)
+\newcommand{\rhoM}{\rho_{\!m}}                           % mass-equivalent density
+\newcommand{\rhoC}{\rho_{\mathrm{core}}}                 % core/material density
+\newcommand{\rs}{r_e}                                    % string core radius (swirl string radius)
+\newcommand{\FmaxEM}{F_{\mathrm{EM}}^{\max}}             % EM-like maximal force scale
+\newcommand{\FmaxG}{F_{\mathrm{G}}^{\max}}               % G-like maximal force scale
+\newcommand{\Lam}{\Lambda}                               % Swirl Coulomb constant
+\newcommand{\Om}{\Omega_{\swirlarrow}}                   % swirl angular frequency profile
+\newcommand{\alpg}{\alpha_g}                             % gravitational fine-structure analogue
+\providecommand{\cLight}{c}
+
+% ------------------- BEGIN v0.6-COMPAT PATCHES (ADDED) -------------------
+% Keep everything above; only ADD the following compatibility shims and clarifications.
+
+% (1) Core-radius alias used in Canon v0.6; do not remove legacy \rs.
+\providecommand{\rc}{r_c} % canonical core radius symbol (v0.6+)
+
+% (2) Field-first mapping for C_e: use vector field \vswirl; scalar use = core magnitude.
+\newcommand{\vcore}{\left.\vnorm\right|_{r=\rc}}        % |\mathbf{v}_{⟲}| at r = r_c
+% Back-compat: keep \vscore name but bind it to the core magnitude (no removal).
+\renewcommand{\vscore}{\vcore}
+
+% (3) Clarify roles of densities (constant vs field) and the contextual identity in the core.
+\newcommand{\CoreSaturationNote}{%
+	\textit{Note.} \(\rho_{\mathrm{core}}\) is a calibration \emph{constant}. The mass-equivalent density is a \emph{field} \(\rho_{\!m}(x)=\rho_{\!E}(x)/c^2\).
+	In the core-saturation evaluation \(\rho_{\!E}^{\text{core}}=\rho_{\mathrm{core}}\,c^2\), one has \(\rho_{\!m}^{\text{core}}=\rho_{\mathrm{core}}\).}
+
+% (4) Chronos--Kelvin invariant (added; non-original law → cite in .bib)
+\newcommand{\ChronosKelvinEq}{\dfrac{D}{Dt}\!\big(R^{2}\omega\big)=0\quad\text{(incompressible, inviscid, barotropic, no reconnection)}.}
+
+% (5) Rankine + Biot--Savart energetics kept; no change needed—citations added in bib.
+
+% -------------------- END v0.6-COMPAT PATCHES --------------------
+
+\begin{document}
+
+	% === Title page ===
+	\titlepageOpen
+
+    \begin{abstract}
+        \noindent
+        This Rosetta note provides a structured translation layer between Swirl--String Theory (SST) and mainstream formalisms in gravity, fluid dynamics, and quantum field theory, without relying on its historical VAM presentation. At the kinematic level it fixes the canonical SST identities
+        \[
+            \rhoE_{(\mathrm{J\,m^{-3}})} = \tfrac12\,\rhoF\,\lVert\vswirl\rVert^{2},\qquad
+            \rhoM_{(\mathrm{kg\,m^{-3}})} = \rhoE/c^{2},\qquad
+            K_{(\mathrm{kg\,m^{-3}\,s})} = \frac{\rhoC\,r_c}{\left.\lVert\vswirl\rVert\right|_{r=\rc}},\quad
+            \rhoF_{(\mathrm{kg\,m^{-3}})} = K\,\Omega,
+        \]
+        \[
+            \ChronosKelvinEq
+        \]
+        and shows how these coincide with standard kinetic-energy density, effective mass density, and coarse-grained angular rates in incompressible, inviscid flow. On the chronometric/metric layer, the Swirl–Clock sector is mapped to khronon/Einstein–Æther constructions and to weak-field GR via an explicit identification of the analogue potential $\Phi_{\text{SST}}$ and the corresponding PPN/GW constraints. On the fluid and topological layers, \(\vswirl\), \(\boldsymbol{\omega}\), and the helicity functional are matched to superfluid velocity fields, vorticity, and Hopf/Skyrme-type solitons, while the knot-based energy functional \(\mathcal{E}_{\text{eff}}\) is aligned with known topological energy bounds. On the gauge/quantum layer, multi-director swirl symmetries are related to \(\mathfrak{su}(3)\oplus\mathfrak{su}(2)\oplus\mathfrak{u}(1)\) gauge structure and to photon-like excitations in analogue-media language. The document supplies a compact macro set (\verb|\rhoF|, \verb|\rhoE|, \verb|\rhoM|, \verb|\rhoC|, \verb|\vswirl|, \verb|\vnorm|) and layer-by-layer dictionaries so that SST manuscripts can be read, checked, and compared directly within mainstream relativity, fluid, and field-theoretic frameworks, with all dimensional scalings and published numerical calibrations preserved.
+    \end{abstract}
+% ===============================================================
+	\titlepageClose
+
+% ============= Begin of content ============
+
+
+%========================================================================================
+% Rosetta Concordance of SST and Mainstream Terminology
+%========================================================================================
+
+    \section{Rosetta Concordance of SST and Mainstream Terminology}
+        \addcontentsline{toc}{section}{Rosetta Concordance of SST and Mainstream Terminology}
+% \vswirl = 1.09384563e6 m/s ; \rc = 1.40897017e-15 m ;
+% \rhoF = 7.0e-7 kg/m^3 ; \rho_core = 3.8934358266918687e18 kg/m^3 ;
+% \FswirlMax = 29.053507 N  (not used directly here).
+
+% Helpful derived scales (used and checked below)
+        \newcommand{\Circulation}{\kappa}
+        \newcommand{\Umax}{U_{\max}}
+        \newcommand{\Uloc}{U_{\text{swirl}}}
+        \newcommand{\chiS}{\chi_{\text{swirl}}}
+
+
+%======================================================================
+% CARD 1: GR / PPN / GW  →  SST (Swirl–Clock analogue metric)
+%======================================================================
+    \begin{tcolorbox}[title=Rosetta Card: GR/PPN/GW $\to$ Swirl–String Theory (SST)]
+        \small
+        \textbf{Domain:} weak–field, stationary backgrounds; lensing, Shapiro delay, PPN.
+        \begin{center}
+            \textbf{Symbol Dictionary:}\\
+        \end{center}
+
+        \begin{tabular}{@{}lll@{}}
+            \toprule
+            GR object & SST counterpart & Notes \\
+            \midrule
+            $g_{\mu\nu}$ (weak field) & analogue metric via Swirl–Clock & matter propagation sector \\
+            $\Phi$ (Newtonian potential) & $\Phi_{\text{SST}}$ from swirl energy fraction & defined below \\
+            $T^{\mu\nu}$ & swirl stress $(\rhoE,p_{\text{swirl}},\ldots)$ & barotropic, inviscid \\
+            $c$ & $\cLight$ & calibrated to luminal signals \\
+            \bottomrule
+        \end{tabular}
+        \begin{center}
+            \textbf{EOM / Metric Map (linearized):}
+        \end{center}
+        \[
+            ds^2_{\text{GR}} \approx -\left(1+\frac{2\Phi}{\cLight^2}\right)\cLight^2 dt^2
+            +\left(1-\frac{2\gamma\,\Phi}{\cLight^2}\right)d\mathbf{x}^2 .
+        \]
+        Define the local swirl energy density and maximum energy density
+        \[
+            \Uloc = \tfrac{1}{2}\rhoF \lVert \vswirl\rVert^2,\qquad
+            \Umax = \rho_{\text{core}}\cLight^2,\qquad
+            \chiS = \frac{\Uloc}{\Umax}\ (\text{dimensionless}),
+        \]
+        and map
+        \[
+            g_{tt} = -\!\left(1-\chiS\right),\qquad
+            g_{ij} = \left(1+\gamma\,\chiS\right)\delta_{ij}.
+        \]
+        Matching coefficients gives
+        \[
+            \boxed{\ \Phi_{\text{SST}} \equiv -\frac{\Uloc}{2\,\rho_{\text{core}}}\ } \quad\Rightarrow\quad
+            \frac{2\Phi_{\text{SST}}}{\cLight^2} = -\chiS,\ \ \gamma=1\ (\text{Calibration}).
+        \]
+        \emph{Dimensional check:} $[\Uloc]=\mathrm{J/m^3}$, $[\rho_{\text{core}}]=\mathrm{kg/m^3}$, so
+        $\Uloc/\rho_{\text{core}}$ has units $\mathrm{J/kg}=\mathrm{m^2/s^2}$, as required for $\Phi$.
+
+        \begin{center}
+            \textbf{Numerical validation (SST constants):}\\
+        \end{center}
+        \[
+            \Circulation = 2\pi\rc\lVert\vswirl\rVert
+            = \SI{9.6836e-9}{m^2/s},
+            \quad
+            \Uloc=\tfrac{1}{2}\rhoF \lVert \vswirl\rVert^2=\SI{4.1877e5}{J/m^3},
+        \]
+        \[
+            \Umax = \rho_{\text{core}}\cLight^2 = \SI{3.4992e35}{J/m^3},
+            \quad
+            \chiS = \Uloc/\Umax = \SI{1.1968e-30}{},
+        \]
+        \[
+            \Phi_{\text{SST}} = -\frac{\Uloc}{2\rho_{\text{core}}}
+            = \SI{-5.378e-14}{m^2/s^2},
+            \quad
+            \left|\frac{2\Phi_{\text{SST}}}{\cLight^2}\right|=\SI{1.197e-30}{}.
+        \]
+        Known-limit check: $|\chiS|\ll 1 \Rightarrow$ PPN weak-field holds with $\gamma=1$.
+
+        \begin{center}
+            \textbf{Predictions \& Falsifiers}\\
+        \end{center}
+        \begin{itemize}\itemsep2pt
+        \item Lensing/Shapiro from $\Phi_{\text{SST}}$ matches GR to $\mathcal{O}(\chiS)$; deviations scale with spatial gradients of $\Uloc$.
+        \item High-frequency GW propagation luminal (Calib.) $\Rightarrow$ multi-messenger bounds satisfied.
+        \item Falsifier: any measured $\gamma\neq 1$ at $10^{-5}$–$10^{-6}$ in quasi-static fields contradicts this mapping.
+        \end{itemize}
+
+        \textbf{Status:} Calibration \hfill \textbf{Version:} ~v0.5.10
+    \end{tcolorbox}
+
+%======================================================================
+% CARD 2: Maxwell / QED  →  SST (multi-director swirl sector)
+%======================================================================
+    \begin{tcolorbox}[title=Rosetta Card: Maxwell/QED $\to$ SST (multi-director swirl)]
+        \small
+        \textbf{Domain:} radiation sector; vacuum/linear media analogues.
+
+        \begin{center}
+            \textbf{Dictionary:}\\
+        \end{center}
+
+        \begin{tabular}{@{}lll@{}}
+            \toprule
+            EM object & SST counterpart & Notes \\
+            \midrule
+            $A_\mu$ & director phase gradient $\partial_\mu\theta$ & Abelian sector \\
+            $F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu$ & swirl curvature of director field & circulation quantized \\
+            Charge $q$ & knot/link index (topological) & integer invariants \\
+            Flux quantum & $\Circulation=2\pi\rc\lVert\vswirl\rVert$ & \SI{9.6836e-9}{m^2/s} \\
+            Poynting $\mathbf{S}$ & energy flux of Kelvin–swirl waves & $\sim \Uloc\,\mathbf{v}_{\rm ph}$ \\
+            \bottomrule
+        \end{tabular}
+
+        \begin{center}
+            \textbf{Lagrangian/EOM map (linearized, uniform background):}\\
+        \end{center}
+        \[
+            \mathcal{L}_{\text{EM}}=-\tfrac14 F_{\mu\nu}F^{\mu\nu}
+            \ \longleftrightarrow\
+            \mathcal{L}_{\text{SST}}^{(\theta)}=\tfrac12\!\left[\frac{1}{\cLight^2}(\partial_t\theta)^2-\lvert\nabla\theta\rvert^2\right]\Umax,
+        \]
+        yielding the wave equation
+        \[
+            \partial_t^2\theta-\cLight^2\nabla^2\theta=0
+            \quad(\text{calibrated luminal phase speed}).
+        \]
+        In inhomogeneous multi-director fields, polarization-dependent phase shifts (vacuum-like birefringence) enter via curvature of the director manifold.
+
+        \begin{center}
+            \textbf{Numerical anchor:} \
+        \end{center}
+        circulation quantum $\Circulation=\SI{9.6836e-9}{m^2/s}$ fixes the smallest swirl-flux unit consistent with $\rc$ and $\vswirl$.
+
+        \begin{center}
+            \textbf{Dimensional checks:}\\
+        \end{center}
+        $\mathcal{L}_{\text{SST}}^{(\theta)}$ has units of energy density by the factor $\Umax$.
+
+        \begin{center}
+            \textbf{Predictions \& Falsifiers:}\\
+        \end{center}
+
+        \begin{itemize}\itemsep2pt
+        \item Plane-wave dispersion $\omega=\cLight k$ in uniform regions; gradients in $\theta$ produce tiny polarization-dependent delays $\propto\nabla^2\theta/\Umax$.
+        \item Falsifier: vacuum birefringence above current bounds in high-energy astrophysical spectra would contradict the calibration.
+        \end{itemize}
+
+        \textbf{Status:} Canonical (kinematics) / Research (multi-director birefringence) \hfill  \textbf{Version:} ~v0.5.10
+    \end{tcolorbox}
+
+
+%======================================================================
+% CARD 3: Einstein–Æther / Khronon EFT  →  SST (Swirl–Clock foliation)
+%======================================================================
+        \begin{tcolorbox}[title=Rosetta Card: Einstein–Æther/Khronon $\to$ SST (Swirl–Clock)]
+            \small
+            \textbf{Domain:} preferred-frame EFTs; GW constraints; PPN.
+
+            \begin{center}
+                \textbf{Dictionary:}\\
+            \end{center}
+
+            \begin{tabular}{@{}lll@{}}
+                \toprule
+                EA field & SST counterpart & Notes \\
+                \midrule
+                Unit timelike $u^\mu$ & normalized Swirl–Clock four-velocity & picks foliation \\
+                $c_i$ couplings & effective foliation elasticities & mapped by calibration \\
+                $c_T$ (spin-2 GW speed) & luminal by construction & enforce $c_{13}\!=\!c_1{+}c_3\simeq 0$ \\
+                \bottomrule
+            \end{tabular}
+
+            \begin{center}
+                \textbf{Action map (symbolic):}\\
+            \end{center}
+            \[
+                S_{\text{\ae}}=\frac{1}{16\pi G}\!\int\! d^4x\sqrt{-g}\!\left[-R
+                -K^{\ \ mn}_{ab}\nabla^a u_m \nabla^b u_n
+                +\lambda(u^\mu u_\mu+1)\right],
+            \]
+            \[
+                K^{\ \ mn}_{ab}=c_1 g_{ab}g^{mn}+c_2\delta_a^{\ m}\delta_b^{\ n}+c_3\delta_a^{\ n}\delta_b^{\ m}
+                +c_4 u_a u_b g^{mn}.
+            \]
+            \begin{center}\textbf{GW calibration:}   \end{center} impose $c_{13}=0\Rightarrow c_T^2=1$ (luminal spin-2). Spin-1 and spin-0 mode speeds are functions of $c_i$ (see table in source); choose parameter ranges that avoid instabilities/Čerenkov bounds.
+
+            \begin{center}\textbf{Numerical anchor (GW170817 class):}   \end{center}
+            \[
+                |c_T-1|\lesssim 10^{-15}\ \Rightarrow\ |c_{13}|\lesssim 10^{-15}\quad(\text{imposed}).
+            \]
+
+
+            \begin{center}
+                \textbf{Predictions \& Falsifiers:}\\
+            \end{center}
+            \begin{itemize}\itemsep2pt
+            \item With $c_{13}\!=\!0$, SST’s Swirl–Clock foliation is consistent with coincident GW–EM arrival.
+            \item Dipole/monopole radiation channels are suppressed by calibration choices; detection at current pulsar-timing sensitivity would falsify this mapping.
+            \end{itemize}
+
+            \textbf{Status:} Calibration (GW speed) / Research (spin-0/1 sector) \hfill  \textbf{Version:} SST-Rosetta~v0.5.10
+        \end{tcolorbox}
+
+% Added ready-to-compile bibliography for this Rosetta (uncomment to use):
+
+
+%========================================================================================
+        \subsection*{Chronometric and Metric Layer}
+            \footnotesize
+            \begin{tabular}{p{0.28\linewidth} p{0.32\linewidth} p{0.36\linewidth}}
+                \textbf{SST Term} & \textbf{Mainstream Equivalent} & \textbf{Context / Reference}\\
+                \hline
+                Swirl clock \(S_t^{\boldsymbol{\circlearrowleft}}\) &
+                Khronon / preferred-foliation scalar \(T(x)\) &
+                Einstein–Æther, Hořava–Lifshitz gravity \cite{Jacobson2001,Blas2011}\\
+                Swirl time dilation \(d\tau = dt\sqrt{1-\lVert\vswirl\rVert^2/c^2}\) &
+                Æther lapse factor \(N\) &
+                ADM decomposition\\
+                Chronos–Kelvin invariant &
+                Kelvin’s circulation / helicity conservation &
+                Classical fluid invariants \cite{Saffman1992}\\
+                Swirl-foliation metric \(g_{\mu\nu}^{(\mathrm{swirl})}\) &
+                Acoustic / analogue-gravity metric &
+                Unruh–Visser emergent metric \cite{Unruh1981PRL}\\
+            \end{tabular}
+
+%========================================================================================
+        \subsection*{Fluid–Dynamic and Field Layer}
+            \begin{tabular}{p{0.28\linewidth} p{0.32\linewidth} p{0.36\linewidth}}
+                \textbf{SST Term} & \textbf{Mainstream Name / Concept} & \textbf{Relation}\\
+                \hline
+                Swirl velocity field \(\vswirl\) & Superfluid phase-gradient velocity & \(\mathbf{v}=(\hbar/m)\nabla\phi\) analogue\\
+                Effective density \(\rhoF\) & Superfluid or effective mass density & Incompressible limit\\
+                Swirl energy density \(\rhoE\) & Kinetic-energy density \(\tfrac{1}{2}\rho v^2\) & Barotropic flow\\
+                Swirl pressure gradient & Hydrodynamic pressure field \(p(\rho)\) & Euler acceleration source\\
+                Swirl tensor \(\omega_{ij}=\partial_i v_j-\partial_j v_i\) & Vorticity tensor & Identical operator\\
+            \end{tabular}
+
+%========================================================================================
+        \subsection*{Topological and Knot Layer}
+
+            \begin{tabular}{p{0.28\linewidth} p{0.32\linewidth} p{0.36\linewidth}}
+                \textbf{SST Term} & \textbf{Mainstream Equivalent} & \textbf{Connection}\\
+                \hline
+                Swirl string & Quantized vortex filament / Nielsen–Olesen string & Fluid–string duality\\
+                Knot-energy functional \(\mathcal{E}_{\text{eff}}=\alpha C+\beta L+\gamma\mathcal{H}\) &
+                Moffatt–Faddeev–Skyrme functional & Topological soliton energy\\
+                Swirl helicity \(\mathcal{H}=\int\mathbf{v}\!\cdot\!\boldsymbol{\omega}\,dV\) &
+                Fluid / magnetic helicity & Linkage and twist invariant \cite{Moffatt1969,Scheeler2014}\\
+                Hopf charge \(H_{\text{vortex}}\) & Hopf invariant & \(\pi_3(S^2)\) topological index \cite{Faddeev1997}\\
+                Golden-layer factor \(\varphi^{-2k}\) & Discrete-scale-invariance factor & Renormalization-group analog\\
+            \end{tabular}
+
+%========================================================================================
+        \subsection*{Gauge and Quantum Layer}
+
+            \begin{tabular}{p{0.28\linewidth} p{0.32\linewidth} p{0.36\linewidth}}
+                \textbf{SST Concept} & \textbf{Mainstream Analogue} & \textbf{Mapping}\\
+                \hline
+                Multi-director swirl symmetry & Gauge algebra \(\mathfrak{su}(3)\!\oplus\!\mathfrak{su}(2)\!\oplus\!\mathfrak{u}(1)\) & Emergent gauge structure\\
+                Swirl-string excitations & Unknotted field quanta / gauge bosons & Photon, gluon, … as unknots\\
+                Chiral swirl orientation & CPT-conjugate sectors & Matter ↔ antimatter dual\\
+                Swirl potential \(\Phi=\tfrac{1}{2}\lVert\vswirl\rVert^2\) & Kinetic / gravitational potential analog & Replaces GR curvature scalar\\
+                Mass functional \(M=\frac{1}{\varphi}\frac{4}{\alpha}(\tfrac{1}{2}\rhoF\lVert\vswirl\rVert^2V)\) &
+                Energy–mass equivalence & Mechanical derivation of rest mass\\
+            \end{tabular}
+
+%========================================================================================
+        \subsection*{Gravitational and Large-Scale Layer}
+
+            \begin{tabular}{p{0.28\linewidth} p{0.32\linewidth} p{0.36\linewidth}}
+                \textbf{SST Term} & \textbf{Mainstream Name} & \textbf{Comment}\\
+                \hline
+                Swirl-gravity constant \(G_{\text{swirl}}\) & Newtonian \(G\) (effective) & Derived from swirl mechanics\\
+                Pressure-well curvature & Gravitational potential well & Fluid-mechanical analog of curvature\\
+                Swirl potential waves & Gravitational / acoustic waves & Analogue-gravity mode\\
+                Torsional shocks & Nonlinear vorticity / spin-density waves & Possible new radiation class\\
+            \end{tabular}
+
+%========================================================================================
+        \subsection*{Thermodynamic and Entropic Layer}
+
+            \begin{tabular}{p{0.28\linewidth} p{0.32\linewidth} p{0.36\linewidth}}
+                \textbf{SST Feature} & \textbf{Mainstream Analog} & \textbf{Interpretation}\\
+                \hline
+                Swirl entropy growth & Enstrophy / helicity cascade & Entropy production in turbulence\\
+                Swirl-dissipation arrow & Thermodynamic arrow of time & Irreversibility via reconnection\\
+                Coherence factor \(\xi(n)=1+\beta\log n\) & Quantum-coherence correction & Many-body renormalization analog\\
+            \end{tabular}
+
+%========================================================================================
+        \subsection*{Summary Table}
+
+            \begin{center}
+                \begin{tabular}{p{0.26\linewidth} p{0.28\linewidth} p{0.38\linewidth}}
+                    \textbf{SST Structural Layer} & \textbf{Physics Discipline} & \textbf{Closest Mainstream Equivalent}\\
+                    \hline
+                    Chronometric & Lorentz-violating gravity & Khronon field / preferred foliation\\
+                    Fluid–Dynamic & Superfluid hydrodynamics & Velocity, pressure, density fields\\
+                    Topological & Soliton and knot theory & Hopfions, Skyrmions, helicity\\
+                    Gauge–Quantum & Quantum field theory & Gauge algebra and field quanta\\
+                    Gravitational & Analogue gravity / GR limit & Metric potentials, \(G\) analog\\
+                    Thermodynamic & Non-equilibrium physics & Entropic and causal arrows\\
+                \end{tabular}
+            \end{center}
+\normalsize
+%========================================================================================
+
+% ---------- Densities (SST canonical) ----------
+	\section*{Scale-dependent Effective Densities in SST}
+	\paragraph{Effective densities (house style).}
+	\[
+		\rhoF \equiv \text{effective fluid density},\qquad
+		\rhoE \equiv \tfrac12\,\rhoF\,\vnorm^{2}\quad(\text{swirl energy density}),
+	\]\[
+	  	\rhoM \equiv \rhoE/c^{2}\quad(\text{mass-equivalent density}).
+	\]
+	Background value: $\rhoF^{\mathrm{bg}}\approx 7.0\times 10^{-7}\ \mathrm{kg\,m^{-3}}$.
+	Core (material) density: $\rhoC\approx 3.8934358267\times 10^{18}\ \mathrm{kg\,m^{-3}}$.
+	Hence core energy density
+	\[
+		\rhoE^{\text{core}}=\rhoC\,c^{2}\approx 3.499\times 10^{35}\ \mathrm{J\,m^{-3}}.
+	\]
+
+	\paragraph{Radial profile (phenomenology).}
+	It is convenient to model the near-core energy density with an exponential relaxation to the background:
+	\[
+		\rhoE(r)=\rhoE^{\mathrm{bg}}+\bigl(\rhoE^{\text{core}}-\rhoE^{\mathrm{bg}}\bigr)\,e^{-r/r_\ast},
+	\]
+	with a microscopic decay scale $r_\ast$ (fit parameter). This empirical profile does not replace the exact tube energetics below.
+
+	\paragraph{String energetics (Rankine core + irrotational envelope).}
+	For a core of radius $r_c$ and length $\ell$ with solid-body rotation $v_\phi(r)=\Omega r$ for $r\le r_c$,
+	\[
+		E_{\text{core}}
+		=\int_{0}^{r_c}\!\!\frac12\,\rhoF\,(\Omega r)^2\,(2\pi r\,\ell)\,dr
+		=\frac{\pi}{4}\,\rhoF\,\Omega^2\,r_c^4\,\ell.
+	\]
+	Outside the core, $v_\phi(r)=\Gamma/(2\pi r)$ with $\Gamma=2\pi\Omega r_c^{2}$, giving the slender-tube envelope term
+	\[
+		E_{\text{env}}\simeq \frac{\rhoF\,\Gamma^2}{4\pi}\,\ell\,\ln\!\frac{R}{r_c},
+	\]
+	where $R$ is an outer cutoff set by the nearest boundary or neighboring strings. Both contributions are standard in vortex-tube energetics (core + Biot–Savart envelope).
+
+% ---------- Coarse-graining identity (do not mix with core rates) ----------
+	\paragraph{Coarse-graining.}
+	At macroscales, we use the canonical identity
+	\[
+		K=\frac{\rhoC\,r_c}{\vscore}\;=\;\frac{\rhoC\,\rc}{\left.\vnorm\right|_{r=\rc}},\qquad \rhoF=K\,\Omega_{\text{leaf}}.
+	\]
+	where $\Omega_{\text{leaf}}$ is a coarse-grained (leaf-averaged) angular rate. Numerically, $\Omega_{\text{leaf}}\sim 10^{-4}\,\mathrm{s^{-1}}$ in the Canon fit; it must not be confused with the microscopic core rate below.
+
+% ---------- Time scaling ----------
+	\section{Layered Time Scaling from Swirl Dynamics}
+	Adopt the SR-like local rule
+	\[
+		\frac{d\tau}{dt}=\sqrt{1-\frac{v_\phi^{2}(r)}{c^{2}}}.
+	\]
+	With a Rankine profile,
+	\[
+		v_\phi(r)=
+		\begin{cases}
+			\Omega_{\text{core}}\,r, & r\le r_c,\\[4pt]
+			\dfrac{\Gamma}{2\pi r}, & r\ge r_c,
+		\end{cases}
+		\qquad \Gamma=2\pi\Omega_{\text{core}}\,r_c^{2}.
+	\]
+	Continuity at $r=r_c$ gives $v_\phi(r_c)=\Omega_{\text{core}}\,r_c\equiv \vscore=\left.\vnorm\right|_{r=\rc}$, hence
+	\[
+		\Omega_{\text{core}}=\frac{\vscore}{r_c}=\frac{\left.\vnorm\right|_{r=\rc}}{\rc}\approx \frac{1.09384563\times 10^{6}}{1.40897017\times 10^{-15}}
+		\approx 7.763\times 10^{20}\ \mathrm{s^{-1}}.
+	\]
+	Thus
+	\[
+		\frac{d\tau}{dt}=
+		\begin{cases}
+			\sqrt{1-\dfrac{\Omega_{\text{core}}^{2}\,r^{2}}{c^{2}}}, & r\le r_c,\\[6pt]
+			\sqrt{1-\dfrac{\Gamma^{2}}{4\pi^{2}c^{2}r^{2}}}, & r\ge r_c.
+		\end{cases}
+	\]
+	The earlier ansatz $d\tau/d\bar t=e^{-r/r_c}$ can be used only as a phenomenological fit; it does not follow from the SR-like form unless one imposes a special $v_\phi(r)$ inconsistent with Rankine.
+
+
+    \section{SST--VAM Translation and Constant Overlaps (Extended)}
+    \normalsize
+    \subsection*{Chronos--Kelvin invariant}
+        \[
+            \ChronosKelvinEq
+        \]
+        \noindent (Kelvin/Helmholtz circulation conservation in SST wording; see \cite{Helmholtz1858,Kelvin1869,Batchelor1967,Saffman1992}.)
+    % ---------- Temporal ontology (SST wording) ----------
+    \subsection*{Temporal Ontology in SST}
+        We distinguish absolute parameter time $\mathcal{N}$ (preferred foliation label), external observer time $\tau$, and internal clocks carried by swirl strings: a phase accumulator $S(t)$ and a loop “proper time’’ $T_{\!s}$. These appear in the field equations and separate global synchronization from local rotational dynamics.
+
+        \begin{center}
+            \scriptsize
+            \begin{tabular}{lll}
+                $\mathcal{N}$ & Absolute time (foliation) & Global causal parameter \\
+                $\nu_0$       & Now-point                 & Localized synchronization label \\
+                $\tau$        & External/chronos time     & Measured time of external observer \\
+                $S(t)$        & Swirl clock               & Internal phase memory along a string \\
+                $T_{\!s}$     & String proper time        & Loop-duration functional \\
+                $\mathbb{K}$  & Kairos event              & Topological/phase transition moment \\
+            \end{tabular}
+        \end{center}
+
+    \subsection*{Fields, kinematics, operators (mapping)}
+        \begin{center}
+            \scriptsize
+            \begin{tabular}{lllll}
+                \hline
+                \textbf{VAM (legacy)} & \textbf{SST (house)} & \textbf{Meaning} & \textbf{Units} & \textbf{Overlap} \\
+                \hline
+                ``\textit{æther time}'' & absolute time parametrization & foliation time label & — & Yes \\
+                $T(x)$ & $T(x)$ & scalar clock field & — & Yes \\
+                $u_\mu$ (unit ``æther'' vector) & $u_\mu$ (unit time-like field) & $u_\mu=\partial_\mu T/\sqrt{-g^{\alpha\beta}\partial_\alpha T\partial_\beta T}$ & — & Yes \\
+                ``\textit{vortex line(s)}'' & swirl string(s) & object name only & — & Yes \\
+                $B_{\mu\nu},\ H_{\mu\nu\rho}$ & same & Kalb--Ramond 2-form; $H=\partial_{[\mu}B_{\nu\rho]}$ & — & Yes \\
+                $W_\mu$ & $W_\mu$ & coarse-grained frame connection & — & Yes \\
+                $C(K),\ L(K),\ \mathcal H(K)$ & same & crossing \#, ropelength, hyperbolic proxy & — & Yes \\
+                \hline
+            \end{tabular}
+        \end{center}
+
+    \subsection*{Densities, velocities, coarse–graining (mapping)}
+        \begin{center}
+            \scriptsize
+            \begin{tabular}{lllll}
+                \hline
+                \textbf{VAM (legacy)} & \textbf{SST (macro)} & \textbf{Meaning} & \textbf{Units} & \textbf{Overlap} \\
+                \hline
+                $\rho_0,\ \rho_{\text{\ae}}^{\text{(fluid)}}$,\ $\rho_{\text{\ae}}^{\text{(vacuum)}}$ & $\rhoF$,\ $\rhoF^{\mathrm{bg}}$ or $\rhoF^{(0)}$ & effective fluid density & $\mathrm{kg\,m^{-3}}$ & Yes \\
+                $\rho_{\text{\ae}}^{\text{(core)}}$,\ 	$\rho_{\text{\ae}}^{\text{(mass)}}$  & $\rhoC$ & core/material density & $\mathrm{kg\,m^{-3}}$ & Yes \\
+                $\rho_{\text{\ae}}^{\text{(energy)}}$ & $\rhoE$ \text{ (or } $\rhoC c^2$\text{)} & energy density & $\mathrm{J\,m^{-3}}$ & Yes \\
+                % --- ORIGINAL ROW KEPT:
+                $C_e$ (tangential) & $\vscore$ & characteristic swirl speed ($=\|\vswirl\|$ at $r=\rs$) & $\mathrm{m\,s^{-1}}$ & Yes \\
+                % --- ADDED v0.6 PATCH ROWS (do not remove original):
+                $C_e$ (field form) & $\vswirl$ & swirl-velocity \emph{vector field} & $\mathrm{m\,s^{-1}}$ & Add \\
+                $C_e$ (scalar use) & $\left.\vnorm\right|_{r=\rc}$ & core magnitude of $\vswirl$ & $\mathrm{m\,s^{-1}}$ & Add \\
+                $K=\dfrac{\rho_{\ae}^{(\text{mass})} r_c}{C_e}$ & $K=\dfrac{\rhoC\,\rc}{\left.\vnorm\right|_{r=\rc}}$ & coarse–graining coefficient & $\mathrm{kg\,m^{-3}\,s}$ & Add \\
+                $\Omega$ & $\Omega$ & leaf angular rate & $\mathrm{s^{-1}}$ & Yes \\
+                \hline
+            \end{tabular}
+        \end{center}
+
+    \subsection*{Global scales and bounds}
+        \begin{center}
+            \begin{tabular}{lllll}
+                \hline
+                \textbf{VAM (legacy)} & \textbf{SST (house)} & \textbf{Meaning} & \textbf{Units} & \textbf{Overlap} \\
+                \hline
+                $F_{\ae}^{\max}$ (Coulomb) & \FmaxEM & Coulomb-sector bound & $\mathrm{N}$ & Yes \\
+                $F_{\mathrm{gr}}^{\max}$ (Universal) & \FmaxG & gravitational/universal bound & $\mathrm{N}$ & Yes \\
+                $\Gamma$ & $\Gamma$ & loop circulation & $\mathrm{m^{2}\,s^{-1}}$ & Yes \\
+                $\Omega_R,\ \Omega_c$ & same & outer rigid vs.\ core spin & $\mathrm{s^{-1}}$ & Yes \\
+                \hline
+            \end{tabular}
+        \end{center}
+
+    \subsection*{Numeric overlaps (published values)}
+        \begin{center}
+            \begin{tabular}{llll}
+                \hline
+                \textbf{Quantity} & \textbf{Symbol (SST)} & \textbf{Value} & \textbf{Units} \\
+                \hline
+                Characteristic swirl speed & $\vscore\ (\equiv \left.\vnorm\right|_{r=\rc})$ & $1{,}093{,}845.63$ & $\mathrm{m\,s^{-1}}$ \\
+                Core radius & $r_c$ & $1.40897017\times 10^{-15}$ & $\mathrm{m}$ \\
+                Core density & $\rhoC$ & $3.8934358266918687\times 10^{18}$ & $\mathrm{kg\,m^{-3}}$ \\
+                Background density & $\rhoF^{\mathrm{bg}}$ & $7.0\times 10^{-7}$ & $\mathrm{kg\,m^{-3}}$ \\
+                Max Coulomb force & \FmaxEM & $29.053507$ & $\mathrm{N}$ \\
+                Max universal force & \FmaxG & $3.02563\times 10^{43}$ & $\mathrm{N}$ \\
+                \hline
+            \end{tabular}
+        \end{center}
+
+    \subsection*{Macro glossary (house style)}
+        Use the macros to avoid drift:
+        \[
+            \rhoF\ (\text{effective density}),\quad
+            \rhoE\ (\text{energy density}),\quad
+            \rhoM\ (\text{mass-equivalent})
+        \]\[
+              \rhoC\ (\text{core density}),\quad
+              \vswirl\ (\text{swirl velocity vector}),\quad
+              \vnorm=\lVert\vswirl\rVert\ (\text{speed magnitude at a point}) .
+    \]
+        \medskip
+        \noindent\textit{Energy vs mass-equivalent (clarification).} \(\rhoE\) is an \emph{energy density}; \(\rhoM=\rhoE/c^2\) is the corresponding local mass-equivalent. \CoreSaturationNote
+
+    \subsection*{Prose guardrails (rebrand policy)}
+        Use \emph{foliation} and \emph{swirl string(s)} in narrative text. Reserve legacy words (``æther'', ``vortex'') strictly for quoting historical titles or citations. Retain \emph{vorticity} as standard.
+
+    \subsection*{Sentence rewrites (examples)}
+        Legacy: “The æther sector fixes the vortex core density.”\\
+        SST: “The \emph{foliation} sector fixes the \emph{core density} $\rhoC$ of the swirl string.”
+
+        Legacy: “Kelvin’s vortex theorem implies conserved $R^2\omega$.”\\
+        SST: “Kelvin’s \emph{circulation} theorem implies $\dfrac{D}{Dt}(R^2\omega)=0$ under incompressible, inviscid, barotropic flow.”
+
+% ============== End of content =============
+
+
+    \bibliographystyle{unsrt}
+    \begin{thebibliography}{99}\setlength{\itemsep}{1pt}
+
+        \bibitem{Jacobson2001}
+        T. Jacobson and D. Mattingly,
+        \newblock Gravity with a dynamical preferred frame,
+        \newblock Phys. Rev. D \textbf{64}, 024028 (2001).
+        \newblock \href{https://doi.org/10.1103/PhysRevD.64.024028}{doi:10.1103/PhysRevD.64.024028}
+
+        \bibitem{Blas2011}
+        D. Blas, O. Pujol{\`a}s, and S. Sibiryakov,
+        \newblock Models of non-relativistic quantum gravity: the good, the bad and the healthy,
+        \newblock JHEP \textbf{04}, 018 (2011).
+        \newblock \href{https://doi.org/10.1007/JHEP04(2011)018}{doi:10.1007/JHEP04(2011)018}
+
+        \bibitem{Moffatt1969}
+        H. K. Moffatt,
+        \newblock The degree of knottedness of tangled vortex lines,
+        \newblock J. Fluid Mech. \textbf{35}, 117--129 (1969).
+        \newblock \href{https://doi.org/10.1017/S0022112069000991}{doi:10.1017/S0022112069000991}
+
+        \bibitem{Scheeler2014}
+        M. W. Scheeler, W. M. van Rees, H. K. Moffatt, M. F. Hecke, and W. T. M. Irvine,
+        \newblock Helicity conservation by flow across scales in reconnecting vortex links and knots,
+        \newblock Proc. Natl. Acad. Sci. U.S.A. \textbf{111}, 15350--15355 (2014).
+        \newblock \href{https://doi.org/10.1073/pnas.1407232111}{doi:10.1073/pnas.1407232111}
+
+        \bibitem{Faddeev1997}
+        L. Faddeev and A. J. Niemi,
+        \newblock Stable knot-like structures in classical field theory,
+        \newblock Nature \textbf{387}, 58--61 (1997).
+        \newblock \href{https://doi.org/10.1038/387058a0}{doi:10.1038/387058a0}
+
+        \bibitem{Batchelor1967}
+        G. K. Batchelor,
+        \textit{An Introduction to Fluid Dynamics},
+        Cambridge University Press, 1967.
+        \href{https://doi.org/10.1017/CBO9780511800955}{doi:10.1017/CBO9780511800955}
+
+        \bibitem{Saffman1992}
+        P. G. Saffman,
+        \textit{Vortex Dynamics},
+        Cambridge University Press, 1992.
+        \href{https://doi.org/10.1017/CBO9780511624063}{doi:10.1017/CBO9780511624063}
+
+        \bibitem{Helmholtz1858}
+        H. von Helmholtz,
+        "Über Integrale der hydrodynamischen Gleichungen, welche den Wirbelbewegungen entsprechen",
+        J. Reine Angew. Math. \textbf{55}, 25--55 (1858).
+
+        \bibitem{Kelvin1869}
+        W. Thomson (Lord Kelvin),
+        "On vortex motion",
+        Trans. R. Soc. Edinburgh \textbf{25}, 217--260 (1869).
+
+        \bibitem{Einstein1905}
+        A. Einstein,
+        "Ist die Trägheit eines Körpers von seinem Energieinhalt abhängig?",
+        Annalen der Physik \textbf{18}, 639--641 (1905).
+        \href{https://doi.org/10.1002/andp.19053231314}{doi:10.1002/andp.19053231314}
+
+        \bibitem{Will2014LRR}
+        Clifford M. Will,
+        "The Confrontation between General Relativity and Experiment",
+        Living Reviews in Relativity \textbf{17}(4), (2014).
+        \href{https://doi.org/10.12942/lrr-2014-4}{doi:10.12942/lrr-2014-4}
+        \href{https://arxiv.org/abs/1403.7377}{arXiv:1403.7377}
+
+        \bibitem{Unruh1981PRL}
+        W. G. Unruh,
+        "Experimental Black-Hole Evaporation?",
+        Phys. Rev. Lett. \textbf{46}, 1351--1353 (1981).
+        \href{https://doi.org/10.1103/PhysRevLett.46.1351}{doi:10.1103/PhysRevLett.46.1351}
+
+        \bibitem{Visser1998CQG}
+        Matt Visser,
+        "Acoustic black holes: horizons, ergospheres and Hawking radiation",
+        Classical and Quantum Gravity \textbf{15}, 1767--1791 (1998).
+        \href{https://doi.org/10.1088/0264-9381/15/6/024}{doi:10.1088/0264-9381/15/6/024}
+
+        \bibitem{JacobsonMattingly2004EAetherWaves}
+        Ted Jacobson and David Mattingly,
+        "Einstein–Aether Waves",
+        Phys. Rev. D \textbf{70}, 024003 (2004).
+        \href{https://doi.org/10.1103/PhysRevD.70.024003}{doi:10.1103/PhysRevD.70.024003}
+        \href{https://arxiv.org/abs/gr-qc/0402005}{arXiv:gr-qc/0402005}
+
+        \bibitem{Baker2017PRL_GW170817_AltGravity}
+        T. Baker et al.,
+        "Strong Constraints on Cosmological Gravity from GW170817 and GRB 170817A",
+        Phys. Rev. Lett. \textbf{119}(25), 251301 (2017).
+        \href{https://doi.org/10.1103/PhysRevLett.119.251301}{doi:10.1103/PhysRevLett.119.251301}
+
+        \bibitem{OostMukohyamaWang2018EAetherGW170817}
+        Jacob Oost, Shinji Mukohyama, and Anzhong Wang,
+        "Constraints on Einstein-aether theory after GW170817",
+        arXiv:1802.04303 (2018).
+        \href{https://arxiv.org/abs/1802.04303}{arXiv:1802.04303}
+    \end{thebibliography}
+\end{document}

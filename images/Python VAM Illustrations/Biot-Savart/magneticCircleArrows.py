@@ -204,4 +204,4 @@ ax.set_zlim(-1.5, 2.0)
 ax.set_box_aspect([1, 1, 0.8])
 plt.tight_layout()
 
-
+plt.show()
