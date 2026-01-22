@@ -483,6 +483,8 @@ In the thermodynamic orbital picture, excited configurations correspond to
 larger characteristic radii and modified swirl profiles; this yields a
 systematic trend in clock dilation and decay rates via available phase space.
 
+The Swirl-Clock phase is locked to delay-selected circulation plateaus (see Sec.~\ref{sec:delay_mode_selection}).
+
 \subsection{Thermodynamic Layering and Discrete Scale Invariance}
 
 Canon v0.7.6 encodes a discrete-scale hierarchy (``golden layers'') that
@@ -630,6 +632,113 @@ If you have the LaTeX source, include it verbatim here:
             \nabla^2 \chi(x) = 4\pi G_{\text{eff}} \, \rho_{\text{matter}}(x)
         \end{equation}
         The Green's function solution in $\mathbb{R}^3$ is naturally the harmonic potential $\chi(r) \sim 1/r$. Thus, gravity is identified as the tendency of matter to migrate toward regions of slower time (lower swirl pressure), recovering the Newtonian limit without curvature.
+
+% ======================================================================
+    \section{Delay-Induced Mode Selection in Swirl Loops}
+    \label{sec:delay_mode_selection}
+% ======================================================================
+
+All Swirl-String excitations propagate on closed circulation loops with finite transit time $\tau$, where $\tau \equiv$ closed-loop circulation time of a swirl excitation.
+Such loops belong to the universality class of long-delay feedback systems, whose dynamics are governed not only by local nonlinearities but also by the finite return time of information.
+
+In the long-delay regime,
+\begin{equation}
+    \tau \gg \epsilon,
+\end{equation}
+where $\epsilon$ is the local relaxation timescale, a generic theorem of nonlinear dynamics applies:
+the delay interval $[0,\tau]$ becomes an effective pseudo-spatial coordinate, and the system undergoes modulational instability that breaks uniform circulation into plateau-like domains separated by sharp fronts.
+
+These plateau configurations form a discrete family of stable circulation patterns, even though the governing equations remain continuous.
+
+We call these \emph{delay-selected circulation modes}.
+
+They provide a classical origin of discreteness prior to any knot topology, gauge structure, or quantum postulate.
+
+\subsection{Role in SST Ontology}
+
+In SST, particle-like objects correspond to knotted or linked circulation loops.
+However, the number and structure of available circulation modes is determined before knotting occurs, by delay-induced pattern selection.
+
+Thus:
+\begin{quote}
+\textit{Delay dynamics select modes; topology stabilizes them.}
+\end{quote}
+
+This separates two logically distinct processes:
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Layer & Mechanism & SST meaning \\
+\midrule
+Selection & Long-delay modulational instability & Which circulation modes exist \\
+Persistence & Knotting, linking, Swirl-Clock locking & Which modes survive \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+This prevents SST from having to postulate discreteness.
+
+Discreteness emerges from circulation physics itself.
+
+\subsection{Mathematical Template}
+
+In its minimal form, a swirl loop can be written as a scalar delayed feedback system
+\begin{equation}
+    \epsilon \dot{x}(t) = -x(t) + F[x(t-\tau)],
+    \label{eq:delay_feedback}
+\end{equation}
+where:
+\begin{itemize}
+    \item $x(t)$ represents swirl amplitude,
+    \item $\tau$ is the circulation time,
+    \item $F$ encodes nonlinear feedback of the returning swirl.
+\end{itemize}
+
+For smooth nonlinearities, this system generically undergoes a long-delay Hopf--modulational instability producing multistable square-wave plateaus in the pseudo-space coordinate $\sigma \in [0,\tau]$.
+
+Each plateau family corresponds to a discrete circulation state.
+
+This is a universal property of delay loops and does not depend on the microscopic nature of the carrier.
+
+\subsection{Integration with Swirl-Clock}
+
+The Swirl-Clock $S_t^{\circlearrowleft}$ couples directly to the circulation time $\tau$.
+Because delay-induced plateaus are indexed by the number of fronts per loop, Swirl-Clock quantization corresponds to counting stable plateau segments around the loop.
+
+Thus:
+\begin{equation}
+    \text{Swirl-Clock phase} \sim \text{delay-selected circulation mode number}.
+\end{equation}
+
+This provides a classical clock-to-mode bridge.
+
+\subsection{Integration with Knot Spectrum}
+
+Knot topology does not create modes; it selects among them.
+
+Each knot $K$ binds a particular delay-selected circulation pattern and stabilizes it against collapse by linking, helicity, and Swirl-Clock locking.
+
+Thus SST particle families arise as:
+\begin{equation}
+    \text{Delay-selected mode} \longrightarrow \text{Topologically stabilized knot}.
+\end{equation}
+
+This explains:
+\begin{itemize}
+    \item why families exist,
+    \item why they are discrete,
+    \item why they are long-lived,
+\end{itemize}
+without invoking axiomatic quantization.
+
+\subsection{Canon-Level Consequence}
+
+SST discreteness is not assumed.
+
+It is forced by the long-delay nature of closed swirl loops.
+
+Topology, gauge, and Swirl-Clock then refine and stabilize the spectrum.
 
 % ======================================================================
     \section{Swirl-Clock Effective Field Theory (Khronon Sector)}
@@ -847,6 +956,8 @@ are therefore \emph{the same physical entity}.
         \end{itemize}
         In the minimal canonical approximation, $\Xi(K)\sim \mathcal{O}(1)$ and the main
         topological discriminator is $\mathcal{L}(K)$.
+        
+        The line-tension term $\beta L$ (see Sec.~\ref{sec:knotSelection}) is evaluated on a delay-selected circulation backbone (see Sec.~\ref{sec:delay_mode_selection}).
 
     \subsection{Discrete Mass Spectrum from Discrete Knot Complexity}
 
@@ -915,6 +1026,8 @@ are therefore \emph{the same physical entity}.
 Not all topological knots correspond to stable particles.
 Canon v0.7.6 introduces a variational selection principle that determines
 which knot classes are dynamically realized.
+
+Each knot binds a delay-selected circulation mode (see Sec.~\ref{sec:delay_mode_selection}).
 
 \subsection{Effective Energy Functional}
 

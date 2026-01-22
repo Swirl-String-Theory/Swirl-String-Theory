@@ -1,0 +1,161 @@
+%! Author = Omar Iskandarani
+%! Date = 1/22/2026
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxx
+
+\newcommand{\paperdoi}{10.5281/zenodo.xxx}
+\newcommand{\papertitle}{Swirl--Clock Phase Locking in Closed Circulation Loops}
+
+%=========================================
+% % PREAMBLE, PACKAGES AND DOCUMENT CONFIGURATION
+%=========================================
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsfonts,bm}
+\usepackage{siunitx}
+\usepackage[hidelinks]{hyperref}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% swirl arrows (context-aware)
+\newcommand{\swirlarrow}{ \mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}}
+\newcommand{\vswirl}{\mathbf{v}_{\swirlarrow}}
+\newcommand{\SwirlClock}{S_{(t)}^{\swirlarrow}}
+\newcommand{\Fmaxswirl}{F^{\max}_{\mkern-1mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}}
+% swirl arrows Counter Clockwise
+\newcommand{\swirlarrowcw}{ \mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}}
+\newcommand{\vswirlcw}{\mathbf{v}_{\swirlarrowcw}}
+\newcommand{\SwirlClockcw}{S_{(t)}^{\swirlarrowcw}}
+\newcommand{\Fmaxswirlcw}{F^{\max}_{\mkern-1mu\scriptscriptstyle\boldsymbol{\circlearrowright}}}
+
+\newcommand{\Fmax}{\Fmaxswirl} % default maximal force (left swirl)
+\newcommand{\FmaxEM}{F^{\max}_{\mathrm{EM}}}
+\newcommand{\FmaxG}{F_{\mathrm{G}}^{\max}}               % G-like maximal force scale
+
+\newcommand{\omegas}{\boldsymbol{\omega}_{\swirlarrow}}  % swirl vorticity
+\newcommand{\Om}{\Omega_{\swirlarrow}}                   % swirl angular frequency profile
+
+\newcommand{\vscore}{v_{\swirlarrow}}                    % shorthand: |v_swirl| at r=r_c
+\newcommand{\vnorm}{\lVert \vswirl \rVert}               % swirl speed magnitude
+\newcommand{\Ce}{\vswirl}                                % canonical swirl-speed constant
+
+\newcommand{\rhof}{\rho_{\!f}}                           % effective fluid density
+\newcommand{\rhoE}{\rho_{\!E}}                           % swirl energy density
+\newcommand{\rhom}{\rho_{\!m}}                           % mass-equivalent density
+\newcommand{\rc}{r_c}                                    % string core radius (swirl string radius)
+
+\newcommand{\Lam}{\Lambda}                               % Swirl Coulomb constant
+\newcommand{\alpg}{\alpha_g}                             % gravitational fine-structure analogue
+
+\newcommand{\titlepageOpen}{
+    \begin{titlepage}
+        \thispagestyle{empty}
+        \centering
+        \Large \bfseries \papertitle \par \vspace{1cm}
+        {\Large \itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par}
+        \vspace{0.5cm}
+        {\today \par}
+        \vspace{0.5cm}
+}
+
+\newcommand{\titlepageClose}{
+        \vfill \raggedright \null
+        \begin{picture}(0,0)
+            \put(0,-45){  % Shift 200pt left, 40pt down
+                \begin{minipage}[b]{0.7\textwidth} \footnotesize
+                    \renewcommand{\arraystretch}{1.0}
+                    \noindent\rule{\textwidth}{0.4pt} \\[0.5em]
+                    \textsuperscript{\textbf{*}} Independent Researcher, Groningen, The Netherlands \\
+                    Email: \texttt{info@omariskandarani.com} \\
+                    ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}} \\
+                    DOI: \href{https://doi.org/\paperdoi}{\paperdoi}
+                \end{minipage}
+            }
+        \end{picture}
+    \end{titlepage}
+}
+%=========================================
+% Start Document - Title Page
+%=========================================
+\begin{document}
+    \titlepageOpen
+        \begin{abstract}
+            Closed circulation loops with finite propagation time constitute a broad and generic class of delayed feedback systems encountered across fluid dynamics, optics, electronics, and wave physics. In this work we show that such loops admit discrete, dynamically selected phase--locked states even when governed by fully continuous classical dynamics. Using a minimal delayed phase oscillator as a canonical model, we demonstrate that finite circulation time enforces multistable phase--locking conditions indexed by an integer winding number. These phase--locked solutions form a discrete family of circulation modes and provide a purely classical route to mode discreteness in circulating systems, independent of topology, microscopic quantization rules, or particle-based assumptions. The analysis establishes phase locking in long--delay loops as a universal and robust mechanism for the emergence of discrete circulation modes.
+        \end{abstract}
+    \titlepageClose
+%=========================================
+% Title Page End
+%=========================================
+
+\subsection*{1. Physical setting}
+Consider a continuous excitation propagating on a closed loop of fixed geometric length $L$ with characteristic transport speed $\mathbf{v}\textit{!\boldsymbol{\circlearrowleft}}$. The closed geometry defines a finite circulation or round--trip time
+\begin{equation}
+\tau = \frac{L}{\lVert \mathbf{v}}{!\boldsymbol{\circlearrowleft}} \rVert,
+\end{equation}
+which represents the time required for information carried by the excitation to return to its point of origin. The internal state of the excitation is characterized by a phase variable $\phi(t)$ that evolves continuously in time and plays the role of an intrinsic clock associated with the circulating structure.
+
+Because information propagates around the loop in a finite time $\tau$, the local phase evolution at time $t$ is influenced by the phase state that completed one full circulation at time $t-\tau$. This feedback is not externally imposed but is a direct consequence of loop closure and finite propagation speed. As a result, delayed self--interaction is an unavoidable and intrinsic feature of closed circulation systems, regardless of their microscopic realization.
+
+\subsection*{2. Minimal delayed phase model}
+A minimal classical description capturing this delayed feedback is given by a delayed phase oscillator of the form
+\begin{equation}
+\dot{\phi}(t) = \Omega_0 + K,\sin\big(\phi(t-\tau) - \phi(t)\big),
+\end{equation}
+where $\Omega_0$ is the natural angular frequency associated with unperturbed circulation, $K$ is a real coupling constant encoding the strength of feedback between successive circulations, and $\tau$ is the circulation delay. This equation represents a continuous, deterministic dynamical system with finite propagation time and smooth nonlinearity.
+
+Importantly, the model contains no quantization postulates, no discrete variables, and no topological constraints. All discreteness that emerges from the dynamics is therefore generated internally by classical delay--induced feedback. Variants of this equation appear naturally in delayed oscillators, phase--locked loops, and wave propagation in closed resonant structures.
+
+\subsection*{3. Phase--locked solutions}
+Uniformly rotating, or phase--locked, solutions are sought in the form
+\begin{equation}
+\phi(t) = \Omega t + \phi_0,
+\end{equation}
+where $\Omega$ is a constant rotation rate and $\phi_0$ is an arbitrary phase offset. Substitution into the delayed phase equation yields the self--consistency condition
+\begin{equation}
+\Omega = \Omega_0 + K,\sin(-\Omega\tau).
+\end{equation}
+This transcendental relation expresses the requirement that the instantaneous rotation rate be compatible with the delayed feedback accumulated over one loop traversal.
+
+When the effective delay strength $K\tau$ is small, the equation admits a single solution close to $\Omega_0$. However, as the delay or feedback strength increases, multiple solutions emerge. In the long--delay regime the solutions organize approximately as
+\begin{equation}
+\Omega_n \approx \frac{2\pi n}{\tau} + \delta\Omega_n, \qquad n \in \mathbb{Z},
+\end{equation}
+where $n$ is an integer winding number counting the number of phase revolutions accumulated per circulation, and $\delta\Omega_n$ denotes a small correction determined by the nonlinear feedback. The appearance of the integer index $n$ signals the emergence of a discrete set of admissible circulation frequencies.
+
+\subsection*{4. Stability and mode selection}
+Not all phase--locked solutions of the self--consistency equation are dynamically stable. Linear stability analysis reveals that stability depends on the derivative of the right--hand side of the self--consistency relation with respect to $\Omega$. Only solutions satisfying appropriate slope conditions correspond to attracting states of the delayed dynamics.
+
+As a consequence, the loop does not support a continuum of circulation frequencies. Instead, it dynamically selects a discrete subset of stable phase--locked modes. Transitions between these modes require the loss of stability of one branch and the capture by another, typically through bifurcations as parameters such as $K$ or $\tau$ are varied. Mode discreteness therefore arises as a direct outcome of classical stability selection rather than any imposed quantization rule.
+
+\subsection*{5. Interpretation}
+The analysis demonstrates that finite propagation time alone is sufficient to generate discrete circulation modes through classical phase locking. Discreteness emerges at the level of delay--induced feedback dynamics, prior to the introduction of any additional structural constraints. In circulation--based theories, geometric or topological features may enhance the robustness and longevity of selected modes, but they are not responsible for their initial appearance.
+
+From this perspective, discrete mode families should be regarded as a universal feature of closed delayed loops rather than a peculiarity of specific physical realizations. The mechanism applies equally to optical cavities, electronic delay lines, mechanical rotors, and fluid circulation systems whenever delayed self--interaction is present.
+
+\subsection*{6. Conclusion}
+Phase locking in closed loops with finite circulation time provides a universal and purely classical mechanism for discrete mode selection. Any circulating system with delayed self--interaction belongs to this universality class and generically admits a discrete set of dynamically stable phase--locked states. This framework offers a conservative and analytically tractable foundation for understanding mode discreteness in a wide range of physical systems governed by delayed feedback, and it clarifies how discrete behavior can arise naturally from continuous classical dynamics.
+
+
+
+
+
+
+
+
+
+
+
+%=========================================
+% References
+%=========================================
+        \bibliographystyle{unsrt}
+        \begin{thebibliography}{99}
+
+            \bibitem{Einstein1905} A.~Einstein, \newblock \emph{Ist die Tr\"agheit eines K\"orpers von seinem Energieinhalt
+            abh\"angig?}, newblock Ann.\ Phys.\ \textbf{18}, 639--641 (1905).
+
+        \end{thebibliography}
+
+\end{document}

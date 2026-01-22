@@ -200,159 +200,211 @@ component_suppression = topo.n ** (-math.exp(-asinh(0.5)))
         these forms as a minimal closed kernel whose validity is assessed by numerical
         consistency rather than by an assumed microscopic derivation.
 
-
-\begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}[scale=1.2]
-
-        %--- PANEL A: The Lepton Analogy (Trefoil Knot) ---
-        % Represents a single component (n=1) with complexity k=3
-        \begin{scope}[shift={(-3,0)}]
-            % Label
-            \node[above] at (0, 1.8) {\textbf{(a) Lepton Topology}};
-            \node[below] at (0, -1.8) {
-                $\begin{aligned}
-                    n &= 1 \\
-                    k &= 3 \\
-                    g &= 1
-                \end{aligned}$
-            };
-
-            % Draw Trefoil (Approximate via control points for smooth look)
-            % Bottom loop
-            \draw[knot] (0.8,-0.5) .. controls (1.5,-1.5) and (-1.5,-1.5) .. (-0.8,-0.5);
-            % Top right loop crossing under
-            \draw[knot] (-0.8,-0.5) .. controls (-0.2, 0.5) and (0.2, 1.5) .. (1.0, 0.5);
-            % Top left loop crossing over
-            \draw[knot] (1.0, 0.5) .. controls (1.5, -0.2) and (-1.5, -0.2) .. (-1.0, 0.5);
-            % Closing the knot
-            \draw[knot] (-1.0, 0.5) .. controls (-0.2, 1.5) and (0.2, 0.5) .. (0.8,-0.5);
-
-            % Core radius indicator
-            \draw[|-|, thin] (1.6, -0.2) -- (1.6, 0.2) node[midway, right] {\small $2r_c$};
-        \end{scope}
-
-        %--- SEPARATOR ---
-        \draw[thick, gray!20] (0,-1.5) -- (0,1.5);
-
-        %--- PANEL B: The Baryon Analogy (3-Component Link) ---
-        % Represents three components (n=3) forming a bound state
-        \begin{scope}[shift={(3,0)}]
-            % Label
-            \node[above] at (0, 1.8) {\textbf{(b) Baryon Topology}};
-            \node[below] at (0, -1.8) {
-                $\begin{aligned}
-                    n &= 3 \\
-                    \text{Ref} &: \text{Toroidal Closure}
-                \end{aligned}$
-            };
-
-            % Define 3 interlocking rings (Borromean-like style)
-            % Ring 1 (Top)
-            \draw[knot] (0, 0.6) ellipse (0.8 and 0.5);
-
-            % Ring 2 (Bottom Left) - split drawing to manage crossing depth
-            \draw[knot] (-0.6, -0.5) ellipse (0.8 and 0.5);
-
-            % Ring 3 (Bottom Right)
-            \draw[knot] (0.6, -0.5) ellipse (0.8 and 0.5);
-
-            % Redraw specific arcs to fix the "over/under" logic for a link
-            % (This is a visual hack to enforce the 'linking' look)
-            \begin{scope}
-                \clip (0, 0.6) ellipse (0.8 and 0.5);
-                \draw[knot] (0.6, -0.5) ellipse (0.8 and 0.5); % Ring 3 goes over Ring 1 here
-            \end{scope}
-            \begin{scope}
-                \clip (-0.6, -0.5) ellipse (0.8 and 0.5);
-                \draw[knot] (0, 0.6) ellipse (0.8 and 0.5); % Ring 1 goes over Ring 2 here
-            \end{scope}
-
-        \end{scope}
-
-    \end{tikzpicture}
-    \caption{\textbf{Schematic of Topological Invariant Classes.}
-    (a) An elementary particle modeled as a single knotted filament ($n=1$), where the mass is determined by the knot complexity $k$ and genus $g$.
-    (b) A composite baryon modeled as a link of three components ($n=3$), where the mass scaling is dominated by the component suppression factor $S_n$.
-    The effective volume $V$ corresponds to the tube volume (radius $r_c$) tracing these paths.}
-    \label{fig:topology_schematic}
-\end{figure}
-
-
+%
+%\begin{figure}[htbp]
+%    \centering
+%    \begin{tikzpicture}[scale=1.2]
+%
+%        %--- PANEL A: The Lepton Analogy (Trefoil Knot) ---
+%        % Represents a single component (n=1) with complexity k=3
+%        \begin{scope}[shift={(-3,0)}]
+%            % Label
+%            \node[above] at (0, 1.8) {\textbf{(a) Lepton Topology}};
+%            \node[below] at (0, -1.8) {
+%                $\begin{aligned}
+%                    n &= 1 \\
+%                    k &= 3 \\
+%                    g &= 1
+%                \end{aligned}$
+%            };
+%
+%            % Draw Trefoil (Approximate via control points for smooth look)
+%            % Bottom loop
+%            \draw[knot] (0.8,-0.5) .. controls (1.5,-1.5) and (-1.5,-1.5) .. (-0.8,-0.5);
+%            % Top right loop crossing under
+%            \draw[knot] (-0.8,-0.5) .. controls (-0.2, 0.5) and (0.2, 1.5) .. (1.0, 0.5);
+%            % Top left loop crossing over
+%            \draw[knot] (1.0, 0.5) .. controls (1.5, -0.2) and (-1.5, -0.2) .. (-1.0, 0.5);
+%            % Closing the knot
+%            \draw[knot] (-1.0, 0.5) .. controls (-0.2, 1.5) and (0.2, 0.5) .. (0.8,-0.5);
+%
+%            % Core radius indicator
+%            \draw[|-|, thin] (1.6, -0.2) -- (1.6, 0.2) node[midway, right] {\small $2r_c$};
+%        \end{scope}
+%
+%        %--- SEPARATOR ---
+%        \draw[thick, gray!20] (0,-1.5) -- (0,1.5);
+%
+%        %--- PANEL B: The Baryon Analogy (3-Component Link) ---
+%        % Represents three components (n=3) forming a bound state
+%        \begin{scope}[shift={(3,0)}]
+%            % Label
+%            \node[above] at (0, 1.8) {\textbf{(b) Baryon Topology}};
+%            \node[below] at (0, -1.8) {
+%                $\begin{aligned}
+%                    n &= 3 \\
+%                    \text{Ref} &: \text{Toroidal Closure}
+%                \end{aligned}$
+%            };
+%
+%            % Define 3 interlocking rings (Borromean-like style)
+%            % Ring 1 (Top)
+%            \draw[knot] (0, 0.6) ellipse (0.8 and 0.5);
+%
+%            % Ring 2 (Bottom Left) - split drawing to manage crossing depth
+%            \draw[knot] (-0.6, -0.5) ellipse (0.8 and 0.5);
+%
+%            % Ring 3 (Bottom Right)
+%            \draw[knot] (0.6, -0.5) ellipse (0.8 and 0.5);
+%
+%            % Redraw specific arcs to fix the "over/under" logic for a link
+%            % (This is a visual hack to enforce the 'linking' look)
+%            \begin{scope}
+%                \clip (0, 0.6) ellipse (0.8 and 0.5);
+%                \draw[knot] (0.6, -0.5) ellipse (0.8 and 0.5); % Ring 3 goes over Ring 1 here
+%            \end{scope}
+%            \begin{scope}
+%                \clip (-0.6, -0.5) ellipse (0.8 and 0.5);
+%                \draw[knot] (0, 0.6) ellipse (0.8 and 0.5); % Ring 1 goes over Ring 2 here
+%            \end{scope}
+%
+%        \end{scope}
+%
+%    \end{tikzpicture}
+%    \caption{\textbf{Schematic of Topological Invariant Classes.}
+%    (a) An elementary particle modeled as a single knotted filament ($n=1$), where the mass is determined by the knot complexity $k$ and genus $g$.
+%    (b) A composite baryon modeled as a link of three components ($n=3$), where the mass scaling is dominated by the component suppression factor $S_n$.
+%    The effective volume $V$ corresponds to the tube volume (radius $r_c$) tracing these paths.}
+%    \label{fig:topology_schematic}
+%\end{figure}
+%
+%
+%        \begin{figure}[ht]
+%            \centering
+%            \begin{tikzpicture}[scale=1.0]
+%
+%% -----------------------------
+%% Panel A: Trefoil Knot (Electron)
+%% -----------------------------
+%                \begin{scope}[shift={(-4,0)}]
+%
+%                    % Trefoil-like loop (schematic)
+%                    \draw[line width=1.2pt]
+%                    plot[smooth, tension=0.8]
+%                    coordinates {
+%                        (0,1.2)
+%                        (1.0,0.3)
+%                        (0.3,-1.1)
+%                        (-0.9,-0.2)
+%                        (-0.2,1.1)
+%                        (0.9,0.2)
+%                        (0,1.2)
+%                    };
+%
+%                    % Label
+%                    \node at (0,-1.9) {\textbf{(a) Trefoil Knot $3_1$}};
+%                    \node at (0,-2.4) {$k=3,\; g=1,\; n=1$};
+%
+%                \end{scope}
+%
+%% -----------------------------
+%% Panel B: Linked Configuration (Baryon)
+%% -----------------------------
+%                \begin{scope}[shift={(4,0)}]
+%
+%                    % First loop
+%                    \draw[line width=1.2pt]
+%                    (0,0) circle (1.0);
+%
+%                    % Second loop (offset)
+%                    \draw[line width=1.2pt]
+%                    (0.8,0) circle (1.0);
+%
+%                    % Third loop (offset)
+%                    \draw[line width=1.2pt]
+%                    (0.4,0.7) circle (1.0);
+%
+%                    % Label
+%                    \node at (0.4,-1.9) {\textbf{(b) Multi-component Link}};
+%                    \node at (0.4,-2.4) {$k \sim \text{few},\; g \ge 2,\; n=3$};
+%
+%                \end{scope}
+%
+%% -----------------------------
+%% Arrow / interpretation
+%% -----------------------------
+%                \draw[->, thick]
+%                (-1.2,-3.2) -- (1.2,-3.2);
+%
+%                \node at (0,-3.7)
+%                    {Increasing topological complexity};
+%
+%            \end{tikzpicture}
+%
+%            \caption{
+%                Visualizing the topological invariants entering the invariant kernel
+%                $\mathcal{K}(T)$.
+%                (a) A single-component trefoil knot, representative of a low-genus localized
+%                configuration.
+%                (b) A multi-component linked configuration representative of baryonic assembly.
+%                Increasing topological complexity suppresses effective energy localization
+%                through the invariant kernel.
+%            }
+%            \label{fig:topology}
+%        \end{figure}
+%
         \begin{figure}[ht]
             \centering
-            \begin{tikzpicture}[scale=1.0]
+            \begin{tikzpicture}[scale=1.1, thick]
 
-% -----------------------------
-% Panel A: Trefoil Knot (Electron)
-% -----------------------------
-                \begin{scope}[shift={(-4,0)}]
+% ------------------------
+% Panel A: Unknot
+% ------------------------
+                \begin{scope}[xshift=-4cm]
+                    \draw (0,0) circle (1.2);
+                    \node at (0,-1.7) {\small Unknot};
+                    \node at (0,-2.3) {\small $k=1,\; n=1,\; g=0$};
+                \end{scope}
 
-                    % Trefoil-like loop (schematic)
-                    \draw[line width=1.2pt]
-                    plot[smooth, tension=0.8]
+% ------------------------
+% Panel B: Trefoil Knot
+% ------------------------
+                \begin{scope}[xshift=0cm]
+                    \draw plot [smooth, tension=0.8]
                     coordinates {
-                        (0,1.2)
-                        (1.0,0.3)
-                        (0.3,-1.1)
-                        (-0.9,-0.2)
-                        (-0.2,1.1)
-                        (0.9,0.2)
-                        (0,1.2)
+                        (0,1.2) (1.0,0.4) (0.4,-0.9)
+                        (-0.6,-0.6) (-1.0,0.5) (0,1.2)
                     };
-
-                    % Label
-                    \node at (0,-1.9) {\textbf{(a) Trefoil Knot $3_1$}};
-                    \node at (0,-2.4) {$k=3,\; g=1,\; n=1$};
-
+                    \draw plot [smooth, tension=0.8]
+                    coordinates {
+                        (0,-1.2) (1.0,-0.4) (0.6,0.9)
+                        (-0.4,0.6) (-1.0,-0.5) (0,-1.2)
+                    };
+                    \node at (0,-1.7) {\small Trefoil knot $3_1$};
+                    \node at (0,-2.3) {\small $k=3,\; n=1,\; g=1$};
                 \end{scope}
 
-% -----------------------------
-% Panel B: Linked Configuration (Baryon)
-% -----------------------------
-                \begin{scope}[shift={(4,0)}]
-
-                    % First loop
-                    \draw[line width=1.2pt]
-                    (0,0) circle (1.0);
-
-                    % Second loop (offset)
-                    \draw[line width=1.2pt]
-                    (0.8,0) circle (1.0);
-
-                    % Third loop (offset)
-                    \draw[line width=1.2pt]
-                    (0.4,0.7) circle (1.0);
-
-                    % Label
-                    \node at (0.4,-1.9) {\textbf{(b) Multi-component Link}};
-                    \node at (0.4,-2.4) {$k \sim \text{few},\; g \ge 2,\; n=3$};
-
+% ------------------------
+% Panel C: Three-component link
+% ------------------------
+                \begin{scope}[xshift=4cm]
+                    \draw (-0.5,0) circle (1.0);
+                    \draw (0.5,0) circle (1.0);
+                    \draw (0,-0.6) circle (0.6);
+                    \node at (0,-1.7) {\small Three-component link};
+                    \node at (0,-2.3) {\small $n=3,\; g\ge 0$};
                 \end{scope}
-
-% -----------------------------
-% Arrow / interpretation
-% -----------------------------
-                \draw[->, thick]
-                (-1.2,-3.2) -- (1.2,-3.2);
-
-                \node at (0,-3.7)
-                    {Increasing topological complexity};
 
             \end{tikzpicture}
-
             \caption{
                 Visualizing the topological invariants entering the invariant kernel
                 $\mathcal{K}(T)$.
-                (a) A single-component trefoil knot, representative of a low-genus localized
-                configuration.
-                (b) A multi-component linked configuration representative of baryonic assembly.
-                Increasing topological complexity suppresses effective energy localization
-                through the invariant kernel.
+                The kernel acts as a geometric filter, suppressing the effective energy
+                density for configurations of increasing topological complexity through
+                $(k,g,n)$.
             }
-            \label{fig:topology}
+            \label{fig:topology_kernel}
         \end{figure}
-
 
 %==============================================================================
     \section{Invariant Master Mass Formula}
