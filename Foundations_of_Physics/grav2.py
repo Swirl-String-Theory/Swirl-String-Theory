@@ -195,6 +195,36 @@ def generate_trefoil(scale=1.2, points=600):
     z = scale * (-np.sin(3 * t))
     return np.stack([x, y, z], axis=-1)
 
+def generate_saw_cylinder(R=1.0, height=2.0, turns=5, step_fwd=11, step_bwd=-9, points_per_turn=100):
+    """
+    Generates the 'Saw' (Zig-Zag) geometry on a Cylinder.
+    SST Metric: Maximizes Helicity and Shear at the reversal nodes.
+    """
+    total_points = turns * points_per_turn
+    t = np.linspace(0, turns * 2 * np.pi, total_points)
+
+    # 1. Base Cylinder Geometry
+    x = R * np.cos(t)
+    y = R * np.sin(t)
+
+    # 2. The "Saw" Z-Profile
+    # We simulate the Forward/Back motion by modulating the Z-height
+    # purely as a function of the winding angle (t).
+    # Net progress per cycle = (Fwd + Bwd).
+    # We use a sawtooth wave function here for simulation.
+
+    net_pitch = height / (turns * 2 * np.pi)
+    saw_amplitude = (step_fwd - abs(step_bwd)) * 0.05 # Scale factor
+
+    # Linear climb (The "Net" progress) + Sawtooth Oscillation
+    z_linear = t * net_pitch
+    z_wobble = saw_amplitude * np.sin(t * (step_fwd + abs(step_bwd))/2) # High freq zig-zag
+
+    z = z_linear + z_wobble
+    z = z - (height / 2) # Center it
+
+    return np.stack([x, y, z], axis=-1)
+
 # --- 6. Main Solver Class ---
 class SSTSolver:
     def __init__(self, resolution=11, bounds=2.0):
@@ -219,6 +249,16 @@ class SSTSolver:
 
         if "Trefoil" in geometry_type:
             wires.append(generate_trefoil(scale=1.2))
+
+        if "Saw Cylinder" in geometry_type:
+            wires.append(generate_saw_cylinder(
+                R=params.get('rodin_R', 1.0),  # Reuse the 'R' slider
+                height=3.0,
+                turns=params.get('turns', 5),
+                step_fwd=params.get('step_fwd', 11),
+                step_bwd=params.get('step_bwd', -9),
+                points_per_turn=100
+            ))
 
         if "Dipole" in geometry_type:
             # Bottom Ring
@@ -306,7 +346,8 @@ class SSTSolver:
 params = {
     'rodin_R': 1.0, 'rodin_r': 0.4, 'turns': 6,
     'ring_R': 0.6, 'n_mag': 12,
-    'freq_hz': 1e6, 'B_sat': 50.0
+    'freq_hz': 1e6, 'B_sat': 50.0,
+    'step_fwd': 11, 'step_bwd': -9  # Saw geometry parameters
 }
 
 solver = SSTSolver(resolution=11) # Low res for realtime interactivity
@@ -379,7 +420,7 @@ def update_viz(val=None):
 
 # Geometry Selection
 ax_geom = plt.axes([0.02, 0.75, 0.25, 0.15])
-rad_geom = RadioButtons(ax_geom, ('Rodin Only', 'Rodin + Dipoles', 'Trefoil'), active=1)
+rad_geom = RadioButtons(ax_geom, ('Rodin Only', 'Rodin + Dipoles', 'Trefoil', 'Saw Cylinder'), active=1)
 def set_geom(l): state['geom'] = l; update_viz()
 rad_geom.on_clicked(set_geom)
 ax_geom.set_title("Geometry Topology")
