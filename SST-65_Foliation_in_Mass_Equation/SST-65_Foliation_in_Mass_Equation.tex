@@ -1,0 +1,385 @@
+%! Author = Omar Iskandarani
+%! Date = 1/29/2026
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxx
+
+\newcommand{\paperdoi}{10.5281/zenodo.xxx}
+\newcommand{\papertitle}{Velocity-Dependent Mass Functional, Preferred-Frame Effects, and Intrinsic Temporal Stochasticity}
+
+%=========================================
+% % PREAMBLE, PACKAGES AND DOCUMENT CONFIGURATION
+%=========================================
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsfonts,bm}
+\usepackage{siunitx}
+\usepackage[hidelinks]{hyperref}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% swirl arrows (context-aware)
+\newcommand{\swirlarrow}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}
+\newcommand{\vswirl}{\mathbf{v}_{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}}
+\newcommand{\SwirlClock}{S_{(t)}^{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}}
+\newcommand{\Fmaxswirl}{F^{\max}_{\mkern-1mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}}
+\newcommand{\Fmax}{F^{\max}_{\mkern-1mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}} 
+\newcommand{\FmaxEM}{F^{\max}_{\mathrm{EM}}}
+\newcommand{\FmaxG}{F_{\mathrm{G}}^{\max}}               % G-like maximal force scale
+\newcommand{\vscore}{v_{\swirlarrow}}                    % shorthand: |v_swirl| at r=r_c
+\newcommand{\vnorm}{\lVert \mathbf{v}_{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}} \rVert}  % swirl speed magnitude
+\newcommand{\rhoF}{\rho_{\!f}}\newcommand{\rhof}{\rho_{\!f}}     % effective fluid density
+\newcommand{\rhoE}{\rho_{\!E}}\newcommand{\rhoe}{\rho_{\!E}}                           % swirl energy density
+\newcommand{\rhoM}{\rho_{\!m}}\newcommand{\rhom}{\rho_{\!m}}                           % mass-equivalent density
+\newcommand{\omegas}{\boldsymbol{\omega}_{\swirlarrow}}  % swirl vorticity
+\newcommand{\Om}{\Omega_{\swirlarrow}}                   % swirl angular frequency profile
+\newcommand{\rc}{r_c}                                    % string core radius (swirl string radius)
+
+
+\newcommand{\titlepageOpen}{
+    \begin{titlepage}
+        \thispagestyle{empty}  \centering
+        \Large \bfseries \papertitle \par \vspace{1cm}
+        {\Large \itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par} \vspace{0.5cm}
+        {\today \par}  \vspace{0.5cm}
+}
+
+\newcommand{\titlepageClose}{
+        \vfill \raggedright \null
+        \begin{picture}(0,0)
+            \put(0,-45){  % Shift 200pt left, 40pt down
+                \begin{minipage}[b]{0.7\textwidth} \footnotesize
+                    \renewcommand{\arraystretch}{1.0} \noindent\rule{\textwidth}{0.4pt} \\[0.5em]
+                    \textsuperscript{\textbf{*}} Independent Researcher, Groningen, The Netherlands \\
+                    Email: \texttt{info@omariskandarani.com} \\
+                    ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}} \\
+                    DOI: \href{https://doi.org/\paperdoi}{\paperdoi}
+                \end{minipage}
+            }
+        \end{picture}
+    \end{titlepage}
+}
+%=========================================
+% Start Document - Title Page
+%=========================================
+\begin{document}
+    \titlepageOpen
+    \begin{abstract}
+        We analyze the weak-field experimental consequences of Swirl-String Theory (SST)
+        in its covariant vector--tensor formulation.
+        Building on the master mass functional derived in \textbf{Atomic Masses from Topological Invariants of Knotted Field Configurations} and the clock--foliation
+        structure fixed in Canon v0.7.7, we show that preferred-frame effects arise as
+        velocity-dependent corrections to the inertial and gravitational mass functional,
+        rather than from additional forces or modified gravitational propagation.
+        Imposing the observational constraint from GW170817 that gravitational waves
+        propagate at the speed of light reduces the accessible parameter space to a narrow
+        sector governed by the combinations $c_{14}$ and $c_2$.
+        We propose a tabletop null experiment based on a rotating cryogenic sapphire
+        resonator system to provide an independent laboratory constraint on the
+        Parameterized Post-Newtonian preferred-frame parameters $\alpha_1$ and $\alpha_2$.
+    \end{abstract}
+    \titlepageClose
+
+    General Relativity describes gravitation as spacetime geometry while treating
+    inertial mass and physical time as primitive inputs.
+    Swirl--String Theory (SST) departs from this paradigm by deriving both mass and
+    time from a single covariant action involving a Lorentzian metric and a unit
+    timelike vector field.
+
+    SST-59 established a master mass functional based on the integrated swirl energy
+    density.
+    Canon v0.7.7 unified this construction with a clock--foliation field $u^\mu$,
+    equivalent in the infrared to the Einstein--\AE ther or khronometric framework.
+    The remaining open question is how motion relative to this foliation manifests
+    operationally and experimentally.
+
+    The present work should therefore be read as an operational and experimental
+    follow-up to the master mass functional derived in SST-59, with no modification
+    of its foundational assumptions.
+    Specifically, this paper provides two results:
+    (i) a canonical identification of preferred-frame effects with
+    velocity-dependent corrections to the mass functional, and
+    (ii) an operational framework for probing intrinsic temporal stochasticity.
+
+
+    \section{Mass Functional and Clock Foliation}
+
+        In SST, inertial and gravitational mass are defined by
+        \begin{equation}
+            M = \mathcal{C} \int_V \rho_{\!E}(\mathbf{x})\, dV ,
+        \end{equation}
+        where $\rho_{\!E}$ is the local swirl energy density and $\mathcal{C}$ is a fixed
+        normalization constant \cite{SST59}.
+
+        The evaluation of $\rho_{\!E}$ is referenced to a local clock--foliation structure
+        represented covariantly by a unit timelike vector field
+        \begin{equation}
+            u^\mu u_\mu = -1 .
+        \end{equation}
+
+    \section{Velocity-Dependent Mass Functional}
+
+        A system moving with spatial velocity $\mathbf{v}$ relative to the foliation samples
+        a boosted slicing of the clock field.
+        The effective mass therefore becomes velocity dependent:
+        \begin{equation}
+            M_{\mathrm{eff}}(\mathbf{v})
+            =
+            M_0
+            \left[
+                1
+                + \alpha_1 \frac{\mathbf{v}\cdot\hat{u}}{c}
+                + \alpha_2 \frac{(\mathbf{v}\cdot\hat{u})^2}{c^2}
+                + \mathcal{O}\!\left(\frac{v^3}{c^3}\right)
+            \right],
+        \end{equation}
+        where $\hat{u}$ denotes the spatial direction selected by the clock field.
+        The coefficients $\alpha_1$ and $\alpha_2$ quantify anisotropic corrections to the
+        mass functional rather than new interactions.
+
+
+        \begin{theorem}[Electromagnetic Non-Generation of Gravity]
+            \label{thm:EM_no_gravity}
+
+            In Swirl--String Theory (SST), electromagnetic fields \emph{cannot} directly modify
+            gravitational mass, inertial response, or spacetime curvature.
+            Any apparent electromagnetic influence on gravity must proceed
+            \emph{indirectly} through the generation of a persistent foliation
+            pressure in the underlying medium.
+
+            More precisely, let $\chi$ denote the foliation (clock) field and
+            $\rho_{\!E}$ the swirl energy density.
+            A necessary and sufficient condition for an electromagnetic configuration
+            to induce a gravitational effect is the existence of a non-radiative,
+            long-lived contribution
+            \begin{equation}
+                \Delta m c^2
+                \;=\;
+                \int_V \Delta p_{\mathrm{eff}} \, dV
+                \;=\;
+                \int_V \Delta \rho_{\!E} \, dV ,
+            \end{equation}
+            such that
+            \begin{equation}
+                \Delta(\nabla_\mu \chi) \neq 0
+                \quad\text{after all electromagnetic fields are removed.}
+            \end{equation}
+
+            Electromagnetic energy that is oscillatory, radiative, gauge-removable,
+            or time-averaged to zero cannot satisfy this condition and therefore
+            cannot generate or modify gravity in SST.
+
+        \end{theorem}
+
+        This theorem fixes the admissible sources of the SST mass functional
+        and excludes electromagnetic configurations as primary generators
+        of gravitational structure, independent of gauge choice or time averaging.
+
+
+
+    \section{Mapping to Einstein--\AE ther and PPN Formalism}
+
+        The covariant SST action shares its infrared structure with Einstein--\AE ther theory.
+        Imposing the observational constraint from GW170817 that the speed of gravitational
+        waves equals the speed of light requires
+        \begin{equation}
+            c_{13} = c_1 + c_3 = 0 .
+        \end{equation}
+
+        Under this constraint, the preferred-frame PPN parameters reduce to
+        \begin{equation}
+            \alpha_1^{\mathrm{SST}} = -4 c_{14},
+            \qquad
+            \alpha_2^{\mathrm{SST}} = \alpha_2(c_{14},c_2),
+        \end{equation}
+        where $c_{14}=c_1+c_4$ and $c_2$ governs the scalar sector \cite{FosterJacobson}.
+
+    \section{Experiment A: Gravity-Sector Preferred-Frame Null Test}
+
+        \subsection{Physical Principle}
+
+            Because SST preferred-frame effects modify the inertial mass functional, any resonant
+            system whose eigenfrequencies depend on effective mass becomes a probe of gravity-
+            sector anisotropy, independent of electromagnetic Lorentz violation.
+
+        \subsection{Apparatus}
+
+            The proposed apparatus consists of two orthogonal cryogenic sapphire resonators
+            mounted in a single vacuum cryostat at $4.2\,\mathrm{K}$ and rotated on a precision
+            air-bearing turntable with angular frequency $\omega_{\mathrm{rot}}$.
+            The differential resonance frequency
+            \begin{equation}
+                \Delta f(t) = f_x(t) - f_y(t)
+            \end{equation}
+            is monitored using heterodyne readout with fractional stability
+            $\Delta f/f \sim 10^{-17}$.
+
+        \subsection{Signal Model}
+
+            The expected signal admits the harmonic expansion
+            \begin{equation}
+                \frac{\Delta f}{f}
+                =
+                S_2 \cos(2\omega_{\mathrm{rot}} t)
+                + \sum_{n=\pm1,\pm2}
+                S_{2,n}\cos(2\omega_{\mathrm{rot}} t + n\omega_\oplus t),
+            \end{equation}
+            where $\omega_\oplus$ is the sidereal frequency.
+            Sidereal sidebands uniquely identify preferred-frame effects.
+
+    \section{Intrinsic Temporal Stochasticity}
+
+        In SST-31, time is defined as a relational observable associated with a conserved
+        event current.
+        This implies the possibility of intrinsic fluctuations in clock readouts.
+
+        The observed time-of-arrival distribution is modeled as
+        \begin{equation}
+            P_{\mathrm{obs}}(\Theta)
+            =
+            \int dt\;
+            P_{\mathrm{cl}}(t)
+            \frac{1}{\sqrt{2\pi\sigma_\tau^2}}
+            \exp\!\left[-\frac{(\Theta-t)^2}{2\sigma_\tau^2}\right],
+        \end{equation}
+        where $\sigma_\tau^2$ characterizes intrinsic clock noise.
+        The Canon implies that $\sigma_\tau^2$ may depend on the gradient of the clock
+        potential,
+        \begin{equation}
+            \sigma_\tau^2 = \sigma_\tau^2(\nabla \chi),
+        \end{equation}
+        with its detailed spectrum left phenomenological.
+
+    \section{Experiment B: Exploratory Clock-Noise Search}
+
+        Experiment B employs a pair of co-located optical lattice clocks operated in
+        differential mode to suppress common-mode noise.
+        The observable is an anomalous decoherence rate
+        \begin{equation}
+            \Gamma_{\mathrm{obs}} = \Gamma_{\mathrm{env}} + \Gamma_{\mathrm{SST}},
+            \qquad
+            \Gamma_{\mathrm{SST}} \propto \sigma_\tau^2(\nabla \chi),
+        \end{equation}
+        correlated with controlled modulation of the local clock-field gradient.
+        This experiment defines a search channel rather than a guaranteed detection.
+
+    \section{Discussion and Conclusion}
+
+        Preferred-frame effects in SST arise as velocity-dependent corrections to the mass
+        functional rather than as new forces.
+        Intrinsic temporal stochasticity represents an independent consequence of relational
+        time.
+        Together, the proposed experiments define a minimal and falsifiable low-energy test
+        program for SST consistent with existing gravitational constraints.
+
+\appendix
+    \section{Emergence of the Schr\"odinger Equation from Relational Time}
+        \label{sec:SST65_schrodinger}
+
+        \subsection{Relational Time and Phase Dynamics}
+
+            In Swirl--String Theory (SST), physical time is not introduced as a fundamental external parameter, but arises operationally from a preferred foliation defined by a unit timelike vector field $u^\mu$. Observables evolve along the integral curves of $u^\mu$, and the physically meaningful time derivative is the directional derivative
+            \begin{equation}
+                \frac{D}{Dt} \;\equiv\; u^\mu \nabla_\mu .
+            \end{equation}
+            This construction parallels the ``khronon'' formulation of hypersurface--orthogonal Einstein--\AE ther theory and provides a covariant notion of simultaneity.
+
+            Consider a complex scalar field $\Psi(x)$ representing a localized excitation of the SST medium. The field is assumed to admit a rapidly oscillating internal phase associated with a characteristic rest energy $E_0 = m c^2$, where the effective mass $m$ is determined by the SST mass functional (see SST--59). We therefore write
+            \begin{equation}
+                \Psi(\mathbf{x},t)
+                =
+                \psi(\mathbf{x},t)\,
+                \exp\!\left(-\frac{i}{\hbar} m c^2 t\right),
+                \label{eq:phase_factorization}
+            \end{equation}
+            where $\psi$ is a slowly varying envelope with respect to the clock time defined by the foliation.
+
+        \subsection{Underlying Relativistic Dynamics}
+
+            At wavelengths large compared to the SST core scale $r_c$, the excitation dynamics are governed by a second--order hyperbolic equation consistent with covariance and locality. To leading order, this takes the Klein--Gordon form
+            \begin{equation}
+                \left(
+                    \frac{1}{c^2} \frac{D^2}{Dt^2}
+                    -
+                    \nabla_\perp^2
+                +
+                    \frac{m^2 c^2}{\hbar^2}
+                \right)\Psi
+                =
+                0,
+                \label{eq:kg_foliation}
+            \end{equation}
+            where $\nabla_\perp^2$ is the Laplacian on spatial hypersurfaces orthogonal to $u^\mu$. Equation \eqref{eq:kg_foliation} does not introduce new degrees of freedom beyond those already present in the SST covariant action; it represents the infrared wave dynamics of a massive excitation propagating along the foliation.
+
+        \subsection{Nonrelativistic Limit}
+
+            Substituting the factorization \eqref{eq:phase_factorization} into \eqref{eq:kg_foliation} and assuming the nonrelativistic regime
+            \begin{equation}
+                \left| \frac{D\psi}{Dt} \right| \ll \frac{m c^2}{\hbar} |\psi|,
+                \qquad
+                \left| \nabla_\perp \psi \right| \ll \frac{m c}{\hbar} |\psi|,
+            \end{equation}
+            one finds that second--order time derivatives of $\psi$ are parametrically suppressed. Retaining terms to leading order in $v/c$, the envelope equation reduces to
+            \begin{equation}
+                i \hbar \frac{D\psi}{Dt}
+                =
+                -\frac{\hbar^2}{2m}\,\nabla_\perp^2 \psi .
+                \label{eq:schrodinger_free}
+            \end{equation}
+
+            Equation \eqref{eq:schrodinger_free} is precisely the free Schr\"odinger equation, with the time derivative replaced by evolution along the SST clock foliation.
+
+        \subsection{External Potentials and Clock Gradients}
+
+            Weak interactions with background fields or inhomogeneities of the SST medium enter as perturbations to the local clock rate. A scalar clock potential $\Phi_\chi$ modifies the rest energy as
+            \begin{equation}
+                m c^2 \;\rightarrow\; m c^2 + V,
+                \qquad
+                V \equiv m \Phi_\chi ,
+            \end{equation}
+            leading to the full nonrelativistic equation
+            \begin{equation}
+                i \hbar \frac{D\psi}{Dt}
+                =
+                \left(
+                    -\frac{\hbar^2}{2m}\,\nabla_\perp^2
+                +
+                V
+                \right)\psi .
+                \label{eq:schrodinger_full}
+            \end{equation}
+            In SST, the potential $V$ is interpreted as a pressure or clock--rate perturbation associated with gradients of the foliation field, rather than as a fundamental force.
+
+        \subsection{Interpretation}
+
+            Equation \eqref{eq:schrodinger_full} demonstrates that the Schr\"odinger equation arises in SST as a controlled infrared limit of relativistic phase evolution along a preferred foliation. The mass parameter $m$ is not fundamental, but encodes stored energy of the underlying medium through the SST mass functional. The complex wavefunction $\psi$ represents the slowly varying envelope of a high--frequency internal clock.
+
+            In this sense, nonrelativistic quantum mechanics is not postulated but emerges as the effective phase--transport equation governing relational time evolution in the SST framework.
+
+        \subsection{Domain of Validity}
+
+            The derivation holds under the following conditions:
+            \begin{itemize}
+                \item velocities small compared to $c$,
+                \item wavelengths large compared to the SST core scale $r_c$,
+                \item weak clock--rate gradients $\nabla \Phi_\chi$.
+            \end{itemize}
+            Corrections to Schr\"odinger dynamics are expected at higher order in $v/c$ and from stochastic clock fluctuations, discussed separately in the context of intrinsic time broadening.
+
+        \begin{thebibliography}{99}
+
+            \bibitem{SST59}
+            O.~Iskandarani,
+            \emph{Atomic Masses from Topological Invariants of Knotted Field Configurations},
+            SST-59 (2025).
+
+            \bibitem{FosterJacobson}
+            B.~Z.~Foster and T.~Jacobson,
+            \emph{Post-Newtonian parameters and constraints on Einstein-\AE ther theory},
+            Phys.\ Rev.\ D \textbf{73}, 064015 (2006),
+            \href{https://arxiv.org/abs/gr-qc/0509083}{arXiv:gr-qc/0509083}.
+
+        \end{thebibliography}
+
+\end{document}
