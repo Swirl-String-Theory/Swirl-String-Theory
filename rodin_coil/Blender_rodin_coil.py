@@ -5,7 +5,27 @@ from mathutils import Vector
 # =========================
 # USER PARAMETERS
 # =========================
-OUTPUT_DIR = r"C:\workspace\projects\SwirlStringTheory\rodin_coil"  # <-- SET TO A WRITABLE FOLDER, e.g. r"C:\...\out"
+
+################################################################################
+#                                                                              #
+#   ZONE: MOST USED VARIABLES — edit these first                              #
+#                                                                              #
+################################################################################
+OUTPUT_DIR = r"C:\workspace\projects\SwirlStringTheory\rodin_coil"  # writable folder for STL export
+
+# Coil selection (6 total: 3 CW + 3 CCW). Use subset for speed or to focus effect.
+RENDER_CW  = True   # False = skip all CW groove passes
+RENDER_CCW = True  # False = skip all CCW groove passes
+PHASES_CW  = None # None = default. [0] = 1 CW only, [0, 120, 240] = all 3 CW phases
+PHASES_CCW = None  # None = default. [] = no CCW, [0] = 1 CCW only, [0, 120, 240] = all 3 CCW
+
+# Speed vs quality
+QUICK_RENDER = False       # True = faster, lower mesh resolution
+ULTRA_QUICK_RENDER = False # True = minimal quality, maximum speed
+
+# Output
+OUTPUT_MODE = "full"  # "full" | "pieces" | "both"
+################################################################################
 
 
 # Torus geometry (mm)
@@ -18,71 +38,50 @@ P = 5
 Q = 12
 
 # Groove sizing
-WIRE_OD      = 1.00  # Insulated wire outer diameter (mm)
-CLEARANCE    = 0.50  # Minimum radial clearance between layers (mm)
+WIRE_OD      = 1.10  # Insulated wire outer diameter (mm)
+CLEARANCE    = 0.5  # Minimum radial clearance between layers (mm)
 GROOVE_R     = 0.5 * (WIRE_OD + CLEARANCE)  # Cutter radius (half of wire+clearance)
 GROOVE_DEPTH = 0.75  # Base groove depth (mm) — must be ≤ GROOVE_R
 
 # How many depth passes to use for each set
 # Note: In quick render mode, these are automatically reduced for speed
-CW_PASSES_BASE  = 2          # Base value - usually 1 is fine
+CW_PASSES_BASE  = 5          # Base value - usually 1 is fine
 CCW_PASSES_BASE = 5         # Base value - set this to 1,2,3,4,... to control deepening
 
 # Depth schedule mode:
 # "linear" = evenly spaced depths from surface->deep
-# "three_step" = matches your old (surface, half, full) behavior when CCW_PASSES_BASE=3
+# "three_step" = matches your old (surface, half, full) abehavior when CCW_PASSES_BASE=3
 DEPTH_SCHEDULE_MODE = "linear"   # or "three_step"
 
 # Layer separation mode
 # "deeper": Place CCW set deeper by Δh = WIRE_OD + CLEARANCE (simpler, slight impedance mismatch)
 # "symmetric": Place both sets symmetrically around mid-radius (balanced impedances, if geometry permits)
-LAYER_SEPARATION_MODE = "symmetric"  # Options: "deeper" or "symmetric"
+LAYER_SEPARATION_MODE = "deeper"  # Options: "deeper" or "symmetric"
 
 # CCW groove depth factor (for outside visibility)
 # Set to 0.75 to make CCW grooves visible from outside while maintaining separation
 # Lower values = more visible from outside, higher values = more separation
-CCW_DEPTH_FACTOR = 1.95  # Multiplier for GROOVE_DEPTH to set CCW sink depth (higher = deeper)
+CCW_DEPTH_FACTOR = 2.5  # Multiplier for GROOVE_DEPTH to set CCW sink depth (higher = deeper)
 
 # CW groove depth factor (for CW deepening passes)
 # Controls how deep CW grooves go across multiple passes
-CW_DEPTH_FACTOR = 0.95  # Multiplier for GROOVE_DEPTH to set CW deep sink (higher = deeper)
+CW_DEPTH_FACTOR = 2.5  # Multiplier for GROOVE_DEPTH to set CW deep sink (higher = deeper)
 
 # Maximum groove sink as fraction of tube radius (0..1). Grooves are clamped so they never
 # cut through the torus wall. Increase for deeper grooves (e.g. 0.85–0.9); leave margin
 # so sink + GROOVE_R stays below R_TUBE.
-MAX_GROOVE_SINK_FRACTION = 0.80  # 0.80 = safe; up to ~0.95 if tube is thick
+MAX_GROOVE_SINK_FRACTION = 0.9  # 0.80 = safe; up to ~0.95 if tube is thick
+
+# Third level depth groove: add an extra-deep groove level beyond the current "deep" (CCW).
+# When True, CCW grooves go one step deeper using THIRD_LEVEL_DEPTH_FACTOR.
+ENABLE_THIRD_LEVEL_GROOVE = False  # Set True to enable third (extra-deep) groove level
+THIRD_LEVEL_DEPTH_FACTOR = 1.35   # Multiplier for CCW depth: 1.0 = same as current deep; >1 = deeper (e.g. 1.35 = 35% deeper)
 
 # Swap CW and CCW: if True, passes and depth factors are swapped (only this switch to change)
 SWAP_CW_CCW = False  # Set True to use CCW as primary (swap passes and depth factors)
 
-# Quick render mode (faster, lower quality, skips visualization objects)
-QUICK_RENDER = False  # Set to True for faster rendering with reduced quality
-ULTRA_QUICK_RENDER = False  # Set to True for even more aggressive reduction (minimal quality, maximum speed)
-
 # Visualize curve paths?
 VISUALIZE_CURVES = False
-
-# Output mode: "full" = only full Torus_grooved, "pieces" = only 4 pieces, "both" = both
-OUTPUT_MODE = "full"  # Options: "full", "pieces", or "both"
-
-# =========================
-# BREAK-OFF LEGS (PRINT SUPPORT)
-# =========================
-ADD_BREAKOFF_LEGS = False
-
-LEG_HEIGHT = 2.0        # mm (lift above build plate)
-LEG_RADIUS = 0.6        # mm (plate contact radius)
-LEG_NECK_RADIUS = 0.4   # mm (weak point near torus)
-LEG_COUNT = 72           # number of legs
-LEG_INSET = 0.3         # mm inset into torus for good union
-LEG_RADIAL_OFFSETS = [
-    +1.5,
-    +0.9,
-    +0.3,
-    -0.3,
-    -0.9,
-    -1.5,
-]
 
 if SWAP_CW_CCW:
     CW_PASSES_BASE, CCW_PASSES_BASE = CCW_PASSES_BASE, CW_PASSES_BASE
@@ -151,22 +150,12 @@ else:
 USE_VOXEL_REMESH = False
 VOXEL_SIZE_MM    = 0.25
 
-# 3D Printing base/platform for pieces
-ADD_PRINT_BASE = False  # Add a square base to each piece
-BASE_THICKNESS = 2.0   # Thickness of the base (mm)
-BASE_MARGIN    = 5.0   # Extra margin around torus (mm)
-BASE_OFFSET    = 0.1   # Small gap between base and torus to allow easy removal (mm)
-
-# Circular toroidal base (overlaps torus in toroidal direction, parallel to R)
-ADD_CIRCULAR_TOROIDAL_BASE = False  # Add a circular base overlapping torus in toroidal direction
-CIRCULAR_BASE_THICKNESS = 1.0  # Thickness of circular base (mm)
-CIRCULAR_BASE_RADIUS = None    # If None, uses OUTER_RADIUS + 2.0mm margin
-CIRCULAR_BASE_OVERLAP = 0.5    # How much the base overlaps into the torus (mm) - positive = overlaps upward
-
 # Collection name base (will have timestamp appended for uniqueness)
 COLLECTION_NAME_BASE = "Rodin_Torus_4Pieces"
-# Prefix used to find previous render collections to hide (keep all, just hide in viewport/render)
+# Prefix used to find previous render collections (moved into Rodin_Previous for comparison)
 RODIN_COLLECTION_PREFIX = "Rodin_Torus"
+# Parent collection for previous runs (each rerun moves previous run collections here)
+RODIN_PREVIOUS_COLLECTION_NAME = "Rodin_Previous"
 
 
 # =========================
@@ -269,6 +258,13 @@ if SINK_OUTER + CCW_DEPTH_OFFSET > MAX_SINK:
 # Calculate CW deep sink endpoint for deepening passes (same max so torus always renders)
 SINK_CW_DEEP = min(SINK_OUTER + CW_DEPTH_FACTOR * GROOVE_DEPTH, MAX_SINK)
 
+# Third level (extra-deep) CCW sink when ENABLE_THIRD_LEVEL_GROOVE is True
+if ENABLE_THIRD_LEVEL_GROOVE:
+    SINK_DEEPEST = min(SINK_OUTER + THIRD_LEVEL_DEPTH_FACTOR * CCW_DEPTH_OFFSET, MAX_SINK)
+    print(f"  Third level groove enabled: deepest sink = {SINK_DEEPEST:.3f} mm ({THIRD_LEVEL_DEPTH_FACTOR}× CCW depth offset)")
+else:
+    SINK_DEEPEST = SINK_INNER  # same as current deep (no third level)
+
 # =========================
 # ---- HELPER FUNCTIONS ----
 # =========================
@@ -292,16 +288,29 @@ def clear_scene():
     except:
         pass
 
-def hide_previous_rodin_collections(except_name=None):
-    """Hide all collections whose name starts with RODIN_COLLECTION_PREFIX so previous
-    renders are kept but not visible. Optionally skip one collection (the current run)."""
-    for coll in bpy.data.collections:
-        if not coll.name.startswith(RODIN_COLLECTION_PREFIX):
+def move_previous_rodin_runs_into_collection(except_name=None):
+    """Move all top-level Rodin run collections into RODIN_PREVIOUS_COLLECTION_NAME so
+    previous runs can be compared. Uses unique naming; does not merge lane folders.
+    except_name: current run collection name to leave at top level."""
+    scene_coll = bpy.context.scene.collection
+    prev_coll = get_or_create_collection(RODIN_PREVIOUS_COLLECTION_NAME)
+    to_move = []
+    for child in list(scene_coll.children):
+        if not child.name.startswith(RODIN_COLLECTION_PREFIX):
             continue
-        if except_name is not None and coll.name == except_name:
+        if child.name == RODIN_PREVIOUS_COLLECTION_NAME:
             continue
-        coll.hide_viewport = True
-        coll.hide_render = True
+        if except_name is not None and child.name == except_name:
+            continue
+        to_move.append(child)
+    for coll in to_move:
+        try:
+            scene_coll.children.unlink(coll)
+            prev_coll.children.link(coll)
+        except Exception as e:
+            print(f"  Note: Could not move {coll.name} into {RODIN_PREVIOUS_COLLECTION_NAME}: {e}")
+    if to_move:
+        print(f"  Moved {len(to_move)} previous run(s) into '{RODIN_PREVIOUS_COLLECTION_NAME}' for comparison.")
 
 def get_or_create_collection(name):
     """Get existing collection or create a new one with the given name"""
@@ -319,6 +328,24 @@ def get_or_create_collection(name):
     collection.hide_render = False
     
     return collection
+
+def get_or_create_child_collection(parent_collection, child_name):
+    """Get or create a child collection with the given name under parent. Used for per-lane (coil) folders."""
+    if child_name in bpy.data.collections:
+        child = bpy.data.collections[child_name]
+        # Ensure it is linked under parent (may already be elsewhere)
+        if child.name not in [c.name for c in parent_collection.children]:
+            parent_collection.children.link(child)
+        return child
+    child = bpy.data.collections.new(child_name)
+    parent_collection.children.link(child)
+    child.hide_viewport = False
+    child.hide_render = False
+    return child
+
+# Phase (degrees) -> color name for coil/lane collection naming (do not merge lanes into one folder)
+PHASE_COLOR_NAMES_CW = {0: "Red", 120: "Green", 240: "Blue", 180: "Green"}   # 180 used in quick mode
+PHASE_COLOR_NAMES_CCW = {0: "Yellow", 120: "Magenta", 240: "Cyan", 180: "Magenta"}
 
 def link_to_collection(obj, collection):
     """Link object to collection, removing from all other collections first"""
@@ -648,160 +675,6 @@ def create_cutting_plane(name, location, rotation, size, collection):
     
     return plane
 
-def create_square_base(obj, piece_idx, collection):
-    """
-    Create a square base/platform for a piece.
-    The base is positioned at the lowest Z point and sized to fit with other pieces.
-    """
-    if not ADD_PRINT_BASE:
-        return None
-    
-    print(f"\nCreating square base for piece {piece_idx}...")
-    
-    # Find lowest Z point
-    lowest_z = find_lowest_z(obj)
-    print(f"  Lowest Z point: {lowest_z:.2f} mm")
-    
-    # Calculate base dimensions
-    # Each piece gets a square base that's half the full size
-    # Full square size should cover the torus diameter plus margin
-    full_size = 2 * (OUTER_RADIUS + BASE_MARGIN)
-    half_size = full_size / 2.0
-    
-    # Calculate position based on piece index
-    # Piece 1: X >= 0, Y >= 0 (first quadrant) -> center at (half_size/2, half_size/2)
-    # Piece 2: X < 0, Y >= 0 (second quadrant) -> center at (-half_size/2, half_size/2)
-    # Piece 3: X < 0, Y < 0 (third quadrant) -> center at (-half_size/2, -half_size/2)
-    # Piece 4: X >= 0, Y < 0 (fourth quadrant) -> center at (half_size/2, -half_size/2)
-    
-    positions = [
-        (half_size/2, half_size/2),    # Piece 1: +X, +Y
-        (-half_size/2, half_size/2),   # Piece 2: -X, +Y
-        (-half_size/2, -half_size/2),  # Piece 3: -X, -Y
-        (half_size/2, -half_size/2),  # Piece 4: +X, -Y
-    ]
-    
-    center_x, center_y = positions[piece_idx - 1]
-    base_z = lowest_z - BASE_THICKNESS - BASE_OFFSET
-    
-    # Create square base as a cube
-    bpy.ops.mesh.primitive_cube_add(
-        size=half_size,
-        location=(center_x, center_y, base_z + BASE_THICKNESS/2),
-        align='WORLD'
-    )
-    base = bpy.context.view_layer.objects.active
-    set_obj_name(base, f"{obj.name}_SquareBase")
-    link_to_collection(base, collection)
-    ensure_object_visible(base)
-    
-    # Union the base with the object
-    bpy.context.view_layer.objects.active = obj
-    obj.select_set(True)
-    base.select_set(True)
-    bpy.context.view_layer.update()
-    
-    # Use boolean union to connect base to object
-    mod = obj.modifiers.new("BaseUnion", 'BOOLEAN')
-    mod.operation = 'UNION'
-    mod.solver = 'EXACT'
-    mod.object = base
-    bpy.context.view_layer.update()
-    
-    try:
-        if apply_modifier(obj, "BaseUnion"):
-            print(f"  Square base successfully connected to {obj.name}")
-            # Remove the separate base object since it's now part of the main object
-            bpy.data.objects.remove(base, do_unlink=True)
-            # Repair mesh after union operation
-            repair_mesh(obj, remove_doubles_dist=0.0001, fill_holes=True, make_manifold=True)
-            return None
-        else:
-            print(f"  WARNING: Could not union base to {obj.name}")
-            base.select_set(False)
-            obj.select_set(False)
-            return base
-    except Exception as e:
-        print(f"  WARNING: Could not union base to {obj.name}: {e}")
-        print(f"  Keeping base as separate object for manual connection")
-        base.select_set(False)
-        obj.select_set(False)
-        return base
-
-def create_circular_toroidal_base(obj, collection):
-    """
-    Create a circular base that overlaps the torus in the toroidal direction (parallel to R).
-    The base is a 1mm thick circular disk positioned at the lowest Z point of the torus.
-    This serves as a 3D printing support base.
-    """
-    if not ADD_CIRCULAR_TOROIDAL_BASE:
-        return None
-    
-    print(f"\nCreating circular toroidal base for {obj.name}...")
-    
-    # Find lowest Z point
-    lowest_z = find_lowest_z(obj)
-    print(f"  Lowest Z point: {lowest_z:.2f} mm")
-    
-    # Calculate base radius
-    if CIRCULAR_BASE_RADIUS is None:
-        base_radius = OUTER_RADIUS + 2.0  # Default: 2mm margin beyond outer radius
-    else:
-        base_radius = CIRCULAR_BASE_RADIUS
-    
-    print(f"  Base radius: {base_radius:.2f} mm")
-    print(f"  Base thickness: {CIRCULAR_BASE_THICKNESS:.2f} mm")
-    print(f"  Overlap into torus: {CIRCULAR_BASE_OVERLAP:.2f} mm")
-    
-    # Position the base so it overlaps the torus by CIRCULAR_BASE_OVERLAP
-    # The base center Z is positioned so the top of the base is at lowest_z + CIRCULAR_BASE_OVERLAP
-    base_center_z = lowest_z + CIRCULAR_BASE_OVERLAP - CIRCULAR_BASE_THICKNESS / 2.0
-    
-    # Create circular base as a cylinder (disk)
-    bpy.ops.mesh.primitive_cylinder_add(
-        radius=base_radius,
-        depth=CIRCULAR_BASE_THICKNESS,
-        location=(0, 0, base_center_z),
-        align='WORLD'
-    )
-    base = bpy.context.view_layer.objects.active
-    set_obj_name(base, f"{obj.name}_CircularToroidalBase")
-    link_to_collection(base, collection)
-    ensure_object_visible(base)
-    
-    # Union the base with the object
-    bpy.context.view_layer.objects.active = obj
-    obj.select_set(True)
-    base.select_set(True)
-    bpy.context.view_layer.update()
-    
-    # Use boolean union to connect base to object
-    mod = obj.modifiers.new("CircularBaseUnion", 'BOOLEAN')
-    mod.operation = 'UNION'
-    mod.solver = 'EXACT'
-    mod.object = base
-    bpy.context.view_layer.update()
-    
-    try:
-        if apply_modifier(obj, "CircularBaseUnion"):
-            print(f"  Circular toroidal base successfully connected to {obj.name}")
-            # Remove the separate base object since it's now part of the main object
-            bpy.data.objects.remove(base, do_unlink=True)
-            # Repair mesh after union operation
-            repair_mesh(obj, remove_doubles_dist=0.0001, fill_holes=True, make_manifold=True)
-            return None
-        else:
-            print(f"  WARNING: Could not union circular base to {obj.name}")
-            base.select_set(False)
-            obj.select_set(False)
-            return base
-    except Exception as e:
-        print(f"  WARNING: Could not union circular base to {obj.name}: {e}")
-        print(f"  Keeping base as separate object for manual connection")
-        base.select_set(False)
-        obj.select_set(False)
-        return base
-
 def make_rect_lock(name, length, depth, height):
     """Create a rectangular lock geometry"""
     bpy.ops.mesh.primitive_cube_add(size=1)
@@ -810,110 +683,6 @@ def make_rect_lock(name, length, depth, height):
     o.scale = (length/2, depth/2, height/2)
     bpy.ops.object.transform_apply(scale=True)
     return o
-
-def add_breakoff_legs(obj, collection):
-    """
-    Adds small sacrificial legs under the torus to lift it off the build plate.
-    Legs are designed to snap off cleanly after printing.
-    """
-    if not ADD_BREAKOFF_LEGS:
-        return
-
-    print("Adding break-off legs...")
-
-    # Find lowest Z of torus
-    lowest_z = find_lowest_z(obj)
-
-    for i in range(LEG_COUNT):
-        angle = 2 * math.pi * i / LEG_COUNT
-
-        # Position legs evenly around torus
-        x = (R_MAJOR+.3) * math.cos(angle)
-        y = (R_MAJOR+.3) * math.sin(angle)
-
-        # Create leg (two-cylinder shape: foot + neck)
-        bpy.ops.mesh.primitive_cylinder_add(
-            radius=LEG_RADIUS,
-            depth=LEG_HEIGHT,
-            location=(x, y, lowest_z - LEG_HEIGHT/2)
-        )
-        foot = bpy.context.object
-        set_obj_name(foot, f"BreakLeg_{i}")
-        link_to_collection(foot, collection)
-
-        bpy.ops.mesh.primitive_cylinder_add(
-            radius=LEG_NECK_RADIUS,
-            depth=LEG_INSET,
-            location=(x, y, lowest_z + LEG_INSET/2)
-        )
-        neck = bpy.context.object
-        set_obj_name(neck, f"BreakLegNeck_{i}")
-        link_to_collection(neck, collection)
-
-        # Union foot + neck
-        mod = foot.modifiers.new("UnionNeck", 'BOOLEAN')
-        mod.operation = 'UNION'
-        mod.object = neck
-        bpy.context.view_layer.update()
-        apply_modifier(foot, "UnionNeck")
-        bpy.data.objects.remove(neck, do_unlink=True)
-
-        # Union leg to torus
-        mod2 = obj.modifiers.new(f"LegUnion_{i}", 'BOOLEAN')
-        mod2.operation = 'UNION'
-        mod2.object = foot
-        bpy.context.view_layer.update()
-        apply_modifier(obj, mod2.name)
-
-        bpy.data.objects.remove(foot, do_unlink=True)
-
-    print("Break-off legs added.")
-
-def add_leg_ring(obj, collection, radius_offset, angle_offset, tag):
-    lowest_z = find_lowest_z(obj)
-
-    for i in range(LEG_COUNT):
-        angle = 2 * math.pi * i / LEG_COUNT + angle_offset
-
-        x = (R_MAJOR + radius_offset) * math.cos(angle)
-        y = (R_MAJOR + radius_offset) * math.sin(angle)
-
-        # Foot
-        bpy.ops.mesh.primitive_cylinder_add(
-            radius=LEG_RADIUS,
-            depth=LEG_HEIGHT,
-            location=(x, y, lowest_z - LEG_HEIGHT/2)
-        )
-        foot = bpy.context.object
-        set_obj_name(foot, f"BreakLeg_{tag}_{i}")
-        link_to_collection(foot, collection)
-
-        # Neck
-        bpy.ops.mesh.primitive_cylinder_add(
-            radius=LEG_NECK_RADIUS,
-            depth=LEG_INSET,
-            location=(x, y, lowest_z + LEG_INSET/2)
-        )
-        neck = bpy.context.object
-        set_obj_name(neck, f"BreakLegNeck_{tag}_{i}")
-        link_to_collection(neck, collection)
-
-        # Union foot + neck
-        mod = foot.modifiers.new("UnionNeck", 'BOOLEAN')
-        mod.operation = 'UNION'
-        mod.object = neck
-        bpy.context.view_layer.update()
-        apply_modifier(foot, "UnionNeck")
-        bpy.data.objects.remove(neck, do_unlink=True)
-
-        # Union to torus
-        mod2 = obj.modifiers.new(f"LegUnion_{tag}_{i}", 'BOOLEAN')
-        mod2.operation = 'UNION'
-        mod2.object = foot
-        bpy.context.view_layer.update()
-        apply_modifier(obj, mod2.name)
-
-        bpy.data.objects.remove(foot, do_unlink=True)
 
 # =========================
 # ---- TORUS + CURVE GENERATORS
@@ -1334,7 +1103,7 @@ def bisect_keep_half(obj, plane_co, plane_no, keep_positive=True, fill=True, eps
     me.update()
     me.validate()
 
-def split_into_4_pieces_bisect(grooved, collection, add_base=False):
+def split_into_4_pieces_bisect(grooved, collection):
     """
     Returns list of 4 (or fewer) quadrant pieces created from `grooved`.
     Assumes grooved is at origin and transforms are applied.
@@ -1391,9 +1160,6 @@ def split_into_4_pieces_bisect(grooved, collection, add_base=False):
         # Repair mesh after bisect operations (fixes holes from cutting)
         print(f"  Repairing {piece_name} mesh...")
         repair_mesh(piece, remove_doubles_dist=0.0001, fill_holes=True, make_manifold=True)
-
-        if add_base and ADD_PRINT_BASE:
-            create_square_base(piece, piece_idx, collection)
 
         pieces.append(piece)
 
@@ -1479,7 +1245,6 @@ def main():
     print(f"{'='*60}\n")
     
     ensure_units_mm()
-    # Create a unique collection name with timestamp (before hiding so we don't need to skip it)
     from datetime import datetime
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     
@@ -1491,16 +1256,15 @@ def main():
     else:  # both
         collection_name = f"{COLLECTION_NAME_BASE}_{timestamp}"
     
-    # Hide all previous Rodin render collections (keep them, just hide in viewport/render)
-    hide_previous_rodin_collections()
+    # Move previous Rodin run collections into Rodin_Previous so they can be compared (unique naming, lanes not merged)
+    move_previous_rodin_runs_into_collection(except_name=collection_name)
     
-    # Create a new collection for this run; only this one will be visible
+    # Create a new collection for this run (unique name with timestamp)
     collection = get_or_create_collection(collection_name)
     collection.hide_viewport = False
     collection.hide_render = False
     print(f"Using collection: {collection.name}")
     print(f"Using timestamp for files: {timestamp}")
-    print(f"Previous Rodin collections are hidden (not deleted); toggle in Outliner to show.")
 
     # Make grooved torus (same as original script)
     print("\n=== Creating grooved torus ===")
@@ -1524,7 +1288,7 @@ def main():
     # Depth endpoints + schedules
     # -------------------------
     cw_schedule  = make_depth_schedule(SINK_OUTER, SINK_CW_DEEP, CW_PASSES,  DEPTH_SCHEDULE_MODE)
-    ccw_schedule = make_depth_schedule(SINK_OUTER, SINK_INNER,   CCW_PASSES, DEPTH_SCHEDULE_MODE)
+    ccw_schedule = make_depth_schedule(SINK_OUTER, SINK_DEEPEST, CCW_PASSES, DEPTH_SCHEDULE_MODE)
 
     print("CW depth schedule :", [f"{d:.3f}" for d in cw_schedule])
     print("CCW depth schedule:", [f"{d:.3f}" for d in ccw_schedule])
@@ -1555,16 +1319,44 @@ def main():
         cw_colors  = [(1,0,0), (0,1,0), (0,0,1)]
         ccw_colors = [(1,1,0), (1,0,1), (0,1,1)]
         num_phases = 3
-    
+
+    # Coil selection: which of the 6 coils (3 CW + 3 CCW) to render
+    CANONICAL_PHASES = [0, 120, 240]
+    CW_COLORS_3  = [(1,0,0), (0,1,0), (0,0,1)]
+    CCW_COLORS_3 = [(1,1,0), (1,0,1), (0,1,1)]
+
+    if PHASES_CW is not None:
+        phases_cw = [d for d in PHASES_CW if d in CANONICAL_PHASES]
+        cw_colors_use = [CW_COLORS_3[CANONICAL_PHASES.index(d)] for d in phases_cw]
+    else:
+        phases_cw = list(phase_degs)
+        cw_colors_use = list(cw_colors)
+    if PHASES_CCW is not None:
+        phases_ccw = [d for d in PHASES_CCW if d in CANONICAL_PHASES]
+        ccw_colors_use = [CCW_COLORS_3[CANONICAL_PHASES.index(d)] for d in phases_ccw]
+    else:
+        phases_ccw = list(phase_degs)
+        ccw_colors_use = list(ccw_colors)
+
+    render_cw  = RENDER_CW and len(phases_cw) > 0
+    render_ccw = RENDER_CCW and len(phases_ccw) > 0
+    if not render_cw and not render_ccw:
+        print("ERROR: At least one of RENDER_CW or RENDER_CCW must be True and phases non-empty!")
+        return
+    # Color names per coil for layer/collection naming (do not merge lane folders)
+    cw_color_names  = [PHASE_COLOR_NAMES_CW.get(d, f"Phase{d}") for d in phases_cw]
+    ccw_color_names = [PHASE_COLOR_NAMES_CCW.get(d, f"Phase{d}") for d in phases_ccw]
+    print(f"  Coil selection: CW={phases_cw} ({len(phases_cw)} phases), CCW={phases_ccw} ({len(phases_ccw)} phases)")
+
     # Calculate and display speedup summary
-    num_passes_current = CW_PASSES + CCW_PASSES
-    total_ops_current = num_passes_current * num_phases
+    num_passes_current = (len(cw_schedule) if render_cw else 0) + (len(ccw_schedule) if render_ccw else 0)
+    total_ops_current = (len(cw_schedule) * len(phases_cw) if render_cw else 0) + (len(ccw_schedule) * len(phases_ccw) if render_ccw else 0)
     speedup_factor = total_ops_normal / total_ops_current if total_ops_current > 0 else 1.0
     
     print(f"\n{'='*60}")
     print(f"GROOVE OPERATIONS SUMMARY:")
     print(f"  Normal mode: {num_passes_normal} passes × {num_phases_normal} phases = {total_ops_normal} boolean operations")
-    print(f"  Current mode: {num_passes_current} passes × {num_phases} phases = {total_ops_current} boolean operations")
+    print(f"  Current mode: CW {len(cw_schedule)}×{len(phases_cw)} + CCW {len(ccw_schedule)}×{len(phases_ccw)} = {total_ops_current} boolean operations")
     print(f"  SPEEDUP: {speedup_factor:.1f}x faster ({100*(1-1/speedup_factor):.0f}% fewer operations)")
     print(f"{'='*60}\n")
 
@@ -1581,24 +1373,30 @@ def main():
         return
     
     # Make apply_pass_for_three_phases visible to grooved/collection
-    def apply_pass_for_three_phases(q_val, phase_degs, color_list, sink_depth, pass_tag):
-        """Create 3 cutters (phases) for one direction and one sink depth, boolean them, then cleanup."""
-        # Ensure we're still working with the correct grooved object
+    def apply_pass_for_three_phases(q_val, phase_degs, color_list, color_names, sink_depth, pass_tag, parent_collection):
+        """Create cutters (phases) for one direction and one sink depth; each coil phase goes in its own layer (color-named). Boolean then cleanup."""
         grooved_obj = grooved
         if grooved_obj.name not in bpy.data.objects:
             print(f"    ERROR: Grooved torus '{grooved_obj.name}' no longer exists!")
             return
         
-        # Get fresh reference to ensure we have the current object
         grooved_obj = bpy.data.objects[grooved_obj.name]
         
         pass_cutters = []
+        direction = "CW" if str(pass_tag).startswith("CW") else "CCW"
+        # Unique naming per run so we don't merge with previous run's lane collections
+        run_prefix = parent_collection.name
         for j, deg in enumerate(phase_degs):
+            color_name = color_names[j] if j < len(color_names) else f"Phase{deg}"
+            # One folder per lane (color + phase); do not merge lane folders
+            lane_coll_name = f"{run_prefix}_{direction}_{color_name}_{deg:03d}deg"
+            lane_coll = get_or_create_child_collection(parent_collection, lane_coll_name)
+            
             name = f"{pass_tag}_q{q_val:+d}_deg{deg:03d}"
             curve = make_lane_curve(name, deg, q_val, color_list[j], sink_depth)
             if curve is None:
                 continue
-            link_to_collection(curve, collection)
+            link_to_collection(curve, lane_coll)
 
             cutter = curve_to_mesh(curve)
             if cutter is None or len(cutter.data.vertices) == 0 or len(cutter.data.polygons) == 0:
@@ -1606,7 +1404,7 @@ def main():
                     bpy.data.objects.remove(cutter, do_unlink=True)
                 continue
 
-            link_to_collection(cutter, collection)
+            link_to_collection(cutter, lane_coll)
             cutter.hide_viewport = True
             cutter.hide_render   = True
             pass_cutters.append(cutter)
@@ -1665,17 +1463,23 @@ def main():
         for c in pass_cutters:
             bpy.data.objects.remove(c, do_unlink=True)
 
-    # CW passes
-    print(f"\n=== Applying CW groove passes ===")
-    for pi, sink in enumerate(cw_schedule):
-        print(f"  CW pass {pi+1}/{len(cw_schedule)}: sink={sink:.3f}mm")
-        apply_pass_for_three_phases(+Q, phase_degs, cw_colors, sink, pass_tag=f"CWpass{pi:02d}")
+    # CW passes (only if RENDER_CW and phases selected); each coil in its own layer (color name)
+    if render_cw:
+        print(f"\n=== Applying CW groove passes ({len(phases_cw)} phases: {phases_cw}) ===")
+        for pi, sink in enumerate(cw_schedule):
+            print(f"  CW pass {pi+1}/{len(cw_schedule)}: sink={sink:.3f}mm")
+            apply_pass_for_three_phases(+Q, phases_cw, cw_colors_use, cw_color_names, sink, pass_tag=f"CWpass{pi:02d}", parent_collection=collection)
+    else:
+        print(f"\n=== Skipping CW groove passes (RENDER_CW=False or no phases) ===")
 
-    # CCW passes
-    print(f"\n=== Applying CCW groove passes ===")
-    for pi, sink in enumerate(ccw_schedule):
-        print(f"  CCW pass {pi+1}/{len(ccw_schedule)}: sink={sink:.3f}mm")
-        apply_pass_for_three_phases(-Q, phase_degs, ccw_colors, sink, pass_tag=f"CCWpass{pi:02d}")
+    # CCW passes (only if RENDER_CCW and phases selected); each coil in its own layer (color name)
+    if render_ccw:
+        print(f"\n=== Applying CCW groove passes ({len(phases_ccw)} phases: {phases_ccw}) ===")
+        for pi, sink in enumerate(ccw_schedule):
+            print(f"  CCW pass {pi+1}/{len(ccw_schedule)}: sink={sink:.3f}mm")
+            apply_pass_for_three_phases(-Q, phases_ccw, ccw_colors_use, ccw_color_names, sink, pass_tag=f"CCWpass{pi:02d}", parent_collection=collection)
+    else:
+        print(f"\n=== Skipping CCW groove passes (RENDER_CCW=False or no phases) ===")
 
     # Ensure grooved torus is visible and valid
     print(f"\n=== Ensuring grooved torus visibility ===")
@@ -1709,29 +1513,6 @@ def main():
         return
     else:
         print(f"  Grooved torus is visible in viewport and render")
-    
-    add_breakoff_legs(grooved, collection)
-#    half_step = math.pi / LEG_COUNT
-
-#    for k, r_off in enumerate(LEG_RADIAL_OFFSETS):
-#        add_leg_ring(
-#            obj=grooved,
-#            collection=collection,
-#            radius_offset=r_off,
-#            angle_offset=0.0,
-#            tag=f"r{k}_A"
-#        )
-
-#        add_leg_ring(
-#            obj=grooved,
-#            collection=collection,
-#            radius_offset=r_off,
-#            angle_offset=half_step,
-#            tag=f"r{k}_B"
-#        )
-
-#    print(f"{2 * len(LEG_RADIAL_OFFSETS) * LEG_COUNT} break-off legs added.")
-
 
     # Final validation and mesh repair
     grooved.data.update()
@@ -1745,18 +1526,6 @@ def main():
     print(f"\n=== Repairing grooved torus mesh ===")
     repair_mesh(grooved, remove_doubles_dist=0.0001, fill_holes=True, make_manifold=True)
 
-    # =========================
-    # ADD CIRCULAR TOROIDAL BASE (if enabled)
-    # =========================
-    if ADD_CIRCULAR_TOROIDAL_BASE:
-        print(f"\n=== Adding circular toroidal base ===")
-        if OUTPUT_MODE in ("full", "both"):
-            # Add base to full grooved torus
-            create_circular_toroidal_base(grooved, collection)
-            grooved.data.update()
-            grooved.data.validate()
-            bpy.context.view_layer.update()
-    
     # =========================
     # EXPORT COMPLETE GROOVED TORUS
     # =========================
@@ -1805,20 +1574,9 @@ def main():
         grooved.data.validate()
         bpy.context.view_layer.update()
 
-        pieces = split_into_4_pieces_bisect(grooved, collection, add_base=True)
+        pieces = split_into_4_pieces_bisect(grooved, collection)
         print(f"\nCreated {len(pieces)} pieces")
-        
-        # =========================
-        # ADD CIRCULAR TOROIDAL BASE TO PIECES (if enabled)
-        # =========================
-        if ADD_CIRCULAR_TOROIDAL_BASE:
-            print("\n=== Adding circular toroidal base to pieces ===")
-            for i, piece in enumerate(pieces, 1):
-                if piece and piece.name in bpy.data.objects:
-                    create_circular_toroidal_base(piece, collection)
-                    piece.data.update()
-                    piece.data.validate()
-        
+
         # =========================
         # ADD MECHANICAL LOCKS TO PIECES
         # =========================
