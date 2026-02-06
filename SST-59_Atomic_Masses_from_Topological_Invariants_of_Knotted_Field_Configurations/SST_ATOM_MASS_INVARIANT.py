@@ -106,9 +106,9 @@ Outputs results in the specific "Canonical Mass Summary" style requested.
 
 Topological Basis
 -----------------
-Electron (Ξ): Trefoil (3_1) -> k=2, g=1, n=1
-Muon (Ξ):     Knot 5_1      -> k=5, g=2, n=1
-Tau (Ξ):      Knot 7_1      -> k=7, g=3, n=1
+- Electron (Ξ): Torus knot T(2,3) (Trefoil 3_1) -> k=3, g=1, n=1, b_braid=2
+- Muon (Ξ):     Torus knot T(2,5) (5_1)         -> k=5, g=2, n=1, b_braid=2
+- Tau (Ξ):      Torus knot T(2,7) (7_1)         -> k=7, g=3, n=1, b_braid=2
 
 Baryon Sector (SST):
 Proton/Neutron derived via 'exact_closure' of quark geometric factors (s_u, s_d)
@@ -137,6 +137,10 @@ r_c: float = 1.408_970_17e-15
 rho_core: float = 3.8934358266918687e18
 avogadro: float = 6.022_140_76e23
 
+# Atomic mass constant (CODATA 2018): 1 u in kg
+# Used only for an isotope-consistent "actual mass" convention (mass-number baseline).
+m_u: float = 1.660_539_066_60e-27
+
 # Physical reference masses (CODATA 2018)
 M_e_actual: float = 9.109_383_7015e-31   # Electron
 M_mu_actual: float = 1.883_531_627e-28   # Muon
@@ -155,6 +159,10 @@ class Config:
     kappa_R: float = 2.0
     fixed_su: float = 2.8281
     fixed_sd: float = 3.1639
+    # If True, "Actual Mass" for atoms/molecules is computed from isotope-consistent mass numbers:
+    #   m_actual ≈ A*m_u + Z*m_e  with A=Z+N (no natural-abundance averaging).
+    # If False (default), uses the provided g/mol values (often natural-abundance averages).
+    use_mass_number_actual: bool = False
 
 class NuclearBinding:
     """
@@ -393,6 +401,27 @@ def _parse_formula(formula: str) -> Dict[str, int]:
         counts[sym] = counts.get(sym, 0) + k
     return counts
 
+
+def _actual_atomic_mass_kg(pZ: int, nN: int, eE: int, gmol: float, cfg: Config) -> float:
+    """Compute "Actual Mass" for a single atom in kg under two conventions.
+
+    (A) Default (use_mass_number_actual=False):
+        Use tabulated atomic weights (often natural-abundance averages):
+            m_actual ≈ gmol * 1e-3 / N_A.
+
+    (B) Mass-number baseline (use_mass_number_actual=True):
+        Use an isotope-consistent mass number A=Z+N plus bound electrons:
+            m_actual ≈ A*m_u + Z*M_e_actual.
+
+    Note: (B) is not a precision isotope mass; it is a consistent baseline that
+    avoids mixing integer (Z,N) with abundance-averaged g/mol values.
+    """
+    if cfg.use_mass_number_actual:
+        A = pZ + nN
+        return A * m_u + eE * M_e_actual
+    return gmol * 1e-3 / avogadro
+
+
 def compute_tables(topologies: Dict, cfg: Config) -> pd.DataFrame:
     # 1. Base Masses (Sum of Parts)
     M_e_pred = master_mass_invariant(topologies["electron"])
@@ -409,7 +438,7 @@ def compute_tables(topologies: Dict, cfg: Config) -> pd.DataFrame:
     # Elements (With Nuclear Binding Correction)
     elements = _elements_from_table()
     for name, (pZ, nN, eE, gmol) in elements.items():
-        actual_kg = gmol * 1e-3 / avogadro
+        actual_kg = _actual_atomic_mass_kg(pZ, nN, eE, gmol, cfg)
 
         # Sum of parts
         mass_sum = pZ * M_p_pred + nN * M_n_pred + eE * M_e_pred
@@ -427,9 +456,10 @@ def compute_tables(topologies: Dict, cfg: Config) -> pd.DataFrame:
     for mol, gmol in MOLECULES.items():
         counts = _parse_formula(mol)
         pred_mol = 0.0
+        actual_mol = 0.0
 
         for sym, k in counts.items():
-            pZ, nN, eE, _ = elements[sym]
+            pZ, nN, eE, gmol_atomic = elements[sym]
 
             # Re-calculate atomic mass with binding for each constituent
             atom_sum = pZ * M_p_pred + nN * M_n_pred + eE * M_e_pred
@@ -438,7 +468,12 @@ def compute_tables(topologies: Dict, cfg: Config) -> pd.DataFrame:
 
             pred_mol += k * atom_mass_corrected
 
-        actual_kg = gmol * 1e-3 / avogadro
+            if cfg.use_mass_number_actual:
+                # "Actual" molecule mass consistent with the chosen convention
+                atom_actual = _actual_atomic_mass_kg(pZ, nN, eE, gmol_atomic, cfg)
+                actual_mol += k * atom_actual
+
+        actual_kg = actual_mol if cfg.use_mass_number_actual else (gmol * 1e-3 / avogadro)
         rel_error = 100.0 * (pred_mol - actual_kg) / actual_kg
         rows.append((mol, actual_kg, pred_mol, emoji_marker(rel_error)))
 
@@ -458,6 +493,7 @@ def main(mode: str = "exact_closure") -> None:
     print(f"s_u = {diag['s_u']:.6f}, s_d = {diag['s_d']:.6f}, lambda_b = {diag['lambda_b']:.6f}")
     print(f"A_bary = {diag['A_bary']:.6e},  K = {diag['K']:.6e}")
     print(f"scaling_factor = {diag['scaling_factor']:.6f}")
+    print(f"actual_mass_convention = {'mass_number (A*m_u + Z*m_e)' if cfg.use_mass_number_actual else 'atomic_weight_gmol'}")
 
     print("\n--- Particle Topological & Geometric Invariants ---")
     # Pop leptons for separate display
