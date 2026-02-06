@@ -536,7 +536,8 @@ if __name__ == "__main__":
     main(arg_mode)
 
     try:
-        ans = input("\nCompare with other modes and add predicted columns? [y/N]: ").strip().lower()
+        # ans = input("\nCompare with other modes and add predicted columns? [y/N]: ").strip().lower()
+        ans = "y"
     except EOFError:
         ans = "n"
 
@@ -576,3 +577,52 @@ if __name__ == "__main__":
         out_csv_all = "SST_Invariant_Mass_Results_all_modes.csv"
         df_cmp.to_csv(out_csv_all, index=False)
         print(f"\nSaved comparison to {out_csv_all}")
+
+# @title SST Mass Spectrum Visualization
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Prepare data for plotting from the dataframes
+# Use df_cmp which contains all merged results
+labels = df_cmp["Object"].tolist()
+pred_masses = df_cmp["Predicted Mass (kg)"].tolist() # Using the predicted mass from the initial mode
+ref_masses = df_cmp["Actual Mass (kg)"].tolist()    # Using the actual mass
+
+# Calculate error for color mapping by parsing the string % Error column
+# The error column contains strings like "0.000% 🩷️", so we extract the float value.
+errors = df_cmp["% Error"].apply(lambda x: float(x.split('%')[0])).tolist()
+
+fig, ax = plt.subplots(figsize=(12, 7))
+
+# Plot Identity Line
+min_exp = np.floor(np.log10(min(ref_masses))) if ref_masses else -31 # Handle empty list
+max_exp = np.ceil(np.log10(max(ref_masses))) if ref_masses else -26 # Handle empty list
+x_line = np.logspace(min_exp, max_exp, 100)
+ax.plot(x_line, x_line, 'k--', alpha=0.3, label='Exact Match')
+
+# Scatter Plot
+sc = ax.scatter(ref_masses, pred_masses, c=errors, cmap='coolwarm', vmin=-1.0, vmax=2.0, s=100, edgecolors='k')
+
+# Labels
+for i, txt in enumerate(labels):
+    ax.annotate(txt, (ref_masses[i], pred_masses[i]), xytext=(5, 5), textcoords='offset points', fontsize=9)
+
+ax.set_xscale('log')
+ax.set_yscale('log')
+ax.set_xlabel('Reference Mass (kg)')
+ax.set_ylabel('SST Predicted Mass (kg)')
+ax.set_title('SST Canonical Mass Spectrum: Leptons to Nuclei')
+cbar = plt.colorbar(sc)
+cbar.set_label('Relative Error %')
+
+plt.grid(True, which="both", ls="-", alpha=0.2)
+plt.tight_layout()
+import os
+
+script_name = os.path.splitext(os.path.basename(__file__))[0]
+# Save with incrementing filename if file exists, restart count on rerun
+base_filename = f"{script_name}.png"
+filename = base_filename
+while os.path.exists(filename):
+    filename = f"{script_name}.png"
+plt.savefig(filename, dpi=300)  # Save image with high resolution
