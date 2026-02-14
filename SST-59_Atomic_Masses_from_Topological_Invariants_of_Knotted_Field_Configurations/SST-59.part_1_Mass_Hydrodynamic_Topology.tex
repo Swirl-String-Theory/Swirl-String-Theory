@@ -105,6 +105,37 @@ A Self-Contained Derivation of a Topology-Modulated Mass Functional}
 
         \section{Introduction and scope}
 
+        % ---------- INSERT (Part I): Assumptions / Claims / Observable ----------
+        \paragraph{Assumptions (Euler--Kelvin regime).}
+        Throughout, we work in the incompressible, inviscid Euler limit and restrict attention to the Kelvin-admissible sector in which circulation is materially conserved. Concretely:
+        \begin{itemize}
+          \item \textbf{Incompressible flow:} $\nabla\!\cdot\mathbf{v}=0$.
+          \item \textbf{Inviscid Euler dynamics:} $\partial_t\mathbf{v}+(\mathbf{v}\!\cdot\nabla)\mathbf{v}=-(1/\rho)\nabla p$ (no viscosity).
+          \item \textbf{Barotropic closure:} $p=p(\rho)$ (needed for Kelvin circulation conservation).
+          \item \textbf{Circulation conservation (Kelvin theorem):} the circulation $\Gamma=\oint_{\mathcal C(t)}\mathbf{v}\cdot d\boldsymbol{\ell}$ is invariant for material loops $\mathcal C(t)$.
+          \item \textbf{No reconnection / fixed topology during evaluation:} filament/link topology is treated as invariant over the time window of interest (i.e.\ the configuration remains in a fixed topological sector).
+        \end{itemize}
+        These assumptions define the controlled regime in which persistent filamentary excitations are well-posed objects for an effective mass functional.
+        (The ``Euler--Kelvin + no reconnection'' set is explicit as a condition in the Rosetta card \cite{SST-01_Rosetta-v0.6}.)
+
+        \paragraph{What is claimed vs.\ what is not claimed.}
+        \begin{itemize}
+          \item \textbf{Claimed:} (i) invariant rest mass can be represented operationally as $M=E_{\rm rest}/c^2$ with $E_{\rm rest}$ given by a localized energy functional for a persistent filamentary excitation; (ii) the proposed construction admits a clean factorization into a scale $\times$ a geometric volume proxy $\times$ a dimensionless topology-dependent kernel, enabling falsifiable downstream mappings.
+          \item \textbf{Not claimed:} (i) no commitment is made to a unique microscopic substrate or ontology; the construction is framed as a mathematically controlled effective model; (ii) specific kernel choices (e.g.\ exponents or discrete suppression factors) are not asserted as theorems unless explicitly proven---they remain testable modeling hypotheses.
+        \end{itemize}
+
+        \paragraph{Observable definition (what is actually measured).}
+        The primary observable is the \emph{rest mass} inferred from rest-energy via
+        \[
+        M \;\equiv\; \frac{1}{c^2}\int_V \rhoE(\mathbf{x})\,dV,
+        \]
+        with $\rhoE$ identified with the organized, localized energy density of the excitation core (kinetic plus any explicitly retained topological/pressure contribution). The operational comparison target is standard: $M$ is the parameter that governs inertial response, e.g.\ $F=Ma$ for center-of-mass motion in the nonrelativistic limit, and $E_{\rm rest}=Mc^2$ when comparing against tabulated rest energies. The theory's output is therefore a concrete map
+        \[
+        \text{(configuration class)}\;\longmapsto\; M
+        \]
+        that can be benchmarked against measured masses and (in later parts) against kinematically induced corrections.
+        % -----------------------------------------------------------------------
+
             The microscopic origin of inertial mass remains an open question spanning particle physics, condensed matter analogies, and quantum field theory. In the Standard Model (SM), fermion masses arise from Yukawa couplings to the Higgs condensate, with parameters not predicted by the theory \cite{Higgs1964,EnglertBrout1964,Weinberg1967}. This motivates exploration of alternative \emph{effective} mechanisms in which inertia emerges from localized energy storage and topological stability.
 
             This article develops a hydrodynamic-topology effective model where:
