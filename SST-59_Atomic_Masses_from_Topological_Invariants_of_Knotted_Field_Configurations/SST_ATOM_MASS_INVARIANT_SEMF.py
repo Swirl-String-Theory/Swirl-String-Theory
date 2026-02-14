@@ -63,6 +63,10 @@ Symbols:
                For the torus-lepton ladder T(2,q), the code uses k=q, which equals
                the crossing number c_cross(T(2,q)) and the 2-strand twist exponent.
                This is NOT the mathematical braid index.
+               For twist knots K_n (includes 4_1, 5_2, 6_1, ...), k(T) may be taken
+               as a REAL number derived from the dominant Alexander root:
+                   t_+(n) = ((2n+1) + sqrt(4n+1)) / (2n),
+                   k(K_n) = (2 ln φ) / ln t_+(n).
 - b_braid(T) : (optional) true braid index, for reference/reporting only.
 - g(T)       : Seifert genus
 - n(T)       : number of components
@@ -113,34 +117,58 @@ Topological Basis
 Baryon Sector (SST):
 Proton/Neutron derived via 'exact_closure' of quark geometric factors (s_u, s_d)
 scaling the core Master Equation.
+
+
+References (BibTeX)
+-------------------
+
+@article{CODATA2018,
+  author    = {P. J. Mohr and D. B. Newell and B. N. Taylor},
+  title     = {CODATA Recommended Values of the Fundamental Physical Constants: 2018},
+  journal   = {Reviews of Modern Physics},
+  volume    = {88},
+  pages     = {035009},
+  year      = {2016},
+  doi       = {10.1103/RevModPhys.88.035009}
+}
 """
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 from __future__ import annotations
 
-import numpy as np
 import math
 from dataclasses import dataclass
 from typing import Dict, List, Tuple
 
+import numpy as np
 import pandas as pd
 import re
+import os
+
+# ──────────────────────────────────────────────────────────────────────────────
+# One-shot warnings (avoid spam during sweeps)
+# ──────────────────────────────────────────────────────────────────────────────
+_WARNED: set[str] = set()
+
+def _warn_once(key: str, msg: str) -> None:
+    if key in _WARNED:
+        return
+    _WARNED.add(key)
+    print(msg)
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Constants (Canon-aligned)
 # ──────────────────────────────────────────────────────────────────────────────
-phi: float = (1 + math.sqrt(5)) / 2
+phi0: float = (1 + math.sqrt(5)) / 2
 alpha_fs: float = 7.2973525643e-3
 c: float = 299_792_458.0
 v_swirl: float = 1.093_845_63e6
 r_c: float = 1.408_970_17e-15
 rho_core: float = 3.8934358266918687e18
 avogadro: float = 6.022_140_76e23
-
-# Atomic mass constant (CODATA 2018): 1 u in kg
-# Used only for an isotope-consistent "actual mass" convention (mass-number baseline).
-m_u: float = 1.660_539_066_60e-27
+m_u: float = 1.660_539_066_60e-27  # atomic mass constant (kg/u)
+ln_phi0: float = math.log(phi0)
 
 # Physical reference masses (CODATA 2018)
 M_e_actual: float = 9.109_383_7015e-31   # Electron
@@ -148,6 +176,75 @@ M_mu_actual: float = 1.883_531_627e-28   # Muon
 M_tau_actual: float = 3.167_54e-27       # Tau
 M_p_actual: float = 1.672_621_923_69e-27   # Proton
 M_n_actual: float = 1.674_927_498_04e-27   # Neutron
+
+#
+# Twist-knot real-k support (Alexander-dominant-root proxy)
+#   Δ_n(t) = n t^2 - (2n+1) t + n  (normalized; n>=1)
+#   t_+(n) = ((2n+1)+sqrt(4n+1)) / (2n)
+#   k(K_n) = (2 ln φ) / ln t_+(n)
+#
+_TWIST_LABEL_TO_N: Dict[str, int] = {
+    "4_1": 1,  # figure-eight = K_1
+    "5_2": 2,  # twist knot K_2  (your up-quark representative)
+    "6_1": 3,  # twist knot K_3  (your down-quark representative)
+    "7_2": 4,
+    "8_1": 5,
+}
+
+
+def twist_t_plus(n: int) -> float:
+    """Dominant Alexander root for twist knot K_n (n>=1)."""
+    if n < 1:
+        raise ValueError("twist parameter n must be >= 1")
+    return ((2.0 * n + 1.0) + math.sqrt(4.0 * n + 1.0)) / (2.0 * n)
+
+
+def k_from_twist_alexander(n: int, phi_val: float = phi0) -> float:
+    """
+    Real-valued kernel index for twist knot K_n derived from the dominant Alexander root.
+    Normalized so that k(K_1)=1 (since t_+(1)=φ^2).
+    """
+    t_plus = twist_t_plus(n)
+    ln_t = math.log(t_plus)
+    if not (ln_t > 0.0):
+        raise ValueError(f"ln(t_+) must be positive; got t_+={t_plus}")
+    return (2.0 * math.log(phi_val)) / ln_t
+
+
+def k_from_knot_label(label: str, *, phi_val: float = phi0) -> float | None:
+    """
+    Convenience: if label corresponds to a supported twist knot (e.g. '5_2'), return k(K_n).
+    Otherwise return None.
+    """
+    n = _TWIST_LABEL_TO_N.get(label.strip())
+    if n is None:
+        return None
+    return k_from_twist_alexander(n, phi_val=phi_val)
+
+
+# ----------------------------
+# Double twist rational-sliceness classifier (Lee 2025, arXiv:2504.07636)
+# ----------------------------
+def is_rationally_slice_double_twist(m: int, n: int) -> bool:
+    """
+    Double-twist knots K_{m,n} rationally slice iff:
+      mn = 0  OR  n = -m  OR  n = -m ± 1
+    (J. Lee, 'Rational Concordance of Double Twist Knots', arXiv:2504.07636v1, 2025)
+    """
+    return (m * n == 0) or (n == -m) or (n == -m + 1) or (n == -m - 1)
+
+
+def xi_A(A: int, gamma: float, A0: float, p: float) -> float:
+    """
+    SST-SEMF modulation factor Xi(A), dimensionless.
+    - Xi(0)=1
+    - Xi(A) decreases monotonically for gamma>0
+    - If gamma==0 -> Xi(A)=1 (standard SEMF).
+    """
+    if gamma <= 0.0:
+        return 1.0
+    x = (A / A0) ** p if A0 > 0 else 0.0
+    return (1.0 + x) ** (-gamma)
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -160,10 +257,66 @@ class Config:
     kappa_R: float = 2.0
     fixed_su: float = 2.8281
     fixed_sd: float = 3.1639
-    # If True, "Actual Mass" for atoms/molecules is computed from isotope-consistent mass numbers:
-    #   m_actual ≈ A*m_u + Z*m_e  with A=Z+N (no natural-abundance averaging).
-    # If False (default), uses the provided g/mol values (often natural-abundance averages).
-    use_mass_number_actual: bool = False
+    # Optional diagnostics / future wiring: compute real-k values for twist-knot labels (5_2, 6_1, ...)
+    use_twist_alexander_k: bool = True
+    # Data / evaluation controls
+    use_semf: bool = True
+    # SST-SEMF modulation Xi(A): if gamma=0, Xi(A)=1 (standard SEMF).
+    xi_gamma: float = 0.0
+    xi_A0: float = 200.0
+    xi_p: float = 2.0
+
+    # Shielding exponent control
+    use_shielding_exponent: bool = False
+    sigma_leptons: int = 0
+    sigma_baryons: int = 1
+
+    data_source: str = "standard_weight"  # "standard_weight" | "isotope_mass"
+    isotope_mass_csv: str = "isotope_masses.csv"  # optional; used only if data_source="isotope_mass"
+
+
+def _load_isotope_masses_kg(csv_path: str) -> Dict[str, float]:
+    """
+    Optional: load isotope-resolved atomic masses (neutral atom masses) in atomic mass units.
+    CSV format (header required):
+        symbol,atomic_mass_u
+    Example:
+        Fe,55.9349375
+        O,15.99491461957
+
+    Returns: { "Fe": mass_kg, ... }
+    """
+    if not csv_path or not os.path.exists(csv_path):
+        return {}
+    df = pd.read_csv(csv_path)
+
+    # Accept a few schema variants:
+    # - symbol column: symbol | element_symbol | element
+    # - mass column:   atomic_mass_u | mass_u | atomicMass_u
+    col_sym = None
+    for c in ("symbol", "element_symbol", "element"):
+        if c in df.columns:
+            col_sym = c
+            break
+    col_u = None
+    for c in ("atomic_mass_u", "mass_u", "atomicMass_u"):
+        if c in df.columns:
+            col_u = c
+            break
+    if col_sym is None or col_u is None:
+        raise ValueError(
+            f"Bad isotope CSV schema: need (symbol, atomic_mass_u). "
+            f"Accepted symbol columns: symbol|element_symbol|element; "
+            f"accepted mass columns: atomic_mass_u|mass_u|atomicMass_u. Got {list(df.columns)}"
+        )
+
+    out: Dict[str, float] = {}
+    for _, r in df.iterrows():
+        sym = str(r[col_sym]).strip()
+        mu = float(r[col_u])
+        out[sym] = mu * m_u
+    return out
+
 
 class NuclearBinding:
     """
@@ -188,17 +341,22 @@ class NuclearBinding:
     MeV_to_kg = 1.78266192e-30  # Conversion factor (E/c^2)
 
     @classmethod
-    def get_mass_defect_kg(cls, Z: int, N: int) -> float:
-        """Calculates the mass equivalent of the binding energy to be SUBTRACTED."""
+    def get_mass_defect_kg(cls, Z: int, N: int, xi: float = 1.0) -> float:
+        """
+        Returns mass defect (positive means binding reduces mass) in kg.
+        SEMF binding energy is returned in MeV, then converted to kg via E=mc^2.
+        """
         if Z <= 1 and N <= 0: return 0.0 # Single proton has no binding defect
 
         A = Z + N
 
         # 1. Volume Term (Bulk Coherence)
-        E_v = cls.a_v * A
+        # SST-SEMF modulation: Volume term scales ~ Xi(A)
+        E_v = cls.a_v * xi * A
 
         # 2. Surface Term (Surface Tension Penalty)
-        E_s = cls.a_s * (A**(2/3))
+        # SST-SEMF modulation: Surface term scales ~ Xi(A)^(-1/2)
+        E_s = cls.a_s * (xi ** (-0.5)) * (A **(2/3))
 
         # 3. Coulomb Term (Repulsion)
         E_c = cls.a_c * (Z * (Z - 1)) / (A**(1/3))
@@ -229,61 +387,101 @@ class NuclearBinding:
 # ──────────────────────────────────────────────────────────────────────────────
 @dataclass
 class KnotTopology:
+    """
+    Topological+geometric data needed by the SST mass kernel.
+
+    We use a compact invariant form (per your model):
+
+      M(T) = (4/α) * k^{-3/2} * φ^{-g} * n^{-1/φ} * M0 * L_tot
+
+    with optional shielding gate G(T) so that amplification is (4/α)^{G(T)}.
+    """
     name: str
-    k: float  # Kernel suppression index used in Eq. K (often crossings or other complexity proxy)
-    # Optional: true braid index (e.g., for torus knots T(p,q), b_braid=min(p,q)).
-    # Not used in the mass kernel unless explicitly wired in.
+    k: float  # Kernel suppression index used in Eq. K (may be non-integer; e.g. twist Alexander-derived)
     g: int  # Seifert Genus
     n: int  # Number of Components
     L_tot: float  # Total Ropelength
+    # Optional: true braid index (e.g., for torus knots T(p,q), b_braid=min(p,q)). Not used in mass kernel.
     b_braid: int | None = None
+    # Optional shielding exponent for (4/alpha) amplification (legacy; prefer shielding_gate).
+    sigma: int = 1
+    # Optional: identify specific families with hard constraints (e.g. double-twist K_{m,n})
+    family: str | None = None
+    params: tuple[int, int] | None = None  # e.g. (m, n) for double_twist K_{m,n}
+    dt_m: int | None = None  # legacy alias
+    dt_n: int | None = None  # legacy alias
+
+
+def shielding_gate(topo: KnotTopology) -> int:
+    """
+    Binary shielding gate G(T) ∈ {0,1} deciding whether (4/α) is active.
+
+      G(T)=0  => (4/α)^0 = 1  (perfect shielding; amplification OFF)
+      G(T)=1  => (4/α)^1      (shielding broken; amplification ON)
+
+    Hard constraint:
+      - If topo.family == 'double_twist' and topo.params=(m,n), then
+        G(K_{m,n}) = 0 iff K_{m,n} is rationally slice (Lee 2025 criterion).
+
+    Default fallback (model convention used in SST-59):
+      - Lepton-like sectors: (n=1, g=1)  -> G=0
+      - Otherwise                           G=1
+    """
+    if topo.family == "double_twist" and topo.params is not None:
+        m, n = topo.params
+        return 0 if is_rationally_slice_double_twist(m, n) else 1
+    return 0 if (topo.n == 1 and topo.g == 1) else 1
 
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Invariant Master Formula
 # ──────────────────────────────────────────────────────────────────────────────
-def master_mass_invariant(topo: KnotTopology) -> float:
+def master_mass_invariant(topo: KnotTopology, phi_val: float = phi0) -> float:
+    """
+    Core SST mass invariant:
+
+      M = (4/α)^{G(T)} * k^{-3/2} * φ^{-g} * n^{-1/φ} * M0 * L_tot
+    """
     u = 0.5 * rho_core * v_swirl * v_swirl
-    amplification = 4.0 / alpha_fs
+    G = shielding_gate(topo)
+    amplification = (4.0 / alpha_fs) ** G
     braid_suppression = topo.k ** -1.5
-    genus_suppression = phi ** -topo.g
-    component_suppression = topo.n ** (-1.0 / phi)
+    genus_suppression = phi_val ** -topo.g
+    component_suppression = topo.n ** (-1.0 / phi_val)
     volume = math.pi * (r_c ** 3) * topo.L_tot
-    total_mass = (
+    return (
             amplification *
             braid_suppression *
             genus_suppression *
             component_suppression *
             (u * volume) / (c * c)
     )
-    return total_mass
-
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Calibration helpers
 # ──────────────────────────────────────────────────────────────────────────────
-def solve_for_L_tot(mass_actual: float, topo_base: KnotTopology) -> float:
+def solve_for_L_tot(mass_actual: float, topo_base: KnotTopology, phi_val: float = phi0) -> float:
     """Generic function to solve for L_tot given a known mass and base topology."""
     u = 0.5 * rho_core * v_swirl ** 2
+    G = shielding_gate(topo_base)
+    amplification = (4.0 / alpha_fs) ** G
     prefactor = (
-            (4.0 / alpha_fs) *
+            amplification *
             (topo_base.k ** -1.5) *
-            (phi ** -topo_base.g) *
-            (topo_base.n ** (-1.0 / phi))
+            (phi_val ** -topo_base.g) *
+            (topo_base.n ** (-1.0 / phi_val))
     )
     volume_prefactor = math.pi * (r_c ** 3)
-    numerator = mass_actual * (c ** 2)
-    denominator = prefactor * u * volume_prefactor
-    return numerator / denominator
+    return (mass_actual * (c ** 2)) / (prefactor * u * volume_prefactor)
 
 
-def baryon_prefactor(k: float, g: int, n: int) -> float:
+def baryon_prefactor(k: float, g: int, n: int, phi_val: float = phi0) -> float:
     u = 0.5 * rho_core * v_swirl * v_swirl
-    return (4.0/alpha_fs) * (k ** -1.5) * (phi ** -g) * (n ** (-1.0/phi)) * (u * math.pi * (r_c**3)) / (c*c)
+    return (4.0/alpha_fs) * (k ** -1.5) * (phi_val ** -g) * (n ** (-1.0/phi_val)) * (u * math.pi * (r_c**3)) / (c*c)
 
 
-def fit_quark_geom_factors_for_baryons(k: float, g: int, n: int, scaling_factor: float) -> tuple[float, float]:
-    A = baryon_prefactor(k, g, n)
+def fit_quark_geom_factors_for_baryons(k: float, g: int, n: int, scaling_factor: float, phi_val: float = phi0) -> tuple[float, float]:
+    A = baryon_prefactor(k, g, n, phi_val=phi_val)
     K = A * scaling_factor
     s_u = (2.0 * M_p_actual - M_n_actual) / (3.0 * K)
     s_d = (M_p_actual / K) - 2.0 * s_u
@@ -291,106 +489,35 @@ def fit_quark_geom_factors_for_baryons(k: float, g: int, n: int, scaling_factor:
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# compute 𝑘(𝑇) from a polyline embedding
-# ──────────────────────────────────────────────────────────────────────────────
-
-def _periodic_roll(a, shift):
-    return np.roll(a, shift, axis=0)
-
-def arc_length_parameterize(points: np.ndarray):
-    """Return points resampled to roughly uniform arc-length spacing."""
-    P = np.asarray(points, float)
-    # ensure periodic closure
-    if np.linalg.norm(P[0] - P[-1]) > 1e-12:
-        P = np.vstack([P, P[0]])
-    d = np.linalg.norm(P[1:] - P[:-1], axis=1)
-    s = np.concatenate([[0.0], np.cumsum(d)])
-    L = float(s[-1])
-    return P[:-1], s[:-1], L  # drop duplicate last
-
-def curvature_kappa_sigma(points: np.ndarray):
-    """
-    Discrete curvature estimate:
-      kappa(s) ≈ ||dT/ds||, with T unit tangent.
-    Then return dimensionless kappa_sigma = L * kappa(s).
-    """
-    P, s, L = arc_length_parameterize(points)
-    N = len(P)
-
-    # central difference tangent
-    Pp = _periodic_roll(P, -1)
-    Pm = _periodic_roll(P, +1)
-    dP = Pp - Pm
-    ds = np.linalg.norm(dP, axis=1) + 1e-15
-    T = dP / ds[:, None]  # unit-ish tangent
-
-    Tp = _periodic_roll(T, -1)
-    Tm = _periodic_roll(T, +1)
-    dT = Tp - Tm
-    # local ds for dT/ds (use mean spacing)
-    ds_mean = float(np.mean(np.linalg.norm(_periodic_roll(P, -1) - P, axis=1)))
-    kappa = np.linalg.norm(dT, axis=1) / (2.0 * ds_mean + 1e-15)
-
-    kappa_sigma = (L * kappa)  # dimensionless
-    return kappa_sigma, L
-
-def periodic_laplacian(N: int):
-    """-d^2/dsigma^2 with periodic BC on sigma-grid with step h=1/N."""
-    h = 1.0 / N
-    main = 2.0 * np.ones(N) / (h*h)
-    off  = -1.0 * np.ones(N-1) / (h*h)
-    A = np.diag(main) + np.diag(off, 1) + np.diag(off, -1)
-    A[0, -1] = A[-1, 0] = -1.0 / (h*h)
-    return A
-
-def spectral_gap_lambda1(points: np.ndarray, a: float = 1.0, m0: float = 0.25):
-    """
-    Build O = -d^2/dsigma^2 + U(sigma), U = a*kappa_sigma^2 + m0^2.
-    Return smallest nonzero eigenvalue lambda1.
-    """
-    kappa_sigma, _L = curvature_kappa_sigma(points)
-    N = len(kappa_sigma)
-    Lap = periodic_laplacian(N)
-    U = a * (kappa_sigma**2) + (m0*m0)
-    O = Lap + np.diag(U)
-
-    evals = np.linalg.eigvalsh(O)
-    evals.sort()
-
-    # For periodic Laplacian, the constant mode is near-minimum; with +m0^2 it is not zero.
-    # Still: take the smallest eigenvalue as "gap" (since m0 lifts it); or take evals[1] if you want to remove the constant mode.
-    lambda0 = float(evals[0])
-    lambda1 = float(evals[1]) if N >= 3 else float("nan")
-    return lambda0, lambda1, evals
-
-def k_ratio(points_T: np.ndarray, points_trefoil: np.ndarray, a: float = 1.0, m0: float = 0.25, use_lambda1: bool = True):
-    lam0_T, lam1_T, _ = spectral_gap_lambda1(points_T, a=a, m0=m0)
-    lam0_3, lam1_3, _ = spectral_gap_lambda1(points_trefoil, a=a, m0=m0)
-    num = lam1_T if use_lambda1 else lam0_T
-    den = lam1_3 if use_lambda1 else lam0_3
-    return float(num / den)
-
-
-
-# ──────────────────────────────────────────────────────────────────────────────
 # Assembly helpers
 # ──────────────────────────────────────────────────────────────────────────────
-def get_particle_topologies(cfg: Config) -> Dict:
+def get_particle_topologies(cfg: Config, phi_val: float = phi0) -> Dict:
     # Lepton Generation Calibration
-    electron_base = KnotTopology(name="Electron_base T(2,3)", k=3, b_braid=2, g=1, n=1, L_tot=0.0)
-    muon_base     = KnotTopology(name="Muon_base T(2,5)",     k=5, b_braid=2, g=2, n=1, L_tot=0.0)
-    tau_base      = KnotTopology(name="Tau_base T(2,7)",      k=7, b_braid=2, g=3, n=1, L_tot=0.0)
+    electron_sigma = 1
+    if cfg.use_shielding_exponent:
+        electron_sigma = cfg.sigma_leptons
+    electron_base = KnotTopology(name="Electron_base T(2,3)", k=3.0, b_braid=2, g=1, n=1, sigma=electron_sigma, L_tot=0.0)
+    muon_base     = KnotTopology(name="Muon_base T(2,5)",     k=5.0, b_braid=2, g=2, n=1, sigma=electron_sigma, L_tot=0.0)
+    tau_base      = KnotTopology(name="Tau_base T(2,7)",      k=7.0, b_braid=2, g=3, n=1, sigma=electron_sigma, L_tot=0.0)
 
-    l_tot_e = solve_for_L_tot(M_e_actual, electron_base)
-    l_tot_mu = solve_for_L_tot(M_mu_actual, muon_base)
-    l_tot_tau = solve_for_L_tot(M_tau_actual, tau_base)
+    l_tot_e  = solve_for_L_tot(M_e_actual,  electron_base, phi_val=phi_val)
+    l_tot_mu = solve_for_L_tot(M_mu_actual, muon_base,     phi_val=phi_val)
+    l_tot_tau= solve_for_L_tot(M_tau_actual,tau_base,      phi_val=phi_val)
 
     # Baryon Sector Calibration
-    k_bary, g_bary, n_bary = 3, 2, 3
+    k_bary, g_bary, n_bary = 3.0, 2, 3
     scaling_factor = 2.0 * (math.pi ** 2) * cfg.kappa_R
-    A_bary = baryon_prefactor(k_bary, g_bary, n_bary)
+    A_bary = baryon_prefactor(k_bary, g_bary, n_bary, phi_val=phi_val)
     K = A_bary * scaling_factor
     lam_b = 1.0
+
+    # Diagnostics: twist-knot real-k values for your quark representatives
+    # up  -> 5_2 -> K_2 ; down -> 6_1 -> K_3
+    k_up_tw  = None
+    k_down_tw = None
+    if cfg.use_twist_alexander_k:
+        k_up_tw = k_from_knot_label("5_2", phi_val=phi_val)
+        k_down_tw = k_from_knot_label("6_1", phi_val=phi_val)
 
     if cfg.mode == "canonical":
         s_u, s_d = cfg.fixed_su, cfg.fixed_sd
@@ -398,20 +525,24 @@ def get_particle_topologies(cfg: Config) -> Dict:
         s_u, s_d = cfg.fixed_su, cfg.fixed_sd
         lam_b = M_p_actual / (K * (2.0 * s_u + s_d))
     else: # exact_closure
-        s_u, s_d = fit_quark_geom_factors_for_baryons(k_bary, g_bary, n_bary, scaling_factor)
+        s_u, s_d = fit_quark_geom_factors_for_baryons(k_bary, g_bary, n_bary, scaling_factor, phi_val=phi_val)
 
     l_tot_p = lam_b * (2.0 * s_u + 1.0 * s_d) * scaling_factor
     l_tot_n = lam_b * (1.0 * s_u + 2.0 * s_d) * scaling_factor
 
+    bary_sigma = 1
+    if cfg.use_shielding_exponent:
+        bary_sigma = cfg.sigma_baryons
     topologies = {
-        "electron": KnotTopology(name="Electron", k=3, b_braid=2, g=1, n=1, L_tot=l_tot_e),
-        "muon":     KnotTopology(name="Muon (T(2,5))", k=5, b_braid=2, g=2, n=1, L_tot=l_tot_mu),
-        "tau":      KnotTopology(name="Tau (T(2,7))",  k=7, b_braid=2, g=3, n=1, L_tot=l_tot_tau),
-        "proton":   KnotTopology(name="Proton",  k=k_bary, g=g_bary, n=n_bary, L_tot=l_tot_p),
-        "neutron":  KnotTopology(name="Neutron", k=k_bary, g=g_bary, n=n_bary, L_tot=l_tot_n),
+        "electron": KnotTopology(name="Electron", k=3.0, b_braid=2, g=1, n=1, sigma=electron_sigma, L_tot=l_tot_e),
+        "muon":     KnotTopology(name="Muon (T(2,5))", k=5.0, b_braid=2, g=2, n=1, sigma=electron_sigma, L_tot=l_tot_mu),
+        "tau":      KnotTopology(name="Tau (T(2,7))",  k=7.0, b_braid=2, g=3, n=1, sigma=electron_sigma, L_tot=l_tot_tau),
+        "proton":   KnotTopology(name="Proton",  k=float(k_bary), g=g_bary, n=n_bary, sigma=bary_sigma, L_tot=l_tot_p),
+        "neutron":  KnotTopology(name="Neutron", k=float(k_bary), g=g_bary, n=n_bary, sigma=bary_sigma, L_tot=l_tot_n),
         "_diag": {
             "mode": cfg.mode, "kappa_R": cfg.kappa_R, "scaling_factor": scaling_factor,
             "A_bary": A_bary, "K": K, "lambda_b": lam_b, "s_u": s_u, "s_d": s_d
+            , "k_up_twist_alex": k_up_tw, "k_down_twist_alex": k_down_tw
         }
     }
     return topologies
@@ -484,32 +615,18 @@ def _parse_formula(formula: str) -> Dict[str, int]:
         counts[sym] = counts.get(sym, 0) + k
     return counts
 
-
-def _actual_atomic_mass_kg(pZ: int, nN: int, eE: int, gmol: float, cfg: Config) -> float:
-    """Compute "Actual Mass" for a single atom in kg under two conventions.
-
-    (A) Default (use_mass_number_actual=False):
-        Use tabulated atomic weights (often natural-abundance averages):
-            m_actual ≈ gmol * 1e-3 / N_A.
-
-    (B) Mass-number baseline (use_mass_number_actual=True):
-        Use an isotope-consistent mass number A=Z+N plus bound electrons:
-            m_actual ≈ A*m_u + Z*M_e_actual.
-
-    Note: (B) is not a precision isotope mass; it is a consistent baseline that
-    avoids mixing integer (Z,N) with abundance-averaged g/mol values.
-    """
-    if cfg.use_mass_number_actual:
-        A = pZ + nN
-        return A * m_u + eE * M_e_actual
-    return gmol * 1e-3 / avogadro
-
-
-def compute_tables(topologies: Dict, cfg: Config) -> pd.DataFrame:
+def compute_tables(
+    topologies: Dict,
+    cfg: Config,
+    phi_val: float = phi0,
+    use_semf: bool = True,
+    data_source: str = "standard_weight",
+    isotope_masses_kg: Dict[str, float] | None = None,
+) -> pd.DataFrame:
     # 1. Base Masses (Sum of Parts)
-    M_e_pred = master_mass_invariant(topologies["electron"])
-    M_p_pred = master_mass_invariant(topologies["proton"])
-    M_n_pred = master_mass_invariant(topologies["neutron"])
+    M_e_pred = master_mass_invariant(topologies["electron"], phi_val=phi_val)
+    M_p_pred = master_mass_invariant(topologies["proton"],   phi_val=phi_val)
+    M_n_pred = master_mass_invariant(topologies["neutron"],  phi_val=phi_val)
 
     rows: List[Tuple[str, float, float, str]] = []
 
@@ -518,52 +635,173 @@ def compute_tables(topologies: Dict, cfg: Config) -> pd.DataFrame:
     rows.append(("Proton",   M_p_actual, M_p_pred, emoji_marker(100.0*(M_p_pred-M_p_actual)/M_p_actual)))
     rows.append(("Neutron",  M_n_actual, M_n_pred, emoji_marker(100.0*(M_n_pred-M_n_actual)/M_n_actual)))
 
-    # Elements (With Nuclear Binding Correction)
+    # Elements (With optional Nuclear Binding Correction)
     elements = _elements_from_table()
+    iso = isotope_masses_kg or {}
+
+    # IMPORTANT:
+    # SEMF is a nucleus model; it is meaningful against isotope-resolved atomic masses,
+    # NOT against standard atomic weights (natural abundance averages).
+    if use_semf and data_source == "standard_weight":
+        _warn_once(
+            "semf_vs_standard_weight",
+            (
+                "\n[WARN] use_semf=True but data_source='standard_weight'.\n"
+                "       You are comparing isotope-based (Z,N) predictions to abundance-averaged targets.\n"
+                "       This can bias the best-fit phi. Prefer data_source='isotope_mass' when use_semf=True.\n"
+            ),
+        )
+
     for name, (pZ, nN, eE, gmol) in elements.items():
-        actual_kg = _actual_atomic_mass_kg(pZ, nN, eE, gmol, cfg)
+        if data_source == "isotope_mass":
+            if name not in iso:
+                raise KeyError(
+                    f"Missing isotope mass for element '{name}' in isotope_masses_kg. "
+                    f"Provide it via cfg.isotope_mass_csv or switch to data_source='standard_weight'."
+                )
+            actual_kg = iso[name]
+        else:
+            # Standard atomic weight (natural abundance average)
+            actual_kg = gmol * 1e-3 / avogadro
 
         # Sum of parts
         mass_sum = pZ * M_p_pred + nN * M_n_pred + eE * M_e_pred
 
         # SUBTRACT Binding Energy (The "SST Efficiency" Gain)
-        mass_defect = NuclearBinding.get_mass_defect_kg(pZ, nN)
+        # Toggleable to test whether the SEMF proxy shifts the best-fit phi.
+        if use_semf:
+            A = pZ + nN
+            xi = xi_A(A, cfg.xi_gamma, cfg.xi_A0, cfg.xi_p)
+            mass_defect = NuclearBinding.get_mass_defect_kg(pZ, nN, xi=xi)
+        else:
+            mass_defect = 0.0
         predicted = mass_sum - mass_defect
 
         rel_error = 100.0 * (predicted - actual_kg) / actual_kg
         rows.append((name, actual_kg, predicted, emoji_marker(rel_error)))
 
-    # Molecules (Sum of Corrected Atoms)
+    # Molecules (Sum of corrected atoms)
     # Note: Chemical binding energy (~eV) is negligible compared to Nuclear (~MeV)
     # so we just sum the corrected atomic masses.
     for mol, gmol in MOLECULES.items():
         counts = _parse_formula(mol)
         pred_mol = 0.0
-        actual_mol = 0.0
 
         for sym, k in counts.items():
-            pZ, nN, eE, gmol_atomic = elements[sym]
+            pZ, nN, eE, _ = elements[sym]
 
             # Re-calculate atomic mass with binding for each constituent
             atom_sum = pZ * M_p_pred + nN * M_n_pred + eE * M_e_pred
-            atom_defect = NuclearBinding.get_mass_defect_kg(pZ, nN)
+            if use_semf:
+                A_atom = pZ + nN
+                xi_atom = xi_A(A_atom, cfg.xi_gamma, cfg.xi_A0, cfg.xi_p)
+                atom_defect = NuclearBinding.get_mass_defect_kg(pZ, nN, xi=xi_atom)
+            else:
+                atom_defect = 0.0
             atom_mass_corrected = atom_sum - atom_defect
 
             pred_mol += k * atom_mass_corrected
 
-            if cfg.use_mass_number_actual:
-                # "Actual" molecule mass consistent with the chosen convention
-                atom_actual = _actual_atomic_mass_kg(pZ, nN, eE, gmol_atomic, cfg)
-                actual_mol += k * atom_actual
-
-        actual_kg = actual_mol if cfg.use_mass_number_actual else (gmol * 1e-3 / avogadro)
+        # Molecules only available in standard-weight mode in this script:
+        # isotope-resolved molecular masses require specifying isotopologues.
+        if data_source == "isotope_mass":
+            # Keep molecules out of isotope-mode objective to avoid mixing semantics.
+            # Still compute them if you want, but you must provide explicit isotopologues.
+            continue
+        actual_kg = gmol * 1e-3 / avogadro
         rel_error = 100.0 * (pred_mol - actual_kg) / actual_kg
         rows.append((mol, actual_kg, pred_mol, emoji_marker(rel_error)))
 
     return pd.DataFrame(rows, columns=["Object","Actual Mass (kg)","Predicted Mass (kg)","% Error"])
 
+def rms_excluding(df: pd.DataFrame, exclude: list[str]) -> float:
+    df2 = df.loc[~df["Object"].isin(exclude), ["Predicted Mass (kg)", "Actual Mass (kg)"]].copy()
+
+    # Drop invalid targets
+    df2 = df2.dropna()
+    df2 = df2[df2["Actual Mass (kg)"] != 0]
+
+    if df2.empty:
+        return float("nan")
+
+    rel = (df2["Predicted Mass (kg)"] - df2["Actual Mass (kg)"]) / df2["Actual Mass (kg)"]
+    return float((rel.pow(2).mean() ** 0.5) * 100.0)
+
+def eval_phi(
+    phi_val: float,
+    mode: str = "canonical",
+    use_semf: bool = True,
+    data_source: str | None = None,
+    isotope_mass_csv: str = "isotope_masses.csv",
+) -> dict:
+    """Align with phi_sweep: pass data_source/isotope_mass_csv explicitly to match sweep semantics."""
+    cfg = Config(mode=mode)
+    ds = data_source if data_source is not None else cfg.data_source
+    iso = None
+    if ds == "isotope_mass":
+        iso = _load_isotope_masses_kg(isotope_mass_csv)
+    tops = get_particle_topologies(cfg, phi_val=phi_val)
+    tops.pop("_diag", None)
+    df = compute_tables(
+        tops, cfg, phi_val=phi_val,
+        use_semf=use_semf,
+        data_source=ds,
+        isotope_masses_kg=iso,
+    )
+    return {
+        "phi": float(phi_val),
+        "ln_phi": float(math.log(phi_val)),
+        "RMS_excl_e": float(rms_excluding(df, ["Electron"])),
+        "RMS_excl_epn": float(rms_excluding(df, ["Electron", "Proton", "Neutron"])),
+    }
+
+def phi_sweep(
+    mode: str = "canonical",
+    npts: int = 81,
+    span: float = 0.08,
+    use_semf: bool = True,
+    data_source: str = "standard_weight",
+    isotope_mass_csv: str = "isotope_masses.csv",
+) -> pd.DataFrame:
+    """
+    span=0.08 sweeps phi in [phi0*(1-span), phi0*(1+span)].
+    """
+    if npts < 2:
+        raise ValueError("npts must be >= 2")
+    if span < 0:
+        raise ValueError("span must be >= 0")
+
+    cfg = Config(mode=mode)
+
+    iso = None
+    if data_source == "isotope_mass":
+        iso = _load_isotope_masses_kg(isotope_mass_csv)
+
+    phi_min = phi0 * (1 - span)
+    phi_max = phi0 * (1 + span)
+    phi_grid = np.linspace(phi_min, phi_max, npts)
+
+    rows = []
+    for phi_val in phi_grid:
+        tops = get_particle_topologies(cfg, phi_val=float(phi_val))
+        tops.pop("_diag", None)
+
+        df = compute_tables(
+            tops, cfg, phi_val=float(phi_val),
+            use_semf=use_semf,
+            data_source=data_source,
+            isotope_masses_kg=iso,
+        )
+
+        rms_excl_epn = rms_excluding(df, ["Electron", "Proton", "Neutron"])
+        rms_excl_e   = rms_excluding(df, ["Electron"])
+
+        rows.append((float(phi_val), float(math.log(phi_val)), float(rms_excl_epn), float(rms_excl_e)))
+
+    return pd.DataFrame(rows, columns=["phi", "ln_phi", "RMS_excl_epn", "RMS_excl_e"])
+
 # ──────────────────────────────────────────────────────────────────────────────
-# Main Execution
+# Main Function
 # ──────────────────────────────────────────────────────────────────────────────
 def main(mode: str = "exact_closure") -> None:
     print("=== SST Invariant Master Mass (Canon) ===")
@@ -576,7 +814,9 @@ def main(mode: str = "exact_closure") -> None:
     print(f"s_u = {diag['s_u']:.6f}, s_d = {diag['s_d']:.6f}, lambda_b = {diag['lambda_b']:.6f}")
     print(f"A_bary = {diag['A_bary']:.6e},  K = {diag['K']:.6e}")
     print(f"scaling_factor = {diag['scaling_factor']:.6f}")
-    print(f"actual_mass_convention = {'mass_number (A*m_u + Z*m_e)' if cfg.use_mass_number_actual else 'atomic_weight_gmol'}")
+    if diag.get("k_up_twist_alex") is not None and diag.get("k_down_twist_alex") is not None:
+        print("\n--- Twist-knot real-k diagnostics (Alexander root proxy) ---")
+        print(f"k(5_2) = {diag['k_up_twist_alex']:.9f}  |  k(6_1) = {diag['k_down_twist_alex']:.9f}")
 
     print("\n--- Particle Topological & Geometric Invariants ---")
     # Pop leptons for separate display
@@ -595,7 +835,7 @@ def main(mode: str = "exact_closure") -> None:
 
     print("\n--- Mass Prediction Results ---")
     pd.set_option("display.float_format", lambda x: f"{x:.6e}" if isinstance(x, float) else str(x))
-    print(df.to_string(index=False))
+    #print(df.to_string(index=False))
 
     # Ropelength Analysis
     ltot_e = topologies["electron"].L_tot
@@ -612,14 +852,71 @@ def main(mode: str = "exact_closure") -> None:
     df.to_csv(out_csv, index=False)
     print(f"\nSaved results to {out_csv}")
 
-
+# ──────────────────────────────────────────────────────────────────────────────
+# Main Execution
+# ──────────────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     import sys
+    # --- Phi sweeps: with and without SEMF proxy ---
+    # Default: standard weights (averages). SEMF will warn about mixed semantics.
+    df_sweep_semf = phi_sweep(mode="canonical", npts=101, span=0.05, use_semf=True, data_source="standard_weight")
+    df_sweep_nosemf = phi_sweep(mode="canonical", npts=101, span=0.05, use_semf=False, data_source="standard_weight")
+
+    print("\nTop 10 (canonical, with SEMF):")
+    print(df_sweep_semf.sort_values("RMS_excl_epn").head(10))
+    df_semf_sorted = df_sweep_semf.sort_values("RMS_excl_epn").reset_index(drop=True)
+    best_semf_phi = df_semf_sorted.loc[0, "phi"]
+    at_edge_semf = (best_semf_phi == df_sweep_semf["phi"].min()) or (best_semf_phi == df_sweep_semf["phi"].max())
+    print("Best at edge? (with SEMF)", at_edge_semf)
+
+    print("\nTop 10 (canonical, no SEMF):")
+    print(df_sweep_nosemf.sort_values("RMS_excl_epn").head(10))
+    df_nosemf_sorted = df_sweep_nosemf.sort_values("RMS_excl_epn").reset_index(drop=True)
+    best_nosemf_phi = df_nosemf_sorted.loc[0, "phi"]
+    at_edge_nosemf = (best_nosemf_phi == df_sweep_nosemf["phi"].min()) or (best_nosemf_phi == df_sweep_nosemf["phi"].max())
+    print("Best at edge? (no SEMF)", at_edge_nosemf)
+
+    # Optional: isotope-resolved sweep (requires isotope_masses.csv)
+    # If you provide isotope masses consistent with your (Z,N) table, this is the correct way
+    # to interpret SEMF-on fits.
+    try:
+        df_sweep_iso_semf = phi_sweep(
+            mode="canonical", npts=101, span=0.05, use_semf=True,
+            data_source="isotope_mass", isotope_mass_csv="isotope_masses.csv"
+        )
+        print("\nTop 10 (canonical, with SEMF, isotope_mass targets):")
+        print(df_sweep_iso_semf.sort_values("RMS_excl_epn").head(10))
+    except Exception as e:
+        print("\n[INFO] Isotope-resolved sweep skipped:", str(e))
+
+    # --- Golden-ratio vs best-fit diagnostics ---
+    best_semf = df_semf_sorted.iloc[0]
+    phi_best_semf = float(best_semf["phi"])
+    gold_semf = eval_phi(phi0, mode="canonical", use_semf=True, data_source="standard_weight")
+    best_eval_semf = eval_phi(phi_best_semf, mode="canonical", use_semf=True, data_source="standard_weight")
+
+    print("\n--- Phi diagnostics (canonical, with SEMF) ---")
+    print("Golden:", gold_semf)
+    print("Best  :", best_eval_semf)
+    print(f"RMS ratio excl_epn: {gold_semf['RMS_excl_epn']/best_eval_semf['RMS_excl_epn']:.6f}")
+    print(f"RMS ratio excl_e  : {gold_semf['RMS_excl_e']/best_eval_semf['RMS_excl_e']:.6f}")
+
+    best_nosemf = df_nosemf_sorted.iloc[0]
+    phi_best_nosemf = float(best_nosemf["phi"])
+    gold_nosemf = eval_phi(phi0, mode="canonical", use_semf=False, data_source="standard_weight")
+    best_eval_nosemf = eval_phi(phi_best_nosemf, mode="canonical", use_semf=False, data_source="standard_weight")
+
+    print("\n--- Phi diagnostics (canonical, no SEMF) ---")
+    print("Golden:", gold_nosemf)
+    print("Best  :", best_eval_nosemf)
+    print(f"RMS ratio excl_epn: {gold_nosemf['RMS_excl_epn']/best_eval_nosemf['RMS_excl_epn']:.6f}")
+    print(f"RMS ratio excl_e  : {gold_nosemf['RMS_excl_e']/best_eval_nosemf['RMS_excl_e']:.6f}")
+
     arg_mode = sys.argv[1] if len(sys.argv) > 1 else "exact_closure"
     main(arg_mode)
 
     try:
-        # ans = input("\nCompare with other modes and add predicted columns? [y/N]: ").strip().lower()
+        #ans = input("\nCompare with other modes and add predicted columns? [y/N]: ").strip().lower()
         ans = "y"
     except EOFError:
         ans = "n"
@@ -659,53 +956,5 @@ if __name__ == "__main__":
 
         out_csv_all = "SST_Invariant_Mass_Results_all_modes.csv"
         df_cmp.to_csv(out_csv_all, index=False)
+        print(df_cmp.to_string(index=False))
         print(f"\nSaved comparison to {out_csv_all}")
-
-# @title SST Mass Spectrum Visualization
-import matplotlib.pyplot as plt
-import numpy as np
-
-# Prepare data for plotting from the dataframes
-# Use df_cmp which contains all merged results
-labels = df_cmp["Object"].tolist()
-pred_masses = df_cmp["Predicted Mass (kg)"].tolist() # Using the predicted mass from the initial mode
-ref_masses = df_cmp["Actual Mass (kg)"].tolist()    # Using the actual mass
-
-# Calculate error for color mapping by parsing the string % Error column
-# The error column contains strings like "0.000% 🩷️", so we extract the float value.
-errors = df_cmp["% Error"].apply(lambda x: float(x.split('%')[0])).tolist()
-
-fig, ax = plt.subplots(figsize=(12, 7))
-
-# Plot Identity Line
-min_exp = np.floor(np.log10(min(ref_masses))) if ref_masses else -31 # Handle empty list
-max_exp = np.ceil(np.log10(max(ref_masses))) if ref_masses else -26 # Handle empty list
-x_line = np.logspace(min_exp, max_exp, 100)
-ax.plot(x_line, x_line, 'k--', alpha=0.3, label='Exact Match')
-
-# Scatter Plot
-sc = ax.scatter(ref_masses, pred_masses, c=errors, cmap='coolwarm', vmin=-1.0, vmax=2.0, s=100, edgecolors='k')
-
-# Labels
-for i, txt in enumerate(labels):
-    ax.annotate(txt, (ref_masses[i], pred_masses[i]), xytext=(5, 5), textcoords='offset points', fontsize=9)
-
-ax.set_xscale('log')
-ax.set_yscale('log')
-ax.set_xlabel('Reference Mass (kg)')
-ax.set_ylabel('SST Predicted Mass (kg)')
-ax.set_title('SST Canonical Mass Spectrum: Leptons to Nuclei')
-cbar = plt.colorbar(sc)
-cbar.set_label('Relative Error %')
-
-plt.grid(True, which="both", ls="-", alpha=0.2)
-plt.tight_layout()
-import os
-
-script_name = os.path.splitext(os.path.basename(__file__))[0]
-# Save with incrementing filename if file exists, restart count on rerun
-base_filename = f"{script_name}.png"
-filename = base_filename
-while os.path.exists(filename):
-    filename = f"{script_name}.png"
-plt.savefig(filename, dpi=300)  # Save image with high resolution

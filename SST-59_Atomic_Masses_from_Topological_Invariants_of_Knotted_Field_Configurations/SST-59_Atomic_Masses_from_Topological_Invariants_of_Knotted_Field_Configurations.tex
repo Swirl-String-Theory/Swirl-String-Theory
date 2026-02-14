@@ -1,6 +1,6 @@
 %==============================================================================
 %  SST-59_Atomic_Masses_from_Topological_Invariants_of_Knotted_Field_Configurations
-%  (Code-faithful version aligned with SST_Atom_Mass_Invariant.py)
+%  (Code-faithful version aligned with SST_Atom_Mass_Invariant.py; updated k(T) + phi-structure)
 %==============================================================================
 
 \documentclass[11pt,a4paper]{article}
@@ -32,6 +32,19 @@
     urlcolor=blue!40!black]{hyperref}
 \usepackage{graphicx}
 
+%------------------------------------------------------------------------------
+% SST house symbols (compile-ready, minimal; keep out of body)
+%------------------------------------------------------------------------------
+\newcommand{\vswirl}{\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}}
+\newcommand{\rhoF}{\rho_{\!f}}
+\newcommand{\rhoE}{\rho_{\!E}}
+\newcommand{\rhoM}{\rho_{\!m}}
+\newcommand{\rc}{r_c}
+
+% Kernel notation helpers (code uses asinh(0.5); these are equivalent)
+\newcommand{\phig}{\varphi} % = (1+\sqrt5)/2
+\newcommand{\lnphig}{\operatorname{asinh}\!\left(\tfrac12\right)} % = ln(\varphi)
+\newcommand{\Vol}{\operatorname{Vol}}
 
 %------------------------------------------------------------------------------
 % Metadata
@@ -146,12 +159,26 @@ volume = math.pi * (r_c ** 3) * topo.L_tot
 
         These enter multiplicatively through dimensionless suppression factors:
         \begin{align}
-            S_k &= k^{-3/2}, \\
-            S_g &= \exp\!\left(-g\,\operatorname{asinh}\!\left(\tfrac12\right)\right), \\
-            S_n &= n^{-\exp\!\left(-\operatorname{asinh}\!\left(\tfrac12\right)\right)} ,
+            S_k(T) &= k(T)^{-3/2}, \\
+            S_g(T) &= \phi^{-g(T)}, \\
+            S_n(T) &= n(T)^{-1/\phi},
         \end{align}
-        The quantity $\operatorname{asinh}(1/2)$ is a fixed numerical constant arising from a logarithmic scaling relation and introduces no adjustable parameters or scales into the kernel.
-        The hyperbolic form is used throughout to emphasize that this value arises from the geometric inversion of the kernel, rather than from an assumed algebraic preference.
+        where $\phi = \tfrac{1+\sqrt{5}}{2}$ is the golden ratio.
+
+        \paragraph{Why $\phi$ is natural here (twist-knot Alexander root).}
+        For the twist-knot family $K_n$ (which includes $4_1, 5_2, 6_1,\dots$), a normalized Alexander polynomial is
+        \begin{equation}
+            \Delta_n(t) = n t^2 - (2n+1)t + n,
+            \label{eq:alexander_twist}
+        \end{equation}
+        and for $n=1$ one has $\Delta_1(t)=t^2-3t+1$ with dominant root $t_+=\tfrac{3+\sqrt{5}}{2}=\phi^2$.
+        Hence
+        \[
+            \tfrac12 \ln t_+ = \ln\phi = \operatorname{asinh}\!\left(\tfrac12\right),
+        \]
+        and therefore $\phi^{-1}=\exp(-\operatorname{asinh}(1/2))$. This makes the $\phi$-based exponents a compact,
+        code-faithful rewriting of the same constant while also anchoring it in a standard knot invariant for a concrete
+        subfamily. \cite{Lee2025DoubleTwist}
 
         The combined invariant kernel is therefore
         \begin{equation}
@@ -159,16 +186,16 @@ volume = math.pi * (r_c ** 3) * topo.L_tot
             =
             \frac{4}{\alpha}
             \, k(T)^{-3/2}
-            \, \exp\!\left(-g(T)\,\operatorname{asinh}\!\left(\tfrac12\right)\right)
-            \, n(T)^{-\exp\!\left(-\operatorname{asinh}\!\left(\tfrac12\right)\right)} .
+            \, \phi^{-g(T)}
+            \, n(T)^{-1/\phi} .
             \label{eq:kernel}
         \end{equation}
 
         This corresponds line-for-line to:
         \begin{verbatim}
 kernel_suppression   = topo.k ** -1.5
-genus_suppression    = math.exp(-topo.g * asinh(0.5))
-component_suppression = topo.n ** (-math.exp(-asinh(0.5)))
+genus_suppression    = (phi_val ** (-topo.g))
+component_suppression = topo.n ** (-1.0 / phi_val)
         \end{verbatim}
 
         The specific suppression exponents employed here are not claimed to be unique.
@@ -197,12 +224,184 @@ component_suppression = topo.n ** (-math.exp(-asinh(0.5)))
             \label{fig:knot_classes}
         \end{figure}
 
+    \section*{Why a $k^{-3/2}$ prefactor is natural in 3D field theory}
+
+        Consider a single Gaussian mode $\theta$ in three spatial dimensions with quadratic operator
+        \[
+            H \;=\; -\nabla^2 + m^2.
+        \]
+        The partition function is $Z_\theta \propto (\det H)^{-1/2}$, hence
+        \[
+            \ln \det H \;=\; -\int_{0}^{\infty}\frac{dT}{T}\;\mathrm{Tr}\,e^{-T H}
+            \qquad\text{(Schwinger proper-time / heat-kernel representation).}
+        \]
+        On $\mathbb{R}^3$ the heat kernel trace has the universal short-time form
+        \[
+            \mathrm{Tr}\,e^{-T(-\nabla^2+m^2)}
+            \;=\;
+            V\,(4\pi T)^{-3/2}\,e^{-m^2T}\,\big(1+\mathcal O(T)\big),
+        \]
+        so each loop/proper-time sector carries a \emph{universal} prefactor $T^{-3/2}$.
+
+        If a knot state $T$ selects a dimensionless spectral/proper-time parameter $k(T)\in\mathbb{R}^+$
+        via $T_{\rm prop}(T)=T_0\,k(T)$ (equivalently, via a spectral gap ratio),
+        then the measure contributes
+        \[
+            T_{\rm prop}(T)^{-3/2}\;\propto\;k(T)^{-3/2},
+        \]
+        which is the desired scaling.
+
+        \subsection*{Twist-knot specialization: a real-valued $k(T)$ from the dominant Alexander root}
+
+        For the twist-knot family $K_n$ with $\Delta_n(t)$ as in Eq.~\eqref{eq:alexander_twist},
+        the dominant root is
+        \begin{equation}
+            t_+(n)
+            =
+            \frac{(2n+1)+\sqrt{4n+1}}{2n},
+            \qquad (n\ge 1),
+            \label{eq:tpn}
+        \end{equation}
+        obtained by the quadratic formula.
+        Define the associated logarithmic ``Alexander spectral exponent''
+        \begin{equation}
+            \sigma_A(K_n) \;=\; \frac12 \ln t_+(n).
+            \label{eq:sigmaA}
+        \end{equation}
+        Since $t_+(1)=\phi^2$ (hence $\sigma_A(K_1)=\ln\phi$), a dimensionless real-valued kernel index can be defined by
+        \begin{equation}
+            k(K_n)
+            \;:=\;
+            \frac{\sigma_A(K_1)}{\sigma_A(K_n)}
+            \;=\;
+            \frac{2\ln\phi}{\ln t_+(n)}.
+            \label{eq:k_alex_twist}
+        \end{equation}
+
+        This is a \emph{drop-in} definition compatible with the heat-kernel motivation above if one interprets
+        $\sigma_A(K_n)$ as a proxy for a topology-selected spectral gap (so that $T_{\rm prop}\propto 1/\sigma_A$).
+        It also has the correct monotonic trend within the twist family: as $n\to\infty$, $t_+(n)\to 1^+$,
+        so $\ln t_+(n)\to 0^+$ and $k(K_n)\to\infty$, producing strong suppression $k^{-3/2}$.
+        \cite{Lee2025DoubleTwist}
+
+        \paragraph{Knot-table mapping (twist family).}
+        In standard notation, the twist knots satisfy $4_1=K_1$, $5_2=K_2$, $6_1=K_3$, $7_2=K_4$, \ldots
+        so in particular:
+        \[
+            k(5_2)=k(K_2)\approx 1.3884838,
+            \qquad
+            k(6_1)=k(K_3)\approx 1.6895946.
+        \]
+        For non-twist families (e.g. torus knots), one may retain the discrete assignment used elsewhere in the code
+        (e.g. $k=q$ for $T(2,q)$) while using Eq.~\eqref{eq:k_alex_twist} only when a twist-knot label is present.
+
+        \subsection*{Concordance-spectrum candidate for $k(T)$ (optional, but natural)}
+
+        For double-twist knots $K_{m,n}$, a concrete negative-definite intersection form
+        $Q_p(m,n)$ arises in the $p$-fold cyclic branched-cover filling used in rational sliceness
+        obstructions. One may therefore define a \emph{spectral} (real-valued) kernel index
+        directly from this topological operator:
+        \begin{align}
+            \lambda_{\rm gap}(Q) &:= \min_{\lambda\in{\rm spec}(Q)} |\lambda|, \\
+            k_{\rm spec}(T;p) &:= \frac{\lambda_{\rm gap}\!\big(Q_p(m(T),n(T))\big)}
+                                     {\lambda_{\rm gap}\!\big(Q_p(m_\star,n_\star)\big)} \;\in\;\mathbb{R}^+,
+        \end{align}
+        where $(m(T),n(T))$ are the double-twist parameters when $T$ lies in that family, and
+        $(m_\star,n_\star)$ is a fixed reference choice (e.g. the simplest nontrivial representative used
+        to set $k_{\rm spec}=1$).
+
+        This makes your ``$k(T)$ as spectral gap ratio'' assumption explicit and ties it to the same
+        branched-cover operator controlling concordance structure:
+        \[
+            k(T)\;\;\text{may be taken as}\;\;k_{\rm spec}(T;p_0)\quad\text{for a fixed odd prime }p_0.
+        \]
+        In the present code-faithful implementation, $k(T)$ may continue to be assigned discretely; the
+        above supplies a principled field-theoretic/topological route to \emph{measuring} it.
+
+        \paragraph{Dimensional origin.}
+        In $d$ spatial dimensions the universal short-time prefactor is $(4\pi T)^{-d/2}$,
+        so a single Gaussian mode contributes $T^{-d/2}$. The present case uses $d=3$,
+        hence the exponent $-3/2$.
+
+        \paragraph{Connection to delayed-loop mode selection (cross-paper bridge).}
+        A complementary physical interpretation of $k(T)$ is as a \emph{loop-time index}:
+        a knotted configuration defines a characteristic circulation time $\tau(T)$
+        (set by a path length divided by a characteristic transport speed),
+        and delayed self-consistency selects discrete phase-locked modes on that loop.
+        Identifying the proper-time parameter with $T_{\rm prop}(T)\propto \tau(T)$
+        makes $k(T)$ interpretable as a dimensionless delay/spectral-gap ratio,
+        consistent with treating $k(T)\in\mathbb{R}^+$ as a measured index.
+
+%==============================================================================
+    \section{Route I: Hyperbolic-volume selection for the quark-sector representatives}
+
+    \subsection{Why hyperbolic volume is an invariant}
+    For a hyperbolic knot complement $M_K = S^3\setminus K$ with finite volume,
+    Mostow--Prasad rigidity implies that the hyperbolic metric is unique up to isometry.
+    Consequently the volume
+    \[
+        \Vol_{\mathbb H}(K)\equiv \Vol(M_K)
+    \]
+    is a topological invariant of the complement (and thus of the knot type) whenever
+    the complement is hyperbolic.
+
+    \subsection{Values for the chosen representatives}
+    The twist-knot representatives used here are hyperbolic, with tabulated volumes
+    \[
+        \Vol_{\mathbb H}(5_2)\approx 2.828122\ldots,\qquad
+        \Vol_{\mathbb H}(6_1)\approx 3.163963\ldots
+    \]
+    (illustrative numerical invariants; the mass kernel itself depends only on
+    $(k,g,n,L_{\mathrm{tot}})$).
+
+    \subsection{How $\Vol_{\mathbb H}$ can enter without altering the kernel}
+    Route~I is a \emph{selection and indexing principle}:
+    \begin{itemize}
+        \item \textbf{Selection:} among candidate hyperbolic knots, choose quark-sector
+        representatives by minimizing degeneracies under simple invariants while maintaining
+        chirality and hyperbolicity.
+        \item \textbf{Optional indexing (real $k$):} define a dimensionless spectral index
+        $k(T)\in\mathbb{R}^+$ using hyperbolic-volume ratios, e.g.
+        \[
+            k(T)=\frac{\Vol_{\mathbb H}(T)}{\Vol_{\mathbb H}(T_{\rm ref})},
+        \]
+        or a monotone transform thereof.
+        This preserves the existing kernel structure while allowing $k(T)$ to be a measured
+        or computed real number (e.g.\ a spectral-gap ratio) rather than an integer label.
+    \end{itemize}
+    Non-hyperbolic knots (e.g.\ torus knots such as $3_1$) do not admit a finite hyperbolic
+    volume; for those sectors, Route~I is not used and $k(T)$ remains an independent index.
+
+
 %==============================================================================
     \section{Invariant Master Mass Formula}
 
         Substituting
         Eqs.~\eqref{eq:u_def}, \eqref{eq:volume}, and \eqref{eq:kernel}
         into Eq.~\eqref{eq:base_mass} yields the invariant master equation:
+
+        \subsection*{Factorized form and universal prefactor}
+        Define the universal mass scale
+        \begin{equation}
+            M_0
+            =
+            \frac{4}{\alpha}\;
+            \frac{\left(\frac12\rho\,v_{\circlearrowleft}^2\right)\left(\pi r_c^3\right)}{c^2},
+            \label{eq:M0_def}
+        \end{equation}
+        so that the master invariant can be written compactly as
+        \begin{equation}
+            M(T)=
+            M_0\;
+            k(T)^{-3/2}\;
+            \phi^{-g(T)}\;
+            n(T)^{-1/\phi}\;
+            L_{\mathrm{tot}}(T).
+            \label{eq:master_factorized}
+        \end{equation}
+        This isolates the purely topological/geometric dependence into the dimensionless
+        factors multiplying $M_0$.
+
         \begin{equation}
             \boxed{%
                 \strut
@@ -212,8 +411,8 @@ component_suppression = topo.n ** (-math.exp(-asinh(0.5)))
                     \left(
                         \frac{4}{\alpha}
                         \, k(T)^{-3/2}
-                        \, \exp\!\left(-g(T)\,\operatorname{asinh}\!\left(\tfrac12\right)\right)
-                        \, n(T)^{-\exp\!\left(-\operatorname{asinh}\!\left(\tfrac12\right)\right)}
+                        \, \phi^{-g(T)}
+                        \, n(T)^{-1/\phi}
                     \right)
                     \left(\frac{1}{2}\rho\,v_{\circlearrowleft}^2\right)
                     \left(\pi r_c^3 L_{\text{tot}}(T)\right)
@@ -252,8 +451,8 @@ def master_mass_invariant(topo):
                 {
                     \left(\frac{4}{\alpha}\right)
                     k^{-3/2}
-                    \exp\!\left(-g\,\operatorname{asinh}\!\left(\tfrac12\right)\right)
-                    n^{-\exp\!\left(-\operatorname{asinh}\!\left(\tfrac12\right)\right)}
+                    \phi^{-g}
+                    n^{-1/\phi}
                     \left(\frac{1}{2}\rho v_{\circlearrowleft}^2\right)
                     \pi r_c^3
                 }.
@@ -373,8 +572,7 @@ solve_for_L_tot(mass_actual, topo_base)
             \item $\rho v^2$ : $\si{J\,m^{-3}}$,
             \item $r_c^3$ : $\si{m^3}$,
             \item $L_{\text{tot}}$ : dimensionless,
-            \item $\alpha, k, g, n$ and the hyperbolic factor
-            $\operatorname{asinh}(1/2)$ : dimensionless.
+            \item $\alpha, k, g, n$ and $\phi$ (golden ratio) : dimensionless.
         \end{itemize}
 
         Thus $M$ has units of $\si{kg}$ as required.
@@ -445,8 +643,8 @@ solve_for_L_tot(mass_actual, topo_base)
                     \left(
                         \frac{4}{\alpha}
                         \, k(T)^{-3/2}
-                        \exp\!\left(-g(T)\,\operatorname{asinh}\!\left(\tfrac12\right)\right)
-                        n(T)^{-\exp\!\left(-\operatorname{asinh}\!\left(\tfrac12\right)\right)}
+                        \phi^{-g(T)}
+                        n(T)^{-1/\phi}
                     \right)
                     \frac{
                         \left(\frac{1}{2}\rho v_{\circlearrowleft}^2\right)
@@ -572,6 +770,11 @@ python SST_Atom_Mass_Invariant.py exact_closure
 
         \begin{thebibliography}{9}
 
+            \bibitem{Rolfsen1976}
+            D.~Rolfsen (1976),
+            \emph{Knots and Links},
+            Publish or Perish.
+
             \bibitem{Kelvin1867}
             W. Thomson (Lord Kelvin),
             \emph{On Vortex Atoms},
@@ -587,6 +790,59 @@ python SST_Atom_Mass_Invariant.py exact_closure
             \emph{Zur Theorie der Kernmassen},
             Z. Physik \textbf{96}, 431--458 (1935).
 
-        \end{thebibliography}
+            \bibitem{Lee2025DoubleTwist}
+            J. Lee (2025),
+            \emph{Rational Concordance of Double Twist Knots},
+            arXiv:2504.07636v1.
+
+                \bibitem{Schwinger1951}
+                J.~Schwinger (1951),
+                ``On Gauge Invariance and Vacuum Polarization,''
+                \emph{Phys. Rev.} \textbf{82}, 664--679.
+                doi:10.1103/PhysRev.82.664.
+
+                \bibitem{Vassilevich2003}
+                D.~V.~Vassilevich (2003),
+                ``Heat kernel expansion: user’s manual,''
+                \emph{Phys. Rept.} \textbf{388}, 279--360.
+                doi:10.1016/j.physrep.2003.09.002.
+
+                \bibitem{Schubert2001}
+                C.~Schubert (2001),
+                ``Perturbative quantum field theory in the string-inspired formalism,''
+                \emph{Phys. Rept.} \textbf{355}, 73--234.
+                doi:10.1016/S0370-1573(01)00013-8.
+
+                \bibitem{Mostow1973}
+                G.~D.~Mostow (1973),
+                \emph{Strong Rigidity of Locally Symmetric Spaces},
+                Annals of Mathematics Studies 78, Princeton University Press.
+
+                \bibitem{Prasad1973}
+                G.~Prasad (1973),
+                ``Strong rigidity of $Q$-rank 1 lattices,''
+                \emph{Invent. Math.} \textbf{21}, 255--286.
+
+                \bibitem{Thurston1979}
+                W.~P.~Thurston (1979),
+                \emph{The Geometry and Topology of Three-Manifolds},
+                Princeton lecture notes (widely circulated).
+
+                \bibitem{NeumannZagier1985}
+                W.~D.~Neumann and D.~Zagier (1985),
+                ``Volumes of hyperbolic three-manifolds,''
+                \emph{Topology} \textbf{24}(3), 307--332.
+                doi:10.1016/0040-9383(85)90004-7.
+
+                \bibitem{SnapPy}
+                M.~Culler, N.~M.~Dunfield, M.~Goerner, and J.~R.~Weeks,
+                \emph{SnapPy, a computer program for studying the geometry and topology of 3-manifolds},
+                \url{https://snappy.computop.org}.
+
+                \bibitem{KnotAtlas}
+                D.~Bar-Natan (ongoing),
+                \emph{The Knot Atlas},
+                \url{https://katlas.org}.
+            \end{thebibliography}
 
 \end{document}

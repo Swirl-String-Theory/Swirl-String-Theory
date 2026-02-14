@@ -2,6 +2,15 @@
 %! Affiliation = Independent Researcher, Groningen, The Netherlands
 %! ORCID = 0009-0006-1686-3961
 %! DOI = 10.5281/zenodo.xxx
+%------------------------------------------------------------------------------
+% (Added bridge appendix for SST-59 kernel interpretation: k(T) as loop-time index)
+%------------------------------------------------------------------------------
+%
+% NOTE:
+% This patch is intentionally "append-only" and is designed to apply cleanly
+% even if SST-68 structure differs, because it injects a small appendix block
+% just before \end{document}. If your file already has \appendix sections,
+% keep this as a final appendix.
 
 \newcommand{\paperdoi}{10.5281/zenodo.xxx}
 \newcommand{\papertitle}{Hydrodynamic Phase-Crossover and the Origin of the Pseudogap in Constrained Many-Body Fluids}
@@ -128,6 +137,7 @@
             We stress that the temporal jitter scale $\sigma_\tau$ introduced in this appendix is not required for the hydrodynamic crossover mechanism developed in the main text, nor does it enter any of the scaling results or physical conclusions. It is presented solely as an optional conjectural bound that may provide a possible falsifiability criterion, and its absence would not affect the validity of the collective phase-crossover picture.
 
             \begin{thebibliography}{9}
+                \bibitem{Lee2025DoubleTwist} J.~Lee (2025), \emph{Rational Concordance of Double Twist Knots}, arXiv:2504.07636.
                 \bibitem{Anderson1987} P. W. Anderson. The Resonating Valence Bond State in La$_2$CuO$_4$ and Superconductivity. \textit{Science}, 235(4793):1196--1198, 1987.
                 \bibitem{Fradkin2013} E. Fradkin. \textit{Field Theories of Condensed Matter Physics}. Cambridge University Press, 2nd edition, 2013.
                 \bibitem{Erneux2009} T. Erneux. \textit{Applied Delay Differential Equations}. Springer, 2009.
@@ -135,5 +145,31 @@
                 \bibitem{Norman1998} M. R. Norman et al. Destruction of the Fermi surface in underdoped high-Tc superconductors. \textit{Nature}, 392:157--160, 1998.
                 \bibitem{Helmholtz1858} H. Helmholtz. On Integrals of the Hydrodynamical Equations Which Express Vortex Motion. \textit{J. für die reine und angewandte Mathematik}, 55:25--55, 1858.
             \end{thebibliography}
+
+\appendix
+\input{SST-68_mass_kernel_appendix}
+
+\section{Bridge: delayed loop-time selection and the $k(T)^{-3/2}$ measure}
+\label{app:bridge_k_scaling}
+
+In closed-loop delayed synchronization models, a configuration selects (or strongly
+weights) a discrete set of self-consistent phase-locked modes characterized by a loop
+time $\tau$ (or an equivalent spectral gap scale). A minimal field-theoretic
+interpretation of the knot-index $k(T)\in\mathbb{R}^+$ used in the SST-59 mass kernel is:
+\[
+    T_{\rm prop}(T) \;\propto\; \tau(T),
+    \qquad
+    k(T) \;=\; \frac{T_{\rm prop}(T)}{T_{\rm prop}(T_{\rm ref})}
+    \;=\; \frac{\tau(T)}{\tau(T_{\rm ref})}.
+\]
+For a Gaussian sector with quadratic operator $H=-\nabla^2+m^2$ in three spatial dimensions,
+the proper-time / heat-kernel representation yields a universal short-time weight
+$T_{\rm prop}^{-3/2}$ (the $d/2$ exponent with $d=3$). Hence the measure contributes
+\[
+    T_{\rm prop}(T)^{-3/2}\;\propto\;k(T)^{-3/2},
+\]
+which matches the $k(T)^{-3/2}$ prefactor used in SST-59 without requiring additional
+model-specific assumptions beyond (i) loop-time selection and (ii) a quadratic fluctuation
+sector.
 
 \end{document}

@@ -2364,9 +2364,361 @@ The molecule outlier (\texttt{C8H10N4O2}, caffeine) highlights a limitation of a
         \item $F_{\text{swirl}}^{\max} = 29.053507$ N
     \end{itemize}
 
+    \section*{Appendix Y: Quark masses and CKM mixing as tunneling overlaps in the SST master formula}
+
+    \subsection*{Y.1 SST master mass kernel and quark-sector bookkeeping}
+
+        We extend the SST master mass formula (used for $e,\mu,\tau$) to quark effective masses
+        $q\in\{u,d,s,c,b,t\}$ by writing
+        \begin{equation}
+            M_q \;=\; K_M\,V_q\,\xi_q,
+            \qquad
+            K_M \equiv \frac{1}{\varphi}\,\frac{4}{\alpha}\left(\frac12\,\rho_{\text{core}}\,\frac{\lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert^2}{c^2}\right).
+            \label{eq:KM_kernel}
+        \end{equation}
+        As in the lepton sector, the kernel $K_M$ is universal; flavor dependence is delegated to
+        an effective localization volume $V_q$ and a dimensionless structure/dressing factor $\xi_q$.
+        For quarks, $M_q$ should be interpreted as an \emph{effective} inertial parameter (since quark masses
+        are scheme- and scale-dependent in the SM).
+
+    \subsection*{Y.2 Why a CKM-like matrix is structurally unavoidable}
+
+        In the SM, charged-current weak interactions couple left-handed quark doublets.
+        Diagonalizing the up- and down-type mass matrices yields a mismatch matrix
+        $V_{\text{CKM}}$:
+        \begin{equation}
+            \mathcal{L}_{\text{CC}}
+            \;=\;
+            -\frac{g}{\sqrt{2}}\,
+            \overline{u}_{L}\gamma^\mu V_{\text{CKM}}\, d_{L}\,W^+_\mu + \text{h.c.}
+            \label{eq:SM_CKM_CC}
+        \end{equation}
+        with $u_L=(u_L,c_L,t_L)^T$ and $d_L=(d_L,s_L,b_L)^T$.
+
+        In SST language, two bases are generically distinct:
+        (i) an \emph{inertial basis} defined by extrema of an SST effective energy functional
+        (which defines $M_q$ via \eqref{eq:KM_kernel}),
+        and (ii) an \emph{interaction/tunneling basis} defined by which configurations are connected by the charged-current process.
+        A nontrivial mixing matrix is the generic consequence.
+
+    \subsection*{Y.3 SST definition of the mixing matrix from a tunneling operator}
+
+        Let $\{|u_i\rangle\}$ and $\{|d_j\rangle\}$ be inertial eigenstates (mass-extremizing states)
+        for up-type ($i=1,2,3$ corresponding to $u,c,t$) and down-type ($j=1,2,3$ corresponding to $d,s,b$).
+        Let $\widehat{T}$ denote the SST charged-current tunneling operator that connects down-type to up-type sectors.
+        Define the normalized overlap amplitudes:
+        \begin{equation}
+            V^{(\text{SST})}_{ij}
+            \;\equiv\;
+            \frac{\langle u_i|\widehat{T}|d_j\rangle}{\sqrt{\sum_{k=1}^3 |\langle u_i|\widehat{T}|d_k\rangle|^2}},
+            \qquad
+            \sum_{j=1}^3 |V^{(\text{SST})}_{ij}|^2=1.
+            \label{eq:SST_CKM_def}
+        \end{equation}
+        If $\widehat{T}$ is effectively isometric on the three-dimensional subspace spanned by $\{|d_j\rangle\}$,
+        then $V^{(\text{SST})}$ is approximately unitary; deviations signal leakage into additional channels.
+
+    \subsection*{Y.4 An empirical ``distance matrix'' from the measured CKM hierarchy}
+
+        To instantiate a concrete SST model without committing to a specific knot dictionary,
+        we define the \emph{empirical tunneling distances} directly from the magnitudes:
+        \begin{equation}
+            D^{(\text{obs})}_{ij} \;\equiv\; -\ln |V_{ij}|,
+            \label{eq:obs_distance_def}
+        \end{equation}
+        using the PDG global-fit CKM magnitudes (three-generation unitarity).
+        With the PDG 2025 fit values \cite{PDG2025_CKM},
+        \begin{equation}
+            |V_{\text{CKM}}| \approx
+            \begin{pmatrix}
+                0.97435 & 0.22501 & 0.003732 \\
+                0.22487 & 0.97349 & 0.04183 \\
+                0.00858 & 0.04111 & 0.999118
+            \end{pmatrix},
+            \label{eq:PDG2025_CKM_matrix}
+        \end{equation}
+        one obtains numerically
+        \begin{equation}
+            D^{(\text{obs})} \approx
+            \begin{pmatrix}
+                0.0260 & 1.4916 & 5.5908 \\
+                1.4922 & 0.0269 & 3.1741 \\
+                4.7583 & 3.1915 & 0.000882
+            \end{pmatrix}.
+            \label{eq:PDG2025_distance_matrix}
+        \end{equation}
+        Interpretation: $(u\!\leftrightarrow\!d)$ and $(c\!\leftrightarrow\!s)$ are ``short-distance'' transitions
+        ($D\sim 0.03$), whereas $(u\!\leftrightarrow\!b)$ and $(t\!\leftrightarrow\!d)$ are ``long-distance''
+        ($D\gtrsim 4.7$--$5.6$).
+
+        The PDG Wolfenstein parameters further quantify the hierarchy \cite{PDG2025_CKM}:
+        \begin{equation}
+            \lambda = 0.22501\pm0.00068,\quad
+            A = 0.826^{+0.016}_{-0.015},\quad
+            \bar{\rho}=0.1591\pm0.0094,\quad
+            \bar{\eta}=0.3523^{+0.0073}_{-0.0071},
+            \label{eq:PDG2025_wolf}
+        \end{equation}
+        and the Jarlskog invariant is
+        \begin{equation}
+            J = \left(3.12^{+0.13}_{-0.12}\right)\times 10^{-5}.
+            \label{eq:PDG2025_J}
+        \end{equation}
+
+    \subsection*{Y.5 SST ansatz: distances as weighted gaps of SST invariants}
+
+        We now propose an SST-computable model for $D_{ij}$ in terms of invariant gaps between the
+        up-type and down-type configuration classes:
+        \begin{equation}
+            D^{(\text{SST})}_{ij}
+            \;=\;
+            \kappa_C\,\big|\Delta C_{ij}\big|
+            +\kappa_L\,\big|\Delta L_{ij}\big|
+            +\kappa_H\,\big|\Delta \mathcal{H}_{ij}\big|
+            +\kappa_G\,\big|\Delta G_{ij}\big|.
+            \label{eq:SST_distance_ansatz}
+        \end{equation}
+        Here $C$ is a complexity proxy (e.g.\ crossing/contact number or near-contact functional),
+        $L$ is an effective filament length proxy,
+        $\mathcal{H}$ is a helicity/linkedness proxy,
+        and $G$ is a ``generation'' or layering index (an SST coarse-grained label capturing why $1\!\leftrightarrow\!2$
+        mixing is parametrically larger than $1\!\leftrightarrow\!3$).
+        The coefficients $\kappa_{C,L,H,G}>0$ encode the tunneling stiffness of each invariant channel.
+
+        Given \eqref{eq:SST_distance_ansatz}, the SST mixing magnitudes are predicted by
+        \begin{equation}
+            |V^{(\text{SST})}_{ij}|
+            \;=\;
+            \frac{e^{-D^{(\text{SST})}_{ij}}}{\sqrt{\sum_{k=1}^3 e^{-2D^{(\text{SST})}_{ik}}}}.
+            \label{eq:SST_V_from_D}
+        \end{equation}
+
+        \paragraph{Calibration strategy.}
+            A minimal (and falsifiable) calibration is:
+            \begin{itemize}
+                \item choose an explicit SST knot/dictionary that assigns $(C,L,\mathcal{H},G)$ to each of
+                $\{u,c,t\}$ and $\{d,s,b\}$;
+                \item determine $\kappa_{C,L,H,G}$ by matching three independent magnitudes
+                (e.g.\ $|V_{us}|$, $|V_{cb}|$, $|V_{ub}|$), then predict the remaining six;
+                \item check whether the predicted $J$ (computed from $V^{(\text{SST})}$) agrees in order of magnitude with \eqref{eq:PDG2025_J}.
+            \end{itemize}
+
+    \subsection*{Y.6 CP phase as geometric holonomy (optional extension)}
+
+    Beyond magnitudes, CP violation requires a rephasing-invariant complex phase.
+    In SST, a natural source is a geometric (path-dependent) phase accumulated along inequivalent
+    tunneling trajectories $\Gamma_{ij}$ in configuration space:
+    \begin{equation}
+        \theta_{ij} \;=\; \int_{\Gamma_{ij}} \mathcal{A}\cdot d\ell,
+        \qquad
+        V^{(\text{SST})}_{ij} = |V^{(\text{SST})}_{ij}|\,e^{i\theta_{ij}}.
+        \label{eq:SST_holonomy_phase}
+    \end{equation}
+    A direct falsifier is whether the induced Jarlskog invariant
+    \begin{equation}
+        J_{\text{SST}}
+        \equiv
+        \mathrm{Im}\!\left(
+                         V_{ud}\,V_{cs}\,V_{us}^\ast\,V_{cd}^\ast
+        \right)
+        \label{eq:SST_Jarlskog}
+    \end{equation}
+    can reproduce \eqref{eq:PDG2025_J} while respecting the hierarchy encoded in \eqref{eq:PDG2025_distance_matrix}.
+
+    \paragraph{Child-level analogy.}
+        Think of three ``easy swaps'' and three ``hard swaps'' between two sets of complicated knots:
+        the CKM table is just the scoreboard of how hard each swap is, and the distances $D_{ij}$ measure that hardness.
+
+        \begin{thebibliography}{9}
+
+            \bibitem{Cabibbo1963}
+            N.~Cabibbo,
+            \textit{Unitary Symmetry and Leptonic Decays},
+            Phys.\ Rev.\ Lett.\ \textbf{10}, 531 (1963),
+            doi:10.1103/PhysRevLett.10.531.
+
+            \bibitem{KobayashiMaskawa1973}
+            M.~Kobayashi and T.~Maskawa,
+            \textit{CP-Violation in the Renormalizable Theory of Weak Interaction},
+            Prog.\ Theor.\ Phys.\ \textbf{49}, 652 (1973),
+            doi:10.1143/PTP.49.652.
+
+            \bibitem{Jarlskog1985}
+            C.~Jarlskog,
+            \textit{Commutator of the Quark Mass Matrices in the Standard Electroweak Model and a Measure of Maximal CP Violation},
+            Phys.\ Rev.\ Lett.\ \textbf{55}, 1039 (1985),
+            doi:10.1103/PhysRevLett.55.1039.
+
+            \bibitem{PDG2025_CKM}
+            S.~Navas \textit{et al.} (Particle Data Group),
+            \textit{CKM Quark-Mixing Matrix},
+            Phys.\ Rev.\ D \textbf{110}, 030001 (2024) and 2025 update (PDG 2025 review),
+            (see the PDG 2025 CKM review PDF).
+
+        \end{thebibliography}
+
+        % =========================
+% Appendix: Charged-lepton specialization of the SST master mass law
+% (Canon v0.6.0 + conceptual link to Canon v0.7.6)
+% =========================
+
+        \appendix
+    \section{Charged-lepton specialization of the SST invariant mass law}
+    \label{app:leptons_master_mass}
+
+% --- SST house macros (minimal, to avoid undefined commands) ---
+    \newcommand{\vswirl}{\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}}
+    \newcommand{\rhoF}{\rho_{\!f}}
+    \newcommand{\rhoE}{\rho_{\!E}}
+    \newcommand{\rhoM}{\rho_{\!m}}
+    \newcommand{\rc}{r_c}
+
+    \subsection{From the canonical mass definition to the topology-driven master formula}
+
+        Canon v0.7.6 defines rest mass as core-localized kinetic swirl energy,
+        \begin{equation}
+            M(K)c^2 \equiv \int_{V_K}\frac12\,\rho_{\text{core}}\,|\mathbf v(\mathbf r)|^2\,d^3r,
+            \label{eq:mass_core_integral}
+        \end{equation}
+        with a standard slender-filament reduction yielding a one-dimensional functional
+        \begin{equation}
+            M(K)\;\approx\;\frac{1}{2c^2}\,\rho_{\text{core}}\,\Gamma^2\,L(K)\,\Xi(K),
+            \label{eq:mass_slender_reduction}
+        \end{equation}
+        where $L(K)$ is a (dimensionless) ropelength and $\Xi(K)$ summarizes geometry/core-profile effects.
+
+        Canon v0.6.0 adopts an explicit topology-driven closure for this sector by writing the mass as an invariant
+        energy functional $E(K)=u\,V(K)\,\Xi_{\text{top}}(K)$ with
+        \begin{equation}
+            u=\frac12\,\rho_{\text{core}}\,\|\vswirl\|^2,
+            \qquad
+            V(K)=\pi \rc^3\,L_{\text{tot}}(K),
+            \qquad
+            M(K)=\frac{E(K)}{c^2},
+            \label{eq:mass_kernel_uv}
+        \end{equation}
+        and a discrete multiplier
+        \begin{equation}
+            \Xi_{\text{top}}(K)=\frac{4}{\alpha_{\rm fs}}\,b^{-3/2}\,\varphi^{-g}\,n^{-1/\varphi},
+            \label{eq:Xi_top}
+        \end{equation}
+        where $\alpha_{\rm fs}$ is the fine-structure constant, $\varphi=(1+\sqrt5)/2$ is the golden ratio,
+        and $(b,g,n)\in\mathbb Z$ are Canon topology labels (components/link count, layer index, and circulation quantum index).
+
+        Collecting factors gives the Canon v0.6.0 invariant mass law used in the code:
+        \begin{equation}
+            M(K)=
+            \left(\frac{4}{\alpha_{\rm fs}}\right)
+            b^{-3/2}\,\varphi^{-g}\,n^{-1/\varphi}\;
+            \frac{u\,\pi \rc^3}{c^2}\;L_{\text{tot}}(K),
+            \qquad
+            u=\frac12\rho_{\text{core}}\|\vswirl\|^2.
+            \label{eq:master_mass_law}
+        \end{equation}
+
+    \subsection{Charged leptons: inversion to solve $L_{\text{tot}}$ for $e,\mu,\tau$}
+
+        In the Canon taxonomy, charged leptons correspond to torus-knot classes.
+        For a charged lepton $\ell\in\{e,\mu,\tau\}$ with assigned labels $(b_\ell,g_\ell,n_\ell)$ and measured mass $M_\ell^{(\mathrm{exp})}$,
+        invert Eq.~\eqref{eq:master_mass_law} to obtain the implied ropelength:
+        \begin{equation}
+            L_{\text{tot}}^{(\ell)}=
+            \frac{M_\ell^{(\mathrm{exp})}c^2}{
+                \left(\frac{4}{\alpha_{\rm fs}}\right)
+                b_\ell^{-3/2}\,\varphi^{-g_\ell}\,n_\ell^{-1/\varphi}\;
+                u\,\pi \rc^3 }.
+            \label{eq:Ltot_inversion}
+        \end{equation}
+
+        It is often convenient to absorb all discrete labels into a single dimensionless factor
+        \begin{equation}
+            \mathcal{G}_\ell \;\equiv\;
+            b_\ell^{-3/2}\,\varphi^{-g_\ell}\,n_\ell^{-1/\varphi}\,L_{\text{tot}}^{(\ell)}.
+            \label{eq:Gell_def}
+        \end{equation}
+        Then the charged-lepton mass spectrum reduces to
+        \begin{equation}
+            M_\ell=
+            \left(\frac{4}{\alpha_{\rm fs}}\right)\frac{u\,\pi \rc^3}{c^2}\;\mathcal{G}_\ell,
+            \qquad
+            u=\frac12\rho_{\text{core}}\|\vswirl\|^2.
+            \label{eq:lepton_mass_Gell}
+        \end{equation}
+
+    \subsection{Numerical specialization (canonical constants; extracting $\mathcal{G}_\ell$)}
+
+        Using the canonical constants $\|\vswirl\|=1.09384563\times10^6\,\mathrm{m/s}$,
+        $\rc=1.40897017\times10^{-15}\,\mathrm{m}$,
+        $\rho_{\text{core}}=3.8934358266918687\times10^{18}\,\mathrm{kg/m^3}$,
+        and $c=299792458\,\mathrm{m/s}$, define the universal lepton prefactor
+        \begin{equation}
+            A \;\equiv\; \left(\frac{4}{\alpha_{\rm fs}}\right)\frac{u\,\pi \rc^3}{c^2}
+            \;=\;\left(\frac{4}{\alpha_{\rm fs}}\right)\frac{\left(\frac12\rho_{\text{core}}\|\vswirl\|^2\right)\pi \rc^3}{c^2}.
+            \label{eq:A_prefactor}
+        \end{equation}
+        Then $\mathcal{G}_\ell = M_\ell/A$ follows immediately from experimental masses.
+
+        For illustration, taking representative lepton masses
+        $m_e c^2\simeq 0.51099895\,\mathrm{MeV}$,
+        $m_\mu c^2\simeq 105.6583755\,\mathrm{MeV}$,
+        $m_\tau c^2\simeq 1776.93\,\mathrm{MeV}$,
+        one obtains dimensionless values
+        \begin{equation}
+            \mathcal{G}_e \approx 1.18\times 10^{-2},\qquad
+            \mathcal{G}_\mu \approx 2.44,\qquad
+            \mathcal{G}_\tau \approx 4.11\times 10^{1},
+            \label{eq:Gell_numbers}
+        \end{equation}
+        and hence the measured hierarchy is encoded entirely in $\mathcal{G}_\ell$.
+
+    \subsection{What this buys you: a clean target for ``generation physics'' in SST}
+
+        Equation~\eqref{eq:lepton_mass_Gell} shows that explaining the charged-lepton spectrum in SST reduces to
+        explaining the discrete (knot-selection) values of $\mathcal{G}_\ell$.
+        Two immediately falsifiable model-completions are:
+
+        \begin{enumerate}
+            \item \textbf{Fixed topology, varying layer:} $b_\ell,n_\ell$ fixed across generations, $g_\ell$ varies
+            (e.g. a discrete-scale layer index), with $L_{\text{tot}}$ remaining $\mathcal O(1)$.
+            This predicts near-log-linear structure of $\log M_\ell$ in the layer index.
+            \item \textbf{Fixed layer, varying ropelength/geometry:} $g_\ell$ fixed and the hierarchy is attributed to
+            discrete jumps in $L_{\text{tot}}$ (or, equivalently, in the v0.7.6 $\Xi(K)$ factor).
+            This predicts that numerical minimization of the knot-energy functional selects torus-knot embeddings with
+            large, discrete ropelength separations between $(3_1)$-like, $(\cdot)$-like higher torus families.
+        \end{enumerate}
+
+        Either way, the generation problem becomes a \emph{knot-selection} problem: compute the stable minima of
+        $E_{\rm eff}[K]$ and read off the discrete $\mathcal{G}_\ell$ values.
+
+    \subsection*{A child-level analogy (one sentence)}
+        Think of three knots tied in the same kind of string: they all use the same string material, but the muon- and tau-knots
+        are ``tied in ways that trap much more swirling motion,'' so they weigh more.
+
+% -------------------------
+% Bibliography entries (appendix-local)
+% -------------------------
+        \begin{thebibliography}{9}
+
+            \bibitem{ATLAS_Hmumu_PRL2025}
+            ATLAS Collaboration (2025),
+            \textit{Evidence for the Dimuon Decay of the Higgs Boson in pp Collisions with the ATLAS Detector},
+            Phys.\ Rev.\ Lett.\ (uploaded PRL PDF in this project).
+
+            \bibitem{SST_Canon_v06}
+            O.~Iskandarani (2025),
+            \textit{Swirl String Theory (SST) Canon v0.6.0: Core Axioms, Postulates, Constants, Master Equations, and Lagrangian Framework},
+            (Internal manuscript / project PDF).
+
+            \bibitem{SST_Canon_v076}
+            O.~Iskandarani (2025),
+            \textit{Swirl String Theory (SST) Canon v0.7.6},
+            (Internal manuscript / project PDF).
 
 
-\section{Integrated Response to Critical Inquiry}
+        \end{thebibliography}
+
+
+    \section{Integrated Response to Critical Inquiry}
 
 \noindent \textbf{Subject:} Addressing the Synthesis of SST Canon v0.7.6 and the Relational TOA Framework \\
 \textbf{Context:} Response to peer-inquiry regarding conservation robustness, scale dependence, and experimental falsifiability of the unified Clock-Gravity sector.
