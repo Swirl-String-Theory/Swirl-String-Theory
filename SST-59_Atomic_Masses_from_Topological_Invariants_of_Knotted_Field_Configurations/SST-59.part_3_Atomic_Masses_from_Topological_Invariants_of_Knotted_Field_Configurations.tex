@@ -72,6 +72,24 @@ Independent Researcher, Groningen, The Netherlands}
         suppression index, genus, component number, and dimensionless ropelength.
     \end{abstract}
 
+\paragraph{Assumptions (effective model).}
+\begin{itemize}
+    \item Euler regime (ideal, non-dissipative dynamics).
+    \item Incompressible flow.
+    \item Inviscid flow.
+    \item Barotropic equation of state (pressure is a function of density only).
+    \item No reconnection of circulation/vorticity lines (topological class preserved).
+\end{itemize}
+
+\paragraph{Claimed vs.\ not claimed.}
+\begin{itemize}
+    \item \textbf{Claimed:} a code-faithful implementation of a topology-indexed mass functional yields reproducible, quantitatively testable error statistics across a fixed benchmark set under a single global normalization and discrete index assignments.
+    \item \textbf{Not claimed:} that residual discrepancies are eliminated at this stage; outliers are attributed to identifiable limitations (e.g.\ binding-energy bridge uncertainty, index ambiguity, or dataset conventions), and are treated as diagnostics rather than ``fixed by fitting.''
+\end{itemize}
+
+\paragraph{Observable definition.}
+The primary observables are the mass predictions themselves and the associated error metrics (absolute/relative error distributions, outlier structure, and sensitivity to discrete index assignments) computed against tabulated experimental atomic masses under an explicitly versioned reference implementation.
+
 % ---------- INSERT (Part III): Assumptions / Claims / Observable ----------
 \paragraph{Assumptions (benchmarking and bridge model).}
 The empirical benchmark is defined under the following transparent modeling assumptions:
