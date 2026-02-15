@@ -81,23 +81,34 @@
         Parameterized Post-Newtonian preferred-frame parameters $\alpha_1$ and $\alpha_2$.
     \end{abstract}
 
-\paragraph{Assumptions (effective model).}
+\paragraph{Scope \& status.}
+This paper (Part~IV) analyzes operational weak-field consequences of introducing a covariant clock--foliation structure into the mass-functional program, and maps the resulting preferred-frame signatures onto established test frameworks (e.g.\ PPN-style parameters) without modifying electromagnetic dynamics.
+
+\paragraph{Assumptions (weak-field + foliation).}
 \begin{itemize}
-    \item Euler regime (ideal, non-dissipative dynamics).
-    \item Incompressible flow.
-    \item Inviscid flow.
-    \item Barotropic equation of state (pressure is a function of density only).
-    \item No reconnection of circulation/vorticity lines (topological class preserved).
+    \item \textbf{Weak-field / slow-motion regime}: expansions are performed to leading nontrivial order in $v/c$ and in weak gravitational potentials.
+    \item \textbf{Covariant foliation field}: a unit timelike vector field $u^\mu$ defines the operational clock slicing used to evaluate the mass functional.
+    \item \textbf{No reconnection / topology preservation}: underlying filamentary sectors remain fixed as in Parts~I--II.
+    \item \textbf{Empirical constraint sectoring}: parameter combinations are restricted to those consistent with gravitational-wave speed constraints (treated as an external observational input).
 \end{itemize}
 
-\paragraph{Claimed vs.\ not claimed.}
+\paragraph{What is claimed vs.\ not claimed.}
 \begin{itemize}
-    \item \textbf{Claimed:} motion relative to the clock--foliation selects preferred-frame corrections that can be parameterized and bounded using established test frameworks (e.g.\ PPN preferred-frame parameters), yielding concrete null experiments.
-    \item \textbf{Not claimed:} large or generic violations of relativistic phenomenology; the intent is a controlled mapping to existing bounds (including gravitational-wave speed constraints) and a delineation of the remaining experimentally accessible parameter space.
+    \item \textbf{Claimed:} Motion relative to the foliation can be represented as \emph{velocity-dependent corrections to the effective inertial/gravitational mass functional}, producing preferred-frame signatures that can be parameter-mapped onto standard null-test observables.
+    \item \textbf{Not claimed:} We do not claim new long-range forces, nor do we require modifications of Maxwell electrodynamics; any electromagnetic influence is excluded as a primary source and would have to proceed only via persistent, non-radiative contributions to the mass/clock functional (if present at all).
 \end{itemize}
 
-\paragraph{Observable definition.}
-The observables are laboratory-accessible anisotropy signatures (e.g.\ sidereal-modulated frequency shifts in precision resonators) that constrain preferred-frame parameters (such as $\alpha_1,\alpha_2$ in PPN language) and thereby bound velocity-dependent corrections to the mass functional.
+\paragraph{Observable definition (what is measured).}
+The observable is a \emph{preferred-frame anisotropy signal} in a system whose eigenfrequencies depend on effective inertia. In a rotating resonator null test, one measures the fractional differential frequency shift
+\begin{equation}
+\frac{\Delta f(t)}{f}
+\;=\;
+S_2 \cos\!\big(2\omega_{\rm rot} t\big)
+\;+\;
+\sum_{n=\pm1,\pm2} S_{2,n}\cos\!\big(2\omega_{\rm rot} t + n\omega_\oplus t\big),
+\label{eq:obs_partIV_sidereal}
+\end{equation}
+where the \emph{sidereal sidebands} ($\omega_\oplus$) isolate preferred-frame effects from purely instrumental rotation harmonics. These fitted coefficients provide the operational bridge to the standard preferred-frame parameterization used for comparison with existing bounds.
 
     \titlepageClose
 

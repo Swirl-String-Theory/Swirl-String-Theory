@@ -58,48 +58,32 @@ double-twist knots \(K_{m,n}\) as a \emph{hard constraint} on \(\mathsf{G}\) via
 (iii) we add a bridge model to atomic masses by subtracting an SEMF-like binding functional that is explicitly compatible with the master kernel.
 \end{abstract}
 
-\paragraph{Assumptions (effective model).}
+\paragraph{Scope \& status.}
+This paper (Part~II) formalizes \emph{topological admissibility constraints} on topology-indexed mass kernels used in the effective mass functional program. The goal is not to postulate new forces but to restrict the space of allowed kernel assignments by computable 4D-topological criteria.
+
+\paragraph{Assumptions (Euler--Kelvin + topological sectoring).}
 \begin{itemize}
-    \item Euler regime (ideal, non-dissipative dynamics).
-    \item Incompressible flow.
-    \item Inviscid flow.
-    \item Barotropic equation of state (pressure is a function of density only).
-    \item No reconnection of circulation/vorticity lines (topological class preserved).
+    \item \textbf{Same dynamical regime as Part~I}: incompressible, inviscid, barotropic; no reconnection.
+    \item \textbf{Topological sector decomposition}: configurations are partitioned into equivalence classes $T$ (knot/link types plus admissible deformations) with well-defined invariants.
+    \item \textbf{Kernel ansatz}: a dimensionless kernel $\mathcal{K}(T)$ is permitted only when $T$ satisfies a stated admissibility criterion; otherwise it is excluded from the model class.
+    \item \textbf{No continuous Yukawa-like tuning}: only discrete indices/invariants label admissible kernel structure in this part.
 \end{itemize}
 
-\paragraph{Claimed vs.\ not claimed.}
+\paragraph{What is claimed vs.\ not claimed.}
 \begin{itemize}
-    \item \textbf{Claimed:} concordance-style constraints can be used as a \emph{selection rule} on admissible topological sectors for a topology-indexed mass kernel, thereby restricting hierarchical mass assignments without introducing continuous Yukawa textures as free inputs.
-    \item \textbf{Not claimed:} that any specific numerical normalization (e.g.\ a particular global prefactor) is uniquely \emph{derived} from concordance alone; rather, this part defines a falsifiable constraint program that can be accepted or rejected by explicit computation on test families.
+    \item \textbf{Claimed:} A binary admissibility map $\mathsf{G}(T)\in\{0,1\}$ can be defined from concordance-based (4D-topological) constraints and used as a \emph{selection rule} that restricts the allowed kernel classes $\mathcal{K}(T)$.
+    \item \textbf{Not claimed:} We do not claim a proven microscopic necessity that a specific constant (e.g.\ $4/\alpha$) is ``dictated'' by a single invariant; rather, we present a falsifiable constraint program: certain kernel normalizations/ans\"atze are allowed or excluded by computable topological criteria.
 \end{itemize}
 
-\paragraph{Observable definition.}
-The observable content is encoded in (i) an admissibility map $\mathsf{G}(T)\in\{0,1\}$ computed from 4D-topological criteria for a configuration class $T$, and (ii) the induced restriction this imposes on the space of allowed kernel assignments when compared against measured mass ratios in the benchmark datasets of Part~III.
-
-% ---------- Scope \& status: Assumptions / Claims / Observable ----------
-\paragraph{Assumptions (topological constraint program).}
-We work in the smooth category and treat the topology-indexed kernel as an effective selection framework constrained by computable 4D-topological criteria:
-\begin{itemize}
-  \item \textbf{Category:} smooth knots/links in $S^3$, with concordance notions defined via smooth 4-manifolds.
-  \item \textbf{Admissibility map:} a binary gate $\mathsf{G}(T)\in\{0,1\}$ is introduced as a \emph{decidable} topological admissibility indicator (not a narrative device).
-  \item \textbf{Hard testbed family:} the double-twist family $K_{m,n}$ is used because rational sliceness/concordance admits a theorem-level characterization in that family, yielding a finite, checkable criterion.
-\end{itemize}
-
-\paragraph{What is claimed vs.\ what is not claimed.}
-\begin{itemize}
-  \item \textbf{Claimed:} (i) the kernel is restricted by an explicit, reproducible gate $\mathsf{G}(T)$ tied to concordance/rational sliceness, converting an otherwise qualitative ``shielding'' notion into a falsifiable decision rule; (ii) in the $K_{m,n}$ testbed, $\mathsf{G}$ is fixed by a sharp criterion and is therefore non-adjustable when that sector is invoked.
-  \item \textbf{Not claimed:} (i) we do not claim topology \emph{uniquely determines} all mass hierarchies without auxiliary modeling inputs; rather, we provide a constraint program that restricts admissible kernel sectors; (ii) the physical interpretation of the gate is not asserted as a microscopic derivation unless separately established---it is an effective selection rule whose empirical adequacy is testable.
-\end{itemize}
-
-\paragraph{Observable definition (what is actually measured).}
-The observable output of this part is \emph{not} a new measurement channel but a \emph{computable restriction} on the model's mass assignments:
-\[
-T \;\longmapsto\; \mathsf{G}(T)\in\{0,1\},\qquad
-T \;\longmapsto\; M(T)\ \text{via the factorized kernel.}
-\]
-Given a proposed topology assignment $T$ for an excitation class, $\mathsf{G}(T)$ is decidable (and for $K_{m,n}$ fixed by an exact criterion), which in turn fixes whether the normalization factor is active in $M(T)$. The falsifiable content is therefore the conjunction:
-(i) a topology assignment rule, and (ii) the concordance-computed gate value, jointly implying definite mass ratios/patterns.
-% -----------------------------------------------------------------------
+\paragraph{Observable definition (what is measured).}
+The observable output of Part~II is a set of \emph{testable admissibility predictions}:
+given a configuration class $T$, the model predicts either
+\begin{equation}
+\mathsf{G}(T)=1 \ \ (\text{admissible}) \quad \text{or} \quad \mathsf{G}(T)=0 \ \ (\text{excluded}),
+\label{eq:obs_partII_gate}
+\end{equation}
+together with the induced restriction on the mass-kernel assignment $\mathcal{K}(T)$.
+These predictions become measurable in Part~III by checking whether only admissible classes can consistently reproduce mass hierarchies under a single fixed normalization, and by identifying outliers as violations of the admissibility criterion rather than as fit freedom.
 
 \section{Introduction}
 Standard Model particle masses are currently free parameters determined by Yukawa couplings to the Higgs field. Swirl String Theory (SST) proposes an alternative origin: mass is the invariant energy of a topological defect (vortex) in a continuous medium.

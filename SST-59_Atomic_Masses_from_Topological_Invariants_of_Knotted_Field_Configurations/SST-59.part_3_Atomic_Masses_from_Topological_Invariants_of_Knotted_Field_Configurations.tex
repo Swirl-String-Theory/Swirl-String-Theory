@@ -72,47 +72,32 @@ Independent Researcher, Groningen, The Netherlands}
         suppression index, genus, component number, and dimensionless ropelength.
     \end{abstract}
 
-\paragraph{Assumptions (effective model).}
+\paragraph{Scope \& status.}
+This paper (Part~III) provides a reproducible benchmark study of a topology-indexed mass functional across a curated dataset of nuclei/atoms/molecules. It separates (i) constituent mass generation via a dimensionless topological kernel from (ii) binding-energy phenomenology via a documented bridge model.
+
+\paragraph{Assumptions (benchmark semantics).}
 \begin{itemize}
-    \item Euler regime (ideal, non-dissipative dynamics).
-    \item Incompressible flow.
-    \item Inviscid flow.
-    \item Barotropic equation of state (pressure is a function of density only).
-    \item No reconnection of circulation/vorticity lines (topological class preserved).
+    \item \textbf{Kernel discreteness}: constituent masses are generated from discrete topology indices (no per-element continuous fitting).
+    \item \textbf{Single normalization}: the absolute mass scale is anchored once (declared explicitly) and then held fixed across the benchmark set.
+    \item \textbf{Binding bridge transparency}: nuclear binding is incorporated via an explicit, documented phenomenological term (e.g.\ SEMF/Bethe--Weizs\"acker), whose uncertainty is tracked separately from kernel error.
+    \item \textbf{Reproducibility}: code, constants, inputs, and evaluation scripts are versioned to reproduce every reported number.
 \end{itemize}
 
-\paragraph{Claimed vs.\ not claimed.}
+\paragraph{What is claimed vs.\ not claimed.}
 \begin{itemize}
-    \item \textbf{Claimed:} a code-faithful implementation of a topology-indexed mass functional yields reproducible, quantitatively testable error statistics across a fixed benchmark set under a single global normalization and discrete index assignments.
-    \item \textbf{Not claimed:} that residual discrepancies are eliminated at this stage; outliers are attributed to identifiable limitations (e.g.\ binding-energy bridge uncertainty, index ambiguity, or dataset conventions), and are treated as diagnostics rather than ``fixed by fitting.''
+    \item \textbf{Claimed:} Under the above rules, the model yields a quantitative error distribution on a fixed dataset, allowing direct falsification by out-of-sample failure or instability under declared sensitivity tests.
+    \item \textbf{Not claimed:} We do not claim a complete ab initio nuclear theory; the binding bridge is explicitly phenomenological and treated as a controlled, auditable approximation layer.
 \end{itemize}
 
-\paragraph{Observable definition.}
-The primary observables are the mass predictions themselves and the associated error metrics (absolute/relative error distributions, outlier structure, and sensitivity to discrete index assignments) computed against tabulated experimental atomic masses under an explicitly versioned reference implementation.
-
-% ---------- INSERT (Part III): Assumptions / Claims / Observable ----------
-\paragraph{Assumptions (benchmarking and bridge model).}
-The empirical benchmark is defined under the following transparent modeling assumptions:
-\begin{itemize}
-  \item \textbf{Constituent aggregation:} atomic masses are assembled from predicted constituent masses (proton, neutron, electron) plus an explicit nuclear binding correction.
-  \item \textbf{Binding-energy bridge:} nuclear binding is incorporated via a standard semi-empirical mass-formula (SEMF/Bethe--Weizs\"acker) subtraction; this is treated as an external phenomenological bridge rather than a derivation.
-  \item \textbf{Molecular masses:} molecules are computed by summing corrected atomic masses; chemical binding energies (eV scale) are neglected relative to nuclear scales (MeV).
-  \item \textbf{Reference targets:} reported masses are compared against standard reference tables (CODATA / atomic-weight tables).
-\end{itemize}
-
-\paragraph{What is claimed vs.\ what is not claimed.}
-\begin{itemize}
-  \item \textbf{Claimed:} the fixed-kernel implementation attains a median absolute relative error of $0.060\%$ over $N=114$ benchmark objects under the stated assembly rules, and the full evaluation is reproducible from the released code/artifacts.
-  \item \textbf{Not claimed:} (i) the SEMF bridge is not claimed to be a complete nuclear theory; residuals for heavy nuclei are expected to reflect known limitations of SEMF and neglected deformation/shell effects; (ii) the work does not assert uniqueness of topology-to-object assignments beyond the explicit mapping rules used for the benchmark.
-\end{itemize}
-
-\paragraph{Observable definition (what is actually measured).}
-The observables are the predicted rest masses $M_{\rm pred}$ for a fixed benchmark list, and the associated relative error
-\[
-\varepsilon \;=\; 100 \times \frac{M_{\rm pred}-M_{\rm actual}}{M_{\rm actual}}.
-\]
-Operationally, the paper outputs a versioned table $\{\,\text{object},\,M_{\rm actual},\,M_{\rm pred},\,\varepsilon\,\}$ and summary statistics (mean/median/max). Reproducibility is part of the observable contract: the reported tables and metrics must be regenerated by running the stated reference script(s) on the same inputs and constants without manual post-processing.
-% -----------------------------------------------------------------------
+\paragraph{Observable definition (what is measured).}
+The primary observables are the benchmark masses $M^{\rm (data)}_i$ and the model predictions $M^{\rm (model)}_i$ under a fixed normalization, summarized by the absolute relative error
+\begin{equation}
+\delta_i \;\equiv\; \left|\frac{M^{\rm (model)}_i - M^{\rm (data)}_i}{M^{\rm (data)}_i}\right|,
+\qquad
+\text{and its distribution over the benchmark set } \{i=1,\dots,N\}.
+\label{eq:obs_partIII_error}
+\end{equation}
+Reporting the median (and tails/outliers) of $\{\delta_i\}$ constitutes the falsifiable quantitative claim of this part.
 
 %==============================================================================
     \section{Canonical Energy Density}

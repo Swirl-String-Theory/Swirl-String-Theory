@@ -97,29 +97,34 @@ A Self-Contained Derivation of a Topology-Modulated Mass Functional}
         where $k$ is a complexity index (e.g. braid index/crossing proxy), $g$ is Seifert genus, $n$ is the number of components, $\alphafs$ is the fine-structure constant, and $\phig$ is the golden ratio. The paper is written to be ``orthodox-friendly'': all strong statements are framed as model assumptions, the status of each scaling law is clearly labeled, and falsifiable preferred-frame and spectrum-selection consequences are listed. We also separate background density $\rhoF$ (governing wave transport) from a core-localized density $\rhocore$ (governing inertial mass) and explain why this separation is required for dimensional consistency and empirical scale matching.
     \end{abstract}
 
-\paragraph{Assumptions (effective model).}
+\paragraph{Scope \& status.}
+This paper (Part~I) constructs a mathematically controlled \emph{effective} model in which invariant rest mass is represented by a localized energy functional of a persistent filamentary excitation in the Euler--Kelvin regime. No microscopic ontology is assumed beyond the field-theoretic structure stated below.
+
+\paragraph{Assumptions (Euler--Kelvin regime).}
 \begin{itemize}
-    \item Euler regime (ideal, non-dissipative dynamics).
-    \item Incompressible flow.
-    \item Inviscid flow.
-    \item Barotropic equation of state (pressure is a function of density only).
-    \item No reconnection of circulation/vorticity lines (topological class preserved).
+    \item \textbf{Incompressible} flow: $\nabla\!\cdot\mathbf{v}=0$.
+    \item \textbf{Inviscid} dynamics: Euler limit (no viscosity, no dissipation).
+    \item \textbf{Barotropic} closure: $p=p(\rho)$ so that Kelvin circulation conservation applies.
+    \item \textbf{No reconnection / topology preserving evolution}: filament topology is conserved over the timescales of interest.
+    \item \textbf{Persistent localized excitation}: the energy density is spatially localized (core + envelope) and admits a time-averaged stationary description.
 \end{itemize}
 
-\paragraph{Claimed vs.\ not claimed.}
+\paragraph{What is claimed vs.\ not claimed.}
 \begin{itemize}
-    \item \textbf{Claimed:} within the above idealization, the invariant rest mass of a localized filamentary excitation can be represented by a localized rest-energy functional (Hamiltonian density integrated over an effective core volume) that factorizes into a scale, a volume proxy, and a dimensionless topology-dependent kernel.
-    \item \textbf{Not claimed:} that the microscopic vacuum \emph{is} literally an Euler fluid, nor that Standard Model mass generation is replaced here; this part is formulated strictly as a mathematically controlled effective model whose empirical content is deferred to subsequent parts.
+    \item \textbf{Claimed:} In this regime one can define a rest-energy functional $E_0$ for a localized filamentary excitation such that $M \equiv E_0/c^2$ behaves operationally as an inertial mass parameter (in the sense of low-velocity response and resonance scaling).
+    \item \textbf{Not claimed:} We do not claim that ``matter is a fluid'' or that any specific microscopic substrate is established; the construction is presented strictly as an effective Hamiltonian functional model with well-defined assumptions.
 \end{itemize}
 
-\paragraph{Observable definition.}
-The primary observable is the rest-energy functional (rest frame)
+\paragraph{Observable definition (what is measured).}
+The primary observable is the \emph{invariant rest-energy functional} of a localized excitation,
 \begin{equation}
-    E_0 \;\equiv\; \int_V \rho_{\!E}(\mathbf{x})\,dV,
-    \qquad
-    M \;\equiv\; \frac{E_0}{c^2},
+E_0 \;\equiv\; \int_V \varepsilon(\mathbf{x})\,dV,
+\qquad
+M \;\equiv\; \frac{E_0}{c^2},
+\label{eq:obs_partI_mass_def}
 \end{equation}
-operationalized through inertial response measurements (e.g.\ calibrated force-to-acceleration or frequency-to-mass sensitivity in resonant systems) in regimes where the model assumptions apply.
+where $\varepsilon(\mathbf{x})$ is the localized (time-averaged) energy density associated with the persistent filamentary configuration.
+Operationally, $M$ is the parameter that enters low-velocity inertial response and mode scaling; e.g.\ for any probe whose eigenfrequency depends on the effective inertia, one tests the scaling $f \propto M^{-1/2}$ (holding geometry and stiffness fixed), thereby linking the functional prediction $E_0$ to measurable frequency shifts or acceleration response.
 
     \titlepageClose
 
