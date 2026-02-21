@@ -119,19 +119,34 @@ def load_fseries_best_block(path):
     return max(blocks, key=lambda a: a.shape[0])
 
 
-def eval_series(coeffs, t):
-    """Return r(t) and r'(t) from Fourier coefficients (1-based harmonics).
-    coeffs shape: (N,6) with columns [Ax, Bx, Ay, By, Az, Bz]; row j -> harmonic n=j+1.
+def eval_series(coeffs, t, tol=1e-12):
+    """
+    Return r(t) and r'(t) from Fourier coefficients.
+
+    Supports BOTH conventions:
+      A) row0 is j=0 (constant term present):     x(t)=Σ_{j=0..N-1} a_x(j)cos(jt)+b_x(j)sin(jt)
+      B) row0 is j=1 (no constant row provided):  x(t)=Σ_{j=1..N}   a_x(j)cos(jt)+b_x(j)sin(jt)
+
+    coeffs shape: (N,6) with columns [a_x, b_x, a_y, b_y, a_z, b_z]
     """
     if coeffs.size == 0:
-        return np.zeros((t.size,3)), np.zeros((t.size,3))
+        return np.zeros((t.size, 3)), np.zeros((t.size, 3))
 
     N = coeffs.shape[0]
-    n = np.arange(1, N+1, dtype=float).reshape(-1, 1)   # 1..N
-    nt = n * t.reshape(1, -1)
-    cos_nt = np.cos(nt); sin_nt = np.sin(nt)
 
     Ax, Bx, Ay, By, Az, Bz = [coeffs[:, i].reshape(-1, 1) for i in range(6)]
+
+    # Detect indexing convention:
+    # If row0 is truly j=0, its sine coefficients should be ~0 because sin(0*t)=0.
+    row0_sine_mag = float(abs(Bx[0, 0]) + abs(By[0, 0]) + abs(Bz[0, 0]))
+    uses_j0_row = (row0_sine_mag < tol)
+
+    # n grid: either 0..N-1 (includes constant) or 1..N
+    n = (np.arange(0, N, dtype=float) if uses_j0_row else np.arange(1, N + 1, dtype=float)).reshape(-1, 1)
+
+    nt = n * t.reshape(1, -1)
+    cos_nt = np.cos(nt)
+    sin_nt = np.sin(nt)
 
     x = (Ax * cos_nt + Bx * sin_nt).sum(axis=0)
     y = (Ay * cos_nt + By * sin_nt).sum(axis=0)
@@ -142,7 +157,7 @@ def eval_series(coeffs, t):
     y_t = ((-n * Ay) * sin_nt + (n * By) * cos_nt).sum(axis=0)
     z_t = ((-n * Az) * sin_nt + (n * Bz) * cos_nt).sum(axis=0)
 
-    r   = np.stack([x, y, z], axis=1)
+    r = np.stack([x, y, z], axis=1)
     r_t = np.stack([x_t, y_t, z_t], axis=1)
     return r, r_t
 

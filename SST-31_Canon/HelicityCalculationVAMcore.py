@@ -157,7 +157,7 @@ if __name__ == "__main__":
     r_sq = (Xf**2 + Yf**2 + Zf**2).ravel()
     grid_shape = (grid_size, grid_size, grid_size)
 
-    paths = sorted(glob.glob("../Knots_FourierSeries/**/*.fseries", recursive=True))
+    paths = sorted(glob.glob("./Knots_FourierSeries/**/*.fseries", recursive=True))
     print("\n=== Compute against another ===")
     for path in paths:
         print(f"========== {os.path.basename(path)} ============")
@@ -186,8 +186,20 @@ if __name__ == "__main__":
 
     AMPHI = {"4_1","6_3","8_3","8_9","8_12","12a_1202","15331"}
     df = pd.DataFrame(rows)
-    g = df.groupby("base")["a_mu"].agg(["mean","std","count"]).reset_index()
-    g["is_amphi"] = g["base"].isin(AMPHI)
-    g["flag"] = np.where(g["is_amphi"] & (np.abs(g["mean"] + 0.5) > 0.02), "WARN(amphi≠−0.5)", "")
-    g.to_csv("SST_helicity_by_base.csv", index=False)
-    print("Wrote SST_helicity_by_base.csv")
+
+    if df.empty or "base" not in df.columns:
+        print("No valid helicity rows found; skipping grouped summary by base.")
+        # Optionally still write out raw per-file results if you want:
+        if not df.empty:
+            df.to_csv("SST_helicity_by_file.csv", index=False)
+            print("Wrote SST_helicity_by_file.csv")
+    else:
+        g = df.groupby("base")["a_mu"].agg(["mean","std","count"]).reset_index()
+        g["is_amphi"] = g["base"].isin(AMPHI)
+        g["flag"] = np.where(
+            g["is_amphi"] & (np.abs(g["mean"] + 0.5) > 0.02),
+            "WARN(amphi≠−0.5)",
+            ""
+        )
+        g.to_csv("SST_helicity_by_base.csv", index=False)
+        print("Wrote SST_helicity_by_base.csv")

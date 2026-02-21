@@ -416,6 +416,191 @@ Operationally, $M$ is the parameter that enters low-velocity inertial response a
         \end{equation}
         Equation \eqref{eq:compact} makes explicit that the model requires only a universal base mass scale \(M_0\), a \emph{gated} amplification \((4/\alpha)^{\Gate(T)}\), and dimensionless topology/geometry factors.
 
+    %=========================================================
+    \section{Resolution Consistency and Gradient Expansion of the Mass Functional}
+    \label{sec:resolution_consistency}
+%=========================================================
+
+    \subsection{Motivation}
+
+        The invariant mass functional derived in Sec.~\ref{sec:mass_derivation}
+        was expressed in terms of the swirl energy density
+        \begin{equation}
+            \rho_{\!E}^{(0)} = \frac12 \rho_{\!f}
+            \lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}} \rVert^2.
+        \end{equation}
+
+        However, any quadratic nonlinearity subjected to spatial coarse-graining
+        generates subgrid contributions that cannot be captured solely by
+        the zeroth-order (local) kinetic term.
+        This is a general consequence of filtering theory and the
+        multi-scale gradient expansion of quadratic stresses
+        \cite{Leonard1975,Clark1979,Eyink2006,Sagaut2006}.
+
+        Therefore, to ensure resolution-consistency of the mass functional,
+        we include the leading curvature correction induced by coarse-graining.
+
+%---------------------------------------------------------
+
+    \subsection{Gradient Expansion under Coarse-Graining}
+
+        Let $G_\ell$ denote a symmetric filter of width $\ell$.
+        Define the coarse-grained velocity field
+
+        \begin{equation}
+            \bar{\mathbf{v}} = G_\ell * \mathbf{v}.
+        \end{equation}
+
+        The filtered quadratic mismatch (subgrid stress analogue) is
+
+        \begin{equation}
+            \tau_{ij} = \overline{v_i v_j} - \bar v_i \bar v_j.
+        \end{equation}
+
+        For smooth fields and symmetric filters,
+        $\tau_{ij}$ admits an even-order gradient expansion:
+
+        \begin{equation}
+            \tau_{ij}
+            =
+            \kappa_2 \ell^2
+            \partial_k \bar v_i \partial_k \bar v_j
+            +
+            \kappa_4 \ell^4
+            \partial_{kl} \bar v_i \partial_{kl} \bar v_j
+            +
+            O(\ell^6),
+            \label{eq:SST_gradient_expansion}
+        \end{equation}
+
+        where $\kappa_2,\kappa_4$ are dimensionless constants
+        determined by the filter kernel.
+
+        This hierarchy is mathematically unavoidable
+        for filtered quadratic nonlinearities
+        \cite{Eyink2006}.
+
+%---------------------------------------------------------
+
+    \subsection{Effective Swirl Energy Density}
+
+        The leading resolution-consistent local truncation of the swirl energy density is therefore
+
+        \begin{equation}
+            \rho_{\!E}^{\mathrm{eff}}(\ell)
+            =
+            \frac12 \rho_{\!f}
+            \left(
+                \lVert \bar{\mathbf{v}} \rVert^2
+            +
+                \kappa_2 \ell^2
+                \lVert \nabla \bar{\mathbf{v}} \rVert^2
+            \right),
+            \label{eq:rhoE_effective}
+        \end{equation}
+
+        with
+
+        \begin{equation}
+            \lVert \nabla \bar{\mathbf{v}} \rVert^2
+            =
+            \partial_i \bar v_j \partial_i \bar v_j.
+        \end{equation}
+
+        Dimensional consistency is immediate:
+
+        \[
+            [\rho_{\!f}] = \mathrm{kg\,m^{-3}},
+            \quad
+            [\ell^2 \lVert \nabla \bar{\mathbf{v}}\rVert^2] = \mathrm{m^2\,s^{-2}},
+            \quad
+            [\rho_{\!E}] = \mathrm{J\,m^{-3}}.
+        \]
+
+        Higher-order curvature terms $O(\ell^4)$ may be included,
+        but Eq.~\eqref{eq:rhoE_effective} represents the minimal local truncation.
+
+%---------------------------------------------------------
+
+    \subsection{Resolution-Consistent Mass Functional}
+
+        The coarse-grained invariant mass functional becomes
+
+        \begin{equation}
+            M(\ell)
+            =
+            \frac{1}{c^2}
+            \int
+            \rho_{\!E}^{\mathrm{eff}}(\ell)\, dV.
+            \label{eq:M_ell}
+        \end{equation}
+
+        Explicitly,
+
+        \begin{equation}
+            M(\ell)
+            =
+            \frac{\rho_{\!f}}{2c^2}
+            \int
+            \left(
+                \lVert \bar{\mathbf{v}} \rVert^2
+            +
+                \kappa_2 \ell^2
+                \lVert \nabla \bar{\mathbf{v}} \rVert^2
+            \right)
+            dV.
+            \label{eq:M_resolution}
+        \end{equation}
+
+        Let $L$ denote the characteristic spatial variation scale
+        of the localized swirl structure.
+        Then
+
+        \begin{equation}
+            \frac{\Delta M_2}{M_0}
+            \sim
+            \kappa_2
+            \left(\frac{\ell}{L}\right)^2.
+        \end{equation}
+
+        Hence:
+
+        \begin{itemize}
+            \item If $L \gg \ell$, curvature corrections are negligible.
+            \item If $L \sim \ell$, corrections become $O(1)$.
+        \end{itemize}
+
+        Therefore, resolution-consistent mass evaluation for localized
+        swirl structures requires inclusion of the gradient term.
+
+%---------------------------------------------------------
+
+    \subsection{Falsifiable Diagnostic}
+
+        For a fixed physical configuration,
+        compute $M(\ell)$ over a sequence of filter scales
+        $\ell = n\,\delta x$.
+
+        Resolution consistency requires
+
+        \begin{equation}
+            \mathrm{Var}_\ell \big(M(\ell)\big)
+            <
+            \mathrm{Var}_\ell \big(M_0(\ell)\big).
+        \end{equation}
+
+        Failure of this condition indicates either:
+
+        \begin{itemize}
+            \item insufficient derivative accuracy,
+            \item breakdown of locality,
+            \item or necessity of nonlocal kernel corrections.
+        \end{itemize}
+
+        This diagnostic provides a direct computational test
+        of the resolution-consistent mass hypothesis.
+
+
         \paragraph{10-year-old analogy (one sentence).}
             A particle is modeled like a tiny knotted loop of spinning fluid: its mass is how much ``spinning energy'' is packed into the loop, and complicated knots pack that energy less efficiently.
 
@@ -426,6 +611,31 @@ Operationally, $M$ is the parameter that enters low-velocity inertial response a
         None.
 
         \begin{thebibliography}{99}
+
+            \bibitem{Leonard1975}
+            A.~Leonard (1975),
+            Energy cascade in large-eddy simulations of turbulent fluid flows,
+            Advances in Geophysics \textbf{18}, 237–248.
+            DOI: 10.1016/S0065-2687(08)60464-1.
+
+            \bibitem{Clark1979}
+            R.~A. Clark, J.~H. Ferziger, and W.~C. Reynolds (1979),
+            Evaluation of subgrid-scale models using an accurately simulated turbulent flow,
+            Journal of Fluid Mechanics \textbf{91}, 1–16.
+            DOI: 10.1017/S002211207900001X.
+
+            \bibitem{Eyink2006}
+            G.~L. Eyink (2006),
+            Multi-scale gradient expansion of the turbulent stress tensor,
+            Journal of Fluid Mechanics \textbf{549}, 159–190.
+            DOI: 10.1017/S002211200500759X.
+
+            \bibitem{Sagaut2006}
+            P.~Sagaut (2006),
+            Large Eddy Simulation for Incompressible Flows: An Introduction,
+            Springer.
+            DOI: 10.1007/978-3-540-26347-2.
+
 
             \bibitem{Higgs1964}
             P.~W.~Higgs (1964),

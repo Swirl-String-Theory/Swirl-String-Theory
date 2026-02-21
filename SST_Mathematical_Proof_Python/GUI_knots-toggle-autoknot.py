@@ -38,15 +38,26 @@ def parse_fseries_multi(filename):
         knots.append((header, {k: np.array(v) for k,v in arrays.items()}))
     return knots
 
-def eval_fourier_block(coeffs, s):
+def eval_fourier_block(coeffs, s, tol=1e-12):
+    ax = coeffs['a_x']; bx = coeffs['b_x']
+    ay = coeffs['a_y']; by = coeffs['b_y']
+    az = coeffs['a_z']; bz = coeffs['b_z']
+
+    # Detection:
+    # If row0 is truly j=0, then b_*(0) should be ~0 because sin(0*s)=0 anyway.
+    row0_sine_mag = abs(bx[0]) + abs(by[0]) + abs(bz[0])
+    uses_j0_row = (row0_sine_mag < tol)
+
     x = np.zeros_like(s)
     y = np.zeros_like(s)
     z = np.zeros_like(s)
-    for j in range(len(coeffs['a_x'])):
-        n = j + 1
-        x += coeffs['a_x'][j] * np.cos(n * s) + coeffs['b_x'][j] * np.sin(n * s)
-        y += coeffs['a_y'][j] * np.cos(n * s) + coeffs['b_y'][j] * np.sin(n * s)
-        z += coeffs['a_z'][j] * np.cos(n * s) + coeffs['b_z'][j] * np.sin(n * s)
+
+    for j in range(len(ax)):
+        n = j if uses_j0_row else (j + 1)   # <-- key line
+        x += ax[j]*np.cos(n*s) + bx[j]*np.sin(n*s)
+        y += ay[j]*np.cos(n*s) + by[j]*np.sin(n*s)
+        z += az[j]*np.cos(n*s) + bz[j]*np.sin(n*s)
+
     return np.stack((x, y, z), axis=1)
 
 def compute_curvature(x, y, z):
