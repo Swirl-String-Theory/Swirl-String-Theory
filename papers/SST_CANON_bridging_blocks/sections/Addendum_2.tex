@@ -1,0 +1,184 @@
+%! Author = Omar Iskandarani
+%! Title = ......
+%! Date = .....
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxxxxxx
+
+% =====================================================================
+% SST Canon Addendum — Bridging Blocks
+% Version tag: v0.3.1+2025-08-27 (conforms to Canon v0.3.1)
+% Persona: Bridging (does not modify Core Postulates)
+% =====================================================================
+
+% === Metadata ===
+\newcommand{\papertitle}{....}
+\newcommand{\paperdoi}{10.5281/zenodo.xxxxxxxx}
+
+
+\ifdefined\standalonechapter\else
+% Standalone mode
+\documentclass[11pt]{article}
+\input{../../template/SSTstyle.sty}
+\input{../../template/SST_appendix_setup.sty}
+\begin{document}
+
+  % === Title page ===
+  \titlepageOpen
+
+  \begin{abstract}
+
+
+  \end{abstract}
+
+  \titlepageClose
+  \fi
+
+  \ifdefined\standalonechapter
+  \section{\papertitle}
+  \else
+  \fi
+% ============= Begin of content ============
+
+
+% =====================================================================
+% Addendum D: Exceptional Jordan Algebra (EJA) Ladder — √mass ratios & CKM root–sum rules
+% Source: Singh (2025), arXiv:2508.10131
+% Persona: Bridging (does not modify Core Postulates)
+% =====================================================================
+
+  \section*{Addendum D: EJA ladder — $\sqrt{\text{mass}}$ ratios and CKM root–sum rules (bridging)}
+
+      \subsection*{D1. Universal inputs from $J_{3}(\mathbb{O}_{\mathbb{C}})$}
+
+          \textbf{Charged-sector Jordan spectrum.}
+          In each charged sector $(\ell,u,d)$, the right-handed flavor matrix $X\in J_3(\mathbb{O}_{\mathbb{C}})$ admits three Jordan eigenvalues
+          \begin{equation}\tag{D1}
+          \lambda \in \{\,s-\delta,\; s,\; s+\delta\,\},\qquad \delta^{2}=\frac{3}{8},
+          \end{equation}
+          with \emph{family centre} $s\equiv \sqrt{m}$ fixed by a trace choice per sector. In the canonical normalization (octonionic entries of norm $1/8$), the EJA invariants are
+          \begin{equation}\tag{D2}
+          T=\mathrm{tr}\,X=3s,\qquad S=3s^{2}-\frac{3}{8},\qquad D=s^{3}-\frac{3s}{8},
+          \end{equation}
+          and the characteristic polynomial factorizes as
+          \begin{equation}\tag{D3}
+          \chi_X(\lambda)=(\lambda-s)^{3}-\delta^{2}(\lambda-s),\qquad
+          \delta^{2}=S-3s^{2}=D/s-s^{2}=\frac{3}{8}.
+          \end{equation}
+          \textit{Dimensional check:} $s,\delta$ carry $[\sqrt{\text{mass}}]$; with the stated normalization, $\delta$ is \emph{sector-universal}.
+
+      \subsection*{D2. $\mathrm{Sym}^{3}(\mathbf{3})$ minimal ladder and edge–universality}
+
+          \textbf{Seed rung (fixed Clebsches).}
+          Work in the corner basis $\{|E\rangle,|B\rangle,|C\rangle\}$ of $\mathrm{Sym}^{3}(\mathbf{3})$. The unique minimal top rung satisfying outward–edge universality is
+          \begin{equation}\tag{D4}
+          |\psi_{0}\rangle=\alpha|E\rangle+\beta|B\rangle+\gamma|C\rangle,\qquad (\alpha:\beta:\gamma)=(2:1:1).
+          \end{equation}
+
+          \textbf{Edge projection identity (rung cancellation).}
+          Let $P_{XY}$ project to the $XY$ edge. Then
+          \begin{equation}\tag{D5}
+          P_{XY}\!\big(|\psi_{0}\rangle^{\otimes_{s} 3}\big)=\big(\alpha_{X}|X\rangle+\alpha_{Y}|Y\rangle\big)^{\otimes_{s}3},
+          \end{equation}
+          so outward–edge profiles depend \emph{only} on their two legs; the third leg cancels. For $(2:1:1)$ the two outward edges from $E$ are identical at leading order (edge–universality), while the base $BC$ edge is the symmetric binomial.
+
+          \textbf{Adjacent $\sqrt{m}$ ratios (edge–only).}
+          Feeding the EJA eigenvalues \emph{(D1)} into the ladder and using edge–universality yields rung–independent adjacent ratios
+          \begin{equation}\tag{D6}
+          \boxed{\;
+          \frac{\sqrt{m}_{\text{light}}}{\sqrt{m}_{\text{mid}}}=\frac{s-\delta}{s},\qquad
+          \frac{\sqrt{m}_{\text{mid}}}{\sqrt{m}_{\text{heavy}}}=\frac{s}{s+\delta},\qquad
+          \frac{\sqrt{m}_{\text{light}}}{\sqrt{m}_{\text{heavy}}}=\frac{s-\delta}{\,s+\delta\,}\; }.
+          \end{equation}
+          \textit{Note.} The ladder does not determine $\delta$; it consumes $s\pm\delta$ and, thanks to \emph{(D5)}, outputs edge–universal adjacent ratios.
+
+      \subsection*{D3. Sector mapping and the trace split}
+
+          Adopt the sector trace split
+          \begin{equation}\tag{D7}
+          \mathrm{tr}\,X_{\ell} : \mathrm{tr}\,X_{u} : \mathrm{tr}\,X_{d} = 1:2:3,
+          \end{equation}
+          so that $s_{\ell}:s_{u}:s_{d}=1:2:3$. Then the lightest–generation $\sqrt{m}$ relation follows immediately:
+          \begin{equation}\tag{D8}
+          \boxed{\; \sqrt{m}_{e} : \sqrt{m}_{u} : \sqrt{m}_{d} = 1:2:3 \;}
+          \end{equation}
+          (up to a common normalization), while the three families arise from a single ladder: the down edge, its Dynkin $\mathbb{Z}_{2}$ swap (leptons), and the opposite outward edge (up sector).
+
+      \subsection*{D4. CKM root–sum rules and geometric phases}
+
+          In the adjacent–edge approximation the CKM moduli obey
+          \begin{align}\tag{D9}
+          |V_{us}|&\simeq \Big|\sqrt{\tfrac{m_{d}}{m_{s}}}-e^{i\varphi_{12}}\sqrt{\tfrac{m_{u}}{m_{c}}}\Big|,\\
+          |V_{cb}|&\simeq \kappa_{23}\Big|\sqrt{\tfrac{m_{s}}{m_{b}}}-e^{i\varphi_{23}}\sqrt{\tfrac{m_{c}}{m_{t}}}\Big|,
+          \end{align}
+          with a \emph{geometric} Cabibbo phase $\varphi_{12}=\pi/2$ from Fano–oriented rotor overlaps, a mild cross–family normalization $\kappa_{23}\approx 0.55$, and a single up–leg tilt $\varepsilon$ (a phase on the $e_{1}$ channel) that shifts $\varphi_{12}\to\varphi_{12}+\varepsilon$ without altering rung magnitudes. Choosing $\varepsilon\approx -26.123^\circ$ aligns $|V_{us}|$ with experiment at a common renormalization scale. Leading consequences include
+          \begin{equation}\tag{D10}
+          |V_{ub}|\sim \sqrt{m_{u}/m_{t}},\qquad \frac{|V_{td}|}{|V_{ts}|}\ \ \text{predicted with no extra freedom}.
+          \end{equation}
+          \textit{Dimensional check:} all CKM relations are dimensionless and scheme–consistent when evaluated at a common scale.
+
+      \subsection*{D5. SST/VAM adapter (bridging)}
+
+          \begin{itemize}
+          \item \textbf{Dictionary.} Interpret the EJA rank–1 idempotents as \emph{swirl–knot classes} (points of $\mathbb{OP}^{2}$). The family centre $s\equiv\sqrt{m}$ maps to a swirl–invariant scalar in the RH mass frame (e.g.\ a knot–energy or time–scaling density); only \emph{ratios} enter predictions, so absolute normalization is model–dependent.
+          \item \textbf{Selection rule.} The Dynkin $\mathbb{Z}_{2}$ swap enforcing down$\leftrightarrow$lepton edge matching is canonized as a \emph{topological reflection} in the swirl–charge dictionary.
+          \item \textbf{Usage.} To test an SST flavour realization: (i) choose $s_{\ell}\!:\!s_{u}\!:\!s_{d}=1\!:\!2\!:\!3$; (ii) set $\delta=\sqrt{3/8}$; (iii) evaluate \emph{(D6)} for each sector; (iv) feed PDG masses at a common scale into \emph{(D9)} to check CKM.
+          \end{itemize}
+
+      \subsection*{D6. Implementation \& sanity checks}
+
+          \begin{itemize}
+          \item Tag D1–D5 as \emph{Bridging}. They supply a representation–theoretic kernel and phase geometry; no change to core SST postulates.
+          \item Dimensions: \emph{(D1)}–\emph{(D3)} carry $[\sqrt{m}]$; \emph{(D6)}–\emph{(D10)} are dimensionless ratios.
+          \item Limits: $\delta\to 0$ collapses ladders to degenerate families; outward–edge universality remains well defined.
+          \end{itemize}
+
+  \section*{References (Bib\TeX)}
+      \begin{verbatim}
+@article{Singh2025EJA,
+  author  = {Tejinder P. Singh},
+  title   = {Fermion mass ratios from the exceptional Jordan algebra},
+  journal = {arXiv:2508.10131 [hep-ph]},
+  year    = {2025},
+  url     = {https://arxiv.org/abs/2508.10131}
+}
+@article{Furey2018,
+  author  = {C. Furey},
+  title   = {Three generations, two unbroken gauge symmetries, and one
+             eight-dimensional algebra},
+  journal = {Phys. Lett. B},
+  volume  = {785},
+  pages   = {84--89},
+  year    = {2018}
+}
+@article{Gresnigt2019,
+  author  = {N. Gresnigt},
+  title   = {Braids, particles, and octonions},
+  journal = {Found. Phys.},
+  volume  = {49},
+  pages   = {1031--1065},
+  year    = {2019}
+}
+@article{Boyle2020,
+  author  = {Latham Boyle},
+  title   = {The Standard Model, the Exceptional Jordan Algebra, and Triality},
+  journal = {Quantum Reports},
+  volume  = {2},
+  number  = {4},
+  pages   = {1--24},
+  year    = {2020},
+  doi     = {10.3390/quantum2040036}
+}
+      \end{verbatim}
+
+
+
+% ============== End of content =============
+
+% === Bibliography (only for standalone) ===
+  \ifdefined\standalonechapter\else
+  \bibliographystyle{unsrt}
+
+\end{document}
+\fi

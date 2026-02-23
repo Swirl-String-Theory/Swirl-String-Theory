@@ -1,0 +1,55 @@
+%! Author = Omar Iskandarani
+%! Title = ......
+%! Date = .....
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxxxxxx
+
+% =====================================================================
+% SST Canon Addendum — Bridging Blocks
+% Version tag: v0.3.1+2025-08-27 (conforms to Canon v0.3.1)
+% Persona: Bridging (does not modify Core Postulates)
+% =====================================================================
+
+% === Metadata ===
+\newcommand{\papertitle}{....}
+\newcommand{\paperdoi}{10.5281/zenodo.xxxxxxxx}
+
+
+\ifdefined\standalonechapter\else
+% Standalone mode
+\documentclass[11pt]{article}
+\input{../../template/SSTstyle.sty}
+\input{../../template/SST_appendix_setup.sty}
+\begin{document}
+
+  % === Title page ===
+  \titlepageOpen
+
+  \begin{abstract}
+
+
+  \end{abstract}
+
+  \titlepageClose
+  \fi
+
+  \ifdefined\standalonechapter
+  \section{\papertitle}
+  \else
+  \fi
+% ============= Begin of content ============
+
+
+
+
+
+% ============== End of content =============
+
+% === Bibliography (only for standalone) ===
+  \ifdefined\standalonechapter\else
+  \bibliographystyle{unsrt}
+  \bibliography{../bridging_blocks_references}
+\end{document}
+\fi
