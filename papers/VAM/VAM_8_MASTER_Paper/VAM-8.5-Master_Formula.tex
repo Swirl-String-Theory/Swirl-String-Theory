@@ -1,0 +1,648 @@
+%! Author = Omar Iskandarani
+%! Title = On a Vortex-Based Lagrangian Unification of Gravity and Electromagnetism
+%! Date = May 23, 2025
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.15849355
+
+% === Metadata ===
+\newcommand{\papertitle}{The Vortex Æther Model (VAM): Master Mass Formula}
+\newcommand{\paperdoi}{10.5281/zenodo.15849355}
+
+  \documentclass[12pt]{article}
+  \input{../vamstyle.sty}
+  \usepackage{import}
+  \usepackage{subfiles}
+  \usepackage{hyperref}
+  \usepackage{graphicx}
+  \usepackage{amsmath, amssymb, physics}
+  \usepackage{siunitx}
+  \usepackage{tikz}
+  \usetikzlibrary{arrows.meta, positioning}
+  \usepackage{booktabs}
+
+  \usepackage{array, tabularx}
+  \usepackage{listings}
+  \usepackage{bookmark}
+  \usepackage[scaled=0.95]{inconsolata}
+  \usepackage{mathrsfs}
+  \newcommand{\heartmarker}{
+  \tikz[baseline=-1.4ex, xshift=-4ex, scale=0.06]
+    \draw[fill=pink,draw=none]
+    (0,0) .. controls (-1,1) and (-2,0.5) .. (-2,-0.5)
+            .. controls (-2,-2) and (0,-3) .. (0,-4)
+            .. controls (0,-3) and (2,-2) .. (2,-0.5)
+            .. controls (2,0.5) and (1,1) .. (0,0);
+}
+
+% ====== minimal packages ======
+\usepackage{amsfonts}
+\usepackage{bm}
+
+\usepackage{microtype}
+\usepackage{tcolorbox}
+
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+% ==== Packages ====
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage[utf8]{inputenc}
+\usepackage[caption=false]{subfig}
+
+% ===== Gauge sector macros =====
+\renewcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\GsA}{G^a_{\mu\nu}}
+\newcommand{\WsI}{W^i_{\mu\nu}}
+\newcommand{\Bmn}{B_{\mu\nu}}
+
+% ===============================
+% Macros (canonicalized)
+% ===============================
+
+% swirl arrows (context-aware)
+\newcommand{\swirlarrow}{%
+    \mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}%
+    {\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}%
+    {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
+    {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
+}
+\newcommand{\swirlarrowcw}{%
+    \mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}%
+    {\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}%
+    {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}%
+    {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}%
+}
+
+% Canonical symbols
+\newcommand{\vswirl}{\mathbf{v}_{\swirlarrow}}
+\newcommand{\vswirlcw}{\mathbf{v}_{\swirlarrowcw}}
+\newcommand{\SwirlClock}{S_{(t)}^{\swirlarrow}}
+\newcommand{\SwirlClockcw}{S_{(t)}^{\swirlarrowcw}}
+\newcommand{\omegas}{\boldsymbol{\omega}_{\swirlarrow}}  % swirl vorticity
+\newcommand{\vscore}{v_{\swirlarrow}}                    % shorthand: |v_swirl| at r=r_c
+\newcommand{\vnorm}{\lVert \mathbf{v}_{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}} \rVert}               % swirl speed magnitude
+\newcommand{\rhof}{\rho_{\!f}}                           % effective fluid density
+\newcommand{\rhoE}{\rho_{\!E}}                           % swirl energy density
+\newcommand{\rhom}{\rho_{\!m}}                           % mass-equivalent density
+\newcommand{\rhocore}{\rho_{\mathrm{core}}}
+\newcommand{\rc}{r_c}                                    % string core radius (swirl string radius)
+\newcommand{\FmaxEM}{F_{\mathrm{EM}}^{\max}}             % EM-like maximal force scale
+\newcommand{\FmaxG}{F_{\mathrm{G}}^{\max}}               % G-like maximal force scale
+\newcommand{\Lam}{\Lambda}                               % Swirl Coulomb constant
+\newcommand{\Om}{\Omega_{\swirlarrow}}                   % swirl angular frequency profile
+\newcommand{\alpg}{\alpha_g}                             % gravitational fine-structure analogue
+% --- Minimal macro prelude (safe, local) ---
+\providecommand{\rc}{r_c}
+\newcommand{\omegaVec}{\boldsymbol{\omega}}
+\newcommand{\rhoF}{\rho_{\!f}}     % effective fluid density
+\newcommand{\rhoM}{\rho_{\!m}}     % mass-equivalent density
+\newcommand{\OmegaCore}{\Omega_{\mathrm{core}}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\core}{\mathrm{core}}
+\newcommand{\GammaC}{\Gamma_C}
+
+% ===============================
+% Policy: the golden constant is only allowed via hyperbolic functions.
+\newcommand{\xig}{\operatorname{asinh}\!\left(\tfrac{1}{2}\right)}
+\newcommand{\phig}{\exp(\xig)}
+\newcommand{\phialg}{\bigl(1+\sqrt{5}\bigr)/2}
+\newcommand{\xigold}{\tfrac{3}{2}\,\xig}
+\newcommand{\GoldenDeclare}{%
+    \textbf{Golden (hyperbolic)}:\ \(\ln\phi=\xig\), hence \(\phi=\phig\).
+    \ \emph{(Equivalently, \(\phi=\phialg\); the algebraic form is derivative.)}%
+}
+
+\usepackage{geometry}
+\geometry{margin=1in}
+
+
+\usetikzlibrary{calc,arrows.meta,decorations.markings,decorations.pathmorphing,
+    decorations.pathreplacing,intersections,knots,hobby,shapes.geometric}
+% If you actually need spath3, load it as a package (comment out if not installed):
+% \usepackage{spath3}
+
+
+% A tiny style for loop arrows
+\tikzset{
+    looparrow/.style={-{Stealth[length=2.5mm,width=1.8mm]},thick},
+    knotline/.style={ultra thick, blue!70},
+    testloopON/.style={thick, draw=green!60!black},
+    testloopOFF/.style={thick, draw=red!70},
+    axes/.style={very thick, black},
+}
+
+\AtBeginDocument{\RenewCommandCopy\qty\SI}
+
+% Styling helpers
+\tikzset{
+    axisline/.style={very thick, black},
+    corecircle/.style={thick, dashed, gray},
+    knotline/.style={ultra thick, blue!65},
+    swirlarrow/.style={-{Stealth[length=3mm,width=2mm]}, thick},
+    vline/.style={-{Stealth[length=3mm,width=2mm]}, thick, teal!70!black},
+    tube/.style={line width=6pt, line cap=round},
+    ghost/.style={opacity=0.25},
+    labelbox/.style={fill=white, inner sep=2pt, rounded corners=2pt},
+}
+
+
+% ------- Shared styles  -------
+\tikzset{
+    knot diagram/every strand/.append style={
+        line cap=round,
+        line join=round,
+        ultra thick,
+        red
+    },
+    every knot/.style={line cap=round,line join=round,very thick},
+    strand/.style={line cap=round,line join=round,line width=3pt,draw=black},
+    over/.style={preaction={draw=white,line width=6.5pt}},
+}
+
+\newcommand{\dotmarker}[1]{\tikz[baseline]{\node[fill=#1,circle,inner sep=1.5pt]{};}}
+
+  \input{../../SwirlStringTheory/template/SST_appendix_setup.sty}
+  \begin{document}
+
+  % === Title page ===
+  \titlepageOpen
+
+  \begin{abstract}
+      We present the Master Mass Formula~\cite{iskandarani2025vam-master} used in Swirl String Theory also known as the Vortex Æther Model (VAM), a topological-fluid framework for deriving particle and atomic mass from knot-like vortex structures. Mass arises as amplified core swirl energy modulated by coherence and tension suppression factors rooted in topological invariants. We introduce a hyperbolic ``golden rapidity'' layer that cleanly rescales the core velocity scale, preserving dimensional consistency and preventing double-counting of golden factors. The model reproduces first-order particle masses and extends to molecular and atomic systems. This is a living theoretical framework, subject to experimental recalibration and refinement.
+      For a full list of atomic masses up to Uranium, and common molecules calculated using the Master Formula, see Appendix \ref{sec:AtomicMasses}.
+
+      \section{Chiral Swirling Knots and Central Holes}
+          Consider a chiral knot $K$ embedded in $\mathbb{R}^3$, such as Fig.~\ref{fig:knot-gallery}:
+
+          \begin{figure}[htbp]
+              \centering
+              \subfloat[$3_1$ (trefoil)\label{fig:3-1}]{
+                  \includegraphics[width=0.22\linewidth]{figures/3_1}}
+              \hfill
+              \subfloat[$5_1$ (cinquefoil)\label{fig:5-1}]{
+                  \includegraphics[width=0.22\linewidth]{figures/5_1}}
+              \hfill
+              \subfloat[$5_2$ (cinquefoil twist)\label{fig:5-2}]{
+                  \includegraphics[width=0.22\linewidth]{figures/5_2}}
+              \hfill
+              \subfloat[$6_1$ (stevedore)\label{fig:6-1}]{
+                  \includegraphics[width=0.22\linewidth]{figures/6_1}}
+              \caption{Canonical knot gallery.}
+              \label{fig:knot-gallery}
+          \end{figure}
+
+          Each knot can be parametrized on a torus with major radius $R$ and minor radius $r$.
+          The core tube of radius $r_c$ supports a tangential swirl velocity $\vswirl$, defining the \emph{Swirl Clock} $\SwirlClock$.
+
+          A key structural feature is a \emph{central hole} threaded by a straight axis (taken as the $z$-axis), along which the analytic swirl potential is singular.
+      \titlepageClose
+  \end{abstract}
+
+
+
+\noindent\raggedright \section{\noindent\raggedright The SST Mass Formula}
+The SST mass of a particle or atomic structure is given by:
+
+  \paragraph{Golden ratio and identities.}
+  Define the golden ratio via the inverse hyperbolic sine
+  \begin{equation}
+      \varphi \equiv e^{\operatorname{asinh}(1/2)},\qquad
+      \text{so that }~ \operatorname{asinh}(x)=\ln\!\big(x+\sqrt{x^2+1}\big)\ \text{\cite{NISTDLMF}}.
+  \end{equation}
+  Introduce the \emph{golden rapidity}
+  \begin{equation}
+      \xi_g \equiv \tfrac{3}{2}\ln\varphi \quad\Rightarrow\quad
+      \tanh(\xi_g)=\frac{1}{\varphi},\ \ \coth(\xi_g)=\varphi \ \ \text{\cite{NISTDLMF}}.
+  \end{equation}
+
+
+
+
+
+  \paragraph{Golden layer \(k\).}
+  We parameterize a discrete hyperbolic scaling by an integer \(k\ge0\) through the core speed
+  \begin{equation}
+      C_e \longmapsto \frac{C_e}{\varphi^k} \quad \text{(in the energy density only).}
+  \end{equation}
+  Equivalently, this is a multiplicative factor \(\varphi^{-2k}\) on the energy density.
+
+  \subsection*{Corrected Master Mass Formula (two equivalent forms)}
+
+  Let \(n\) be the number of coherent knots, \(m\) the internal thread multiplicity, \(s\in\mathbb{R}\) a golden tension index, and \(V_i\) constituent volumes. Let \(\rho_{\ae}\) denote the \emph{mass} density of the æther. The core \emph{energy} density is
+  \[
+      \mathcal{E}_k=\frac{1}{2}\,\rho_{\ae}\left(\frac{C_e}{\varphi^k}\right)^2.
+  \]
+  Then the mass is
+  \begin{equation}
+      \boxed{
+          M(n,m,\{V_i\};k)=\frac{4}{\alpha}\;
+          \underbrace{\Big(\tfrac{1}{m}\Big)^{3/2}}_{\eta}\;
+          \underbrace{n^{-1/\varphi}}_{\xi}\;
+          \underbrace{\varphi^{-s}}_{\tau}\;
+          \Big(\sum_i V_i\Big)\;
+          \frac{\mathcal{E}_k}{c^2}
+      }
+      \label{eq:master-A}
+  \end{equation}
+  or, equivalently, with \(C_e\) left unscaled and the \(\varphi^{-2k}\) absorbed into the tension,
+  \begin{equation}
+      \boxed{
+          M(n,m,\{V_i\};k)=\frac{4}{\alpha}\;
+          \Big(\tfrac{1}{m}\Big)^{3/2}\;
+          n^{-1/\varphi}\;
+          \varphi^{-(s+2k)}\;
+          \Big(\sum_i V_i\Big)\;
+          \frac{\tfrac12\,\rho_{\ae} C_e^2}{c^2}
+      }
+      \label{eq:master-B}
+  \end{equation}
+  The total golden suppression is controlled by the \emph{φ-budget}
+  \begin{equation}
+      E_{\varphi}\;\equiv\;s+2k,
+  \end{equation}
+  which prevents double-counting when moving \(\varphi\)-weight between \(k\) (velocity) and \(s\) (tension).
+
+  \subsection*{Variables and Constants}
+  \begin{itemize}
+      \item \(\alpha\) — Fine-structure constant (\(\approx 1/137\)).
+      \item \(\eta=(1/m)^{3/2}\) — thread suppression (dimensionless).
+      \item \(\xi=n^{-1/\varphi}\) — coherence suppression (dimensionless).
+      \item \(\tau=\varphi^{-s}\) — topological tension (dimensionless).
+      \item \(k\in\mathbb{N}_0\) — golden rapidity layer (dimensionless), enters only through \(\mathcal{E}_k\) or equivalently as \(\varphi^{-2k}\) in \eqref{eq:master-B}.
+      \item \(V_i\) — vortex‐core volumes for constituent knots (m\(^3\)).
+      \item \(\rho_{\ae}\) — æther \emph{mass} density (kg/m\(^3\)); \(\mathcal{E}_k\) above is an \emph{energy} density (J/m\(^3\)).
+      \item \(C_e\) — swirl propagation speed in the æther (m/s).
+      \item \(c\) — speed of light in vacuum (m/s).
+  \end{itemize}
+
+  \subsection*{Hyperbolic Suppression Factor \(\varphi\)}
+  We adopt
+  \begin{equation}
+      \varphi=e^{\operatorname{asinh}(1/2)}=\frac{1+\sqrt{5}}{2},\qquad
+      \tanh\!\Big(\tfrac{3}{2}\ln\varphi\Big)=\frac{1}{\varphi}\quad\text{\cite{NISTDLMF}}.
+  \end{equation}
+  This encodes a mild hyperbolic damping across knot count \(n\), thread incoherence, or mode proliferation.
+
+  \subsection*{Annotated Master Mass Formula}
+  \begin{align*}
+      M \;=\;
+      &\underbrace{\frac{4}{\alpha}}_{\text{EM amplification}}
+      \cdot
+      \underbrace{\Big(\tfrac{1}{m}\Big)^{3/2}}_{\text{thread suppression}}
+      \cdot
+      \underbrace{n^{-1/\varphi}}_{\text{coherence}}
+      \cdot
+      \underbrace{\varphi^{-s}}_{\text{tension}}
+      \cdot
+      \underbrace{\Big(\sum_i V_i\Big)}_{\text{geometry}}
+      \cdot
+      \underbrace{\frac{\tfrac12\,\rho_{\ae}(C_e/\varphi^k)^2}{c^2}}_{\text{core energy }\to \text{ mass}}
+  \end{align*}
+
+  \section{Canonical Vortex Volume}
+  Each vortex knot is modeled as a torus of core radius \(r_c\) and orbital radius \(R_x\):
+  \begin{equation}
+      V_{\text{knot}}=2\pi^2 R_x r_c^2,\qquad
+      R_x=\frac{N}{Z}\,\frac{F_{\max}\,r_c^2}{M_e\,C_e^2},
+  \end{equation}
+  which is dimensionally consistent (\(R_x\) in m). (Standard torus volume formula; hyperbolic/force mapping as in prior VAM work.)
+
+  \section{Lepton Helicity as a Dimensionless Shape}
+  For light leptons (electron, neutrino), we \emph{retain} the master formula \eqref{eq:master-A}–\eqref{eq:master-B} and encode helicity via a \emph{dimensionless} shaping:
+  \begin{align}
+      V_{\text{eff}}(p,q) &= S(p,q)\,V_{\text{torus}},
+      \qquad S(2,3)=1,\quad
+      S(p,q)=\frac{\sqrt{p^2+q^2}}{\sqrt{13}}, \\
+      \text{or}\quad
+      s(p,q) &= s_0 + \chi\,\frac{\ln\!\sqrt{p^2+q^2}}{\ln\varphi}
+      \quad\Longrightarrow\quad
+      \varphi^{-s(p,q)}=\varphi^{-s_0}\,\big(\sqrt{p^2+q^2}\big)^{-\chi}.
+  \end{align}
+  This preserves units while allowing helicity to influence mass through geometry (\(V\)) or tension (\(s\)); choose either \(S\) or \(\chi\), not both, to avoid double counting.
+
+  \paragraph{Note (replaced expression).}
+  The earlier form
+  \(
+  M_e \propto \rho_{\ae} r_c^3 C_e^{-1}\big(\sqrt{p^2+q^2}+A\big)
+  \)
+  was \emph{dimensionally inconsistent} (units \(\mathrm{kg\,s/m}\)). The corrected lepton mass uses \eqref{eq:master-A}–\eqref{eq:master-B} with the optional \(S(p,q)\) or \(s(p,q)\) shaping.
+
+  \section{Implementation Notes}
+  Python uses two calibrated sectors:
+  \begin{enumerate}
+      \item \textbf{Quark sector}: \(k=0\) and a fixed \(s\) (e.g.\ \(s=3\)) for proton/neutron fits.
+      \item \textbf{Lepton sector}: enable a \emph{golden layer} \(k\ge1\) (e.g.\ \(k=1\)) and refit \(s\) so that the electron mass is matched exactly. Maintain the φ-budget \(E_\varphi=s+2k\).
+  \end{enumerate}
+
+  \noindent
+  \textbf{Example electron parameters (illustrative):}
+  \begin{itemize}
+      \item \(n=1\), single coherent knot; \(m\) by scale; \(k=1\) golden layer.
+      \item \(r_c = 1.40897\times 10^{-15}\,\mathrm{m}\), \(V_{\text{torus}}=4\pi^2 r_c^3\).
+      \item \(\rho_{\ae}=3.89\times10^{18}\,\mathrm{kg/m^3}\), \(C_e=1.09384563\times10^6\,\mathrm{m/s}\), \(\alpha^{-1}=137.035999\).
+  \end{itemize}
+  Solve \(s\) from \(M_e\) using \eqref{eq:master-A} with \(V_{\text{eff}}=V_{\text{torus}}\) (or \(S(2,3)=1\)).
+
+  \section{Baryons as Linked Knot Assemblies}
+  In the Vortex \AE ther Model, baryons are stable, confined, topologically nontrivial vortex configurations built from three coherent loops. Up- and down-like excitations use:
+  \begin{itemize}
+      \item \textbf{Up-quark:} Left-handed \(5_2\) knot.
+      \item \textbf{Down-quark:} Left-handed \(6_1\) knot.
+  \end{itemize}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.25\textwidth}
+    \centering
+        \includegraphics[width=\textwidth]{images/5_2.png}
+\end{minipage}
+\hspace{1em}
+\begin{minipage}{0.25\textwidth}
+    \centering
+        \includegraphics[width=\textwidth]{images/6_1.png}
+\end{minipage}
+    \caption{Static knot diagrams used to model up- and down-quark excitations in the VAM baryon framework.\\
+            Left: Up-quark \(5_2\) knot. Right: Down-quark \(6_1\) knot.}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.25\textwidth}
+    \centering
+             \includegraphics[width=\textwidth]{images/3quarcks}
+\end{minipage}
+\hspace{1em}
+\begin{minipage}{0.25\textwidth}
+    \centering
+            \includegraphics[width=\textwidth]{images/3quarcks3d}
+\end{minipage}
+     \caption{Top-down visualizations and 3D perspective views of the vortex knots \(5_2\) and \(6_1\), showing their spatial structure and chirality. These configurations correspond to up- and down-type quark analogs in VAM/SST.}
+\end{figure}
+
+
+\subsection{Proton: Linked \(uud\) Configuration}
+
+The proton is modeled as two right-handed \( 5_2 \) (up-type) knots and one left-handed \( 6_1 \) (down-type) knot, topologically linked:
+
+
+  \begin{figure}[H]
+\centering
+\begin{minipage}{0.25\textwidth}
+    \centering
+             \includegraphics[width=\textwidth]{images/aborromean}
+\end{minipage}
+\hspace{1em}
+\begin{minipage}{0.25\textwidth}
+    \centering
+            \includegraphics[width=\textwidth]{images/borromean}
+\end{minipage}
+    \caption{Left: Proton as a triple-link of vortex rings. The chiral linking ensures net helicity and stability, and corresponds to two up-like and one down-like excitation.\\
+      Right: Neutron as a Borromean configuration of knotted components. No two rings are linked, but all three together are inseparable, modeling electric neutrality and metastability.}
+\end{figure}
+
+\subsection{Neutron: Linked \(udd\) Configuration}
+
+The neutron is represented by one right-handed \( 5_2 \) knot (up-type) and two left-handed \( 6_1 \) knots (down-type) in a Borromean configuration. Although the components are individually knotted, their spatial embedding ensures:
+
+\begin{itemize}
+    \item No two knots are pairwise linked (linking number zero),
+    \item All three are topologically inseparable (nontrivial triple linking),
+    \item The full configuration exhibits global helicity cancellation and electric neutrality.
+\end{itemize}
+
+This is known in knot theory as a \emph{Borromean link of knots} and is valid so long as the global linking structure retains the Borromean property even with knotted components.
+
+  \subsection{Unified Mass Evaluation via the Master Formula}
+  We apply \eqref{eq:master-B} with \(k=0\) for baryons (no golden velocity layer in the core energy), using adjusted volumes:
+  \begin{equation}
+      \boxed{
+          M = \frac{4}{\alpha} \left(\frac{1}{m}\right)^{3/2} n^{-1/\varphi} \varphi^{-s}
+          \left(\sum_i V_i\right)
+          \frac{\tfrac12\,\rho_{\ae} C_e^2}{c^2}
+      }
+  \end{equation}
+
+  \paragraph{Representative volumes.}
+  \(V_u \approx 1.17\times 10^{-44}\,\mathrm{m}^3\),
+  \(V_d \approx 1.32\times 10^{-44}\,\mathrm{m}^3\).
+  \[
+      V_{\text{tot}}^{(p)}=2V_u+V_d,\qquad
+      V_{\text{tot}}^{(n)}=V_u+2V_d.
+  \]
+  \paragraph{Shared parameters (illustrative).}
+  \(n=3,\ m=3,\ s=2,\ \rho_{\ae}=3.89\times10^{18}\,\mathrm{kg/m^3},\
+  C_e=1.0938\times10^{6}\,\mathrm{m/s},\
+  \alpha^{-1}=137.035999,\ \varphi\simeq1.618.\)
+
+  \paragraph{Mass results.}
+  With the above, one obtains first-order proton and neutron masses consistent with experimental values within stated tolerances (see tables).
+
+  \subsection{Conclusion}
+  \begin{itemize}
+      \item \textbf{Proton}: \(uud=5_2+5_2+6_1\) — chiral triple link; \(M_p\) within percent-level of experiment.
+      \item \textbf{Neutron}: \(udd=5_2+6_1+6_1\) — Borromean link; \(M_n\) slightly heavier and within percent-level of experiment.
+  \end{itemize}
+
+\textit{This document is a living theoretical framework and subject to experimental recalibration.}
+
+  \bibliographystyle{unsrt}
+  \bibliography{../references}
+
+\appendix
+      \section{Calculating Atomic Masses with the Master Formula}\label{sec:AtomicMasses}
+  The Master Formula applied to atomic masses, comparing VAM-derived values (VAM-Mass) with experimental data(Mass). Showing the \% difference (Err$_\text{M}$), with the emperical version first used (Err$_\beta$)  .   \\ Err$_\text{M}$ \( M(n, m, \{V_i\}) = \frac{4}{\alpha} \cdot \left( \frac{1}{m} \right)^{3/2} \cdot \frac{1}{\varphi^s} \cdot n^{-1/\varphi} \cdot \left( \sum_i V_i \right) \cdot \left( \frac{1}{2} \rho_\text{\ae}^{(\text{energy})} C_e^2 \right) \)\\
+  Err$_\beta$ \(  M(p,q) = 8\pi\,\rho_{\text{\ae}}\,r_c^3\,C_e \left(\sqrt{p^2 + q^2} + \gamma\, p\,q\right) \)
+  Here $\sqrt{p^2+q^2}$ represents the \grqq swirl length\textquotedblright of the knot and the $\gamma p q$ term represents the additional energy from the knot's inter-linking/twisting, with $\gamma \approx 5.9\times10^{-3}$.
+
+\begin{table*}[htbp]
+\scriptsize
+\centering
+\caption{Results of the Master Formula applied to atomic masses.}
+\label{tab:vam_mass_dot_postfix}
+\begin{tabular}{p{0.46\linewidth} p{0.46\linewidth}}
+
+\begin{tabular}{|rllrr|}
+\toprule
+Atom & Mass (kg) & VAM Mass & Err$_\text{M}$ & Err$_\beta$ \\
+\midrule
+H   & 1.674e-27 & 1.657e-27     & -0.97\% \heartmarker                                                                       & +15.86\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=red,circle,inner sep=3pt]{};}  \\
+He  & 6.646e-27 & 6.754e-27     & +1.61\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & -5.20\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Li  & 1.152e-26 & 1.185e-26     & +2.83\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}         & -6.05\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Be  & 1.497e-26 & 1.523e-26     & +1.75\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & -4.68\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+B   & 1.795e-26 & 1.860e-26     & +3.64\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}         & -1.15\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}  \\
+C   & 1.994e-26 & 2.026e-26     & +1.58\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +0.54\% \heartmarker  \\
+N   & 2.326e-26 & 2.364e-26     & +1.63\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +1.40\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}  \\
+O   & 2.657e-26 & 2.701e-26     & +1.68\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +2.15\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}  \\
+F   & 3.155e-26 & 3.211e-26     & +1.79\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +1.25\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}  \\
+Ne  & 3.351e-26 & 3.377e-26     & +0.77\% \heartmarker                                                                         & +2.40\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}  \\
+Na  & 3.818e-26 & 3.886e-26     & +1.80\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +2.59\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Mg  & 4.036e-26 & 4.052e-26     & +0.40\% \heartmarker                                                                         & +2.97\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Al  & 4.480e-26 & 4.562e-26     & +1.82\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +3.67\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Si  & 4.664e-26 & 4.727e-26     & +1.37\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +4.77\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+P   & 5.143e-26 & 5.237e-26     & +1.82\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +4.57\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+S   & 5.324e-26 & 5.403e-26     & +1.49\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +5.59\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Cl  & 5.887e-26 & 5.912e-26     & +0.44\% \heartmarker                                                                         & +3.91\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Ar  & 6.634e-26 & 6.766e-26     & +2.00\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +3.53\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+K   & 6.492e-26 & 6.588e-26     & +1.47\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +5.65\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Ca  & 6.655e-26 & 6.754e-26     & +1.48\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +6.75\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Sc  & 7.465e-26 & 7.607e-26     & +1.90\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +5.29\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Ti  & 7.949e-26 & 8.117e-26     & +2.12\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +5.21\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+V   & 8.459e-26 & 8.626e-26     & +1.98\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +4.82\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Cr  & 8.634e-26 & 8.792e-26     & +1.83\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +5.57\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Mn  & 9.123e-26 & 9.302e-26     & +1.96\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +5.46\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Fe  & 9.273e-26 & 9.467e-26     & +2.09\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +6.43\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Co  & 9.786e-26 & 9.977e-26     & +1.95\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +6.04\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Ni  & 9.746e-26 & 9.971e-26     & +2.30\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.72\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+
+\bottomrule
+\end{tabular} &
+\begin{tabular}{|rllrr|}
+\toprule
+Species & Mass (kg) & VAM Mass & Err$_\text{M}$ & Err$_\beta$ \\
+\midrule
+
+Cu  & 1.055e-25 & 1.082e-25     & +2.58\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}         & +6.77\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Zn  & 1.086e-25 & 1.099e-25     & +1.23\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +6.08\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Ga  & 1.158e-25 & 1.184e-25     & +2.30\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +6.13\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Ge  & 1.206e-25 & 1.235e-25     & +2.43\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +6.13\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+As  & 1.244e-25 & 1.269e-25     & +2.01\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +5.96\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Se  & 1.311e-25 & 1.337e-25     & +1.98\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +5.44\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Br  & 1.327e-25 & 1.354e-25     & +2.03\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +6.12\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Kr  & 1.391e-25 & 1.422e-25     & +2.19\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +5.83\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Rb  & 1.419e-25 & 1.439e-25     & +1.36\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +5.55\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Sr  & 1.455e-25 & 1.490e-25     & +2.37\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +6.51\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Y   & 1.476e-25 & 1.506e-25     & +2.02\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +6.70\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Zr  & 1.515e-25 & 1.540e-25     & +1.65\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +6.53\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Nb  & 1.543e-25 & 1.574e-25     & +2.00\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.11\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Mo  & 1.593e-25 & 1.625e-25     & +1.96\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +6.97\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Tc  & 1.627e-25 & 1.658e-25     & +1.91\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.11\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Ru  & 1.678e-25 & 1.709e-25     & +1.85\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +6.96\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Rh  & 1.709e-25 & 1.743e-25     & +2.00\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.31\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Pd  & 1.767e-25 & 1.794e-25     & +1.52\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +6.72\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Ag  & 1.791e-25 & 1.828e-25     & +2.04\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.46\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Cd  & 1.867e-25 & 1.896e-25     & +1.57\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +6.63\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+In  & 1.907e-25 & 1.947e-25     & +2.11\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.13\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Sn  & 1.971e-25 & 2.015e-25     & +2.23\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +6.95\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Sb  & 2.022e-25 & 2.066e-25     & +2.19\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +6.86\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Te  & 2.119e-25 & 2.169e-25     & +2.35\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +6.34\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+I   & 2.107e-25 & 2.151e-25     & +2.06\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +6.88\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Xe  & 2.180e-25 & 2.219e-25     & +1.78\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +6.33\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Cs  & 2.207e-25 & 2.253e-25     & +2.07\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +6.82\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Ba  & 2.280e-25 & 2.321e-25     & +1.77\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +6.27\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+\bottomrule
+\end{tabular}
+
+\end{tabular}
+
+\vspace{1ex}
+\raggedright
+\scriptsize
+\textbf{Legend:}
+pink    \heartmarker   $<$0.5\%,
+green   \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}  $<$2.5\%,
+orange  \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  $<$10\%,
+red     \tikz[baseline=-0.5ex]{\node[draw=none,fill=red,circle,inner sep=3pt]{};} $<$25\%,
+black   \tikz[baseline=-0.5ex]{\node[draw=none,fill=black,circle,inner sep=3pt]{};}  $\geq$25\%;
+Dots are placed \emph{after} the error value, indicate of deviation.
+
+\end{table*}
+
+
+\begin{table*}[htbp]
+\scriptsize
+\centering
+\caption{Results of the Master Formula applied to atomic masses.}
+\label{tab:vam_mass_dot_postfix2}
+\begin{tabular}{p{0.46\linewidth} p{0.46\linewidth}}
+
+\begin{tabular}{|rllrr|}
+\toprule
+Atom & Mass (kg) & VAM Mass & Err$_\text{M}$ & Err$_\beta$ \\
+\midrule
+La  & 2.307e-25 & 2.355e-25     & +2.08\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +6.77\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Ce  & 2.327e-25 & 2.371e-25     & +1.91\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +6.96\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Pr  & 2.340e-25 & 2.388e-25     & +2.05\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.47\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Nd  & 2.395e-25 & 2.439e-25     & +1.82\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.20\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Pm  & 2.408e-25 & 2.455e-25     & +1.97\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.71\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Sm  & 2.497e-25 & 2.541e-25     & +1.76\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.07\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Eu  & 2.523e-25 & 2.574e-25     & +2.02\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.50\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Gd  & 2.611e-25 & 2.660e-25     & +1.86\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +6.95\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Tb  & 2.639e-25 & 2.694e-25     & +2.06\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.32\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Dy  & 2.698e-25 & 2.762e-25     & +2.35\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.42\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Ho  & 2.739e-25 & 2.795e-25     & +2.07\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.29\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Er  & 2.777e-25 & 2.829e-25     & +1.87\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.22\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Tm  & 2.805e-25 & 2.863e-25     & +2.06\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.57\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Yb  & 2.874e-25 & 2.931e-25     & +2.00\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.33\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Lu  & 2.905e-25 & 2.965e-25     & +2.05\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.52\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Hf  & 2.964e-25 & 3.016e-25     & +1.75\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.20\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Ta  & 3.005e-25 & 3.067e-25     & +2.07\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.52\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+W   & 3.053e-25 & 3.118e-25     & +2.13\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.57\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Re  & 3.092e-25 & 3.152e-25     & +1.92\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.49\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Os  & 3.159e-25 & 3.220e-25     & +1.93\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.34\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Ir  & 3.192e-25 & 3.254e-25     & +1.93\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.48\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Pt  & 3.239e-25 & 3.304e-25     & +2.01\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.55\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Au  & 3.271e-25 & 3.338e-25     & +2.06\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.74\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Hg  & 3.331e-25 & 3.406e-25     & +2.27\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.81\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Tl  & 3.394e-25 & 3.457e-25     & +1.87\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.39\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Pb  & 3.441e-25 & 3.508e-25     & +1.97\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.49\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Bi  & 3.470e-25 & 3.542e-25     & +2.07\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.73\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Po  & 3.471e-25 & 3.541e-25     & +2.04\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +8.09\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+\bottomrule
+\end{tabular} &
+\begin{tabular}{|rllrr|}
+\toprule
+Species & Mass (kg) & VAM Mass & Err$_\text{M}$ & Err$_\beta$ \\
+\midrule
+At  & 3.487e-25 & 3.558e-25     & +2.03\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +8.33\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Rn  & 3.686e-25 & 3.764e-25     & +2.10\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.26\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Fr  & 3.703e-25 & 3.780e-25     & +2.09\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.49\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Ra  & 3.753e-25 & 3.831e-25     & +2.09\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.50\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Ac  & 3.769e-25 & 3.848e-25     & +2.08\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.73\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Th  & 3.853e-25 & 3.933e-25     & +2.08\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.50\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+Pa  & 3.837e-25 & 3.915e-25     & +2.06\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.94\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+U   & 3.953e-25 & 4.035e-25     & +2.09\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.52\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+$H_2O$ & 2.991e-26 & 3.033e-26     & +1.38\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +6.48\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+$CO_2$ & 7.308e-26 & 7.429e-26     & +1.65\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +7.44\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+$O_2$ & 5.314e-26 & 5.403e-26      & +1.68\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +5.79\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+$N_2$ & 4.652e-26 & 4.727e-26      & +1.63\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}          & +5.04\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+$CH_4$ & 2.664e-26 & 3.377e-26     & +26.78\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=black,circle,inner sep=3pt]{};}         & +28.83\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=black,circle,inner sep=3pt]{};}  \\
+$C_6H_\text{12}O_6$ & 2.992e-25 & 2.431e-25 & -18.73\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=red,circle,inner sep=3pt]{};}         & -9.13\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+$NH_3$ & 2.828e-26 & 3.377e-26     & +19.41\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=red,circle,inner sep=3pt]{};}          & +21.33\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=red,circle,inner sep=3pt]{};}  \\
+$HCl$ & 6.054e-26 & 6.078e-26     & +0.39\% \heartmarker                                                                        & +5.06\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+$C_2H_6$ & 4.993e-26 & 6.078e-26    & +21.73\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=red,circle,inner sep=3pt]{};}          & +27.39\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=black,circle,inner sep=3pt]{};}  \\
+$C_2H_4$ & 4.658e-26 & 5.403e-26    & +16.00\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=red,circle,inner sep=3pt]{};}          & +20.68\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=red,circle,inner sep=3pt]{};}  \\
+$C_2H_2$ & 4.324e-26 & 4.727e-26    & +9.33\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}        & +13.00\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=red,circle,inner sep=3pt]{};}  \\
+$NaCl$ & 9.704e-26 & 9.455e-26    & -2.57\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}      & +4.19\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  \\
+$C_8H_\text{18}$ & 1.897e-25 & 3.309e-25   & +74.46\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=black,circle,inner sep=3pt]{};}        & +97.85\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=black,circle,inner sep=3pt]{};}  \\
+$C_6H_6$ & 1.297e-25 & 1.621e-25    & +24.96\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=red,circle,inner sep=3pt]{};}          & +37.11\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=black,circle,inner sep=3pt]{};}  \\
+$CH_3COOH$ & 9.972e-26 & 1.081e-25 & +8.36\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}        & +16.62\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=red,circle,inner sep=3pt]{};}  \\
+$H_2SO_4$ & 1.629e-25 & 1.688e-25   & +3.67\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}        & +13.96\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=red,circle,inner sep=3pt]{};}  \\
+$CaCO_3$ & 1.662e-25 & 1.688e-25   & +1.59\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}         & +11.68\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=red,circle,inner sep=3pt]{};}  \\
+$C_\text{12}H_\text{22}O_\text{11}$ & 5.684e-25 & 5.943e-25 & +4.56\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}   & +21.74\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=red,circle,inner sep=3pt]{};}  \\
+Caffeine & 3.225e-25 & 6.551e-25 & +103.16\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=black,circle,inner sep=3pt]{};}   & +137.57\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=black,circle,inner sep=3pt]{};}  \\
+DNA (avg) & 1.079e-23 & 3.377e-23 & +212.85\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=black,circle,inner sep=3pt]{};}  & +329.59\% \tikz[baseline=-0.5ex]{\node[draw=none,fill=black,circle,inner sep=3pt]{};}  \\
+\bottomrule
+\end{tabular}
+
+\end{tabular}
+
+\vspace{1ex}
+\raggedright
+\scriptsize
+\textbf{Legend:}
+pink    \heartmarker   $<$0.5\%,
+green   \tikz[baseline=-0.5ex]{\node[draw=none,fill=green,circle,inner sep=3pt]{};}  $<$2.5\%,
+orange  \tikz[baseline=-0.5ex]{\node[draw=none,fill=orange,circle,inner sep=3pt]{};}  $<$10\%,
+red     \tikz[baseline=-0.5ex]{\node[draw=none,fill=red,circle,inner sep=3pt]{};} $<$25\%,
+black   \tikz[baseline=-0.5ex]{\node[draw=none,fill=black,circle,inner sep=3pt]{};}  $\geq$25\%;
+Dots are placed \emph{after} the error value, indicate of deviation.
+
+\end{table*}
+
+
+\end{document}

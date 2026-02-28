@@ -1,0 +1,77 @@
+\section{Gravitational Time Dilation (Static Field)}
+
+Gravitational time dilation in General Relativity (GR), under the Schwarzschild solution for a static spherical mass, is given by:
+\[
+    \frac{d\tau}{dt}_\text{GR} = \sqrt{1 - \frac{2GM}{rc^2}},
+\]
+where $\tau$ is proper time and $t$ is coordinate time at radial distance $r$ from mass $M$. For weak fields, the fractional slowdown is approximately $\frac{GM}{rc^2}$~\cite{will2014confrontation}.
+
+\subsection*{VAM Interpretation}
+In the Vortex Æther Model (VAM), gravitational time dilation arises from the rotational kinetic energy of a vortex in the æther medium. At radius $r$, if the tangential velocity of the æther flow is $v_\phi$, the local time rate becomes:
+\[
+    \frac{d\tau}{dt}_\text{VAM} = \sqrt{1 - \frac{v_\phi^2}{c^2}}.
+\]
+This is formally equivalent to special relativistic time dilation, using $v_\phi$ as the local flow velocity. VAM posits that for massive objects, $v_\phi^2 \approx 2GM/r$ (approximately the escape velocity squared), thus reproducing the first-order GR result~\cite{iskandarani2025VAM2}.
+
+\begin{table}[h]
+    \centering
+    \footnotesize
+    \caption{Gravitational Time Dilation at the Surface: GR vs VAM vs Observation}
+    \begin{tabular}{|l|c|c|c|c|}
+        \hline
+        \textbf{Object} & \textbf{GR: $\frac{d\tau}{dt}$} & \textbf{VAM: $\frac{d\tau}{dt}$} & \textbf{Observed Effect} & \textbf{Rel. Error (VAM)} \\
+        \hline
+        Earth & 0.9999999993 & 0.9999999993 ($v_\phi\approx 11.2$ km/s) & $+45~\mu\text{s}/\text{day}$ (GPS)~\cite{ashby2003relativity} & $\sim$0\% \\
+        Sun & 0.9999979 & 0.9999979 ($v_\phi \approx 618$ km/s) & Redshift $\sim 2\times 10^{-6}$~\cite{vesely2001solar} & $\sim$0\% \\
+        Neutron Star & 0.875 & 0.875 ($v_\phi \approx 0.65c$) & X-ray redshift $z\sim 0.3$~\cite{cottam2002gravitational} & $\sim$0\% \\
+        Proton & $\approx 1 - 10^{-27}$ & $\approx 1$ (VAM suppressed) & None measurable & N/A \\
+        Electron & $\approx 1 - 10^{-30}$ & $\approx 1$ (VAM suppressed) & None measurable & N/A \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection*{Observational Agreement}
+Gravitational redshift was confirmed by the Pound–Rebka experiment, showing $\Delta\nu/\nu = 2.5\times 10^{-15}$ over a 22.5 m height~\cite{pound1960apparent}. Modern atomic clock experiments (e.g., GPS satellites and Hafele–Keating) verify GR and SR combined dilation to precision better than $10^{-14}$~\cite{ashby2003relativity}.
+
+\subsection*{Rotational Energy Formulation in VAM}
+VAM optionally describes time dilation via stored rotational energy:
+\[
+    \frac{d\tau}{dt} = \left(1 + \frac{1}{2}\beta I \Omega^2\right)^{-1},
+\]
+where $I$ is the moment of inertia, $\Omega$ is angular velocity, and $\beta$ is a coupling parameter. For macroscopic bodies, tuning $\beta$ such that:
+\[
+    \frac{1}{2} \beta I \Omega^2 \approx \frac{GM}{Rc^2}
+\]
+ensures agreement with GR~\cite{iskandarani2025VAM2}.
+
+\subsection*{Suppression at Quantum Scales}
+To explain negligible gravity for elementary particles, VAM introduces a scale-dependent suppression factor $\mu(r)$, effective below $r^* \sim 10^{-3}$ m. This prevents excessive gravity from quantum-scale vortices while preserving agreement with Newtonian/GR gravity down to millimeter tests~\cite{adelberger2003tests}.
+
+\subsection{Hybridization of Gravitational Coupling for Macroscopic Regimes}
+
+To resolve inconsistencies in the VAM time-dilation predictions for macroscopic systems such as neutron stars, we introduce a transition function \(\mu(r)\) that smoothly interpolates between vortex-induced gravity at short distances and classical Newtonian gravity at large distances:
+\[
+    \mu(r) = \exp\left(-\frac{r^2}{R_0^2}\right), \quad R_0 \sim 10^{-12} \, \mathrm{m}.
+\]
+
+The hybrid gravitational constant and effective mass are defined as:
+\begin{align*}
+    G_{\text{hybrid}}(r) &= \mu(r) \, G_{\text{swirl}} + (1 - \mu(r)) \, G, \\
+    M_{\text{hybrid}}(r) &= \mu(r) \, M_{\text{eff}}^{\text{VAM}}(r) + (1 - \mu(r)) \, M,
+\end{align*}
+where \(M\) is the object's empirical mass and \(M_{\text{eff}}^{\text{VAM}}\) is the vorticity-induced mass derived from the æther distribution and $G_{\text{swirl}} = \frac{C_e c^5 t_p^2}{2 F_{\max} r_c^2}$ is the gravitational coupling derived from vortex-induced energy limits in the æther.
+
+
+This function smoothly returns $G_{\text{swirl}}$ at quantum vortex scales, and classical $G$ at stellar radii.
+
+The modified time-dilation equation becomes:
+\begin{equation}
+    \frac{d\tau}{dt} = \sqrt{1 - \frac{2 G_{\text{hybrid}}(r) \, M_{\text{hybrid}}(r)}{r c^2} - \frac{C_e^2}{c^2} e^{-r/r_c} - \frac{\Omega^2}{c^2} e^{-r/r_c}}.
+    \label{eq:hybrid_time_dilation}
+\end{equation}
+
+This hybrid formulation provides a predictive path to test the VAM deviation in upcoming high-precision timing experiments on pulsars or compact binaries.
+
+
+\subsection*{Conclusion}
+VAM matches GR's gravitational time dilation in weak and strong fields by assigning appropriate ætheric swirl velocities. Deviations are avoided by tuning $\beta$ and applying scale suppression $\mu(r)$, making VAM experimentally indistinguishable from GR for time dilation.
