@@ -381,6 +381,44 @@ by explicit normalization conditions (Sec.~\ref{sec:calibration_program}).
         \subsection*{Axiom III: Topological Matter (Rosetta Rule)}
             Stable particles are closed, knotted vortex filaments. Conserved quantum numbers (charge, spin, flavor) correspond to topological invariants (linking number, twist, knot type).
 
+        % --- Canon Version with Status Tags ---
+    \subsection{Canonical constant chain with status tags}
+        \label{sec:canon-constants-status}
+
+        We classify each step as:
+        \[
+            \text{[T]}=\text{textbook identity},\quad
+            \text{[S]}=\text{SST closure assumption},\quad
+            \text{[D]}=\text{derived consequence}.
+        \]
+
+        \begin{align}
+            r_e &= \frac{e^2}{4\pi\epsilon_0 m_e c^2} = \frac{\alpha\hbar}{m_e c}
+            && \text{[T]},\\
+            \rc &= \frac{r_e}{2}
+            && \text{[S]},\\
+            \omega_C &= \frac{m_e c^2}{\hbar}
+            && \text{[T]},\\
+            \Omega_{\text{swirl}} &= \omega_C
+            && \text{[S]},\\
+            \lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert &= \omega_C \rc
+            && \text{[D]},\\
+            m_e c^2 &= \frac12 k r_e^2
+            && \text{[S]},\\
+            F_{\text{swirl}}^{\max} &= k\rc=\frac{m_e c^2}{r_e}=\frac{m_e c^2}{2\rc}
+            && \text{[D]},\\
+            \rho_{\text{core}} &= \frac{F_{\text{swirl}}^{\max}}{\pi \rc^2 \lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert^2}
+            && \text{[D]},\\
+            \rho_{\!E} &= \rho_{\text{core}}c^2
+            && \text{[T/D]},\\
+            \rho_{\!f} &=
+            \frac{2 m_e c^2}{
+                \left(\alpha \, m_e c^2/\hbar\right)^2 \left(r_e^3/3\right)}
+            && \text{[S anchor]}.
+        \end{align}
+
+        This notation makes explicit which relations are inherited from standard physics and which are SST-specific closures.
+
 % ======================================================================
 % NEW: Hydrodynamic closure (added; does not replace anything)
 % ======================================================================

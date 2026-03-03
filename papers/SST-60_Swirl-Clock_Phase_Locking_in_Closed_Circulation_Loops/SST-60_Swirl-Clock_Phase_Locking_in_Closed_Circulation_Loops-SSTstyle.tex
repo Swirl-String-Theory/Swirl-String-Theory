@@ -1,5 +1,27 @@
+%! Author = Omar Iskandarani
+%! Date = 3/2/2026
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.18810431
+
 \newcommand{\paperdoi}{10.5281/zenodo.18810431}
 \newcommand{\papertitle}{Phase Locking and Discrete Mode Selection in Closed Circulation Loops}
+
+%=========================================
+% % PREAMBLE, PACKAGES AND DOCUMENT CONFIGURATION
+%=========================================
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsfonts,bm}
+\usepackage{siunitx}
+\usepackage[hidelinks]{hyperref}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[absolute,overlay]{textpos}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{pgfplots.groupplots}
+
 \newcommand{\papershorttitle}{Phase Locking in Circulation Loops}
 \newcommand{\paperorcid}{0009-0006-1686-3961}
 \newcommand{\paperemail}{info@omariskandarani.com}
@@ -9,62 +31,44 @@
 
 
 
-%=========================================
-% % PREAMBLE, PACKAGES AND DOCUMENT CONFIGURATION
-%=========================================
-\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}
-\usepackage{graphicx}%
-\usepackage{multirow}%
-\usepackage{amsmath,amssymb,amsfonts,bm}
-\usepackage{amsthm}%
-\usepackage{mathrsfs}%
-\usepackage[title]{appendix}%
-\usepackage{xcolor}%
-\usepackage{textcomp}%
-\usepackage{manyfoot}%
-\usepackage{booktabs}%
-\usepackage{algorithmicx}%
-\usepackage{listings}%
-
-\usepackage{siunitx}
-% hyperref and geometry are loaded by sn-jnl; do not reload to avoid option clash
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
-\usetikzlibrary{pgfplots.groupplots}
-
-
-
-\title[\papershorttitle]{\papertitle}
-
-\author{\fnm{Omar} \sur{Iskandarani}}
-\equalcont{\footnotesize \orgname{Independent Researcher}, \orgaddress{\city{\papercity}, \country{\papercountry}}\\ \tiny ORCID: \paperorcid, doi: \paperdoi }
-
-
-\abstract{
-Closed circulation loops with finite propagation time constitute a broad and generic class of delayed feedback systems encountered across fluid dynamics, optics, electronics, and wave physics \cite{Erneux2009,Hale1993,Diekmann1995,GlassMackey1988,Ikeda1979}.
-We show that such loops admit discrete, dynamically selected phase--locked states even when governed by fully continuous classical dynamics \cite{Pikovsky2001,Kuramoto1984,Strogatz2003book}.
-Using a minimal delayed phase oscillator as a canonical model, we demonstrate that finite circulation time enforces multistable phase--locking conditions.
-
-The resulting phase--locked solutions form a countable family of circulation modes.
-By analyzing the characteristic equation of the differenced delayed dynamics, we prove that stability filtering eliminates the odd-indexed branches in the strong-feedback regime.
-This yields an evenly spaced, integer-indexed subset of dynamically stable frequencies.
-
-The asymptotic spacing coincides with that of periodic boundary quantization for a wave on a loop \cite{Zettl2005,Griffiths2018}, but arises here purely as a set of attractors of a nonlinear delay differential equation.
-This work therefore provides a deterministic classical route to mode discreteness in circulating systems without invoking microscopic quantization.
+\newcommand{\titlepageHeader}{
+    \thispagestyle{empty}%
+    \begin{center}
+        \Large \bfseries \papertitle \par \vspace{1cm}
+        {\Large \itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par} \vspace{0.5cm}
+        {\small Independent Researcher, Groningen, The Netherlands\par} \vspace{0.5cm}
+        {\today \par}  \vspace{0.5cm}
+    \end{center}
 }
 
-\keywords{\paperkeywords}
-
-
+% footer anchored near bottom of the first page
+\newcommand{\titlepageFooter}{
+    \begin{textblock*}{1\textwidth}(0.15\textwidth,1.1\textheight)
+    \raggedright\footnotesize
+    \renewcommand{\arraystretch}{1.0}%
+    \noindent\rule{\textwidth}{0.4pt}\\[0.5em]
+    \textsuperscript{\textbf{*}} Email: \texttt{\paperemail}  ORCID: \texttt{\href{https://orcid.org/\paperorcid}{\paperorcid}}
+    DOI: \href{https://doi.org/\paperdoi}{\paperdoi}\\    Keywords: \paperkeywords
+    \end{textblock*}
+}
 %=========================================
 % Start Document - Title Page
 %=========================================
-
 \begin{document}
-    \maketitle
+    \titlepageHeader
+    \begin{abstract}
+        Closed circulation loops with finite propagation time constitute a broad and generic class of delayed feedback systems encountered across fluid dynamics, optics, electronics, and wave physics \cite{Erneux2009,Hale1993,Diekmann1995,GlassMackey1988,Ikeda1979}.
+        We show that such loops admit discrete, dynamically selected phase--locked states even when governed by fully continuous classical dynamics \cite{Pikovsky2001,Kuramoto1984,Strogatz2003book}.
+        Using a minimal delayed phase oscillator as a canonical model, we demonstrate that finite circulation time enforces multistable phase--locking conditions.
 
+        The resulting phase--locked solutions form a countable family of circulation modes.
+        By analyzing the characteristic equation of the differenced delayed dynamics, we prove that stability filtering eliminates the odd-indexed branches in the strong-feedback regime.
+        This yields an evenly spaced, integer-indexed subset of dynamically stable frequencies.
+
+        The asymptotic spacing coincides with that of periodic boundary quantization for a wave on a loop \cite{Zettl2005,Griffiths2018}, but arises here purely as a set of attractors of a nonlinear delay differential equation.
+        This work therefore provides a deterministic classical route to mode discreteness in circulating systems without invoking microscopic quantization.
+    \end{abstract}
+    \titlepageFooter
 
 %=========================================
 % Title Page End
