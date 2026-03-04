@@ -1,12 +1,12 @@
 %! Author = Omar Iskandarani
-%! Date = 1/27/2026
+%! Date = 3/3/2026
 %! Affiliation = Independent Researcher, Groningen, The Netherlands
-%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
 %! ORCID = 0009-0006-1686-3961
-%! DOI = 10.5281/zenodo.xxx
+%! DOI = 10.5281/zenodo.18388714
 
 \newcommand{\paperdoi}{10.5281/zenodo.18388714}
-\newcommand{\papertitle}{Unification of Relativistic Kinematics and Gravitational Dynamics from a Single Covariant Action}
+\newcommand{\papertitle}{Covariant Variational Conditions for Einstein-Form Dynamics and Universal Free Fall with a Unit Timelike Field}
+\newcommand{\paperkeywords}{PAPER_KEYWORDS}
 
 %=========================================
 % % PREAMBLE, PACKAGES AND DOCUMENT CONFIGURATION
@@ -19,6 +19,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{tikz}
+\usepackage[absolute,overlay]{textpos}
 
 % swirl arrows (context-aware)
 \newcommand{\swirlarrow}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}
@@ -38,68 +39,48 @@
 \newcommand{\rc}{r_c}                                    % string core radius (swirl string radius)
 
 
-\newcommand{\titlepageOpen}{
-    \begin{titlepage}
-        \thispagestyle{empty}  \centering
+\begin{document}
+    \thispagestyle{empty}%
+    \begin{center}
         \Large \bfseries \papertitle \par \vspace{1cm}
         {\Large \itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par} \vspace{0.5cm}
+        {\small Independent Researcher, Groningen, The Netherlands\par} \vspace{0.5cm}
         {\today \par}  \vspace{0.5cm}
-}
-
-\newcommand{\titlepageClose}{
-        \vfill \raggedright \null
-        \begin{picture}(0,0)
-            \put(0,-45){  % Shift 200pt left, 40pt down
-                \begin{minipage}[b]{0.7\textwidth} \footnotesize
-                    \renewcommand{\arraystretch}{1.0} \noindent\rule{\textwidth}{0.4pt} \\[0.5em]
-                    \textsuperscript{\textbf{*}} Independent Researcher, Groningen, The Netherlands \\
-                    Email: \texttt{info@omariskandarani.com} \\
-                    ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}} \\
-                    DOI: \href{https://doi.org/\paperdoi}{\paperdoi}
-                \end{minipage}
-            }
-        \end{picture}
-    \end{titlepage}
-}
-%=========================================
-% Start Document - Title Page
-%=========================================
-\begin{document}
-    \titlepageOpen
+    \end{center}
+    
     \begin{abstract}
-        Special relativity, general relativity, and the weak equivalence principle are
-        traditionally introduced as conceptually independent foundations of modern
-        physics: Lorentz invariance as a kinematical symmetry, Einstein gravity as a
-        dynamical theory of spacetime, and universal free fall as an additional
-        postulate.
-        In this work we show that these principles are not logically independent.
-
-        We consider a minimal covariant variational framework consisting of a Lorentzian
+        We analyze a generally covariant variational framework consisting of a Lorentzian
         metric, a unit timelike vector field subject to a normalization constraint, and
         minimally coupled matter.
-        Without assuming Lorentz invariance, geodesic motion, or the equivalence
-        principle \emph{a priori}, we demonstrate that all three arise as necessary
-        consequences of diffeomorphism invariance and the variational structure of the
-        theory.
+        Within this framework, and without assuming Lorentz invariance, geodesic motion,
+        or the weak equivalence principle \emph{a priori}, we identify a common set of
+        structural conditions under which these features arise in the infrared.
 
-        We prove that local kinematics reduce to special relativity in the tangent space
-        at every spacetime point, yielding the standard Lorentz factor and
-        energy--momentum relations.
-        We further show that the field equations take the Einstein form with a
-        covariantly conserved total stress--energy tensor, and that the universality of
-        free fall follows directly from minimal coupling and the Bianchi identity.
-        General relativity is recovered as a consistent sector of the theory, while
-        controlled deviations are naturally parameterized by the additional timelike
-        sector.
+        We show that local kinematics reduce to the standard special-relativistic form in
+        tangent-space inertial frames at each spacetime point, yielding the usual proper-time
+        relation, Lorentz factor, and energy--momentum mass-shell relation.
+        Variation of the total action with respect to the metric yields Einstein-form field
+        equations with a covariantly conserved total stress--energy tensor.
+        For minimally coupled, structureless matter, covariant conservation implies metric
+        geodesic motion and therefore universality of free fall.
 
-        These results clarify the minimal structural conditions under which relativistic
-        physics emerges and demonstrate that special-relativistic kinematics,
-        Einsteinian gravitational dynamics, and the weak equivalence principle can be
-        unified within a single covariant action, rather than postulated as independent
-        axioms.
+        General relativity is recovered as a consistent sector when the stress contribution
+        of the unit-timelike field vanishes, while departures are parameterized by the
+        additional timelike sector and constrained by standard preferred-frame and
+        gravitational-wave speed bounds.
+        The main result is a theorem-level statement about logical interdependence within a
+        specified covariant variational class: local relativistic kinematics, Einstein-form
+        gravitational dynamics, and universal free fall need not be introduced as independent
+        axioms in that class.
     \end{abstract}
-
-    \titlepageClose
+    Keywords: \paperkeywords
+    
+    
+    \begin{textblock*}{1\textwidth}(0.15\textwidth,1.1\textheight)\raggedright\footnotesize\renewcommand{\arraystretch}{1.0} \noindent\rule{\textwidth}{0.4pt}\\[0.5em]
+        \textsuperscript{\textbf{*}} Email: \texttt{info@omariskandarani.com}\\
+        ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}}\\
+        DOI: \href{https://doi.org/\paperdoi}{\paperdoi}
+    \end{textblock*}
 
     \section{Introduction and Scope}
 
@@ -145,28 +126,44 @@
             conserved additional stresses), and that the universality of free fall follows
             as a consequence of diffeomorphism invariance and minimal coupling.
 
-        \subsection{Relation to Existing Frameworks}
+        \subsection{Relation to Existing Frameworks and Statement of Novelty}
 
-            The structure studied here is mathematically related to, but conceptually
-            distinct from, Einstein--\AE ther and other preferred-frame theories.
-            In contrast to those approaches, the emphasis of the present work is not on
-            Lorentz violation or phenomenological modification of gravity, but on logical
-            unification.
-            Special relativity, general relativity, and the weak equivalence principle are
-            derived together within a single variational framework, rather than introduced
-            as independent postulates.
+            The field content and two-derivative covariant structure considered here are
+            mathematically related to Einstein--\AE ther and other vector--tensor theories
+            \cite{jacobsonmattingly2001,jacobson2008}.
+            Accordingly, the present work does not claim to introduce a new class of
+            generally covariant vector--tensor Lagrangians, nor does it derive new closed-form
+            expressions for the standard preferred-frame parameters beyond the established
+            literature.
+
+            The contribution of this paper is instead structural.
+            We formulate and prove a unified implication chain within this covariant
+            variational class:
+            local tangent-space special-relativistic kinematics, Einstein-form metric field
+            equations with covariant stress conservation, and universality of free fall for
+            minimally coupled matter arise as interlocked consequences of diffeomorphism
+            invariance, variational consistency, and minimal coupling.
+            In this sense, the result is a theorem about logical dependence within an
+            effective field-theoretic framework, rather than a proposal of a new
+            phenomenological gravity model.
 
             The analysis is carried out entirely at the level of effective field theory and
-            remains agnostic regarding any microscopic or ultraviolet completion.
+            remains agnostic regarding microscopic or ultraviolet completion.
 
         \subsection{Scope and Limitations}
 
-            This paper establishes that relativistic kinematics and dynamics arise as robust
-            infrared structures enforced by covariance and variational consistency.
-            It does not attempt to quantize gravity, propose a specific microscopic model,
-            or introduce additional dimensions or particle content.
-            Accordingly, the results are compatible with, but logically independent of,
-            string theory, loop quantum gravity, and other ultraviolet approaches.
+            This paper establishes a theorem-level structural result within a class of
+            generally covariant metric-plus-unit-timelike-field effective theories.
+            It identifies sufficient conditions under which local relativistic kinematics,
+            Einstein-form gravitational dynamics, and universal free fall arise together in
+            the infrared.
+
+            The paper does not claim uniqueness of the unit-timelike sector, does not provide
+            a complete classification of strong-field solutions, and does not address
+            quantization or ultraviolet completion.
+            The observational discussion is correspondingly limited to standard weak-field
+            consistency conditions (PPN and gravitational-wave speed constraints) used to
+            identify viable parameter regions.
 
         \subsection{Outline of the Paper}
 
@@ -220,7 +217,7 @@
             \noindent\textbf{Theorem (Unification of Relativistic Principles).}
             \emph{Under the assumptions stated above, the following results hold:}
             \begin{enumerate}
-                \item \emph{Local special-relativistic kinematics.}
+                \item \emph{Local tangent-space special-relativistic kinematics.}
                 At every spacetime point $p\in\mathcal{M}$, there exists a local inertial
                 frame in which the proper time along timelike worldlines satisfies
                 \begin{equation}
@@ -717,12 +714,13 @@
     \section{Summary and Outlook}
     \label{sec:summary}
 
-    In this work we have shown that special-relativistic kinematics, Einsteinian
+    In this work we have shown that, within a specified generally covariant
+    variational framework based on a Lorentzian metric, a unit timelike field, and
+    minimal coupling of matter, local special-relativistic kinematics, Einstein-form
     gravitational dynamics, and the universality of free fall need not be introduced
     as logically independent postulates.
-    Instead, all three emerge as necessary consequences of a single covariant
-    variational framework based on diffeomorphism invariance, a Lorentzian metric,
-    a unit timelike field, and minimal coupling of matter.
+    Instead, they arise as interlocked consequences of covariance, variational
+    consistency, and minimal coupling in that framework.
 
     Starting from these minimal assumptions, we demonstrated that:
     \begin{itemize}
@@ -769,8 +767,18 @@
     which relativistic physics emerges and provide a coherent and testable pathway
     for extending general relativity without undermining its experimentally
     confirmed foundations.
-
-
+    
+    \section*{Statements and Declarations}
+    
+    \textbf{Funding} No funding was received for conducting this study.
+    
+    \textbf{Competing Interests} The author declares no competing interests.
+    
+    \textbf{Author Contributions} Omar Iskandarani: Conceptualization, formal analysis, derivation, writing---original draft, writing---review and editing.
+    
+    \textbf{Data Availability} No datasets were generated or analyzed during the current study.
+    
+    \textbf{Code Availability} Not applicable.
 
     \begin{thebibliography}{99}
 
