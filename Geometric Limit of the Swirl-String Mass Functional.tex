@@ -1,0 +1,231 @@
+%! Author = Omar Iskandarani
+%! Date = 3/5/2026
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxx
+
+\newcommand{\paperdoi}{10.5281/zenodo.xxx}
+\newcommand{\papertitle}{The Geometric Limit of the Swirl-String Mass Functional: Bridging Topological Impedance and Gravitational Time Dilation}}
+\newcommand{\paperkeywords}{Swirl-String Theory, Mass Functional, Topological Defects, Time Dilation, Fine-Structure Constant, Quantum Gravity}
+
+
+\documentclass[11pt, a4paper]{article}
+
+% --- UNIVERSAL PREAMBLE BLOCK ---
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
+
+\usepackage[english, bidi=basic, provide=*]{babel}
+
+\babelprovide[import, onchar=ids fonts]{english}
+
+% Set default/Latin font to Sans Serif in the main (rm) slot
+\babelfont{rm}{Noto Sans}
+
+% --- STANDARD MATH PACKAGES ---
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{amsmath,amssymb,amsfonts,bm}
+\usepackage{siunitx}
+\usepackage[hidelinks]{hyperref}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[absolute,overlay]{textpos}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{pgfplots.groupplots}
+
+\begin{document}
+    \thispagestyle{empty}%
+    \begin{center}
+        \Large \bfseries \papertitle \par \vspace{1cm}
+        {\Large \itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par} \vspace{0.5cm}
+        {\small Independent Researcher, Groningen, The Netherlands\par} \vspace{0.5cm}
+        {\today \par}  \vspace{0.5cm}
+    \end{center}
+    
+    \begin{abstract}
+We present a purely geometric formulation of the mass functional within Swirl-String Theory (SST), demonstrating that the invariant rest mass of topological field configurations can be expressed entirely through spatial length ratios and a canonical medium density. By systematically bridging the Compton wavelength ($\lambda_c$), the localized swirl core radius ($r_c$), and the Planck length ($L_p$), we derive the electromagnetic fine-structure amplification factor $4/\alpha$ as a strictly geometric shielding gate, defined as $\lambda_c / (\pi r_c)$. This derivation eliminates explicit kinematic velocities and electromagnetic parameters from the baseline mass scale. Furthermore, we demonstrate that the general relativistic Schwarzschild potential for any topological state reduces to a dimensionless impedance factor governed by the fundamental area ratio $L_p^2 / \lambda_c$. This establishes a first-principles continuity between quantized microscopic defect tension and macroscopic gravitational time dilation without introducing novel mass parameters.
+\end{abstract}
+    Keywords: \paperkeywords
+
+
+    \begin{textblock*}{1\textwidth}(0.15\textwidth,1.1\textheight)\raggedright\footnotesize\renewcommand{\arraystretch}{1.0} \noindent\rule{\textwidth}{0.4pt}\\[0.5em]
+        \textsuperscript{\textbf{*}} Email: \texttt{info@omariskandarani.com}\\  
+        ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}}\\
+        DOI: \href{https://doi.org/\paperdoi}{\paperdoi}    
+    \end{textblock*}
+    
+    
+    
+  
+
+
+        
+        \vspace{1em}
+        \noindent \textbf{Keywords:}
+        
+        \section{Introduction}
+            
+            In standard particle physics, inertial mass is traditionally treated either as an empirical input or as a coupling parameter derived from spontaneous symmetry breaking. Swirl-String Theory (SST) proposes an alternative, purely hydrodynamic framework where particles are modeled as stable, knotted vortex strings within an incompressible, inviscid foliation. In this paradigm, mass is not a fundamental charge but an emergent dynamical property: the topologically trapped, localized kinetic energy of a high-density core condensate.
+            
+            Previous evaluations of topological mass functionals required the explicit inclusion of characteristic kinematic variables---such as the canonical swirl speed $v_{\circlearrowleft}$---and empirical scaling factors to account for the energy gap between fully shielded, rationally slice configurations (e.g., the electron) and exposed, multi-component composites (e.g., baryons). A persistent theoretical challenge has been isolating the purely geometric dependencies of these invariants to formally decouple the spatial structure of the string from the dynamical wave-speed of the background medium.
+            
+            This paper establishes the strict geometric limit of the SST mass functional. By utilizing the fundamental closure identity that relates the Compton frequency to the core swirl velocity, we systematically eliminate all free kinematic variables. We establish that the invariant mass of any discrete configuration $T$ is governed strictly by a dimensionless ropelength proxy $L_{\mathrm{tot}}(T)$ and a canonical mass-equivalent density $\rho_m$.
+            
+            Crucially, we prove that the inter-sector amplification factor---traditionally associated with the fine-structure constant $\alpha$---arises not from electromagnetic coupling, but as a purely geometric shielding gate representing the impedance mismatch between the core radius $r_c$ and the Compton boundary $\lambda_c$.
+            
+            Finally, we map this geometrically derived mass functional directly into the framework of General Relativity. By substituting the topological mass ratio into the standard Schwarzschild proper-time equation, we demonstrate that gravitational time dilation operates as a pure geometric impedance mapping. The local perturbation of the clock-field requires no separate mass parameters, reducing identically to a function of the spatial stretch between the topological defect's dimensions and the Planck area $L_p^2$. This validates the SST premise that time, gravity, and mass are unified expressions of a single medium's finite structural capacity.
+        
+        \section{The Geometric Limit of the SST Mass Functional}
+            
+            \subsection{Definitions (to avoid hidden assumptions)}
+                We use the electron Compton wavelength
+                \begin{equation}
+                    \lambda_c := \frac{h}{M_e c},
+                \end{equation}
+                and the SST geometric identity
+                \begin{equation}
+                    \lambda_c = \frac{2\pi c r_c}{v_{\circlearrowleft}}.
+                    \label{eq:lc_geom}
+                \end{equation}
+                We define a \emph{core energy density} $\rho_E$ (J/m$^3$) and its mass-equivalent
+                \begin{equation}
+                    \rho_m := \frac{\rho_E}{c^2} \qquad (\text{kg/m}^3).
+                \end{equation}
+                This avoids dimensional ambiguity if one uses ``energy density'' language in the mass functional.
+            
+            \subsection{Elimination of kinematic variables via the Compton--core identity}
+                From \eqref{eq:lc_geom}, we isolate the velocity ratios:
+                \begin{equation}
+                    \frac{v_{\circlearrowleft}}{c}=\frac{2\pi r_c}{\lambda_c},
+                    \qquad
+                    \frac{c}{v_{\circlearrowleft}}=\frac{\lambda_c}{2\pi r_c}.
+                    \label{eq:vratio}
+                \end{equation}
+            
+            \subsection{Geometric baseline mass scale}
+                Assume a localized kinetic-energy density of the form
+                \begin{equation}
+                    u = \frac{1}{2}\rho_m v_{\circlearrowleft}^2
+                    = \frac{1}{2}\frac{\rho_E}{c^2} v_{\circlearrowleft}^2,
+                    \label{eq:u_def}
+                \end{equation}
+                and a geometric core volume
+                \begin{equation}
+                    V := \pi r_c^3 L_{\mathrm{tot}}(T),
+                    \label{eq:V_def}
+                \end{equation}
+                where $L_{\mathrm{tot}}(T)$ is a dimensionless ropelength-like factor.
+                
+                Then the inertial mass scale defined by energy equivalence is
+                \begin{equation}
+                    M_0(T) := \frac{uV}{c^2}
+                    = \frac{1}{2}\rho_m\left(\frac{v_{\circlearrowleft}}{c}\right)^2 \pi r_c^3 L_{\mathrm{tot}}(T).
+                    \label{eq:M0_start}
+                \end{equation}
+                
+                Substituting \eqref{eq:vratio} into \eqref{eq:M0_start} gives the \emph{pure geometric} form:
+                \begin{equation}
+                    M_0(T) = 2\pi^3 \rho_m \frac{r_c^5}{\lambda_c^2} L_{\mathrm{tot}}(T).
+                    \label{eq:M0_geom}
+                \end{equation}
+                Dimensional check: $\rho_m$ (kg/m$^3$) times $r_c^5/\lambda_c^2$ (m$^3$) yields kg. \emph{No free kinematic variable remains.}
+            
+            \subsection{Substitution of the shielding gate}
+                From the previously established geometric identity for the sector gate:
+                \begin{equation}
+                    \frac{4}{\alpha}=\frac{2c}{v_{\circlearrowleft}}=\frac{\lambda_c}{\pi r_c},
+                    \label{eq:gate_geom}
+                \end{equation}
+                we define the exposure gate $G(T)\in\{0,1\}$ and a dimensionless topology kernel $\mathcal{K}(T)$.
+                The canonical mass functional becomes:
+                \begin{equation}
+                    M(T) = \left(\frac{\lambda_c}{\pi r_c}\right)^{G(T)} \mathcal{K}(T) \left( 2\pi^3 \rho_m \frac{r_c^5}{\lambda_c^2} L_{\mathrm{tot}}(T) \right).
+                    \label{eq:M_master}
+                \end{equation}
+                This form contains no explicit fine-structure constant $\alpha$ and no explicit swirl velocity $v_{\circlearrowleft}$.
+            
+            \subsection{Numerical gate validation (dimensionless)}
+                Using canonical lengths $r_c$ and $\lambda_c$:
+                \begin{equation}
+                    \frac{\lambda_c}{\pi r_c} \approx 5.48144\times 10^2,
+                \end{equation}
+                matching $4/\alpha$ at rounding precision.
+        
+        \section{Gravity as Pure Geometric Impedance in SST}
+            
+            \subsection{Geometric reduction of the GR coupling term}
+                The General Relativistic (Schwarzschild) proper-time factor may be written in terms of the dimensionless potential:
+                \begin{equation}
+                    \Phi(T;r) := \frac{2G M(T)}{r c^2}.
+                \end{equation}
+                Using the standard definitions $L_p^2=\hbar G/c^3$ and $\lambda_c=2\pi\hbar/(M_e c)$, the electron gravitational radius:
+                \begin{equation}
+                    r_s(e) := \frac{2G M_e}{c^2}
+                \end{equation}
+                reduces identically to the purely geometric form:
+                \begin{equation}
+                    r_s(e) = 4\pi \frac{L_p^2}{\lambda_c}.
+                \end{equation}
+                Thus, at the electron scale, the GR ``source strength'' $GM_e/c^2$ is equivalently a ratio of the Planck area to the Compton boundary.
+            
+            \subsection{SST topological mass ratio}
+                Define the dimensionless SST mass ratio relative to the electron:
+                \begin{equation}
+                    \tilde{M}(T) := \frac{M(T)}{M_e} = \left( \frac{\lambda_c}{\pi r_c} \right)^{G(T)} \mathcal{K}(T) \tilde{L}_{\mathrm{tot}}(T),
+                \end{equation}
+                where $G(T)\in\{0,1\}$ is the exposure (shielding) gate, $\mathcal{K}(T)$ is the topology kernel, and
+                $\tilde{L}_{\mathrm{tot}}(T)$ is the relative ropelength factor.
+            
+            \subsection{GR time dilation with SST substitution}
+                For a knot state $T$, the GR potential term becomes:
+                \begin{equation}
+                    \Phi(T;r) = \frac{r_s(e)}{r}\tilde{M}(T) = \frac{4\pi L_p^2}{r\lambda_c} \left( \frac{\lambda_c}{\pi r_c} \right)^{G(T)} \mathcal{K}(T) \tilde{L}_{\mathrm{tot}}(T).
+                \end{equation}
+                Substituting this into the proper-time factor yields:
+                \begin{equation}
+                    t_{\mathrm{adj}} = \Delta t \sqrt{ 1-\Phi(T;r) -\frac{v_{\circlearrowleft}^2}{c^2}e^{-r/r_c} -\frac{(\omega r_c)^2}{c^2}e^{-r/r_c} }.
+                \end{equation}
+                
+                \paragraph{Interpretation (precise claim).}
+                    The GR structure is retained; SST enters only through $\tilde{M}(T)$. In this combined model, the gravitational time-dilation term can be written as a product of (i) a universal length-ratio prefactor $4\pi L_p^2/(r\lambda_c)$ and (ii) a purely dimensionless topological impedance factor $\left(\lambda_c/(\pi r_c)\right)^{G(T)}\mathcal{K}(T)\tilde{L}_{\mathrm{tot}}(T)$. No additional mass parameters are introduced beyond the electron normalization. The explicit symbols $G$ and $M$ no longer appear separately: the potential is controlled by geometric ratios. Thus, the apparent cancellation is a reparameterization resulting from positing $M(T)$ geometrically.
+        
+        \section{Status, Assumptions, and Falsifiers}
+        
+        Assumptions: (i) energy density model follows $u = \frac{1}{2}\rho_m v_{\circlearrowleft}^2$; (ii) geometric core volume follows $V = \pi r_c^3 L_{\mathrm{tot}}$; (iii) closure identity maps the kinematic foliation parameters to the Compton scale exactly; (iv) the exposure gate is discrete and binary $G(T)\in\{0,1\}$.
+        
+        Falsifiers: Any empirical inconsistency in the core identity network (e.g., measuring independent drifts in $\lambda_c$, $r_c$, or $v_{\circlearrowleft}$) breaks the geometric gate derivation. Furthermore, any failure of the master equation to accurately predict hadronic-to-leptonic sector ratios when $L_{\mathrm{tot}}$ and $\mathcal{K}$ are fixed invalidates the physical interpretation of $G(T)$ as an impedance coupling.
+        
+        \begin{thebibliography}{9}
+            
+            \bibitem{CODATA2022}
+            E.~Tiesinga, P.~J.~Mohr, D.~B.~Newell, and B.~N.~Taylor (2023),
+            \textit{The 2022 CODATA Recommended Values of the Fundamental Physical Constants},
+            Rev.\ Mod.\ Phys.\ \textbf{95}, 025003.
+            DOI: 10.1103/RevModPhys.95.025003.
+            
+            \bibitem{MisnerThorneWheeler1973}
+            C.~W.~Misner, K.~S.~Thorne, and J.~A.~Wheeler (1973),
+            \textit{Gravitation}, W.\ H.\ Freeman.
+            
+            \bibitem{Abbott2017}
+            B.~P.~Abbott et al.\ (LIGO Scientific Collaboration and Virgo Collaboration) (2017),
+            \textit{GW170817: Observation of Gravitational Waves from a Binary Neutron Star Inspiral},
+            Phys.\ Rev.\ Lett.\ \textbf{119}, 161101.
+            DOI: 10.1103/PhysRevLett.119.161101.
+            
+            \bibitem{Iskandarani2026}
+            O.~Iskandarani (2026),
+            \textit{Atomic Masses from Topological Invariants of Knotted Field Configurations},
+            Independent Research.
+        
+        \end{thebibliography}
+    
+    \end{document}
+
+
+
+
+\end{document}
