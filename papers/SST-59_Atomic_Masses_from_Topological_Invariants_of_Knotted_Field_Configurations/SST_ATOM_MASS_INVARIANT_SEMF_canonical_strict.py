@@ -9,9 +9,7 @@ Purpose
 -------
 A canonical, topology-driven implementation of the Swirl-String Theory (SST)
 Invariant Master Mass Formula, structured similarly to VAM-MASS_FORMULA.py but
-grounded strictly in the Canon “master equation”. The script provides three
-calculation modes (see below) that change only topological-to-geometry inputs;
-the invariant kernel is identical in all modes.
+grounded strictly in the Canon “master equation”. Single canonical mode only (see below).
 
 Modes
 -----
@@ -44,7 +42,7 @@ i.e.
 
 Here V is the effective geometric/topological volume associated with the object.
 In the invariant kernel actually used in code (Eq. K), V = π r_c^3 L_tot(T) with
-L_tot a **dimensionless ropelength** set by topology and the mode-specific mapping (Eq. L).
+L_tot a **dimensionless ropelength** set by topology and (Eq. L).
 
 Symbols:
 - α          : fine-structure constant
@@ -483,11 +481,11 @@ def get_particle_topologies(cfg: Config, phi_val: float = phi0) -> Dict:
     electron_sigma = 1
     if cfg.use_shielding_exponent:
         electron_sigma = cfg.sigma_leptons
-    electron_base = KnotTopology(name="Electron_base T(2,3)", k=3.0, b_braid=2, g=1, n=1, sigma=electron_sigma)
+    electron_base = KnotTopology(name="Electron_base T(2,3)", k=3.0, b_braid=2, g=1, n=1, sigma=electron_sigma, L_tot=0.0)
     l_tot_e = solve_for_L_tot(M_e_actual,  electron_base, phi_val=phi_val)
     l_tot_mu = l_tot_e
     l_tot_tau = l_tot_e
-    
+
     # Baryon Sector Calibration
     k_bary, g_bary, n_bary = 3.0, 2, 3
     scaling_factor = 2.0 * (math.pi ** 2) * cfg.kappa_R
@@ -502,6 +500,7 @@ def get_particle_topologies(cfg: Config, phi_val: float = phi0) -> Dict:
     if cfg.use_twist_alexander_k:
         k_up_tw = k_from_knot_label("5_2", phi_val=phi_val)
         k_down_tw = k_from_knot_label("6_1", phi_val=phi_val)
+
     # Canonical-only: fixed (s_u, s_d) from topology assignments; no fitting or sector rescaling.
     s_u, s_d = cfg.fixed_su, cfg.fixed_sd
 
@@ -518,7 +517,7 @@ def get_particle_topologies(cfg: Config, phi_val: float = phi0) -> Dict:
         "proton":   KnotTopology(name="Proton",  k=float(k_bary), g=g_bary, n=n_bary, sigma=bary_sigma, L_tot=l_tot_p),
         "neutron":  KnotTopology(name="Neutron", k=float(k_bary), g=g_bary, n=n_bary, sigma=bary_sigma, L_tot=l_tot_n),
         "_diag": {
-            "mode": cfg.mode, "kappa_R": cfg.kappa_R, "scaling_factor": scaling_factor,
+            "kappa_R": cfg.kappa_R, "scaling_factor": scaling_factor,
             "A_bary": A_bary, "K": K, "lambda_b": lam_b, "s_u": s_u, "s_d": s_d
             , "k_up_twist_alex": k_up_tw, "k_down_twist_alex": k_down_tw
         }
@@ -610,6 +609,13 @@ def compute_tables(
 
     # Elementary particles (No binding energy)
     rows.append(("Electron", M_e_actual, M_e_pred, emoji_marker(100.0*(M_e_pred-M_e_actual)/M_e_actual)))
+    # Higher-generation leptons: either predicted (electron_only) or calibrated (each_lepton).
+    if "muon" in topologies:
+        M_mu_pred = master_mass_invariant(topologies["muon"], phi_val=phi_val)
+        rows.append(("Muon", M_mu_actual, M_mu_pred, emoji_marker(100.0*(M_mu_pred-M_mu_actual)/M_mu_actual)))
+    if "tau" in topologies:
+        M_tau_pred = master_mass_invariant(topologies["tau"], phi_val=phi_val)
+        rows.append(("Tau", M_tau_actual, M_tau_pred, emoji_marker(100.0*(M_tau_pred-M_tau_actual)/M_tau_actual)))
     rows.append(("Proton",   M_p_actual, M_p_pred, emoji_marker(100.0*(M_p_pred-M_p_actual)/M_p_actual)))
     rows.append(("Neutron",  M_n_actual, M_n_pred, emoji_marker(100.0*(M_n_pred-M_n_actual)/M_n_actual)))
 
@@ -834,60 +840,5 @@ def main() -> None:
 # Main Execution
 # ──────────────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
-    import sys
-    # --- Phi sweeps: with and without SEMF proxy ---
-    # Default: standard weights (averages). SEMF will warn about mixed semantics.
-    df_sweep_semf = phi_sweep(mode="canonical", npts=101, span=0.05, use_semf=True, data_source="standard_weight")
-    df_sweep_nosemf = phi_sweep(mode="canonical", npts=101, span=0.05, use_semf=False, data_source="standard_weight")
-
-    print("\nTop 10 (canonical, with SEMF):")
-    print(df_sweep_semf.sort_values("RMS_excl_epn").head(10))
-    df_semf_sorted = df_sweep_semf.sort_values("RMS_excl_epn").reset_index(drop=True)
-    best_semf_phi = df_semf_sorted.loc[0, "phi"]
-    at_edge_semf = (best_semf_phi == df_sweep_semf["phi"].min()) or (best_semf_phi == df_sweep_semf["phi"].max())
-    print("Best at edge? (with SEMF)", at_edge_semf)
-
-    print("\nTop 10 (canonical, no SEMF):")
-    print(df_sweep_nosemf.sort_values("RMS_excl_epn").head(10))
-    df_nosemf_sorted = df_sweep_nosemf.sort_values("RMS_excl_epn").reset_index(drop=True)
-    best_nosemf_phi = df_nosemf_sorted.loc[0, "phi"]
-    at_edge_nosemf = (best_nosemf_phi == df_sweep_nosemf["phi"].min()) or (best_nosemf_phi == df_sweep_nosemf["phi"].max())
-    print("Best at edge? (no SEMF)", at_edge_nosemf)
-
-    # Optional: isotope-resolved sweep (requires isotope_masses.csv)
-    # If you provide isotope masses consistent with your (Z,N) table, this is the correct way
-    # to interpret SEMF-on fits.
-    try:
-        df_sweep_iso_semf = phi_sweep(
-            mode="canonical", npts=101, span=0.05, use_semf=True,
-            data_source="isotope_mass", isotope_mass_csv="isotope_masses.csv"
-        )
-        print("\nTop 10 (canonical, with SEMF, isotope_mass targets):")
-        print(df_sweep_iso_semf.sort_values("RMS_excl_epn").head(10))
-    except Exception as e:
-        print("\n[INFO] Isotope-resolved sweep skipped:", str(e))
-
-    # --- Golden-ratio vs best-fit diagnostics ---
-    best_semf = df_semf_sorted.iloc[0]
-    phi_best_semf = float(best_semf["phi"])
-    gold_semf = eval_phi(phi0, mode="canonical", use_semf=True, data_source="standard_weight")
-    best_eval_semf = eval_phi(phi_best_semf, mode="canonical", use_semf=True, data_source="standard_weight")
-
-    print("\n--- Phi diagnostics (canonical, with SEMF) ---")
-    print("Golden:", gold_semf)
-    print("Best  :", best_eval_semf)
-    print(f"RMS ratio excl_epn: {gold_semf['RMS_excl_epn']/best_eval_semf['RMS_excl_epn']:.6f}")
-    print(f"RMS ratio excl_e  : {gold_semf['RMS_excl_e']/best_eval_semf['RMS_excl_e']:.6f}")
-
-    best_nosemf = df_nosemf_sorted.iloc[0]
-    phi_best_nosemf = float(best_nosemf["phi"])
-    gold_nosemf = eval_phi(phi0, mode="canonical", use_semf=False, data_source="standard_weight")
-    best_eval_nosemf = eval_phi(phi_best_nosemf, mode="canonical", use_semf=False, data_source="standard_weight")
-
-    print("\n--- Phi diagnostics (canonical, no SEMF) ---")
-    print("Golden:", gold_nosemf)
-    print("Best  :", best_eval_nosemf)
-    print(f"RMS ratio excl_epn: {gold_nosemf['RMS_excl_epn']/best_eval_nosemf['RMS_excl_epn']:.6f}")
-    print(f"RMS ratio excl_e  : {gold_nosemf['RMS_excl_e']/best_eval_nosemf['RMS_excl_e']:.6f}")
     # Canonical-only run
     main()

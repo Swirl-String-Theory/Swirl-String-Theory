@@ -191,6 +191,21 @@ _TWIST_LABEL_TO_N: Dict[str, int] = {
     "8_1": 5,
 }
 
+# Minimal fallback table (5 significant digits typical in the literature)
+HYP_VOL_TABLE = {
+    # hyperbolic:
+    "4_1": 2.02988,   # 2 twist
+    "5_2": 2.82812,   # 3 twist
+    "6_1": 3.16396,   # 4 twist
+    "7_2": 3.33174,   # 5 twist
+    "8_1": 3.42721,   # 6 twist
+    "9_2": 3.48666,   # 7 twist
+    "10_1": 3.5262,   # 8 twist
+    # non-hyperbolic (torus): volumes are 0.0
+    "3_1": 0.0,
+    "5_1": 0.0,
+    "7_1": 0.0,
+}
 
 def twist_t_plus(n: int) -> float:
     """Dominant Alexander root for twist knot K_n (n>=1)."""
@@ -254,6 +269,10 @@ def xi_A(A: int, gamma: float, A0: float, p: float) -> float:
 class Config:
     # s_u = Vol_H(5_2), s_d = Vol_H(6_1) (canonical up/down)
     mode: str = "exact_closure"
+    # Lepton calibration policy:
+    #   - "electron_only": calibrate ONLY L_tot(e) on M_e; predict mu/tau from the same geometry scale.
+    #   - "each_lepton":   calibrate L_tot separately on (e, mu, tau). Useful for diagnostics, not prediction.
+    lepton_calibration: str = "electron_only"
     kappa_R: float = 2.0
     fixed_su: float = 2.8281
     fixed_sd: float = 3.1639
@@ -501,8 +520,14 @@ def get_particle_topologies(cfg: Config, phi_val: float = phi0) -> Dict:
     tau_base      = KnotTopology(name="Tau_base T(2,7)",      k=7.0, b_braid=2, g=3, n=1, sigma=electron_sigma, L_tot=0.0)
 
     l_tot_e  = solve_for_L_tot(M_e_actual,  electron_base, phi_val=phi_val)
-    l_tot_mu = solve_for_L_tot(M_mu_actual, muon_base,     phi_val=phi_val)
-    l_tot_tau= solve_for_L_tot(M_tau_actual,tau_base,      phi_val=phi_val)
+    if cfg.lepton_calibration == "each_lepton":
+        # Diagnostic / non-predictive: fit each lepton separately.
+        l_tot_mu  = solve_for_L_tot(M_mu_actual,  muon_base, phi_val=phi_val)
+        l_tot_tau = solve_for_L_tot(M_tau_actual, tau_base,  phi_val=phi_val)
+    else:
+        # Predictive test: reuse the electron geometry scale for higher generations.
+        l_tot_mu  = l_tot_e
+        l_tot_tau = l_tot_e
 
     # Baryon Sector Calibration
     k_bary, g_bary, n_bary = 3.0, 2, 3
@@ -632,6 +657,13 @@ def compute_tables(
 
     # Elementary particles (No binding energy)
     rows.append(("Electron", M_e_actual, M_e_pred, emoji_marker(100.0*(M_e_pred-M_e_actual)/M_e_actual)))
+    # Higher-generation leptons: either predicted (electron_only) or calibrated (each_lepton).
+    if "muon" in topologies:
+        M_mu_pred = master_mass_invariant(topologies["muon"], phi_val=phi_val)
+        rows.append(("Muon", M_mu_actual, M_mu_pred, emoji_marker(100.0*(M_mu_pred-M_mu_actual)/M_mu_actual)))
+    if "tau" in topologies:
+        M_tau_pred = master_mass_invariant(topologies["tau"], phi_val=phi_val)
+        rows.append(("Tau", M_tau_actual, M_tau_pred, emoji_marker(100.0*(M_tau_pred-M_tau_actual)/M_tau_actual)))
     rows.append(("Proton",   M_p_actual, M_p_pred, emoji_marker(100.0*(M_p_pred-M_p_actual)/M_p_actual)))
     rows.append(("Neutron",  M_n_actual, M_n_pred, emoji_marker(100.0*(M_n_pred-M_n_actual)/M_n_actual)))
 
