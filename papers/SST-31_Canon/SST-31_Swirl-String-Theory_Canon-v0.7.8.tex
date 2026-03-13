@@ -905,6 +905,83 @@ are therefore \emph{the same physical entity}.
             j_{\mathrm{ev}}^\mu(x) = \sum_{k} \mathfrak{q}_k \int d\tau \, \dot{z}_k^\mu(\tau) \, \delta^{(4)}(x - z_k(\tau))
         \end{equation}
         Thus, "measuring time" is physically equivalent to counting the passage of vortex cores through the detector's world-volume.
+    
+    
+    \section{Topological Origin of Fermionic Exchange: The Hydrodynamic Pauli Barrier}
+    
+    To extend the Swirl-String Theory (SST) atomic bridge beyond the hydrogenic baseline, the phenomenological Pauli exclusion principle must be derived from the foundational fluid mechanics of the vacuum. In the present framework, the electron is not a point particle subject to abstract anticommutation relations, but an extended $2{:}3$ mode-locked trefoil vortex loop carrying a quantized circulation $\Gamma_0$. The exclusion principle must therefore emerge as a strict hydrodynamic energy penalty prohibiting identical vortex states from occupying the same spatial domain.
+    
+    \subsection{Biot-Savart Interaction Energy of Vortex Loops}
+        Consider two thin vortex loops, $C_1$ and $C_2$, embedded in an incompressible, inviscid fluid of effective density $\rho_{\!f}$. The total velocity field of the fluid is the linear superposition of the fields induced by each loop: $\mathbf{u}_{\rm total} = \mathbf{u}_1 + \mathbf{u}_2$. The total kinetic energy of the fluid is
+        \begin{equation}
+            \label{eq:Etotal_fluid}
+            E_{\rm total} = \frac{1}{2}\rho_{\!f} \int \lVert \mathbf{u}_1 + \mathbf{u}_2 \rVert^2 \, d^3r
+            = E_1 + E_2 + E_{\rm int},
+        \end{equation}
+        where $E_1$ and $E_2$ are the invariant self-energies (rest masses) of the isolated knots, and the interaction energy is
+        \begin{equation}
+            \label{eq:Eint_integral}
+            E_{\rm int} = \rho_{\!f} \int \mathbf{u}_1 \cdot \mathbf{u}_2 \, d^3r.
+        \end{equation}
+        By defining the vorticity $\boldsymbol{\omega}_i = \nabla \times \mathbf{u}_i$ and utilizing the vector potential $\mathbf{A}_i$ such that $\mathbf{u}_i = \nabla \times \mathbf{A}_i$, the incompressible constraint $\nabla \cdot \mathbf{u}_i = 0$ allows the vector potential to be written via the Biot-Savart kernel \cite{Batchelor1967}:
+        \begin{equation}
+            \label{eq:VectorPotential}
+            \mathbf{A}_i(\mathbf{r}) = \frac{1}{4\pi} \int \frac{\boldsymbol{\omega}_i(\mathbf{r}')}{\lVert \mathbf{r} - \mathbf{r}' \rVert} \, d^3r'.
+        \end{equation}
+        For thin vortex filaments where the vorticity is strictly confined to a core of radius $r_c$, the volume integral contracts to a line integral along the filament centerline. The vorticity element maps as $\boldsymbol{\omega}_i \, d^3r \to \Gamma_i \, d\mathbf{l}_i$. Substituting this back into Eq.~\eqref{eq:Eint_integral} via integration by parts yields the classical Kelvin interaction energy:
+        \begin{equation}
+            \label{eq:BiotSavartEnergy}
+            E_{\rm int} = \frac{\rho_{\!f} \Gamma_1 \Gamma_2}{4\pi} \oint_{C_1} \oint_{C_2} \frac{d\mathbf{l}_1 \cdot d\mathbf{l}_2}{\lVert \mathbf{r}_1 - \mathbf{r}_2 \rVert}.
+        \end{equation}
+    
+    \subsection{The Topological Repulsion Penalty (Pauli Barrier)}
+        We now apply Eq.~\eqref{eq:BiotSavartEnergy} to two electrons in the same atomic orbital. Let both electrons correspond to the $2{:}3$ trefoil closure with the same canonical circulation magnitude $\Gamma_1 = \Gamma_2 = \Gamma_0 = 2\pi r_c \lVert\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert$.
+        
+        If the two electrons occupy the exact same spatial state and share the same internal Swirl-Clock branch ($\sigma_1 = \sigma_2$), their local tangent vectors $d\mathbf{l}_1$ and $d\mathbf{l}_2$ are completely parallel. Let $\mathbf{d}$ be the displacement vector between their geometric centers. As the two identical topological states are forced into the same location ($\mathbf{d} \to 0$), the denominator in Eq.~\eqref{eq:BiotSavartEnergy} approaches the fundamental cut-off scale $r_c$, and the dot product $d\mathbf{l}_1 \cdot d\mathbf{l}_2 = \lVert d\mathbf{l} \rVert^2 > 0$ is everywhere positive.
+        
+        The interaction energy evaluates to a massive, localized pseudo-potential:
+        \begin{equation}
+            \label{eq:VPauli}
+            V_{\rm Pauli}(\mathbf{d}) \approx \frac{\rho_{\!f} \Gamma_0^2}{4\pi} \oint \oint \frac{d\mathbf{l}_1 \cdot d\mathbf{l}_2}{\sqrt{\lVert \mathbf{r}_1(\theta_1) - \mathbf{r}_2(\theta_2) + \mathbf{d} \rVert^2 + r_c^2}}.
+        \end{equation}
+        When the loops are co-spatial ($\mathbf{d} \to 0$), constructive interference of their circulation fields creates an extreme dynamic pressure spike. The energetic penalty for full overlap evaluates approximately to the scale of the self-energy of the loop's macroscopic circumference, $L \approx 2\pi a_0^{\rm SST}$:
+        \begin{equation}
+            \label{eq:VPauli_Max}
+            V_{\rm Pauli}^{\rm max} \approx \frac{\rho_{\!f} \Gamma_0^2}{4\pi} \left( \frac{L}{r_c} \right) \mathcal{O}(1).
+        \end{equation}
+        
+        Conversely, if the two electrons occupy the same spatial orbital but have \emph{opposite} Swirl-Clock branches ($\sigma_1 = -\sigma_2$), their circulation vectors are anti-parallel ($d\mathbf{l}_1 \cdot d\mathbf{l}_2 < 0$). This results in destructive interference of the local fluid velocity, leading to an attractive interaction ($E_{\rm int} < 0$), up to the point where the vortex cores would structurally recombine or annihilate.
+        
+        Thus, the Pauli exclusion principle is not a postulate of SST; it is the direct classical consequence of the fluid kinetic energy integral. Identically handed, identically placed vortex knots repel with an insurmountable dynamic pressure barrier.
+    
+    \subsection{Numerical Validation of the Exclusion Energy}
+        To rigorously validate this hydrodynamic exclusion mechanism, we compute the magnitude of the barrier using the canonical SST parameters:
+        \begin{align}
+            \rho_{\!f} &= 7.0 \times 10^{-7}\ \mathrm{kg\,m^{-3}}, \\
+            r_c &= 1.40897017 \times 10^{-15}\ \mathrm{m}, \\
+            \lVert\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert &= 1.09384563 \times 10^6\ \mathrm{m\,s^{-1}}.
+        \end{align}
+        The circulation quantum is:
+        \begin{equation}
+            \Gamma_0 = 2\pi r_c \lVert\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert \approx 9.6836 \times 10^{-9}\ \mathrm{m^2\,s^{-1}}.
+        \end{equation}
+        The dimensional energy prefix in Eq.~\eqref{eq:VPauli_Max} is $\rho_{\!f} \Gamma_0^2 \approx 6.564 \times 10^{-23}\ \mathrm{J \cdot m}$.
+        
+        For two identical electron trefoils confined to the hydrogenic baseline orbital, the relevant macroscopic scale is the SST Bohr radius $a_0^{\rm SST} \approx 5.291 \times 10^{-11}\ \mathrm{m}$. Substituting these into the maximal overlap penalty yields:
+        \begin{equation}
+            \label{eq:VPauli_Num}
+            V_{\rm Pauli}^{\rm max} \approx \frac{6.564 \times 10^{-23}}{4\pi} \left( \frac{2\pi \times 5.291 \times 10^{-11}}{1.4089 \times 10^{-15}} \right) \approx 1.23 \times 10^{-18}\ \mathrm{J} \approx 7.6\ \mathrm{eV}.
+        \end{equation}
+        
+        This result serves as a stringent falsification check. If the hydrodynamic Pauli penalty had evaluated to meV scales, it would be easily overcome by thermal noise, collapsing the atom. If it had evaluated to GeV scales, it would tear the atomic boundary apart. The derived topological repulsion barrier is explicitly on the order of $\sim 10\ \mathrm{eV}$—exactly the magnitude required to prevent identical orbital occupation while remaining safely bounded within the limits of atomic and chemical binding energies.
+        
+        \begin{thebibliography}{99}
+            \bibitem{Batchelor1967}
+            G. K. Batchelor,
+            \textit{An Introduction to Fluid Dynamics},
+            Cambridge University Press, 1967.
+        \end{thebibliography}
+        
 % ======================================================================
 % MASS CHAPTER: EXPANDED (replaces the short version; not shrinking overall)
 % ======================================================================
@@ -3597,6 +3674,6 @@ They are dual representations of the same underlying conservation law.
     (ii) sector-specific effective modeling.
 
 
-        \input{part-end_References}
+        \input{previous/part-end_References.tex}
 
 \end{document}

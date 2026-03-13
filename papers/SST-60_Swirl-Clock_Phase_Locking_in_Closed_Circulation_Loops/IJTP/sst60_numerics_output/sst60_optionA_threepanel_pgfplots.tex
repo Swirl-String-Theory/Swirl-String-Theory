@@ -1,0 +1,42 @@
+\begin{tikzpicture}
+\begin{groupplot}[
+    group style={group size=1 by 3, vertical sep=1.2cm},
+    width=0.9\linewidth,
+    height=0.26\linewidth,
+    grid=major,
+    grid style={opacity=0.25},
+    tick label style={font=\small},
+    label style={font=\small},
+    legend style={font=\scriptsize}
+]
+
+\nextgroupplot[
+    ylabel={$\omega_{\mathrm{inst}}(t)$},
+    title={SST-60 numerical validation of branch selection}
+]
+\addplot table [x=t, y=omega_stable, col sep=space] {optionA_raw.dat};
+\addlegendentry{stable-init trajectory}
+\addplot table [x=t, y=omega_unstable, col sep=space] {optionA_raw.dat};
+\addlegendentry{unstable-init trajectory}
+\addplot[dashed] table [x=t, y=Omega_stable_ref, col sep=space] {optionA_raw.dat};
+\addlegendentry{stable locked branch}
+\addplot[dashed] table [x=t, y=Omega_unstable_ref, col sep=space] {optionA_raw.dat};
+\addlegendentry{unstable reference branch}
+
+\nextgroupplot[
+    ylabel={$\Delta\omega_{\mathrm{stable}}(t)$}
+]
+\addplot table [x=t, y=dw_stable, col sep=space] {optionA_stable_residual.dat};
+\addlegendentry{stable residual}
+\addplot[dashed] coordinates {(0,0) (200,0)};
+
+\nextgroupplot[
+    xlabel={$t$},
+    ylabel={$\Delta\omega_{\mathrm{unstable}}(t)$}
+]
+\addplot table [x=t, y=dw_unstable, col sep=space] {optionA_unstable_residual.dat};
+\addlegendentry{unstable residual}
+\addplot[dashed] coordinates {(0,0) (200,0)};
+
+\end{groupplot}
+\end{tikzpicture}

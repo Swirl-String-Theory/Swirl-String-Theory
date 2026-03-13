@@ -1,6 +1,6 @@
 \newcommand{\paperdoi}{10.5281/zenodo.18810431}
-\newcommand{\papertitle}{Phase Locking and Discrete Mode Selection in Closed Circulation Loops}
-\newcommand{\papershorttitle}{Phase Locking in Circulation Loops}
+\newcommand{\papertitle}{Phase Locking and Stability Selection in Closed Circulation Loops}
+\newcommand{\papershorttitle}{Stability Selection in Circulation Loops}
 \newcommand{\paperorcid}{0009-0006-1686-3961}
 \newcommand{\paperemail}{info@omariskandarani.com}
 \newcommand{\papercity}{Groningen}
@@ -8,78 +8,95 @@
 \newcommand{\paperkeywords}{Delay differential equations, Phase locking, Nonlinear dynamical systems, Stability analysis, Spectral discreteness, Circulating feedback systems}
 
 
-%=========================================
-% % PREAMBLE, PACKAGES AND DOCUMENT CONFIGURATION
-%=========================================
-\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}
-\usepackage{graphicx}%
-\usepackage{multirow}%
-\usepackage{amsmath,amssymb,amsfonts,bm}
-\usepackage{amsthm}%
-\usepackage{mathrsfs}%
-\usepackage[title]{appendix}%
-\usepackage{xcolor}%
-\usepackage{textcomp}%
-\usepackage{manyfoot}%
-\usepackage{booktabs}%
-\usepackage{algorithmicx}%
-\usepackage{listings}%
+%==============================================================================
+%   CLASS & PACKAGES
+%==============================================================================
+\documentclass[11pt,a4paper]{article}
 
-\usepackage{siunitx}
+%--- Geometry & Layout ---
+\usepackage[margin=1in]{geometry}
+\usepackage[parfill]{parskip}
+
+%--- Typography & Math ---
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{newtxtext,newtxmath}
+\usepackage{microtype}
+\usepackage{amsmath,amsfonts,bm}
+\usepackage{physics}
+\usepackage{siunitx}
+
+%--- Graphics & Colors ---
+\usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
-\usetikzlibrary{pgfplots.groupplots}
+\usetikzlibrary{arrows.meta, positioning, calc, decorations.markings}
+\usepackage[most]{tcolorbox}
+\usepackage{ragged2e}
 
 
+%--- Links & Metadata ---
+\usepackage[colorlinks=true, linkcolor=blue!40!black, citecolor=green!40!black, urlcolor=blue!40!black]{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
 %=========================================
 % Start Document - Title Page
 %=========================================
-\raggedbottom
+
+
 \begin{document}
-
-    \title[\papershorttitle]{\papertitle}
-
-    \author*[1]{\fnm{Omar} \sur{Iskandarani}}
-    \email{\paperemail}
-
-    \affil*[1]{\orgname{Independent Researcher}, \orgaddress{\city{\papercity}, \country{\papercountry}}}
-
-    \abstract{
-        Closed circulation loops with finite propagation time constitute a broad and generic class of delayed feedback systems encountered across fluid dynamics, optics, electronics, and wave physics \cite{Erneux2009,Hale1993,Diekmann1995,GlassMackey1988,Ikeda1979}.
-        We show that such loops admit discrete, dynamically selected phase--locked states even when governed by fully continuous classical dynamics \cite{Pikovsky2001,Kuramoto1984,Strogatz2003book}.
-        Using a minimal delayed phase oscillator as a canonical model, we demonstrate that finite circulation time enforces multistable phase--locking conditions.
-
-        The resulting phase--locked solutions form a countable family of circulation modes.
-        By analyzing the characteristic equation of the differenced delayed dynamics, we prove that stability filtering eliminates the odd-indexed branches in the strong-feedback regime.
-        This yields an evenly spaced, integer-indexed subset of dynamically stable frequencies.
-
-        The asymptotic spacing coincides with that of periodic boundary quantization for a wave on a loop \cite{Zettl2005,Griffiths2018}, but arises here purely as a set of attractors of a nonlinear delay differential equation.
-        This work therefore provides a deterministic classical route to mode discreteness in circulating systems without invoking microscopic quantization.
+    \title{\papertitle}
+    \author{%
+        Omar Iskandarani\\
+        Independent Researcher, \papercity, \papercountry%
+        \thanks{\texttt{\paperemail}. ORCID: \paperorcid, DOI: \paperdoi}%
     }
-
-    \keywords{\paperkeywords}
-
+    \date{\today}
+    
     \maketitle
-
-
-%=========================================
-% Title Page End
-%=========================================
-
+    \begin{abstract}
+        Closed circulation loops with finite propagation time form a broad class of delayed feedback systems encountered across fluid dynamics, optics, electronics, and wave physics \cite{Erneux2009,Hale1993,Diekmann1995,GlassMackey1988,Ikeda1979}. In a preceding study on delay-induced mode selection in circulating feedback systems \cite{Iskandarani2026DelayModeSelection}, it was shown that finite circulation delay in a minimal classical phase model is sufficient to generate a countable family of phase--locked states together with delay-induced mode selection. The purpose of the present work is narrower and more formal: we isolate the closed-loop phase-locking sector itself and derive sharper existence, stability, and asymptotic branch-selection results.
+        
+        Using a delayed phase oscillator as a canonical model, we analyze uniformly rotating solutions satisfying a transcendental self-consistency relation. We then linearize about these locked branches and obtain an exact characteristic equation for perturbations of the differenced delayed dynamics, $\lambda = A\big(e^{-\lambda\tau}-1\big)$ with $A = K\cos(\Omega\tau)$. This permits a clean stability filtration of the phase-locked branches. In particular, we show that all nontrivial characteristic roots satisfy $\Re(\lambda)<0$ for $A>0$, while $A\tau<-1$ provides a sufficient instability condition. Because $\lambda=0$ is always present as a neutral phase mode, the appropriate conclusion is orbital stability of the locked branch rather than asymptotic stability of a fixed phase representative. In the strong-feedback regime, this filtration removes the odd-indexed branches and leaves an evenly spaced integer-indexed subset of orbitally stable locked frequencies.
+        
+        The resulting asymptotic spacing coincides with that of periodic boundary quantization for a wave on a loop \cite{Zettl2005,Griffiths2018}, but arises here as the attractor structure of a nonlinear delay differential equation rather than as the spectrum of a self-adjoint operator. The present paper should therefore be read as a formal sequel to the earlier mechanism result of Ref.~\cite{Iskandarani2026DelayModeSelection}: it sharpens the dynamical branch-selection structure of delay-induced discreteness in closed circulation loops without invoking microscopic quantization.
+        
+        \textbf{Keywords:} \paperkeywords
+    \end{abstract}
+    
+    \par
+    \noindent
+    \normalfont\normalsize\justifying
+    
+    
     \section{Introduction and Physical setting}
-
-        The origin of discrete spectra in physical theories is conventionally traced to either spatial boundary conditions in wave mechanics (Sturm--Liouville problems) or axiomatic quantization rules in microscopic physics \cite{Zettl2005,Griffiths2018}. In macroscopic, continuous dynamical systems, however, discreteness is not typically an intrinsic property. A broadly applicable question in theoretical physics is whether purely continuous, classical dynamics can autonomously generate a discrete, integer-indexed spectrum of states without invoking geometric spatial confinement or non-commuting operators \cite{Erneux2009,GlassMackey1988}.
-
-        In this work, we address this question by investigating the role of temporal nonlocality in circulating systems. Consider a continuous excitation propagating on a closed loop of fixed geometric length $L$ with characteristic transport speed $v$. The closed geometry defines a finite circulation or round--trip time
+        
+        Discrete spectra in physical theories are usually attributed either to spatial boundary conditions in wave mechanics or to quantization postulates in microscopic physics \cite{Zettl2005,Griffiths2018}. In continuous macroscopic dynamics, by contrast, discreteness is not normally taken to be intrinsic. A natural theoretical question is therefore whether a purely continuous classical system can autonomously generate a discrete, integer-indexed family of dynamically selected states without invoking operator quantization or externally imposed spatial eigenvalue conditions \cite{Erneux2009,GlassMackey1988}.
+        
+        A preceding paper addressed this question at the mechanism level for circulating feedback systems with finite propagation time \cite{Iskandarani2026DelayModeSelection}. There it was shown that delay alone, in a minimal classical phase model, can generate a countable family of phase--locked branches together with a stability-selected discrete set of attracting modes. The present paper is deliberately narrower. Rather than re-establishing the generic mechanism, we isolate the closed-loop phase-locking sector and derive sharper analytic results for branch existence, linear stability, and asymptotic branch selection.
+        
+        Consider a continuous excitation propagating on a closed loop of geometric length $L$ with characteristic transport speed $v$. The loop defines a finite circulation or round--trip time
         \begin{equation}
             \tau = \frac{L}{v},
             \label{eq:tau}
         \end{equation}
-        which represents the time required for information carried by the excitation to return to its point of origin. The internal state of the excitation is characterized by a phase variable $\phi(t)$ that evolves continuously in time and plays the role of an intrinsic clock associated with the circulating structure.
+        which measures the time required for information carried by the excitation to return to its point of origin. The internal state of the excitation is represented by a phase variable $\phi(t)$, serving as an intrinsic clock for the circulating structure.
+        
+        Because propagation around the loop requires a finite time $\tau$, the instantaneous phase evolution at time $t$ depends on the phase state that completed one full circulation at time $t-\tau$. This delayed self-interaction is not externally imposed; it is an unavoidable consequence of loop closure and finite propagation speed \cite{Hale1993,Diekmann1995,Erneux2009}. Closed circulation systems therefore provide a natural setting in which temporal nonlocality may generate branch structure and mode selection even in otherwise continuous deterministic dynamics.
+        
+        The purpose of the present work is to formulate this mechanism in the cleanest possible phase-locking language. We study a minimal delayed phase oscillator, characterize its uniformly rotating solutions, derive the exact characteristic equation governing linear perturbations of the differenced delayed dynamics, and identify the parameter regimes in which branch stability filtration occurs. This leads to a precise definition of the dynamically selected spectrum as the set of linearly stable phase--locked frequencies.
+        
+        The main novelty relative to the broader mechanism paper of Ref.~\cite{Iskandarani2026DelayModeSelection} is therefore not the existence of delay-induced discreteness per se, but the sharper mathematical structure of the locked branches. In particular, we show that the stability problem reduces to a scalar transcendental characteristic equation with a control parameter
+        \begin{equation}
+            A = K\cos(\Omega\tau),
+        \end{equation}
+        from which one obtains a clean sign-based filtration of the branches. In the strong-feedback regime, this yields a parity-selection law: the odd-indexed asymptotic branches are unstable, while the even-indexed branches remain dynamically admissible.
+        
+        This point of view also clarifies the relation to standard boundary quantization. For a wave on a closed loop, periodicity leads kinematically to evenly spaced modes through a boundary constraint. In the delayed dynamical system studied here, similar spacing emerges only asymptotically, and only after the nonlinear delay dynamics has selected which branches are attracting. The correspondence is therefore structural rather than operator-theoretic: the spacing resembles periodic boundary quantization, but the underlying mechanism is dynamical stability selection in an infinite-dimensional delay system.
+        
+        The rest of the paper is organized as follows. Section~2 introduces the minimal delayed phase model. Section~3 derives the phase--locked solutions and defines the dynamically selected spectrum. Section~4 develops the linear stability theory and the branch-selection rules. Section~5 compares the resulting asymptotic spacing with boundary quantization on a closed loop. Section~6 presents the asymptotic derivation and graphical organization of the branches.
 
-        Because information propagates around the loop in a finite time $\tau$, the local phase evolution at time $t$ is influenced by the phase state that completed one full circulation at time $t-\tau$. This feedback is not externally imposed but is a direct consequence of loop closure and finite propagation speed. As a result, delayed self--interaction is an unavoidable and intrinsic feature of closed circulation systems, regardless of their microscopic realization \cite{Hale1993,Diekmann1995,Erneux2009}.
+        
 
     \section{Minimal delayed phase model}
         A minimal classical description capturing this delayed feedback is given by a delayed phase oscillator of the form
@@ -120,10 +137,65 @@
 
         Thus the term ``spectrum'' refers to the discrete set of attracting phase--locked frequencies of the delay equation, not to eigenvalues of a linear operator.
 
-    \section{Stability and mode selection}
-        Not all phase--locked solutions are dynamically stable. Linear stability analysis of delay differential equations reveals that stability depends on the characteristic equation obtained from linearization about the phase--locked orbit \cite{Hale1993,Diekmann1995,Erneux2009}. Linear stability analysis reveals that stability depends on the derivative of the right--hand side of the self--consistency relation \ref{eq:self_consistency} with respect to $\Omega$. Only solutions satisfying appropriate slope conditions correspond to attracting states of the delayed dynamics.
+    \section{Linear stability and branch filtration}
+    \label{sec:stability}
+        
+        We now turn from the existence of phase--locked branches to their dynamical admissibility. Let
+        \begin{equation}
+            \phi(t)=\Omega t+\phi_0
+        \end{equation}
+        be a locked solution satisfying Eq.~\ref{eq:self_consistency}. To determine whether such a branch is dynamically selected, we linearize the delayed phase equation about the locked state.
+        
+        Writing
+        \begin{equation}
+            \phi(t)=\Omega t+\phi_0+\varepsilon \psi(t),
+            \qquad
+            0<\varepsilon\ll 1,
+        \end{equation}
+        one has
+        \begin{equation}
+            \phi(t-\tau)-\phi(t)
+            =
+            -\Omega\tau+\varepsilon\big(\psi(t-\tau)-\psi(t)\big),
+        \end{equation}
+        so that
+        \begin{equation}
+            \sin\!\big(\phi(t-\tau)-\phi(t)\big)
+            =
+            \sin(-\Omega\tau)
+            +
+            \varepsilon \cos(\Omega\tau)\big(\psi(t-\tau)-\psi(t)\big)
+            + O(\varepsilon^2).
+        \end{equation}
+        Using the locked-state condition \eqref{eq:self_consistency} and retaining terms to first order yields
+        \begin{equation}
+            \dot{\psi}(t)=A\big(\psi(t-\tau)-\psi(t)\big),
+            \qquad
+            A=K\cos(\Omega\tau).
+            \label{eq:psi-linear}
+        \end{equation}
+        Looking for exponential perturbations
+        \begin{equation}
+            \psi(t)\sim e^{\lambda t}
+        \end{equation}
+        gives the exact characteristic equation
+        \begin{equation}
+            \boxed{
+            \lambda = A\big(e^{-\lambda\tau}-1\big)
+            }
+            \label{eq:characteristic-main}
+        \end{equation}
+        which completely controls the linear stability of the locked branch.
+        
+        The stability problem is therefore reduced to the sign and magnitude of the single branch parameter
+        \begin{equation}
+            A=K\cos(\Omega\tau).
+        \end{equation}
+        This provides the sharpest formulation of branch selection in the present model: existence alone does not determine the dynamically realized spectrum; only the linearly stable locked branches are admissible attractors.
 
-        As a consequence, the loop does not support a continuum of circulation frequencies. Instead, it dynamically selects a discrete subset of stable phase--locked modes. Transitions between these modes require the loss of stability of one branch and the capture by another, typically through bifurcations as parameters such as $K$ or $\tau$ are varied. Mode discreteness therefore arises as a direct outcome of classical stability selection rather than any imposed quantization rule.
+        For comparison with the earlier mechanism formulation, it is useful to note that the familiar local slope condition is recovered here as an interpretation of the characteristic stability problem, rather than as its primary formulation. In the present sequel, the characteristic equation \eqref{eq:characteristic-main} is the central object.
+        
+        As a consequence, the loop does not support a continuum of circulation frequencies. Instead, it dynamically selects a discrete subset of stable phase--locked modes. Transitions between these modes require the loss of stability of one branch and capture by another, typically through bifurcations as parameters such as $K$ or $\tau$ are varied. Mode discreteness therefore arises as a direct outcome of classical stability selection rather than any imposed quantization rule.
 
     \section{Delay-Induced Discreteness vs. Boundary Quantization}
 
@@ -350,8 +422,7 @@
                 \label{eq:characteristic}
             \end{equation}
 
-            The root $\lambda=0$ reflects global phase-shift invariance.
-            Orbital stability requires all other roots satisfy $\Re(\lambda)<0$.
+            The root $\lambda=0$ reflects global phase-shift invariance: shifting $\phi_0$ produces the same locked orbit. Accordingly, the relevant notion of stability is \emph{orbital stability} of the phase--locked branch, not asymptotic stability of a particular phase representative. The locked branch is orbitally stable if all nontrivial characteristic roots satisfy $\Re(\lambda)<0$.
 
         \paragraph{Unconditional Stability for \texorpdfstring{$A>0$}{A>0}}
 
@@ -365,12 +436,13 @@
             Assume $A>0$ and suppose $u\ge0$.
             Since $e^{-u\tau}\le1$ and $\cos(v\tau)\le1$, it follows that
             \[
-                e^{-u\tau}\cos(v\tau)-1 \le 0,
+                e^{-u\tau}\cos(v\tau)-1 \le 0.
             \]
-            hence $u\le0$.
-            Thus the only possibility with $u\ge0$ is $u=0$, which requires $v=0$.
-            All nontrivial eigenvalues satisfy $\Re(\lambda)<0$.
-            Branches with $A>0$ are therefore unconditionally stable.
+            Equation~\eqref{eq:real_part} therefore implies $u\le0$.
+            Combined with the assumption $u\ge0$, this yields $u=0$.
+            Substituting $u=0$ back into Eq.~\eqref{eq:characteristic} forces $\cos(v\tau)=1$, and the imaginary part then gives $v=0$.
+            Hence the only root with $\Re(\lambda)\ge0$ is the neutral root $\lambda=0$.
+            All nontrivial characteristic roots satisfy $\Re(\lambda)<0$, so branches with $A>0$ are orbitally stable.
 
         \paragraph{Conditional Stability for \texorpdfstring{$A<0$}{A<0}}
 
@@ -424,22 +496,91 @@
             \end{equation}
             yielding an evenly spaced integer-indexed family of dynamically stable modes.
 
-    \paragraph{Branch Density}
+    \paragraph{Asymptotic branch density}
 
-        The uniform spacing $\Delta\Omega\approx2\pi/\tau$ implies a spectral density
+        The uniform spacing $\Delta\Omega\approx2\pi/\tau$ implies an asymptotic inverse spacing
         \begin{equation}
-            \rho(\Omega)=\frac{dn}{d\Omega}\approx\frac{\tau}{2\pi},
-            \end{equation}
+            \rho_{\mathrm{asymp}}(\Omega):=\frac{1}{\Delta\Omega}\approx\frac{\tau}{2\pi}.
+        \end{equation}
+        Here $\rho_{\mathrm{asymp}}$ is not a spectral density in the measure-theoretic sense of a continuous spectrum; it is simply the inverse asymptotic spacing of the surviving discrete branches. In this sense, the asymptotic branch density scales linearly with delay length.
 
-        The branch density therefore scales linearly with delay length.
-        The resulting spectrum reproduces the asymptotic spacing of boundary-value quantization without imposing spatial confinement.
-    \section{Interpretation}
-    The analysis demonstrates that finite propagation time alone is sufficient to generate discrete circulation modes through classical phase locking. Discreteness emerges at the level of delay--induced feedback dynamics, prior to the introduction of any additional structural constraints. In circulation--based theories, geometric or topological features may enhance the robustness and longevity of selected modes, but they are not responsible for their initial appearance.
+        The resulting branch family exhibits the same asymptotic spacing as periodic boundary-value quantization on a closed loop, without imposing spatial confinement. This correspondence is structural and asymptotic only; it reflects the periodicity of the delay constraint rather than any operator-level equivalence.
+    
+    \section{Numerical validation of branch selection}
+    \label{sec:numerics}
 
-    From this perspective, discrete mode families should be regarded as a generic feature of scalar phase oscillators with delayed self-interaction rather than a peculiarity of specific physical realizations. The mechanism applies equally to optical cavities, electronic delay lines, mechanical rotors, and fluid circulation systems whenever delayed self--interaction is present.
+    To supplement the linearized analysis, we performed direct numerical integrations of the delayed phase equation
+    \begin{equation}
+        \dot{\phi}(t) = \Omega_0 + K \sin\big(\phi(t-\tau)-\phi(t)\big)
+    \end{equation}
+    for representative parameter values in the multibranch regime. The purpose of these simulations is not to provide a full nonlinear basin classification, but to verify the minimal dynamical claim that branches classified as linearly stable are observed as attracting locked motions, whereas branches classified as unstable are not.
 
+    Initial histories were chosen near selected phase--locked branches in the form
+    \begin{equation}
+        \phi(t)=\Omega_\ast t+\phi_0+\varepsilon \eta(t),
+        \qquad
+        t\in[-\tau,0],
+    \end{equation}
+    with $\varepsilon\ll1$. Figure~\ref{fig:numerical_validation} shows direct numerical integration for one branch with $A>0$ and one branch with $A\tau<-1$. In the stable case, the instantaneous frequency remains in a small oscillatory neighborhood of the selected locked branch and the residual frequency tends toward zero in an oscillatory manner, consistent with orbital stability. In the unstable case, the trajectory does not converge to the unstable reference branch and instead departs from it persistently, approaching a nearby admissible stable branch.
+
+    For completeness, the corresponding residual magnitudes are shown on a logarithmic scale in Fig.~\ref{fig:numerical_validation_log}. The sharp downward spikes in the stable curve correspond to zero crossings of the oscillatory residual and should not be interpreted as separate branch transitions; the relevant quantity is the decay of the residual envelope over successive delay cycles.
+
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=\textwidth]{sst60_numerics_output/sst60_optionA_threepanel.png}
+        \caption{\footnotesize
+        Direct numerical integration of the delayed phase equation for initial histories chosen near a linearly stable branch and a linearly unstable branch. Top: instantaneous frequency trajectories $\omega_{\mathrm{inst}}(t)=\dot{\phi}(t)$, together with the stable locked branch and the unstable reference branch. Middle: residual frequency relative to the stable locked branch, showing oscillatory relaxation toward $\Delta\omega_{\mathrm{stable}}(t)\to 0$, consistent with orbital stability. Bottom: residual frequency relative to the unstable reference branch, showing persistent departure from $\Delta\omega_{\mathrm{unstable}}(t)=0$. These simulations support the analytical branch filtration derived from the characteristic equation and are consistent with drift away from unstable branches toward nearby admissible dynamics.}
+        \label{fig:numerical_validation}
+    \end{figure}
+
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.92\textwidth]{sst60_numerics_output/sst60_optionB_log_residuals.png}
+        \caption{\footnotesize
+        Logarithmic plot of the residual frequency magnitudes relative to the selected stable branch and the unstable reference branch. The stable case exhibits a decaying oscillatory envelope in $|\omega_{\mathrm{inst}}(t)-\Omega_{\ast,\mathrm{stable}}|$, whereas the unstable case remains bounded away from zero relative to its reference branch. The sharp downward spikes in the stable curve arise from zero crossings of the oscillatory residual and do not indicate separate stabilization events.}
+        \label{fig:numerical_validation_log}
+    \end{figure}
+
+    \section{Discussion}
+    \label{sec:discussion}
+    The earlier work showed that finite circulation delay in a minimal classical phase model is sufficient to generate a countable family of phase--locked branches together with delay-induced mode selection. The contribution of the present paper is narrower and more analytic: it isolates the closed-loop phase-locking sector, derives a sharper filtration principle for which branches are dynamically admissible, and supplements the analytical branch-selection picture with direct numerical integrations of the delayed system.
+
+    The central technical result is that linear perturbations about a locked branch reduce to the scalar transcendental characteristic equation
+    \begin{equation}
+        \lambda = A\big(e^{-\lambda\tau}-1\big),
+        \qquad
+        A=K\cos(\Omega\tau),
+    \end{equation}
+    so that stability is controlled by a single branch parameter $A$. This makes it possible to classify the locked states not merely by existence, but by dynamical admissibility. In particular, the analysis yields a clean sign-based filtration: branches with $A>0$ are linearly stable in the nontrivial sector, whereas $A\tau<-1$ gives a sufficient instability condition. In the strong-feedback regime, this filtration becomes especially transparent and selects an asymptotically even-indexed subset of branches.
+    
+    This point is conceptually important. The discrete set obtained here is not introduced by quantization postulates, nor by solving a linear eigenvalue problem on a bounded domain. Rather, it is the attracting branch structure of a nonlinear delay differential equation on a closed loop. The discrete family is therefore dynamical rather than operator-theoretic in origin. The comparison with periodic boundary quantization is useful, but should be understood carefully: the asymptotic spacing agrees structurally with closed-loop boundary quantization, while the mechanism remains one of delay-induced stability selection.
+    
+    This distinction is relevant for any attempt to interpret discrete spectra more broadly. The present work does not claim to replace microscopic quantum theory, nor does it derive quantum mechanics from delay alone. Its claim is more limited and more precise: delayed self-interaction in a closed circulation loop can generate a countable and selectively stable family of phase--locked states whose spacing approaches the familiar closed-loop pattern in the appropriate regime. In that sense, the paper identifies a classical route to branch discreteness and shows that stability filtration is the essential selector.
+    
+    The analysis also clarifies the role of feedback strength. In weak or moderate feedback regimes, many branches may coexist and the stability landscape depends sensitively on the local sign of $\cos(\Omega\tau)$. In the strong-feedback regime, however, the structure simplifies dramatically and the branch family organizes into an effectively parity-filtered set. This makes the large-$K\tau$ regime the cleanest mathematical sector of the theory and the most natural one for comparison with integer-indexed spectral ladders.
+    
+    Several limitations should be kept explicit. First, the model is intentionally minimal: it tracks only a single phase variable and a single round--trip delay. It therefore suppresses amplitude effects, multimode interactions, dispersion, noise, and geometric inhomogeneity. Second, the present analysis is linear about a locked branch; it does not provide a full nonlinear basin classification for branch capture under arbitrary initial data. Third, while the asymptotic spacing resembles that of periodic boundary quantization, no Hilbert-space structure, operator algebra, or microscopic probabilistic interpretation is introduced here. The result is a delayed dynamical selection law, not a quantum postulate.
+    
+    These limitations also indicate the natural continuation of the program. The next mathematical steps would be to introduce weak amplitude dynamics, distributed or state-dependent delay, and multimode competition, in order to determine how robust the stability filtration remains beyond the single-phase closure. On the physical side, one may ask whether the same delay-selected branch mechanism survives in more structured circulation models with explicit transport, dissipation, or spatially resolved loop dynamics. Such extensions would test whether the parity-filtered branch structure found here is a generic feature of delayed closure, or a special property of the minimal phase-only model.
+    
     \section{Conclusion}
-    Phase locking in closed loops with finite circulation time provides a universal and purely classical mechanism for discrete mode selection. Any scalar circulating system with delayed self--interaction of the form considered here generically admits a discrete set of dynamically stable phase--locked states. This framework offers a conservative and analytically tractable foundation for understanding mode discreteness in a wide range of physical systems governed by delayed feedback, and it clarifies how discrete behavior can arise naturally from continuous classical dynamics.
+    \label{sec:conclusion}
+    
+    We have analyzed a minimal delayed phase oscillator on a closed circulation loop and used it to isolate the phase-locking structure underlying delay-induced mode selection. Uniformly rotating solutions satisfy a transcendental self-consistency condition, yielding a countable family of locked branches. Linearization about these branches leads to the exact characteristic equation
+    \begin{equation}
+        \lambda = A\big(e^{-\lambda\tau}-1\big),
+        \qquad
+        A=K\cos(\Omega\tau),
+    \end{equation}
+    which provides a sharp branch-selection criterion.
+    
+    The main result of the paper is therefore not the generic existence of delay-induced discreteness, which belongs to the broader mechanism study of Ref.~\cite{Iskandarani2026DelayModeSelection}, but the stronger analytical characterization of which phase--locked branches are dynamically admissible. In particular, we showed that the locked branches are filtered by the sign and magnitude of $A$, that the neutral mode $\lambda=0$ should be interpreted as a phase-shift symmetry leading to orbital rather than asymptotic stability, and that in the strong-feedback regime this filtration asymptotically removes the odd branches and leaves an evenly spaced integer-indexed subset of orbitally stable locked frequencies. Direct numerical integrations support this analytical picture by showing oscillatory confinement near stable branches and persistent departure from unstable reference branches.
+    
+    The asymptotic spacing of these surviving branches coincides with the familiar periodic-loop spacing, but its origin here is fundamentally dynamical: it emerges through stability selection in a nonlinear delay system rather than through the spectral theory of a boundary-value operator. This establishes a precise classical example in which discrete branch structure is selected by delayed self-consistency on a closed loop.
+    
+    Accordingly, the present paper is best understood as a formal sequel to the earlier delay-induced mode-selection result of Ref.~\cite{Iskandarani2026DelayModeSelection}. The earlier work established the generic mechanism by which finite circulation delay produces a countable family of stable phase--locked states. The present work sharpens that picture by isolating the phase-locking sector, deriving the exact characteristic equation, and identifying the strong-feedback branch-selection law. In this sense, it provides the cleaner mathematical skeleton of the broader phenomenon.
+    
+    More broadly, the analysis shows that delayed closure can act as a genuine organizing principle in continuous classical dynamics. Even in the absence of operator quantization, finite round--trip memory can produce a structured, integer-indexed, and stability-filtered set of admissible states. That conclusion is modest in scope but robust in content, and it suggests that dynamical delay deserves more systematic consideration as a source of discrete organization in closed feedback systems.
 
     \section*{Declarations}
 
@@ -485,6 +626,11 @@
         \bibitem{Griffiths2018} Griffiths, D. J., \& Schroeter, D. F. (2018). \textit{Introduction to Quantum Mechanics} (3rd ed.). Cambridge University Press, Cambridge.
 
         \bibitem{Siegman1986} Siegman, A. E. (1986). \textit{Lasers}. University Science Books, Mill Valley.
+        
+        \bibitem{Iskandarani2026DelayModeSelection}
+        O.~Iskandarani,
+        \textit{Delay-Induced Mode Selection in Circulating Feedback Systems},
+        manuscript under review, 2026.
     \end{thebibliography}
 
 \end{document}

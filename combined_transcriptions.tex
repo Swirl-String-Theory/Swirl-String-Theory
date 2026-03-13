@@ -1,0 +1,1103 @@
+
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{array,longtable,booktabs,graphicx}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\setlist[itemize]{leftmargin=1.5em}
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.2}
+
+\begin{document}
+
+\begin{center}
+{\LARGE Combined LaTeX Transcriptions}\\[0.5em]
+{\large Binder1.pdf Pages 1--20, followed by the first 9 standalone images}
+\end{center}
+
+This document combines the earlier LaTeX transcriptions into one editable \texttt{.tex} file.
+
+\section*{Binder1.pdf --- Pages 1--20}
+
+\subsection*{Page 1}
+\section*{Planetary Rossby Waves}
+
+Begin with the assumptions for conserving potential vorticity: inviscid, thin, ``rapid'' rotation.
+
+\[
+\frac{D}{Dt}\left(\frac{f+\zeta}{h}\right)=0
+\]
+
+The equations describing horizontal motions are:
+
+\begin{align}
+\frac{\partial u}{\partial t}
++u\frac{\partial u}{\partial x}
++v\frac{\partial u}{\partial y}
++w\frac{\partial u}{\partial z}
+-fv
+&=
+-\frac{1}{\rho}\frac{\partial p}{\partial x}
+\tag{1}\\[6pt]
+\frac{\partial v}{\partial t}
++u\frac{\partial v}{\partial x}
++v\frac{\partial v}{\partial y}
++w\frac{\partial v}{\partial z}
++fu
+&=
+-\frac{1}{\rho}\frac{\partial p}{\partial y}
+\tag{2}\\[6pt]
+\frac{\partial u}{\partial x}
++\frac{\partial v}{\partial y}
++\frac{\partial w}{\partial z}
+&=0
+\tag{3}
+\end{align}
+
+Consider fluctuations with no mean flow (e.g.\ waves) and small velocities
+(small $Ro$), so neglect nonlinear advection terms.
+
+\subsection*{Page 2}
+\begin{align}
+\frac{\partial u}{\partial t}-fv
+&=
+-\frac{1}{\rho}\frac{\partial p}{\partial x}
+\tag{1}\\[6pt]
+\frac{\partial v}{\partial t}+fu
+&=
+-\frac{1}{\rho}\frac{\partial p}{\partial y}
+\tag{2}
+\end{align}
+
+Substitute for $f=f_0+\beta y$,
+
+\begin{align}
+\frac{\partial u}{\partial t}-(f_0+\beta y)v
+&=
+-\frac{1}{\rho}\frac{\partial p}{\partial x}
+\tag{1}\\[6pt]
+\frac{\partial v}{\partial t}+(f_0+\beta y)u
+&=
+-\frac{1}{\rho}\frac{\partial p}{\partial y}
+\tag{2}
+\end{align}
+
+\subsection*{Page 3}
+\begin{align}
+\frac{\partial u}{\partial t}-(f_0+\beta y)v
+&=
+-\frac{1}{\rho}\frac{\partial p}{\partial x}
+\tag{1}\\[6pt]
+\frac{\partial v}{\partial t}+(f_0+\beta y)u
+&=
+-\frac{1}{\rho}\frac{\partial p}{\partial y}
+\tag{2}
+\end{align}
+
+Replace pressure gradients with surface height anomalies $\eta$,
+that is,
+
+\[
+\frac{1}{\rho}\frac{\partial p}{\partial x}
+=
+g\frac{\partial \eta}{\partial x}
+\qquad
+\text{(hydrostatic)}
+\]
+
+so that
+
+\begin{align}
+\frac{\partial u}{\partial t}-(f_0+\beta y)v
+&=
+-g\frac{\partial \eta}{\partial x}
+\tag{1}\\[6pt]
+\frac{\partial v}{\partial t}+(f_0+\beta y)u
+&=
+-g\frac{\partial \eta}{\partial y}
+\tag{2}
+\end{align}
+
+\subsection*{Page 4}
+\begin{align}
+\frac{\partial u}{\partial t}-(f_0+\beta y)v
+&=
+-g\frac{\partial \eta}{\partial x}
+\tag{1}\\[6pt]
+\frac{\partial v}{\partial t}+(f_0+\beta y)u
+&=
+-g\frac{\partial \eta}{\partial y}
+\tag{2}
+\end{align}
+
+Recall that the flow is predominantly geostrophic, so the time-dependent
+and beta terms are small compared to geostrophy.
+
+As the geostrophic terms dominate, use these to express the velocities as
+
+\[
+u \approx -\frac{g}{f_0}\frac{\partial \eta}{\partial y},
+\qquad
+v \approx \frac{g}{f_0}\frac{\partial \eta}{\partial x}
+\]
+
+and substitute back into (1,2) for the small terms:
+
+\begin{align}
+-\frac{g}{f_0}\frac{\partial^2 \eta}{\partial y\,\partial t}
+-f_0v
+-\beta y \frac{g}{f_0}\frac{\partial \eta}{\partial x}
+&=
+-g\frac{\partial \eta}{\partial x}
+\tag{4}\\[6pt]
+\frac{g}{f_0}\frac{\partial^2 \eta}{\partial x\,\partial t}
++f_0u
+-\beta y \frac{g}{f_0}\frac{\partial \eta}{\partial y}
+&=
+-g\frac{\partial \eta}{\partial y}
+\tag{5}
+\end{align}
+
+\subsection*{Page 5}
+Rearrange (4,5) for $v$ and $u$:
+
+\begin{align}
+v
+&=
+\frac{g}{f_0}\frac{\partial \eta}{\partial x}
+-\frac{g}{f_0^2}\frac{\partial^2 \eta}{\partial y\,\partial t}
+-\beta y \frac{g}{f_0^2}\frac{\partial \eta}{\partial x}
+\tag{6}\\[6pt]
+u
+&=
+-\frac{g}{f_0}\frac{\partial \eta}{\partial y}
+-\frac{g}{f_0^2}\frac{\partial^2 \eta}{\partial x\,\partial t}
++\beta y \frac{g}{f_0^2}\frac{\partial \eta}{\partial y}
+\tag{7}
+\end{align}
+
+The blue terms are ageostrophic. These describe the behaviour of the wave
+perturbations superimposed on the geostrophic flow.
+
+\subsection*{Page 6}
+Recall (3), the continuity equation,
+
+\[
+\frac{\partial u}{\partial x}
++\frac{\partial v}{\partial y}
++\frac{\partial w}{\partial z}
+=
+0
+\tag{3}
+\]
+
+This can be integrated over a layer depth $H$,
+
+\[
+\int_0^H
+\left(
+\frac{\partial u}{\partial x}
++\frac{\partial v}{\partial y}
++\frac{\partial w}{\partial z}
+\right)\,dz
+=
+H\left(
+\frac{\partial u}{\partial x}
++\frac{\partial v}{\partial y}
+\right)
++w(H)-w(0)
+=
+0
+\]
+
+\[
+\frac{\partial \eta}{\partial t}
++
+H\left(
+\frac{\partial u}{\partial x}
++\frac{\partial v}{\partial y}
+\right)
+=
+0
+\tag{8}
+\]
+
+\subsection*{Page 7}
+Substitute $u,v$ from (6,7) into (8):
+
+\begin{align}
+v
+&=
+\frac{g}{f_0}\frac{\partial \eta}{\partial x}
+-\frac{g}{f_0^2}\frac{\partial^2 \eta}{\partial y\,\partial t}
+-\beta y \frac{g}{f_0^2}\frac{\partial \eta}{\partial x},
+\\[6pt]
+u
+&=
+-\frac{g}{f_0}\frac{\partial \eta}{\partial y}
+-\frac{g}{f_0^2}\frac{\partial^2 \eta}{\partial x\,\partial t}
++\beta y \frac{g}{f_0^2}\frac{\partial \eta}{\partial y}
+\tag{6,7}
+\end{align}
+
+\[
+\frac{\partial \eta}{\partial t}
++
+H\left(
+\frac{\partial u}{\partial x}
++\frac{\partial v}{\partial y}
+\right)
+=
+0
+\tag{8}
+\]
+
+\begin{align*}
+\frac{\partial \eta}{\partial t}
++\frac{gH}{f_0^2}
+\Biggl(
+\frac{\partial}{\partial x}
+\left[
+-f_0\frac{\partial \eta}{\partial y}
+-\frac{\partial^2 \eta}{\partial x\,\partial t}
++\beta y \frac{\partial \eta}{\partial y}
+\right]
++
+\frac{\partial}{\partial y}
+\left[
+f_0\frac{\partial \eta}{\partial x}
+-\frac{\partial^2 \eta}{\partial y\,\partial t}
+-\beta y \frac{\partial \eta}{\partial x}
+\right]
+\Biggr)
+&=0
+\\[8pt]
+\frac{\partial \eta}{\partial t}
++\frac{gH}{f_0^2}
+\left(
+-\frac{\partial^3 \eta}{\partial x^2\,\partial t}
+-\frac{\partial^3 \eta}{\partial y^2\,\partial t}
+-\beta \frac{\partial \eta}{\partial x}
+\right)
+&=0
+\\[8pt]
+\frac{\partial \eta}{\partial t}
++\frac{gH}{f_0^2}
+\left(
+-\frac{\partial}{\partial t}
+\left[
+\frac{\partial^2 \eta}{\partial x^2}
++\frac{\partial^2 \eta}{\partial y^2}
+\right]
+-\beta \frac{\partial \eta}{\partial x}
+\right)
+&=0
+\end{align*}
+
+\subsection*{Page 8}
+\[
+\frac{\partial \eta}{\partial t}
++\frac{gH}{f_0^2}
+\left(
+-\frac{\partial}{\partial t}
+\left[
+\frac{\partial^2 \eta}{\partial x^2}
++\frac{\partial^2 \eta}{\partial y^2}
+\right]
+-\beta \frac{\partial \eta}{\partial x}
+\right)
+=0
+\]
+
+Substitute for
+
+\[
+\nabla^2 \eta
+=
+\frac{\partial^2 \eta}{\partial x^2}
++
+\frac{\partial^2 \eta}{\partial y^2}
+\]
+
+and define
+
+\[
+R=\frac{\sqrt{gH}}{f_0}
+\]
+
+as the Rossby radius:
+
+\[
+\frac{\partial \eta}{\partial t}
+-
+R^2\frac{\partial}{\partial t}\nabla^2\eta
+-
+R^2\beta\frac{\partial \eta}{\partial x}
+=
+0
+\tag{9}
+\]
+
+This is the Rossby wave equation.
+
+\subsection*{Page 9}
+\[
+\int_0^H
+\left(
+\frac{\partial u}{\partial x}
++\frac{\partial v}{\partial y}
++\frac{\partial w}{\partial z}
+\right)\,dz
+=
+\frac{\partial \eta}{\partial t}
++
+H\left(
+\frac{\partial u}{\partial x}
++\frac{\partial v}{\partial y}
+\right)
+=
+0
+\]
+
+\[
+\frac{1}{\rho}\frac{\partial p}{\partial x}
+=
+g\frac{\partial \eta}{\partial x}
+\qquad
+\text{(hydrostatic)}
+\]
+
+\[
+R=\frac{\sqrt{gH}}{f_0}
+\qquad
+\text{as the Rossby radius}
+\]
+
+\[
+\frac{\partial \eta}{\partial t}
+-
+R^2\frac{\partial}{\partial t}\nabla^2\eta
+-
+R^2\beta\frac{\partial \eta}{\partial x}
+=
+0
+\]
+
+\subsection*{Page 10}
+\[
+\frac{\partial \eta}{\partial t}
+-
+R^2\frac{\partial}{\partial t}\nabla^2\eta
+-
+R^2\beta\frac{\partial \eta}{\partial x}
+=
+0
+\tag{9}
+\]
+
+This is the Rossby wave equation.
+
+The coefficients of (9) are constant, and we have assumed the perturbation
+is a wave, so we prescribe the form
+
+\[
+\eta=\eta_0\cos(kx-my-\omega t).
+\]
+
+This allows us to rewrite (9) in terms of $\omega$ as a dispersion relation
+for Rossby waves:
+
+\[
+\omega
+=
+-\beta R^2
+\frac{k}{1+R^2(k^2+m^2)}
+\]
+
+\subsection*{Page 11}
+Dispersion relation for planetary Rossby waves
+\[
+\left(
+\text{recall } R=\sqrt{gH}/f_0
+\right):
+\]
+
+\[
+\omega
+=
+-\beta R^2
+\frac{k}{1+R^2(k^2+m^2)}
+\]
+
+\begin{itemize}
+\item For $\beta=0 \to \omega=0$: steady, geostrophic flow at constant $f$
+(no waves).
+\item We have assumed $Ro \ll 1$, so solution only valid for $\omega \ll f_0$.
+\item Consider $k,m \sim 1/L \to \omega \sim \beta R^2 L/(L^2+R^2)$.
+\item So for short waves $L<R$: $\omega \sim \beta L$.
+\item For long waves $L>R$: $\omega \sim \beta R^2/L < \beta L$.
+\item For $L=R$: $\omega$ is maximum at $\omega_{\max}=\beta R/2$.
+\end{itemize}
+
+\subsection*{Page 12}
+Dispersion relation for planetary Rossby waves
+\[
+\left(
+\text{recall } R=\sqrt{gH}/f_0
+\right):
+\]
+
+\[
+\omega
+=
+-\beta R^2
+\frac{k}{1+R^2(k^2+m^2)}
+\]
+
+\begin{itemize}
+\item ZONAL phase speed always negative $\to$ westward propagation
+\[
+c_x=\frac{\omega}{k}
+=
+-\beta R^2
+\frac{1}{1+R^2(k^2+m^2)}
+\]
+\item MERIDIONAL phase speed either sign
+\[
+c_y=\frac{\omega}{m}
+=
+-\beta R^2
+\frac{k/m}{1+R^2(k^2+m^2)}
+\]
+\item Very long waves $(1/k,1/m,L \gg R)$: propagate westward at
+\[
+c=-\beta R^2,
+\]
+maximum speed allowed.
+\end{itemize}
+
+\subsection*{Page 13}
+\[
+\frac{D}{Dt}\left(\frac{f+\zeta}{h}\right)=0
+\]
+
+\[
+\text{North, high }f
+\qquad\qquad
+\text{South, low }f
+\]
+
+\[
+\text{Contours of }f
+\]
+
+\[
+\text{Greater }f,\ \text{reduced }\zeta
+\qquad\qquad
+\text{Smaller }f,\ \text{increased }\zeta
+\]
+
+\[
+\text{Greater }f,\ \text{reduced }\zeta
+\]
+
+\subsection*{Page 14}
+\section*{Taylor--Proudman Theorem}
+
+For steady, $Ro \ll 1$ and uniform density $\rho$.
+
+Geostrophic vector equation:
+
+\[
+2\Omega \times \mathbf{u}
+=
+-\frac{\nabla p}{\rho}
+\]
+
+Take the curl of this equation:
+
+\[
+\nabla \times (2\Omega \times \mathbf{u})
+=
+-\nabla \times \left(\frac{\nabla p}{\rho}\right)
+\]
+
+RHS: curl of a gradient $(\nabla p)$ is zero, $\rho$ is uniform.
+
+So:
+
+\[
+\nabla \times (\Omega \times \mathbf{u})=0
+\]
+
+Expands to:
+
+\[
+(\Omega\cdot\nabla)\mathbf{u}
+-
+(\mathbf{u}\cdot\nabla)\Omega
++
+\mathbf{u}(\nabla\cdot\Omega)
+-
+\Omega(\nabla\cdot\mathbf{u})
+=
+0
+\]
+
+\subsection*{Page 15}
+\section*{Taylor--Proudman Theorem}
+
+\[
+(\Omega\cdot\nabla)\mathbf{u}
+-
+(\mathbf{u}\cdot\nabla)\Omega
++
+\mathbf{u}(\nabla\cdot\Omega)
+-
+\Omega(\nabla\cdot\mathbf{u})
+=
+0
+\]
+
+$\Omega$ is uniform everywhere, and continuity is unaltered by rotation, so:
+
+\[
+(\Omega\cdot\nabla)\mathbf{u}=0
+\]
+
+Choose coordinates such that $\Omega$ is in the $z$-direction,
+
+\[
+\Omega \frac{\partial \mathbf{u}}{\partial z}=0
+\qquad\to\qquad
+\frac{\partial u}{\partial z}
+=
+\frac{\partial v}{\partial z}
+=
+\frac{\partial w}{\partial z}
+=
+0
+\]
+
+And for a domain with a solid (bottom) boundary where $w=0$,
+
+\[
+\frac{\partial u}{\partial z}
+=
+\frac{\partial v}{\partial z}
+=
+0,
+\qquad
+w=0
+\]
+
+Horizontal velocities constant with depth, moves as ``Taylor columns''.
+
+\subsection*{Page 16}
+\section*{Flow on a Rotating Planet -- Horizontal Scaling}
+
+Euler Equation in Rotating Frame:
+
+\[
+\frac{D\mathbf{u}}{Dt}+2\Omega\times\mathbf{u}
+=
+\mathbf{g}-\frac{\nabla p}{\rho}
+\]
+
+$x$-component of the Euler equation:
+
+\[
+\frac{\partial u}{\partial t}
++u\frac{\partial u}{\partial x}
++v\frac{\partial u}{\partial y}
++w\frac{\partial u}{\partial z}
++2\Omega w\cos\theta
+-2\Omega v\sin\theta
+=
+-\frac{1}{\rho}\frac{\partial p}{\partial x}
+\]
+
+Assume hydrostatic pressure scale:
+
+\[
+\Delta P \sim \rho' g H
+\]
+
+horizontal velocity scale $U$, timescale $T=L/U$,
+\[
+w \sim \frac{UH}{L}
+\]
+
+Scales of terms:
+
+\[
+\frac{U^2}{L}
++\frac{U^2}{L}
++\frac{U^2}{L}
++\frac{U^2}{L}
++2\Omega\frac{UH}{L}
+-2\Omega U
+\sim
+\frac{\rho' g H}{\rho L}
+\]
+
+\subsection*{Page 17}
+\section*{Flow on a Rotating Planet -- Horizontal Scaling in $x$}
+
+$x$-component of the Euler equation:
+
+\[
+\frac{\partial u}{\partial t}
++u\frac{\partial u}{\partial x}
++v\frac{\partial u}{\partial y}
++w\frac{\partial u}{\partial z}
++2\Omega w\cos\theta
+-2\Omega v\sin\theta
+=
+-\frac{1}{\rho}\frac{\partial p}{\partial x}
+\]
+
+\[
+\frac{U^2}{L}
++\frac{U^2}{L}
++\frac{U^2}{L}
++\frac{U^2}{L}
++2\Omega\frac{UH}{L}
+-2\Omega U
+\sim
+\frac{\rho' g H}{\rho L}
+\]
+
+\[
+1+1+1+1
++
+\frac{2\Omega L}{U}\left(\frac{H}{L}-1\right)
+\sim
+\frac{\rho' g H}{\rho U^2}
+\]
+
+Rossby Number:
+\[
+Ro=\frac{U}{2\Omega L}
+\]
+
+\[
+\to \text{ ratio of inertial to rotation timescales}
+\]
+
+\[
+Ro \ll 1
+\quad
+\text{for ``slow'' flow, ``large'' lengthscales and ``rapid'' rotation rates}
+\]
+
+\[
+Ro \ll 1
+\qquad\to\qquad
+\text{Coriolis balances pressure gradient}
+\]
+
+\[
+2\Omega v\sin\theta
+=
+\frac{1}{\rho}\frac{\partial p}{\partial x}
+\]
+
+\subsection*{Page 18}
+\section*{Flow on a Rotating Planet -- Horizontal Scaling in $y$}
+
+$y$-component of the Euler equation:
+
+\[
+\frac{\partial v}{\partial t}
++u\frac{\partial v}{\partial x}
++v\frac{\partial v}{\partial y}
++w\frac{\partial v}{\partial z}
++2\Omega u\sin\theta
+=
+-\frac{1}{\rho}\frac{\partial p}{\partial y}
+\]
+
+Scales of terms:
+
+\[
+\frac{U^2}{L}
++\frac{U^2}{L}
++\frac{U^2}{L}
++\frac{U^2}{L}
++2\Omega U
+\sim
+\frac{\rho' g H}{\rho L}
+\]
+
+\[
+1+1+1+1+\frac{2\Omega L}{U}
+\sim
+\frac{\rho' g H}{\rho U^2}
+\]
+
+Again, Rossby Number:
+\[
+Ro=\frac{U}{2\Omega L}
+\]
+
+\[
+\to \text{ ratio of inertial to rotation timescales}
+\]
+
+\[
+Ro \ll 1
+\quad
+\text{for ``slow'' flow, ``large'' length scales and ``rapid'' rotation rates}
+\]
+
+\[
+Ro \ll 1
+\qquad\to\qquad
+\text{Coriolis balances pressure gradient}
+\]
+
+\[
+-2\Omega u\sin\theta
+=
+\frac{1}{\rho}\frac{\partial p}{\partial y}
+\]
+
+\subsection*{Page 19}
+\section*{Navier--Stokes Momentum Equation in Rotating Frame}
+
+\[
+\frac{D\mathbf{u}}{Dt}
++2\Omega\times\mathbf{u}
+=
+\mathbf{g}
+-\frac{\nabla p}{\rho}
++\nu\nabla^2\mathbf{u}
+\]
+
+\section*{Euler Equation in Rotating Frame}
+
+\[
+\frac{D\mathbf{u}}{Dt}
++2\Omega\times\mathbf{u}
+=
+\mathbf{g}
+-\frac{\nabla p}{\rho}
+\]
+
+\[
+2\Omega\times\mathbf{u}
+=
+(-fv,\,fu,\,0)
+\]
+
+\[
+f=2\Omega\sin\theta
+\]
+
+\subsection*{Page 20}
+\section*{Flow on a Rotating Planet -- Vertical Scaling}
+
+Euler Equation in Rotating Frame:
+
+\[
+\frac{D\mathbf{u}}{Dt}+2\Omega\times\mathbf{u}
+=
+\mathbf{g}-\frac{\nabla p}{\rho}
+\]
+
+Vertical component of the Euler equation:
+
+\[
+\frac{\partial w}{\partial t}
++u\frac{\partial w}{\partial x}
++v\frac{\partial w}{\partial y}
++w\frac{\partial w}{\partial z}
+-2\Omega u\cos\theta
+=
+-g-\frac{1}{\rho}\frac{\partial p}{\partial z}
+\]
+
+\[
+H \ll L
+\]
+
+\[
+T=\frac{L}{U}
+\]
+
+\[
+\frac{U}{L}\sim\frac{W}{H}
+\qquad\Rightarrow\qquad
+W\sim \frac{UH}{L}
+\]
+
+\clearpage
+\section*{Standalone Images 1--9}
+
+\subsection*{Image 1}
+This is the $1^{\text{st}}$ generation only. We have two more copies of all these rows, identical in every way except for mass. $2^{\text{nd}}$ and $3^{\text{rd}}$ gen matter is unstable!
+
+\begin{center}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{$1^{\text{st}}$ Gen} & \textbf{$2^{\text{nd}}$ Gen} & \textbf{$3^{\text{rd}}$ Gen} \\
+\hline
+Electron $e$ & Muon $\mu$ & Tau $\tau$ \\
+\hline
+Electron Neutrino $\nu_e$ & Muon Neutrino $\nu_\mu$ & Tau Neutrino $\nu_\tau$ \\
+\hline
+Up Quark $u$ & Charm Quark $c$ & Top (Truth) Quark $t$ \\
+\hline
+Down Quark $d$ & Strange Quark $s$ & Bottom (Beauty) Quark $b$ \\
+\hline
+\end{tabular}%
+}
+\end{center}
+
+\[
+T_3 \equiv \tau_3/2
+\]
+
+\[
+\text{So, visually it's like:}
+\]
+
+\[
+Q = \frac{1}{2}\left(\tau_3 + Y\right)
+\]
+
+\[
+\text{rotate around z-axis}
+\qquad
+\text{rotate around flagpole}
+\]
+
+\begin{center}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Particle} & \textbf{Electric Charge $Q$} & \textbf{Weak Isospin $T_3$} & \textbf{Hypercharge $Y$} \\
+\hline
+Electron $e_R$ & $-1$ & $0$ & $-2$ \\
+Neutrino $\nu_e$ & $0$ & $+1/2$ & $-1$ \\
+Electron $e_L$ & $-1$ & $-1/2$ & $-1$ \\
+\hline
+Up Quark $u_R$ & $+2/3$ & $0$ & $+4/3$ \\
+Down Quark $d_R$ & $-1/3$ & $0$ & $-2/3$ \\
+Up Quark $u_L$ & $+2/3$ & $+1/2$ & $+1/3$ \\
+Down Quark $d_L$ & $-1/3$ & $-1/2$ & $+1/3$ \\
+\hline
+$W^\pm$ Bosons & $\pm 1$ & $\pm 1$ & $0$ \\
+$Z$ Boson & $0$ & $0$ & $0$ \\
+Photon $\gamma$ & $0$ & $0$ & $0$ \\
+Gluon & $0$ & $0$ & $0$ \\
+\hline
+Higgs $H^+$ & $+1$ & $+1/2$ & $+1$ \\
+Higgs $H^0$ & $0$ & $-1/2$ & $+1$ \\
+\hline
+\end{tabular}%
+}
+\end{center}
+
+\[
+\text{Leptons}
+\qquad
+\text{Quarks}
+\qquad
+\text{Gauge Bosons}
+\qquad
+\text{Higgs Field}
+\]
+
+\[
+\text{$SU(2)_L$ doublets: }
+\begin{pmatrix}
+\nu_e \\
+e_L
+\end{pmatrix},
+\quad
+\begin{pmatrix}
+u_L \\
+d_L
+\end{pmatrix},
+\quad
+\begin{pmatrix}
+H^+ \\
+H^0
+\end{pmatrix}
+\]
+
+\[
+\text{Gell-Mann--Nishijima relation:}
+\qquad
+Q = T_3 + \frac{Y}{2}
+\]
+
+\subsection*{Image 2}
+\[
+\Psi =
+\begin{pmatrix}
+\psi_r \\
+\psi_g \\
+\psi_b
+\end{pmatrix},
+\qquad
+\bar{\Psi} =
+\begin{pmatrix}
+\bar{\psi}_r & \bar{\psi}_g & \bar{\psi}_b
+\end{pmatrix}
+\]
+
+\subsection*{Image 3}
+\[
+\text{The color triplet field } \Psi \in \mathbb{C}^3 \otimes \mathbb{C}^4 \cong \mathbb{C}^{12}
+\text{ gives us a way to write } \mathcal{L} \text{ more concisely, but now that}
+\]
+
+\[
+\text{we're here... what happens if we require } \mathcal{L}
+\text{ to remain unchanged under any transformation}
+\]
+
+\[
+\Psi \to \Psi' = U(x)\Psi
+\qquad
+\text{where } U(x) \in SU(3)\text{?}
+\]
+
+\subsection*{Image 4}
+\[
+\text{Free quark, non-interacting three-color Dirac lagrangian:}
+\]
+
+\begin{align*}
+\mathcal{L} &= \mathcal{L}_r + \mathcal{L}_g + \mathcal{L}_b \\
+\mathcal{L}
+&= \bar{\psi}_r \left(i\gamma^\mu \partial_\mu - m\right)\psi_r
+ + \bar{\psi}_g \left(i\gamma^\mu \partial_\mu - m\right)\psi_g
+ + \bar{\psi}_b \left(i\gamma^\mu \partial_\mu - m\right)\psi_b
+\end{align*}
+
+\[
+\mathcal{L} = \bar{\Psi}\left(i\gamma^\mu \partial_\mu - m\right)\Psi
+\]
+
+\subsection*{Image 5}
+\[
+\text{Free quark, non-interacting three-color Dirac lagrangian:}
+\]
+
+\begin{align*}
+\mathcal{L} &= \mathcal{L}_r + \mathcal{L}_g + \mathcal{L}_b \\
+\mathcal{L}
+&= \bar{\psi}_r \left(i\gamma^\mu \partial_\mu - m\right)\psi_r \\
+&\quad + \bar{\psi}_g \left(i\gamma^\mu \partial_\mu - m\right)\psi_g \\
+&\quad + \bar{\psi}_b \left(i\gamma^\mu \partial_\mu - m\right)\psi_b
+\end{align*}
+
+\subsection*{Image 6}
+\begin{align*}
+\psi_r &= u_s(\vec{p}) \exp\!\left[-i\left(Et - \vec{p}\cdot\vec{x}\right)\right], \\
+\psi_g &= u_s(\vec{p}) \exp\!\left[-i\left(Et - \vec{p}\cdot\vec{x}\right)\right], \\
+\psi_b &= u_s(\vec{p}) \exp\!\left[-i\left(Et - \vec{p}\cdot\vec{x}\right)\right].
+\end{align*}
+
+\subsection*{Image 7}
+\begin{center}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\textbf{Baryon} &
+\textbf{Quark content} &
+\textbf{Charge} &
+\shortstack{\textbf{Mass}\\\textbf{$(\mathrm{GeV}/c^2)$}} &
+\shortstack{\textbf{Half Life}\\\textbf{(seconds)}} &
+\textbf{Principal decays} &
+\textbf{Spin} \\
+\hline
+$p$ & $uud$ & $+1$ & $0.93828$ & at least $3\cdot10^{41}$ & -- & $1/2$ \\
+$n$ & $udd$ & $0$ & $0.93957$ & $880$ & $pe\bar{\nu}_e$ & $1/2$ \\
+$\Lambda$ & $uds$ & $0$ & $1.1156$ & $2.63\cdot10^{-10}$ & $p\pi^{-},\, n\pi^{0}$ & $1/2$ \\
+$\Sigma^{+}$ & $uus$ & $+1$ & $1.1894$ & $0.80\cdot10^{-10}$ & $p\pi^{0},\, n\pi^{+}$ & $1/2$ \\
+$\Sigma^{0}$ & $uds$ & $0$ & $1.1925$ & $6\cdot10^{-20}$ & $\Lambda\gamma$ & $1/2$ \\
+$\Sigma^{-}$ & $dds$ & $-1$ & $1.1973$ & $1.48\cdot10^{-10}$ & $n\pi^{-}$ & $1/2$ \\
+$\Xi^{0}$ & $uss$ & $0$ & $1.3149$ & $2.90\cdot10^{-10}$ & $\Lambda\pi^{0}$ & $1/2$ \\
+$\Xi^{-}$ & $dss$ & $-1$ & $1.3213$ & $1.64\cdot10^{-10}$ & $\Lambda\pi^{-}$ & $1/2$ \\
+$\Lambda_c^{+}$ & $udc$ & $+1$ & $2.281$ & $2\cdot10^{-13}$ & $pK^{-}\pi^{+}$ & $1/2$ \\
+$\Delta$ & $uuu,\, uud,\, udd,\, ddd$ & $+2,\,+1,\,0,\,-1$ & $1.232$ & $0.6\cdot10^{-23}$ & $N\pi$ & $3/2$ \\
+$\Sigma^{*}$ & $uus,\, uds,\, dds$ & $+1,\,0,\,-1$ & $1.385$ & $2\cdot10^{-23}$ & $\Lambda\pi,\, \Sigma\pi$ & $3/2$ \\
+$\Xi^{*}$ & $uss,\, dss$ & $0,\,-1$ & $1.533$ & $7\cdot10^{-23}$ & $\Xi\pi$ & $3/2$ \\
+$\Omega^{-}$ & $sss$ & $-1$ & $1.672$ & $0.82\cdot10^{-10}$ & $\Lambda K^{-},\, \Xi^{0}\pi^{-},\, \Xi^{-}\pi^{0}$ & $3/2$ \\
+\hline
+\end{tabular}%
+}
+\end{center}
+
+\textbf{Source:} \textit{Introduction to Elementary Particles}, David Griffiths, table at the beginning of the book.
+
+\subsection*{Image 8}
+\begin{center}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\shortstack{\textbf{Vector}\\\textbf{Meson}\\\textbf{(Spin-1)}} &
+\textbf{Quark content} &
+\textbf{Charge} &
+\shortstack{\textbf{Mass}\\\textbf{$(\mathrm{GeV}/c^2)$}} &
+\shortstack{\textbf{Half Life}\\\textbf{(seconds)}} &
+\textbf{Principal decays} \\
+\hline
+$\rho$ & $u\bar{d},\, d\bar{u},\, (u\bar{u}-d\bar{d})/\sqrt{2}$ & $+1,\,-1,\,0$ & $0.770$ & $0.4\cdot10^{-23}$ & $\pi\pi$ \\
+$K^{*}$ & $u\bar{s},\, s\bar{u},\, d\bar{s},\, s\bar{d}$ & $+1,\,-1,\,0,\,0$ & $0.892$ & $1\cdot10^{-23}$ & $K\pi$ \\
+$\omega$ & $(u\bar{u}+d\bar{d})/\sqrt{2}$ & $0$ & $0.783$ & $7\cdot10^{-23}$ & $\pi^{+}\pi^{-}\pi^{0},\, \pi^{0}\gamma$ \\
+$\phi$ & $s\bar{s}$ & $0$ & $1.020$ & $20\cdot10^{-23}$ & $K^{+}K^{-},\, K^{0}\bar{K}^{0}$ \\
+$J/\psi$ & $c\bar{c}$ & $0$ & $3.097$ & $1\cdot10^{-20}$ & $e^{+}e^{-},\, \mu^{+}\mu^{-},\, 5\pi,\, 7\pi$ \\
+$D^{*}$ & $c\bar{d},\, d\bar{c},\, c\bar{u},\, u\bar{c}$ & $+1,\,-1,\,0,\,0$ & $2.010$ & $>1\cdot10^{-22}$ & $D\pi,\, D\gamma$ \\
+$\Upsilon$ & $b\bar{b}$ & $0$ & $9.460$ & $2\cdot10^{-20}$ & $\tau^{+}\tau^{-},\, \mu^{+}\mu^{-},\, e^{+}e^{-}$ \\
+\hline
+\end{tabular}%
+}
+\end{center}
+
+\subsection*{Image 9}
+\begin{center}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\shortstack{\textbf{Pseudoscalar}\\\textbf{Meson}\\\textbf{(Spin-0)}} &
+\textbf{Quark content} &
+\textbf{Charge} &
+\shortstack{\textbf{Mass}\\\textbf{$(\mathrm{GeV}/c^2)$}} &
+\shortstack{\textbf{Half Life}\\\textbf{(seconds)}} &
+\textbf{Principal decays} \\
+\hline
+$\pi^{\pm}$ & $u\bar{d},\, d\bar{u}$ & $+1,\,-1$ & $0.139569$ & $2.60\cdot10^{-8}$ & $\mu\nu_{\mu}$ \\
+$\pi^{0}$ & $(u\bar{u}-d\bar{d})/\sqrt{2}$ & $0$ & $0.134964$ & $8.7\cdot10^{-17}$ & $\gamma\gamma$ \\
+$K^{\pm}$ & $u\bar{s},\, s\bar{u}$ & $+1,\,-1$ & $0.49367$ & $1.24\cdot10^{-8}$ & $\mu\nu_{\mu},\, \pi^{\pm}\pi^{0},\, \pi^{\pm}\pi^{\pm}\pi^{\mp}$ \\
+$K^{0},\, \bar{K}^{0}$ & $d\bar{s},\, s\bar{d}$ & $0,\,0$ & $0.49772$ & $K_S^{0}: 0.892\cdot10^{-10}$ & $\pi^{+}\pi^{-},\, \pi^{0}\pi^{0}$ \\
+$K^{0},\, \bar{K}^{0}$ & $d\bar{s},\, s\bar{d}$ & $0,\,0$ & $0.49772$ & $K_L^{0}: 5.18\cdot10^{-8}$ & $\pi e \nu_e,\, \pi\mu\nu_{\mu},\, \pi\pi\pi$ \\
+$\eta$ & $(u\bar{u}+d\bar{d}-2s\bar{s})/\sqrt{6}$ & $0$ & $0.5488$ & $7\cdot10^{-19}$ & $\gamma\gamma,\, \pi^{0}\pi^{0}\pi^{0},\, \pi^{+}\pi^{-}\pi^{0}$ \\
+$\eta'$ & $(u\bar{u}+d\bar{d}+s\bar{s})/\sqrt{3}$ & $0$ & $0.9576$ & $3\cdot10^{-21}$ & $\eta\pi\pi,\, \rho^{0}\gamma$ \\
+$D^{\pm}$ & $c\bar{d},\, d\bar{c}$ & $+1,\,-1$ & $1.869$ & $9\cdot10^{-13}$ & $K\pi\pi$ \\
+$D^{0},\, \bar{D}^{0}$ & $c\bar{u},\, u\bar{c}$ & $0,\,0$ & $1.865$ & $4\cdot10^{-13}$ & $K\pi\pi$ \\
+$D_s^{\pm}$ & $c\bar{s},\, s\bar{c}$ & $+1,\,-1$ & $1.971$ & $3\cdot10^{-13}$ & \text{not established} \\
+$B^{\pm}$ & $u\bar{b},\, b\bar{u}$ & $+1,\,-1$ & $5.271$ & $14\cdot10^{-13}$ & $D+?$ \\
+$B^{0},\, \bar{B}^{0}$ & $d\bar{b},\, b\bar{d}$ & $0,\,0$ & $5.275$ & $14\cdot10^{-13}$ & $D+?$ \\
+$\eta_c$ & $c\bar{c}$ & $0$ & $2.981$ & $6\cdot10^{-23}$ & $KK\pi,\, \eta\pi\pi,\, \eta'\pi\pi$ \\
+\hline
+\end{tabular}%
+}
+\end{center}
+
+\end{document}

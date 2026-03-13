@@ -1,0 +1,22 @@
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.9\linewidth,
+    height=0.42\linewidth,
+    xlabel={$t$},
+    ylabel={$\omega_{\mathrm{inst}}(t)$},
+    grid=major,
+    grid style={opacity=0.25},
+    tick label style={font=\small},
+    label style={font=\small},
+    legend style={font=\scriptsize, at={(0.98,0.98)}, anchor=north east},
+]
+\addplot table [x=t, y=omega_inst, col sep=space] {stable_init.dat};
+\addlegendentry{stable-init trajectory}
+\addplot table [x=t, y=omega_inst, col sep=space] {unstable_init.dat};
+\addlegendentry{unstable-init trajectory}
+\addplot[dashed] coordinates {(0,0.9488847242) (200,0.9488847242)};
+\addlegendentry{stable target}
+\addplot[dashed] coordinates {(0,1.1140089124) (200,1.1140089124)};
+\addlegendentry{unstable target}
+\end{axis}
+\end{tikzpicture}
