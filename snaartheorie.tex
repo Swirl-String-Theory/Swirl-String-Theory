@@ -1,0 +1,357 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm, geometry, hyperref, mathrsfs}
+\geometry{margin=1in}
+\setlength{\parskip}{0.4em}
+
+\title{\textbf{Canonische Afleiding van de Bosonische Snaartheorie}\\
+\large Van Polyakov-actie tot Kritieke Dimensie}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+%------------------------------------------------------------
+\section{De Nambu--Goto Actie}
+%------------------------------------------------------------
+
+De fundamenteelste beschrijving van een relativistische snaar is de Nambu--Goto actie, die proportioneel is aan het \emph{oppervlak} van het wereldblad dat de snaar uitzet in de doelruimtetijd $\mathbb{R}^{1,D-1}$ met metriek $\eta_{\mu\nu} = \mathrm{diag}(-1,+1,\dots,+1)$.
+
+Zij $X^\mu(\tau,\sigma)$ de inbeddingsfuncties van het wereldblad, met $\mu = 0,1,\dots,D-1$ en wereldbladco\"ordinaten $\sigma^\alpha = (\tau,\sigma)$. De ge\"induceerde metriek op het wereldblad is:
+\begin{equation}
+  \gamma_{\alpha\beta} = \eta_{\mu\nu}\,\partial_\alpha X^\mu\,\partial_\beta X^\nu
+\end{equation}
+De Nambu--Goto actie is dan:
+\begin{equation}
+  S_{\mathrm{NG}} = -T \int d^2\sigma\,\sqrt{-\det\gamma_{\alpha\beta}}
+  \label{eq:NG}
+\end{equation}
+waarbij $T = (2\pi\alpha')^{-1}$ de snaarspanning is en $\alpha'$ de Regge-hellingsparameter. De wortel maakt de actie moeilijk te kwantiseren; dit motiveert de Polyakov-formulering.
+
+%------------------------------------------------------------
+\section{De Polyakov-actie}
+%------------------------------------------------------------
+
+We introduceren een \emph{onafhankelijke} wereldbladmetriek $h_{\alpha\beta}(\tau,\sigma)$ als een hulpveld. De Polyakov-actie luidt:
+\begin{equation}
+  S_P = -\frac{T}{2}\int d^2\sigma\,\sqrt{-h}\,h^{\alpha\beta}\,\partial_\alpha X^\mu\,\partial_\beta X^\nu\,\eta_{\mu\nu}
+  \label{eq:Polyakov}
+\end{equation}
+waarbij $h = \det(h_{\alpha\beta})$.
+
+\subsection{Classicale equivalentie met Nambu--Goto}
+
+Variatie van \eqref{eq:Polyakov} naar $h^{\alpha\beta}$ geeft (gebruikmakend van $\delta\sqrt{-h} = -\tfrac{1}{2}\sqrt{-h}\,h_{\alpha\beta}\,\delta h^{\alpha\beta}$):
+\begin{equation}
+  \frac{\delta S_P}{\delta h^{\alpha\beta}} = -\frac{T}{2}\sqrt{-h}\left(\partial_\alpha X\cdot\partial_\beta X - \tfrac{1}{2}h_{\alpha\beta}\,h^{\gamma\delta}\partial_\gamma X\cdot\partial_\delta X\right) = 0
+\end{equation}
+Dit levert de bewegingsvergelijking voor $h_{\alpha\beta}$:
+\begin{equation}
+  T_{\alpha\beta} \equiv \partial_\alpha X^\mu\partial_\beta X_\mu - \tfrac{1}{2}h_{\alpha\beta}\,h^{\gamma\delta}\partial_\gamma X^\mu\partial_\delta X_\mu = 0
+  \label{eq:Virasoro_klassiek}
+\end{equation}
+Neem de spoor: $h^{\alpha\beta}T_{\alpha\beta} = 0$ is identiek voldaan (Weyl-invariantie). De spoortloze vergelijking \eqref{eq:Virasoro_klassiek} geeft $h_{\alpha\beta} \propto \gamma_{\alpha\beta}$. Invullen in \eqref{eq:Polyakov} herstelt \eqref{eq:NG}. De twee acties zijn dus classicaal equivalent.
+
+\subsection{Symmetrie\"en van de Polyakov-actie}
+
+De Polyakov-actie bezit drie fundamentele symmetrie\"en:
+\begin{enumerate}
+  \item \textbf{Diffeomorfisme-invariantie}: $\sigma^\alpha \to \tilde\sigma^\alpha(\sigma)$, waarbij $X^\mu$ en $h_{\alpha\beta}$ covariant transformeren.
+  \item \textbf{Weyl-invariantie}: $h_{\alpha\beta}(\sigma) \to e^{\omega(\sigma)}h_{\alpha\beta}(\sigma)$, $X^\mu \to X^\mu$. De actie is inert omdat $\sqrt{-h}$ en $h^{\alpha\beta}$ tegengesteld transformeren in twee dimensies.
+  \item \textbf{Poincar\'e-invariantie} in de doelruimtetijd: $X^\mu \to \Lambda^\mu{}_\nu X^\nu + a^\mu$.
+\end{enumerate}
+De twee wereldbladsymmetrie\"en (diffeomorfisme + Weyl) vormen samen drie locale vrijheidsgraden, precies genoeg om de drie componenten van de symmetrische $2\times2$ metriek $h_{\alpha\beta}$ te fixeren.
+
+%------------------------------------------------------------
+\section{Conforme IJking en Bewegingsvergelijkingen}
+%------------------------------------------------------------
+
+\subsection{IJkfixatie}
+
+Door gebruik te maken van de diffeomorfisme-invariantie kiezen we co\"ordinaten zodanig dat $h_{\alpha\beta} = e^\phi \eta_{\alpha\beta}$. Vervolgens gebruiken we de Weyl-vrijheid om $\phi = 0$ te stellen. Dit levert de \emph{conforme ijking}:
+\begin{equation}
+  h_{\alpha\beta} = \eta_{\alpha\beta} = \mathrm{diag}(-1,+1)
+\end{equation}
+
+\subsection{Bewegingsvergelijking voor $X^\mu$}
+
+In de conforme ijking wordt \eqref{eq:Polyakov} gereduceerd tot:
+\begin{equation}
+  S_P = \frac{T}{2}\int d^2\sigma\,\left(\dot X^2 - X'^2\right)
+\end{equation}
+waarbij $\dot X^\mu = \partial_\tau X^\mu$ en $X'^\mu = \partial_\sigma X^\mu$.
+
+Variatie naar $X^\mu$ (met randtermen die verdwijnen voor gesloten snaar via periodiciteit, en voor open snaar via Neumann/Dirichlet randvoorwaarden):
+\begin{equation}
+  \boxed{\left(\partial_\tau^2 - \partial_\sigma^2\right)X^\mu = 0}
+  \label{eq:golfvgl}
+\end{equation}
+Dit is de vrije twee-dimensionale golfvergelijking.
+
+\subsection{Virasoro-restricties}
+
+De ijkkeuze \emph{elimineert} $h_{\alpha\beta}$ als dynamisch veld, maar de vergelijking $T_{\alpha\beta} = 0$ blijft gelden als \emph{constraint}. In de conforme ijking worden dit de Virasoro-restricties:
+\begin{align}
+  T_{00} = T_{11} &= \tfrac{1}{2}(\dot X^2 + X'^2) = 0 \label{eq:V1}\\
+  T_{01} = T_{10} &= \dot X\cdot X' = 0 \label{eq:V2}
+\end{align}
+In lichtkegelco\"ordinaten $\sigma^\pm = \tau \pm \sigma$ (zodat $\partial_\pm = \tfrac{1}{2}(\partial_\tau \pm \partial_\sigma)$) worden deze:
+\begin{equation}
+  (\partial_+ X)^2 = 0, \qquad (\partial_- X)^2 = 0
+  \label{eq:Virasoro_licht}
+\end{equation}
+
+%------------------------------------------------------------
+\section{Mode-expansie}
+%------------------------------------------------------------
+
+\subsection{Gesloten snaar}
+
+De algemene oplossing van \eqref{eq:golfvgl} met periodiciteitsvoorwaarde $X^\mu(\tau,\sigma+2\pi) = X^\mu(\tau,\sigma)$ is:
+\begin{equation}
+  X^\mu(\tau,\sigma) = x^\mu + 2\alpha' p^\mu\tau + i\sqrt{\frac{\alpha'}{2}}\sum_{n\neq 0}\frac{1}{n}\left(\alpha_n^\mu\,e^{-in(\tau-\sigma)} + \tilde\alpha_n^\mu\,e^{-in(\tau+\sigma)}\right)
+  \label{eq:mode_gesloten}
+\end{equation}
+Hier is $x^\mu$ de massazwaartepuntspo\-sitie, $p^\mu$ de totale impuls, en $\alpha_n^\mu$, $\tilde\alpha_n^\mu$ de oscillatoramplitudes. Realiteit van $X^\mu$ vereist $(\alpha_n^\mu)^* = \alpha_{-n}^\mu$ en evenzo voor $\tilde\alpha_n^\mu$.
+
+\subsection{Open snaar}
+
+Voor de open snaar met Neumann randvoorwaarden ($X'^\mu = 0$ bij $\sigma = 0, \pi$) is de mode-expansie:
+\begin{equation}
+  X^\mu(\tau,\sigma) = x^\mu + 2\alpha' p^\mu\tau + i\sqrt{2\alpha'}\sum_{n\neq 0}\frac{1}{n}\,\alpha_n^\mu\,e^{-in\tau}\cos(n\sigma)
+\end{equation}
+Er is slechts \'e\'en set oscillatoren (links- en rechtsbewegende modes zijn niet onafhankelijk).
+
+%------------------------------------------------------------
+\section{Canonieke Kwantisering}
+%------------------------------------------------------------
+
+\subsection{Poisson-haakjes en kanonieke grootheden}
+
+De kanoniek geconjugeerde impuls van $X^\mu$ is:
+\begin{equation}
+  \Pi^\mu(\tau,\sigma) = T\,\dot X^\mu
+\end{equation}
+De fundamentele Poisson-haakjes zijn:
+\begin{equation}
+  \{X^\mu(\tau,\sigma),\,\Pi^\nu(\tau,\sigma')\} = \eta^{\mu\nu}\delta(\sigma-\sigma')
+\end{equation}
+
+\subsection{Kwantisering: commutatierelaties}
+
+Bij kanonieke kwantisering vervangen we Poisson-haakjes door commutatoren ($\{A,B\} \to -i[A,B]$):
+\begin{equation}
+  [x^\mu,\,p^\nu] = i\eta^{\mu\nu}
+\end{equation}
+\begin{equation}
+  [\alpha_m^\mu,\,\alpha_n^\nu] = m\,\delta_{m+n,0}\,\eta^{\mu\nu}
+  \label{eq:comm_alpha}
+\end{equation}
+\begin{equation}
+  [\tilde\alpha_m^\mu,\,\tilde\alpha_n^\nu] = m\,\delta_{m+n,0}\,\eta^{\mu\nu}
+\end{equation}
+en $[\alpha_m^\mu,\tilde\alpha_n^\nu] = 0$. De moden met $n > 0$ spelen de rol van vernietigingsoperatoren: $\alpha_n^\mu|0\rangle = 0$ voor $n > 0$, en $\alpha_{-n}^\mu$ zijn aanmaakoperatoren.
+
+\subsection{Virasoro-operatoren}
+
+De Fourier-modes van de energie-impulstensor defini\"eren de Virasoro-operatoren. Voor de rechtsbewegende sector defini\"eren we direct met normale ordening:
+\begin{equation}
+  L_m = \frac{1}{2}\sum_{n=-\infty}^{\infty} :\!\alpha_{m-n}^\mu\,\alpha_{n,\mu}\!:
+  \label{eq:Lm_klassiek}
+\end{equation}
+en analoog $\tilde L_m$ voor de linksbewegende sector. Klassiek zijn de Virasoro-restricties $L_m = \tilde L_m = 0$ voor alle $m$.
+
+Bij kwantisering is $L_0$ ambiguous vanwege operator-ordeningsproblemen: $\alpha_n^\mu$ en $\alpha_{-n}^\mu$ commuteren niet. We defini\"eren de \emph{normale ordening} $:AB:$ waarbij aanmaakoperatoren links worden geplaatst:
+\begin{equation}
+  L_0 = \frac{\alpha'}{4}p^2 + \sum_{n=1}^{\infty}\alpha_{-n}\cdot\alpha_n + \underbrace{a}_{\text{normal-ordering constante}}
+\end{equation}
+De constante $a$ wordt hieronder bepaald door consistentie van de algebra.
+
+%------------------------------------------------------------
+\section{De Virasoro-algebra en Centrale Lading}
+%------------------------------------------------------------
+
+\subsection{Klassieke algebra}
+
+Klassiek voldoen de $L_m$ aan de Witt-algebra:
+\begin{equation}
+  \{L_m,\,L_n\}_{\mathrm{PB}} = -i(m-n)L_{m+n}
+\end{equation}
+
+\subsection{Kwantum Virasoro-algebra}
+
+Bij kwantisering worden de commutatoren berekend met behulp van \eqref{eq:comm_alpha}. Een directe berekening geeft de \emph{Virasoro-algebra}:
+\begin{equation}
+  \boxed{[L_m,\,L_n] = (m-n)L_{m+n} + \frac{c}{12}m(m^2-1)\delta_{m+n,0}}
+  \label{eq:Virasoro_algebra}
+\end{equation}
+De extra term proportioneel aan $c$ heet de \emph{centrale extensie} of \emph{centrale lading}. Voor $D$ vrije scalaire velden $X^\mu$ is:
+\begin{equation}
+  c = D
+\end{equation}
+
+\subsection{Herleiding van de centrale term}
+
+De centrale term volgt uit de normaalgeordende berekening van $[L_m, L_{-m}]$. De kritieke stap is de normale-ordering anomalie voor $L_0$:
+\begin{align}
+  [L_m,L_{-m}] &= 2m\,L_0 + \frac{D}{12}m(m^2-1)
+\end{align}
+Hierin verschijnt de som $\sum_{n=1}^{m-1}n = \frac{m(m-1)}{2}$ en hogere-orde termen, die tesamen de factor $\frac{D}{12}m(m^2-1)$ opleveren. Dit is een directe consequentie van het feit dat de kwantumcommutatoren van de oscillatoren niet verdwijnen.
+
+%------------------------------------------------------------
+\section{Fysische Toestanden en de Kritieke Dimensie}
+%------------------------------------------------------------
+
+\subsection{Het oud-kanonieke kwantiseringsschema}
+
+In de conforme ijking blijft een residuele symmetriegroep over: conforme transformaties van het wereldblad, die precies de Virasoro-algebra genereren. De fysische Hilbert-ruimte voor de \emph{gesloten snaar} wordt gedefinieerd door beide sectoren afzonderlijk:
+\begin{align}
+  L_m|\mathrm{fys}\rangle &= 0, \quad \tilde L_m|\mathrm{fys}\rangle = 0 \qquad (m > 0) \notag\\
+  (L_0 - a)|\mathrm{fys}\rangle &= 0, \quad (\tilde L_0 - a)|\mathrm{fys}\rangle = 0
+  \label{eq:fysisch}
+\end{align}
+Het verschil van de twee $L_0$-voorwaarden levert de \emph{level-matching conditie}:
+\begin{equation}
+  (L_0 - \tilde L_0)|\mathrm{fys}\rangle = 0 \quad \Longleftrightarrow \quad N = \tilde N
+\end{equation}
+Dit is geen extra aanname maar een directe consequentie van de $\sigma$-translatie-invariantie van het wereldblad.
+
+\subsection{No-ghost theorema en kritieke dimensie}
+
+De metriek $\eta_{\mu\nu}$ heeft een negatief teken voor de tijdcomponent. Dit betekent dat tijdelijke oscillatoren $\alpha_n^0$ toestanden met \emph{negatieve norm} (ghosts) cre\"eren, wat de probabilistische interpretatie van de theorie bedreigt.
+
+Het \emph{no-ghost theorema} (Brower 1972; Goddard \& Thorn 1972) stelt dat de ruimte van fysische toestanden \eqref{eq:fysisch} \emph{geen toestanden met negatieve norm bevat} als en slechts als:
+\begin{equation}
+  \boxed{D = 26, \qquad a = 1}
+  \label{eq:kritiek}
+\end{equation}
+
+\subsection{Afleiding via de Weyl-anomalie}
+
+Een elegantere afleiding gebruikt de BRST-kwantisering of de Weyl-anomalie. De centrale lading van de volledige theorie (materie + Faddeev-Popov $bc$-geesten) moet verdwijnen voor Weyl-invariantie op kwantumniveau:
+\begin{equation}
+  c_{\mathrm{totaal}} = c_{\mathrm{materie}} + c_{\mathrm{geesten}} = 0
+\end{equation}
+De $bc$-geestensector (die noodzakelijk is om de ijkfixatie correct uit te voeren) heeft centrale lading:
+\begin{equation}
+  c_{\mathrm{geesten}} = -26
+\end{equation}
+Met $c_{\mathrm{materie}} = D$ volgt onmiddellijk:
+\begin{equation}
+  D - 26 = 0 \implies \boxed{D = 26}
+\end{equation}
+
+\subsection{Afleiding via lichtkegelkwantisering}
+
+In de \emph{lichtkegelkwantisering} fixeert men volledig de resterende ijkvrijheid door te kiezen:
+\begin{equation}
+  X^+(\tau,\sigma) = x^+ + 2\alpha' p^+\tau
+\end{equation}
+Hierdoor worden de Virasoro-restricties expliciet opgelost: $X^-$ wordt volledig bepaald door de transversale moden $X^i$ ($i = 2,\dots,D-1$). De theorie heeft dan alleen transversale oscillatoren, en alle geesttoestanden worden ge\"elimineerd.
+
+De eis dat de theorie Lorentz-invariant blijft op kwantumniveau --- meer precies, dat de Lorentz-algebra $[J^{\mu\nu},J^{\rho\sigma}]$ de correcte commutatierelaties heeft --- levert een anomalineuze term die verdwijnt uitsluitend voor:
+\begin{equation}
+  D = 26, \qquad a = 1
+\end{equation}
+Dit is een volledig onafhankelijke afleiding van hetzelfde resultaat \eqref{eq:kritiek}.
+
+%------------------------------------------------------------
+\section{Massaspectrum}
+%------------------------------------------------------------
+
+\subsection{Gesloten snaar}
+
+De $L_0$- en $\tilde L_0$-restricties voor fysische toestanden geven (met $a=1$):
+\begin{equation}
+  \alpha' M^2 = 4(N - 1) = 4(\tilde N - 1)
+  \label{eq:massa_gesloten}
+\end{equation}
+waarbij de getal-operatoren zijn:
+\begin{equation}
+  N = \sum_{n=1}^\infty \alpha_{-n}\cdot\alpha_n, \qquad \tilde N = \sum_{n=1}^\infty \tilde\alpha_{-n}\cdot\tilde\alpha_n
+\end{equation}
+De \emph{level-matching conditie} $N = \tilde N$ volgt uit de $L_0 - \tilde L_0$-restrictie.
+
+\begin{itemize}
+  \item $N = \tilde N = 0$: De grondtoestand heeft $M^2 = -4/\alpha' < 0$. Dit is de \textbf{tachyon}, een instabiliteit die de theorie signaleert als incomplete beschrijving.
+  \item $N = \tilde N = 1$: Massaloze toestanden ($M^2 = 0$). De algemene toestand is $\alpha_{-1}^\mu\tilde\alpha_{-1}^\nu|0;p\rangle$. Ontbinding in irreducibele representaties van de Lorentz-groep geeft:
+  \begin{itemize}
+    \item Symmetrisch spoortloos deel: het \textbf{graviton} $G_{\mu\nu}$
+    \item Antisymmetrisch deel: het \textbf{Kalb-Ramond veld} $B_{\mu\nu}$
+    \item Spoor: de \textbf{dilaton} $\Phi$
+  \end{itemize}
+  \item $N = \tilde N = 2$: Massieve toestanden met $M^2 = 4/\alpha'$.
+\end{itemize}
+
+\subsection{Open snaar}
+
+Voor de open snaar is de massaformule:
+\begin{equation}
+  \alpha' M^2 = N - 1
+\end{equation}
+De grondtoestand ($N=0$) is opnieuw een tachyon. De eerste aangeslagen toestand ($N=1$) is een massaloos vectordeeltje: het \textbf{foton} (of meer algemeen, het Yang-Mills boson als er Chan-Paton factoren aanwezig zijn).
+
+%------------------------------------------------------------
+\section{De Normal-Ordering Constante $a=1$}
+%------------------------------------------------------------
+
+De constante $a$ volgt uit de \emph{zeta-functieregularisatie} van de divergente nulpuntsenergie. Elk transversaal bosonisch veld draagt per mode $n$ een nulpuntsenergie $\tfrac{1}{2}$ bij. Er zijn $D-2$ transversale richtingen (de twee lichtkegelrichtingen $X^\pm$ dragen niet bij na ijkfixatie). De totale nulpuntsenergie per sector is:
+\begin{equation}
+  E_0 = \frac{D-2}{2}\sum_{n=1}^\infty n \;\xrightarrow{\text{zeta-reg.}}\; \frac{D-2}{2}\,\zeta(-1) = \frac{D-2}{2}\cdot\left(-\frac{1}{12}\right) = -\frac{D-2}{24}
+\end{equation}
+De normal-ordering constante in $(L_0 - a)|\mathrm{fys}\rangle = 0$ is de \emph{negatieve} nulpuntsenergie:
+\begin{equation}
+  a = -E_0 = \frac{D-2}{24}
+\end{equation}
+Met $D = 26$ volgt:
+\begin{equation}
+  a = \frac{24}{24} = 1
+\end{equation}
+Dit bevestigt de consistentie: $a=1$ is geen vrije parameter maar volgt dwingend uit $D=26$. De twee resultaten zijn onlosmakelijk verbonden.
+
+%------------------------------------------------------------
+\section{Samenvatting}
+%------------------------------------------------------------
+
+De bosonische snaartheorie kent de volgende canonische structuur:
+
+\begin{center}
+\begin{tabular}{ll}
+\hline
+\textbf{Element} & \textbf{Resultaat} \\
+\hline
+Actie & Polyakov (classicaal equivalent aan Nambu--Goto) \\
+Symmetrie\"en & Diffeomorfisme $\times$ Weyl $\times$ Poincar\'e \\
+Bewegingsvergelijking & $(\partial_\tau^2 - \partial_\sigma^2)X^\mu = 0$ \\
+Constraints & $(\partial_\pm X)^2 = 0$ (Virasoro) \\
+Kwantum algebra & $[L_m,L_n] = (m-n)L_{m+n} + \frac{D}{12}m(m^2-1)\delta_{m+n,0}$ \\
+Kritieke dimensie & $D = 26$ \\
+Normal-ordering & $a = 1$ \\
+Laagste massa & Tachyon: $M^2 = -4/\alpha'$ (gesloten) \\
+Massaloze sector & Graviton, $B_{\mu\nu}$, dilaton (gesloten) \\
+\hline
+\end{tabular}
+\end{center}
+
+De fundamentele les is dat de dimensie van de ruimtetijd \emph{niet} wordt gepostuleerd maar \emph{wordt afgeleid} uit de eis van kwantummechanische consistentie --- afwezigheid van negatieve-norm toestanden en behoud van Lorentz-invariantie. Dit is een van de diepste resultaten in theoretische fysica.
+
+\begin{thebibliography}{9}
+\bibitem{Polchinski1998}
+J. Polchinski, \textit{String Theory Vol.\ 1: An Introduction to the Bosonic String}, Cambridge University Press, 1998.
+
+\bibitem{Zwiebach2004}
+B. Zwiebach, \textit{A First Course in String Theory}, Cambridge University Press, 2004.
+
+\bibitem{GSW1987}
+M.~B. Green, J.~H. Schwarz, E. Witten, \textit{Superstring Theory Vol.\ 1}, Cambridge University Press, 1987.
+
+\bibitem{Brower1972}
+R.~C. Brower, \textit{Spectrum-generating algebra and no-ghost theorem for the dual model}, Phys.\ Rev.\ D \textbf{6} (1972) 1655.
+
+\bibitem{GoddardThorn1972}
+P. Goddard, C.~B. Thorn, \textit{Compatibility of the dual pomeron with unitarity and the absence of ghosts in the dual resonance model}, Phys.\ Lett.\ B \textbf{40} (1972) 235.
+\end{thebibliography}
+
+\end{document}
