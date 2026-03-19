@@ -1,0 +1,243 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath,amssymb,geometry,hyperref}
+\geometry{margin=1in}
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0pt}
+
+\title{\textbf{Topological Parametrization and a Tentative Dynamical Action for the Swirl-String}\\
+\large A compact SST note in an orthodox string-theory order}
+\author{Omar Iskandarani}
+\date{}
+
+\begin{document}
+    \maketitle
+    
+    \section{Introduction}
+        
+        This note is organized in a sequence intended to parallel the canonical development of original string theory: first the fundamental input, then the geometric parametrization of the string configuration, then the derived length scale, and finally a tentative action-like functional that selects dynamically preferred configurations.
+        
+        In Swirl-String Theory (SST), a particle is modeled not as a point object but as a structured closed swirl-string in a three-dimensional incompressible, inviscid medium. Its mass-equivalent energy is assumed, at first approximation, to be controlled by the geometry and topology of the corresponding closed curve or knot configuration.
+    
+    \section{Fundamental input}
+        
+        We do not take \(r_c\) as primary input. Instead, the fundamental triplet is
+        \[
+            \bigl(\omega_c,\,\rho_{\!f},\,\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\bigr),
+        \]
+        where:
+        \begin{itemize}
+            \item \(\omega_c\) is the canonical Compton angular frequency,
+            \item \(\rho_{\!f}\) is the effective fluid density,
+            \item \(\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\) is the characteristic swirl speed.
+        \end{itemize}
+        
+        For the present canonical SST scale we take
+        \[
+            \omega_c = 7.763440655383073\times 10^{20}\ \mathrm{s^{-1}},
+            \qquad
+            \rho_{\!f} = 7.0\times 10^{-7}\ \mathrm{kg\,m^{-3}},
+            \qquad
+            \mathbf{v}_{\!\boldsymbol{\circlearrowleft}} = 1.09384563\times 10^6\ \mathrm{m\,s^{-1}}.
+        \]
+        
+        In this parametrization, the characteristic microscopic length is not fundamental but derived.
+    
+    \section{Geometric parametrization of the swirl-string}
+        
+        A closed swirl-string is described by an embedding
+        \[
+            \mathbf{X}(t,\sigma)=\bigl(x(t,\sigma),y(t,\sigma),z(t,\sigma)\bigr),
+            \qquad
+            \sigma \in [0,2\pi),
+        \]
+        where \(t\) is the preferred medium time and \(\sigma\) is the internal string parameter.
+        
+        A natural first class of explicit static configurations is given by \((p,q)\) torus knots. Their centerline is parametrized by
+        \begin{align}
+            x(\sigma) &= \bigl(R + r\cos(q\sigma)\bigr)\cos(p\sigma), \\
+            y(\sigma) &= \bigl(R + r\cos(q\sigma)\bigr)\sin(p\sigma), \\
+            z(\sigma) &= -r\sin(q\sigma).
+        \end{align}
+        
+        Here \(p\) counts poloidal windings and \(q\) counts toroidal windings. For \(\gcd(p,q)=1\) one obtains a single closed knot; for \(\gcd(p,q)>1\) one obtains a multi-component link.
+        
+        This step plays the same formal role as the choice of embedding fields \(X^\mu(\tau,\sigma)\) in orthodox string theory: one first specifies the configuration space of admissible string shapes, and only afterwards introduces the dynamical or effective selection principle.
+    
+    \section{Derived length scale}
+        
+        The characteristic core radius is derived from the fundamental input via
+        \begin{equation}
+            r_c = \frac{\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}}{\omega_c}.
+        \end{equation}
+        
+        Numerically this gives
+        \begin{equation}
+            r_c = 1.40897017\times 10^{-15}\ \mathrm{m}.
+        \end{equation}
+        
+        The torus scales are then written as
+        \begin{equation}
+            R = \lambda_R\,\frac{\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}}{\omega_c},
+            \qquad
+            r = \lambda_r\,\frac{\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}}{\omega_c},
+        \end{equation}
+        where \(\lambda_R\) and \(\lambda_r\) are dimensionless shape parameters.
+        
+        A minimal tube cross-section is therefore
+        \begin{equation}
+            A_{\rm core} = \pi r_c^2
+            = \pi \left(\frac{\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}}{\omega_c}\right)^2,
+        \end{equation}
+        which numerically yields
+        \begin{equation}
+            A_{\rm core} = 6.23668012\times 10^{-30}\ \mathrm{m^2}.
+        \end{equation}
+        
+        A corresponding effective line density is
+        \begin{equation}
+            \mu_{\rm eff} \sim \rho_{\!f} A_{\rm core},
+        \end{equation}
+        so that
+        \begin{equation}
+            \mu_{\rm eff} \sim 4.36567609\times 10^{-36}\ \mathrm{kg\,m^{-1}}.
+        \end{equation}
+    
+    \section{A tentative Nambu--Goto-like SST action}
+        
+        To mimic the role played by the Nambu--Goto action in orthodox string theory, one may propose a preferred-time dynamical functional for the swirl-string centerline:
+        \begin{equation}
+            S_{\rm SST}[\mathbf{X}] =
+            \int dt \oint d\sigma\,
+            \left[
+                \frac{\mu_{\rm eff}}{2}\left|\partial_t \mathbf{X}\right|^2
+            -\frac{T_{\rm eff}}{2}\left|\partial_\sigma \mathbf{X}\right|^2
+            -\frac{B_\kappa}{2}\kappa^2
+            -\frac{B_\tau}{2}(\tau_g-\tau_0)^2
+            \right]
+            - S_{\rm BS}[\mathbf{X}].
+            \label{eq:SSTaction}
+        \end{equation}
+        
+        Here:
+        \begin{itemize}
+            \item \(T_{\rm eff}\) is an effective line-tension coefficient,
+            \item \(\kappa\) is the Frenet curvature of the centerline,
+            \item \(\tau_g\) is the geometric torsion,
+            \item \(\tau_0\) is a preferred torsional bias for a chiral sector,
+            \item \(S_{\rm BS}\) is a nonlocal Biot--Savart self-interaction term.
+        \end{itemize}
+        
+        A simple regularized form for the nonlocal term is
+        \begin{equation}
+            S_{\rm BS}[\mathbf{X}] =
+            \frac{\Lambda}{2}
+            \int dt \oint d\sigma \oint d\sigma'\,
+            \frac{
+                \partial_\sigma \mathbf{X}(t,\sigma)\cdot
+                \partial_{\sigma'} \mathbf{X}(t,\sigma')
+            }{
+                \sqrt{
+                    \left|\mathbf{X}(t,\sigma)-\mathbf{X}(t,\sigma')\right|^2+\epsilon^2
+                }
+            }.
+            \label{eq:BSterm}
+        \end{equation}
+        
+        This is only a tentative SST analogue. Unlike the relativistic Nambu--Goto string, the medium selects a preferred time variable \(t\), so Lorentz symmetry on the worldsheet and Weyl symmetry are not assumed here.
+    
+    \section{Static reduction and the effective knot functional}
+        
+        For time-independent configurations, the tentative action reduces to a static energy functional,
+        \begin{equation}
+            E_{\rm stat}[\mathbf{X}] =
+            \oint d\sigma\,
+            \left[
+                \frac{T_{\rm eff}}{2}\left|\partial_\sigma \mathbf{X}\right|^2
+            +\frac{B_\kappa}{2}\kappa^2
+            +\frac{B_\tau}{2}(\tau_g-\tau_0)^2
+            \right]
+            + E_{\rm BS}[\mathbf{X}].
+            \label{eq:StaticEnergy}
+        \end{equation}
+        
+        At the knot-class level, this motivates the canonical SST effective mass functional
+        \begin{equation}
+            \mathcal{E}_{\rm eff}[K] = \alpha\,C(K) + \beta\,L(K) + \gamma\,\mathcal{H}(K),
+        \end{equation}
+        with the identifications:
+        \begin{itemize}
+            \item \(\beta L(K)\) as the line-tension or length contribution,
+            \item \(\alpha C(K)\) as the near-contact or Biot--Savart contribution,
+            \item \(\gamma \mathcal{H}(K)\) as a helicity or Hopf-like stability term.
+        \end{itemize}
+        
+        For a torus-knot family \(K_k\) representing successive stable configurations, the SST canon then uses the discrete-scale ansatz
+        \begin{equation}
+            \mathcal{E}_{\rm eff}[K_k]
+            \approx
+            \bigl(\alpha C(K_0)+\beta L(K_0)\bigr)\,\varphi^{-2k},
+        \end{equation}
+        where \(\varphi=\frac{1+\sqrt{5}}{2}\) is the golden ratio and \(k\) is the discrete generation index.
+    
+    \section{A tentative Polyakov-like rewriting}
+        
+        One may also attempt a Polyakov-like rewriting by introducing an auxiliary worldsheet metric \(h_{ab}\) on coordinates \(\xi^a=(t,\sigma)\):
+        \begin{equation}
+            S_{\rm aux}[\mathbf{X},h]
+            =
+            -\frac{\lambda_0}{2}
+            \int d^2\xi\,\sqrt{-h}\,h^{ab}
+            \partial_a \mathbf{X}\cdot \partial_b \mathbf{X}
+            -\int d^2\xi\,\sqrt{-h}\,U_{\rm loc}[\kappa,\tau_g]
+            -S_{\rm BS}[\mathbf{X}].
+            \label{eq:AuxAction}
+        \end{equation}
+        
+        This rewriting is formally useful, but it should not be over-interpreted. In SST the ambient medium defines a preferred foliation, so the auxiliary metric is a calculational device, not evidence for an exact Weyl-invariant worldsheet theory.
+    
+    \section{Secondary constitutive relations}
+        
+        If one also introduces a core density \(\rho_{\text{core}}\), the coarse-graining relation can be written as a secondary constitutive law:
+        \begin{equation}
+            \rho_{\!f} = K\,\Omega,
+            \qquad
+            K = \frac{\rho_{\text{core}}}{\omega_c}.
+        \end{equation}
+        
+        Hence
+        \begin{equation}
+            \rho_{\!f} = \frac{\rho_{\text{core}}}{\omega_c}\,\Omega.
+        \end{equation}
+        
+        The important logical point is that this relation does not define the primary parametrization. The primary input remains
+        \[
+            \bigl(\omega_c,\,\rho_{\!f},\,\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\bigr),
+        \]
+        while \(r_c\), \(A_{\rm core}\), and other geometric scales are derived quantities.
+    
+    \section{Interpretation and status}
+        
+        Within this construction, particle families are not primarily distinguished by point-particle oscillator levels, but by topologically distinct closed swirl configurations. Torus knots provide a minimal explicit model class for:
+        \begin{itemize}
+            \item chiral sectors,
+            \item generation-like hierarchies,
+            \item and energy minima of the effective knot functional.
+        \end{itemize}
+        
+        The present note should therefore be read as an SST analogue of the early kinematical and action-building stage of original string theory. The geometric embedding is explicit, the derived scale structure is explicit, and the proposed action links dynamically to the canonical knot-mass functional. What remains open is the full derivation of the coefficients \(T_{\rm eff}\), \(B_\kappa\), \(B_\tau\), and \(\Lambda\) from first-principles SST fluid dynamics.
+        
+        \begin{thebibliography}{9}
+            
+            \bibitem{Moffatt1969}
+            H. K. Moffatt,
+            \textit{The Degree of Knottedness of Tangled Vortex Lines},
+            Journal of Fluid Mechanics \textbf{35}(1), 117--129 (1969).
+            
+            \bibitem{Rolfsen1976}
+            D. Rolfsen,
+            \textit{Knots and Links},
+            Publish or Perish, 1976.
+        
+        \end{thebibliography}
+
+\end{document}
