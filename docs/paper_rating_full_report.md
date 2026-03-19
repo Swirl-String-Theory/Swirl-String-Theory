@@ -66,7 +66,7 @@ How clearly equations are motivated, introduced, and interpreted.
 
 | Paper                                                              | SLV | TRC | NWO | CPR | FCP | ES | RC | PEC | Total | Role                    | Venue                    | Submission Status              |
 |--------------------------------------------------------------------|----:|----:|----:|----:|----:|---:|---:|----:|------:|-------------------------|--------------------------|--------------------------------|
-| SST-67 Variational Quantization                                    |   5 |   4 |   4 |   4 |   4 |  4 |  5 |   4 |    34 | Anchor / Bridge-Anchor  | Physical Review Research | progress                       |
+| SST-67 Variational Quantization                                    |   5 |   4 |   4 |   4 |   4 |  4 |  5 |   4 |    34 | Anchor / Bridge-Anchor  | Physical Review Research | rejected                       |
 | SST-66 Relational Time and Intrinsic Temporal Stochasticity        |   4 |   4 |   5 |   4 |   3 |  3 |  3 |   3 |    29 | Bridge                  |                          |                                |
 | SST-65 Foliation in Mass Equation                                  |   4 |   4 |   4 |   5 |   3 |  3 |  4 |   4 |    31 | Bridge                  |                          |                                |
 | SST-64 Covariant                                                   |   5 |   4 |   4 |   5 |   3 |  4 |  4 |   3 |    32 | Bridge                  |                          |                                |
@@ -78,8 +78,8 @@ How clearly equations are motivated, introduced, and interpreted.
 | SST-58 vacuum stress energy engineering                            |   4 |   4 |   4 |   3 |   4 |  4 |  4 |   4 |    31 | Bridge                  |                          |                                |
 | SST-57 FermionMasses                                               |   3 |   4 |   3 |   3 |   3 |  4 |  5 |   4 |    29 | Support                 |                          |                                |
 | SST-56 superfluid                                                  |   5 |   4 |   4 |   3 |   3 |  4 |  5 |   4 |    32 | Bridge                  |                          |                                |
-| SST-55 Delay-Induced mode selection Circulating Feedback Systems   |   4 |   4 |   4 |   4 |   3 |  3 |  4 |   4 |    30 | Bridge                  | CHAOS → AIP-A            | TR                             |
-| SST-54 Delay-Induced mode discreteness nonlinear ring systems      |   4 |   4 |   4 |   4 |   4 |  4 |  4 |   4 |    32 | Bridge / Constraint     | CHAOS → AIP-A            | TR                             |
+| SST-55 Delay-Induced mode selection Circulating Feedback Systems   |   4 |   4 |   4 |   4 |   3 |  3 |  4 |   4 |    30 | Bridge                  | CHAOS → AIP-A            | Under Review                   |
+| SST-54 Delay-Induced mode discreteness nonlinear ring systems      |   4 |   4 |   4 |   4 |   4 |  4 |  4 |   4 |    32 | Bridge / Constraint     | CHAOS → AIP-A            | rejected                       |
 | SST-53 Thermodynamic Origin of Quantization                        |   4 |   4 |   4 |   4 |   3 |  3 |  3 |   4 |    29 | Bridge                  |                          |                                |
 | SST-52 Kelvin Mode Suppression Gap                                 |   5 |   4 |   4 |   4 |   5 |  4 |  4 |   4 |    34 | Anchor/Constraint       | FoP                      | rejected                       |
 | SST-51 Variational Electron Magnetic Moment                        |   3 |   3 |   3 |   3 |   2 |  2 |  3 |   3 |    22 | Support (high-risk)     |                          |                                |
