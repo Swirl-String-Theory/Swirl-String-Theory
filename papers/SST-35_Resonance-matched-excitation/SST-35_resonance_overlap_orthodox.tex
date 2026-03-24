@@ -1,0 +1,240 @@
+%! Author = Omar Iskandarani
+%! Title = A Spectral-Overlap Framework for Resonant Excitation: Identifiability, Fisher Bounds, and Optimal Design
+%! Date = March 20, 2026
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.18388674
+
+\newcommand{\paperdoi}{10.5281/zenodo.18388674}
+
+\documentclass[aps,pre,amsmath,amssymb]{revtex4-2}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage[hidelinks]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathtools}
+\usepackage{booktabs}
+
+\begin{document}
+
+\title{A Spectral-Overlap Framework for Resonant Excitation:\ Identifiability, Fisher Bounds, and Optimal Design}
+
+\author{Omar Iskandarani}
+\affiliation{Independent Researcher, Groningen, The Netherlands}
+\thanks{ORCID: 0009-0006-1686-3961. DOI: \paperdoi.}
+
+\date{\today}
+
+\begin{abstract}
+We formulate a general spectral-overlap model for resonant excitation in beam--target and source--resonator systems. A Gaussian source spectrum overlapped with a sum of Lorentzian target lines yields a Voigt-type response with closed-form analytic derivatives through the Faddeeva function. This enables efficient parameter inference, Fisher-information analysis, Cram\'er--Rao bounds, and experiment-design heuristics for resonance centers, linewidths, and amplitudes. We state practical identifiability conditions for isolated and weakly overlapping lines and show how bandwidth diversity and detuning bracketing improve conditioning of the inverse problem. The framework is mechanism-agnostic and applies to microwave, mechanical, optical, and other linear spectroscopy settings. One original motivation came from resonance questions in a separate model context, but the formulation presented here is entirely independent of that context.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+Resonant excitation experiments often reduce to a common inverse problem: a source with controllable central frequency and finite bandwidth interrogates one or more target resonances, and the measured response depends on the spectral overlap between the source and the target line shape. This setting appears across microwave cavity spectroscopy, mechanical resonators, defect spectroscopy, and other linear response systems. Despite its ubiquity, it is useful to isolate a compact forward model that supports analytic gradients, identifiability analysis, and principled experiment design.
+
+This paper develops such a formulation for the case of a Gaussian source spectrum and a target response represented as a sum of Lorentzian resonances. The resulting overlap is a sum of Voigt profiles. The main contribution is not the Voigt profile itself, which is standard, but its use as a unifying forward model for parameter recovery together with explicit Jacobians, Fisher-information diagnostics, and simple design heuristics. The emphasis is methodological and mechanism-agnostic.
+
+\section{Spectral-overlap model}
+Let a source with tunable center frequency $\omega_0$ and bandwidth $\sigma$ have Gaussian spectral density
+\begin{equation}
+\rho_{\mathrm{src}}(\omega)=A\exp\!\left[-\frac{(\omega-\omega_0)^2}{2\sigma^2}\right],
+\label{eq:src}
+\end{equation}
+where $A>0$ is an overall scale factor. Let the target response be modeled as a sum of Lorentzian lines,
+\begin{equation}
+\sigma_{\mathrm{tar}}(\omega)=\sum_{n=1}^{N}\frac{B_n\Gamma_n^2}{(\omega-\omega_n)^2+\Gamma_n^2},
+\label{eq:tar}
+\end{equation}
+with amplitudes $B_n>0$, centers $\omega_n$, and half-widths $\Gamma_n>0$.
+
+We define the measurable excitation metric as the spectral overlap
+\begin{equation}
+Y(\omega_0,\sigma,\bm{\theta})
+=\int_{-\infty}^{\infty}\rho_{\mathrm{src}}(\omega)\,\sigma_{\mathrm{tar}}(\omega)\,\mathrm d\omega,
+\label{eq:overlap-int}
+\end{equation}
+where $\bm{\theta}=\{A,(\omega_n,\Gamma_n,B_n)_{n=1}^{N}\}$. Writing $\Delta_n\equiv \omega_0-\omega_n$, Eq.~\eqref{eq:overlap-int} becomes
+\begin{equation}
+Y(\omega_0,\sigma,\bm{\theta})
+=A\sum_{n=1}^{N}B_n\,\mathcal V(\Delta_n;\sigma,\Gamma_n),
+\label{eq:overlap}
+\end{equation}
+where $\mathcal V$ is the Voigt profile,
+\begin{equation}
+\mathcal V(\Delta;\sigma,\Gamma)
+=\frac{1}{\sigma\sqrt{2\pi}}\,\mathrm{Re}\!\left[w\!\left(\frac{\Delta+i\Gamma}{\sigma\sqrt{2}}\right)\right].
+\label{eq:voigt}
+\end{equation}
+Here $w(z)$ is the Faddeeva function. Equation~\eqref{eq:overlap} is the forward model used throughout the paper.
+
+\section{Analytic derivatives and inverse problems}
+For a measurement at design setting $(\omega_0^{(k)},\sigma^{(k)})$, let
+\begin{equation}
+\mu_k = Y\bigl(\omega_0^{(k)},\sigma^{(k)},\bm{\theta}\bigr).
+\end{equation}
+Define
+\begin{equation}
+z_n^{(k)}=\frac{\Delta_n^{(k)}+i\Gamma_n}{\sigma^{(k)}\sqrt{2}},
+\qquad
+\Delta_n^{(k)}=\omega_0^{(k)}-\omega_n.
+\end{equation}
+Using the standard identity
+\begin{equation}
+w'(z)=-2zw(z)+\frac{2i}{\sqrt{\pi}},
+\label{eq:wprime}
+\end{equation}
+we obtain analytic Jacobians for gradient-based fitting. In particular,
+\begin{align}
+\frac{\partial \mu_k}{\partial \omega_0}
+&=A\sum_{n=1}^{N}B_n\,\frac{\partial \mathcal V}{\partial \Delta}\Big|_{\Delta=\Delta_n^{(k)}},
+\\
+\frac{\partial \mu_k}{\partial \omega_n}
+&=-AB_n\,\frac{\partial \mathcal V}{\partial \Delta}\Big|_{\Delta=\Delta_n^{(k)}},
+\\
+\frac{\partial \mu_k}{\partial \Gamma_n}
+&=AB_n\,\frac{\partial \mathcal V}{\partial \Gamma}\Big|_{\Delta=\Delta_n^{(k)}},
+\\
+\frac{\partial \mu_k}{\partial B_n}
+&=A\,\mathcal V\bigl(\Delta_n^{(k)};\sigma^{(k)},\Gamma_n\bigr),
+\\
+\frac{\partial \mu_k}{\partial A}
+&=\sum_{n=1}^{N}B_n\,\mathcal V\bigl(\Delta_n^{(k)};\sigma^{(k)},\Gamma_n\bigr).
+\end{align}
+These expressions support efficient maximum-likelihood or nonlinear least-squares estimation.
+
+\section{Fisher information and Cram\'er--Rao bounds}
+Assume independent Gaussian measurement noise with known variance $\sigma_\epsilon^2$. The Fisher information matrix is
+\begin{equation}
+\mathbf I(\bm{\theta})
+=\frac{1}{\sigma_\epsilon^2}\sum_{k=1}^{K}
+\bigl(\nabla_{\!\bm{\theta}}\mu_k\bigr)
+\bigl(\nabla_{\!\bm{\theta}}\mu_k\bigr)^{\top}.
+\label{eq:fim}
+\end{equation}
+For any unbiased estimator $\hat{\bm{\theta}}$,
+\begin{equation}
+\mathrm{cov}(\hat{\bm{\theta}})\succeq \mathbf I^{-1}(\bm{\theta}).
+\label{eq:crlb}
+\end{equation}
+The eigenvalues and condition number of $\mathbf I$ provide a direct local identifiability diagnostic. Poor conditioning typically appears when resonances overlap strongly or when the design samples only the flat top of a line shape.
+
+\section{Local identifiability}
+The forward map is smooth, but practical estimation depends on local rank conditions.
+
+\textbf{Proposition 1 (single-line local identifiability).} Consider $N=1$ with unknown parameters $(\omega_1,\Gamma_1,B_1)$. If the design contains (i) detuning points on both sides of the resonance and (ii) at least two distinct bandwidths $\sigma^{(k)}$, then the Jacobian columns associated with $(\omega_1,\Gamma_1,B_1)$ are generically linearly independent, and the Fisher matrix is locally full rank.
+
+\emph{Interpretation.} Sampling both signs of detuning separates the odd sensitivity of the line center from the even sensitivity of amplitude. Bandwidth diversity reduces degeneracy between linewidth and amplitude.
+
+\textbf{Proposition 2 (multi-line separation).} Suppose $N>1$ and the line centers satisfy
+\begin{equation}
+|\omega_n-\omega_m|\gtrsim \max(\Gamma_n,\Gamma_m,\sigma)
+\qquad (n\neq m)
+\label{eq:sep}
+\end{equation}
+throughout the design range. If the single-line identifiability conditions hold for each line, then the Fisher matrix is generically block-diagonally dominant and locally well conditioned.
+
+These propositions are not intended as sharp theorems for all possible designs, but as operational criteria for experiment planning and diagnostic checks.
+
+\section{Experiment design heuristics}
+For a fixed budget of $K$ measurements and controllable settings $\{(\omega_0^{(k)},\sigma^{(k)})\}_{k=1}^{K}$, one may optimize standard criteria such as
+\begin{itemize}
+\item D-optimality: maximize $\det\mathbf I$,
+\item A-optimality: minimize $\mathrm{tr}\,\mathbf I^{-1}$,
+\item E-optimality: maximize the smallest eigenvalue of $\mathbf I$.
+\end{itemize}
+Two practical heuristics emerge directly from the analytic structure of the Voigt derivatives:
+\begin{enumerate}
+\item \textbf{Detuning bracketing.} For each anticipated resonance, sample on both sides of the peak at detunings of order $|\Delta|\sim \sigma$, where the slope information is largest.
+\item \textbf{Bandwidth diversity.} Use at least two distinct source bandwidths to decorrelate $(\Gamma_n,B_n)$ and to improve the smallest eigenvalue of the Fisher matrix.
+\end{enumerate}
+In practice, a coarse offline design search based on Eq.~\eqref{eq:fim} is inexpensive once the analytic Jacobians are available.
+
+\section{Representative application classes}
+The framework is intended for linear-response settings in which a tunable source interrogates one or more resonances. Representative examples include microwave cavity spectroscopy, nanomechanical and MEMS resonators, optical or defect transitions, and other beam--target configurations where the measured signal is well approximated by a spectral overlap.
+
+The model is deliberately agnostic about the microscopic origin of the resonances. Its value lies in providing a compact forward map with explicit derivatives and information-theoretic diagnostics.
+
+\section{Recommended validation workflow}
+To validate the framework in a concrete application, the following protocol is natural:
+\begin{enumerate}
+\item generate or acquire data over a design grid in $(\omega_0,\sigma)$;
+\item fit the overlap model using analytic Jacobians;
+\item compare empirical covariance from repeated fits with the CRLB from Eq.~\eqref{eq:crlb};
+\item compare an information-guided design against a naive uniform sweep.
+\end{enumerate}
+Such tests distinguish the mathematical framework itself from any specific physical interpretation of the resonance mechanism.
+
+\section{Conclusion}
+We have presented a general spectral-overlap framework for resonant excitation in which a Gaussian source interrogates a sum of Lorentzian target resonances. The resulting Voigt representation yields a tractable forward model with analytic derivatives, Fisher-information diagnostics, Cram\'er--Rao bounds, and straightforward experiment-design heuristics.
+
+The main contribution is methodological: a compact, mechanism-agnostic formulation of resonance-matched excitation as an inverse problem with explicit local identifiability criteria and information-based design guidance. Because the framework is independent of any specific microscopic picture, it can be used as a neutral analysis tool across multiple spectroscopy domains.
+
+\begin{acknowledgments}
+The author thanks the broader open-science community for methodological references and open benchmark practices that motivate reproducible inverse-problem workflows.
+\end{acknowledgments}
+
+\appendix
+\section{Derivative structure of the Voigt response}
+For completeness, we summarize the chain-rule structure underlying the Jacobian. Let
+\begin{equation}
+z=\frac{\Delta+i\Gamma}{\sigma\sqrt{2}},
+\qquad
+\mathcal V(\Delta;\sigma,\Gamma)=\frac{1}{\sigma\sqrt{2\pi}}\,\mathrm{Re}\,[w(z)].
+\end{equation}
+Then
+\begin{align}
+\frac{\partial \mathcal V}{\partial \Delta}
+&=\frac{1}{\sigma\sqrt{2\pi}}\,\mathrm{Re}\!\left[w'(z)\frac{1}{\sigma\sqrt{2}}\right],
+\\
+\frac{\partial \mathcal V}{\partial \Gamma}
+&=\frac{1}{\sigma\sqrt{2\pi}}\,\mathrm{Re}\!\left[w'(z)\frac{i}{\sigma\sqrt{2}}\right],
+\\
+\frac{\partial \mathcal V}{\partial \sigma}
+&=-\frac{1}{\sigma}\mathcal V
++\frac{1}{\sigma\sqrt{2\pi}}\,\mathrm{Re}\!\left[w'(z)\left(-\frac{\Delta+i\Gamma}{\sigma^2\sqrt{2}}\right)\right].
+\end{align}
+These identities are sufficient for gradient-based fitting and design optimization.
+
+\begin{thebibliography}{99}
+
+\bibitem{OliveroLongbothum1977}
+J. J. Olivero and R. L. Longbothum,
+\textit{Empirical fits to the Voigt line width: A brief review},
+Journal of Quantitative Spectroscopy and Radiative Transfer \textbf{17}, 233--236 (1977).
+DOI: \href{https://doi.org/10.1016/0022-4073(77)90161-3}{10.1016/0022-4073(77)90161-3}.
+
+\bibitem{Schreier2018}
+F. Schreier,
+\textit{The Voigt and complex error function: A review of computational methods},
+Journal of Quantitative Spectroscopy and Radiative Transfer \textbf{213}, 48--61 (2018).
+DOI: \href{https://doi.org/10.1016/j.jqsrt.2018.04.010}{10.1016/j.jqsrt.2018.04.010}.
+
+\bibitem{Weideman1994}
+J. A. C. Weideman,
+\textit{Computation of the complex error function},
+SIAM Journal on Numerical Analysis \textbf{31}, 1497--1518 (1994).
+DOI: \href{https://doi.org/10.1137/0731077}{10.1137/0731077}.
+
+\bibitem{Kay1993}
+S. M. Kay,
+\textit{Fundamentals of Statistical Signal Processing, Volume I: Estimation Theory},
+Prentice Hall, Upper Saddle River, NJ (1993).
+
+\bibitem{AtkinsonDonevTobias2007}
+A. C. Atkinson, A. N. Donev, and R. D. Tobias,
+\textit{Optimum Experimental Designs, with SAS},
+Oxford University Press, Oxford (2007).
+
+\bibitem{Vugrin2007}
+K. Vugrin, B. Swiler, R. Roberts, N. Stucky-Mack, and M. Sullivan,
+\textit{Confidence region estimation techniques for nonlinear regression in groundwater flow: Three case studies},
+Water Resources Research \textbf{43}, W03423 (2007).
+DOI: \href{https://doi.org/10.1029/2005WR004804}{10.1029/2005WR004804}.
+
+\end{thebibliography}
+
+\end{document}
