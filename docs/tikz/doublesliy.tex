@@ -1,4 +1,29 @@
+\documentclass[tikz]{standalone}
+% ------- TikZ Preamble -------
+\RequirePackage{tikz}
+\usetikzlibrary{knots, hobby,decorations.markings,calc,intersections, decorations.pathreplacing, shapes.geometric,spath3, decorations.pathreplacing}
+% ------- Shared styles (from your preamble) -------
+\tikzset{
+    knot diagram/every strand/.append style={ultra thick, black},
+}
 
+% ------- Guides toggle -------
+\newif\ifsstguides
+\sstguidestrue
+
+% ------- Helper: label & skeleton for points P1..Pn -------
+\newcommand{\SSTGuidesPoints}[2]{% #1=basename (e.g. P), #2=last index
+  \ifsstguides
+    \foreach \i in {1,...,#2}{
+      \fill[blue] (#1\i) circle (1.2pt);
+      \node[blue,font=\scriptsize,above] at (#1\i) {\i};
+    }
+    \draw[gray!40, dashed]
+    \foreach \i [remember=\i as \lasti (initially 1)] in {2,...,#2,1} { (#1\lasti)--(#1\i) };
+  \fi
+}
+
+\begin{document}
 \begin{figure}[t]
 \centering
 \begin{tikzpicture}[scale=0.75, >=Latex, line cap=round, line join=round]
@@ -59,3 +84,4 @@
 \end{figure}
 
 
+\end{document}

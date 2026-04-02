@@ -46,7 +46,7 @@
     All symbols are SI unless stated. Derived constants are presented by identity with their numerical evaluation.
     \subsection{Fundamental (VAM-specific)}
     \begin{itemize}
-        \item Vortex tangential velocity: $C_e = 1.09384563\times 10^{6}\ \si{m.s^{-1}}$.
+        \item Vortex tangential velocity: $\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} = 1.09384563\times 10^{6}\ \si{m.s^{-1}}$.
         \item Vortex-core radius: $r_c = 1.40897017\times 10^{-15}\ \si{m}$.
         \item \aeether{}ther fluid density (``vacuum'' fluid): $\rho_{\aeether}^{(\mathrm{fluid})} = 7.0\times 10^{-7}\ \si{kg.m^{-3}}$.
         \item \aeether{}ther core/mass density: $\rho_{\aeether}^{(\mathrm{mass})} = 3.8934358266918687\times 10^{18}\ \si{kg.m^{-3}}$.
@@ -89,7 +89,7 @@
     \]
     With $\ell_p\equiv c\,t_p$ and $ \boxed{\,M_e = \tfrac{2 F_{\aeether}^{\max} r_c}{c^{2}}\,}$,
     \[
-        \boxed{\ G = \frac{\alpha_g c^{3} r_c}{C_e M_e} = \frac{C_e c\, \ell_p^{2}}{r_c M_e}\ }\;\equiv\; G_{\mathrm{swirl}}\,.
+        \boxed{\ G = \frac{\alpha_g c^{3} r_c}{\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} M_e} = \frac{\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} c\, \ell_p^{2}}{r_c M_e}\ }\;\equiv\; G_{\mathrm{swirl}}\,.
     \]
 
     \subsection{Local Time-Rate (swirl clock)}
@@ -190,7 +190,7 @@
     \begin{enumerate}
         \item $\boxed{E_{\mathrm{VAM}} = \dfrac{4}{\alpha\varphi}\left(\dfrac{1}{2}\rho C_e^2\right)V}$
         \item $\boxed{M_{\mathrm{VAM}} = E_{\mathrm{VAM}}/c^2}$
-        \item $\boxed{G_{\mathrm{swirl}} = \dfrac{C_e c^5 t_p^2}{2F_{\aeether}^{\max} r_c^2}}$
+        \item $\boxed{G_{\mathrm{swirl}} = \dfrac{\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} c^5 t_p^2}{2F_{\aeether}^{\max} r_c^2}}$
         \item $\boxed{dt_{\mathrm{local}} = dt_{\infty}\sqrt{1-\lVert\omega\rVert^{2} r_c^{2}/c^2}}$
         \item $\boxed{\Omega_{\mathrm{swirl}}(r) = \dfrac{C_e}{r_c}e^{-r/r_c}}$
         \item $\boxed{ds^2 = -(c^2 - v_\theta^2)dt^2 + 2 v_\theta r\,d\theta\,dt + dr^2 + r^2 d\theta^2 + dz^2}$

@@ -41,8 +41,8 @@ These distinct time concepts clarify how local and global phenomena are distingu
 The Vortex Æther Model distinguishes between two conceptually distinct densities:
 
 \begin{itemize}
-    \item \textbf{Æther Fluid Density} \(\rho_{\text{\ae}}^{\text{(fluid)}}\) — a constant background value (\(\sim 7 \times 10^{-7}\, \mathrm{kg/m^3}\)) that governs wave propagation and inertial resistance at macroscopic scales.
-    \item \textbf{Æther Mass-Energy Density} \(\rho_{\text{\ae}}^{\text{(mass)}}(r)\) — a radially decaying field around vortex cores responsible for storing rotational energy and generating topological stability.
+    \item \textbf{Æther Fluid Density} \(\rho_{\scriptscriptstyle\boldsymbol\!f}\) — a constant background value (\(\sim 7 \times 10^{-7}\, \mathrm{kg/m^3}\)) that governs wave propagation and inertial resistance at macroscopic scales.
+    \item \textbf{Æther Mass-Energy Density} \(\rho_{\scriptscriptstyle\boldsymbol\!m}(r)\) — a radially decaying field around vortex cores responsible for storing rotational energy and generating topological stability.
 \end{itemize}
 
 The energy density is high near vortex cores (\(\sim 10^{18}\, \mathrm{J/m^3}\)) and decays exponentially toward the fluid density background on
@@ -53,7 +53,7 @@ macroscopic scales.
 
 The æther fluid density is taken to be approximately:
 \begin{equation}
-    \rho_{\text{\ae}}^{\text{(fluid)}} \approx \SI{7e-7}{kg/m^3},
+    \rho_{\scriptscriptstyle\boldsymbol\!f} \approx \SI{7e-7}{kg/m^3},
 \end{equation}
 based on matching vortex energetics with known quantum properties and allowing for inertia-free propagation of signals in the far field.
 
@@ -61,23 +61,23 @@ based on matching vortex energetics with known quantum properties and allowing f
 
 In contrast, the energy density near a vortex core satisfies:
 \begin{equation}
-    \rho_{\text{\ae}}^{\text{(energy)}}(r \to 0) \sim \SI{3.89e18}{J/m^3},
+    \rho_{\scriptscriptstyle\boldsymbol\!E}(r \to 0) \sim \SI{3.89e18}{J/m^3},
 \end{equation}
 which is necessary to stabilize the core topology. This follows from the vortex energy expression:
 \begin{equation}
-    E_{\text{vortex}} = \frac{1}{2} \rho_{\text{\ae}}^{\text{(energy)}} \Omega^2 r_c^5
+    E_{\text{vortex}} = \frac{1}{2} \rho_{\scriptscriptstyle\boldsymbol\!E} \Omega^2 r_c^5
     \quad\Rightarrow\quad
-    \rho_{\text{\ae}}^{\text{(energy)}} \sim \frac{2E}{\Omega^2 r_c^5},
+    \rho_{\scriptscriptstyle\boldsymbol\!E} \sim \frac{2E}{\Omega^2 r_c^5},
 \end{equation}
-where \( \Omega = \frac{C_e}{r_c} \), with \( C_e \approx \SI{1.093845e6}{m/s} \) and \( r_c \approx \SI{1.40897e-15}{m} \).
+where \( \Omega = \frac{C_e}{r_c} \), with \( \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} \approx \SI{1.093845e6}{m/s} \) and \( r_c \approx \SI{1.40897e-15}{m} \).
 
 \subsection*{3. Transition Profile}
 
 The energy density transitions exponentially to the macroscopic background:
 \begin{equation}
-    \rho_{\text{\ae}}^{\text{(energy)}}(r) =
-    \rho_{\text{\ae}}^{\text{(fluid)}} +
-    \left(\rho_{\text{core}} - \rho_{\text{\ae}}^{\text{(fluid)}}\right)
+    \rho_{\scriptscriptstyle\boldsymbol\!E}(r) =
+    \rho_{\scriptscriptstyle\boldsymbol\!f} +
+    \left(\rho_{\text{core}} - \rho_{\scriptscriptstyle\boldsymbol\!f}\right)
     e^{-r/r_*},
 \end{equation}
 where \( r_* \sim \SI{1e-12}{m} \) represents the characteristic decay scale of vortex influence.
@@ -93,7 +93,7 @@ where \( r_* \sim \SI{1e-12}{m} \) represents the characteristic decay scale of 
     \centering
     \begin{tabular}{|c|c|c|l|}
         \hline
-        Regime & Distance $r$ & $\rho_{\text{\ae}}^{\text{(energy)}}(r)$ & Interpretation \\
+        Regime & Distance $r$ & $\rho_{\scriptscriptstyle\boldsymbol\!E}(r)$ & Interpretation \\
         \hline
         Core & $r < 10^{-14}$ m & $\sim 10^{18}$ J/m$^3$ & Topological vortex energy \\
         Transition & $10^{-14}$–$10^{-11}$ m & Exponentially decreasing & Energy storage / swirl gradient \\
@@ -105,10 +105,10 @@ where \( r_* \sim \SI{1e-12}{m} \) represents the characteristic decay scale of 
 
 \begin{tcolorbox}[colback=blue!3, colframe=black!70, sharp corners=southwest, title=Æther Density Types in VAM]
     \begin{itemize}
-        \item \textbf{Fluid Density} \(\rho_{\text{\ae}}^{\text{(fluid)}} \sim \SI{7e-7}{kg/m^3}\): constant across all scales; governs inertia and wave propagation.
-        \item \textbf{Energy Density} \(\rho_{\text{\ae}}^{\text{(energy)}}(r)\): concentrated around vortex cores; provides topological stability; decays exponentially:
+        \item \textbf{Fluid Density} \(\rho_{\scriptscriptstyle\boldsymbol\!f} \sim \SI{7e-7}{kg/m^3}\): constant across all scales; governs inertia and wave propagation.
+        \item \textbf{Energy Density} \(\rho_{\scriptscriptstyle\boldsymbol\!E}(r)\): concentrated around vortex cores; provides topological stability; decays exponentially:
         \[
-            \rho_{\text{\ae}}^{\text{(energy)}}(r) = \rho_{\text{\ae}}^{\text{(fluid)}} + \left(\rho_{\text{core}} - \rho_{\text{\ae}}^{\text{(fluid)}}\right) e^{-r/r_*}
+            \rho_{\scriptscriptstyle\boldsymbol\!E}(r) = \rho_{\scriptscriptstyle\boldsymbol\!f} + \left(\rho_{\text{core}} - \rho_{\scriptscriptstyle\boldsymbol\!f}\right) e^{-r/r_*}
         \]
     \end{itemize}
 \end{tcolorbox}
@@ -168,7 +168,7 @@ To formalize the distinct temporal flows in the Vortex Æther Model (VAM), we de
     && \text{(Time dilation from tangential vortex flow)}
 \end{align}
 
-Here, \(\Omega(r) = \frac{C_e}{r_c} e^{-r/r_c}\) is the local swirl angular velocity, and \(v_\varphi(r) = C_e e^{-r/r_c}\) the tangential velocity in the æther vortex.
+Here, \(\Omega(r) = \frac{C_e}{r_c} e^{-r/r_c}\) is the local swirl angular velocity, and \(v_\varphi(r) = \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} e^{-r/r_c}\) the tangential velocity in the æther vortex.
 
 If the swirl is stable and constant at radius \(r\), the swirl clock becomes periodic:
 \[

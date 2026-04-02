@@ -11,8 +11,7 @@
 % (Rarely needed, but harmless if present)
 \providecommand\tikz@lineto@auto{\tikz@line@to@auto}
 \makeatother
-% make TikZ expose the newest features its version supports
-\tikzset{compat=newest}
+% Note: compat=newest is a pgfplots key (\pgfplotsset{compat=...}), not \tikzset.
 
 % be explicit about the libs hobby depends on
 \usetikzlibrary{

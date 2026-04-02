@@ -48,7 +48,7 @@
 
     \subsection{Fundamental (VAM-specific)}
     \begin{itemize}
-        \item Vortex tangential velocity: $C_e = 1.09384563 \times 10^{6}\ \si{m.s^{-1}}$.
+        \item Vortex tangential velocity: $\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} = 1.09384563 \times 10^{6}\ \si{m.s^{-1}}$.
         \item Vortex-core radius: $r_c = 1.40897017 \times 10^{-15}\ \si{m}$.
         \item Æther fluid density (``vacuum'' fluid): $\rho_{\text{\ae}}^{(\text{fluid})} = 7.0 \times 10^{-7}\ \si{kg.m^{-3}}$.
         \item Æther core/mass density: $\rho_{\text{\ae}}^{(\text{mass})} = 3.8934358266918687 \times 10^{18}\ \si{kg.m^{-3}}$.
@@ -176,7 +176,7 @@
     \begin{enumerate}
         \item $E_{\text{VAM}}=\dfrac{4}{\alpha\varphi}\left(\dfrac{1}{2}\rho C_e^2\right)V$
         \item $M_{\text{VAM}}=E_{\text{VAM}}/c^2$
-        \item $G_{\text{swirl}}=\dfrac{C_e c^5 t_p^2}{2F_{\text{\ae}}^{\max} r_c^2}$
+        \item $G_{\text{swirl}}=\dfrac{\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} c^5 t_p^2}{2F_{\text{\ae}}^{\max} r_c^2}$
         \item $dt_{\text{local}}=dt_{\infty}\sqrt{1-\lVert\omega\rVert^{2} r_c^{2}/c^2}$ % corrected
         \item $\Omega_{\text{swirl}}(r)=\dfrac{C_e}{r_c}e^{-r/r_c}$
     \end{enumerate}
@@ -196,11 +196,11 @@
     \section*{14) v0.4 Delta — Derived Constants, Galactic Swirl Law, and Baryon Mass Map}
     \subsection*{14.1 Canon identities}
     \[
-        \boxed{\alpha = \tfrac{2 C_e}{c}}\quad\Leftrightarrow\quad \boxed{C_e = \tfrac{c\,\alpha}{2}},\qquad
+        \boxed{\alpha = \tfrac{2 C_e}{c}}\quad\Leftrightarrow\quad \boxed{\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} = \tfrac{c\,\alpha}{2}},\qquad
         \boxed{\alpha_g = \tfrac{C_e^{2} t_p^{2}}{r_c^{2}}},
     \]
     \[
-        \boxed{G = \tfrac{\alpha_g c^{3} r_c}{C_e M_e} = \tfrac{C_e c\, (c t_p)^{2}}{r_c M_e}},
+        \boxed{G = \tfrac{\alpha_g c^{3} r_c}{\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} M_e} = \tfrac{\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} c\, (c t_p)^{2}}{r_c M_e}},
         \quad
         \boxed{M_e = \tfrac{2 F_{\text{\ae}}^{\max} r_c}{c^{2}}}
         \quad\Rightarrow\quad

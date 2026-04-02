@@ -18,11 +18,11 @@
 
   The swirl energy stored in the knotted vortex structure is:
   \begin{equation}
-    U = \frac{1}{2} \rho_\text{\ae}^{(\text{energy})} \int |\vec{\omega}|^2 \, dV.
+    U = \frac{1}{2} \rho_{\scriptscriptstyle\boldsymbol\!E}\int |\vec{\omega}|^2 \, dV.
   \end{equation}
   Assuming the vorticity is concentrated within a core radius $r_c$, and distributed over a filament of length $L$, we approximate the core volume as $V \sim L r_c^2$. Letting $\omega_0$ be the characteristic vorticity in the core, we have:
   \begin{equation}
-    U \sim \frac{1}{2} \rho_\text{\ae}^{(\text{energy})} \, \omega_0^2 \, L r_c^2.
+    U \sim \frac{1}{2} \rho_{\scriptscriptstyle\boldsymbol\!E}\, \omega_0^2 \, L r_c^2.
   \end{equation}
   The circulation is related to vorticity via:
   \begin{equation}
@@ -30,8 +30,8 @@
   \end{equation}
   Substituting this into the energy expression:
   \begin{align}
-    U &\sim \frac{1}{2} \rho_\text{\ae}^{(\text{energy})} \left( \frac{\Gamma}{\pi r_c^2} \right)^2 L r_c^2 \\
-    &= \frac{1}{2\pi^2} \rho_\text{\ae}^{(\text{energy})} \Gamma^2 \frac{L}{r_c^2}.
+    U &\sim \frac{1}{2} \rho_{\scriptscriptstyle\boldsymbol\!E}\left( \frac{\Gamma}{\pi r_c^2} \right)^2 L r_c^2 \\
+    &= \frac{1}{2\pi^2} \rho_{\scriptscriptstyle\boldsymbol\!E}\Gamma^2 \frac{L}{r_c^2}.
   \end{align}
 
   \subsection{Effective Inertial Mass from Swirl Energy}
@@ -55,11 +55,11 @@
 
   Using representative VAM constants:
   \begin{align*}
-    \rho_\text{\ae}^{(\text{energy})} &= 3.89 \times 10^{18}\,\mathrm{kg/m}^3, \\
+    \rho_{\scriptscriptstyle\boldsymbol\!E}&= 3.89 \times 10^{18}\,\mathrm{kg/m}^3, \\
     c &= 2.998 \times 10^8\,\mathrm{m/s}, \\
     r_c &= 1.40897 \times 10^{-15}\,\mathrm{m}, \\
-    C_e &= 1.09384563 \times 10^6\,\mathrm{m/s}, \\
-    \Gamma &= 2\pi r_c C_e \approx 9.67 \times 10^{-9}\,\mathrm{m}^2/\mathrm{s},
+    \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} &= 1.09384563 \times 10^6\,\mathrm{m/s}, \\
+    \Gamma &= 2\pi r_c \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} \approx 9.67 \times 10^{-9}\,\mathrm{m}^2/\mathrm{s},
   \end{align*}
   we compute:
   \begin{align*}
@@ -78,4 +78,3 @@
   \subsection*{Conclusion}
 
   This derivation shows that a knotted photon---such as a trefoil-shaped swirl vortex in the \ae{}ther---naturally acquires an effective inertial mass proportional to its circulation and knottedness. This provides a topological mechanism for mass generation in VAM, with direct numerical consistency with known particle masses.
-

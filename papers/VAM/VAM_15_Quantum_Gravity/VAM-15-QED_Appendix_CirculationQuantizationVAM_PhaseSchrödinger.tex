@@ -55,7 +55,7 @@
     \begin{equation}
         \vec v \;=\; \lambda_\text{\ae}\,\nabla\theta,\qquad [\lambda_\text{\ae}] = \text{m}^2/\text{s},
     \end{equation}
-    which makes \eqref{eq:Gamma_quant} imply $\Delta\theta=2\pi n$ around any vortex core and fixes $\lambda_\text{\ae}=\kappa_\text{\ae}/(2\pi)=C_e r_c$. Define the VAM wavefunction
+    which makes \eqref{eq:Gamma_quant} imply $\Delta\theta=2\pi n$ around any vortex core and fixes $\lambda_\text{\ae}=\kappa_\text{\ae}/(2\pi)=\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} r_c$. Define the VAM wavefunction
     \begin{equation}
         \psi(\vec x,t)=\sqrt{\frac{\rho(\vec x,t)}{\rho_\text{\ae}}}\;e^{i\theta(\vec x,t)},
     \end{equation}
@@ -66,17 +66,17 @@
     \end{equation}
     provided we \emph{define} the æther scales by
     \begin{equation}
-        \boxed{\;\frac{\hbar_\text{\ae}}{m_\text{\ae}} \;=\; \lambda_\text{\ae} \;=\; C_e r_c\;}\!,
+        \boxed{\;\frac{\hbar_\text{\ae}}{m_\text{\ae}} \;=\; \lambda_\text{\ae} \;=\; \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} r_c\;}\!,
         \qquad
         \Phi_\text{swirl}=\frac{1}{2}\,\lambda_g\,\rho_\text{\ae}\,|\vec\omega|^2,
     \end{equation}
-    where $\lambda_g$ is a dimensionless stiffness capturing how rotational energy stores in the æther. Dimensional check: $[\hbar_\text{\ae}/m_\text{\ae}]=\text{m}^2/\text{s}$, consistent with $C_e r_c$; $[\Phi_\text{swirl}]=\text{J}/\text{m}^3$, consistent with energy density. Equation \eqref{eq:schrod_ae} is thus a \emph{derivable} hydrodynamic Schrödinger equation (not a mere analogy), following the Madelung program but with $\hbar_\text{\ae}/m_\text{\ae}$ fixed by the VAM core kinematics $\kappa_\text{\ae}$.
+    where $\lambda_g$ is a dimensionless stiffness capturing how rotational energy stores in the æther. Dimensional check: $[\hbar_\text{\ae}/m_\text{\ae}]=\text{m}^2/\text{s}$, consistent with $\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} r_c$; $[\Phi_\text{swirl}]=\text{J}/\text{m}^3$, consistent with energy density. Equation \eqref{eq:schrod_ae} is thus a \emph{derivable} hydrodynamic Schrödinger equation (not a mere analogy), following the Madelung program but with $\hbar_\text{\ae}/m_\text{\ae}$ fixed by the VAM core kinematics $\kappa_\text{\ae}$.
 
     \paragraph{Numerical validation (your constants).}
     With $C_e=1.09384563\times10^6\,\text{m/s}$ and $r_c=1.40897017\times10^{-15}\,\text{m}$,
     \[
-        \kappa_\text{\ae}=2\pi C_e r_c=9.6836192\times 10^{-9}\,\text{m}^2/\text{s},\quad
-        \frac{\hbar_\text{\ae}}{m_\text{\ae}}=C_e r_c=1.541\times 10^{-9}\,\text{m}^2/\text{s}.
+        \kappa_\text{\ae}=2\pi \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} r_c=9.6836192\times 10^{-9}\,\text{m}^2/\text{s},\quad
+        \frac{\hbar_\text{\ae}}{m_\text{\ae}}=\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} r_c=1.541\times 10^{-9}\,\text{m}^2/\text{s}.
     \]
     The core angular frequency scale $\Omega_0=C_e/r_c=7.7634\times 10^{20}\,\text{s}^{-1}$ (finite, sets the VAM ``internal clock'').
 
@@ -190,7 +190,7 @@
 
     \section{Summary of What Is Now Derived (Not Just Analogous)}
     \begin{itemize}
-        \item \textbf{Wavefunction:} $\psi=\sqrt{\rho/\rho_\text{\ae}}\,e^{i\theta}$ with $\vec v=C_e r_c \nabla\theta$; circulation quantization fixes single-valuedness and yields a hydrodynamic Schrödinger equation \eqref{eq:schrod_ae} \cite{Madelung1927,Onsager1949,Feynman1955}.
+        \item \textbf{Wavefunction:} $\psi=\sqrt{\rho/\rho_\text{\ae}}\,e^{i\theta}$ with $\vec v=\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} r_c \nabla\theta$; circulation quantization fixes single-valuedness and yields a hydrodynamic Schrödinger equation \eqref{eq:schrod_ae} \cite{Madelung1927,Onsager1949,Feynman1955}.
         \item \textbf{Mass term:} $M_\text{knot}(R)$ obtained from first-principles energy integrals \eqref{eq:mass_total}, numerically reproducing $M_e$ with $R=\frac{2}{\pi}r_c$ using your constants.
         \item \textbf{Regularization:} finite-core profiles make all self-energies convergent (no renormalization) \cite{Saffman1992,Batchelor1967}.
         \item \textbf{Radiation law:} a testable scaling \eqref{eq:rad_scaling} for VAM bremsstrahlung consistent with reconnection acoustics \cite{Leadbeater2001,Zuccher2012,Barenghi2014}.

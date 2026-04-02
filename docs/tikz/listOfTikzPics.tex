@@ -2,18 +2,13 @@
 %! Date = 8/30/2025
 
 % Preamble
-\documentclass[11pt]{article}
-
-% Packages
-\usepackage{amsmath}
-
-% Document
 \documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,bm}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,calc,decorations.markings,decorations.pathmorphing,fit,positioning}
 \usepackage{pgfplots}
-\usepackage{amssymb}
 \pgfplotsset{compat=1.18}
 \tikzset{>=Latex}
 
@@ -118,7 +113,7 @@ xlabel={$r$}, ylabel={$v_\theta(r)$}, xmin=0,xmax=1, ymin=0,ymax=1.2, grid=both]
 
 \begin{figure}[t]\centering
 \begin{tikzpicture}[node distance=1.2cm]
-\node[draw,rounded corners,very thick,align=center,minimum width=4cm] (bulk) {$\tfrac12\rhof\,\|\mathbf v\|^2-\rho_E$\\\footnotesize bulk swirl};
+\node[draw,rounded corners,very thick,align=center,minimum width=4cm] (bulk) {$\tfrac12\rho_f\,\|\mathbf v\|^2-\rho_E$\\\footnotesize bulk swirl};
 \node[draw,rounded corners,very thick,below left=of bulk,align=center,minimum width=3.6cm] (len) {$-\beta\,\ell[\Sigma]$};
 \node[draw,rounded corners,very thick,below=of bulk,align=center,minimum width=3.6cm] (cont) {$-\alpha\,\mathcal C[\Sigma]$};
 \node[draw,rounded corners,very thick,below right=of bulk,align=center,minimum width=3.6cm] (hel) {$-\gamma\,\mathcal H[\Sigma]$};
@@ -294,16 +289,14 @@ plot ({2.6+1.3*cos(\t)+0.5*cos(2*\t)},{0.0+0.9*sin(\t)-0.3*sin(2*\t)});
 \end{tikzpicture}
 \caption{Two-phase electron in SST: delocalized toroidal circulation $\mathcal R$ and localized knotted soliton $\mathcal T$.}
 \end{figure}
-2) Circulation quantization on a ring
-latex
-Copy code
+\section*{2) Circulation quantization on a ring}
 \begin{figure}[t]
 \centering
 \begin{tikzpicture}[scale=1.1,>=Latex]
 \draw[thick] (0,0) circle (2);
 % Tangential arrows
 \foreach \a in {0,40,...,320}{
-    \draw[->,very thick] (2*cos(\a),2*sin(\a)) -- ++({0.5*sin(\a)},{-0.5*cos(\a)});
+    \draw[->,very thick] ({2*cos(\a)},{2*sin(\a)}) -- ++({0.5*sin(\a)},{-0.5*cos(\a)});
 }
 % Phase ticks
 \foreach \a in {0,60,...,300}{
@@ -414,7 +407,7 @@ Copy code
 
 
 
-\section*{2) Knot invariants overlay on a trefoil (C(K)C(K)C(K), H(K)\mathcal H(K)H(K))}
+\section*{2) Knot invariants overlay on a trefoil ($C(K)$, $\mathcal H(K)$)}
 
 
 
@@ -440,7 +433,7 @@ Copy code
 
 
 
-\section*{3) Core profile Ω(r)\Omega(r)Ω(r) and Swirl Clock dtlocal/dt∞dt_{\textrm local}/dt_\inftydtlocal​/dt∞​}
+\section*{3) Core profile $\Omega(r)$ and Swirl Clock $dt_{\textrm local}/dt_\infty$}
 
 
 
@@ -480,7 +473,7 @@ Copy code
 
 
 
-\section*{4) Fringe geometry (slit separation sss, distance LLL, screen coordinate xxx)}
+\section*{4) Fringe geometry (slit separation $s$, distance $L$, screen coordinate $x$)}
 
 
 
@@ -557,7 +550,7 @@ Copy code
 
 
 
-\section*{6) (Already supplied earlier) Visibility vs.\ which-way coupling V=e−Γτ\mathcal V=e^{-\Gamma\tau}V=e−Γτ}
+\section*{6) Visibility vs.\ which-way coupling $\mathcal V=e^{-\Gamma\tau}$}
 
 \textit{(Keep for completeness; no changes needed.)}
 
@@ -572,7 +565,7 @@ Copy code
 \centering
 \begin{tikzpicture}[scale=1.0]
   \node[draw,very thick,rounded corners,align=center,minimum width=4.2cm,minimum height=1.0cm] (bulk)
-    at (0,1.5) {$\tfrac12\rhof\,\|\mathbf v\|^2 - \rho_E$ \\ bulk swirl};
+    at (0,1.5) {$\tfrac12\rho_f\,\|\mathbf v\|^2 - \rho_E$ \\ bulk swirl};
   \node[draw,very thick,rounded corners,minimum width=3.8cm,minimum height=0.9cm] (len)
     at (-4.6,-0.2) {$-\beta\,\ell[\Sigma]$};
   \node[draw,very thick,rounded corners,minimum width=3.8cm,minimum height=0.9cm] (cont)

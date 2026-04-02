@@ -1,6 +1,6 @@
 \documentclass[border=5pt]{article}
 \usepackage[utf8]{inputenc}
-\usepackage{amsmath,amssymb,amsthm}
+\usepackage{amsmath,amssymb,amsthm,bm}
 \usepackage{graphicx}
 \usepackage{geometry}
 \geometry{margin=1in}
@@ -8,6 +8,12 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,calc,fit,decorations.pathmorphing}
 \usetikzlibrary{knots,calc, hobby}
+
+% SST / canon notation (figure was written for in-document macros; standalone needs these)
+\newcommand{\vswirl}{\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}}
+\newcommand{\vnorm}{\lVert \mathbf{v}_{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}} \rVert}
+\newcommand{\Ce}{\vswirl}
+\newcommand{\rhof}{\rho_{\!f}}
 
 \begin{document}
 

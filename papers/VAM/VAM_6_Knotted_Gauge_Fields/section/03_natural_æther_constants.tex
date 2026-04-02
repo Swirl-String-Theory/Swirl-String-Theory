@@ -5,7 +5,7 @@ The Vortex Æther Model (VAM) proposes a fundamental shift in how physical quant
 The five core æther parameters are:
 
 \begin{itemize}
-    \item \textbf{Swirl Velocity \( C_e \)}: The tangential velocity of stable vortex flow, typically around \( 10^6 \, \text{m/s} \), inferred from simulations of quantized vortices in Bose–Einstein condensates (BECs)~\cite{Pethick2008BEC, Kleckner2013KnottedVortices}.
+    \item \textbf{Swirl Velocity \( \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} \)}: The tangential velocity of stable vortex flow, typically around \( 10^6 \, \text{m/s} \), inferred from simulations of quantized vortices in Bose–Einstein condensates (BECs)~\cite{Pethick2008BEC, Kleckner2013KnottedVortices}.
 
     \item \textbf{Core Radius \( r_c \)}: The confinement radius of stable topological knots, matched to the proton charge radius (\( \sim 1.4 \times 10^{-15} \, \text{m} \)).
 
@@ -47,7 +47,7 @@ Together, these quantities form a physically motivated alternative to Planck-sca
         \hline
         \textbf{Symbol} & \textbf{Expression} & \textbf{Interpretation} \\
         \hline
-        \( \hbar_{\text{VAM}} \) & \( m_e C_e r_c \) & Angular impulse from core swirl (Planck analog) \\
+        \( \hbar_{\text{VAM}} \) & \( m_e \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} r_c \) & Angular impulse from core swirl (Planck analog) \\
         \hline
         \( c \) & \( \sqrt{\frac{2 F^{\text{max}}_{\text{\ae}} r_c}{m_e}} \) & Effective wave speed in æther; maximum signal velocity \\
         \hline
@@ -55,7 +55,7 @@ Together, these quantities form a physically motivated alternative to Planck-sca
         \hline
         \( e^2 \) & \( 8\pi m_e C_e^2 r_c \) & Electric charge as swirl pressure across vortex boundary \\
         \hline
-        \( \Gamma \) & \( 2\pi r_c C_e \) & Total vortex circulation (quantized in superfluids) \\
+        \( \Gamma \) & \( 2\pi r_c \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} \) & Total vortex circulation (quantized in superfluids) \\
         \hline
         \( v \) & \( \sqrt{\frac{F^{\text{max}}_{\text{\ae}} r_c^3}{C_e^2}} \) & Higgs-like amplitude from ætheric elasticity \\
         \hline
@@ -74,12 +74,12 @@ where \( L_k \) is the topological linking number of the knot. This expression a
 
 Thus, the Vortex Æther Model replaces dimensionally convenient but ontologically opaque constants with experimentally meaningful quantities derived from the geometry and energetics of fluid structures. The result is a unified physical interpretation of mass, charge, and coupling strengths—all emerging from coherent dynamics in a topologically structured æther.
 
-\section*{Natural Unit Reformulation: \( C_e = 1, \, r_c = 1 \)}
+\section*{Natural Unit Reformulation: \( \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} = 1, \, r_c = 1 \)}
 
 To simplify the dimensional structure of VAM, we introduce a natural unit system by setting the two most intrinsic geometric quantities to unity:
 
 \[
-C_e = 1, \qquad r_c = 1
+\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} = 1, \qquad r_c = 1
 \]
 
 This system treats the swirl velocity and vortex core radius as base units of speed and length, respectively. All other quantities are then rendered dimensionless or scaled relative to these units. The æther's characteristic energy, tension, and inertia become natural geometric outputs of the knotted structure.
@@ -98,7 +98,7 @@ This system treats the swirl velocity and vortex core radius as base units of sp
         \hline
         \( \alpha \) & \( 2 / c \) & Swirl-to-light ratio (dimensionless) \\
         \hline
-        \( \hbar_{\text{VAM}} \) & \( m_e \) & Angular impulse equals rest mass (since \( C_e r_c = 1 \)) \\
+        \( \hbar_{\text{VAM}} \) & \( m_e \) & Angular impulse equals rest mass (since \( \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} r_c = 1 \)) \\
         \hline
         \( e^2 \) & \( 8\pi m_e \) & Charge-energy coupling proportional to mass \\
         \hline
@@ -109,7 +109,7 @@ This system treats the swirl velocity and vortex core radius as base units of sp
         \( t_p \) & \( 1/c \) & Ætheric Planck time as inverse signal speed \\
         \hline
     \end{tabular}
-    \caption{Natural unit forms of VAM-derived quantities when \( C_e = r_c = 1 \).}
+    \caption{Natural unit forms of VAM-derived quantities when \( \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} = r_c = 1 \).}
     \label{tab:natural_units_vam}
 \end{table}
 
@@ -136,7 +136,7 @@ This compact form shows that mass scales directly with æther density and invers
 - \textbf{Makes topological scaling explicit}, e.g., how mass changes with \( L_k \) or how helicity enters time dilation.
 - \textbf{Eliminates Planck-scale opacity}: everything derives from vortex properties without black-box constants.
 
-This formulation may be especially useful in symbolic computation, numerical simulations, or extending VAM to cosmological scales, where \( C_e \) and \( r_c \) can serve as natural units of large-scale structure or vacuum flow.
+This formulation may be especially useful in symbolic computation, numerical simulations, or extending VAM to cosmological scales, where \( \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} \) and \( r_c \) can serve as natural units of large-scale structure or vacuum flow.
 \subsection{Running Coupling Constants from Æther Density}
 
 In conventional quantum field theory, coupling constants such as the fine-structure constant \( \alpha \) are not truly constant: they evolve with energy scale due to vacuum polarization effects. This scale dependence is governed by the renormalization group (RG) flow, typically expressed as:
@@ -172,7 +172,7 @@ The effective light-speed and permittivity are governed by:
 where:
 - \( B(\vec{x}) \) is the bulk modulus of the æther — its resistance to compression,
 - \( \rho_\text{\ae}(\vec{x}) \) determines both inertial and field strength response,
-- \( C_e \) is the swirl velocity scale (constant in the far field).
+- \( \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} \) is the swirl velocity scale (constant in the far field).
 
 \vspace{0.5em}
 
@@ -197,5 +197,3 @@ This model predicts that \emph{fundamental constants may vary measurably across 
 \vspace{0.5em}
 
 This reinterpretation places VAM in conceptual alignment with emergent gravity approaches such as Verlinde’s entropic framework~\cite{verlinde2016emergent}, while providing a concrete mechanical basis for renormalization — rooted not in formal regularization, but in measurable ætheric response.
-
-

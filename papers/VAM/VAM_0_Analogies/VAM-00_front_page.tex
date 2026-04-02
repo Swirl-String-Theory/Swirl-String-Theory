@@ -88,7 +88,7 @@
                 };
 
 % COSMOLOGY
-                \node[draw, rounded corners, fill=violet!13] (cosmo) at (7, -7.5) {%
+                \node[draw, rounded corners, fill=blue!13] (cosmo) at (7, -7.5) {%
                     \textbf{Cosmos: Milky Way/Universe}\\
                     VAM-7, 9: Galaxy = Chiral Swirl Net\\
                     MOND-like, no DM\\
@@ -128,7 +128,7 @@
             \item \textbf{Suppression factor} ($\sim 10^{-43}$): Explains why gravity is so weak compared to other forces (micro-to-macro vorticity coherence)
             \item \textbf{All fundamental constants derived:}
             \begin{itemize}
-                \item \textbf{Newton's constant:} $G = \dfrac{C_e c^3 t_p^2}{r_c m_e}$
+                \item \textbf{Newton's constant:} $G = \dfrac{\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} c^3 t_p^2}{r_c m_e}$
                 \item \textbf{Planck's constant:} $\hbar = \rho_{\text{\ae}}^{(\text{mass})} r_c^5 C_e$
                 \item \textbf{Fine structure:} $\alpha = \dfrac{2 C_e}{c}$
                 \item \textbf{Æther density:} $\rho_{\text{\ae}} = \dfrac{2 m_e c^2}{3} \left(\dfrac{\alpha m_e c^2}{\hbar}\right)^2 r_e^3$
@@ -233,7 +233,7 @@
             5/{neutron}/orange,
             6.8/{deuteron}/brown,
             7.6/{$g\sim10^{-43}$}/black,
-            8.3/{galaxy}/violet
+            8.3/{galaxy}/pink,
         }{
             \pgfmathsetmacro\theta{360*\n}
             \pgfmathsetmacro\radius{\a + \b*\n}
@@ -256,12 +256,12 @@
         \node[anchor=west, gray] at (-6,1.5) {Suppression \& Gravity};
         \node[anchor=west, orange] at (-6,1) {Baryons \& Nuclei};
         \node[anchor=west, green!60!black] at (-6,-1) {Quarks \& Leptons};
-        \node[anchor=west, red] at (-6,-1.5) {Core: $r_c, C_e, \rho_{\text{\ae}^{\text{(fluid)}}}$};
-        \node[anchor=west, red] at (-6,-2) {\rho_{\text{\ae}^{\text{(mass)}}}$};
-        \node[anchor=west, red] at (-6,-2.5) {\rho_{\text{\ae}^{\text{(energy)}}}$};
+        \node[anchor=west, red] at (-6,-1.5) {Core: $r_c, C_e, \rho_{\scriptscriptstyle\boldsymbol\!f}$};
+        \node[anchor=west, red] at (-6,-2) {\rho_{\scriptscriptstyle\boldsymbol\!m}$};
+        \node[anchor=west, red] at (-6,-2.5) {\rho_{\scriptscriptstyle\boldsymbol\!E}$};
 
 % Outer shell annotation
-        \draw[thick, violet!80!black, ->]
+        \draw[thick, pink!80!black, ->]
         ({(\a+\b*4.8)*cos(180)}, {(\a+\b*4.8)*sin(180)}) -- ++(-1,0)
         node[left,align=right] {\textbf{Galactic Swirl}\\Cosmic\\Phenomena};
 

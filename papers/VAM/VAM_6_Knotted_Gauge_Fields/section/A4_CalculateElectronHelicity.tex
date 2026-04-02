@@ -15,7 +15,7 @@ where \( \vec{\omega} = \nabla \times \vec{v} \) is the vorticity. Helicity meas
 
 In the Vortex Æther Model (VAM), we interpret helicity as directly contributing to inertial mass. The helicity density \( \vec{v} \cdot \vec{\omega} \) is reinterpreted as a source of mass density. We define a helicity-induced mass expression:
 \[
-M_{\text{helicity}} = \alpha' \cdot \rho_\text{\ae}^{\text{(mass)}} \cdot C_e \cdot r_c^3 \cdot \mathcal{H}_{\text{norm}}(p,q)
+M_{\text{helicity}} = \alpha' \cdot \rho_\text{\ae}^{\text{(mass)}} \cdot \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} \cdot r_c^3 \cdot \mathcal{H}_{\text{norm}}(p,q)
 \tag{2}
 \]
 where:
@@ -62,7 +62,7 @@ Substituting:
 \[
 \rho_\text{\ae}^{\text{(mass)}} = 3.893 \times 10^{18} \, \text{kg/m}^3, \quad
 r_c = 1.40897 \times 10^{-15} \, \text{m}, \quad
-C_e = 1.09384563 \times 10^6 \, \text{m/s}
+\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} = 1.09384563 \times 10^6 \, \text{m/s}
 \]
 yields:
 \[
@@ -73,9 +73,9 @@ This value confirms that \( \gamma \) is a computable, universal helicity–mass
 
 \subsection*{Dimensional Derivation of the Helicity Coupling Constant \( \alpha' \)}
 
-In equation (2), \( \alpha' \) is introduced to match dimensions. The composite quantity \( \rho_\text{\ae}^{\text{(mass)}} C_e r_c^3 \) has units of momentum:
+In equation (2), \( \alpha' \) is introduced to match dimensions. The composite quantity \( \rho_\text{\ae}^{\text{(mass)}} \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} r_c^3 \) has units of momentum:
 \[
-[\rho C_e r_c^3] = \text{kg·m·s}^{-1}
+[\rho \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} r_c^3] = \text{kg·m·s}^{-1}
 \Rightarrow
 [\alpha'] = \frac{\text{kg}}{\text{kg·m·s}^{-1}} = \text{s/m}
 \]
@@ -84,7 +84,7 @@ To match the prefactor of the full mass expression in (3), we identify:
 \[
 \boxed{\alpha' = \frac{8\pi}{C_e}}
 \]
-which confirms \( \alpha' \) as the swirl-to-mass conversion factor. A higher swirl velocity \( C_e \) implies a lower helicity contribution to mass — consistent with Bernoulli scaling.
+which confirms \( \alpha' \) as the swirl-to-mass conversion factor. A higher swirl velocity \( \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} \) implies a lower helicity contribution to mass — consistent with Bernoulli scaling.
 
 \subsection*{Summary of Constants and Calibration}
 
@@ -98,7 +98,7 @@ which confirms \( \alpha' \) as the swirl-to-mass conversion factor. A higher sw
 \hline
 \( \rho_\text{\ae}^{\text{(mass)}} \) & Mass-equivalent æther density & \( 3.893 \times 10^{18} \, \text{kg/m}^3 \) \\
 \( r_c \) & Vortex core radius & \( 1.40897 \times 10^{-15} \, \text{m} \) \\
-\( C_e \) & Swirl velocity & \( 1.09384563 \times 10^6 \, \text{m/s} \) \\
+\( \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} \) & Swirl velocity & \( 1.09384563 \times 10^6 \, \text{m/s} \) \\
 \( \alpha' \) & Helicity–mass conversion factor & \( \frac{8\pi}{C_e} \approx 2.3 \times 10^{-5} \, \text{s/m} \) \\
 \( \gamma \) & Trefoil helicity coupling coefficient & \( \boxed{0.005901} \) \\
 \hline

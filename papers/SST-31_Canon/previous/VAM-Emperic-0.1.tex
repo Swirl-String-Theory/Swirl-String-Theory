@@ -97,7 +97,7 @@
         \item \textbf{Swirl profile:} $\Omega_{\text{swirl}}(r) = \frac{C_e}{r_c} \exp(-r/r_c)$ (consistent with Canon~\S3.4).
         \item \textbf{Time-rate (dimensionally corrected):} $dt_{\text{local}} = dt_{\infty} \sqrt{1 - |\omega|^2 r_c^2 / c^2} = dt_{\infty} \sqrt{1 - v_t^2/c^2}$.
         \item \textbf{Mass/Energy:} $E_{\text{VAM}} = \frac{4}{\alpha\varphi} \left(\frac{1}{2} \rho_{\text{\ae}}^{(\text{fluid})} C_e^2\right) V$, $M = E_{\text{VAM}}/c^2$.
-        \item \textbf{G coupling:} $G_{\text{swirl}} = \frac{C_e c^5 t_p^2}{2 F_{\text{\ae}}^{\max} r_c^2}$.
+        \item \textbf{G coupling:} $G_{\text{swirl}} = \frac{\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} c^5 t_p^2}{2 F_{\text{\ae}}^{\max} r_c^2}$.
         \item \textbf{Helicity/Lagrangian:} Canon~\S4 form with $H[\vec{v}] = \int (\vec{v} \cdot \vec{\omega})\,dV$ and incompressibility via $\lambda (\nabla\cdot\vec{v})$.
     \end{itemize}
     (Full ledger with file pointers is in the generated CSV: \texttt{equations\_shortlist.csv}.)
@@ -157,7 +157,7 @@
     \begin{itemize}
         \item \textbf{Fine-structure constant from swirl speed:}
         \[
-            \boxed{\alpha = \frac{2 C_e}{c}} \qquad \Longleftrightarrow \qquad \boxed{C_e = \frac{c\,\alpha}{2}}
+            \boxed{\alpha = \frac{2 C_e}{c}} \qquad \Longleftrightarrow \qquad \boxed{\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} = \frac{c\,\alpha}{2}}
         \]
         Dimensionality: velocity ratio $\rightarrow$ dimensionless (OK). Numerical check (Canon values): $\alpha=0.007297352557$.
 
@@ -169,7 +169,7 @@
 
         \item \textbf{Equivalents for $G$:}
         \[
-            \boxed{G = \frac{\alpha_g c^{3} r_c}{C_e M_e} = \frac{C_e c\, \ell_p^{2}}{r_c M_e}}
+            \boxed{G = \frac{\alpha_g c^{3} r_c}{\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} M_e} = \frac{\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} c\, \ell_p^{2}}{r_c M_e}}
         \]
         Using the VAM identity:
         \[
@@ -177,7 +177,7 @@
         \]
         This equals the existing Canon coupling:
         \[
-            \boxed{G_{\text{swirl}}=\frac{C_e c^{5} t_p^{2}}{2 F_{\text{\ae}}^{\max} r_c^{2}}}
+            \boxed{G_{\text{swirl}}=\frac{\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} c^{5} t_p^{2}}{2 F_{\text{\ae}}^{\max} r_c^{2}}}
         \]
         Numerical check (Canon values): $G=6.6743013\times10^{-11}\;\text{m}^3\,\text{kg}^{-1}\,\text{s}^{-2}$.
     \end{itemize}

@@ -88,8 +88,6 @@
     \begin{tikzpicture}[use Hobby shortcut]
         \begin{knot}[
             consider self intersections,
-            clip width=5pt,
-            clip radius=3pt,
             ignore endpoint intersections=true,
             flip crossing/.list={2,4,6,8,10,12,14,16,18}
 % keep draft mode commented unless you want crossing indices
@@ -99,7 +97,6 @@
         \def\KPATH{(0,0) circle (2cm)}
         \RenderTwist{\KPATH}{\TWISTS}{\AMP} % 6 Turns
         \node[font=\bfseries\sffamily] at (0,-2.5) {Unknot ($0_1$)};
-        \strand
         \end{knot}
     \end{tikzpicture}
 
