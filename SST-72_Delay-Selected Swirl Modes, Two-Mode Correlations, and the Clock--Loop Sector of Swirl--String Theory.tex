@@ -1,0 +1,949 @@
+%! Author = Omar Iskandarani
+%! Date = 4/3/2026
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! License = © 2025 Omar Iskandarani. All rights reserved. This manuscript is made available for academic reading and citation only. No republication, redistribution, or derivative works are permitted without explicit written permission from the author. Contact: info@omariskandarani.com
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxx
+
+\newcommand{\paperdoi}{10.5281/zenodo.xxx}
+\newcommand{\papertitle}{Reduced Delay-Loop Dynamics in Swirl--String Theory:\\ Branch Selection, Saturation, Positivity Filtering, and Topological Realization}
+
+
+%=========================================
+% % PREAMBLE, PACKAGES AND DOCUMENT CONFIGURATION
+%=========================================
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools,bm}
+\usepackage{siunitx}
+\usepackage[hidelinks]{hyperref}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{physics}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{mathrsfs}
+
+
+% swirl arrows (context-aware)
+% ---------- SST macro prelude ----------
+\newcommand{\swirlarrow}{\mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}}
+\newcommand{\swirlarrowcw}{\mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}}
+\newcommand{\vswirl}{\mathbf{v}_{\swirlarrow}}
+\newcommand{\vswirlcw}{\mathbf{v}_{\swirlarrowcw}}
+\newcommand{\SwirlClock}{S_{(t)}^{\swirlarrow}}
+\newcommand{\SwirlClockcw}{S_{(t)}^{\swirlarrowcw}}
+\newcommand{\rhoF}{\rho_{\!f}}\newcommand{\rhof}{\rho_{\!f}}     % effective fluid density
+\newcommand{\rhoE}{\rho_{\!E}}\newcommand{\rhoe}{\rho_{\!E}}                           % swirl energy density
+\newcommand{\rhoM}{\rho_{\!m}}\newcommand{\rhom}{\rho_{\!m}}                           % mass-equivalent density
+\newcommand{\rhocore}{\rho_{\text{core}}}
+\newcommand{\rc}{r_c}           % string core radius (swirl string radius)
+\newcommand{\VolH}[1]{\operatorname{Vol}_{\!\mathbb{H}}(#1)}
+\newcommand{\Fmaxswirl}{F^{\max}_{\mkern-1mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}}
+\newcommand{\Fmax}{F^{\max}_{\mkern-1mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}} 
+\newcommand{\FmaxEM}{F^{\max}_{\mathrm{EM}}}
+\newcommand{\FmaxG}{F_{\mathrm{G}}^{\max}}               % G-like maximal force scale
+\newcommand{\vscore}{v_{\swirlarrow}}                    % shorthand: |v_swirl| at r=r_c
+\newcommand{\vnorm}{\lVert \mathbf{v}_{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}} \rVert}  %swirl speed magnitude
+\newcommand{\omegas}{\boldsymbol{\omega}_{\swirlarrow}}  % swirl vorticity
+\newcommand{\Om}{\Omega_{\swirlarrow}}                   % swirl angular frequency profile
+
+\newcommand{\Lag}{\mathcal{L}}
+\newcommand{\Ham}{\mathcal{H}}
+\newcommand{\Oloop}{\Omega_\textrm{loop}}
+\newcommand{\tauloop}{\tau_\textrm{loop}}
+\newcommand{\vtr}{v_\textrm{tr}}
+
+% ---------- status tags ----------
+\newcommand{\TagT}{\textbf{[T]}} % textbook / standard imported
+\newcommand{\TagS}{\textbf{[S]}} % SST closure / interpretation
+\newcommand{\TagD}{\textbf{[D]}} % derived in this article
+\newcommand{\TagC}{\textbf{[C]}} % canon-calibrated / canon-adopted
+\newcommand{\TagR}{\textbf{[R]}} % research-track ansatz
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{assumption}[definition]{Assumption}
+\newtheorem{remark}[definition]{Remark}
+
+\theoremstyle{plain}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{corollary}[definition]{Corollary}
+
+
+\newcommand{\titlepageOpen}{
+    \begin{titlepage}
+        \thispagestyle{empty}  \centering
+        \Large \bfseries \papertitle \par \vspace{1cm}
+        {\Large \itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par} \vspace{0.5cm}
+        {\today \par}  \vspace{0.5cm}
+}
+
+\newcommand{\titlepageClose}{
+        \vfill \raggedright \null
+        \begin{picture}(0,0)
+            \put(0,-45){  % Shift 200pt left, 40pt down
+                \begin{minipage}[b]{0.7\textwidth} \footnotesize
+                    \renewcommand{\arraystretch}{1.0} \noindent\rule{\textwidth}{0.4pt} \\[0.5em]
+                    \textsuperscript{\textbf{*}} Independent Researcher, Groningen, The Netherlands \\
+                    Email: \texttt{info@omariskandarani.com} \\
+                    ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}} \\
+                    DOI: \href{https://doi.org/\paperdoi}{\paperdoi}
+                \end{minipage}
+            }
+        \end{picture}
+    \end{titlepage}
+}
+%=========================================
+% Start Document - Title Page
+%=========================================
+\begin{document}
+    \titlepageOpen
+
+
+\begin{abstract}
+We formulate a reduced dynamical sector of Swirl--String Theory (SST) in which closed-loop transport on the SST clock foliation induces delay-selected branch structure, while a nonlinear amplitude sector provides threshold stabilization of coherent modes. The aim is not to claim that external positivity-bootstrap results for relativistic spin-$3/2$ particles realize SST directly, but rather to extract a transferable mathematical lesson: consistency conditions can force the low-energy field content and rule out isolated reduced sectors. Motivated by this, we augment the SST delay-loop framework with a positivity-based consistency filter on reduced excitations. The resulting hierarchy is: the parent SST field theory defines the continuum ontology; a closed-loop phase reduction yields a delay equation with discrete, stability-filtered branches; a saturating amplitude equation determines whether those branches survive dynamically; positivity-inspired growth constraints test whether a reduced branch can exist in isolation; and the SST topological mass/stability functional determines which surviving branches correspond to long-lived radiation-like or particle-like states. We also outline an SST analogue of an EFT-hedron program based on branch-symmetric dispersion relations and null constraints.
+\end{abstract}
+
+    \titlepageClose
+
+
+        \tableofcontents
+        \newpage
+
+
+
+\section{Scope and epistemic framing}\label{sec:scope}
+
+The purpose of this article is limited and technical. We do \emph{not} claim that recent positivity-bootstrap results for relativistic massive spin-$3/2$ particles prove SST. Rather, we extract from them a structural lesson:
+
+\begin{equation}
+\boxed{
+\text{finite loop-return}
+\;+\;
+\text{branch selection under delayed feedback}
+\;+\;
+\text{nonlinear saturation}
+\;+\;
+\text{consistency filtering on amplitude growth}
+}
+\label{eq:structure}
+\end{equation}
+
+can be embedded coherently into the SST clock--foliation and topological sectors.
+
+The logic is layered:
+
+\begin{enumerate}[label=\textbf{L\arabic*.}]
+\item \textbf{Parent continuum layer.} The covariant clock--foliation, gauge, two-form, and soliton sectors of SST.
+\item \textbf{Reduced loop-phase layer.} A delay equation for phase evolution on a closed SST transport loop.
+\item \textbf{Reduced amplitude layer.} A thresholded saturating envelope sector for coherent reduced modes.
+\item \textbf{Consistency-filter layer.} A positivity-inspired rule excluding isolated reduced sectors whose amplitudes or response kernels grow too rapidly.
+\item \textbf{Topological realization layer.} The SST mass/stability functional selecting which reduced branches correspond to long-lived states.
+\end{enumerate}
+
+\begin{center}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.30\textwidth} >{\raggedright\arraybackslash}p{0.12\textwidth} >{\raggedright\arraybackslash}p{0.42\textwidth}}
+\toprule
+\textbf{Statement / object} & \textbf{Status} & \textbf{Interpretation} \\
+\midrule
+Clock foliation \(u^\mu \propto \partial^\mu T\) & \TagC & Canon-adopted parent structure of SST. \\
+Covariant SST action \(\Lag[T,\Phi,B_{\mu\nu},W_\mu,\Psi_K]\) & \TagC & Parent continuum theory. \\
+Loop-return time \(\tauloop=L_{\rm loop}/\vtr\) & \TagD & Reduced consequence of closed transport on the foliation. \\
+Delay phase equation \(\dot\phi=\omega_0+\kappa\sin[\phi(t-\tauloop)-\phi(t)]\) & \TagD & First-harmonic reduced loop law. \\
+Discrete branch ladder \(\Oloop^{(n)}\approx 2\pi n/\tauloop+\delta\Omega_n\) & \TagD & Delay-selected branch family. \\
+Two-mode cubic saturation sector & \TagR & Reduced amplitude ansatz motivated by a structural analogue. \\
+Positivity filter \(n\le 4\) for leading reduced growth & \TagD/\TagT & Imported as a methodological template; adapted here to SST reduced sectors. \\
+``No isolated branch'' criterion & \TagR/\TagD & Proposed SST analogue of isolated-sector exclusion. \\
+SST EFT-hedron / null-constraint program & \TagR & Proposed future framework for reduced SST Wilson spaces. \\
+Topological mass functional \(m_K^{(\mathrm{sol})}=M_0\Xi_K\) & \TagC & Canonical SST realization layer. \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\begin{remark}
+The orthodox presentation strategy adopted here is: derive conservatively, interpret explicitly, and localize speculative claims. SST-specific ontology is stated where needed, but the mathematical development is kept as close as possible to standard reduced-model language.
+\end{remark}
+
+\section{Parent SST structure}\label{sec:parent}
+
+\subsection{Clock foliation and projector}
+
+SST organizes dynamics relative to a preferred foliation field \(T(x)\). The unit timelike foliation vector is
+\begin{equation}
+u^\mu
+=
+\frac{\partial^\mu T}{\sqrt{-\,\partial^\alpha T\,\partial_\alpha T}},
+\qquad
+u^\mu u_\mu=-1.
+\tag{\TagC}
+\label{eq:u}
+\end{equation}
+The associated projector onto spatial leaves is
+\begin{equation}
+h_{\mu\nu}=g_{\mu\nu}+u_\mu u_\nu,
+\qquad
+h_{\mu\nu}u^\nu=0.
+\tag{\TagC}
+\label{eq:h}
+\end{equation}
+
+The effective clock / khronon sector is
+\begin{equation}
+\Lag_T
+=
+\frac{M_u^2}{2}
+\Big[
+c_1(\nabla_\mu u_\nu)(\nabla^\mu u^\nu)
++c_2(\nabla_\mu u^\mu)^2
++c_3(\nabla_\mu u_\nu)(\nabla^\nu u^\mu)
++c_4 u^\mu u^\nu (\nabla_\mu u_\alpha)(\nabla_\nu u^\alpha)
+\Big]
++\lambda(u^\mu u_\mu+1).
+\tag{\TagC}
+\label{eq:LT}
+\end{equation}
+The baseline consistency condition is
+\begin{equation}
+c_{13}\equiv c_1+c_3=0.
+\tag{\TagC}
+\label{eq:c13}
+\end{equation}
+
+\subsection{Gauge, two-form, and matter sectors}
+
+The parent SST action is
+\begin{equation}
+\Lag
+=
+-\frac{\kappa_\omega}{4}W^a_{\mu\nu}W^{a\mu\nu}
++\frac{\kappa_B}{12}H_{\mu\nu\rho}H^{\mu\nu\rho}
++\frac12(\nabla_\mu\Phi)(\nabla^\mu\Phi)-V(\Phi)
++\frac{\theta}{4}W^a_{\mu\nu}\widetilde{W}^{a\mu\nu}
++\lambda_1(u^\mu u_\mu+1)
++\lambda_2\nabla_\mu u^\mu
++\sum_K \bar{\Psi}_K\!\left(i\gamma^\mu D_\mu-m_K^{(\mathrm{sol})}\right)\!\Psi_K .
+\tag{\TagC}
+\label{eq:action}
+\end{equation}
+Here
+\begin{equation}
+H_{\mu\nu\rho}=\partial_{[\mu}B_{\nu\rho]},
+\qquad
+W^a_{\mu\nu}
+=
+\partial_\mu W^a_\nu-\partial_\nu W^a_\mu
++g_{\rm sw}f^{abc}W^b_\mu W^c_\nu .
+\tag{\TagC}
+\label{eq:HW}
+\end{equation}
+
+\subsection{Canonical densities and scales}
+
+The canonical densities are
+\begin{equation}
+\rhoE=\frac12 \rhoF \norm{\vswirl}^2,
+\qquad
+\rhoM=\frac{\rhoE}{c^2},
+\tag{\TagC}
+\label{eq:rho}
+\end{equation}
+with circulation quantum
+\begin{equation}
+\Gamma_0=2\pi \rc \norm{\vswirl}.
+\tag{\TagC}
+\label{eq:Gamma0}
+\end{equation}
+The coarse-graining rule is
+\begin{equation}
+\rhoF = K\,\Omega,
+\qquad
+K=\frac{\rhoM \rc}{\norm{\vswirl}}.
+\tag{\TagC}
+\label{eq:K}
+\end{equation}
+
+\subsection{Reduced clock and radiation equations}
+
+The reduced linearized radiation sector obeys
+\begin{equation}
+\partial_t^2\theta-c^2\nabla^2\theta=0,
+\tag{\TagC}
+\label{eq:theta}
+\end{equation}
+and the local clock factor is
+\begin{equation}
+\dd \tau = \dd t \sqrt{1-\frac{v^2}{c^2}}
+\qquad\Longleftrightarrow\qquad
+\dd t(x)=\dd t_\infty\,\SwirlClock(x).
+\tag{\TagC}
+\label{eq:Sclock}
+\end{equation}
+
+\begin{remark}
+Equations~\eqref{eq:u}--\eqref{eq:Sclock} already imply that SST possesses the minimal structure needed for a reduced delay-loop description: a preferred foliation, a wave-carrying sector, and a physical notion of transport time.
+\end{remark}
+
+\section{Closed-loop transport and delay reduction}\label{sec:delay}
+
+\subsection{Loop-return time}
+
+\begin{definition}[Loop-return time]
+For a reduced SST mode propagating on a closed path of effective length \(L_{\rm loop}\) with transport speed \(\vtr\), define
+\begin{equation}
+\tauloop=\frac{L_{\rm loop}}{\vtr}.
+\tag{\TagD}
+\label{eq:tau}
+\end{equation}
+\end{definition}
+
+Sector-wise,
+\begin{equation}
+\vtr=
+\begin{cases}
+c, & \text{radiation / director sector},\\[4pt]
+\lesssim \norm{\vswirl}, & \text{internal swirl sector},\\[4pt]
+v_g, & \text{mode-dependent group velocity.}
+\end{cases}
+\tag{\TagD}
+\label{eq:vtr}
+\end{equation}
+
+\subsection{Reduced phase equation}
+
+\begin{definition}[Loop phase observable]
+Let \(\phi(t)\) denote the phase of a closed circulating reduced SST mode, sampled at a fixed Poincar\'e section of the loop.
+\end{definition}
+
+The most general delayed scalar phase law compatible with loop return is
+\begin{equation}
+\dot{\phi}(t)=\omega_0+F\!\left(\phi(t-\tauloop)-\phi(t)\right),
+\tag{\TagD}
+\label{eq:generic}
+\end{equation}
+where \(F\) is \(2\pi\)-periodic. Retaining the leading Fourier harmonic yields
+\begin{equation}
+\dot{\phi}(t)
+=
+\omega_0+\kappa\sin\!\big[\phi(t-\tauloop)-\phi(t)\big].
+\tag{\TagD}
+\label{eq:delay}
+\end{equation}
+
+\begin{proposition}[First-harmonic loop-phase reduction]
+Under weak phase pulling and periodic mismatch feedback, closed-loop transport reduces to Eq.~\eqref{eq:delay}.
+\end{proposition}
+
+\begin{proof}
+Expand the periodic mismatch functional \(F(\Delta\phi)\) in Fourier modes. The constant term can be absorbed into \(\omega_0\). The leading odd locking contribution is proportional to \(\sin(\Delta\phi)\), giving Eq.~\eqref{eq:delay}.
+\end{proof}
+
+\subsection{Branch equation and stability}
+
+Uniformly rotating solutions
+\begin{equation}
+\phi(t)=\Oloop t+\phi_0
+\tag{\TagD}
+\label{eq:uniform}
+\end{equation}
+exist iff
+\begin{equation}
+\Oloop=\omega_0-\kappa\sin(\Oloop\tauloop).
+\tag{\TagD}
+\label{eq:branch}
+\end{equation}
+Linear stability requires
+\begin{equation}
+1+\kappa\tauloop\cos(\Oloop\tauloop)>0.
+\tag{\TagD}
+\label{eq:stability}
+\end{equation}
+
+\begin{lemma}[Approximate branch ladder]
+For \(\kappa\tauloop\gtrsim 1\), Eq.~\eqref{eq:branch} admits an approximately discrete family
+\begin{equation}
+\Oloop^{(n)}\approx \frac{2\pi n}{\tauloop}+\delta\Omega_n,
+\qquad n\in\mathbb{Z},
+\tag{\TagD}
+\label{eq:ladder}
+\end{equation}
+filtered by the stability condition \eqref{eq:stability}.
+\end{lemma}
+
+\begin{corollary}[Reduced dynamical route to branch discreteness]
+Closed-loop transport in SST admits a reduced dynamical route to branch discreteness prior to explicit knot classification.
+\tag{\TagD}
+\label{cor:discreteness}
+\end{corollary}
+
+\section{Clock plateaus and circulation labels}\label{sec:clock}
+
+The Time-from-Swirl sector defines the local clock factor
+\begin{equation}
+\SwirlClock(\mathbf{x})
+=
+\sqrt{1-\frac{|v_\perp(\mathbf{x})|^2}{\norm{\vswirl}^2}},
+\qquad
+\dd t(\mathbf{x})=\dd t_\infty\,\SwirlClock(\mathbf{x}).
+\tag{\TagC}
+\label{eq:Slocal}
+\end{equation}
+For loops linking a core singularity one has
+\begin{equation}
+\Gamma_C=n\kappa,
+\qquad
+\kappa=2\pi \rc \norm{\vswirl},
+\tag{\TagC}
+\label{eq:GammaC}
+\end{equation}
+and for a circular loop of radius \(r\),
+\begin{equation}
+v_\theta^{(n)}(r)=\frac{n\kappa}{2\pi r},
+\tag{\TagC}
+\label{eq:vtheta}
+\end{equation}
+hence
+\begin{equation}
+\SwirlClock_n(r)
+=
+\sqrt{
+1-\frac{n^2\kappa^2}{4\pi^2 r^2 \norm{\vswirl}^2}
+}.
+\tag{\TagC}
+\label{eq:Sclockn}
+\end{equation}
+
+\begin{proposition}[Compatibility of delay and plateau labels]
+If the delay-branch index \(n\) and the circulation-plateau index \(n\) refer to the same closed loop sector, then they constitute compatible integer labels of the same transport class.
+\tag{\TagD}
+\label{prop:compatibility}
+\end{proposition}
+
+\begin{proof}
+The delay label counts approximate \(2\pi\)-phase windings accumulated over one loop return. The plateau label counts integer circulation quanta linked by the same loop. Both are closed-loop consistency labels and can therefore be identified on the same sector.
+\end{proof}
+
+\section{Amplitude sector and threshold stabilization}\label{sec:amplitude}
+
+A structurally analogous nonlinear system exhibits a two-mode parametric interaction
+\begin{equation}
+H_{\rm int}
+=
+-\frac{\hbar \Omega_{xy}}{2}
+\left(
+e^{-i\phi_d} b_x^\dagger b_y^\dagger
++
+e^{i\phi_d} b_x b_y
+\right),
+\tag{\TagT}
+\label{eq:phononH}
+\end{equation}
+together with nonlinear amplitude-dependent damping. We use this only as a structural analogue. The claim is not that the external experiment realizes SST, but that it furnishes a concrete example in which threshold, correlation, coherence, and saturation coexist.
+
+\subsection{Reduced SST amplitude ansatz}
+
+For two reduced SST modes \(a_1,a_2\), define
+\begin{equation}
+\dot{a}_1 = (\mu_1-\beta_1|a_1|^2)a_1 + g\,a_2^\ast + \eta_1,
+\qquad
+\dot{a}_2 = (\mu_2-\beta_2|a_2|^2)a_2 + g\,a_1^\ast + \eta_2,
+\qquad
+\beta_i>0.
+\tag{\TagR}
+\label{eq:env}
+\end{equation}
+
+\begin{proposition}[Saturation principle]
+In Eq.~\eqref{eq:env}, positive gain without saturation produces runaway growth, whereas positive cubic saturation permits finite-amplitude attractors.
+\tag{\TagD}
+\label{prop:saturation}
+\end{proposition}
+
+\begin{proof}
+For one uncoupled mode, the amplitude equation is \(\dot A=\mu A-\beta A^3\). If \(\beta=0\) and \(\mu>0\), then \(A\sim e^{\mu t}\). If \(\beta>0\), then the nonzero fixed point satisfies \(A_\ast^2=\mu/\beta\).
+\end{proof}
+
+\section{Positivity-inspired consistency filtering}\label{sec:positivity}
+
+\subsection{Motivation}
+
+Recent positivity-bootstrap results show that, in relativistic EFTs with large scale separation and weak coupling, amplitudes cannot be consistently dominated by terms growing faster than \(E^4\). When the leading reduced amplitude scales as \(E^n\) with \(n>4\), positivity typically forces tunings or the inclusion of extra light sectors; isolated massive spin-$3/2$ sectors fail in precisely this way. \tag{\TagT}
+
+Motivated by this, we introduce an SST reduced-sector filter.
+
+\begin{definition}[Reduced growth filter]
+Let \(\mathcal M_{\rm red}(E,\vartheta)\) denote a reduced SST amplitude or response kernel expanded as
+\begin{equation}
+\mathcal M_{\rm red}(E,\vartheta)
+=
+c_2(\vartheta)E^2+c_4(\vartheta)E^4+c_6(\vartheta)E^6+\cdots.
+\tag{\TagR}
+\label{eq:Mred}
+\end{equation}
+We call the reduced sector \emph{admissible in isolation} if, after all internally available SST tunings are imposed, the dominant term satisfies
+\begin{equation}
+\mathcal M_{\rm red}(E,\vartheta)=O(E^4)
+\quad\text{as }E\to \infty
+\text{ within the reduced EFT regime.}
+\tag{\TagR}
+\label{eq:E4rule}
+\end{equation}
+\end{definition}
+
+\begin{remark}
+Equation~\eqref{eq:E4rule} is not claimed as a theorem of full SST. It is an imported consistency heuristic from positivity bootstrap, promoted here to a working criterion for reduced SST sectors.
+\end{remark}
+
+\subsection{No isolated branch principle}
+
+\begin{proposition}[No isolated branch principle]
+If a proposed reduced SST excitation yields a leading isolated response of the form
+\begin{equation}
+\mathcal M_{\rm red}^{\rm iso}(E,\vartheta)\sim E^n,
+\qquad n>4,
+\tag{\TagR}
+\label{eq:iso-growth}
+\end{equation}
+and if no internal SST tuning reduces this growth to \(O(E^4)\), then the excitation should not be treated as an admissible isolated low-energy branch. It must instead be embedded into a coupled reduced sector with additional companion fields, channels, or topological constraints.
+\tag{\TagR/\TagD}
+\label{prop:noisolated}
+\end{proposition}
+
+\begin{proof}[Heuristic derivation]
+This is a direct adaptation of the positivity-bootstrap logic. In the external spin-$3/2$ case, isolated sectors with \(E^6\) growth fail unless extra light fields are added. By analogy, if a reduced SST sector displays the same structural pathology, one should not interpret it as a standalone excitation sector.
+\end{proof}
+
+\begin{remark}
+This principle is especially useful for auditing proposed SST excitations: topologically protected particle candidates are expected to be safer than isolated non-topological resonances, while gauge-like or weak-like modes are more likely to require coupled-sector packaging.
+\end{remark}
+
+\section{Unified reduced delay--amplitude model}\label{sec:unified}
+
+\begin{definition}[Unified reduced ansatz]
+For \(N\) coupled reduced SST modes, define
+\begin{equation}
+\dot{\phi}_i(t)
+=
+\omega_i
++
+\sum_j \kappa_{ij}\sin\!\big[\phi_j(t-\tau_{ij})-\phi_i(t)\big]
++
+\chi_i A_i^2,
+\tag{\TagR}
+\label{eq:uphi}
+\end{equation}
+\begin{equation}
+\dot{A}_i(t)
+=
+\mu_i A_i
+-
+\beta_i A_i^3
++
+\sum_j \sigma_{ij}\cos\!\big[\phi_j(t-\tau_{ij})-\phi_i(t)\big]A_i
++
+\eta_i(t),
+\qquad \beta_i>0.
+\tag{\TagR}
+\label{eq:uA}
+\end{equation}
+\end{definition}
+
+\subsection{Dimensional consistency}
+
+The dimensions are
+\[
+[\phi_i]=1,\qquad [\omega_i]=[\kappa_{ij}]=[\chi_iA_i^2]={\rm s}^{-1},
+\]
+\[
+[\mu_i]={\rm s}^{-1},\qquad [\beta_i]={\rm s}^{-1}[A_i]^{-2},\qquad [\sigma_{ij}]={\rm s}^{-1}.
+\]
+Hence Eqs.~\eqref{eq:uphi}--\eqref{eq:uA} are dimensionally closed. \hfill \TagD
+
+\subsection{Single-mode branch law}
+
+For one mode with \(\phi(t)=\Omega t+\phi_0\) and constant amplitude \(A_\ast\),
+\begin{equation}
+\Omega
+=
+\omega_0-\kappa\sin(\Omega\tau)+\chi A_\ast^2,
+\tag{\TagD}
+\label{eq:Omega1}
+\end{equation}
+\begin{equation}
+0=\mu-\beta A_\ast^2+\sigma\cos(\Omega\tau).
+\tag{\TagD}
+\label{eq:Aeq}
+\end{equation}
+Thus
+\begin{equation}
+A_\ast^2=\frac{\mu+\sigma\cos(\Omega\tau)}{\beta}
+\qquad\text{(when positive),}
+\tag{\TagD}
+\label{eq:Astar}
+\end{equation}
+and therefore
+\begin{equation}
+\Omega
+=
+\omega_0-\kappa\sin(\Omega\tau)
++
+\chi\frac{\mu+\sigma\cos(\Omega\tau)}{\beta}.
+\tag{\TagD}
+\label{eq:Omegafinal}
+\end{equation}
+
+\begin{proposition}[Amplitude-corrected reduced branch equation]
+Equation~\eqref{eq:Omegafinal} is the leading amplitude-corrected reduced branch law in the unified SST delay--amplitude model.
+\end{proposition}
+
+\section{Toward an SST EFT-hedron}\label{sec:efthedron}
+
+\subsection{Motivation from symmetric dispersion relations}
+
+A recent positivity analysis of Goldstino amplitudes organizes the low-energy Wilson space using a crossing-symmetric variable
+\begin{equation}
+p^2=\frac{tu}{s},
+\tag{\TagT}
+\label{eq:p2}
+\end{equation}
+and derives \(t\)–\(u\)-symmetric dispersion relations plus null constraints. This motivates an SST analogue.
+
+\begin{definition}[SST EFT-hedron program]
+An \emph{SST EFT-hedron} is a convex or semi-convex allowed region in the space of reduced SST Wilson coefficients, determined by:
+\begin{enumerate}[label=(\roman*)]
+\item analyticity or analyticity-like assumptions for a reduced SST amplitude,
+\item branch/crossing symmetries appropriate to the SST sector,
+\item positivity-like inequalities on discontinuities or response kernels,
+\item null constraints generated by symmetry.
+\end{enumerate}
+\tag{\TagR}
+\label{def:efthedron}
+\end{definition}
+
+\subsection{Prototype SST reduced amplitude}
+
+We propose a prototype four-mode reduced amplitude
+\begin{equation}
+\mathcal M_{\rm SST}(1,2,3,4)=\mathcal K(s,t,u)\,f_{\rm SST}(s,t),
+\tag{\TagR}
+\label{eq:MSST}
+\end{equation}
+with
+\begin{equation}
+f_{\rm SST}(s,t)=f_{\rm SST}(s,u),
+\tag{\TagR}
+\label{eq:fsym}
+\end{equation}
+for sectors where branch exchange or chirality exchange induces a \(t\leftrightarrow u\)-type symmetry.
+
+A corresponding SST-symmetric reduced variable can then be introduced formally as
+\begin{equation}
+p_{\rm SST}^2 \equiv \frac{tu}{s},
+\tag{\TagR}
+\label{eq:pSST}
+\end{equation}
+or replaced by an SST-specific branch-symmetric variable once the precise reduced kinematics are fixed.
+
+\begin{remark}
+At this stage \(p_{\rm SST}^2\) is a placeholder rather than a final definition. Its role is to indicate how an SST null-constraint program could be organized.
+\end{remark}
+
+\subsection{Null constraints and extremal models}
+
+Expanding
+\begin{equation}
+f_{\rm SST}(s,p_{\rm SST}^2)
+=
+\sum_{n,k} g^{\rm SST}_{n,k}\, s^{\,n-k}\,(p_{\rm SST}^2)^k,
+\tag{\TagR}
+\label{eq:fexp}
+\end{equation}
+one can imagine deriving relations of the form
+\begin{equation}
+\mathcal N_m[g^{\rm SST}_{n,k}] = 0,
+\qquad
+\mathcal P_\alpha[g^{\rm SST}_{n,k}] \ge 0,
+\tag{\TagR}
+\label{eq:nullpos}
+\end{equation}
+which would define the allowed reduced SST Wilson region.
+
+The physically most interesting points are expected to lie on boundaries or corners of this region:
+\begin{equation}
+\text{extremal SST reduced models}
+\;\Longleftrightarrow\;
+\text{boundary points of the SST EFT-hedron.}
+\tag{\TagR}
+\label{eq:corners}
+\end{equation}
+
+\section{Thermodynamic and atomic-bridge insertion point}\label{sec:atomic}
+
+The thermodynamic sector uses the free-energy extremum
+\begin{equation}
+\frac{dF}{dr}=0
+\qquad\Longleftrightarrow\qquad
+\frac{dE}{dr}=T_{\rm sw}\frac{dS}{dr},
+\tag{\TagC}
+\label{eq:freeE}
+\end{equation}
+and the canonical core-to-orbital bridge
+\begin{equation}
+a_0=\frac{c^2}{2\norm{\vswirl}^2}\rc.
+\tag{\TagC}
+\label{eq:a0}
+\end{equation}
+The atomic bridge introduces a delayed Adler-type phase law
+\begin{equation}
+\dot{\varphi}(t)=\omega_0-\kappa\sin\!\big(\varphi(t)-\varphi(t-\tau_c)\big),
+\tag{\TagR}
+\label{eq:atomicdelay}
+\end{equation}
+which leads to the shell-radius law
+\begin{equation}
+r_n=\frac{n^2}{Z_{\rm eff}(r_n)}\,a_0^{\rm SST}.
+\tag{\TagR}
+\label{eq:rn}
+\end{equation}
+
+\begin{proposition}[Compatibility with the atomic bridge]
+The delayed orbital phase law \eqref{eq:atomicdelay} is a sector-specific realization of the generic loop-phase reduction \eqref{eq:delay}.
+\tag{\TagD}
+\end{proposition}
+
+\section{Topological realization and mass layer}\label{sec:topology}
+
+\subsection{Canonical mass layer}
+
+SST assigns soliton masses through
+\begin{equation}
+m_K^{(\mathrm{sol})}=E_K
+\tag{\TagC}
+\label{eq:mEK}
+\end{equation}
+or canonically
+\begin{equation}
+m_K^{(\mathrm{sol})}=M_0\Xi_K.
+\tag{\TagC}
+\label{eq:mXi}
+\end{equation}
+One canonical factor is
+\begin{equation}
+\Xi_K
+=
+\frac{\alpha_C C(K)+\beta_L L(K)}{T_{01}}
+\,\phi^{-2k_K}.
+\tag{\TagC}
+\label{eq:Xi}
+\end{equation}
+The geometric mass layer gives
+\begin{equation}
+M_0(T)=2\pi^3 \rhoM \frac{\rc^5}{\lambda_c^2}L_{\rm tot}(T),
+\tag{\TagC}
+\label{eq:M0}
+\end{equation}
+and the shielding-gate identity
+\begin{equation}
+\frac{4}{\alpha}=\frac{\lambda_c}{\pi \rc}.
+\tag{\TagC}
+\label{eq:shield}
+\end{equation}
+
+\subsection{Canonical selection functional}
+
+The selection functional is
+\begin{equation}
+E_{\rm eff}[K]=\alpha\,C(K)+\beta\,L(K)+\gamma\,H(K).
+\tag{\TagC}
+\label{eq:Eeff}
+\end{equation}
+
+\begin{proposition}[Layered realization principle]
+The states realized as long-lived SST candidates satisfy
+\begin{equation}
+\text{delay-selected branch}
+\;\Longrightarrow\;
+\text{amplitude-stable branch}
+\;\Longrightarrow\;
+\text{consistency-admissible reduced sector}
+\;\Longrightarrow\;
+\text{topologically admissible knot/link}
+\;\Longrightarrow\;
+\text{mass assigned by } m_K^{(\mathrm{sol})}.
+\tag{\TagD}
+\label{eq:layered}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Sections~\ref{sec:delay}, \ref{sec:amplitude}, and \ref{sec:positivity} define branch existence, dynamic survival, and reduced consistency admissibility. The canonical SST ontology requires persistent particle-like states to be closed topological defects stabilized by conserved charges and by minima of \(E_{\rm eff}[K]\). The mass layer then assigns \(m_K^{(\mathrm{sol})}\) to those stabilized sectors.
+\end{proof}
+
+\section{Interpretation in the most orthodox register consistent with SST}\label{sec:interpretation}
+
+\subsection{What is being claimed}
+The reduced delay equation is claimed to be a mathematically consistent phase reduction of closed transport on the SST clock foliation. The unified amplitude sector is claimed only as a plausible reduced completion. The positivity-inspired growth filter is proposed as a consistency heuristic for deciding which SST reduced sectors can be interpreted as isolated excitations and which must be embedded in coupled low-energy packages.
+
+\subsection{What is not being claimed}
+We do not claim that the external positivity-bootstrap paper proves SST ontology. We do not claim that the present reduced equations alone derive the full particle spectrum. We do not claim that the SST EFT-hedron is already constructed here; only its mathematical outline is given.
+
+\subsection{What remains distinctively SST}
+The following points are retained explicitly because removing them would erase the SST essence:
+\begin{enumerate}[label=(\alph*)]
+\item the foliation field \(T(x)\) is physically meaningful within the SST interpretation;
+\item circulation and topology are ontic, not merely calculational;
+\item branch discreteness can arise dynamically at the reduced level, while topological stabilization determines which branches correspond to long-lived states;
+\item proposed excitations should be classified by whether they are admissible in isolation or only as members of coupled reduced sectors.
+\end{enumerate}
+
+\subsection{Compact summary}
+The most concise orthodox-compatible SST summary is
+\begin{equation}
+\boxed{
+\text{Within the SST interpretation, closed-loop transport on a physical foliation admits a reduced delay law; this law yields branch discreteness dynamically, saturation stabilizes branch amplitudes, and positivity-inspired filtering constrains which reduced sectors can exist in isolation before topology realizes them as long-lived states.}
+}
+\tag{\TagD/\TagS}
+\label{eq:compact}
+\end{equation}
+
+\section{Status, assumptions, and falsifiers}\label{sec:status}
+
+\subsection*{Assumptions}
+\begin{enumerate}[label=(A\arabic*)]
+\item A closed SST excitation admits a collective phase variable.
+\item The leading mismatch feedback is well approximated by the first Fourier harmonic.
+\item The reduced amplitude sector can be modeled to leading order by cubic saturation.
+\item The relevant loop transport speed \(\vtr\) is well defined.
+\item Topological stabilization acts after branch selection, not before it.
+\item Some reduced SST sectors admit enough analyticity and symmetry structure for positivity-inspired filtering to be meaningful.
+\end{enumerate}
+
+\subsection*{Falsifiers}
+\begin{enumerate}[label=(F\arabic*)]
+\item Closed-loop SST simulations fail to exhibit delay-selected branch families as \(L_{\rm loop}/\vtr\) is varied.
+\item Finite-amplitude reduced SST branches do not require any saturation-like mechanism.
+\item The SST topological sector is found to be fully independent of any pre-topological branch structure.
+\item Reduced collective observables near threshold show no correlation structure when the unified model predicts it.
+\item No sensible analyticity or null-constraint program can be constructed for any nontrivial reduced SST amplitude.
+\end{enumerate}
+
+\section{Conclusion}\label{sec:conclusion}
+
+The present section supports the following restrained conclusion.
+
+\begin{equation}
+\boxed{
+\text{The existing SST clock, wave, and topological sectors are mathematically compatible with a reduced delay-loop description.}
+}
+\end{equation}
+\begin{equation}
+\boxed{
+\text{That reduced description yields a discrete family of stability-filtered branches on closed loops.}
+}
+\end{equation}
+\begin{equation}
+\boxed{
+\text{A nonlinear amplitude sector provides a plausible saturation mechanism for branch survival above threshold.}
+}
+\end{equation}
+\begin{equation}
+\boxed{
+\text{Positivity-bootstrap methods motivate an SST consistency filter distinguishing isolated reduced sectors from those that require companion fields or coupled channels.}
+}
+\end{equation}
+\begin{equation}
+\boxed{
+\text{Within the SST interpretation, topology remains the realization layer that converts surviving admissible branches into long-lived states.}
+}
+\end{equation}
+
+For a 10-year-old: if a ripple runs around a loop, only some rhythms fit the time it takes to come back to where they started. If the ripple gets too strong, it needs a brake. And if the rules say that ripple cannot exist alone, it needs partner ripples or extra pieces. In SST, the ones that survive and also tie into stable knots are the ones that can last a long time.
+
+\begin{thebibliography}{99}
+
+\bibitem{IskandaraniSST00}
+O.~Iskandarani,
+\emph{A Hydrodynamic Lagrangian Framework for Swirl--String Theory},
+manuscript, 2026.
+
+\bibitem{IskandaraniRosetta06}
+O.~Iskandarani,
+\emph{Swirl--String Theory Rosetta Stone v0.6: Translation Guide for Symbols, Macros, and Constants},
+Zenodo, 2026.
+DOI: \texttt{10.5281/zenodo.17606846}.
+
+\bibitem{IskandaraniCanon078}
+O.~Iskandarani,
+\emph{Swirl String Theory (SST) Canon v0.7.8: Quantum Measurement, Time, Gravity, and Atomic Mass from Topological Defects},
+Zenodo, 2026.
+DOI: \texttt{10.5281/zenodo.18913147}.
+
+\bibitem{IskandaraniTimeFromSwirl}
+O.~Iskandarani,
+\emph{Time from Swirl: A Hydrodynamic Origin of Proper Time},
+Zenodo, 2026.
+DOI: \texttt{10.5281/zenodo.17877012}.
+
+\bibitem{IskandaraniThermo}
+O.~Iskandarani,
+\emph{Multi-Scale Thermodynamics of the Swirl Condensate: A Unified Hydrodynamic--Topological Framework for Swirl--String Theory},
+Zenodo, 2026.
+DOI: \texttt{10.5281/zenodo.17813283}.
+
+\bibitem{IskandaraniGeoMass}
+O.~Iskandarani,
+\emph{The Geometric Limit of the Swirl-String Mass Functional: Bridging Topological Impedance and Gravitational Time Dilation},
+manuscript, 2026.
+
+\bibitem{IskandaraniAtomicBridge}
+O.~Iskandarani,
+\emph{A Branch-Resolved Atomic Bridge Model in Swirl-String Theory: Hydrogenic Consistency, Circulation-Sensitive Couplings, and a Handed Atomic Benchmark},
+manuscript, 2026.
+
+\bibitem{IskandaraniPhoton}
+O.~Iskandarani,
+\emph{Photons in Swirl--String Theory (SST): Kinematics on Swirl Strings and Plotting a Laser Beam},
+Zenodo, 2026.
+DOI: \texttt{10.5281/zenodo.18390094}.
+
+\bibitem{BellazziniPomarolRomanoSciotti2026}
+B.~Bellazzini, A.~Pomarol, M.~Romano, and F.~Sciotti,
+``(Super) gravity from positivity,''
+\emph{JHEP} \textbf{03} (2026) 028.
+DOI: \texttt{10.1007/JHEP03(2026)028}.
+arXiv: \texttt{2507.12535}.
+
+\bibitem{YanchukGiacomelli2017}
+S.~Yanchuk and G.~Giacomelli,
+``Spatio-temporal phenomena in complex systems with time delays,''
+\emph{Journal of Physics A: Mathematical and Theoretical} \textbf{50} (2017) 103001.
+DOI: \texttt{10.1088/1751-8121/aa5e8c}.
+
+\bibitem{YeungStrogatz1999}
+M.~K.~S.~Yeung and S.~H.~Strogatz,
+``Time delay in the Kuramoto model of coupled oscillators,''
+\emph{Physical Review Letters} \textbf{82} (1999) 648--651.
+DOI: \texttt{10.1103/PhysRevLett.82.648}.
+
+\bibitem{Helmholtz1858}
+H.~von Helmholtz,
+``\"Uber Integrale der hydrodynamischen Gleichungen, welche den Wirbelbewegungen entsprechen,''
+\emph{Journal f\"ur die reine und angewandte Mathematik} \textbf{55} (1858) 25--55.
+
+\bibitem{Kelvin1867}
+W.~Thomson (Lord Kelvin),
+``On vortex motion,''
+\emph{Transactions of the Royal Society of Edinburgh} \textbf{25} (1867) 217--260.
+
+\bibitem{Jacobson2008}
+T.~Jacobson,
+``Einstein-\AE ther gravity: a status report,''
+\emph{PoS QG-PH} (2007) 020, published 2008.
+DOI: \texttt{10.22323/1.043.0020}.
+
+\end{thebibliography}
+
+\end{document}
