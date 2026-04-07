@@ -1,0 +1,353 @@
+%! Author = Omar Iskandarani
+%! Date = 4/7/2026
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxx
+
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsfonts,bm}
+\usepackage{siunitx}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[absolute,overlay]{textpos}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+\newcommand{\paperdoi}{10.5281/zenodo.xxx}
+\newcommand{\papertitle}{Phase Two: Trefoil Primitive-Cycle}
+\newcommand{\paperkeywords}{trefoil, primitive cycle, Biot--Savart, no-contact radius, Swirl--String Theory}
+
+% Notation
+\newcommand{\AK}{A_{\mathrm{K}}}
+\newcommand{\Aratio}{A_{\mathrm{ratio}}}
+\newcommand{\anc}{a_{\mathrm{nc}}}
+\newcommand{\rc}{r_{\!c}}
+\newcommand{\astar}{a_{\ast}}
+\newcommand{\zetatrefoil}{\zeta_{\mathrm{trefoil}}}
+\newcommand{\elltrefoil}{\ell_{\mathrm{trefoil}}}
+
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+    \Large \bfseries \papertitle \par \vspace{1cm}
+    {\Large \itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par} \vspace{0.5cm}
+    {\small Independent Researcher, Groningen, The Netherlands\par} \vspace{0.5cm}
+    {\today \par} \vspace{0.5cm}
+\end{center}
+
+\begin{abstract}
+This note fixes the \emph{trefoil primitive-cycle} invariant used in Phase 2 of the Swirl--String Theory (SST) trefoil program. Using the ideal trefoil source \texttt{ideal.txt} (topology \(3{:}1{:}1\), \(183\) modes, \(k_{\max}=250\)) and the robustness export bundle in the SSTcore repository, we define the primitive closure deviation
+\[
+\zetatrefoil \equiv \frac{\anc}{\rc}-1
+\]
+from the no-contact radius \(\anc\) and the core radius \(\rc\). The numerical inputs \(\AK\), \(\Aratio\), \(\anc/\rc\), and the provisional stationary ratio \(\astar/\rc\) are taken from \texttt{final\_best\_estimate.csv}. We then introduce the associated primitive logarithmic cycle length
+\[
+\elltrefoil \equiv \log\!\left(\frac{\anc}{\rc}\right)=\log(1+\zetatrefoil),
+\]
+and formulate a minimal \emph{primitive-cycle zeta ansatz} for the trefoil sector. At this stage, the primitive invariant is data-driven, while the zeta construction is a formal Phase 2.1 ansatz whose completion factor remains to be fixed in later phases by reflection-symmetry matching and comparison with the trefoil boundary transform.
+\end{abstract}
+
+Keywords: \paperkeywords
+
+\begin{textblock*}{1\textwidth}(0.15\textwidth,1.1\textheight)\raggedright\footnotesize\renewcommand{\arraystretch}{1.0}
+\noindent\rule{\textwidth}{0.4pt}\\[0.5em]
+\textsuperscript{\textbf{*}} Email: \texttt{info@omariskandarani.com}\\
+ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}}\\
+DOI: \href{https://doi.org/\paperdoi}{\paperdoi}
+\end{textblock*}
+
+\section{Context}
+
+In the SST project, an ideal trefoil is generated from an ``ideal source'' identified in the export files as \texttt{ideal.txt} with topology \(3{:}1{:}1\), \(183\) modes, and \(k_{\max}=250\). The trefoil closure is analysed numerically using multiple mesh sizes and fitting procedures. The relevant outputs are stored under
+\begin{quote}
+\texttt{SST\_Dashboard/trefoil\_closure/exports/\\
+sst\_ideal\_trefoil\_robustness\_outputs\_v3\_2nd/}
+\end{quote}
+in the SSTcore repository.
+
+The file \texttt{final\_best\_estimate.csv} summarises the best estimates across the robustness runs. It records the Biot--Savart coupling constant \(\AK\), the coupling ratio \(\Aratio\), the no-contact radius ratio \(\anc/\rc\), and a provisional stationary radius ratio \(\astar/\rc\). In the current export family, \(\AK\) and \(\Aratio\) are treated as the cleanest current estimates, while \(\astar/\rc\) remains provisional. The present note extracts the primitive-cycle invariant from these \(v3\_2nd\) best-estimate exports only; any later comparison to the trefoil boundary amplitude \(\Phi_{3_1}(t)\) belongs to a subsequent phase.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Best-estimate quantities from \texttt{final\_best\_estimate.csv} (systematic half-ranges as exported).}
+    \label{tab:best-estimates}
+    \begin{tabular}{@{}p{0.34\textwidth}p{0.28\textwidth}p{0.30\textwidth}@{}}
+        \toprule
+        \textbf{Quantity} & \textbf{Definition} & \textbf{Best estimate \(\pm\) systematic half-range} \\
+        \midrule
+        Biot--Savart coupling constant for the trefoil
+            & \(\AK\)
+            & \num{0.07964093} \(\pm\) \num{0.00687376} \\
+        Ratio of \(\AK\) to its theoretical reference
+            & \(\Aratio = \dfrac{\AK}{1/(4\pi)}\)
+            & \num{1.00079746} \(\pm\) \num{0.08637827} \\
+        Ratio of the no-contact radius \(\anc\) to the core radius \(\rc\)
+            & \(\anc/\rc\)
+            & \num{1.00039865} \(\pm\) \num{0.04177283} \\
+        Stationary radius ratio from the full Biot--Savart model (provisional)
+            & \(\astar/\rc\)
+            & \num{1.00674474} \(\pm\) \num{0.04557886} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Definition of the trefoil primitive-cycle invariant}
+
+In the present Phase 2 setting, the \emph{trefoil primitive-cycle invariant} is defined from the no-contact closure branch of the \(3_1\) trefoil sector. It measures the fractional enlargement of the loop radius required to close without self-contact:
+\begin{equation}
+    \zetatrefoil \equiv \frac{\anc}{\rc}-1.
+    \label{eq:zeta-def}
+\end{equation}
+If \(\zetatrefoil=0\), the loop would close at the core radius itself. A positive value of \(\zetatrefoil\) indicates that a small radial expansion is required to avoid self-intersection.
+
+\section{Equivalent empirical forms}
+
+The exported data also include the coupling ratio
+\begin{equation}
+    \Aratio \equiv \frac{\AK}{1/(4\pi)},
+    \qquad
+    \frac{1}{4\pi}\approx \num{0.07957747},
+\end{equation}
+where \(1/(4\pi)\) is the theoretical single-loop coupling constant.
+
+For the current robustness-export family, the data suggest the empirical relation
+\begin{equation}
+    \zetatrefoil \approx \frac{\Aratio-1}{2}.
+    \label{eq:zeta-from-Aratio}
+\end{equation}
+Substituting the current best estimates,
+\[
+\Aratio-1 = \num{0.00079746},
+\qquad
+\frac{\anc}{\rc}-1=\num{0.00039865},
+\]
+gives
+\[
+\frac{\Aratio-1}{2}
+\approx
+\frac{\num{0.00079746}}{2}
+\approx
+\num{0.00039873}
+\approx
+\frac{\anc}{\rc}-1.
+\]
+Thus, within the present export family,
+\begin{equation}
+    \zetatrefoil \approx \frac{\AK-1/(4\pi)}{2\bigl(1/(4\pi)\bigr)}.
+\end{equation}
+This relation should be understood as empirical rather than exact; its stability under future branch-selection refinements remains to be checked.
+
+\section{Numerical value and uncertainty}
+
+Using the best-estimate values from \texttt{final\_best\_estimate.csv}, the primitive closure deviation is
+\begin{equation}
+    \zetatrefoil = \frac{\anc}{\rc}-1 \approx \num{3.99e-4}.
+\end{equation}
+Because the exported half-range on \(\anc/\rc\) is large,
+\[
+\frac{\anc}{\rc} = \num{1.00039865}\pm\num{0.04177283},
+\]
+the uncertainty on \(\zetatrefoil\) is dominated by model-dependent systematics rather than statistical noise. Accordingly, the current value of \(\zetatrefoil\) should be treated as a preliminary central estimate rather than as a final precision invariant.
+
+\section{Step 2.1: primitive logarithmic cycle length}
+
+From the primitive closure deviation, define the primitive logarithmic cycle length
+\begin{equation}
+    \elltrefoil
+    \equiv
+    \log\!\left(\frac{\anc}{\rc}\right)
+    =
+    \log(1+\zetatrefoil).
+    \label{eq:ell-def}
+\end{equation}
+For \(\zetatrefoil\ll 1\), one has the expansion
+\[
+\elltrefoil
+=
+\zetatrefoil-\frac12\zetatrefoil^2+O(\zetatrefoil^3),
+\]
+so numerically \(\elltrefoil\) is extremely close to \(\zetatrefoil\) at the current level of precision.
+
+\section{Step 2.1 ansatz: minimal trefoil primitive-cycle zeta}
+
+Let \(\sigma=\pm 1\) label the two internal handed circulation--torsion branches of the trefoil closure sector, and let
+\[
+\theta_{3_1}^{(\sigma)}\in\mathbb{R}
+\]
+denote a primitive trefoil phase associated with the corresponding branch.
+
+We then define the minimal trefoil primitive-cycle zeta ansatz by
+\begin{equation}
+    Z_{3_1}^{(\sigma)}(s)
+    =
+    \prod_{m=1}^{\infty}
+    \frac{1}{
+    1
+    -2\cos\!\big(m\theta_{3_1}^{(\sigma)}\big)e^{-s m\elltrefoil}
+    +e^{-2s m\elltrefoil}
+    },
+    \qquad
+    \Re(s)>0.
+    \label{eq:primitive-zeta}
+\end{equation}
+Here \(m\) labels repeated traversals of the same primitive trefoil cycle.
+
+Its logarithm expands as
+\begin{equation}
+    \log Z_{3_1}^{(\sigma)}(s)
+    =
+    2\sum_{m=1}^{\infty}\sum_{r=1}^{\infty}
+    \frac{\cos\!\big(rm\theta_{3_1}^{(\sigma)}\big)}{r}
+    e^{-srm\elltrefoil},
+    \label{eq:primitive-zeta-log}
+\end{equation}
+where \(r\) is the standard logarithmic expansion index.
+
+At this stage, \(Z_{3_1}^{(\sigma)}(s)\) is a formal Phase 2.1 ansatz: it provides the product-side candidate associated with the primitive trefoil sector, but it is not yet tied to the trefoil boundary transform by a proven trace formula.
+
+\section{Completed primitive-cycle object}
+
+To incorporate the exact trefoil reflection symmetry introduced in the completion program, define
+\begin{equation}
+    \Xi_{3_1}^{\mathrm{pc}}(s)
+    =
+    G_{3_1}(s)\,
+    Z_{3_1}^{(+)}(s)\,
+    Z_{3_1}^{(-)}(s),
+    \label{eq:completed-primitive}
+\end{equation}
+where \(G_{3_1}(s)\) is a formal completion factor.
+
+At this stage, \(G_{3_1}(s)\) is not yet fixed uniquely. Its determination is deferred to the next phase, where it will be constrained by reflection-symmetry matching and comparison with the trefoil boundary transform. The target symmetry condition is
+\begin{equation}
+    \Xi_{3_1}^{\mathrm{pc}}(s)=-\Xi_{3_1}^{\mathrm{pc}}(1-s).
+    \label{eq:completed-reflection}
+\end{equation}
+The associated critical-line boundary value is
+\begin{equation}
+    \Phi_{3_1}^{\mathrm{pc}}(t)
+    \equiv
+    \Xi_{3_1}^{\mathrm{pc}}\!\left(\frac12+it\right).
+\end{equation}
+
+\section{Interpretation}
+
+The primitive invariant \(\zetatrefoil\) measures how much the trefoil closure must inflate beyond the core radius to avoid self-contact. The associated logarithmic quantity \(\elltrefoil\) is the natural primitive cycle-length variable for the product side of the trefoil duality program.
+
+The function \(Z_{3_1}^{(\sigma)}(s)\) defined above is therefore the minimal SST analogue of an Euler-product or partition-function representation built from a single primitive cycle and its repetitions. In this sense, the present construction supplies the product-side candidate for the trefoil sector, while the eventual comparison to the trefoil critical-line boundary amplitude \(\Phi_{3_1}(t)\) is deferred to a later phase.
+
+\section{Step 2.2: multi-primitive extension in the \(2,3,5\) sector}
+    
+    The trefoil closure sector is canonically associated with the rational \(2{:}3\) mode lock of a closed swirl ring. Accordingly, the integers
+    \[
+        2,\qquad 3
+    \]
+    are taken as the two primitive winding sectors of the \(3_1\) trefoil closure. We further introduce
+    \[
+        5=2+3
+    \]
+    as the minimal mixed interaction / beat sector. At the present level, the \(5\)-sector should be understood as a formal minimal extension rather than as a derived theorem.
+    
+    Using the primitive logarithmic closure length
+    \[
+        \ell_{\mathrm{trefoil}}
+        =
+        \log\!\left(\frac{a_{\mathrm{nc}}}{r_c}\right),
+    \]
+    we define the sector lengths
+    \[
+        \ell_\nu = \nu\,\ell_{\mathrm{trefoil}},
+        \qquad
+        \nu\in\{2,3,5\}.
+    \]
+    
+    Let \(\sigma=\pm1\) label the two internal handed circulation--torsion branches, and let
+    \[
+        \theta_\nu^{(\sigma)}\in\mathbb{R}
+    \]
+    denote the phase associated with sector \(\nu\). The minimal multi-primitive trefoil zeta ansatz is then
+    \begin{equation}
+        Z_{3_1}^{(\sigma)}(s)
+        =
+        \prod_{\nu\in\{2,3,5\}}
+        \prod_{m=1}^{\infty}
+        \frac{1}{
+            1
+            -2\cos\!\big(m\theta_\nu^{(\sigma)}\big)e^{-s m \ell_\nu}
+            +
+            e^{-2s m \ell_\nu}
+        },
+        \qquad
+        \Re(s)>0.
+    \end{equation}
+    
+    Its logarithm expands as
+    \begin{equation}
+        \log Z_{3_1}^{(\sigma)}(s)
+        =
+        2\sum_{\nu\in\{2,3,5\}}
+        \sum_{m=1}^{\infty}\sum_{r=1}^{\infty}
+        \frac{\cos\!\big(rm\theta_\nu^{(\sigma)}\big)}{r}
+        e^{-srm\ell_\nu}.
+    \end{equation}
+    
+    Assuming the branch symmetry
+    \[
+        \theta_\nu^{(-)}=-\theta_\nu^{(+)},
+    \]
+    the branch-symmetrized product is
+    \begin{equation}
+        Z_{3_1}^{\mathrm{sym}}(s)
+        =
+        Z_{3_1}^{(+)}(s)\,Z_{3_1}^{(-)}(s).
+    \end{equation}
+    
+    The completed multi-primitive object is then defined formally by
+    \begin{equation}
+        \Xi_{3_1}^{\mathrm{mp}}(s)
+        =
+        G_{3_1}^{(2,3,5)}(s)\,
+        Z_{3_1}^{(+)}(s)\,
+        Z_{3_1}^{(-)}(s),
+    \end{equation}
+    where the completion factor \(G_{3_1}^{(2,3,5)}(s)\) remains to be fixed by reflection-symmetry matching and by comparison with the trefoil boundary transform. The target symmetry is
+    \begin{equation}
+        \Xi_{3_1}^{\mathrm{mp}}(s)=-\Xi_{3_1}^{\mathrm{mp}}(1-s).
+    \end{equation}
+    
+    Its critical-line boundary value is
+    \begin{equation}
+        \Phi_{3_1}^{\mathrm{mp}}(t)
+        \equiv
+        \Xi_{3_1}^{\mathrm{mp}}\!\left(\frac12+it\right).
+    \end{equation}
+    
+    This multi-primitive extension is the minimal nontrivial product-side candidate beyond the single-cycle
+    Phase 2.1 ansatz.
+    
+\section*{Data pointers}
+
+Raw export files (same paths on GitHub):
+\begingroup
+\sloppy
+\begin{itemize}
+    \item \url{https://raw.githubusercontent.com/Swirl-String-Theory/SSTcore/master/SST_Dashboard/trefoil_closure/exports/sst_ideal_trefoil_robustness_outputs_v3_2nd/final_best_estimate.csv}
+    \item \url{https://raw.githubusercontent.com/Swirl-String-Theory/SSTcore/master/SST_Dashboard/trefoil_closure/exports/sst_ideal_trefoil_robustness_outputs_v3_2nd/final_best_estimate.txt}
+\end{itemize}
+\fussy
+\endgroup
+
+\end{document}

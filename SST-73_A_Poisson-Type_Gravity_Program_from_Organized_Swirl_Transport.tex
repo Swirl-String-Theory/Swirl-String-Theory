@@ -1,0 +1,1281 @@
+%! Author = Omar Iskandarani
+%! Date = 4/7/2026
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxx
+
+\newcommand{\paperdoi}{10.5281/zenodo.xxx}
+\newcommand{\papertitle}{A Poisson-Type Gravity Program from Organized Swirl Transport in Swirl--String Theory}
+\newcommand{\paperkeywords}{Poisson equation, organized swirl transport, gravity, Swirl--String Theory}
+
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsfonts,amsthm,bm,mathtools}
+\usepackage{siunitx}
+\usepackage[hidelinks]{hyperref}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[absolute,overlay]{textpos}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{pgfplots.groupplots}
+\usepackage{physics}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{microtype}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+\setstretch{1.08}
+
+% ---------------------------
+% SST macro prelude
+% ---------------------------
+\newcommand{\swirlarrow}{\mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}}
+\newcommand{\swirlarrowcw}{\mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}}
+\newcommand{\vswirl}{\mathbf{v}_{\swirlarrow}}
+\newcommand{\vswirlcw}{\mathbf{v}_{\swirlarrowcw}}
+\newcommand{\rhoF}{\rho_{\!f}}
+\newcommand{\rhoE}{\rho_{\!E}}
+\newcommand{\rhoM}{\rho_{\!m}}
+\newcommand{\rhocore}{\rho_{\mathrm{core}}}
+\newcommand{\SwirlClock}{S_t^{\swirlarrow}}
+\newcommand{\SwirlClockcw}{S_t^{\swirlarrowcw}}
+\newcommand{\rc}{r_c}
+\newcommand{\vnorm}{\lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}} \rVert}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\SST}{\mathrm{SST}}
+\newcommand{\src}{\mathrm{src}}
+\newcommand{\bg}{\mathrm{bg}}
+\newcommand{\tot}{\mathrm{tot}}
+\newcommand{\grav}{\mathrm{grav}}
+\newcommand{\org}{\mathrm{org}}
+
+
+% TOC Customization
+\usepackage{tocloft}
+\usepackage{calc}
+
+
+\setcounter{tocdepth}{1}
+
+% Fonts
+\renewcommand{\cftsecfont}{\scriptsize}
+\renewcommand{\cftsubsecfont}{\scriptsize\itshape}
+\renewcommand{\cftsecpagefont}{\scriptsize}
+\renewcommand{\cftsubsecpagefont}{\scriptsize}
+
+% Dots
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftdotsep}{4}
+
+% Ensure a visible gap after the number
+\renewcommand{\cftsecaftersnum}{\hspace{0.9em}}
+\renewcommand{\cftsubsecaftersnum}{\hspace{0.9em}}
+
+% Reserve enough number width for the largest Roman numeral you use
+% (adjust XXXVIII if you go beyond 38)
+\newlength{\tocnumw}
+\settowidth{\tocnumw}{\scriptsize XXXVIII\hspace{0.9em}}
+\setlength{\cftsecnumwidth}{\tocnumw}
+\setlength{\cftsubsecindent}{\tocnumw}
+\setlength{\cftsubsecnumwidth}{\tocnumw}
+
+% Compact TOC macro (hard-compact)
+\newcommand{\compacttoc}{%
+    \begingroup
+    % Force font size + line spacing explicitly (this is the real vertical fix)
+    \fontsize{8}{9}\selectfont % try {7.6}{8.4} if you want even tighter
+    
+    % No paragraph/list spacing inside TOC
+    \setlength{\parskip}{0pt}%
+    \setlength{\parindent}{0pt}%
+    \setlength{\cftparskip}{0pt}%
+    
+    % Remove extra vskips inserted by tocloft
+    \setlength{\cftbeforesecskip}{0pt}%
+    \setlength{\cftbeforesubsecskip}{0pt}%
+    
+    % Optional: tighten title spacing if "Contents" creates whitespace
+    \setlength{\cftbeforetoctitleskip}{0pt}%
+    \setlength{\cftaftertoctitleskip}{4pt}%
+    
+    \tableofcontents
+    \endgroup
+}
+
+\begin{document}
+    \thispagestyle{empty}%
+    \begin{center}
+        \Large \bfseries \papertitle \par \vspace{1cm}
+        {\Large \itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par} \vspace{0.5cm}
+        {\small Independent Researcher, Groningen, The Netherlands\par} \vspace{0.5cm}
+        {\today \par}  \vspace{0.5cm}
+    \end{center}
+    
+    \begin{abstract}
+        This note develops a gravity program for Swirl--String Theory (SST) based on a single organizing principle: gravity is not identified with local swirl magnitude alone, but with the medium's response to \emph{organized swirl transport}. The derivation proceeds in full detail from incompressible, inviscid continuum mechanics in cylindrical geometry. We first define the source-string and the large inverse return-flow envelope, derive the full azimuthal velocity field, derive the pressure profile from steady Euler balance, and show explicitly that the naive identification
+        \[
+            \mathbf{g}\propto -\nabla\!\left(\rhoF u^2\right)
+        \]
+        fails to reproduce a Newtonian far field in the simplest single-string cylindrical model. This motivates a derived-field program in which a gravity potential \(\Phi_{\grav}\) is obtained from a Poisson equation whose source is built from organized transport. We then derive a tensorial source law
+        \[
+            \nabla^2\Phi_{\grav}
+            =
+            \lambda\,\partial_i\partial_j\!\left(\rhoF u_i u_j\right),
+        \]
+        its aligned-transport reduction,
+        \[
+            \nabla^2\Phi_{\grav}
+            =
+            \lambda\,\partial_i\partial_j\!\left(\rhoF u_s^2\,\hat t_i\hat t_j\right),
+        \]
+        and practical axisymmetric reductions suitable for numerical implementation. All dimensional checks are performed explicitly, and the source-strength scales are evaluated using the canonical SST constants
+        \[
+            \vswirl = 1.09384563\times 10^6\ \mathrm{m\,s^{-1}},
+            \qquad
+            \rc = 1.40897017\times 10^{-15}\ \mathrm{m},
+            \qquad
+            \rhoF = 7.0\times 10^{-7}\ \mathrm{kg\,m^{-3}}.
+        \]
+        The result is a concrete and falsifiable gravity program: organized swirl transport defines the source sector; the gravity field is the long-range scalar response obtained by solving a Poisson problem sourced by transport organization.
+    \end{abstract}
+    Keywords: \paperkeywords
+
+
+    \begin{textblock*}{1\textwidth}(0.15\textwidth,1.1\textheight)\raggedright\footnotesize\renewcommand{\arraystretch}{1.0} \noindent\rule{\textwidth}{0.4pt}\\[0.5em]
+        \textsuperscript{\textbf{*}} Email: \texttt{info@omariskandarani.com}\\  
+        ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}}\\
+        DOI: \href{https://doi.org/\paperdoi}{\paperdoi}    
+    \end{textblock*}
+        
+
+        \newpage
+        \tableofcontents
+        \newpage
+    
+        \section{Purpose and status of this note}
+            
+            The purpose of this note is to formulate, in a mathematically explicit way, a gravity program for SST under the working postulate
+            \begin{equation}
+                \boxed{
+                    \text{Gravity is the macroscopic manifestation of organized swirl transport in the medium.}
+                }
+                \label{eq:gravity-postulate}
+            \end{equation}
+            This note is \emph{not} a proof that the program is correct. It is a derivation of the program itself, together with the reasons for each step and the diagnostic checks that motivate the final Poisson-type field equation.
+            
+            The note is built around three claims.
+            
+            \begin{enumerate}[label=\textbf{Claim \arabic*:},leftmargin=2.2cm]
+\item A single source string embedded in an incompressible, inviscid cylindrical background naturally induces a return-flow organization consisting of a strong core and a weak, large-scale inverse envelope.
+
+\item The primitive local transport-energy/stress scalar
+\begin{equation}
+    \mathcal{I}_{\org} \sim \rhoF u^2
+    \label{eq:Iorg-primitive}
+\end{equation}
+has the correct ontology---it belongs to the organized-transport sector---but if it is identified directly with the gravity field, the simplest cylindrical model yields the wrong far-field radial scaling.
+
+\item A better formulation is obtained when organized transport acts as a \emph{source} for a derived scalar field \(\Phi_{\grav}\) satisfying a Poisson equation. Outside the compact organized source region, the gravity field then solves the vacuum Laplace equation and can recover Newtonian-type \(1/r^2\) behavior in the far field.
+            \end{enumerate}
+        
+        \section{Canonical SST constants and dimensional baselines}
+            
+            We adopt the canonical SST constants:
+            \begin{align}
+                \vswirl &= 1.09384563\times 10^6\ \mathrm{m\,s^{-1}},
+                \label{eq:const-vswirl}
+                \\
+                \rc &= 1.40897017\times 10^{-15}\ \mathrm{m},
+                \label{eq:const-rc}
+                \\
+                \rhoF &= 7.0\times 10^{-7}\ \mathrm{kg\,m^{-3}}.
+                \label{eq:const-rhof}
+            \end{align}
+            
+            The associated circulation-scale quantity is
+            \begin{equation}
+                A := \vswirl\,\rc.
+                \label{eq:def-A}
+            \end{equation}
+            Numerically,
+            \begin{equation}
+                A
+                =
+                (1.09384563\times 10^6)(1.40897017\times 10^{-15})
+                \approx
+                1.54119586\times 10^{-9}\ \mathrm{m^2\,s^{-1}}.
+                \label{eq:A-numeric}
+            \end{equation}
+            
+            The natural organized-transport stress scale is
+            \begin{equation}
+                \Sigma_0 := \rhoF \vswirl^2.
+                \label{eq:def-Sigma0}
+            \end{equation}
+            Numerically,
+            \begin{align}
+                \vswirl^2
+                &=
+                (1.09384563\times 10^6)^2
+                \approx
+                1.19649826\times 10^{12}\ \mathrm{m^2\,s^{-2}},
+                \\
+                \Sigma_0
+                &=
+                (7.0\times 10^{-7})(1.19649826\times 10^{12})
+                \approx
+                8.37548784\times 10^5\ \mathrm{Pa}.
+                \label{eq:Sigma0-numeric}
+            \end{align}
+            This quantity will recur throughout the note. It sets the characteristic transport-stress scale of the source string.
+        
+        \section{Kinematic decomposition and the meaning of organized transport}
+            
+            Let \(\hat{\mathbf e}_r,\hat{\mathbf e}_\theta,\hat{\mathbf e}_s\) be a local adapted frame, where \(s\) denotes the local swirl-aligned or string-aligned direction. Then the velocity field is decomposed as
+            \begin{equation}
+                \mathbf{u}
+                =
+                u_r\,\hat{\mathbf e}_r
+                +
+                u_\theta\,\hat{\mathbf e}_\theta
+                +
+                u_s\,\hat{\mathbf e}_s.
+                \label{eq:u-decomp}
+            \end{equation}
+            
+            The \emph{swirl-aligned transport field} is the component tangent to the local organizing direction:
+            \begin{equation}
+                u_s = \mathbf{u}\cdot \hat{\mathbf t},
+                \qquad
+                \mathbf{u}_{\parallel} = u_s\,\hat{\mathbf t},
+                \label{eq:us-def}
+            \end{equation}
+            where \(\hat{\mathbf t}\) is the unit tangent to the local swirl-string / foliation direction.
+            
+            This note will use two related transport objects:
+            
+            \paragraph{Vector transport density}
+                \begin{equation}
+                    \mathbf{J}_{\org} := \rhoF \mathbf{u}_{\parallel}
+                    =
+                    \rhoF u_s\,\hat{\mathbf t},
+                    \label{eq:Jorg}
+                \end{equation}
+                with units
+                \[
+                    [\mathbf{J}_{\org}]
+                    =
+                    \mathrm{kg\,m^{-2}\,s^{-1}}.
+                \]
+            
+            \paragraph{Organized transport tensor}
+                \begin{equation}
+                    \Sigma_{ij} := \rhoF u_i u_j.
+                    \label{eq:Sigmaij}
+                \end{equation}
+                This has units
+                \[
+                    [\Sigma_{ij}]
+                    =
+                    (\mathrm{kg\,m^{-3}})(\mathrm{m\,s^{-1}})(\mathrm{m\,s^{-1}})
+                    =
+                    \mathrm{kg\,m^{-1}\,s^{-2}}
+                    =
+                    \mathrm{Pa}.
+                \]
+                Thus \(\Sigma_{ij}\) is a stress-like object built from coherent transport.
+                
+                If the dominant organized transport is aligned with the local tangent \(\hat{\mathbf t}\), then
+                \begin{equation}
+                    \Sigma_{ij}^{(\parallel)}
+                    =
+                    \rhoF u_s^2\,\hat t_i \hat t_j.
+                    \label{eq:Sigmaij-parallel}
+                \end{equation}
+        
+        \section{The transport-asymmetry motivation}
+        
+        The conceptual motivation for distinguishing hidden aligned transport from observed transverse transport is the general structural lesson that, in organized media, the visible asymmetry can be controlled more strongly by transport redistribution and projection than by an explicit direct drift term. In the tokamak edge-transport study that motivated this line of thought, the projected parallel-flow contribution dominates the observable target flux in the simulated cases, and rotation plus drifts combine non-additively through momentum redistribution. This note does \emph{not} identify SST with tokamak physics; it imports only the mathematical lesson that one should separate the hidden aligned transport channel from the observed transverse response channel.
+        
+        Accordingly, one can write a generic transport-response decomposition
+        \begin{equation}
+            \Gamma_\theta^{\SST}
+            =
+            \rhoF \kappa u_s
+            +
+            \rhoF u_\theta^{(g)}
+            -
+            \partial_\theta \Pi
+            +
+            \rhoF D_\Omega\,\partial_\theta \Omega,
+            \label{eq:Gamma-theta-SST}
+        \end{equation}
+        where:
+        \begin{itemize}
+            \item \(\kappa\) is a dimensionless projection factor,
+            \item \(u_\theta^{(g)}\) is a direct geometric transverse transport channel,
+            \item \(\Pi\) is a stress/potential-like field,
+            \item \(D_\Omega \partial_\theta \Omega\) is an optional coarse-grained vorticity-transport closure.
+        \end{itemize}
+        This decomposition is not yet the gravity law. It is only the transport-theoretic motivation for taking \(\Sigma_{ij}\) or one of its derived scalars as the source-sector object.
+        
+        \section{Single source string in a large inverse return-flow envelope}
+        
+        We now derive the simplest incompressible, inviscid cylindrical model of a source string embedded in a large inverse return-flow background.
+        
+        \subsection{Source-string core}
+            
+            We model the source string as a Rankine-type swirl core:
+            \begin{equation}
+                u_\theta^{(\src)}(r)
+                =
+                \begin{cases}
+                    \displaystyle \frac{\vswirl}{\rc}\,r, & 0\le r\le \rc, \\[1em]
+                    \displaystyle \frac{A}{r}, & r\ge \rc,
+                \end{cases}
+                \label{eq:u-src}
+            \end{equation}
+            with
+            \[
+                A=\vswirl \rc.
+            \]
+            
+            This choice ensures continuity at \(r=\rc\):
+            \[
+                u_\theta^{(\src)}(\rc^-)=\vswirl,
+                \qquad
+                u_\theta^{(\src)}(\rc^+)=\frac{A}{\rc}=\vswirl.
+            \]
+        
+        \subsection{Inverse return envelope}
+            
+            We regularize the inverse background return flow by introducing a large envelope scale \(a\). The background is taken to be opposite in sense to the source string:
+            \begin{equation}
+                u_\theta^{(\bg)}(r)
+                =
+                \begin{cases}
+                    \displaystyle -\eta \frac{A}{a^2}\,r, & 0\le r\le a, \\[1em]
+                    \displaystyle -\eta \frac{A}{r}, & r\ge a,
+                \end{cases}
+                \label{eq:u-bg}
+            \end{equation}
+            where \(\eta\) is the ratio of return-flow circulation to source-string circulation.
+            
+            The total azimuthal velocity is
+            \begin{equation}
+                u_\theta(r)=u_\theta^{(\src)}(r)+u_\theta^{(\bg)}(r).
+                \label{eq:u-total}
+            \end{equation}
+            Therefore:
+            \begin{equation}
+                u_\theta(r)=
+                \begin{cases}
+                    \displaystyle \left(\frac{\vswirl}{\rc}-\eta \frac{A}{a^2}\right)r,
+                    & 0\le r\le \rc, \\[1em]
+                    \displaystyle A\left(\frac{1}{r}-\eta \frac{r}{a^2}\right),
+                    & \rc \le r \le a, \\[1em]
+                    \displaystyle (1-\eta)\frac{A}{r},
+                    & r\ge a.
+                \end{cases}
+                \label{eq:u-total-piecewise}
+            \end{equation}
+        
+        \subsection{Cancellation radius}
+            
+            Inside the annular region \(\rc<r<a\), the total swirl vanishes when
+            \[
+                \frac{1}{r}-\eta \frac{r}{a^2}=0.
+            \]
+            Multiplying by \(r\) gives
+            \[
+                1-\eta \frac{r^2}{a^2}=0,
+            \]
+            hence
+            \begin{equation}
+                \boxed{
+                    r_0=\frac{a}{\sqrt{\eta}}.
+                }
+                \label{eq:r0}
+            \end{equation}
+            This implies:
+            \begin{itemize}
+                \item if \(\eta<1\), the source-string sense dominates throughout the annulus;
+                \item if \(\eta=1\), the flow reaches zero at \(r=a\);
+                \item if \(\eta>1\), the inverse background dominates beyond \(r_0\).
+            \end{itemize}
+        
+        \section{Pressure field from steady incompressible Euler balance}
+        
+        \subsection{Radial balance}
+            
+            For steady, incompressible, axisymmetric swirl with no radial through-flow, the radial Euler balance is
+            \begin{equation}
+                \frac{dp}{dr}
+                =
+                \rhoF \frac{u_\theta^2}{r}.
+                \label{eq:radial-balance}
+            \end{equation}
+            This is the standard pressure support relation for steady swirl.
+            
+            Dimensional check:
+            \[
+                \left[\frac{dp}{dr}\right]
+                =
+                \mathrm{Pa\,m^{-1}}
+                =
+                \frac{\mathrm{kg}}{\mathrm{m^2\,s^2}},
+            \]
+            while
+            \[
+                \left[\rhoF \frac{u_\theta^2}{r}\right]
+                =
+                \frac{\mathrm{kg}}{\mathrm{m^3}}\cdot \frac{\mathrm{m^2}}{\mathrm{s^2}}\cdot \frac{1}{\mathrm{m}}
+                =
+                \frac{\mathrm{kg}}{\mathrm{m^2\,s^2}}.
+            \]
+            So \eqref{eq:radial-balance} is dimensionally correct.
+        
+        \subsection{Source core pressure depression}
+            
+            Inside the source core, \(u_\theta = (\vswirl/\rc) r\). Therefore
+            \begin{equation}
+                \frac{dp}{dr}
+                =
+                \rhoF \frac{1}{r}\left(\frac{\vswirl}{\rc}r\right)^2
+                =
+                \rhoF \frac{\vswirl^2}{\rc^2}\,r.
+                \label{eq:dpdr-core}
+            \end{equation}
+            Integrating from \(r=0\) to \(r=\rc\),
+            \begin{align}
+                p(\rc)-p(0)
+                &=
+                \int_0^\rc \rhoF \frac{\vswirl^2}{\rc^2}\,r\,dr
+                =
+                \rhoF \frac{\vswirl^2}{\rc^2}\cdot \frac{\rc^2}{2}
+                =
+                \frac{1}{2}\rhoF \vswirl^2.
+            \end{align}
+            Hence the center-to-edge pressure depth is
+            \begin{equation}
+                \boxed{
+                    \Delta p_{\src}
+                    =
+                    \frac{1}{2}\rhoF \vswirl^2.
+                }
+                \label{eq:dp-core}
+            \end{equation}
+            Numerically,
+            \begin{equation}
+                \Delta p_{\src}
+                =
+                \frac{1}{2}(7.0\times 10^{-7})(1.09384563\times 10^6)^2
+                \approx
+                4.18774392\times 10^5\ \mathrm{Pa}.
+                \label{eq:dp-core-numeric}
+            \end{equation}
+        
+        \subsection{Intermediate annulus}
+            
+            In the annulus \(\rc<r<a\), from \eqref{eq:u-total-piecewise},
+            \[
+                u_\theta(r)=A\left(\frac{1}{r}-\eta \frac{r}{a^2}\right).
+            \]
+            Therefore
+            \begin{equation}
+                u_\theta^2
+                =
+                A^2\left(
+                       \frac{1}{r^2}
+                       -
+                       2\eta \frac{1}{a^2}
+                       +
+                       \eta^2 \frac{r^2}{a^4}
+                \right).
+                \label{eq:u2-annulus}
+            \end{equation}
+            Substituting into \eqref{eq:radial-balance},
+            \begin{align}
+                \frac{dp}{dr}
+                &=
+                \rhoF \frac{1}{r}A^2\left(
+                                        \frac{1}{r^2}
+                                        -
+                                        2\eta \frac{1}{a^2}
+                                        +
+                                        \eta^2 \frac{r^2}{a^4}
+                \right)
+                \\
+                &=
+                \rhoF A^2\left(
+                             \frac{1}{r^3}
+                             -
+                             \frac{2\eta}{a^2 r}
+                             +
+                             \eta^2 \frac{r}{a^4}
+                \right).
+                \label{eq:dpdr-annulus}
+            \end{align}
+            Integrating term by term:
+            \begin{align}
+                \int \frac{1}{r^3}\,dr &= -\frac{1}{2r^2},
+                \\
+                \int \frac{1}{r}\,dr &= \ln r,
+                \\
+                \int r\,dr &= \frac{r^2}{2}.
+            \end{align}
+            Thus the pressure difference between \(\rc\) and some \(r\in(\rc,a)\) is
+            \begin{equation}
+                p(r)-p(\rc)
+                =
+                \rhoF A^2
+                \left[
+                    -\frac{1}{2r^2}+\frac{1}{2\rc^2}
+                    -\frac{2\eta}{a^2}\ln\!\left(\frac{r}{\rc}\right)
+                    +\frac{\eta^2}{2a^4}(r^2-\rc^2)
+                \right].
+                \label{eq:p-annulus}
+            \end{equation}
+        
+        \subsection{Exactly screened case \(\eta=1\)}
+            
+            When \(\eta=1\), the total velocity vanishes at \(r=a\), and the pressure difference from the center to \(r=a\) is
+            \begin{equation}
+                p(a)-p(0)
+                =
+                [p(\rc)-p(0)] + [p(a)-p(\rc)].
+                \label{eq:p-total-a}
+            \end{equation}
+            Using \eqref{eq:dp-core} and \eqref{eq:p-annulus} with \(r=a\) and \(\eta=1\),
+            \begin{equation}
+                p(a)-p(0)
+                =
+                \frac{1}{2}\rhoF \vswirl^2
+                +
+                \rhoF A^2
+                \left[
+                    -\frac{1}{2a^2}+\frac{1}{2\rc^2}
+                    -\frac{2}{a^2}\ln\!\left(\frac{a}{\rc}\right)
+                    +\frac{1}{2a^2}-\frac{\rc^2}{2a^4}
+                \right].
+            \end{equation}
+            The \(\pm 1/(2a^2)\) terms cancel, leaving
+            \begin{equation}
+                p(a)-p(0)
+                =
+                \frac{1}{2}\rhoF \vswirl^2
+                +
+                \rhoF A^2
+                \left[
+                    \frac{1}{2\rc^2}
+                    -\frac{2}{a^2}\ln\!\left(\frac{a}{\rc}\right)
+                    -\frac{\rc^2}{2a^4}
+                \right].
+                \label{eq:p-total-a-expanded}
+            \end{equation}
+            Since \(A=\vswirl \rc\),
+            \[
+                \frac{A^2}{2\rc^2} = \frac{\vswirl^2}{2}.
+            \]
+            Hence
+            \begin{equation}
+                p(a)-p(0)
+                =
+                \rhoF \vswirl^2
+                -
+                2\rhoF \frac{A^2}{a^2}\ln\!\left(\frac{a}{\rc}\right)
+                -
+                \frac{1}{2}\rhoF \frac{A^2 \rc^2}{a^4}.
+                \label{eq:p-total-a-nearly}
+            \end{equation}
+            For \(a\gg \rc\), the last two terms are negligible, so
+            \begin{equation}
+                \boxed{
+                    p(a)-p(0)\approx \rhoF \vswirl^2.
+                }
+                \label{eq:p-total-a-asymptotic}
+            \end{equation}
+            Numerically,
+            \begin{equation}
+                p(a)-p(0)
+                \approx
+                8.37548784\times 10^5\ \mathrm{Pa}
+                \qquad
+                (a\gg \rc,\ \eta=1).
+                \label{eq:p-total-a-numeric}
+            \end{equation}
+        
+        \section{Why the naive gravity identification fails}
+        
+        A tempting first hypothesis is
+        \begin{equation}
+            \Phi_{\grav}^{(0)} \propto \rhoF u_\theta^2,
+            \qquad
+            \mathbf{g}^{(0)} \propto -\nabla\!\left(\rhoF u_\theta^2\right).
+            \label{eq:naive-hypothesis}
+        \end{equation}
+        This is attractive because \(\rhoF u_\theta^2\) is the primitive transport-stress scale.
+        
+        However, in the intermediate source-dominated region \(\rc \ll r \ll a\), one has
+        \begin{equation}
+            u_\theta(r)\approx \frac{A}{r},
+            \label{eq:u-mid}
+        \end{equation}
+        hence
+        \begin{equation}
+            \rhoF u_\theta^2 \approx \rhoF \frac{A^2}{r^2}.
+            \label{eq:rho-u2-mid}
+        \end{equation}
+        Therefore
+        \begin{equation}
+            \frac{d}{dr}\left(\rhoF u_\theta^2\right)
+            =
+            \frac{d}{dr}\left(\rhoF \frac{A^2}{r^2}\right)
+            =
+            -2\rhoF \frac{A^2}{r^3}.
+            \label{eq:dr-rhou2}
+        \end{equation}
+        So the associated radial acceleration would scale as
+        \begin{equation}
+            g_r^{(0)} \propto \frac{1}{r^3},
+            \label{eq:g-r3}
+        \end{equation}
+        not as \(1/r^2\).
+        
+        This mismatch is decisive. It means that \(\rhoF u^2\) has the right ontology but the wrong status:
+        \begin{equation}
+            \boxed{
+                \text{organized transport should source gravity, but should not be identified directly with the gravity field.}
+            }
+            \label{eq:source-not-field}
+        \end{equation}
+        
+        \section{The Poisson idea: organized transport as the source sector}
+        
+        The standard strategy in field theory and potential theory is to separate:
+        \begin{itemize}
+            \item a \emph{source density},
+            \item a \emph{propagated response field}.
+        \end{itemize}
+        So we introduce a scalar gravity potential \(\Phi_{\grav}\) satisfying
+        \begin{equation}
+            \boxed{
+                \nabla^2 \Phi_{\grav} = \mathcal{S}_{\grav},
+            }
+            \label{eq:poisson-general}
+        \end{equation}
+        with
+        \begin{equation}
+            \boxed{
+                \mathbf{g}_{\SST}=-\nabla \Phi_{\grav}.
+            }
+            \label{eq:g-from-phi}
+        \end{equation}
+        
+        The question becomes: what scalar source \(\mathcal{S}_{\grav}\) should be built from organized transport?
+        
+        \subsection{Candidate scalar sources}
+            
+            Three natural candidates are:
+            
+            \paragraph{Candidate A: transport-energy density}
+                \begin{equation}
+                    \mathcal{S}_A = \lambda_A \rhoF u_s^2.
+                    \label{eq:SA}
+                \end{equation}
+            
+            \paragraph{Candidate B: divergence of transport vector}
+                \begin{equation}
+                    \mathcal{S}_B = \lambda_B \nabla\cdot (\rhoF u_s \hat{\mathbf t}).
+                    \label{eq:SB}
+                \end{equation}
+            
+            \paragraph{Candidate C: curvature / convergence of transport stress}
+                \begin{equation}
+                    \mathcal{S}_C = \lambda_C\, \partial_i\partial_j \Sigma_{ij},
+                    \qquad
+                    \Sigma_{ij}=\rhoF u_i u_j.
+                    \label{eq:SC}
+                \end{equation}
+                
+                Candidate A is the simplest, but tends to be too diffuse if used globally. Candidate B detects defects and source regions but may vanish for perfectly closed stationary loops. Candidate C measures the spatial organization of transport stress itself and is therefore the most structural.
+                
+                We therefore elevate Candidate C to the main proposal.
+        
+        \section{Tensorial Poisson law for SST gravity}
+        
+        \subsection{Definition of the source}
+            
+            Define the organized transport tensor
+            \begin{equation}
+                \Sigma_{ij} = \rhoF u_i u_j.
+                \label{eq:Sigmaij-repeat}
+            \end{equation}
+            Then define the scalar source density
+            \begin{equation}
+                \boxed{
+                    \mathcal{S}_{\grav}
+                    =
+                    \lambda\, \partial_i\partial_j \Sigma_{ij}.
+                }
+                \label{eq:Sgrav-tensor}
+            \end{equation}
+            The gravity potential is then defined by
+            \begin{equation}
+                \boxed{
+                    \nabla^2 \Phi_{\grav}
+                    =
+                    \lambda\,\partial_i\partial_j(\rhoF u_i u_j).
+                }
+                \label{eq:poisson-tensor}
+            \end{equation}
+        
+        \subsection{Dimensional analysis}
+            
+            The left-hand side has units
+            \[
+                [\nabla^2 \Phi_{\grav}] = [\Phi_{\grav}]\,\mathrm{m^{-2}}.
+            \]
+            If \(\Phi_{\grav}\) is a gravitational potential, then
+            \[
+                [\Phi_{\grav}] = \mathrm{m^2\,s^{-2}},
+            \]
+            so
+            \[
+                [\nabla^2 \Phi_{\grav}] = \mathrm{s^{-2}}.
+            \]
+            
+            The tensor has units
+            \[
+                [\Sigma_{ij}] = \mathrm{Pa} = \mathrm{kg\,m^{-1}\,s^{-2}}.
+            \]
+            Applying two spatial derivatives gives
+            \[
+                [\partial_i\partial_j \Sigma_{ij}]
+                =
+                \mathrm{kg\,m^{-3}\,s^{-2}}.
+            \]
+            Therefore \(\lambda\) must have units
+            \begin{equation}
+                [\lambda] = \mathrm{m^3\,kg^{-1}}.
+                \label{eq:lambda-units}
+            \end{equation}
+            This is closely analogous to a gravitational coupling scale.
+        
+        \subsection{Interpretation}
+            
+            Equation \eqref{eq:poisson-tensor} says that gravity is sourced not by motion alone, and not by static pressure alone, but by the \emph{spatial organization of coherent transport stress}. The double divergence extracts where coherent transport bends, converges, terminates, or changes structure.
+            
+            This is the first complete statement of the gravity program:
+            \begin{equation}
+                \boxed{
+                    \text{Gravity is the scalar response field generated by the spatial organization of organized swirl transport.}
+                }
+                \label{eq:program-statement}
+            \end{equation}
+        
+        \section{Aligned-channel reduction}
+        
+        If the dominant transport channel is tangent to the local string direction \(\hat{\mathbf t}\), then
+        \[
+            u_i \approx u_s \hat t_i,
+        \]
+        and therefore
+        \begin{equation}
+            \Sigma_{ij}
+            \approx
+            \rhoF u_s^2 \hat t_i \hat t_j.
+            \label{eq:Sigma-aligned}
+        \end{equation}
+        Substituting into \eqref{eq:poisson-tensor},
+        \begin{equation}
+            \boxed{
+                \nabla^2 \Phi_{\grav}
+                =
+                \lambda\,\partial_i\partial_j
+                \left(
+                    \rhoF u_s^2 \hat t_i \hat t_j
+                \right).
+            }
+            \label{eq:poisson-aligned}
+        \end{equation}
+        
+        This is often the clearest SST form, because it makes explicit that:
+        \begin{itemize}
+            \item \(u_s^2\) measures the strength of aligned organized transport,
+            \item \(\hat t_i \hat t_j\) carries the transport directionality,
+            \item the double derivative measures how that organization varies in space.
+        \end{itemize}
+        
+        \section{Connection with transport asymmetry variables}
+        
+        The organized-transport viewpoint can also be expressed through the earlier azimuthal transport flux
+        \begin{equation}
+            \Gamma_\theta^{\SST}
+            =
+            \rhoF \kappa u_s
+            +
+            \rhoF u_\theta^{(g)}
+            -
+            \partial_\theta \Pi
+            +
+            \rhoF D_\Omega \partial_\theta \Omega.
+            \label{eq:Gamma-theta-repeat}
+        \end{equation}
+        If one wants a reduced scalar source based directly on the observed projected transport channel, then a derived alternative is
+        \begin{equation}
+            \mathcal{S}_{\grav}^{(\Gamma)}
+            =
+            \lambda_\Gamma\, \nabla\cdot\bigl(\Gamma_\theta^{\SST}\,\hat{\mathbf e}_\theta \bigr),
+            \label{eq:Sgamma}
+        \end{equation}
+        or a second-derivative version,
+        \begin{equation}
+            \mathcal{S}_{\grav}^{(\Gamma,2)}
+            =
+            \lambda_{\Gamma,2}\,\nabla^2 \Gamma_\theta^{\SST}.
+            \label{eq:Sgamma2}
+        \end{equation}
+        These are useful reduced diagnostics, but the tensor law \eqref{eq:poisson-tensor} is more primitive and more covariant. Thus the hierarchy is:
+        \begin{equation}
+            \boxed{
+                \Sigma_{ij}
+                \ \text{primitive source-sector object},
+                \qquad
+                \Gamma_\theta^{\SST}
+                \ \text{observable projected transport channel}.
+            }
+            \label{eq:hierarchy}
+        \end{equation}
+        
+        \section{Axisymmetric practical reduction}
+        
+        For numerical work, one often wants a scalar source that can be computed directly from axisymmetric fields. If the dominant organized transport is azimuthal,
+        \[
+            u_\theta = u_\theta(r,z),
+        \]
+        then the simplest scalar proxy is
+        \begin{equation}
+            \mathcal{U}(r,z):=\rhoF u_\theta^2(r,z).
+            \label{eq:Urz}
+        \end{equation}
+        A practical axisymmetric source density is then
+        \begin{equation}
+            \boxed{
+                \rho_{\grav}^{(\SST)}(r,z)
+                :=
+                \alpha_{\grav}
+                \left[
+                    \frac{\partial^2 \mathcal{U}}{\partial r^2}
+                    +
+                    \frac{1}{r}\frac{\partial \mathcal{U}}{\partial r}
+                    +
+                    \frac{\partial^2 \mathcal{U}}{\partial z^2}
+                \right].
+            }
+            \label{eq:rho-g-axis}
+        \end{equation}
+        This is simply
+        \begin{equation}
+            \rho_{\grav}^{(\SST)} = \alpha_{\grav}\,\nabla^2 \mathcal{U}
+            \label{eq:rho-g-axis-compact}
+        \end{equation}
+        in axisymmetric cylindrical coordinates, ignoring \(\theta\)-dependence.
+        
+        One then solves
+        \begin{equation}
+            \boxed{
+                \nabla^2 \Phi_{\grav}
+                =
+                4\pi G_{\eff}\,\rho_{\grav}^{(\SST)}.
+            }
+            \label{eq:poisson-practical}
+        \end{equation}
+        
+        \paragraph{Important remark.}
+            Equation \eqref{eq:poisson-practical} is \emph{not} identical to
+            \[
+                \Phi_{\grav}\propto \mathcal{U}.
+            \]
+            Instead, \(\mathcal{U}\) produces a compact source density \(\rho_{\grav}^{(\SST)}\), and \(\Phi_{\grav}\) is obtained by solving the Poisson problem with that source.
+        
+        \section{Vacuum region and Newtonian far-field recovery}
+        
+        Suppose the organized transport source occupies a compact region \(V_{\src}\), and outside that region the source vanishes:
+        \begin{equation}
+            \mathcal{S}_{\grav}=0
+            \qquad
+            \text{for } \mathbf{x}\notin V_{\src}.
+            \label{eq:vacuum-source}
+        \end{equation}
+        Then outside the source region,
+        \begin{equation}
+            \nabla^2 \Phi_{\grav}=0.
+            \label{eq:laplace-vacuum}
+        \end{equation}
+        In spherical symmetry, the general decaying solution is
+        \begin{equation}
+            \Phi_{\grav}(r) = -\frac{K}{r},
+            \label{eq:phi-vac}
+        \end{equation}
+        so
+        \begin{equation}
+            g_r(r) = -\frac{d\Phi_{\grav}}{dr} = -\frac{K}{r^2}.
+            \label{eq:g-vac}
+        \end{equation}
+        Thus:
+        \begin{equation}
+            \boxed{
+                \text{Once the source is compact, the Poisson program naturally allows a }1/r^2\text{ far field.}
+            }
+            \label{eq:newton-recovery}
+        \end{equation}
+        
+        This is the main reason to prefer the Poisson program over the direct identification \(g\sim -\nabla(\rhoF u^2)\).
+        
+        \section{Effective gravitational mass from organized transport}
+        
+        If the potential obeys
+        \[
+            \nabla^2 \Phi_{\grav} = \mathcal{S}_{\grav},
+        \]
+        then integrating over volume gives
+        \begin{equation}
+            \int_V \nabla^2\Phi_{\grav}\,dV
+            =
+            \int_V \mathcal{S}_{\grav}\,dV.
+            \label{eq:int-poisson}
+        \end{equation}
+        By Gauss' theorem,
+        \begin{equation}
+            \oint_{\partial V} \nabla\Phi_{\grav}\cdot d\mathbf{S}
+            =
+            \int_V \mathcal{S}_{\grav}\,dV.
+            \label{eq:gauss-phi}
+        \end{equation}
+        For a localized source and asymptotic field
+        \[
+            \Phi_{\grav}\sim -\frac{G_{\eff} M_{\grav}^{(\SST)}}{r},
+        \]
+        one obtains
+        \begin{equation}
+            \oint_{\partial V} \nabla\Phi_{\grav}\cdot d\mathbf{S}
+            =
+            4\pi G_{\eff} M_{\grav}^{(\SST)}.
+            \label{eq:gauss-mass}
+        \end{equation}
+        Hence
+        \begin{equation}
+            \boxed{
+                M_{\grav}^{(\SST)}
+                =
+                \frac{1}{4\pi G_{\eff}}
+                \int_V \mathcal{S}_{\grav}\,dV.
+            }
+            \label{eq:Mg-general}
+        \end{equation}
+        
+        For the tensorial source law \eqref{eq:poisson-tensor},
+        \begin{equation}
+            \boxed{
+                M_{\grav}^{(\SST)}
+                =
+                \frac{\lambda}{4\pi G_{\eff}}
+                \int_V \partial_i\partial_j(\rhoF u_i u_j)\,dV.
+            }
+            \label{eq:Mg-tensor}
+        \end{equation}
+        Thus mass becomes an integrated measure of organized transport curvature/compression.
+        
+        \section{Scaling estimate for the source strength}
+        
+        Take the organized transport scale
+        \[
+            \Sigma_0 = \rhoF \vswirl^2 \approx 8.38\times 10^5\ \mathrm{Pa}.
+        \]
+        If the source varies over a characteristic length \(L\), then
+        \begin{equation}
+            \partial_i\partial_j \Sigma_{ij}
+            \sim
+            \frac{\Sigma_0}{L^2}.
+            \label{eq:source-scaling}
+        \end{equation}
+        Thus the source-density scale is
+        \begin{equation}
+            \mathcal{S}_{\grav}
+            \sim
+            \lambda\, \frac{\Sigma_0}{L^2}.
+            \label{eq:Sgrav-scale}
+        \end{equation}
+        If one takes \(L=\rc\), then
+        \begin{align}
+            \frac{\Sigma_0}{\rc^2}
+            &=
+            \frac{8.37548784\times 10^5}{(1.40897017\times 10^{-15})^2}
+            \\
+            &\approx
+            4.22\times 10^{35}\ \mathrm{Pa\,m^{-2}}.
+            \label{eq:source-scale-numeric}
+        \end{align}
+        This is enormous. Therefore the coupling \(\lambda\) must be very small if ordinary gravitational strengths are to emerge from such a source. This is not a defect of the program; it implies that the organized transport reservoir is strong and gravity is a weak response channel.
+        
+        \section{Comparison of source choices}
+        
+        For clarity, we collect the main source candidates:
+        \begin{align}
+            \mathcal{S}_A &= \lambda_A \rhoF u_s^2,
+            \label{eq:compare-A}
+            \\
+            \mathcal{S}_B &= \lambda_B \nabla\cdot(\rhoF u_s \hat{\mathbf t}),
+            \label{eq:compare-B}
+            \\
+            \mathcal{S}_C &= \lambda_C \partial_i\partial_j(\rhoF u_i u_j).
+            \label{eq:compare-C}
+        \end{align}
+        
+        \paragraph{Why \(\mathcal{S}_A\) is insufficient as the main law.}
+            It is the correct primitive stress scale, but when interpreted too literally it leads to the wrong radial scaling in the simplest cylindrical model.
+        
+        \paragraph{Why \(\mathcal{S}_B\) is useful but incomplete.}
+            It detects source/sink/convergence structure but may vanish for perfectly closed transport without defects.
+        
+        \paragraph{Why \(\mathcal{S}_C\) is preferred.}
+            It depends on the spatial organization of coherent transport stress itself and naturally distinguishes trivial transport from transport whose geometry biases the surrounding medium.
+        
+        \section{A practical simulation workflow}
+        
+        The gravity program derived here can be implemented numerically as follows.
+        
+        \subsection*{Step 1: compute the flow field}
+            Obtain the full velocity field \(\mathbf{u}(\mathbf{x})\) from the SST simulation.
+        
+        \subsection*{Step 2: compute the organized transport tensor}
+            \begin{equation}
+                \Sigma_{ij}(\mathbf{x}) = \rhoF\,u_i(\mathbf{x})u_j(\mathbf{x}).
+                \label{eq:workflow-Sigma}
+            \end{equation}
+        
+        \subsection*{Step 3: build the source density}
+            Either compute the full tensorial source
+            \begin{equation}
+                \mathcal{S}_{\grav}(\mathbf{x})
+                =
+                \lambda\,\partial_i\partial_j \Sigma_{ij}(\mathbf{x}),
+                \label{eq:workflow-S}
+            \end{equation}
+            or use the axisymmetric approximation
+            \begin{equation}
+                \rho_{\grav}^{(\SST)}(r,z)=\alpha_{\grav}\,\nabla^2(\rhoF u_\theta^2).
+                \label{eq:workflow-rhog}
+            \end{equation}
+        
+        \subsection*{Step 4: solve the Poisson problem}
+            \begin{equation}
+                \nabla^2 \Phi_{\grav} = \mathcal{S}_{\grav}.
+                \label{eq:workflow-poisson}
+            \end{equation}
+        
+        \subsection*{Step 5: compute the gravity field}
+            \begin{equation}
+                \mathbf{g}_{\SST} = -\nabla\Phi_{\grav}.
+                \label{eq:workflow-g}
+            \end{equation}
+        
+        \subsection*{Step 6: compare against alternative predictors}
+            To test whether gravity is indeed transport-based, compare the predictive power of:
+            \begin{equation}
+                \Omega,
+                \qquad
+                \rhoF u^2,
+                \qquad
+                \Gamma_\theta^{\SST},
+                \qquad
+                \partial_i\partial_j(\rhoF u_i u_j),
+                \qquad
+                \Phi_{\grav}.
+                \label{eq:workflow-comparison}
+            \end{equation}
+        
+        \section{Falsifiability and diagnostic tests}
+        
+        The program is falsifiable. At minimum, the following tests should be applied.
+        
+        \subsection{Test 1: source compactness}
+            The tensorial source
+            \[
+                \partial_i\partial_j(\rhoF u_i u_j)
+            \]
+            should be localized around organized source structures, not diffuse across the whole domain. If it is diffuse and non-decaying everywhere, the Poisson picture loses its Newtonian-like far-field advantage.
+        
+        \subsection{Test 2: far-field scaling}
+            For isolated organized sources, the solved field \(\Phi_{\grav}\) should approach a harmonic vacuum solution outside the source region, and \(\mathbf{g}_{\SST}\) should approach \(1/r^2\)-type scaling rather than \(1/r^3\).
+        
+        \subsection{Test 3: topology sensitivity}
+            If gravity is sourced by organized transport, then two configurations with comparable local swirl magnitude but different transport organization should generate measurably different \(\Phi_{\grav}\).
+        
+        \subsection{Test 4: defect sensitivity}
+            If the source depends on curvature/convergence of transport organization, then topological reconnections or strong curvature concentrations should leave signatures in \(\mathcal{S}_{\grav}\).
+        
+        \subsection{Test 5: comparison with Swirl Clock}
+            If Swirl Clock is also transport-emergent, then \(\Phi_{\grav}\) and \(\SwirlClock\) should correlate more strongly with organized-transport diagnostics than with \(\Omega\) alone.
+        
+        \section{Assumptions, caveats, and status tags}
+        
+        \subsection{Assumptions}
+            \begin{enumerate}[label=(A\arabic*)]
+\item The medium is incompressible and inviscid at the fundamental level.
+\item Organized transport is the ontological source sector for gravity.
+\item A scalar gravity field is sufficient as the first derived response field.
+\item The source region is effectively compact or can be coarse-grained into a compact source.
+\item The organized transport tensor \(\Sigma_{ij}=\rhoF u_i u_j\) is the correct primitive continuum object.
+            \end{enumerate}
+        
+        \subsection{Caveats}
+            \begin{enumerate}[label=(C\arabic*)]
+\item The tensorial source law \eqref{eq:poisson-tensor} is a proposal, not a theorem.
+\item The scalar coupling \(\lambda\) remains to be fixed by closure, matching, or experiment.
+\item The axisymmetric proxy \eqref{eq:poisson-practical} is computationally convenient but less invariant than the full tensor law.
+\item The single-source cylindrical model is only a diagnostic toy model; realistic knot/string structures are three-dimensional and topologically nontrivial.
+            \end{enumerate}
+        
+        \subsection{Status}
+            \begin{equation}
+                \boxed{
+                    \text{Status: speculative but mathematically well-posed and directly testable.}
+                }
+            \end{equation}
+        
+        \section{Conclusion}
+        
+        We summarize the derivation.
+        
+        \begin{enumerate}[leftmargin=1.5cm]
+\item A source string embedded in an incompressible inviscid background naturally generates a strong local organized transport core plus a weak large-scale inverse return-flow envelope.
+
+\item The primitive transport-stress quantity
+\[
+    \rhoF u^2
+\]
+has the correct ontological role but fails when identified directly with the gravity field, because the simplest cylindrical model gives a \(1/r^3\) acceleration rather than a \(1/r^2\) far field.
+
+\item This failure is repaired by elevating organized transport to the \emph{source sector} rather than the \emph{field itself}.
+
+\item The resulting gravity program is:
+\begin{equation}
+    \boxed{
+        \nabla^2 \Phi_{\grav}
+        =
+        \lambda\,\partial_i\partial_j(\rhoF u_i u_j),
+        \qquad
+        \mathbf{g}_{\SST}=-\nabla\Phi_{\grav}.
+    }
+\end{equation}
+
+\item In the aligned-channel reduction,
+\begin{equation}
+    \boxed{
+        \nabla^2 \Phi_{\grav}
+        =
+        \lambda\,\partial_i\partial_j
+        \left(
+            \rhoF u_s^2\,\hat t_i \hat t_j
+        \right).
+    }
+\end{equation}
+
+\item In practical axisymmetric computations, one may use
+\begin{equation}
+    \boxed{
+        \nabla^2 \Phi_{\grav}
+        =
+        4\pi G_{\eff}\,\alpha_{\grav}\,\nabla^2(\rhoF u_\theta^2)
+    }
+\end{equation}
+inside the source region, matched to Laplace vacuum outside.
+        \end{enumerate}
+        
+        Therefore the gravity program obtained in this note is:
+        
+        \begin{equation}
+            \boxed{
+                \text{organized swirl transport defines the source;}
+                \qquad
+                \text{gravity is the Poisson-solved scalar response field.}
+            }
+        \end{equation}
+        
+        A physically accurate child-level analogy is: the swirl itself is not yet the pull; the pull comes from how the swirl is organized in space, and the rest of the medium responds to that organized pattern.
+        
+        \appendix
+        
+        \section{Numerical values collected in one place}
+        
+        \begin{align}
+            \vswirl &= 1.09384563\times 10^6\ \mathrm{m\,s^{-1}},
+            \\
+            \rc &= 1.40897017\times 10^{-15}\ \mathrm{m},
+            \\
+            \rhoF &= 7.0\times 10^{-7}\ \mathrm{kg\,m^{-3}},
+            \\
+            A &= \vswirl \rc \approx 1.54119586\times 10^{-9}\ \mathrm{m^2\,s^{-1}},
+            \\
+            \Sigma_0 &= \rhoF \vswirl^2 \approx 8.37548784\times 10^5\ \mathrm{Pa},
+            \\
+            \Delta p_{\src} &= \frac{1}{2}\rhoF \vswirl^2 \approx 4.18774392\times 10^5\ \mathrm{Pa}.
+        \end{align}
+        
+        \section{Possible next derivation}
+        
+        The next logical derivation after this note is to compute the far-field multipole reduction of
+        \[
+            \partial_i\partial_j(\rhoF u_i u_j),
+        \]
+        for localized knot or loop sources and identify the conditions under which the monopole part is nonzero, suppressed, or topology-dependent.
+        
+        \begin{thebibliography}{99}
+            
+            \bibitem{Emdee2025}
+            E.~D. Emdee, L. Horvath, A. Bortolon, R. Gerr\'u, G.~J. Wilkie, S. Haskey, and F. Laggner,
+            \newblock ``The Combined Influence of Rotation and Scrape-Off Layer Drifts on Recycling Asymmetries in Tokamak Plasmas,''
+            \newblock OSTI Preprint / Manuscript, 2025.
+            \newblock Permalink: \url{https://www.osti.gov/servlets/purl/3006372}.
+            
+            \bibitem{Batchelor1967}
+            G.~K. Batchelor,
+            \newblock \emph{An Introduction to Fluid Dynamics},
+            \newblock Cambridge University Press, Cambridge, 1967.
+            
+            \bibitem{Saffman1992}
+            P.~G. Saffman,
+            \newblock \emph{Vortex Dynamics},
+            \newblock Cambridge University Press, Cambridge, 1992.
+            
+            \bibitem{Lamb1932}
+            H.~Lamb,
+            \newblock \emph{Hydrodynamics},
+            \newblock 6th ed., Cambridge University Press, Cambridge, 1932.
+            
+            \bibitem{ChorinMarsden1993}
+            A.~J. Chorin and J.~E. Marsden,
+            \newblock \emph{A Mathematical Introduction to Fluid Mechanics},
+            \newblock 3rd ed., Springer, New York, 1993.
+            \newblock DOI: 10.1007/978-1-4612-0883-9.
+        
+        \end{thebibliography}
+
+
+
+
+
+\end{document}
