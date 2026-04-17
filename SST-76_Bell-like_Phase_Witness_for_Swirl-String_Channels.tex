@@ -1,0 +1,426 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage{physics}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+% --- SST macro prelude ---
+\newcommand{\swirlarrow}{\mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}}
+\newcommand{\swirlarrowcw}{\mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}}
+\newcommand{\vswirl}{\mathbf{v}_{\swirlarrow}}
+\newcommand{\vswirlcw}{\mathbf{v}_{\swirlarrowcw}}
+\newcommand{\SwirlClock}{S_t^{\swirlarrow}}
+\newcommand{\SwirlClockcw}{S_t^{\swirlarrowcw}}
+\newcommand{\vnorm}{\left\lVert \vswirl \right\rVert}
+\newcommand{\rhoF}{\rho_{\!f}}
+\newcommand{\rhoE}{\rho_{\!E}}
+\newcommand{\rhoM}{\rho_{\!m}}
+\newcommand{\rhocore}{\rho_{\text{core}}}
+\newcommand{\rc}{r_c}
+\newcommand{\dd}{\mathrm{d}}
+
+\title{SST Derivation Note:\\
+Bell-like Phase Witness for Swirl-String Channels}
+\author{}
+\date{}
+
+\begin{document}
+    \maketitle
+    
+    \section{Purpose}
+        
+        This note translates the logic of momentum-entangled Bell-correlation experiments into a Swirl-String Theory (SST) framework. The goal is not to claim that SST already reproduces quantum Bell nonlocality. The goal is narrower:
+        
+        \begin{quote}
+            \emph{Can an SST medium with paired counter-propagating or topologically conjugate excitation channels produce a phase-sensitive correlation witness of Bell-like sinusoidal form under controlled recombination?}
+        \end{quote}
+        
+        This is a well-posed operational question even before any ontological claim is made.
+    
+    \section{Orthodox summary}
+        
+        In the atom-interferometric experiment, pair-correlated massive particles are generated in opposite momentum modes by collisions of ultracold condensates. In the low-occupancy limit, the relevant four-mode sector is approximated by a Bell-like state. A matter-wave Rarity--Tapster interferometer then mixes the two branches and yields joint probabilities of the form
+        \begin{equation}
+            P_{pp'}=\frac{1}{2}\sin^2\!\left(\frac{\Phi}{2}\right),\qquad
+            P_{pq'}=\frac{1}{2}\cos^2\!\left(\frac{\Phi}{2}\right),
+            \label{eq:orthodox_probs}
+        \end{equation}
+        with analogous relations for the other pairings. The experimentally constructed Bell-correlation function is
+        \begin{equation}
+            E(\Phi)=
+            \frac{P_{pp'}+P_{qq'}-P_{pq'}-P_{qp'}}
+            {P_{pp'}+P_{qq'}+P_{pq'}+P_{qp'}}
+            \approx -A\cos(\Phi+\delta),
+            \label{eq:orthodox_E}
+        \end{equation}
+        where \(A\) is the visibility and \(\delta\) is an offset phase. The measured amplitude is large enough to witness Bell correlations and steering-type nonlocality in a motional degree of freedom of massive atoms. A steering witness of the form
+        \begin{equation}
+            C(\Phi,\Phi+\pi)=|E(\Phi)-E(\Phi+\pi)|
+            \label{eq:orthodox_C}
+        \end{equation}
+        is then tested against a threshold. The key observable fact is not merely pair production, but phase-controlled oscillatory correlations after recombination.
+    
+    \section{SST mapping}
+        
+        We now define the SST translation.
+        
+        \subsection{Operational map}
+            
+            The orthodox objects and their SST analogs are:
+            
+            \begin{center}
+                \begin{tabular}{ll}
+                    Orthodox object & SST analog \\ \hline
+                    Opposite momentum modes & paired swirl-string propagation channels \\
+                    Two-mode squeezed / Bell-like sector & paired channel occupancy state \\
+                    Bragg mirror / beamsplitter pulses & controlled coupling junctions between channels \\
+                    Interferometric phase \(\Phi\) & accumulated swirl phase / delay phase \\
+                    Coincidence probabilities & paired detection rates at output ports \\
+                    Bell correlation \(E(\Phi)\) & Bell-like SST phase witness \\
+                \end{tabular}
+            \end{center}
+        
+        \subsection{SST interpretation}
+            
+            In SST, the basic hypothesis is that a localized source event can launch a pair of coherent excitations into two alternative channel pairs,
+            \[
+                (K_a,K_a') \quad \text{or} \quad (K_b,K_b'),
+            \]
+            where \(K_i\) may denote:
+            \begin{enumerate}[label=(\alph*)]
+\item geometric channels in a recombination network,
+\item counter-propagating swirl-string branches,
+\item topologically conjugate mode sectors,
+\item or two linked transport pathways through the foliation field.
+            \end{enumerate}
+            
+            The physically meaningful claim is therefore:
+            
+            \begin{quote}
+                \emph{If SST supports pair creation into two coherent alternatives, and if the two alternatives can be recombined with controllable phase delay, then a sinusoidal correlation witness should emerge at the output.}
+            \end{quote}
+    
+    \section{Minimal SST equations}
+        
+        \subsection{Paired channel state}
+            
+            As a minimal effective model, take the reduced paired-channel state
+            \begin{equation}
+                |\Psi_{\mathrm{SST}}\rangle
+                =
+                \frac{1}{\sqrt{2}}
+                \left(
+                    |1\rangle_{K_a}|1\rangle_{K_a'}|0\rangle_{K_b}|0\rangle_{K_b'}
+                    +
+                    e^{i\chi}
+                    |0\rangle_{K_a}|0\rangle_{K_a'}|1\rangle_{K_b}|1\rangle_{K_b'}
+                \right),
+                \label{eq:sst_state}
+            \end{equation}
+            where \(\chi\) is the source-imprinted relative phase.
+            
+            This is a \emph{model ansatz}, not yet derived from Canon. Its purpose is to define the simplest paired superselection sector that could support Bell-like phase readout.
+        
+        \subsection{Channel phase accumulation}
+            
+            Let the two output arms \(L\) and \(R\) accumulate phases
+            \begin{equation}
+                \phi_L = \int_{L} \left( k_{\mathrm{eff}}\,\dd \ell - \omega_{\mathrm{eff}}\,\dd t \right) + \phi_L^{\mathrm{(junc)}},
+                \qquad
+                \phi_R = \int_{R} \left( k_{\mathrm{eff}}\,\dd \ell - \omega_{\mathrm{eff}}\,\dd t \right) + \phi_R^{\mathrm{(junc)}},
+                \label{eq:path_phases}
+            \end{equation}
+            with total phase
+            \begin{equation}
+                \Phi_{\mathrm{SST}} = \phi_L + \phi_R + \chi.
+                \label{eq:PhiSST}
+            \end{equation}
+            
+            In an SST medium, the effective local frequency may depend on the swirl-clock sector,
+            \begin{equation}
+                \omega_{\mathrm{eff}}(\mathbf{x})
+                =
+                \omega_0\,\mathcal{F}\!\left(\SwirlClock(\mathbf{x}),\,\rhoF(\mathbf{x}),\,\rhoE(\mathbf{x}),\,\Omega(\mathbf{x})\right),
+                \label{eq:omega_eff_general}
+            \end{equation}
+            where \(\Omega\) denotes local vorticity magnitude or an SST-compatible circulation-density proxy.
+            
+            A minimal first-order closure is
+            \begin{equation}
+                \omega_{\mathrm{eff}}(\mathbf{x})
+                \approx
+                \omega_0
+                \left[
+                    1+\alpha_S\bigl(1-\SwirlClock(\mathbf{x})\bigr)
+                    +\beta_S\,\frac{\rhoE(\mathbf{x})}{\rhoF(\mathbf{x})\,c^2}
+                \right],
+                \label{eq:omega_eff_closure}
+            \end{equation}
+            with dimensionless coefficients \(\alpha_S,\beta_S\). This is phenomenological.
+        
+        \subsection{Output probabilities}
+            
+            Assume the recombination junction acts as a balanced linear coupler. Then the coincidence probabilities have the same harmonic form as the orthodox case:
+            \begin{equation}
+                P_{aa'}(\Phi_{\mathrm{SST}})=P_{bb'}(\Phi_{\mathrm{SST}})
+                =\frac{\eta}{2}\sin^2\!\left(\frac{\Phi_{\mathrm{SST}}}{2}\right),
+                \label{eq:Paa}
+            \end{equation}
+            \begin{equation}
+                P_{ab'}(\Phi_{\mathrm{SST}})=P_{ba'}(\Phi_{\mathrm{SST}})
+                =\frac{\eta}{2}\cos^2\!\left(\frac{\Phi_{\mathrm{SST}}}{2}\right),
+                \label{eq:Pab}
+            \end{equation}
+            where \(0\le \eta \le 1\) is the effective pair-transfer efficiency.
+        
+        \subsection{Bell-like SST phase witness}
+            
+            Define
+            \begin{equation}
+                E_{\mathrm{SST}}(\Phi)=
+                \frac{
+                    P_{aa'}+P_{bb'}-P_{ab'}-P_{ba'}
+                }{
+                    P_{aa'}+P_{bb'}+P_{ab'}+P_{ba'}
+                }.
+                \label{eq:EdefSST}
+            \end{equation}
+            Substituting Eqs.~\eqref{eq:Paa}--\eqref{eq:Pab} gives
+            \begin{equation}
+                E_{\mathrm{SST}}(\Phi)
+                =
+                -\cos \Phi_{\mathrm{SST}}.
+                \label{eq:EidealSST}
+            \end{equation}
+            Allowing for mode mismatch, dephasing, finite bandwidth, or unequal couplers yields
+            \begin{equation}
+                E_{\mathrm{SST}}(\Phi)
+                =
+                -A_{\mathrm{SST}}\cos\!\bigl(\Phi_{\mathrm{SST}}+\delta_{\mathrm{SST}}\bigr),
+                \qquad
+                0\le A_{\mathrm{SST}}\le 1.
+                \label{eq:ESSTreal}
+            \end{equation}
+            
+            This is the proposed \emph{Bell-like phase witness for swirl-string channels}.
+    
+    \section{SST-specific source constraint}
+        
+        A more SST-native formulation replaces the abstract source phase \(\chi\) by a local pair-creation law. The source region should conserve:
+        \begin{equation}
+            \Gamma_{\mathrm{in}} = \Gamma_{\mathrm{out},1}+\Gamma_{\mathrm{out},2},
+            \label{eq:Gamma_conservation}
+        \end{equation}
+        \begin{equation}
+            \mathbf{K}_{\mathrm{in}} \approx \mathbf{K}_{1}+\mathbf{K}_{2},
+            \label{eq:K_conservation}
+        \end{equation}
+        \begin{equation}
+            \omega_{\mathrm{src}} \approx \omega_1+\omega_2,
+            \label{eq:omega_conservation}
+        \end{equation}
+        where \(\Gamma\) is circulation and \(\mathbf{K}\) is the effective channel wavevector or transport momentum. A local source satisfying Eqs.~\eqref{eq:Gamma_conservation}--\eqref{eq:omega_conservation} is the natural SST analog of opposite-momentum pair production.
+    
+    \section{Observables}
+        
+        The minimal observables are:
+        
+        \subsection{Visibility}
+            \begin{equation}
+                A_{\mathrm{SST}} = \frac{E_{\max}-E_{\min}}{2}.
+                \label{eq:visibility}
+            \end{equation}
+            A nonzero \(A_{\mathrm{SST}}\) indicates preserved pair coherence through the SST channel network.
+        
+        \subsection{Clock-field phase shift}
+            If one arm traverses a region of modified swirl clock \(\SwirlClock\), then
+            \begin{equation}
+                \Delta \Phi_{\mathrm{clock}}
+                =
+                -\int \Delta \omega_{\mathrm{eff}}(t)\,\dd t.
+                \label{eq:clock_shift}
+            \end{equation}
+            Thus, SST predicts that branch-dependent clock structure should appear as a measurable phase offset \(\delta_{\mathrm{SST}}\).
+        
+        \subsection{Contrast loss from inhomogeneity}
+            If the phase fluctuates over the detection window with variance \(\sigma_\Phi^2\), then
+            \begin{equation}
+                A_{\mathrm{SST}} \approx A_0\,e^{-\sigma_\Phi^2/2}.
+                \label{eq:dephasing}
+            \end{equation}
+            This gives a direct quantitative reason to restrict to narrow mode windows, exactly as in the atomic experiment.
+        
+        \subsection{Topological dependence}
+            If the pair channels correspond to different knot or link sectors, one may test
+            \begin{equation}
+                A_{\mathrm{SST}} = A_{\mathrm{SST}}(K_a,K_b),\qquad
+                \delta_{\mathrm{SST}}=\delta_{\mathrm{SST}}(K_a,K_b),
+                \label{eq:topodep}
+            \end{equation}
+            which would probe whether topological complexity affects coherence preservation.
+    
+    \section{Falsifiers}
+        
+        This proposal is useful only if it can fail.
+        
+        \begin{enumerate}[label=\arabic*.]
+\item \textbf{No sinusoidal law.} If recombination does not produce
+\[
+    E_{\mathrm{SST}}(\Phi)\approx -A_{\mathrm{SST}}\cos(\Phi+\delta_{\mathrm{SST}}),
+\]
+then the Bell-like phase witness fails.
+
+\item \textbf{No pair-coincident enhancement.} If source events do not generate statistically enhanced paired output rates relative to uncorrelated controls, then the paired-channel ansatz in Eq.~\eqref{eq:sst_state} is not appropriate.
+
+\item \textbf{No controlled phase shift.} If deliberately changing one arm's delay or local swirl environment does not shift \(\delta_{\mathrm{SST}}\), then the interferometric mapping is wrong.
+
+\item \textbf{No window dependence.} If narrowing the selected mode sector does not improve visibility, then the coherence-loss model in Eq.~\eqref{eq:dephasing} is likely incorrect.
+
+\item \textbf{No topology dependence.} If channel topology is claimed to matter, but \(A_{\mathrm{SST}}\) and \(\delta_{\mathrm{SST}}\) remain invariant under channel substitution, then that claim should be rejected.
+        \end{enumerate}
+    
+    \section{Status}
+        
+        \begin{itemize}
+            \item \textbf{Orthodox status:} established for ultracold-atom momentum-entanglement experiments.
+            \item \textbf{SST status of the witness form:} plausible operational translation.
+            \item \textbf{SST status of the source ansatz Eq.~\eqref{eq:sst_state}:} conjectural.
+            \item \textbf{SST status of the clock-sensitive phase law Eq.~\eqref{eq:omega_eff_closure}:} phenomenological and not yet canonically derived.
+            \item \textbf{SST status of Bell nonlocality claim:} not established.
+        \end{itemize}
+    
+    \section{Numerical SST scales}
+        
+        Using the canonical constants
+        \[
+            \mathbf{v}_{\!\boldsymbol{\circlearrowleft}} = 1.09384563\times 10^{6}\ \mathrm{m\,s^{-1}},
+            \qquad
+            r_c = 1.40897017\times 10^{-15}\ \mathrm{m},
+            \qquad
+            \rho_{\!f}=7.0\times 10^{-7}\ \mathrm{kg\,m^{-3}},
+        \]
+        the characteristic circulation scale is
+        \begin{equation}
+            \Gamma_0 = 2\pi r_c\,\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}.
+            \label{eq:Gamma0}
+        \end{equation}
+        Numerically,
+        \begin{equation}
+            \Gamma_0
+            =
+            2\pi(1.40897017\times 10^{-15})(1.09384563\times 10^6)
+            \approx 9.6847\times 10^{-9}\ \mathrm{m^2\,s^{-1}}.
+            \label{eq:Gamma0num}
+        \end{equation}
+        
+        A corresponding characteristic angular frequency at the core scale is
+        \begin{equation}
+            \omega_c \sim \frac{\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}}{r_c}
+            \approx
+            \frac{1.09384563\times 10^6}{1.40897017\times 10^{-15}}
+            \approx 7.7649\times 10^{20}\ \mathrm{s^{-1}}.
+            \label{eq:omegac}
+        \end{equation}
+        
+        Hence a path-delay difference \(\Delta t\) would induce a raw phase shift
+        \begin{equation}
+            \Delta \Phi \sim \omega_c \Delta t.
+            \label{eq:dphi_dt}
+        \end{equation}
+        For example,
+        \begin{equation}
+            \Delta t = 10^{-21}\ \mathrm{s}
+            \quad\Longrightarrow\quad
+            \Delta \Phi \sim 0.776.
+            \label{eq:dphi_example}
+        \end{equation}
+        This indicates that an SST phase witness would be extremely sensitive to even tiny effective delay differences if the relevant carrier frequency is indeed set by a core-scale mode. That sensitivity is useful, but also means averaging and dephasing are serious confounders.
+    
+    \section{Minimal experiment or simulation}
+        
+        A minimal SST testbed needs only four ingredients:
+        \begin{enumerate}[label=(\roman*)]
+\item a source that launches paired excitations into two alternative channel pairs;
+\item two controllable couplers acting as mirror and beamsplitter analogs;
+\item a tunable delay or local swirl-clock perturbation in one arm;
+\item coincidence-counting or paired-output statistics.
+        \end{enumerate}
+        
+        Even a classical wave-network simulation is enough to test whether the witness law Eq.~\eqref{eq:ESSTreal} appears. One need not begin with a full quantum claim.
+    
+    \section{Conclusion}
+        
+        The most important lesson from the orthodox experiment is not “Bell violation” by itself, but the operational chain:
+        \[
+            \text{pair source}
+            \;\to\;
+            \text{branch coherence}
+            \;\to\;
+            \text{phase accumulation}
+            \;\to\;
+            \text{recombination}
+            \;\to\;
+            \text{oscillatory correlation witness}.
+        \]
+        SST can adopt exactly this chain. The proposed quantity
+        \[
+            E_{\mathrm{SST}}(\Phi)
+            =
+            -A_{\mathrm{SST}}\cos(\Phi+\delta_{\mathrm{SST}})
+        \]
+        is therefore a clean first target: measurable, falsifiable, and naturally sensitive to channel delay, medium inhomogeneity, and possibly topological class.
+        
+        \bigskip
+        \noindent\textbf{Analogy for a 10-year-old.} Imagine making two matching ripples in water and sending them through two different maze paths. If the paths keep the ripples coordinated, then when they meet again they make a repeating strong-weak pattern. That repeating pattern is what this note tries to measure in SST.
+        
+        \begin{thebibliography}{99}
+            
+            \bibitem{Athreya2026}
+            Y.~S.~Athreya, S.~Kannan, X.~T.~Yan, R.~J.~Lewis-Swan, K.~V.~Kheruntsyan, A.~G.~Truscott, and S.~S.~Hodgman,
+            ``Bell correlations between momentum-entangled pairs of $^4$He$^\ast$ atoms,''
+            \emph{Nature Communications} \textbf{17} (2026) 2357.
+            DOI: \href{https://doi.org/10.1038/s41467-026-69070-3}{10.1038/s41467-026-69070-3}.
+            
+            \bibitem{Bell1987}
+            J.~S.~Bell,
+            \emph{Speakable and Unspeakable in Quantum Mechanics},
+            Cambridge University Press, Cambridge (1987).
+            
+            \bibitem{Aspect2004}
+            A.~Aspect,
+            ``Bell's theorem: the naive view of an experimentalist,''
+            \emph{arXiv} quant-ph/0402001 (2004).
+            DOI: \href{https://doi.org/10.48550/arXiv.quant-ph/0402001}{10.48550/arXiv.quant-ph/0402001}.
+            
+            \bibitem{RarityTapster1990}
+            J.~G.~Rarity and P.~R.~Tapster,
+            ``Experimental violation of Bell's inequality based on phase and momentum,''
+            \emph{Physical Review Letters} \textbf{64} (1990) 2495--2498.
+            DOI: \href{https://doi.org/10.1103/PhysRevLett.64.2495}{10.1103/PhysRevLett.64.2495}.
+            
+            \bibitem{Kheruntsyan2012}
+            K.~V.~Kheruntsyan, M.~K.~Olsen, and P.~D.~Drummond,
+            ``Bell inequalities and Einstein-Podolsky-Rosen steering in two-mode Bose-Einstein condensates,''
+            \emph{Physical Review Letters} \textbf{95} (2005) 150405.
+            DOI: \href{https://doi.org/10.1103/PhysRevLett.95.150405}{10.1103/PhysRevLett.95.150405}.
+            
+            \bibitem{Helmholtz1858}
+            H.~Helmholtz,
+            ``\"Uber Integrale der hydrodynamischen Gleichungen, welche den Wirbelbewegungen entsprechen,''
+            \emph{Journal f\"ur die reine und angewandte Mathematik} \textbf{55} (1858) 25--55.
+            Permalink: \href{https://eudml.org/doc/148991}{historical reprint / archive sources available}.
+            
+            \bibitem{Batchelor1967}
+            G.~K.~Batchelor,
+            \emph{An Introduction to Fluid Dynamics},
+            Cambridge University Press, Cambridge (1967).
+            
+            \bibitem{Saffman1992}
+            P.~G.~Saffman,
+            \emph{Vortex Dynamics},
+            Cambridge University Press, Cambridge (1992).
+        
+        \end{thebibliography}
+
+\end{document}

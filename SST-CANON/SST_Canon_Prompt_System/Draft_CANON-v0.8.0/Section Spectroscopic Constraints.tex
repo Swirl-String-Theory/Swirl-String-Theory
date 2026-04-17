@@ -1,0 +1,179 @@
+\section{Spectroscopic Constraints}
+    \label{sec:spectroscopy}
+    
+    \subsection{Motivation}
+        
+        Any extension of atomic structure must remain consistent with high-precision spectroscopic measurements.
+        
+        \textbf{[ORTHODOX]}:
+        Atomic energy levels are experimentally verified to extremely high precision.
+        
+        \textbf{Requirement:}
+        \begin{align}
+            |\delta E_n| \ll |E_n|
+            \label{eq:spectro_constraint}
+        \end{align}
+        
+        where $\delta E_n$ represents any SST-induced correction.
+    
+    \subsection{Internal Mode Hypothesis}
+        
+        We consider the possibility that atomic bound states possess an additional internal excitation sector associated with vortex filament dynamics.
+        
+        \textbf{[SPECULATIVE]}:
+        Each bound state carries an internal mode spectrum $\{E_{m,n}\}$.
+        
+        The effective energy becomes:
+        
+        \begin{align}
+            E_n^{\text{eff}} = E_n^{(0)} + \delta E_n
+            \label{eq:effective_energy}
+        \end{align}
+    
+    \subsection{Generic Coupling Structure}
+        
+        We parameterize the coupling between internal modes and observable energy levels:
+        
+        \begin{align}
+            |\delta E_n| \leq \lambda_n \sum_m E_{m,n} \, \nu_{m,n}
+            \label{eq:coupling_bound}
+        \end{align}
+        
+        where:
+        \begin{itemize}
+            \item $\lambda_n$ is the coupling efficiency
+            \item $\nu_{m,n}$ is the occupation factor
+        \end{itemize}
+        
+        \textbf{[DERIVED]}: This form captures a general upper bound independent of microscopic details.
+    
+    \subsection{Ungapped Spectrum: Instability}
+        
+        If the internal spectrum is ungapped:
+        
+        \begin{itemize}
+            \item arbitrarily low-energy excitations exist
+            \item no universal suppression mechanism applies
+        \end{itemize}
+        
+        \textbf{Consequence:}
+        \begin{align}
+            \delta E_n \not\to 0 \quad \text{generically}
+        \end{align}
+        
+        \textbf{[CRITICAL]}:
+        An ungapped internal sector is generically incompatible with spectroscopy unless:
+        
+        \begin{itemize}
+            \item $\lambda_n \ll 1$ (extremely weak coupling), or
+            \item the density of states is highly suppressed
+        \end{itemize}
+    
+    \subsection{Gapped Spectrum: Decoupling Mechanism}
+        
+        We introduce an excitation gap $\Delta_K$:
+        
+        \begin{align}
+            E_{m,n} \geq \Delta_K
+        \end{align}
+        
+        Then occupation factors follow Boltzmann suppression:
+        
+        \begin{align}
+            \nu_{m,n} \sim \exp\left(-\frac{\Delta_K}{k_B T_{\text{eff}}}\right)
+        \end{align}
+        
+        Substituting into Eq.~\ref{eq:coupling_bound}:
+        
+        \begin{align}
+            \delta E_n \propto \exp\left(-\frac{\Delta_K}{k_B T_{\text{eff}}}\right)
+            \label{eq:boltzmann_suppression}
+        \end{align}
+        
+        \textbf{[DERIVED]}:
+        Exponential suppression ensures compatibility with spectroscopy.
+    
+    \subsection{Physical Origin of the Gap}
+        
+        \textbf{[SPECULATIVE]}:
+        The gap $\Delta_K$ may arise from:
+        
+        \begin{itemize}
+            \item geometric constraints on filament curvature
+            \item torsional rigidity
+            \item topological restrictions
+            \item core structure of the vortex
+        \end{itemize}
+    
+    \subsection{Order-of-Magnitude Estimate}
+        
+        Using filament parameters:
+        
+        \begin{align}
+            \Delta_K \sim \frac{\Gamma^2}{4\pi \xi L}
+        \end{align}
+        
+        where:
+        \begin{itemize}
+            \item $\xi$ is the core scale
+            \item $L$ is the loop length
+        \end{itemize}
+        
+        For typical SST scales:
+        
+        \begin{align}
+            \Delta_K = \mathcal{O}(10^2 - 10^3 \, \text{eV})
+        \end{align}
+        
+        \textbf{[DERIVED]}:
+        This places the internal sector well above atomic energy scales ($\sim$ eV).
+    
+    \subsection{Consistency Condition}
+        
+        To preserve atomic physics:
+        
+        \begin{align}
+            \frac{\Delta_K}{k_B T_{\text{eff}}} \gg 1
+        \end{align}
+        
+        \textbf{Interpretation:}
+        The internal sector is effectively frozen at atomic energies.
+    
+    \subsection{Observable Consequences}
+        
+        \textbf{[SPECULATIVE]}:
+        Residual effects may include:
+        
+        \begin{itemize}
+            \item tiny level shifts
+            \item suppressed line broadening
+            \item weak temperature dependence
+        \end{itemize}
+    
+    \subsection{Falsifiability}
+        
+        The theory is falsifiable via:
+        
+        \begin{itemize}
+            \item detection of unexplained spectral shifts
+            \item absence of expected suppression
+            \item deviation from Boltzmann scaling
+        \end{itemize}
+    
+    \subsection{Integration with SST Framework}
+        
+        The spectroscopic constraint enforces:
+        
+        \begin{itemize}
+            \item compatibility with the Atomic Bridge (Section~\ref{sec:atomic})
+            \item constraints on delay-induced excitations (Section~\ref{sec:delay})
+            \item bounds on allowable vortex configurations
+        \end{itemize}
+    
+    \subsection{Canonical Statement}
+        
+        \begin{center}
+            \textit{
+                Any viable SST extension must include a mechanism—such as an excitation gap—that ensures exponential suppression of internal modes at atomic energy scales.
+            }
+        \end{center}
