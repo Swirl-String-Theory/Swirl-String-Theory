@@ -1,0 +1,175 @@
+%! Author = Omar Iskandarani
+%! Companion to Swirl-String-Theory_Canon-v0.8.0
+
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsfonts,bm,amsthm}
+\usepackage[hidelinks]{hyperref}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{physics}
+
+% SST macro prelude
+\newcommand{\swirlarrow}{\mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}}
+\newcommand{\vswirl}{\mathbf{v}_{\swirlarrow}}
+\newcommand{\rhoF}{\rho_{\!f}}
+\newcommand{\rhoE}{\rho_{\!E}}
+\newcommand{\rhoM}{\rho_{\!m}}
+\newcommand{\SwirlClock}{{S_{(t)}^{\swirlarrow}}}
+\newcommand{\rc}{{r_c}}
+\newcommand{\vnorm}{\lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}} \rVert}
+
+\title{canon-0.8.0-research-track\\
+\large Companion research-track sectors migrated from the main SST canon}
+\author{Omar Iskandarani}
+\date{April 19, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This companion document collects those sectors that remain useful for continuity and future development but are too long, too provisional, or too phenomenology-specific for the core body of \textit{Swirl-String-Theory\_Canon-v0.8.0}. Their migration out of the main canon is editorial rather than negative: each subsection remains part of the broader SST research program, but none is required for the minimal logical closure of the core canon.
+\end{abstract}
+
+\section{Research-track sectors migrated from the main canon}
+
+\subsection{Thermodynamic Radiation Interface}
+A recurring legacy idea is that a local swirl-energy density may define an effective temperature field and thereby an emergent radiation sector. Let
+\begin{align}
+    T_{\mathrm{eff}} = T_{\mathrm{eff}}\big(\rhoE,\, \omega,\, \SwirlClock\big)
+\end{align}
+denote an unspecified constitutive relation. A minimal legacy interface then asks whether Planck-type spectra can emerge from a medium whose local excitation scale is set by $T_{\mathrm{eff}}$.
+
+\textbf{[ORTHODOX]}: blackbody spectra are governed by Planck's law once a valid temperature variable is defined.
+
+\textbf{[SPECULATIVE]}: SST does not yet derive the constitutive relation above, so this sector remains a research program rather than canonically closed physics.
+
+\subsection{Minimal Coupling Interface to QED}
+Early research notes repeatedly explored whether an effective vector potential could be built from circulation variables. The most conservative placeholder takes the form
+\begin{align}
+    \nabla \rightarrow \nabla - i\frac{m}{\hbar}A_{\mathrm{eff}},
+    \qquad
+    A_{\mathrm{eff}} = \chi \, v,
+\end{align}
+where $\chi$ is a scalar weight and $v$ is the local carrier velocity field.
+
+\textbf{[ORTHODOX]}: minimal coupling is the standard gateway from free to gauge-coupled wave dynamics.
+
+\textbf{[SPECULATIVE]}: the above substitution is only an analogy template unless a full gauge-covariant derivation is supplied.
+
+\subsection{Ribbon-Invariant Chirality Refinement}
+The older canon layers also suggested using the Calugareanu--White--Fuller relation
+\begin{align}
+    Lk = Tw + Wr
+\end{align}
+as a refinement of the knot-based matter/antimatter dictionary.
+
+\textbf{[ORTHODOX]}: this is a standard geometric identity for framed curves and ribbons.
+
+\textbf{[DERIVED]}: it can be used internally to separate writhe-dominated from twist-dominated realizations of the same coarse knot class.
+
+\textbf{[SPECULATIVE]}: the mapping from $\operatorname{sign}(Tw)$ or related chirality measures to particle/antiparticle sectors remains a model hypothesis.
+
+\subsection{Particle-Candidate Mapping Layer}
+\textbf{[SPECULATIVE] Working dictionary:} a minimal knot/composition mapping retained from earlier SST work is summarized in Table~\ref{tab:particle-candidates}. This table is organizational rather than definitive; it records the current topological assignments used by the mass and taxonomy program.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lll}
+\hline
+Knot class / composition & Candidate & Status / role \\
+\hline
+$3_1$ & electron & baseline lepton calibration \\
+$T(2,5)$ or equivalent higher torus class & muon & lepton hierarchy candidate \\
+$T(2,7)$ or equivalent higher torus class & tau & lepton hierarchy candidate \\
+$5_2 + 5_2 + 6_1$ & proton & composite baryon candidate \\
+analogous nearby composite class & neutron & composite baryon candidate \\
+\hline
+\end{tabular}
+\caption{Minimal knot-class to particle-candidate summary retained as a research-track dictionary.}
+\label{tab:particle-candidates}
+\end{table}
+
+\textbf{[CRITICAL NOTE]}: Table~\ref{tab:particle-candidates} is a working dictionary only. A full canonical assignment requires an explicit invariant set and a mass-functional comparison program.
+
+\subsection{Hydrodynamic Exchange and the Pauli Barrier}
+\textbf{[ORTHODOX]}: for two thin filamentary loops $C_1$ and $C_2$ in an incompressible medium, the Biot--Savart interaction energy is
+\begin{align}
+    E_{\mathrm{int}}
+    =
+    \frac{\rhoF\Gamma_1\Gamma_2}{4\pi}
+    \oint_{C_1}\oint_{C_2}
+    \frac{d\ell_1\cdot d\ell_2}{\norm{r_1-r_2}}.
+\end{align}
+
+\textbf{[DERIVED]}: if two identical electron-candidate loops are forced into the same spatial state, regularization at the core radius $\rc$ yields the overlap penalty
+\begin{align}
+    V_{\mathrm{Pauli}}(d)
+    \approx
+    \frac{\rhoF\Gamma_0^2}{4\pi}
+    \iint
+    \frac{d\ell_1\cdot d\ell_2}{\sqrt{\norm{r_1(\theta_1)-r_2(\theta_2)+d}^2+\rc^2}},
+\end{align}
+with maximal-overlap scale
+\begin{align}
+    V_{\mathrm{Pauli}}^{\max}
+    \approx
+    \frac{\rhoF\Gamma_0^2}{4\pi}\left(\frac{L}{\rc}\right)\mathcal{O}(1).
+\end{align}
+
+Using the canonical values
+\begin{align}
+    \rhoF &= 7.0\times 10^{-7}\ \mathrm{kg\,m^{-3}}, \\
+    \rc &= 1.40897017\times 10^{-15}\ \mathrm{m}, \\
+    \Gamma_0 &= 2\pi \rc\,\vnorm \approx 9.6836\times 10^{-9}\ \mathrm{m^2\,s^{-1}},
+\end{align}
+and $L\sim 2\pi a_0$ at the hydrogenic scale, one obtains the benchmark estimate
+\begin{align}
+    V_{\mathrm{Pauli}}^{\max} \sim 1.23\times 10^{-18}\ \mathrm{J} \sim 7.6\ \mathrm{eV}.
+\end{align}
+
+\textbf{[CRITICAL NOTE]}: this is retained as a canonical scale benchmark, not yet as a closed theorem. Its role is to show that the exclusion-energy estimate falls in an atomically relevant window rather than at obviously pathological scales.
+
+\subsection{Numerical Benchmark Layer}
+\textbf{[DERIVED] Computational-program requirement:} earlier SST work contained explicit benchmark tables for particle and atomic masses. In v0.8.0, the benchmark layer is retained as a reproducibility requirement rather than as a stand-alone authority claim.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lllll}
+\hline
+Particle & $m_{\mathrm{exp}}$ (MeV) & $m_{\mathrm{SST}}$ (MeV) & rel. error & mode class \\
+\hline
+e & 0.51099895 & 0.51099895 & 0 & predictive/closure \\
+$\mu$ & 105.6583745 & \dots & \dots & predictive candidate \\
+$\tau$ & 1776.86 & \dots & \dots & predictive candidate \\
+p & 938.272088 & \dots & \dots & predictive or closure \\
+n & 939.565420 & \dots & \dots & predictive or closure \\
+\hline
+\end{tabular}
+\caption{Benchmark summary structure to be populated from canonical scripts and archived CSV output.}
+\end{table}
+
+\textbf{[CRITICAL NOTE]}: a future v0.8.x benchmark appendix should include the exact script or package path used for generation, archived CSV outputs, mode definitions (predictive vs. exact-closure), and uncertainty propagation on canonical constants and geometric factors.
+
+\subsection{Gauge-Sector Roadmap}
+\textbf{[SPECULATIVE] Structural roadmap:} a retained minimal statement of the gauge program is
+\begin{align}
+    g_{\mathrm{eff}} = su(3) \oplus su(2) \oplus u(1),
+\end{align}
+with effective gauge phases organized as holonomy data of multi-director transport.
+
+A minimal phase-based representation is
+\begin{align}
+    A^a_{\mu}(x) = \partial_{\mu}\theta^a(x),
+\end{align}
+and clock coupling acts as a common phase reference,
+\begin{align}
+    \theta^a(x) \mapsto \theta^a(x)+q^a\chi(x)
+    \quad\Rightarrow\quad
+    A^a_{\mu}\mapsto A^a_{\mu}+q^a\partial_{\mu}\chi.
+\end{align}
+
+\textbf{[CRITICAL NOTE]}: the gauge layer is retained only as a roadmap statement. Running couplings, anomaly cancellation, and realistic mixing matrices remain open work.
+
+\end{document}

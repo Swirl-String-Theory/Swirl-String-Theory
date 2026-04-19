@@ -1,0 +1,182 @@
+--- Draft_v0.8.0.tex
++++ Draft_v0.8.0.tex
+@@ -782,6 +782,35 @@
+         
+         \textbf{[ORTHODOX]}: This reproduces the hydrogenic spectrum.
+     
++
++    \subsection{Legacy Soft-Core Regularization}
++        
++        Early canon layers introduced a finite-core regularization of the hydrogenic potential. In the present document this is retained only as a controlled bridge ansatz, not as a replacement for Eq.~\eqref{eq:coulomb}.
++        
++        Define the effective coupling scale
++        \begin{align}
++            \Lambda_{\mathrm{SST}} = 4\pi \, \rho_{\mathrm{core}} \, v_{\swirlarrow}^{2} \, r_c^{4}
++            \label{eq:lambda_sst}
++        \end{align}
++        with dimensions
++        \begin{align}
++            [\Lambda_{\mathrm{SST}}] = \mathrm{J\,m} = \mathrm{N\,m^2}.
++        \end{align}
++        
++        A finite-core bridge potential is then
++        \begin{align}
++            V_{\mathrm{soft}}(r) = -\frac{\Lambda_{\mathrm{SST}}}{\sqrt{r^2+r_c^2}}
++            \label{eq:softcore_potential}
++        \end{align}
++        satisfying the large-radius limit
++        \begin{align}
++            V_{\mathrm{soft}}(r) \xrightarrow{r\gg r_c} -\frac{\Lambda_{\mathrm{SST}}}{r}.
++        \end{align}
++        
++        \textbf{[ORTHODOX]}: finite-core regularizations of singular central potentials are standard effective-model tools.\newline
++        \textbf{[DERIVED]}: the SST scale in Eq.~\eqref{eq:lambda_sst} is fixed by canonical constants rather than introduced phenomenologically.\newline
++        \textbf{[CRITICAL]}: this sector is admissible only if the large-radius limit reproduces the standard Coulomb problem to spectroscopic accuracy.
++        
+     \subsection{SST Circulation Correction}
+         
+         We introduce a circulation-dependent perturbation:
+@@ -1356,9 +1385,76 @@
+         \label{sec:integration}
+         
+ 
++    \subsection{Selective Recovery from Pre-v0.7 Canon Layers}
++        
++        The present draft absorbs only those legacy ingredients that can be rewritten in the current epistemic format without appealing to earlier canon versions as authorities.
++        
++        Recovered legacy sectors include:
++        \begin{itemize}
++            \item the finite-core atomic bridge, Eqs.~\eqref{eq:lambda_sst}--\eqref{eq:softcore_potential};
++            \item the analogue line-element bridge, Eqs.~\eqref{eq:legacy_metric}--\eqref{eq:metric_swirlclock_bridge};
++            \item compact research-track interfaces to thermodynamic radiation and minimal-coupling QED analogies;
++            \item topological chirality refinements based on standard ribbon invariants.
++        \end{itemize}
++        
++        Legacy material not imported includes version history, cosmogonic narrative, and phenomenological galaxy-scale laws that are not yet sufficiently integrated with the present minimal axiom system.
++    
++    \subsection{Thermodynamic Radiation Interface}
++        
++        A recurring legacy idea is that a local swirl-energy density may define an effective temperature field and thereby an emergent radiation sector.
++        
++        Let
++        \begin{align}
++            T_{\mathrm{eff}} = T_{\mathrm{eff}}\!\left(\rho_E,\,\omega,\,S_{(t)}\right)
++            \label{eq:teff_placeholder}
++        \end{align}
++        denote an unspecified constitutive relation. A minimal legacy interface then asks whether Planck-type spectra can emerge from a medium whose local excitation scale is set by $T_{\mathrm{eff}}$.
++        
++        \textbf{[ORTHODOX]}: blackbody spectra are governed by Planck's law once a valid temperature variable is defined.\newline
++        \textbf{[SPECULATIVE]}: SST does not yet derive Eq.~\eqref{eq:teff_placeholder}, so this sector remains a research program rather than canonically closed physics.
++    
++    \subsection{Minimal Coupling Interface to Quantum Electrodynamics}
++        
++        Early research notes repeatedly explored whether an effective vector potential could be built from circulation variables. The most conservative placeholder takes the form
++        \begin{align}
++            \nabla \rightarrow \nabla - i\,\frac{m}{\hbar}\,\mathbf{A}_{\mathrm{eff}},
++            \qquad
++            \mathbf{A}_{\mathrm{eff}} = \chi\,\mathbf{v},
++            \label{eq:legacy_minimal_coupling}
++        \end{align}
++        where $\chi$ is a scalar weight and $\mathbf{v}$ is the local carrier velocity field.
++        
++        \textbf{[ORTHODOX]}: minimal coupling is the standard gateway from free to gauge-coupled wave dynamics.\newline
++        \textbf{[SPECULATIVE]}: Eq.~\eqref{eq:legacy_minimal_coupling} is only an analogy template unless a full gauge-covariant derivation is supplied.
++    
++    \subsection{Ribbon-Invariant Chirality Refinement}
++        
++        The older canon layers also suggested using the C\u{a}lug\u{a}reanu--White--Fuller relation
++        \begin{align}
++            Lk = Tw + Wr
++            \label{eq:calugareanu}
++        \end{align}
++        as a refinement of the knot-based matter/antimatter dictionary.
++        
++        \textbf{[ORTHODOX]}: Eq.~\eqref{eq:calugareanu} is a standard geometric identity for framed curves and ribbons.\newline
++        \textbf{[DERIVED]}: it can be used internally to separate writhe-dominated from twist-dominated realizations of the same coarse knot class.\newline
++        \textbf{[SPECULATIVE]}: the mapping from sign$(Tw)$ or related chirality measures to particle/antiparticle sectors remains a model hypothesis.
++
+ % ---------- DISCUSSION ----------
+     \section{Discussion and Limits}
+         \label{sec:discussion}
++        
++    \subsection{Status of Legacy Recoveries}
++        
++        The additional material imported here from older canon layers does not have uniform status.
++        
++        \begin{itemize}
++            \item The analogue-metric bridge and ribbon identity are mathematically orthodox tools.
++            \item Their SST interpretation is partially derived but not fully closed dynamically.
++            \item The thermal-radiation and QED-interface sectors remain explicitly research-track.
++        \end{itemize}
++        
++        Accordingly, these recoveries should be read as structured extensions of the minimal core, not as fully promoted final doctrine.
+         
+ 
+ % ===========================
+@@ -1413,11 +1509,61 @@
+             \newblock Science \textbf{376} (2022), 170--176,
+             \newblock DOI: 10.1126/science.abk1781.
+             
+-            \bibitem{SST_v0_7_8}
+-            O. Iskandarani, Swirl String Theory Canon v0.7.8
+-            
+-            \bibitem{Iskandarani_SST}
+-            Omar Iskandarani, Swirl String Theory (various versions)
++            \bibitem{Unruh1981}
++            W.~G. Unruh,
++            \newblock Experimental black-hole evaporation?,
++            \newblock Phys. Rev. Lett. \textbf{46} (1981), 1351--1353,
++            \newblock DOI: 10.1103/PhysRevLett.46.1351.
++            
++            \bibitem{Visser1998}
++            M. Visser,
++            \newblock Acoustic black holes: horizons, ergospheres and Hawking radiation,
++            \newblock Class. Quantum Grav. \textbf{15} (1998), 1767--1791,
++            \newblock DOI: 10.1088/0264-9381/15/6/024.
++            
++            \bibitem{Painleve1921}
++            P. Painlev\'e,
++            \newblock La m\'ecanique classique et la th\'eorie de la relativit\'e,
++            \newblock C. R. Acad. Sci. (Paris) \textbf{173} (1921), 677--680.
++            
++            \bibitem{Gullstrand1922}
++            A. Gullstrand,
++            \newblock Allgemeine L\"osung des statischen Eink\"orperproblems in der Einsteinschen Gravitationstheorie,
++            \newblock Arkiv. Mat. Astron. Fys. \textbf{16}(8) (1922), 1--15.
++            
++            \bibitem{Schrodinger1926}
++            E. Schr\"odinger,
++            \newblock Quantisierung als Eigenwertproblem,
++            \newblock Annalen der Physik \textbf{384} (1926), 361--376,
++            \newblock DOI: 10.1002/andp.19263840404.
++            
++            \bibitem{Jackson1999}
++            J.~D. Jackson,
++            \newblock \emph{Classical Electrodynamics}, 3rd ed.,
++            \newblock Wiley (1999).
++            
++            \bibitem{Planck1901}
++            M. Planck,
++            \newblock Ueber das Gesetz der Energieverteilung im Normalspectrum,
++            \newblock Annalen der Physik \textbf{309} (1901), 553--563,
++            \newblock DOI: 10.1002/andp.19013090310.
++            
++            \bibitem{Wien1896}
++            W. Wien,
++            \newblock Ueber die Energieverteilung im Emissionsspectrum eines schwarzen K\"orpers,
++            \newblock Annalen der Physik \textbf{294} (1896), 662--669,
++            \newblock DOI: 10.1002/andp.18962940310.
++            
++            \bibitem{Calugareanu1961}
++            G. C\u{a}lug\u{a}reanu,
++            \newblock Sur les classes d'isotopie des noeuds tridimensionnels et leurs invariants,
++            \newblock Czech. Math. J. \textbf{11} (1961), 588--625.
++            
++            \bibitem{White1969}
++            J.~H. White,
++            \newblock Self-linking and the Gauss integral in higher dimensions,
++            \newblock Amer. J. Math. \textbf{91} (1969), 693--728,
++            \newblock DOI: 10.2307/2373348.
+         
+         \end{thebibliography}
+ 

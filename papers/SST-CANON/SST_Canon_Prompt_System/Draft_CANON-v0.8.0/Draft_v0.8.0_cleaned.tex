@@ -1,0 +1,1824 @@
+%! Author = Omar Iskandarani
+%! Date = 4/10/2026
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxx
+
+\newcommand{\paperdoi}{10.5281/zenodo.xxx}
+\newcommand{\papertitle}{Swirl-String-Theory\_Canon-v0.8.0}
+\newcommand{\paperkeywords}{Swirl String Theory, Canon, Theoretical Physics, Formal Systems}
+
+\documentclass[11pt]{article}
+
+% ---------------------------
+% Packages
+% ---------------------------
+\usepackage{amsmath,amssymb,amsfonts,bm,amsthm}
+\usepackage{siunitx}
+\usepackage[hidelinks]{hyperref}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[absolute,overlay]{textpos}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{physics}
+\usepackage{mathtools}
+
+% ---------------------------
+% Theorem environments
+% ---------------------------
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{plain}
+\newtheorem{axiom}{Axiom}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+
+
+% ---------------------------
+% SST macro prelude
+% ---------------------------
+\newcommand{\swirlarrow}{\mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}}
+\newcommand{\swirlarrowcw}{\mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}}
+\newcommand{\vswirl}{\mathbf{v}_{\swirlarrow}}
+\newcommand{\vswirlcw}{\mathbf{v}_{\swirlarrowcw}}
+\newcommand{\rhoF}{\rho_{\!f}}
+\newcommand{\rhoE}{\rho_{\!E}}
+\newcommand{\rhoM}{\rho_{\!m}}
+\newcommand{\rhocore}{\rho_{\mathrm{core}}}
+\newcommand{\SwirlClock}{{S_{(t)}^{\swirlarrow}}}
+\newcommand{\SwirlClockcw}{{S_{(t)}^{\swirlarrowcw}}}
+\newcommand{\rc}{{r_c}}
+\newcommand{\vnorm}{\lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}} \rVert}
+
+
+
+\begin{document}
+    \thispagestyle{empty}%
+    \begin{center}
+        \Large \bfseries \papertitle \par \vspace{1cm}
+        {\Large \itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par} \vspace{0.5cm}
+        {\small Independent Researcher, Groningen, The Netherlands\par} \vspace{0.5cm}
+        {\today \par}  \vspace{0.5cm}
+    \end{center}
+    
+    \begin{abstract}
+        Swirl-String Theory (SST) is developed here as a canonical hydrodynamic--topological framework in which a continuous incompressible, inviscid medium supports stable swirl-string excitations whose circulation, delay structure, and topology generate the phenomena conventionally attributed to particles, fields, and quantum discreteness. The canon consolidates the primitive constant chain linking the effective fluid density, characteristic swirl speed, Compton anchoring, and core scale; formalizes delay-induced mode selection as a non-operator route to spectral discreteness; and records the atomic bridge, spectroscopic constraints, and relational-time sector in a single logically stratified document. Throughout, the text explicitly separates orthodox inputs, SST-internal derivations, and conjectural extensions, so that compatibility with established low-energy physics is preserved while the theory's distinctive claims remain falsifiable.
+    \end{abstract}
+    Keywords: \paperkeywords
+    
+    
+    \begin{textblock*}{1\textwidth}(0.15\textwidth,1.1\textheight)\raggedright\footnotesize\renewcommand{\arraystretch}{1.0} \noindent\rule{\textwidth}{0.4pt}\\[0.5em]
+        \textsuperscript{\textbf{*}} Email: \texttt{info@omariskandarani.com}\\
+        ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}}\\
+        DOI: \href{https://doi.org/\paperdoi}{\paperdoi}
+    \end{textblock*}
+    
+    \newpage
+
+
+% ===========================
+% CANON STRUCTURE (v0.8.0)
+% ===========================
+
+% ---------- PRELUDE ----------
+    \section{Philosophical Prelude}
+        \label{sec:philosophy}
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    \subsection{Why a philosophical prelude is necessary}
+        The SST canon is not only a collection of equations but also a statement about what counts as fundamental. Standard quantum theory and general relativity are highly successful formalisms, yet they begin from different ontological primitives: operator-valued states in one case and spacetime geometry in the other. SST instead adopts a single material substrate as the underlying level of description and treats particles, radiation, and clock structure as organized states of that substrate.
+
+    \subsection{The ontological shift}
+        The canon therefore makes the following conceptual replacement:
+        \begin{align}
+            \text{point particles} &\longrightarrow \text{stable swirl-string configurations}, \\
+            \text{vacuum as background} &\longrightarrow \text{vacuum as structured medium}, \\
+            \text{quantization as postulate} &\longrightarrow \text{discreteness from dynamics and topology}.
+        \end{align}
+        This is not a denial of effective particle language. Rather, it is a claim that particle language is secondary and emerges from a more primitive hydrodynamic and topological layer.
+
+    \subsection{Relation to orthodox physics}
+        SST is not introduced as a replacement for the empirical content of orthodox physics. Its canonical role is instead threefold:
+        \begin{enumerate}
+            \item to reproduce known low-energy structures in the appropriate limits,
+            \item to identify which apparently fundamental constants or rules may be structurally redundant,
+            \item to supply a dynamical mechanism for phenomena that are otherwise postulated axiomatically.
+        \end{enumerate}
+        In this sense the canon follows a \emph{Rosetta principle}: whenever a standard description already works, SST must map to it before claiming any deeper reinterpretation.
+
+    \subsection{Why delay and topology matter}
+        Two themes recur across the development of the canon.
+        First, finite circulation delay on closed carriers provides a natural source of temporal nonlocality. Second, topological invariants constrain admissible configurations and stabilize structures that would otherwise collapse or disperse. Together they motivate the canonical SST slogan
+        \begin{center}
+            \textit{delay selects modes, topology protects them.}
+        \end{center}
+        This is the philosophical reason why the canon treats quantization neither as a primitive operator rule nor as a purely statistical statement.
+
+    \subsection{Scope of the present canon}
+        The present version of the canon should be read as a structured reference document rather than a claim that every sector has already been derived to theorem level. Some components are mature and reusable, such as the primitive constant chain, circulation quantization, and the Swirl-Clock. Other components are deliberately retained as research-track layers, such as full gauge emergence, topology-to-charge assignments, and complete many-body atomic closure. The point of the canon is therefore not maximal rhetorical closure, but explicit logical organization.
+
+    \subsection{Interpretive summary}
+        The philosophical stance of SST can be summarized in one sentence:
+        \begin{center}
+            \textit{Physics is interpreted as the dynamics of a continuous medium whose stable, delayed, and topologically organized motions appear effectively as particles, clocks, fields, and spectra.}
+        \end{center}
+
+% ---------- FOUNDATIONS ----------
+\section{Formal Foundations}
+    \label{sec:foundations}
+    
+    \subsection{Primitive Structure of the Theory}
+        
+        We define the Swirl-String Theory (SST) as a continuum-based framework built on a minimal set of primitive quantities.
+        
+        \textbf{Primitive set:}
+        \begin{align}
+            \mathcal{P} = \{ \rhoF, \vswirl, \omega_c \}
+        \end{align}
+        
+        where:
+        \begin{itemize}
+            \item $\rhoF$ is the effective background fluid density,
+            \item $\vswirl$ is the characteristic swirl velocity,
+            \item $\omega_c$ is the Compton angular frequency.
+        \end{itemize}
+        
+        \textbf{[ORTHODOX]}: $\omega_c = \frac{m_e c^2}{\hbar}$ is a standard physical constant.
+        
+        \textbf{[SPECULATIVE]}: The identification of $\omega_c$ as a primitive dynamical frequency of the vortex core is an SST postulate.
+    
+    \subsection{Derived Length Scale}
+        
+        The characteristic core radius is defined as:
+        
+        \begin{align}
+            \rc = \frac{\vnorm}{\omega_c}
+            \label{eq:rc_definition}
+        \end{align}
+        
+        \textbf{[DERIVED]}: This removes $r_c$ as an independent parameter and eliminates circular definitions.
+    
+    \subsection{Circulation Quantization}
+        
+        The circulation is defined as:
+        
+        \begin{align}
+            \Gamma = \oint \mathbf{v} \cdot d\ell
+        \end{align}
+        
+        We introduce the fundamental circulation quantum:
+        
+        \begin{align}
+            \Gamma_0 = 2\pi \rc \, \vnorm
+            \label{eq:gamma0}
+        \end{align}
+        
+        and impose:
+        
+        \begin{align}
+            \Gamma = n \Gamma_0, \quad n \in \mathbb{Z}
+        \end{align}
+        
+        \textbf{[ORTHODOX]}: Circulation quantization appears in superfluid systems.
+        
+        \textbf{[DERIVED]}: In SST, $\Gamma_0$ is no longer an input but follows from Eq.~\ref{eq:rc_definition}.
+    
+    \subsection{Energy and Mass Relation}
+        
+        Mass is interpreted as stored rotational energy:
+        
+        \begin{align}
+            E = m c^2
+        \end{align}
+        
+        \textbf{[ORTHODOX]}: Standard relativistic energy relation.
+        
+        \textbf{[SPECULATIVE]}: SST interprets this energy as localized vortex kinetic energy.
+    
+    \subsection{Swirl Velocity Constraint}
+        
+        We define the dimensionless ratio:
+        
+        \begin{align}
+            \eta_0 = \frac{\vnorm}{c}
+        \end{align}
+        
+        Empirically:
+        
+        \begin{align}
+            \eta_0 \approx \frac{\alpha}{2}
+        \end{align}
+        
+        \textbf{[DERIVED]}: This connects the swirl velocity to the fine-structure constant.
+    
+    \subsection{Swirl-Clock Definition}
+        
+        We introduce the Swirl-Clock as a local scalar field encoding relativistic time dilation:
+        
+        \begin{align}
+            \SwirlClock = \sqrt{1 - \frac{\vnorm^2}{c^2}}
+            \label{eq:swirl_clock}
+        \end{align}
+        
+        \textbf{[ORTHODOX]}: This matches the Lorentz factor.
+        
+        \textbf{[DERIVED]}: In SST, it is interpreted as a local fluid-kinematic effect.
+    
+    \subsection{Density Hierarchy}
+        
+        We distinguish three densities:
+        
+        \begin{align}
+            \rhoF &\quad \text{(effective background fluid density)}, \\
+            \rhoE &= \tfrac12 \rhoF \, \vnorm^2 \quad \text{(swirl energy density)}, \\
+            \rhoM &= \rhoE / c^2 \quad \text{(mass-equivalent density)}, \\
+            \rhocore &\quad \text{(saturated vortex-core density)}.
+        \end{align}
+    
+    \subsection{Core Density Closure}
+        
+        The core density follows from a force constraint:
+        
+        \begin{align}
+            \rhocore \sim \frac{m_e c^2}{2\pi \vnorm^2 \rc^3}
+            \label{eq:core_density}
+        \end{align}
+        
+        \textbf{[DERIVED]}: This eliminates $\rho_{core}$ as an independent parameter.
+    
+    \subsection{Canonical Master Equation}
+        \label{sec:master-equation}
+
+        The previously separated SST sectors of medium scale, geometric shielding, topology, and relational clocking can be written in a single canonical form. First define
+        \begin{align}
+            \rhoE(x) &= \frac12 \, \rhoF(x) \, \norm{\vswirl(x)}^2, \\
+            \rhoM(x) &= \frac{\rhoE(x)}{c^2}, \\
+            \SwirlClock(x) &= \sqrt{1 - \frac{\norm{\vswirl(x)}^2}{c^2}}.
+        \end{align}
+        Introduce the binary geometric exposure gate
+        \begin{align}
+            G(K) \in \{0,1\},
+            \qquad
+            \Pi_K = \left(\frac{\lambda_c}{\pi \rc}\right)^{G(K)},
+        \end{align}
+        and the dimensionless topology kernel
+        \begin{align}
+            \Xi_K = \left[\alpha_C C(K) + \beta_L L(K) + \gamma_H \mathcal{H}(K)\right] \varphi^{-2k(K)}.
+        \end{align}
+        The canonical SST master equation is then
+        \begin{align}
+            M_K(x)
+            &= \rhoM(x) \, \rc^3 \, \Pi_K \, \Xi_K \, \SwirlClock(x)^{-2} \\
+            &= \left(\frac{\rhoF(x) \, \norm{\vswirl(x)}^2}{2c^2}\right) \rc^3
+            \left(\frac{\lambda_c}{\pi \rc}\right)^{G(K)}
+            \left[\alpha_C C(K) + \beta_L L(K) + \gamma_H \mathcal{H}(K)\right]
+            \varphi^{-2k(K)}
+            \SwirlClock(x)^{-2}.
+            \label{eq:sst_master_equation}
+        \end{align}
+        This equation is best read as
+        \begin{center}
+            \textit{medium scale $\times$ geometric gate $\times$ topological kernel $\times$ clock impedance.}
+        \end{center}
+        In the stationary weak-swirl limit $\SwirlClock \to 1$, it reduces to the static mass-functional form; in the local-kinematic limit at fixed $K$, it reduces to a pure clock-impedance correction. The hierarchy is therefore carried predominantly by the geometric and topological factors, while the Swirl-Clock supplies a coherent local correction rather than the primary source of mass separation.
+
+    \subsection{Geometric Representation}
+        
+        A swirl-string is represented as a closed curve:
+        
+        \begin{align}
+            X(t,\sigma) = (x(t,\sigma), y(t,\sigma), z(t,\sigma))
+        \end{align}
+        
+        with $\sigma \in [0,2\pi)$.
+    
+    \subsection{Summary of Dependency Structure}
+        
+        The full dependency chain is:
+        
+        \begin{align}
+        (\rhoF, \vswirl, \omega_c)
+            \rightarrow \rc
+            \rightarrow \Gamma_0
+            \rightarrow (\rhoE, \rhoM, \rhocore)
+            \rightarrow \SwirlClock
+            \rightarrow M_K.
+        \end{align}
+        
+        \textbf{[CRITICAL]}:
+        No quantity is defined circularly.
+    
+    \subsection{Consistency Statement}
+        
+        \begin{itemize}
+            \item All derived quantities depend only on $\mathcal{P}$
+            \item No external parameters are introduced
+            \item The theory is closed under its primitive set
+        \end{itemize}
+    
+    \subsection{Interpretation}
+        
+        The Formal Foundations establish SST as:
+        
+        \begin{itemize}
+            \item a continuum theory with minimal primitives
+            \item a geometrically grounded framework
+            \item a non-circular parameter system
+        \end{itemize}
+
+% ---------- AXIOMS ----------
+\section{Axiomatic Framework}
+    \label{sec:axioms}
+    
+    \subsection{Preliminaries}
+        
+        We formalize Swirl-String Theory (SST) as an axiomatic continuum theory defined over a three-dimensional spatial domain $\mathcal{M} \subset \mathbb{R}^3$ equipped with a preferred time parameter $t \in \mathbb{R}$.
+        
+        The theory is constructed from a minimal primitive set $\mathcal{P}$ (Section~\ref{sec:foundations}) and a set of axioms $\mathcal{A}$ governing admissible configurations and dynamics.
+    
+    \subsection{Axiom 1: Continuum Substrate}
+        
+        \textbf{Statement.}
+        There exists a continuous, incompressible, inviscid medium filling $\mathcal{M}$, characterized by a constant background density $\rhoF$.
+        
+        \begin{align}
+            \nabla \cdot \mathbf{v} = 0
+        \end{align}
+        
+        \textbf{[ORTHODOX]}: This corresponds to the standard incompressible Euler framework.
+        
+        \textbf{Interpretation.}
+        All physical structures arise as configurations within this medium; no discrete particles are assumed at the fundamental level.
+    
+    \subsection{Axiom 2: Existence of Stable Vortex Filaments}
+        
+        \textbf{Statement.}
+        The medium admits stable, localized, topologically nontrivial vortex filament solutions.
+        
+        \textbf{[ORTHODOX PART]}: Vortex filaments are known solutions in fluid dynamics.
+        
+        \textbf{[SPECULATIVE EXTENSION]}: Such filaments are assumed to be dynamically stable and persist as fundamental structures.
+        
+        \textbf{Mathematical form.}
+        A filament is represented as a closed embedding:
+        
+        \begin{align}
+            X: S^1 \to \mathcal{M}, \quad \sigma \mapsto X(t,\sigma)
+        \end{align}
+    
+    \subsection{Axiom 3: Circulation Quantization}
+        
+        \textbf{Statement.}
+        Circulation around any stable filament is quantized:
+        
+        \begin{align}
+            \Gamma = \oint \mathbf{v} \cdot d\ell = n \Gamma_0, \quad n \in \mathbb{Z}
+        \end{align}
+        
+        \textbf{[ORTHODOX]}: Quantized circulation appears in superfluid systems.
+        
+        \textbf{[SPECULATIVE]}: Elevated here to a universal invariant.
+    
+    \subsection{Axiom 4: Compton Anchoring}
+        
+        \textbf{Statement.}
+        The characteristic angular frequency of the vortex core satisfies:
+        
+        \begin{align}
+            \frac{\vnorm}{\rc} = \omega_c
+        \end{align}
+        
+        \textbf{[ORTHODOX]}: $\omega_c$ is the Compton frequency.
+        
+        \textbf{[SPECULATIVE]}: Identified as the intrinsic rotational frequency of the vortex core.
+        
+        \textbf{Consequence.}
+        The core radius is not independent but derived (Eq.~\ref{eq:rc_definition}).
+    
+    \subsection{Axiom 5: Delay as a Constitutive Principle}
+        
+        \textbf{Statement.}
+        Finite propagation time along closed vortex structures is a fundamental dynamical ingredient.
+        
+        \begin{align}
+            \tau = \frac{L}{\vnorm}
+        \end{align}
+        
+        \textbf{[DERIVED]}: Follows from finite signal speed.
+        
+        \textbf{[AXIOMATIC ROLE]}: The delay is not negligible but structurally relevant.
+        
+        \textbf{Interpretation.}
+        Temporal nonlocality is intrinsic to the dynamics.
+    
+    \subsection{Axiom 6: Energy Localization}
+        
+        \textbf{Statement.}
+        Energy is localized in vortex structures and determines mass via:
+        
+        \begin{align}
+            E = m c^2
+        \end{align}
+        
+        \textbf{[ORTHODOX]}: Relativistic energy relation.
+        
+        \textbf{[SPECULATIVE]}: Interpreted as rotational energy of the vortex configuration.
+    
+    \subsection{Axiom 7: Swirl-Clock Relational Time}
+        
+        \textbf{Statement.}
+        Local time is encoded in a scalar field derived from fluid kinematics:
+        
+        \begin{align}
+            \SwirlClock = \sqrt{1 - \frac{\vnorm^2}{c^2}}
+        \end{align}
+        
+        \textbf{[ORTHODOX]}: Matches Lorentz time dilation.
+        
+        \textbf{[DERIVED]}: Emerges from local velocity field.
+        
+        \textbf{Interpretation.}
+        Time is not fundamental but relational to the state of motion in the medium.
+    
+    \subsection{Axiom 8: Density Saturation and Core Structure}
+        
+        \textbf{Statement.}
+        The vortex core exhibits a saturated density $\rhocore$ determined by mechanical constraints of the medium.
+        
+        \textbf{[DERIVED]}: From force balance and geometric closure (Eq.~\ref{eq:core_density}).
+        
+        \textbf{Interpretation.}
+        Matter corresponds to regions where energy density reaches a structural limit.
+    
+    \subsection{Logical Structure of the Axioms}
+        
+        The axioms form a dependency hierarchy:
+        
+        \begin{align}
+            \text{Continuum}
+            \rightarrow \text{Vortex Structures}
+            \rightarrow \text{Quantization}
+            \rightarrow \text{Delay Dynamics}
+            \rightarrow \text{Mass/Energy Emergence}
+        \end{align}
+    
+    \subsection{Minimality Principle}
+        
+        \textbf{Statement.}
+        The axioms are minimal in the sense that removing any one of them destroys at least one of the following:
+        
+        \begin{itemize}
+            \item existence of stable structures
+            \item emergence of discrete spectra
+            \item compatibility with known physics
+        \end{itemize}
+    
+    \subsection{Philosophical Interpretation}
+        
+        The axiomatic structure implies:
+        
+        \begin{itemize}
+            \item Particles are not fundamental objects but stable dynamical configurations
+            \item Discreteness is emergent, not postulated
+            \item Time is relational, not absolute
+        \end{itemize}
+    
+    \subsection{Consistency Condition}
+        
+        A valid SST realization must satisfy:
+        
+        \begin{itemize}
+            \item Compatibility with orthodox physics in appropriate limits
+            \item Internal logical closure
+            \item Explicit traceability from axioms to predictions
+        \end{itemize}
+    
+    \subsection{Canonical Statement}
+        
+        \begin{center}
+            \textit{
+                Swirl-String Theory is defined as the minimal continuum theory in which stable vortex structures, governed by quantized circulation and delay dynamics, give rise to discrete physical phenomena consistent with known physics.
+            }
+        \end{center}
+
+% ---------- CONSISTENCY LAYER ----------
+%    \section{Consistency and Classification Framework}
+%        \label{sec:consistency}
+        
+\section{Consistency and Classification Framework}
+    \label{sec:consistency}
+    
+    \subsection{Classification Scheme}
+        
+        All statements are labeled as:
+        
+        \begin{itemize}
+            \item \textbf{[ORTHODOX]} — established physics
+            \item \textbf{[DERIVED]} — logically deduced within SST
+            \item \textbf{[SPECULATIVE]} — novel or unverified
+        \end{itemize}
+    
+    \subsection{Orthodox Constraints}
+        
+        The following must remain intact:
+        
+        \begin{itemize}
+            \item Quantum mechanics predictions
+            \item Atomic spectroscopy
+            \item Relativistic consistency
+        \end{itemize}
+    
+    \subsection{Internal Consistency Rules}
+        
+        \begin{itemize}
+            \item No circular definitions
+            \item All primitives explicitly defined
+            \item Derived quantities must follow from axioms
+        \end{itemize}
+    
+    \subsection{Conflict Resolution Strategy}
+        
+        Priority order:
+        
+        \begin{enumerate}
+            \item Logical consistency
+            \item Experimental agreement
+            \item Canonical simplicity
+        \end{enumerate}
+    
+    \subsection{Epistemic Status Tracking}
+        
+        Each major result must explicitly state:
+        
+        \begin{itemize}
+            \item Assumptions
+            \item Derivation status
+            \item Empirical testability
+        \end{itemize}
+    
+    \subsection{Canon Integrity Principle}
+        
+        \begin{center}
+            \textit{A valid SST canon must be internally consistent, externally compatible, and explicitly stratified by epistemic status.}
+        \end{center}
+
+    \section{Geometric and Topological Sector}
+        \label{sec:geometry}
+        
+    \subsection{Role of geometry and topology in the canon}
+        This sector collects those parts of SST in which the identity of a state depends not only on local field amplitudes but on the global organization of the carrier. Geometry enters through lengths, radii, and closure constraints; topology enters through linking, crossing, chirality, and other invariant features that survive smooth deformations. At canon level, the main role of this sector is selective rather than exhaustive: it provides the organizing variables that feed the topological kernel $\Xi_K$ and the geometric gate $\Pi_K$ in Eq.~\eqref{eq:sst_master_equation}.
+
+        The canon therefore treats geometry and topology as follows:
+        \begin{enumerate}
+            \item geometry sets admissible scales and shielding ratios,
+            \item topology labels persistent identity classes,
+            \item only those quantities that survive smooth deformation are allowed to enter the long-lived state classification.
+        \end{enumerate}
+
+        This is also why layer or dressing indices are not treated as primary identity labels: they may modify a state, but they do not replace the topology-first classification of the carrier itself.
+
+\subsection{Spectral Structure of Locked Closed Carriers (Secondary Result)}
+    \label{subsec:spectral_locked_carriers}
+    
+    \paragraph{Scope and status.}
+        This subsection records a \emph{secondary consequence} of the kinematics of rationally locked, closed carriers. It does not introduce new primitives. All results are conditional on the existence of a well-defined phase field and a regular mode spectrum. Status: \textbf{derived under spectral assumptions; experimentally unverified}.
+
+    \paragraph{Kinematic reduction.}
+        Consider a closed carrier with a single central driving phase $\phi(t)$ and $N_s$ sector variables $\theta_i(t)$ $(i=1,\dots,N_s)$ subject to a rational locking relation
+        \begin{equation}
+            \theta_i = \sigma_i \kappa_i \phi + \delta_i,
+            \qquad
+            \sigma_i \in \{+1,-1\},\quad \kappa_i \in \mathbb{Q}.
+            \label{eq:locking_relation}
+        \end{equation}
+        In the rigid-lock limit, the dynamics reduce to a single collective coordinate $\phi(t)$ with effective Lagrangian
+        \begin{equation}
+            \mathcal{L}_{\mathrm{eff}}
+            =
+            \frac{I_{\mathrm{eff}}}{2}\dot{\phi}^{\,2}
+            -
+            V(\phi),
+            \label{eq:Leff_canonical}
+        \end{equation}
+        where $I_{\mathrm{eff}}$ is an effective inertia and $V(\phi)$ is a periodic locking potential.
+
+    \paragraph{Distributed phase field.}
+        On a closed carrier of length $L$, allow small phase fluctuations
+        \begin{equation}
+            \phi(t) \;\longrightarrow\; \phi_0 + \eta(s,t),
+            \qquad s\in[0,L],
+        \end{equation}
+        with periodic boundary condition
+        \begin{equation}
+            \eta(s+L,t)=\eta(s,t).
+        \end{equation}
+        A minimal quadratic field model consistent with Eq.~\eqref{eq:Leff_canonical} is
+        \begin{equation}
+            \mathcal{L}_{\mathrm{field}}
+            =
+            \int_0^L
+            \left[
+                \frac{\mu_{\mathrm{eff}}}{2}(\partial_t \eta)^2
+            -
+                \frac{T_{\mathrm{eff}}}{2}(\partial_s \eta)^2
+            -
+                \frac{\mu_{\mathrm{eff}}\omega_0^2}{2}\eta^2
+            \right] ds,
+            \label{eq:field_model}
+        \end{equation}
+        where $\mu_{\mathrm{eff}}$ is an effective phase inertia density, $T_{\mathrm{eff}}$ an effective stiffness, and $\omega_0$ the small-oscillation frequency set by $V(\phi)$.
+        
+        Dimensional consistency:
+        \[
+            [\mu_{\mathrm{eff}}]=\mathrm{kg\,m},\qquad
+            [T_{\mathrm{eff}}]=\mathrm{N},\qquad
+            [\omega_0]=\mathrm{s^{-1}}.
+        \]
+
+    \paragraph{Mode spectrum.}
+        Expanding in normal modes
+        \begin{equation}
+            \eta(s,t) = \sum_{n\in\mathbb{Z}} a_n(t)\, e^{i k_n s},
+            \qquad
+            k_n = \frac{2\pi n}{L},
+        \end{equation}
+        yields the dispersion relation
+        \begin{equation}
+            \boxed{
+                \omega_n^2
+                =
+                \omega_0^2
+                +
+                c_\phi^2 k_n^2,
+                \qquad
+                c_\phi^2 = \frac{T_{\mathrm{eff}}}{\mu_{\mathrm{eff}}}.
+            }
+            \label{eq:dispersion}
+        \end{equation}
+        For large $n$,
+        \begin{equation}
+            \omega_n \sim \frac{2\pi c_\phi}{L}\, n.
+            \label{eq:asymptotic_linear}
+        \end{equation}
+
+    \paragraph{Cubic spectral sums and \texorpdfstring{$\zeta(3)$}{zeta(3)}.}
+        Consider a cubic-weighted spectral contribution of the form
+        \begin{equation}
+            \Delta \mathcal{E}^{(3)}
+            =
+            A_3 \sum_{n=1}^{\infty} \frac{1}{\omega_n^3},
+            \qquad
+            [A_3]=\mathrm{J\,s^{-3}}.
+            \label{eq:cubic_sum}
+        \end{equation}
+        Using the asymptotic scaling \eqref{eq:asymptotic_linear},
+        \begin{equation}
+            \Delta \mathcal{E}^{(3)}
+            \;\approx\;
+            A_3
+            \left(\frac{L}{2\pi c_\phi}\right)^3
+            \sum_{n=1}^{\infty} \frac{1}{n^3}.
+        \end{equation}
+        Hence
+        \begin{equation}
+            \boxed{
+                \Delta \mathcal{E}^{(3)}
+                \;\approx\;
+                A_3
+                \left(\frac{L}{2\pi c_\phi}\right)^3
+                \zeta(3).
+            }
+            \label{eq:zeta3_result}
+        \end{equation}
+
+    \paragraph{Interpretation.}
+        Equation \eqref{eq:zeta3_result} shows that $\zeta(3)$ arises from the \emph{high-mode spectral tail} of a closed carrier, not from the geometric threefold structure alone. The role of the locking relation \eqref{eq:locking_relation} is indirect: it fixes $I_{\mathrm{eff}}$, $\omega_0$, and admissible boundary conditions, thereby determining the spectral scale $(L,c_\phi)$.
+
+    \paragraph{Universality.}
+        Different geometric realizations (e.g., distinct multi-sector carriers) that reduce to the same class of effective phase dynamics and share the asymptotic linear spectrum \eqref{eq:asymptotic_linear} will produce the same $\zeta(3)$ factor in Eq.~\eqref{eq:zeta3_result}, up to system-dependent prefactors.
+        
+        \begin{equation}
+            \boxed{
+                \text{$\zeta(3)$ is a spectral invariant of the mode tower, not a direct invariant of the carrier geometry.}
+            }
+        \end{equation}
+
+    \paragraph{Limitations and falsifiers.}
+        The result fails if:
+        \begin{enumerate}
+            \item the mode spectrum is not asymptotically linear in $n$,
+            \item strong damping or nonlocal coupling invalidates the expansion \eqref{eq:field_model},
+            \item the system does not admit a well-defined periodic phase field on a closed domain.
+        \end{enumerate}
+
+    \paragraph{Minimal experimental test.}
+        Measure mode frequencies $\omega_n$ for $n=1,2,3,\dots$ and verify
+        \begin{equation}
+            \frac{\omega_n}{n} \to \text{constant}
+            \quad\text{as } n\to\infty.
+        \end{equation}
+        Deviation from this scaling excludes Eq.~\eqref{eq:zeta3_result}.
+
+    \paragraph{Status.}
+        \textbf{Secondary derived result.} Valid under spectral assumptions; not a defining postulate.
+
+% ---------- DELAY THEORY ----------
+%    \section{Delay and Mode Selection Theory}
+%        \label{sec:delay}
+        
+\section{Delay and Mode Selection Theory}
+    \label{sec:delay}
+    
+    \subsection{Circulation Delay as a Physical Primitive}
+        
+        We introduce the circulation delay as a constitutive element of the theory.
+        For a closed vortex filament of effective length $L$ and characteristic propagation speed $v_{\swirlarrow}$, the circulation time is defined as:
+        
+        \begin{align}
+            \tau = \frac{L}{\vnorm}
+            \label{eq:delay_time}
+        \end{align}
+        
+        In the special case of a minimal closed loop associated with the vortex core scale, this reduces to:
+        
+        \begin{align}
+            \tau_c = \frac{2\pi r_c}{v_{\swirlarrow}} = \frac{2\pi}{\omega_c}
+            \label{eq:compton_delay}
+        \end{align}
+        
+        This establishes a direct identification between the circulation delay and the inverse Compton frequency.
+        
+        \textbf{[DERIVED]}: The intrinsic delay of the vortex loop is identical to the Compton period.
+    
+    \subsection{Delayed Self-Interaction Dynamics}
+        
+        We model the phase $\phi(t)$ of a circulating excitation as a delayed self-interacting oscillator:
+        
+        \begin{align}
+            \dot{\phi}(t) = \omega_0 + \kappa \sin\big(\phi(t - \tau) - \phi(t)\big)
+            \label{eq:delay_phase}
+        \end{align}
+        
+        This equation represents a minimal effective description of a circulating field with finite propagation time.
+        
+        \textbf{[ORTHODOX]}: Delay-differential equations of this type are well-established in feedback systems \cite{SST_delay_basic}.
+    
+    \subsection{Emergence of Discrete Stable Modes}
+        
+        We seek steady-state solutions of the form:
+        
+        \begin{align}
+            \phi(t) = \Omega t
+        \end{align}
+        
+        Substituting into Eq.~\ref{eq:delay_phase} yields:
+        
+        \begin{align}
+            \Omega = \omega_0 + \kappa \sin(\Omega \tau)
+            \label{eq:mode_condition}
+        \end{align}
+        
+        This transcendental equation admits a discrete set of stable solutions $\Omega_n$ determined by the delay parameter $\tau$.
+        
+        \textbf{[DERIVED]}: Discrete mode selection arises from temporal nonlocality alone.
+    
+    \subsection{Delay-Induced Quantization Mechanism}
+        
+        Unlike conventional quantum mechanics, where discreteness is postulated, here it emerges dynamically:
+        
+        \begin{itemize}
+            \item No boundary condition required
+            \item No operator quantization assumed
+            \item Discreteness arises from stability selection
+        \end{itemize}
+        
+        \textbf{[SPECULATIVE]}: Particle spectra may be interpreted as delay-selected stable circulation modes.
+    
+    \subsection{Extension to Nonlinear Schrödinger Dynamics}
+        
+        To connect with field-theoretic descriptions, we extend the delay mechanism to a nonlinear Schrödinger framework:
+        
+        \begin{align}
+            i \hbar \partial_t \psi = -\frac{\hbar^2}{2m} \nabla^2 \psi + F_{\text{delay}}[\psi(t - \tau)]
+        \end{align}
+        
+        where the delayed functional introduces temporal nonlocality into the field evolution.
+        
+        \textbf{[SPECULATIVE]}: This provides a bridge between classical delay systems and quantum wave dynamics.
+    
+    \subsection{Physical Interpretation}
+        
+        The delay $\tau$ acts as:
+        
+        \begin{itemize}
+            \item a memory kernel
+            \item a nonlocal temporal coupling
+            \item a selection mechanism for stable modes
+        \end{itemize}
+        
+        Thus:
+        
+        \begin{center}
+            \textit{Delay $\Rightarrow$ Stability $\Rightarrow$ Discreteness}
+        \end{center}
+        
+        This mechanism forms one of the central pillars of the SST canon.
+
+%    \section{Atomic Bridge Model}
+%        \label{sec:atomic}
+        
+\section{Atomic Bridge Model}
+    \label{sec:atomic}
+    
+    \subsection{Baseline Hamiltonian}
+        
+        We adopt the standard Coulomb Hamiltonian as the orthodox baseline:
+        
+        \begin{align}
+            H_0 = -\frac{\hbar^2}{2\mu} \nabla^2 - \frac{Ze^2}{4\pi \epsilon_0 r}
+            \label{eq:coulomb}
+        \end{align}
+        
+        \textbf{[ORTHODOX]}: This reproduces the hydrogenic spectrum.
+    
+    \subsection{SST Circulation Correction}
+        
+        We introduce a circulation-dependent perturbation:
+        
+        \begin{align}
+            \delta H^{(\sigma)} = -2\sigma E_R \eta_0 \gamma + \frac{E_R \eta_0 \sigma}{2} \left\{ \frac{\hat{L}_z}{\hbar}, \gamma \right\}
+            \label{eq:sst_correction}
+        \end{align}
+        
+        \textbf{[DERIVED]}: Interaction depends on circulation amplitude $\gamma(r,t)$.
+    
+    \subsection{Branch Structure}
+        
+        Two chiral sectors exist:
+        
+        \begin{align}
+            \sigma = \pm 1
+        \end{align}
+        
+        These correspond to:
+        
+        \begin{itemize}
+            \item $\swirlarrow$ (left-handed)
+            \item $\swirlarrowcw$ (right-handed)
+        \end{itemize}
+    
+    \subsection{Consistency Requirement}
+        
+        To remain compatible with atomic physics:
+        
+        \begin{align}
+            |\delta E_n| \ll |E_n|
+        \end{align}
+        
+        \textbf{[ORTHODOX CONSTRAINT]}: SST corrections must not violate known spectroscopy.
+    
+    \subsection{Interpretation}
+        
+        \textbf{[SPECULATIVE]}:
+        - Atomic structure emerges from circulation-modulated dynamics
+        - Quantum numbers correspond to stable vortex modes
+
+%    \section{Spectroscopic Constraints}
+%        \label{sec:spectroscopy}
+        
+\section{Spectroscopic Constraints}
+    \label{sec:spectroscopy}
+    
+    \subsection{Motivation}
+        
+        Any extension of atomic structure must remain consistent with high-precision spectroscopic measurements.
+        
+        \textbf{[ORTHODOX]}:
+        Atomic energy levels are experimentally verified to extremely high precision.
+        
+        \textbf{Requirement:}
+        \begin{align}
+            |\delta E_n| \ll |E_n|
+            \label{eq:spectro_constraint}
+        \end{align}
+        
+        where $\delta E_n$ represents any SST-induced correction.
+    
+    \subsection{Internal Mode Hypothesis}
+        
+        We consider the possibility that atomic bound states possess an additional internal excitation sector associated with vortex filament dynamics.
+        
+        \textbf{[SPECULATIVE]}:
+        Each bound state carries an internal mode spectrum $\{E_{m,n}\}$.
+        
+        The effective energy becomes:
+        
+        \begin{align}
+            E_n^{\text{eff}} = E_n^{(0)} + \delta E_n
+            \label{eq:effective_energy}
+        \end{align}
+    
+    \subsection{Generic Coupling Structure}
+        
+        We parameterize the coupling between internal modes and observable energy levels:
+        
+        \begin{align}
+            |\delta E_n| \leq \lambda_n \sum_m E_{m,n} \, \nu_{m,n}
+            \label{eq:coupling_bound}
+        \end{align}
+        
+        where:
+        \begin{itemize}
+            \item $\lambda_n$ is the coupling efficiency
+            \item $\nu_{m,n}$ is the occupation factor
+        \end{itemize}
+        
+        \textbf{[DERIVED]}: This form captures a general upper bound independent of microscopic details.
+    
+    \subsection{Ungapped Spectrum: Instability}
+        
+        If the internal spectrum is ungapped:
+        
+        \begin{itemize}
+            \item arbitrarily low-energy excitations exist
+            \item no universal suppression mechanism applies
+        \end{itemize}
+        
+        \textbf{Consequence:}
+        \begin{align}
+            \delta E_n \not\to 0 \quad \text{generically}
+        \end{align}
+        
+        \textbf{[CRITICAL]}:
+        An ungapped internal sector is generically incompatible with spectroscopy unless:
+        
+        \begin{itemize}
+            \item $\lambda_n \ll 1$ (extremely weak coupling), or
+            \item the density of states is highly suppressed
+        \end{itemize}
+    
+    \subsection{Gapped Spectrum: Decoupling Mechanism}
+        
+        We introduce an excitation gap $\Delta_K$:
+        
+        \begin{align}
+            E_{m,n} \geq \Delta_K
+        \end{align}
+        
+        Then occupation factors follow Boltzmann suppression:
+        
+        \begin{align}
+            \nu_{m,n} \sim \exp\left(-\frac{\Delta_K}{k_B T_{\text{eff}}}\right)
+        \end{align}
+        
+        Substituting into Eq.~\ref{eq:coupling_bound}:
+        
+        \begin{align}
+            \delta E_n \propto \exp\left(-\frac{\Delta_K}{k_B T_{\text{eff}}}\right)
+            \label{eq:boltzmann_suppression}
+        \end{align}
+        
+        \textbf{[DERIVED]}:
+        Exponential suppression ensures compatibility with spectroscopy.
+    
+    \subsection{Physical Origin of the Gap}
+        
+        \textbf{[SPECULATIVE]}:
+        The gap $\Delta_K$ may arise from:
+        
+        \begin{itemize}
+            \item geometric constraints on filament curvature
+            \item torsional rigidity
+            \item topological restrictions
+            \item core structure of the vortex
+        \end{itemize}
+    
+    \subsection{Order-of-Magnitude Estimate}
+        
+        Using filament parameters:
+        
+        \begin{align}
+            \Delta_K \sim \frac{\Gamma^2}{4\pi \xi L}
+        \end{align}
+        
+        where:
+        \begin{itemize}
+            \item $\xi$ is the core scale
+            \item $L$ is the loop length
+        \end{itemize}
+        
+        For typical SST scales:
+        
+        \begin{align}
+            \Delta_K = \mathcal{O}(10^2 - 10^3 \, \text{eV})
+        \end{align}
+        
+        \textbf{[DERIVED]}:
+        This places the internal sector well above atomic energy scales ($\sim$ eV).
+    
+    \subsection{Consistency Condition}
+        
+        To preserve atomic physics:
+        
+        \begin{align}
+            \frac{\Delta_K}{k_B T_{\text{eff}}} \gg 1
+        \end{align}
+        
+        \textbf{Interpretation:}
+        The internal sector is effectively frozen at atomic energies.
+    
+    \subsection{Observable Consequences}
+        
+        \textbf{[SPECULATIVE]}:
+        Residual effects may include:
+        
+        \begin{itemize}
+            \item tiny level shifts
+            \item suppressed line broadening
+            \item weak temperature dependence
+        \end{itemize}
+    
+    \subsection{Falsifiability}
+        
+        The theory is falsifiable via:
+        
+        \begin{itemize}
+            \item detection of unexplained spectral shifts
+            \item absence of expected suppression
+            \item deviation from Boltzmann scaling
+        \end{itemize}
+    
+    \subsection{Integration with SST Framework}
+        
+        The spectroscopic constraint enforces:
+        
+        \begin{itemize}
+            \item compatibility with the Atomic Bridge (Section~\ref{sec:atomic})
+            \item constraints on delay-induced excitations (Section~\ref{sec:delay})
+            \item bounds on allowable vortex configurations
+        \end{itemize}
+    
+    \subsection{Canonical Statement}
+        
+        \begin{center}
+            \textit{
+                Any viable SST extension must include a mechanism—such as an excitation gap—that ensures exponential suppression of internal modes at atomic energy scales.
+            }
+        \end{center}
+
+    \subsection{Precision electroweak bridge: lessons from the CMS \texorpdfstring{$W$}{W}-mass measurement}
+        \label{subsec:cms-w-mass-bridge}
+    
+        \paragraph{Status.}
+            \textbf{Established external input:} the CMS measurement is a precision constraint on any SST effective weak-sector realization.
+            \textbf{Canon-safe inference:} the paper supports a forward-modelling methodology for SST phenomenology.
+            \textbf{Not established:} the paper does \emph{not} provide direct evidence for a structured-substrate ontology of the $W$ boson.
+    
+        \paragraph{Empirical anchor.}
+            Let the experimentally inferred resonance mass be denoted by
+            \begin{equation}
+                m_W^{\rm exp} = 80.3602 \pm 0.0099~{\rm GeV}.
+            \end{equation}
+            In the CMS analysis this quantity is not read off from a single observable, but extracted from a profiled likelihood over finely binned charged-lepton kinematics. This motivates the following SST principle:
+            
+            \begin{quote}
+                \emph{Collider observables constrain SST through forward maps from latent swirl-string states to detector-level distributions, not through direct identification of a single internal parameter with a measured mass.}
+            \end{quote}
+    
+        \paragraph{Latent-to-observable map.}
+            Introduce a latent SST parameter set for an effective spin-1 weak excitation,
+            \begin{equation}
+                \Theta_{W}^{\rm SST}
+                =
+                \Bigl(
+                K_W,\,
+                \chi_W,\,
+                \mathcal{L}_W,\,
+                \mathcal{H}_W,\,
+                \SwirlClock_W,\,
+                \rhoF^{\rm eff},\,
+                \vswirl^{\rm eff}
+                \Bigr),
+            \end{equation}
+            where:
+            \begin{itemize}
+                \item $K_W$ is the topology class or excitation family,
+                \item $\chi_W$ is chirality / handedness label,
+                \item $\mathcal{L}_W$ is an effective geometric length scale,
+                \item $\mathcal{H}_W$ is a helicity/linkage content,
+                \item $\SwirlClock_W$ is the local clock factor for the mode,
+                \item $\rhoF^{\rm eff}$ and $\vswirl^{\rm eff}$ are the coarse-grained medium parameters seen by the excitation.
+            \end{itemize}
+            
+            The experimentally accessible distribution is then not a bare function of $m_W$ alone, but a projected density
+            \begin{equation}
+                \mathcal{P}_{\rm meas}(x)
+                =
+                \int dz\; R(x|z)\,\mathcal{P}_{\rm prod}(z\mid \Theta_W^{\rm SST}),
+                \label{eq:sst-forward-map}
+            \end{equation}
+            where $z$ denotes truth-level production/decay variables and $R(x|z)$ is the detector response kernel.
+    
+        \paragraph{Mass as an effective resonance parameter.}
+            In SST one should distinguish:
+            \begin{equation}
+                m_W^{\rm internal}
+                \neq
+                m_W^{\rm eff}
+            \end{equation}
+            in general, where:
+            \begin{itemize}
+                \item $m_W^{\rm internal}$ is the internal excitation-energy scale of the structured mode,
+                \item $m_W^{\rm eff}$ is the resonance parameter inferred from scattering distributions.
+            \end{itemize}
+            The experimentally constrained quantity is $m_W^{\rm eff}$.
+            
+            A minimal canon-safe matching condition is therefore
+            \begin{equation}
+                m_W^{\rm eff}(\Theta_W^{\rm SST}) = m_W^{\rm exp} + \delta_W,
+                \qquad
+                |\delta_W| \lesssim 10~{\rm MeV},
+                \label{eq:mw-match}
+            \end{equation}
+            with the current precision scale set by experiment.
+    
+        \paragraph{Distribution-level fit target.}
+            The correct SST comparison object is a likelihood built from binned observables:
+            \begin{equation}
+                \mathcal{L}\bigl(\Theta_W^{\rm SST},\nu\bigr)
+                =
+                \prod_{b=1}^{N_{\rm bins}}
+                    {\rm Poisson}\!\left(
+                                       n_b \,\middle|\, \mu_b(\Theta_W^{\rm SST},\nu)
+                \right)
+                \,
+                \Pi(\nu),
+                \label{eq:sst-likelihood}
+            \end{equation}
+            where:
+            \begin{itemize}
+                \item $n_b$ is the observed count in bin $b$,
+                \item $\mu_b$ is the SST prediction after production, decay, and detector folding,
+                \item $\nu$ denotes nuisance parameters,
+                \item $\Pi(\nu)$ is the nuisance prior / constraint factor.
+            \end{itemize}
+            The profile likelihood for the physically interesting SST parameters is then
+            \begin{equation}
+                \mathcal{L}_{\rm prof}(\Theta_W^{\rm SST})
+                =
+                \max_{\nu}\,
+                \mathcal{L}(\Theta_W^{\rm SST},\nu).
+                \label{eq:profile-like}
+            \end{equation}
+    
+        \paragraph{Helicity decomposition as a falsifier.}
+            A particularly sharp SST test is not the central value of $m_W$ alone, but whether the effective spin-1 mode reproduces the standard angular basis. Write
+            \begin{equation}
+                \frac{d\sigma}{d\Omega}
+                =
+                \sum_{i=0}^{8} A_i\, f_i(\theta,\phi)
+                +
+                \epsilon_{\rm SST}\,\Delta(\theta,\phi),
+                \label{eq:helicity-decomp-sst}
+            \end{equation}
+            where the $A_i f_i$ are the standard helicity structures and $\epsilon_{\rm SST}\Delta$ is the first SST correction. Then:
+            \begin{itemize}
+                \item if $\epsilon_{\rm SST}=0$ within experimental precision, SST survives this channel,
+                \item if $\epsilon_{\rm SST}\neq 0$, the deviation is directly falsifiable through angular distributions.
+            \end{itemize}
+    
+        \paragraph{Canon interpretation.}
+            This leads to the following conservative reading:
+            \begin{enumerate}
+                \item The weak sector must be \emph{SM-like at the effective distribution level}.
+                \item Large $\mathcal{O}(10^{-4})$--$\mathcal{O}(10^{-3})$ relative distortions in the effective $W$ mass are disfavoured.
+                \item The best SST discovery channels are therefore likely to be
+                \begin{equation}
+                    \text{small angular deviations},\quad
+                    \text{polarization asymmetries},\quad
+                    \text{off-shell tails},\quad
+                    \text{rare differential distortions},
+                \end{equation}
+                rather than a large shift in the central value of $m_W$.
+            \end{enumerate}
+    
+        \paragraph{Minimal bridge claim.}
+            The CMS result does \emph{not} force the $W$ boson to be fundamental in the ontological sense. It does force any SST realization of the weak sector to satisfy the stronger requirement:
+            \begin{equation}
+                \mathcal{P}_{\rm prod}^{\rm SST}(z\mid \Theta_W^{\rm SST})
+                \approx
+                \mathcal{P}_{\rm prod}^{\rm SM}(z\mid m_W,\text{SM nuisances})
+            \end{equation}
+            to current experimental precision after detector folding and nuisance profiling.
+    
+        \paragraph{Practical SST program.}
+            A precision-compatible SST weak-sector program should therefore proceed in three layers:
+            \begin{align}
+                \text{(i) effective resonance matching:}&\quad
+                m_W^{\rm eff} \to m_W^{\rm exp}, \\
+                \text{(ii) helicity matching:}&\quad
+                A_i^{\rm SST} \to A_i^{\rm SM}, \\
+                \text{(iii) residual search:}&\quad
+                \Delta \neq 0 \text{ only in subleading differential structure.}
+            \end{align}
+    
+        \paragraph{Conclusion.}
+            The CMS $W$-mass result is best understood in SST as a \emph{precision filter}:
+            it does not supply ontology, but it strongly constrains phenomenology. Any viable SST weak-sector realization must be distributionally SM-like to present precision, while leaving room only for small, structured residuals in higher-order observables.
+
+% ---------- TIME ----------
+    \section{Relational Time Framework}
+        \label{sec:time}
+        
+
+
+    \subsection{Swirl-Clock and local proper time}
+        The canonical time variable of SST is not introduced as an independent primitive. It is defined relationally from the local kinematic state of the medium through the Swirl-Clock already introduced in Eq.~\eqref{eq:swirl_clock}. In its coarse-grained form,
+        \begin{align}
+            dt_{\mathrm{loc}} = S_{(t)}(x)\,dt_{\infty},
+            \qquad
+            S_{(t)}(x)=\sqrt{1-\frac{v(x)^2}{c^2}}.
+        \end{align}
+        Here $t_{\infty}$ denotes the asymptotic laboratory time and $t_{\mathrm{loc}}$ the effective proper time associated with a localized process in the medium. In SST, this factor is interpreted as a fluid-kinematic clock field rather than as a purely geometric spacetime postulate.
+
+    \subsection{Carrier-local clocking and the turnover scale}
+        For localized carriers the natural microscopic rate is the turnover frequency
+        \begin{align}
+            \Omega_0 = \frac{\vnorm}{\rc} = \omega_c,
+        \end{align}
+        which coincides with the Compton anchoring scale. A complete SST clock description therefore involves two linked but distinct levels:
+        \begin{itemize}
+            \item the \emph{microscopic turnover scale} $\Omega_0$, which counts circulation cycles of the carrier,
+            \item the \emph{coarse-grained Swirl-Clock} $S_{(t)}$, which relates local rates to asymptotic time.
+        \end{itemize}
+        This resolves a recurring ambiguity in earlier canon versions: local cycle counting and coarse-grained time dilation are related, but they are not identical observables.
+
+    \subsection{Relational observables from conserved currents}
+        A purely operator-based notion of time is avoided in SST by defining time observables through conserved currents. Let $J^\mu$ denote a matter current and let $j_{\mathrm{ev}}^\mu$ denote a coarse-grained event current associated with structured activity of the medium. The relational clock field $T(x)$ is then recovered only after coarse graining,
+        \begin{align}
+            \partial_\mu T(x) \approx \frac{1}{\nu_0}\,\langle j^{\mathrm{ev}}_\mu \rangle_{\ell},
+        \end{align}
+        where $\ell$ is the coarse-graining scale and $\nu_0$ a reference event frequency. The canon interpretation is that time is read from correlations between currents, not from an abstract external operator.
+
+    \subsection{Time-of-arrival as a relational field observable}
+        Let $\mathcal{W}$ be a detector world-tube with boundary $\Sigma = \partial \mathcal{W}$. Then the arrival-time distribution associated with a detector label $\Theta$ is written as
+        \begin{align}
+            p(\Theta) = \frac{1}{\mathcal{N}} \int_{\Sigma} d\sigma_\mu \, J^\mu(x)\,\delta\!\big(T(x)-\Theta\big).
+        \end{align}
+        This formulation is canonically important because it bypasses the need for a self-adjoint time operator conjugate to a bounded Hamiltonian. The measured time is instead the value of a physical clock field at the point where matter flux crosses the detector boundary.
+
+    \subsection{Clock broadening and continuum limits}
+        If the event current has a finite variance, then the observed time-of-arrival distribution is broadened relative to the ideal classical prediction. Writing $P_{\mathrm{cl}}$ for the classical arrival distribution and $\sigma_\tau^2$ for the effective clock variance, one expects a convolution structure of the form
+        \begin{align}
+            P_{\mathrm{obs}}(\Theta)
+            =
+            \int dt\,P_{\mathrm{cl}}(t)
+            \frac{1}{\sqrt{2\pi\sigma_\tau^2}}
+            \exp\!\left[-\frac{(\Theta-t)^2}{2\sigma_\tau^2}\right].
+        \end{align}
+        In the limit $\ell \gg r_c$, the event structure is smoothed and one recovers a continuum clock field. In the opposite limit $\ell \to r_c$, the underlying discreteness of carrier events becomes operationally relevant.
+
+    \subsection{Connection to gravity and geometry}
+        In the canon, the relational-time sector and the geometric-response sector are not independent. Variations in the Swirl-Clock track variations in local swirl energy density and therefore provide the time component of the effective geometric response of the medium. At this level, the SST reading is:
+        \begin{center}
+            \textit{gravity and time are two coarse-grained aspects of the same clock-bearing medium.}
+        \end{center}
+        This statement should be read as a canon-level organizing principle, not yet as a completed field-theoretic proof.
+
+%    \section{Unified Interpretation}
+%        \label{sec:unification}
+        
+\section{Unified Interpretation}
+    \label{sec:unification}
+    
+    \subsection{Overview}
+        
+        Swirl-String Theory (SST) proposes a unified interpretation in which fundamental physical phenomena emerge from the dynamics of a continuous medium supporting stable vortex structures.
+        
+        This section synthesizes the results of the previous sections into a coherent conceptual framework.
+    
+    \subsection{Ontology of the Theory}
+        
+        \textbf{[CORE CLAIM]}:
+        The fundamental ontology consists of:
+        
+        \begin{itemize}
+            \item A continuous incompressible medium (Section~\ref{sec:axioms})
+            \item Stable vortex filament configurations (Section~\ref{sec:geometry})
+            \item Circulation as a conserved topological invariant
+        \end{itemize}
+        
+        \textbf{Interpretation:}
+        Particles are not elementary objects, but persistent dynamical structures.
+    
+    \subsection{Mass as Trapped Circulation Energy}
+        
+        From Section~\ref{sec:foundations} and Section~\ref{sec:delay}:
+        
+        \begin{itemize}
+            \item Energy is stored in rotational motion
+            \item Circulation defines the energy scale
+        \end{itemize}
+        
+        \begin{align}
+            E = m c^2
+        \end{align}
+        
+        \textbf{[UNIFIED INTERPRETATION]}:
+        \begin{center}
+            Mass corresponds to localized, self-sustained circulation energy in the medium.
+        \end{center}
+    
+    \subsection{Time as a Relational Quantity}
+        
+        From Section~\ref{sec:time} and Section~\ref{sec:foundations}:
+        
+        \begin{itemize}
+            \item Time is measured through physical processes
+            \item The Swirl-Clock encodes local temporal rates
+        \end{itemize}
+        
+        \begin{align}
+            \SwirlClock = \sqrt{1 - \frac{\vnorm^2}{c^2}}
+        \end{align}
+        
+        \textbf{[UNIFIED INTERPRETATION]}:
+        \begin{center}
+            Time is not fundamental, but emerges from the kinematic state of the medium.
+        \end{center}
+    
+    \subsection{Discreteness without Quantization Postulates}
+        
+        From Section~\ref{sec:delay}:
+        
+        \begin{itemize}
+            \item Delay introduces temporal nonlocality
+            \item Stability selects discrete modes
+        \end{itemize}
+        
+        \textbf{[UNIFIED INTERPRETATION]}:
+        \begin{center}
+            Discrete physical spectra arise dynamically from delay-induced mode selection.
+        \end{center}
+        
+        This replaces operator-based quantization with a dynamical mechanism.
+    
+    \subsection{Charge and Circulation}
+        
+        \textbf{[SPECULATIVE]}:
+        
+        Charge-like properties may be associated with circulation orientation and magnitude:
+        
+        \begin{itemize}
+            \item Sign of circulation $\leftrightarrow$ charge sign
+            \item Circulation magnitude $\leftrightarrow$ charge strength
+        \end{itemize}
+    
+    \subsection{Unification of Interactions}
+        
+        Within SST:
+        
+        \begin{itemize}
+            \item Electromagnetic effects arise from transverse torsion modes
+            \item Gravitational effects arise from large-scale circulation geometry
+            \item Inertial mass arises from localized rotational energy
+        \end{itemize}
+        
+        \textbf{[SPECULATIVE]}:
+        These interactions are not independent forces but different manifestations of the same underlying fluid dynamics.
+    
+    \subsection{Atomic Structure as an Emergent Layer}
+        
+        From Section~\ref{sec:atomic}:
+        
+        \begin{itemize}
+            \item Standard quantum mechanics appears as an effective description
+            \item SST introduces circulation-dependent corrections
+        \end{itemize}
+        
+        \textbf{[UNIFIED INTERPRETATION]}:
+        \begin{center}
+            Quantum mechanics is an emergent effective theory of underlying vortex dynamics.
+        \end{center}
+    
+    \subsection{Consistency with Spectroscopy}
+        
+        From Section~\ref{sec:spectroscopy}:
+        
+        \begin{itemize}
+            \item Internal modes are suppressed by an excitation gap
+            \item Low-energy physics remains unchanged
+        \end{itemize}
+        
+        \textbf{[CRITICAL]}:
+        The unified picture does not violate known experimental constraints.
+    
+    \subsection{Hierarchy of Description}
+        
+        The theory admits multiple levels:
+        
+        \begin{enumerate}
+            \item \textbf{Microscopic level:} vortex filament dynamics
+            \item \textbf{Mesoscopic level:} delay-induced mode structure
+            \item \textbf{Macroscopic level:} effective quantum description
+        \end{enumerate}
+    
+    \subsection{Conceptual Summary}
+        
+        The SST framework can be summarized as:
+        
+        \begin{center}
+            \begin{tabular}{ll}
+                \textbf{Mass} & $\rightarrow$ trapped circulation energy \\
+                \textbf{Time} & $\rightarrow$ relational swirl-clock field \\
+                \textbf{Charge} & $\rightarrow$ circulation property \\
+                \textbf{Quantization} & $\rightarrow$ delay-induced stability \\
+            \end{tabular}
+        \end{center}
+    
+    \subsection{Canonical Statement}
+        
+        \begin{center}
+            \textit{
+                All observed physical structure emerges from the dynamics of a continuous medium in which stable vortex configurations, governed by quantized circulation and delay dynamics, produce the phenomena conventionally attributed to particles, fields, and quantum mechanics.
+            }
+        \end{center}
+    
+    \subsection{Scope and Limits}
+        
+        \textbf{[IMPORTANT]}:
+        
+        \begin{itemize}
+            \item The framework is not yet a complete fundamental theory
+            \item Several mechanisms remain to be derived rigorously
+            \item Many results are conditional or phenomenological
+        \end{itemize}
+    
+    \subsection{Final Consistency Principle}
+        
+        \begin{center}
+            \textit{
+                A valid unified interpretation must preserve all experimentally verified results while providing a deeper structural explanation of their origin.
+            }
+        \end{center}
+
+    \section{Integration of Prior Canon Versions}
+        \label{sec:integration}
+        
+
+
+
+    \subsection{Purpose of this integration layer}
+        Version~0.8.0 is not a fresh theory written from zero, but an explicit consolidation of earlier canon lines. This section records what has been retained, what has been renamed or reorganized, and what has been demoted from canon status to research-track status.
+
+    \subsection{Retained from the early canon layers}
+        From the v0.1.x--v0.3.x line, the present canon retains the primitive closure logic:
+        \begin{itemize}
+            \item a continuum substrate with effective density $\rhoF$,
+            \item a core scale $r_c$ fixed by Compton anchoring,
+            \item circulation quantization through $\Gamma_0 = 2\pi \rc \, \vnorm$,
+            \item the interpretation of matter as stable organized structures rather than point primitives.
+        \end{itemize}
+        These elements remain non-negotiable because later sectors depend on them directly.
+
+    \subsection{Retained from the middle canon layers}
+        From the v0.4.x--v0.6.x line, the canon retains three durable structures:
+        \begin{enumerate}
+            \item the Rosetta strategy for mapping SST statements into orthodox language,
+            \item the photon/torsion sector as the minimal radiation bridge,
+            \item delay-induced mode selection as the main route to discreteness without operator postulates.
+        \end{enumerate}
+        These are now distributed across Sections~\ref{sec:delay}, \ref{sec:time}, and \ref{sec:unification} rather than treated as isolated notes.
+
+    \subsection{Retained from the late canon layers}
+        From the v0.7.x line, v0.8.0 retains the strongest structurally reusable sectors:
+        \begin{itemize}
+            \item the Swirl-Clock as the canonical relational-time field,
+            \item the atomic bridge as a benchmark consistency layer rather than a complete atomic derivation,
+            \item the spectroscopic gap logic as a hard consistency filter,
+            \item the topology-first mass program, with topology separated from thermodynamic or radiative dressing,
+            \item the EFT-style foliation and gauge-emergence program as a long-range development track.
+        \end{itemize}
+
+    \subsection{Notation and density cleanup}
+        Earlier canon versions sometimes conflated background density, mass-equivalent density, and saturated core density. The present version adopts the cleaned hierarchy
+        \begin{align}
+            \rhoF \quad \text{(effective fluid density)},
+            \qquad
+            \rhoE \quad \text{(swirl energy density)},
+            \qquad
+            \rhoM = \rhoE/c^2,
+            \qquad
+            \rho_{\mathrm{core}} \quad \text{(saturated core density)}.
+        \end{align}
+        Any older passage that identifies a single symbol with more than one of these roles is superseded by the present separation.
+
+    \subsection{Topology-first reinterpretation of layers}
+        A major consolidation from the recent lepton and knot-mass program is the separation between topology and layering. Knot type is retained as the primary identity label, while Golden-layer or thermal ladder indices are treated as dressing or coherence variables rather than species-defining labels. This prevents the canon from over-reading numerical layer fits as ontological identities.
+
+    \subsection{Status of optional sectors}
+        The following sectors are retained as important but non-primitive research layers:
+        \begin{itemize}
+            \item full gauge emergence and charge assignments,
+            \item dual-vacuum phenomenology and Unruh-echo interpretation,
+            \item complete many-electron atomic closure,
+            \item full weak-sector and collider phenomenology,
+            \item explicit topology-to-particle dictionary beyond the best-supported benchmark assignments.
+        \end{itemize}
+        They remain in the canon as organized programs, not as closed theorem-level results.
+
+    \subsection{Integration principle}
+        The purpose of v0.8.0 is therefore not to maximize novelty per page, but to minimize duplication and to expose the dependency graph of the theory. Whenever two earlier canon fragments make the same structural claim in different language, the present version keeps one canonical form and demotes the others to historical context.
+
+
+    \section{Discussion and Limits}
+        \label{sec:discussion}
+        
+
+
+
+    \subsection{What is established at canon level}
+        The present document supports the following as canon-level structures:
+        \begin{itemize}
+            \item the primitive constant chain $(\rhoF, v_{\swirlarrow}, \omega_c) \to r_c \to \Gamma_0$,
+            \item the Swirl-Clock as the coarse-grained relational time factor,
+            \item delay-induced mode selection as the preferred discreteness mechanism,
+            \item the atomic bridge and spectroscopic sectors as compatibility filters,
+            \item the topology-first program for mass organization.
+        \end{itemize}
+        These claims are not equally proven, but they are the sectors on which the rest of the canon is structurally built.
+
+    \subsection{What remains closure-level or conjectural}
+        Several central SST ambitions remain open:
+        \begin{enumerate}
+            \item a rigorous derivation of full particle spectra from topology alone,
+            \item a first-principles derivation of charge assignments and gauge couplings,
+            \item a complete many-body derivation of shell filling and exclusion,
+            \item a full demonstration that delay plus topology reproduces the observed quantum rule set without importing it.
+        \end{enumerate}
+        The canon records these as active programs rather than as settled conclusions.
+
+    \subsection{Compatibility limits}
+        Any viable SST realization must remain compatible with:
+        \begin{itemize}
+            \item atomic spectroscopy,
+            \item relativistic effective kinematics,
+            \item precision electroweak data where an SST bridge is claimed,
+            \item the absence of large low-energy deviations from standard quantum mechanics.
+        \end{itemize}
+        This is why the canon repeatedly imposes suppression, weak-coupling, and low-energy recovery conditions.
+
+    \subsection{Minimal falsifiers}
+        The present canon would be materially weakened by any of the following:
+        \begin{itemize}
+            \item failure of the constant chain to remain dimensionally and numerically self-consistent,
+            \item absence of any workable suppression mechanism for internal modes at atomic energies,
+            \item inability to formulate a non-circular route from delay dynamics to discrete stable spectra,
+            \item systematic contradiction between any SST atomic bridge and precision spectroscopy.
+        \end{itemize}
+        Conversely, strong support would come from a successful theorem ladder showing how discrete spectra, topological stabilization, and low-energy effective quantum structure arise from one shared substrate model.
+
+    \subsection{Methodological limit}
+        The canon is deliberately hybrid in style. Some sectors are written as exact closures, some as effective models, and some as programmatic roadmaps. This is a feature rather than a flaw, provided the epistemic status of each claim remains explicit. The document should therefore not be judged as though every section were intended to be a stand-alone journal theorem.
+
+    \subsection{Near-term priorities}
+        The next canon-strengthening tasks are clear:
+        \begin{enumerate}
+            \item complete the theorem ladder for the mass and clock sectors,
+            \item expand numerical validation blocks using the canonical constants,
+            \item refine the atomic bridge into sharper benchmark observables,
+            \item decide which optional sectors belong in the core canon and which should migrate to separate technical notes.
+        \end{enumerate}
+
+    \subsection{Final limit statement}
+        SST is presently best understood as a structured unification program with several strong internal bridges and several open derivational gaps. The canon is therefore mature enough to organize the theory coherently, but not yet so mature that every phenomenological sector should be presented as theorem-complete.
+
+
+% ===========================
+% APPENDICES
+% ===========================
+        
+        \appendix
+    
+    \section{Full Derivations}
+        \label{sec:appendix_derivations}
+
+        \subsection{Canonical constant chain}
+            The present canon uses the closure chain
+            \begin{align}
+                r_e &= \frac{\alpha \hbar}{m_e c}, \\
+                r_c &= \frac{r_e}{2}, \\
+                \omega_c &= \frac{m_e c^2}{\hbar}, \\
+                v_{\swirlarrow} &= \omega_c r_c, \\
+                \Gamma_0 &= 2\pi r_c v_{\swirlarrow}.
+            \end{align}
+            Substituting $r_c = \alpha\hbar/(2m_e c)$ into $v_{\swirlarrow}=\omega_c r_c$ gives
+            \begin{align}
+                v_{\swirlarrow}
+                =
+                \left(\frac{m_e c^2}{\hbar}\right)
+                \left(\frac{\alpha \hbar}{2m_e c}\right)
+                = \frac{\alpha}{2}c,
+            \end{align}
+            hence the canonical ratio
+            \begin{align}
+                \eta_0 = \frac{v_{\swirlarrow}}{c} = \frac{\alpha}{2}.
+            \end{align}
+
+        \subsection{Core density closure}
+            Writing the electron rest energy as localized swirl energy inside a core region leads to the closure
+            \begin{align}
+                \rho_{\mathrm{core}}
+                \sim
+                \frac{m_e c^2}{2\pi v_{\swirlarrow}^2 r_c^3},
+            \end{align}
+            which is the form already recorded in Eq.~\eqref{eq:core_density}. This relation is dimensionally exact:
+            \begin{align}
+                \left[\frac{m_e c^2}{v^2 r^3}\right]
+                =
+                \frac{\mathrm{kg\,m^2\,s^{-2}}}{\mathrm{m^2\,s^{-2}}\,\mathrm{m^3}}
+                = \mathrm{kg\,m^{-3}}.
+            \end{align}
+
+        \subsection{Geometric gate identity}
+            Using the Compton wavelength $\lambda_c = h/(m_e c)$ and the core closure $r_c = \alpha\hbar/(2m_e c)$, one obtains
+            \begin{align}
+                \frac{\lambda_c}{\pi r_c}
+                =
+                \frac{h/(m_e c)}{\pi \alpha \hbar /(2m_e c)}
+                =
+                \frac{2h}{\pi \alpha \hbar}
+                =
+                \frac{4}{\alpha}.
+            \end{align}
+            This is the canonical geometric shielding factor used throughout the late mass-functional papers.
+
+        \subsection{Useful numerical anchors}
+            With the canonical values
+            \begin{align}
+                v_{\swirlarrow} &\approx 1.09384563\times 10^6\ \mathrm{m\,s^{-1}}, \\
+                r_c &\approx 1.40897017\times 10^{-15}\ \mathrm{m}, \\
+                \Gamma_0 &\approx 9.6836\times 10^{-9}\ \mathrm{m^2\,s^{-1}},
+            \end{align}
+            one has the Compton turnover time
+            \begin{align}
+                \tau_c = \frac{2\pi r_c}{v_{\swirlarrow}} = \frac{2\pi}{\omega_c},
+            \end{align}
+            and the geometric gate
+            \begin{align}
+                \frac{\lambda_c}{\pi r_c} \approx 5.48\times 10^2.
+            \end{align}
+
+    \section{Delay Mathematics}
+        \label{sec:appendix_delay}
+
+        \subsection{Fixed-point condition for locked modes}
+            Starting from the delayed phase equation
+            \begin{align}
+                \dot{\phi}(t) = \omega_0 + \kappa \sin\big(\phi(t-\tau)-\phi(t)\big),
+            \end{align}
+            seek a rigidly rotating solution
+            \begin{align}
+                \phi(t)=\Omega t + \phi_\star.
+            \end{align}
+            Substitution gives the algebraic mode condition
+            \begin{align}
+                \Omega = \omega_0 + \kappa \sin(\Omega\tau),
+            \end{align}
+            which admits multiple branches labelled by the effective phase winding across the delay interval.
+
+        \subsection{Linear stability of a locked branch}
+            Let
+            \begin{align}
+                \phi(t) = \Omega t + \epsilon(t),
+                \qquad |\epsilon|\ll 1.
+            \end{align}
+            Linearizing yields
+            \begin{align}
+                \dot{\epsilon}(t)
+                =
+                \kappa \cos(\Omega\tau)
+                \big(\epsilon(t-\tau)-\epsilon(t)\big).
+            \end{align}
+            Using the exponential ansatz $\epsilon(t)\propto e^{\lambda t}$ gives the characteristic equation
+            \begin{align}
+                \lambda
+                =
+                \kappa \cos(\Omega\tau)
+                \left(e^{-\lambda\tau}-1\right).
+            \end{align}
+            Stability requires $\Re(\lambda)<0$ for all nontrivial roots. Thus discrete spectra in SST are not arbitrary: only those branches satisfying both the fixed-point equation and the stability inequality survive dynamically.
+
+        \subsection{Small-delay expansion}
+            For $|\lambda\tau|\ll 1$,
+            \begin{align}
+                e^{-\lambda\tau} = 1 - \lambda\tau + \mathcal O((\lambda\tau)^2),
+            \end{align}
+            so the characteristic equation becomes
+            \begin{align}
+                \lambda \approx -\kappa\tau\cos(\Omega\tau)\,\lambda.
+            \end{align}
+            Nontrivial damping therefore requires the effective factor $\kappa\tau\cos(\Omega\tau)$ to have the correct sign. This provides a simple branch-selection criterion at weak delay.
+
+        \subsection{Interpretive consequence}
+            The important canon point is that discreteness is produced in two stages:
+            \begin{align}
+                \text{delay} \;\longrightarrow\; \text{multiple algebraic branches} \;\longrightarrow\; \text{stability filter}.
+            \end{align}
+            Quantization is therefore not inserted by hand; it is the residue of a dynamical selection problem on a delayed closed carrier.
+
+    \section{Conversation-Derived Insights}
+        \label{sec:appendix_conversations}
+
+        \subsection{Role of this appendix}
+            This appendix records recurrent insights that emerged during the project-level development of the canon and are useful for guiding future work, even when they do not yet qualify as theorem-level results.
+
+        \subsection{Topology first, layers second}
+            A central refinement of the recent canon is the separation
+            \begin{align}
+                \text{particle identity} \;\longleftrightarrow\; \text{topology},
+                \qquad
+                \text{excitation or dressing state} \;\longleftrightarrow\; \text{layer index}.
+            \end{align}
+            This prevents Golden-layer fits from being mistaken for a species ontology and keeps the topology program structurally cleaner.
+
+        \subsection{Spectral origin of \texorpdfstring{$\zeta(3)$}{zeta(3)}}
+            The project discussions repeatedly converged on the conclusion already encoded in Section~\ref{subsec:spectral_locked_carriers}: the appearance of $\zeta(3)$ is best interpreted as a spectral invariant of a cubic-weighted closed-carrier mode tower, not as a direct invariant of threefold geometry by itself.
+
+        \subsection{Atomic bridge status discipline}
+            Another recurring project insight is that the atomic bridge is strongest when treated as a benchmark layer with explicit status tags. Hydrogenic consistency, branch-sensitive couplings, and the spectroscopic gap form a robust bridge; shell filling, exclusion, and full heavy-atom structure remain open programs rather than completed derivations.
+
+        \subsection{Master-equation viewpoint}
+            A major organizational gain of the recent conversations is the recognition that many SST sectors can be read as different projections of one shared structure:
+            \begin{align}
+                \text{medium scale} \times \text{topology} \times \text{geometry} \times \text{clocking}.
+            \end{align}
+            Even when this is not written as a single canonical equation inside the present draft, it remains a useful guide for reducing duplication across the mass, time, and thermodynamic sectors.
+
+        \subsection{Dual-vacuum and photon sector status}
+            The project-level discussions also clarified a canon policy: the photon/torsion bridge and the dual-vacuum phenomenology are valuable and fertile, but they should not silently override the simpler core canon. They are best treated as phenomenological extensions built on top of the primitive constant chain and Swirl-Clock structure.
+
+        \subsection{Open theorem ladder}
+            The most important unfinished task identified across the project is not adding new sectors, but tightening the derivational ladder between existing ones. In practice this means:
+            \begin{enumerate}
+                \item turning heuristic closures into explicit lemmas,
+                \item attaching numerical validation to each nontrivial scaling law,
+                \item separating benchmark results from full ontological claims.
+            \end{enumerate}
+            This appendix therefore serves as a reminder that canon quality increases more by sharpening structure than by increasing conceptual breadth.
+
+% ---------------------------
+% Bibliography
+% ---------------------------
+        \begin{thebibliography}{99}
+            
+            \bibitem{SST_delay_basic}
+            J.~K. Hale and S.~M. Verduyn Lunel,
+            \newblock \emph{Introduction to Functional Differential Equations},
+            \newblock Springer (1993).
+            
+            \bibitem{CMS2026Wmass}
+            CMS Collaboration,
+            \newblock High-precision measurement of the W boson mass with the CMS experiment,
+            \newblock Nature \textbf{652} (2026), 321--337,
+            \newblock DOI: 10.1038/s41586-026-10168-5.
+            
+            \bibitem{PDG2024}
+            S.~Navas et al. (Particle Data Group),
+            \newblock Review of Particle Physics,
+            \newblock Phys. Rev. D \textbf{110} (2024), 030001,
+            \newblock DOI: 10.1103/PhysRevD.110.030001.
+            
+            \bibitem{deBlas2022}
+            J.~de Blas et al.,
+            \newblock Global analysis of electroweak data in the Standard Model,
+            \newblock Phys. Rev. D \textbf{106} (2022), 033003,
+            \newblock DOI: 10.1103/PhysRevD.106.033003.
+            
+            \bibitem{CDF2022Wmass}
+            CDF Collaboration,
+            \newblock High-precision measurement of the W boson mass with the CDF II detector,
+            \newblock Science \textbf{376} (2022), 170--176,
+            \newblock DOI: 10.1126/science.abk1781.
+            
+            \bibitem{SST_v0_7_8}
+            O. Iskandarani, Swirl String Theory Canon v0.7.8
+            
+            \bibitem{Iskandarani_SST}
+            Omar Iskandarani, Swirl String Theory (various versions)
+        
+        \end{thebibliography}
+
+\end{document}

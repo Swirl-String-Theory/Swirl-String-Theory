@@ -1,0 +1,475 @@
+%! Author = Omar Iskandarani
+%! Date = 4/14/2026 — REVISED VERSION
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! ORCID = 0009-0006-1686-3961
+
+\newcommand{\paperdoi}{10.5281/zenodo.19589794}
+\newcommand{\papertitle}{Delay-Coupled Phase Locking on Shared Circulation Carriers in a Minimal Toy Model\\
+\large A Reduced Dynamical-Systems Closure for Delay, Coupling, and Coherence}
+\newcommand{\paperkeywords}{delay-coupled phase dynamics, circulation overlap, coherence length, hydrodynamic-topological model, Swirl-String Theory}
+
+\documentclass[11pt]{article}
+
+%==============================================================================
+% PACKAGES
+%==============================================================================
+
+
+\usepackage{amsmath,amssymb,amsfonts,amsthm,bm}
+\usepackage{physics}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[absolute,overlay]{textpos}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+%==============================================================================
+% SST MACRO PRELUDE
+%==============================================================================
+\newcommand{\vswirl}{\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}}
+\newcommand{\vnorm}{\lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert}
+\newcommand{\rhoF}{\rho_{\!f}}
+\newcommand{\rhoE}{\rho_{\!E}}
+\newcommand{\rc}{r_c}
+\newcommand{\rhocore}{\rho_{\text{core}}}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{center}
+    \Large \bfseries \papertitle \par \vspace{1cm}
+    {\Large \itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par} \vspace{0.5cm}
+    {\small Independent Researcher, Groningen, The Netherlands\par} \vspace{0.5cm}
+    {\today \par} \vspace{0.5cm}
+\end{center}
+
+\begin{abstract}
+We formulate a minimal Swirl--String Theory (SST) toy model for delay-coupled phase locking on shared circulation carriers. The central proposal is that correlated subsystems may be modeled not as independent pointlike entities linked only by an abstract nonlocal state, but as localized readout sites on a common circulation carrier embedded in the swirl medium. At the reduced effective level, the dynamics are described by a delayed phase system with three macroscopic parameters: a transport delay $\tau$, a phase-locking rate $\kappa$, and a coherence length $\ell_\tau$. We show that the canonical SST identification $\omega_c = \vnorm/\rc$ immediately fixes the transport time scale and strongly constrains the remaining two parameters to the form
+\[
+    \tau = \frac{L}{\vnorm}, \qquad
+    \kappa_{AB} = \omega_c\,\mathcal{O}_{AB}, \qquad
+    \ell_\tau = \rc\,\mathcal{Q},
+\]
+where $\mathcal{O}_{AB}$ is a dimensionless shared-circulation overlap factor and $\mathcal{Q}$ is a dimensionless phase-quality factor. This paper is positioned as a dynamical-systems and reduced-modeling contribution: no claim is made to a derivation of Bell/CHSH phenomenology, the Born rule, or a direct comparison with experimental quantum-correlation data. We distinguish derived results, closure assumptions, and open problems; provide a Biot--Savart estimate of $\mathcal{O}_{AB}$ for a non-trivial angled-filament configuration; analyze the triangular correlation function as an informative upper bound whose breakdown is a direct falsifier; and include a gap analysis identifying the four SST-specific inputs required before any Bell/CHSH claim can be made.
+\end{abstract}
+
+Keywords: \paperkeywords
+
+\begin{textblock*}{1\textwidth}(0.15\textwidth,1.1\textheight)\raggedright\footnotesize
+    \noindent\rule{\textwidth}{0.4pt}\\[0.5em]
+    \textsuperscript{\textbf{*}} Email: \texttt{info@omariskandarani.com}\\
+    ORCID: \texttt{0009-0006-1686-3961}\\
+    DOI: \href{https://doi.org/\paperdoi}{\paperdoi}
+\end{textblock*}
+
+\newpage
+
+%==============================================================================
+\section{Introduction}
+%==============================================================================
+
+The standard quantum formalism represents entanglement through nonfactorizable states in Hilbert space. While empirically successful, that description leaves open the ontological status of the correlation carrier. Hydrodynamic and stochastic reformulations of quantum structure have a substantial history, ranging from Madelung's continuum rewriting of the Schr\"odinger equation to Nelson's stochastic mechanics, generalized delayed phase-locking models \cite{Yeung1999}, Bohm's hidden-variable program, and modern analogue-gravity or superfluid-vacuum programs \cite{Madelung1927,Nelson1966,Bohm1952,Barcelo2011,Volovik2003}.
+
+In SST, the primitive ontology is different: the vacuum is modeled as an incompressible, inviscid structured medium, and localized matter-like excitations are topological swirl strings rather than point particles. The present article isolates a minimal mechanistic sector: whether SST admits a nontrivial reduced model for delay, geometric coupling, and finite coherence on shared circulation carriers.
+
+The paper is positioned primarily as a \emph{dynamical-systems and reduced-modeling study}. Throughout, the phrase ``entanglement-like'' is used only in a restricted operational sense: separated readout sites on a shared carrier may display angle-dependent correlations not attributable to independent local phases, without thereby claiming a completed reproduction of quantum-mechanical entanglement. The present manuscript does not derive Bell/CHSH inequalities, the Born rule, or a direct comparison with experimental quantum-correlation datasets.
+
+The main result is that SST already fixes the parametric structure of all three scales at the level of this toy model:
+\[
+    \tau = \frac{L}{\vnorm}, \qquad
+    \kappa_{AB} = \omega_c\,\mathcal{O}_{AB}, \qquad
+    \ell_\tau = \rc\,\mathcal{Q}.
+\]
+What is specific to SST in this reduction is not merely the presence of a characteristic frequency, but the fact that the transport, coupling, and coherence sectors are all tied back to the same primitive core scales $(\rc, \vnorm)$ through the identifications $\omega_c = \vnorm/\rc$, $\kappa_{AB} = \omega_c \mathcal{O}_{AB}$, and $\ell_\tau = \rc\mathcal{Q}$.
+
+%==============================================================================
+\section{Epistemic status of the claims}
+%==============================================================================
+
+To keep the logical status explicit, we separate the statements as follows.
+
+\begin{itemize}
+    \item \textbf{Derived from current SST anchors:}
+    $\omega_c = \vnorm/\rc$, \quad $\tau = L/\vnorm$.
+    \item \textbf{Constrained toy-model closure forms:}
+    $\kappa_{AB} = \omega_c\,\mathcal{O}_{AB}$, \quad $\ell_\tau = \rc\,\mathcal{Q}$.
+    \item \textbf{Computed for a non-trivial geometry (§\ref{subsec:biot_savart}):}
+    $\mathcal{O}_{AB}(\alpha) \approx (r_c \cos\alpha)/(L\sin\alpha)$ for two angled thin filaments.
+    \item \textbf{Modeled but not yet first-principles derived:}
+    $\mathcal{Q}$ from SST reconnection dynamics; $\mathcal{O}_{AB}$ for the trefoil knot geometry.
+    \item \textbf{Open program:}
+    recovery of exact Bell/CHSH statistics, operational no-signaling, and the Born rule (see §\ref{sec:gap}).
+    \item \textbf{Not claimed here:}
+    equivalence to standard quantum mechanics, a Bell/CHSH derivation, or a direct experimental comparison.
+\end{itemize}
+
+%==============================================================================
+\section{Canonical SST anchors}
+%==============================================================================
+
+\paragraph{Notation convention.}
+The characteristic swirl speed is denoted exclusively by $\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}$, with magnitude $\vnorm$.
+
+SST is taken to supply three working primitives: a core radius $\rc$, a characteristic swirl speed $\vnorm$, and a fundamental circulation scale. SST adopts the classical electron radius $r_e = \alpha\hbar/(m_e c)$ and takes $\rc = r_e/2$. The characteristic angular rate is identified with the electron Compton angular frequency $\omega_c = m_e c^2/\hbar$, and the characteristic swirl speed is then fixed by the kinematic closure $\vnorm = \omega_c \rc$.
+
+Using the canonical constants $\vnorm = 1.09384563\times 10^6~\mathrm{m\,s^{-1}}$, $\rc = 1.40897017\times 10^{-15}~\mathrm{m}$, one obtains
+\begin{equation}
+    \omega_c = \frac{\vnorm}{\rc} \approx 7.76344\times 10^{20}~\mathrm{s^{-1}}, \qquad
+    \omega_c^{-1} \approx 1.288\times 10^{-21}~\mathrm{s}.
+    \label{eq:omega_c}
+\end{equation}
+
+%==============================================================================
+\section{Effective delayed phase model}
+%==============================================================================
+
+We model two correlated sites $A$ and $B$ by phase variables satisfying the symmetric delayed Kuramoto-type system \cite{Yeung1999},
+\begin{align}
+    \dot{\phi}_A(t) &= \omega_0 + \kappa_{AB}\sin\!\big[\phi_B(t-\tau) - \phi_A(t)\big], \label{eq:phiA}\\
+    \dot{\phi}_B(t) &= \omega_0 + \kappa_{AB}\sin\!\big[\phi_A(t-\tau) - \phi_B(t)\big]. \label{eq:phiB}
+\end{align}
+The SST content lies not in the existence of such equations, but in the interpretation of $\tau$, $\kappa$, and $\ell_\tau$ as hydrodynamic-topological quantities with values constrained by a shared set of physical primitives.
+
+The phase difference $\Delta(t) = \phi_A(t) - \phi_B(t)$ satisfies
+\begin{equation}
+    \dot{\Delta}(t) = -2\kappa_{AB}\sin\!\big(\Delta(t-\tau)\big).
+    \label{eq:deltaeq}
+\end{equation}
+Stationary branches satisfy $\sin(\Delta^\ast) = 0 \Rightarrow \Delta^\ast = n\pi$, $n\in\mathbb{Z}$.
+
+%==============================================================================
+\section{Reduced observables and correlation function}
+%==============================================================================
+
+Binary readout observables are defined by thresholding the local phases:
+\begin{align}
+    A(\theta_A,t) &= \operatorname{sign}\!\big[\cos(\phi_A(t)-\theta_A)\big], \label{eq:Aobs}\\
+    B(\theta_B,t) &= \operatorname{sign}\!\big[\cos(\phi_B(t)-\theta_B)\big]. \label{eq:Bobs}
+\end{align}
+The reduced-model correlation function is
+\begin{equation}
+    C(\theta_A,\theta_B) := \langle A(\theta_A,t)\,B(\theta_B,t)\rangle_t. \label{eq:Cobs}
+\end{equation}
+These do not constitute a Bell/CHSH framework; their purpose is to provide an explicit observable layer showing how the delayed phase system generates angle-dependent correlations.
+
+%==============================================================================
+\section{Derivation of the transport delay}
+%==============================================================================
+
+The transport delay is simply the kinematic quotient
+\begin{equation}
+    \tau = \frac{L}{\vnorm}, \qquad \tau\omega_c = \frac{L}{\rc}.
+    \label{eq:tau}
+\end{equation}
+The delay measured in carrier cycles equals the geometric loop length in units of the core radius. It is not an independent free parameter but a geometric bookkeeping of how many core scales fit around the carrier.
+
+%==============================================================================
+\section{Why the coupling rate must be geometric}
+%==============================================================================
+
+Since $\omega_c$ is the only intrinsic SST primitive with units of inverse time, the coupling rate must take the form $\kappa = \omega_c \times (\text{dimensionless factor})$. That dimensionless factor depends on geometry: density sets energetic scale, but not the degree to which two localized phase probes sample the same circulation object. We introduce the \emph{shared-circulation overlap factor}
+\begin{equation}
+    \mathcal{O}_{AB} \in [-1,1], \qquad \kappa_{AB} = \omega_c\,\mathcal{O}_{AB}.
+    \label{eq:kappa}
+\end{equation}
+
+%==============================================================================
+\section{Geometric derivation of the overlap factor}
+%==============================================================================
+
+Let $\mathbf{u}_A(\mathbf{x})$ and $\mathbf{u}_B(\mathbf{x})$ denote the velocity fields induced by two localized phase-carrying swirl structures. The natural SST interaction energy is $E_{AB}^{\mathrm{int}} = \rhoF\int \mathbf{u}_A \cdot \mathbf{u}_B\,d^3x$. The normalized overlap functional is
+\begin{equation}
+    \mathcal{O}_{AB} :=
+    \frac{\displaystyle\int \mathbf{u}_A\cdot\mathbf{u}_B\,d^3x}
+    {\displaystyle\sqrt{\left(\int\|\mathbf{u}_A\|^2 d^3x\right)\!\left(\int\|\mathbf{u}_B\|^2 d^3x\right)}},
+    \label{eq:OAB_def}
+\end{equation}
+bounded by $-1 \le \mathcal{O}_{AB} \le 1$ by Cauchy--Schwarz.
+
+\subsection{Thin-filament reduction}
+
+For thin filaments with identical transverse profile $f(\mathbf{x}_\perp)$, equal amplitude $u_0$, and aligned tangent direction on the shared segment, the normalized overlap reduces to
+\begin{equation}
+    \mathcal{O}_{AB} = \frac{\ell_{\mathrm{shared}}}{\sqrt{L_A L_B}},
+\end{equation}
+which for equal loop lengths $L_A = L_B = L$ gives $\mathcal{O}_{AB} = \ell_{\mathrm{shared}}/L$.
+
+\subsection{Sign and chirality}
+
+Because $\mathcal{O}_{AB}$ is built from $\mathbf{u}_A \cdot \mathbf{u}_B$, it is positive for co-oriented circulation, negative for anti-oriented, and approximately zero for orthogonal or disjoint carriers.
+
+\subsection{A minimal explicit example}
+
+For two fully overlapping coaxial co-oriented carriers of equal length: $\mathcal{O}_{AB} = 1$. For anti-oriented: $\mathcal{O}_{AB} = -1$. For orthogonal: $\mathcal{O}_{AB} \approx 0$. For partial overlap $\ell_{\mathrm{shared}} = fL$: $\mathcal{O}_{AB} = f$.
+
+\subsection{Expected bounds beyond the parallel limit}
+
+For a Hopf-link-style pair, $\hat{\mathbf{t}}_A \cdot \hat{\mathbf{t}}_B$ changes sign across the overlap region and averages toward zero, so $|\mathcal{O}_{AB}| \ll 1$ even when the topological linkage is nontrivial.
+
+%==============================================================================
+\subsection{Explicit Biot--Savart estimate for two angled filaments}
+\label{subsec:biot_savart}
+%==============================================================================
+
+The overlap functional $\mathcal{O}_{AB}$ transitions from a formal definition to a computable quantity once explicit carrier geometries are specified. Here we carry out the simplest non-degenerate calculation: two thin straight filaments of equal length $L$, sharing a common midpoint, whose tangent directions enclose an angle $\alpha \in (0,\pi)$. This is the minimal non-trivial configuration beyond the coaxial limit.
+
+\paragraph{Geometry.} Place the shared midpoint at the origin. Filament $A$ runs along $\hat{\mathbf{t}}_A$ and filament $B$ along $\hat{\mathbf{t}}_B$, with
+\begin{equation}
+    \hat{\mathbf{t}}_A \cdot \hat{\mathbf{t}}_B = \cos\alpha.
+\end{equation}
+In the Biot--Savart thin-filament limit, the velocity field of filament $A$ at field point $\mathbf{x}$ is $\mathbf{u}_A(\mathbf{x}) \approx u_0 f(\mathbf{x}_\perp^{(A)})\hat{\mathbf{t}}_A$.
+
+\paragraph{Cross-energy integral.} For two thin filaments in contact ($d \to 0$), the cross-energy integral factorizes as
+\begin{equation}
+    \int \mathbf{u}_A \cdot \mathbf{u}_B\, d^3x
+    \approx u_0^2\cos\alpha \left(\int |f|^2 d^2x_\perp\right) \ell_{\mathrm{shared}}(\alpha),
+\end{equation}
+where the effective shared arc-length scale in the contact limit is $\ell_{\mathrm{shared}} \approx r_c/\sin\alpha$, because the intersection volume of the two core tubes scales as $V_{\mathrm{ov}} \approx \pi r_c^2/\sin\alpha$.
+
+\paragraph{Normalized overlap.} Using the self-energy $E_A = E_B = u_0^2(\int|f|^2 d^2x_\perp)L$, the normalized overlap evaluates to
+\begin{equation}
+    \boxed{
+        \mathcal{O}_{AB}(\alpha) \approx \frac{r_c\cos\alpha}{L\sin\alpha} = \frac{r_c}{L}\cot\alpha,
+        \quad (\alpha \neq 0).
+    }
+    \label{eq:OAB_angled}
+\end{equation}
+
+\paragraph{Numerical estimates.} Using $r_c = 1.409\times 10^{-15}~\mathrm{m}$:
+
+\begin{center}
+\begin{tabular}{@{}lllll@{}}
+    \toprule
+    $L$ & $\alpha$ & $\cot\alpha$ & $\mathcal{O}_{AB}$ & $\kappa_{AB}$ \\
+    \midrule
+    $10^{-12}~\mathrm{m}$ & $45^\circ$ & $1.00$ & $1.4\times 10^{-3}$ & $1.09\times 10^{18}~\mathrm{s^{-1}}$\\
+    $10^{-12}~\mathrm{m}$ & $10^\circ$ & $5.67$ & $7.9\times 10^{-3}$ & $6.13\times 10^{18}~\mathrm{s^{-1}}$\\
+    $10^{-9}~\mathrm{m}$  & $45^\circ$ & $1.00$ & $1.4\times 10^{-6}$ & $1.09\times 10^{15}~\mathrm{s^{-1}}$\\
+    $10^{-9}~\mathrm{m}$  & $5^\circ$  & $11.4$ & $1.6\times 10^{-5}$ & $1.24\times 10^{16}~\mathrm{s^{-1}}$\\
+    \bottomrule
+\end{tabular}
+\end{center}
+
+Three structural lessons follow. First, for $L \gg r_c$, the overlap is suppressed by $r_c/L$, so $\mathcal{O}_{AB} \ll 1$ for any experimentally accessible carrier — the two sites are weakly coupled even when in contact. Second, near-parallel alignment ($\alpha \to 0$) recovers the coaxial limit $\mathcal{O}_{AB} \to 1$, as required. Third, the coupling rate $\kappa_{AB} = \omega_c \mathcal{O}_{AB}$ acquires a calculable geometric suppression that depends on $\alpha$ and $L/r_c$ — both in principle observable in a classical wave-network simulation.
+
+\paragraph{Limitations.} Equation~\eqref{eq:OAB_angled} applies to straight filaments in the contact limit. For realistic SST trefoil knot geometries the tangent direction varies along the carrier and the self-energy integrals must be evaluated numerically. The present calculation provides an analytic lower-bound template. A full numerical Biot--Savart evaluation for the trefoil geometry is identified as target (T1) in §\ref{sec:open_targets}.
+
+%==============================================================================
+\section{Why the coherence length needs a physical decay channel}
+%==============================================================================
+
+For a phenomenological two-point correlation $E(\theta_A,\theta_B) \sim e^{-L/\ell_\tau}\cos(\theta_A - \theta_B)$, the coherence length $\ell_\tau$ requires a finite phase-memory time $T_\phi$. Defining the phase-quality factor $\mathcal{Q} := \omega_c T_\phi$,
+\begin{equation}
+    \ell_\tau = \rc\,\mathcal{Q}.
+    \label{eq:l_tau}
+\end{equation}
+This is the most compact structural result of the paper: coherence length is core scale times quality factor.
+
+%==============================================================================
+\section{Possible SST mechanisms for phase-memory loss}
+%==============================================================================
+
+\subsection{Density-noise dephasing} $\mathcal{Q} \sim \rhoF/\delta\rho$, \quad $\ell_\tau \sim \rc\rhoF/\delta\rho$.
+
+\subsection{Velocity-noise dephasing} $\mathcal{Q} \sim \vnorm/\delta v$, \quad $\ell_\tau \sim \rc\vnorm/\delta v$.
+
+\subsection{Topological leakage}
+If the carrier is not topologically perfect, phase information leaks at rate $\Gamma_{\mathrm{topo}}$:
+\begin{equation}
+    \mathcal{Q} \sim \frac{\omega_c}{\Gamma_{\mathrm{topo}}}, \qquad
+    \ell_\tau \sim \frac{\vnorm}{\Gamma_{\mathrm{topo}}}.
+    \label{eq:Q_topo}
+\end{equation}
+This is the worked mechanism below.
+
+\subsection{Finite clock-field coherence} $\ell_\tau \sim \ell_\chi$, left for future work.
+
+%==============================================================================
+\section{First numerical implications}
+%==============================================================================
+
+Using $\rc = 1.40897017\times 10^{-15}~\mathrm{m}$: macroscopic coherence requires $\mathcal{Q} \gtrsim 10^{15}$. This is not an inconsistency; it is a hard closure requirement converting the phase-quality problem into a concrete dynamical target.
+
+%==============================================================================
+\section{Worked coherence estimate from topological leakage}
+%==============================================================================
+
+Inverting \cref{eq:Q_topo}, the leakage rate required for meter-scale coherence is $\Gamma_{\mathrm{topo}} \approx 1.09\times 10^6~\mathrm{s^{-1}}$, equivalently $\mathcal{Q} \approx 7.10\times 10^{14}$.
+
+The linear closure $\Gamma_{\mathrm{topo}} \sim \omega_c\,\Xi\,\rhoF/\rhocore$ gives, using the canonical SST densities $\rhocore = 3.893\times 10^{18}~\mathrm{kg\,m^{-3}}$, $\rhoF = 7.0\times 10^{-7}~\mathrm{kg\,m^{-3}}$:
+\begin{equation}
+    \mathcal{Q} \sim \frac{1}{\Xi}\frac{\rhocore}{\rhoF} \approx \frac{5.56\times 10^{24}}{\Xi}.
+    \label{eq:Q_density_ratio}
+\end{equation}
+The intrinsic leakage rate (pristine carrier, $\Xi \sim 1$) is $\Gamma_{\mathrm{topo}}^{\mathrm{intr}} \approx 1.40\times 10^{-4}~\mathrm{s^{-1}}$, corresponding to $\ell_\tau^{\mathrm{intr}} \approx 7.8\times 10^9~\mathrm{m}$. Laboratory-scale coherence ($\ell_\tau \sim 1~\mathrm{m}$) demands a very large distortion factor $\Xi \approx 7.8\times 10^9$. The phase-memory problem is thus a competition between the enormous core-to-background density hierarchy and the geometry-dependent leakage factor $\Xi$.
+
+%==============================================================================
+\section{Linear stability of the stationary branches}
+%==============================================================================
+
+For the in-phase branch $\Delta^\ast = 0$, the characteristic equation is $\lambda = -2\kappa_{AB}e^{-\lambda\tau}$. The stability condition in the weak-delay regime is
+\begin{equation}
+    2\kappa_{AB}\tau < \frac{\pi}{2}, \qquad \text{equivalently} \qquad \mathcal{O}_{AB}\frac{L}{\rc} < \frac{\pi}{4}.
+    \label{eq:stability}
+\end{equation}
+The controlling dimensionless parameter is $2\kappa_{AB}\tau = 2\mathcal{O}_{AB}L/\rc$.
+
+%==============================================================================
+\section{Numerical illustration of the reduced delayed phase model}
+%==============================================================================
+
+We integrate the delayed phase system \cref{eq:phiA,eq:phiB} for the computationally accessible parameters $\omega_0 = 20~\mathrm{s^{-1}}$, $\kappa_{AB} = 8~\mathrm{s^{-1}}$, $\tau = 0.35~\mathrm{s}$, $t_{\mathrm{final}} = 40~\mathrm{s}$, with constant history $\phi_A = 0.15$, $\phi_B = 2.10$ on $[-\tau, 0]$.
+
+In the fully locked limit $\phi_A(t) \approx \phi_B(t) \approx \phi(t)$ with $\phi$ sampling $[0,2\pi)$ uniformly, the correlation function reduces to the closed-form triangular wave:
+\begin{equation}
+    C(\Delta\theta) = 1 - \frac{2|\Delta\theta|}{\pi}, \qquad |\Delta\theta| \le \pi.
+    \label{eq:C_triangle}
+\end{equation}
+
+\paragraph{The triangular wave as an informative upper bound, not an SST result.}
+
+The triangular wave \cref{eq:C_triangle} is analytically derivable from sign-threshold observables on any phase-locked oscillator pair, generic Kuramoto included. It is therefore not evidence of SST-specific behavior. Its value in the present paper is different: it establishes the \emph{maximum} correlation achievable by local phase models with this observable construction, and defines the baseline from which SST-specific deviations would be measured.
+
+SST-specific predictions enter when the perfectly locked conditions are relaxed:
+
+\begin{enumerate}[label=(\roman*)]
+    \item \textbf{Partial locking} ($\kappa_{AB}\tau \lesssim \pi/4$, near the stability threshold \cref{eq:stability}): the phase difference $\Delta(t)$ does not settle to $\Delta^\ast = 0$, and $C(\Delta\theta)$ departs from the triangular envelope with reduced amplitude and asymmetric shoulders. The effective locking depth encodes $\mathcal{O}_{AB}$ through the angled-filament estimate \cref{eq:OAB_angled}.
+
+    \item \textbf{Finite coherence} ($\mathcal{Q} < \infty$): the leakage-damped correlation $E \sim e^{-L/\ell_\tau}\cos(\Delta\theta)$ departs from the triangular shape at large $L$. The characteristic length $\ell_\tau = r_c\mathcal{Q}$ is set by the SST density hierarchy \cref{eq:Q_density_ratio}, which is not a free parameter.
+
+    \item \textbf{Antiphase locking} ($\Delta^\ast = \pi$): the correlation inverts to $C(\Delta\theta) \to -(1 - 2|\Delta\theta|/\pi)$, which is anti-correlated and distinguishable from both the triangular maximum and from ideal quantum Bell correlations.
+\end{enumerate}
+
+A null observation of exactly the triangular wave at all $L$ and all overlap configurations would falsify the finite-coherence ansatz, because it requires $\mathcal{Q} \to \infty$ with $\mathcal{O}_{AB} = 1$ simultaneously — a combination the SST density hierarchy does not support.
+
+%==============================================================================
+\section{Gap analysis: what SST-specific input is required before any Bell/CHSH claim}
+\label{sec:gap}
+%==============================================================================
+
+This section makes precise the distance between the present results and a genuine Bell/CHSH derivation. A referee may ask: what does SST contribute that is not already known from the delayed Kuramoto literature? This question deserves a direct answer, in four layers.
+
+\paragraph{Layer 1 — the correlation form.}
+The triangular wave \cref{eq:C_triangle} is the \emph{wrong functional form} for Bell correlations. The quantum prediction is $E(\Delta\theta) = -\cos(\Delta\theta)$, which is strictly more negative than the triangular wave at intermediate angles ($|\Delta\theta| \in (\pi/4, 3\pi/4)$). Reproducing the cosine is \emph{not} achievable by adjusting $\mathcal{O}_{AB}$ or $\mathcal{Q}$; it requires a different readout map beyond the sign-threshold construction \cref{eq:Aobs,eq:Bobs}. An SST-specific observable construction is a hard prerequisite.
+
+\paragraph{Layer 2 — the CHSH bound.}
+The maximum CHSH value for local hidden-variable models is $S_{\mathrm{LHV}} \le 2$. The present model, being a classical deterministic system with a shared preparation history, satisfies Bell's locality assumptions after the phase history is prescribed. Whether the shared-circulation carrier constitutes a genuinely nonlocal structure capable of violating $S \le 2$ depends on the ontological status of the carrier, which is an open SST question not addressed here.
+
+\paragraph{Layer 3 — the Born rule.}
+Even if the correlation form were corrected to cosine and the CHSH bound violated, Born-rule probabilities $\frac{1 \pm \cos(\Delta\theta)}{2}$ require that measurement outcome weights follow amplitude squaring. The present model produces binary outcomes through sign-thresholding, whose probability weights depend on the phase distribution, not on a Born-rule procedure. This is the deepest open problem in the program.
+
+\paragraph{Layer 4 — operational no-signaling.}
+Whether the shared-carrier preparation introduces a signaling channel depends on how the carrier is prepared and measured, a question this toy model does not address.
+
+\paragraph{Why this gap is SST-specific and not generic Kuramoto.}
+The delayed Kuramoto literature does not identify $\tau$, $\kappa$, and $\ell_\tau$ with a common set of physical primitives. In generic Kuramoto, these are independent free parameters. In SST: (a) their ratio $\kappa_{AB}/\omega_c = \mathcal{O}_{AB}$ is geometrically constrained by the carrier velocity field \cref{eq:OAB_def}; (b) $\ell_\tau/r_c = \mathcal{Q}$ is constrained by the SST density hierarchy \cref{eq:Q_density_ratio}; (c) $\omega_c = \vnorm/r_c$ sets an absolute frequency scale with no free tuning. These three constraints define a measurably different prediction space from generic delayed oscillators, even when the equations of motion are formally identical.
+
+The gap analysis serves dual purposes: for SST, it is a roadmap (Layer~1 is the nearest-term target); for the referee, it confirms that the present paper claims only the reduced-model closure, not the full quantum-foundations derivation.
+
+%==============================================================================
+\section{Falsifiable consequences}
+%==============================================================================
+
+\subsection{Nontrivial angle-dependent reduced correlations}
+Phase locking on a shared carrier produces nontrivial analyzer-angle dependence whenever $\kappa_{AB} \neq 0$. A null result $C(\theta_A,\theta_B) \equiv 0$ across all angles would falsify the reduced readout layer.
+
+\subsection{Finite-range deviation from ideal Bell scaling}
+If $\mathcal{Q}$ is finite, $E(\theta_A,\theta_B) \sim e^{-L/\ell_\tau}\cos(\theta_A - \theta_B)$ must weaken at large $L$. A null result at arbitrarily large distances forces $\mathcal{Q} \to \infty$ or invalidates the simple closure.
+
+\subsection{Angle-filament coupling prediction}
+From \cref{eq:OAB_angled}, two carriers meeting at angle $\alpha$ should exhibit coupling rate $\kappa_{AB} \approx (\omega_c r_c/L)\cot\alpha$. Measuring $\kappa_{AB}$ as a function of $\alpha$ in a classical wave-network simulation provides a direct test of the Biot--Savart closure.
+
+\subsection{Medium-sensitive dephasing}
+If $\mathcal{Q}$ is controlled by density or velocity fluctuations, correlation visibility should depend on environmental perturbations.
+
+\subsection{Topology-sensitive coherence}
+If $\mathcal{Q}$ is set by topological leakage, geometrically different production channels should carry different coherence-length budgets.
+
+%==============================================================================
+\section{Identified open targets}
+\label{sec:open_targets}
+%==============================================================================
+
+\begin{enumerate}[label=(T\arabic*)]
+    \item \textbf{Numerical Biot--Savart for the trefoil knot.} Compute $\mathcal{O}_{AB}$ from \cref{eq:OAB_def} for two SST trefoil-knot carriers in a range of relative orientations and separations. This converts $\mathcal{O}_{AB}$ from a formal symbol to a computable function of the knot embedding parameters.
+
+    \item \textbf{First-principles derivation of $\mathcal{Q}$.} Derive $\Gamma_{\mathrm{topo}}$ from SST reconnection dynamics, rather than the heuristic linear closure. A minimal version would compute the leakage rate for a vortex filament reconnection in the incompressible Euler setting and scale via the SST density hierarchy.
+
+    \item \textbf{Non-trivial observable construction.} Identify a readout observable beyond the sign-threshold map \cref{eq:Aobs,eq:Bobs} producing a cosine rather than triangular correlation in the phase-locked regime. This is a prerequisite for closing Layer~1 of the gap analysis.
+
+    \item \textbf{Classical wave-network simulation.} Implement the minimal testbed from SST-76 §10: a source launching paired excitations into two channels with controllable phase delay and coincidence-counting output. Even a classical simulation would verify whether the Bell-like phase witness $E_{\mathrm{SST}}(\Phi) = -A_{\mathrm{SST}}\cos\Phi$ emerges from the SST carrier dynamics.
+\end{enumerate}
+
+Targets (T1) and (T2) are necessary to convert $\mathcal{O}_{AB}$ and $\mathcal{Q}$ from free parameters to constrained SST quantities. Without them, the referee's objection — that the model renames rather than reduces the degrees of freedom — remains partially valid. The angled-filament estimate \cref{eq:OAB_angled} addresses (T1) at the level of the simplest non-trivial geometry; the trefoil remains open.
+
+%==============================================================================
+\section{What this does and does not solve}
+%==============================================================================
+
+This article solves the dimensional and structural closure problem:
+\[
+    (\tau, \kappa, \ell_\tau) \;\Rightarrow\; \left(\frac{L}{\vnorm},\; \omega_c\mathcal{O}_{AB},\; \rc\mathcal{Q}\right).
+\]
+It provides, additionally, a Biot--Savart estimate of $\mathcal{O}_{AB}$ for the simplest non-trivial carrier geometry, a reframing of the triangular correlation as an upper bound with SST-falsifiable deviations, and a four-layer gap analysis identifying what SST-specific input must be supplied before any Bell/CHSH claim can be made.
+
+It does \emph{not} yet: (1) derive exact Bell/CHSH values; (2) prove operational no-signaling; (3) derive Born probabilities from the underlying SST medium; or (4) compute $\mathcal{O}_{AB}$ for the trefoil knot.
+
+%==============================================================================
+\section{Conclusion}
+%==============================================================================
+
+The delay-coupled correlation problem in SST reduces to a concrete triad of scales. Once $\omega_c = \vnorm/\rc$ is accepted, the transport delay is fixed: $\tau = L/\vnorm$. Dimensional consistency then forces $\kappa_{AB} = \omega_c\mathcal{O}_{AB}$ and $\ell_\tau = \rc\mathcal{Q}$.
+
+These relations shift the conceptual burden. Correlation strength is controlled by genuinely shared circulation structure; correlation range by the phase-memory quality of that structure, which the SST density hierarchy constrains to $\mathcal{Q} \sim \rhocore/(\Xi\rhoF)$. The Biot--Savart estimate $\mathcal{O}_{AB} \approx (r_c/L)\cot\alpha$ for angled filaments converts the overlap functional from a formal symbol to a geometry-dependent prediction whose angle-dependence is directly measurable in a classical wave simulation. The gap analysis identifies precisely what additional SST-specific input is required before the reduced model becomes a quantum-foundations theory.
+
+The present article's contribution is therefore bounded: a self-contained reduced-model closure with explicit geometric coupling, a worked coherence estimate, and a clear roadmap to the next closure problem.
+
+%==============================================================================
+\begin{thebibliography}{99}
+%==============================================================================
+
+\bibitem{Bell1964}
+J. S. Bell, 1964, \textit{On the Einstein Podolsky Rosen Paradox}, Physics Physique Fizika \textbf{1}, 195--200.
+
+\bibitem{Yeung1999}
+M. K. S. Yeung and S. H. Strogatz, 1999, \textit{Time Delay in the Kuramoto Model of Coupled Oscillators}, Phys.\ Rev.\ Lett.\ \textbf{82}, 648--651.
+
+\bibitem{Aspect1982}
+A. Aspect, P. Grangier, and G. Roger, 1982, \textit{Experimental Realization of Einstein-Podolsky-Rosen-Bohm Gedankenexperiment}, Phys.\ Rev.\ Lett.\ \textbf{49}, 91--94.
+
+\bibitem{Hensen2015}
+B. Hensen et al., 2015, \textit{Loophole-free Bell inequality violation}, Nature \textbf{526}, 682--686.
+
+\bibitem{Ernux2009}
+T. Erneux, 2009, \textit{Applied Delay Differential Equations}, Springer.
+
+\bibitem{ArnoldKhesin1998}
+V. I. Arnold and B. A. Khesin, 1998, \textit{Topological Methods in Hydrodynamics}, Springer.
+
+\bibitem{Saffman1992}
+P. G. Saffman, 1992, \textit{Vortex Dynamics}, Cambridge University Press.
+
+\bibitem{Madelung1927}
+E. Madelung, 1927, \textit{Quantentheorie in hydrodynamischer Form}, Z.\ Phys.\ \textbf{40}, 322--326.
+
+\bibitem{Nelson1966}
+E. Nelson, 1966, \textit{Derivation of the Schr\"odinger Equation from Newtonian Mechanics}, Phys.\ Rev.\ \textbf{150}, 1079--1085.
+
+\bibitem{Barcelo2011}
+C. Barcel\'o, S. Liberati, and M. Visser, 2011, \textit{Analogue Gravity}, Living Rev.\ Relativ.\ \textbf{14}, 3.
+
+\bibitem{Volovik2003}
+G. E. Volovik, 2003, \textit{The Universe in a Helium Droplet}, Oxford University Press.
+
+\bibitem{Bohm1952}
+D. Bohm, 1952, \textit{A Suggested Interpretation of the Quantum Theory in Terms of ``Hidden'' Variables I}, Phys.\ Rev.\ \textbf{85}, 166--179.
+
+\end{thebibliography}
+
+\end{document}

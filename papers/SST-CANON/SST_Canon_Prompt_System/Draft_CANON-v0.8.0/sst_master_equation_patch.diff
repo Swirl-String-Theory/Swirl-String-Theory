@@ -1,0 +1,125 @@
+--- /mnt/data/Draft_v0.8.0.tex	2026-04-19 13:50:27.168785217 +0000
++++ /mnt/data/Draft_v0.8.0.modified.tex	2026-04-19 14:01:34.952789461 +0000
+@@ -230,6 +230,66 @@
+         \end{align}
+         
+         \textbf{[DERIVED]}: This eliminates $\rho_{core}$ as an independent parameter.
++
++    \subsection{Canonical Master Equation}
++    \label{sec:master-equation}
++
++        The preceding subsections define the four ingredients that later SST papers often treat separately:
++        a local mass-equivalent density, a local Swirl-Clock, a geometric gate, and a topological kernel.
++        We therefore introduce a single canonical equation that organizes these sectors in one place.
++
++        First define the local swirl energy density and its mass-equivalent form:
++
++        \begin{align}
++            \rhoE(x) &= \frac{1}{2}\rhoF(x)\,\norm{\vswirl(x)}^2 \\
++            \rhoM(x) &= \frac{\rhoE(x)}{c^2}
++        \end{align}
++
++        Using Eq.~\ref{eq:swirl_clock}, the local Swirl-Clock factor is
++
++        \begin{align}
++            \SwirlClock(x) = \sqrt{1 - \frac{\norm{\vswirl(x)}^2}{c^2}}
++        \end{align}
++
++        We then define a binary geometric exposure gate
++        \begin{align}
++            G(K) \in \{0,1\}
++        \end{align}
++        together with the canonical geometric factor
++        \begin{align}
++            \Pi_K = \left( \frac{\lambda_c}{\pi r_c} \right)^{G(K)} = \left( \frac{4}{\alpha} \right)^{G(K)} .
++        \end{align}
++
++        The canonical topological kernel is taken to be
++        \begin{align}
++            \Xi_K = \left[ \alpha_C\,C(K) + \beta_L\,L(K) + \gamma_H\,\mathcal{H}(K) \right] \varphi^{-2k(K)} .
++        \end{align}
++
++        The canonical SST master equation is therefore
++        \begin{align}
++            M_K(x)
++            &= \rhoM(x)\,r_c^3\,\Pi_K\,\Xi_K\,\SwirlClock(x)^{-2} \\
++            &= \left( \frac{\rhoF(x)\,\norm{\vswirl(x)}^2}{2c^2} \right)
++               r_c^3
++               \left( \frac{\lambda_c}{\pi r_c} \right)^{G(K)}
++               \left[ \alpha_C\,C(K) + \beta_L\,L(K) + \gamma_H\,\mathcal{H}(K) \right]
++               \varphi^{-2k(K)}
++               \SwirlClock(x)^{-2}
++            \label{eq:sst_master_equation}
++        \end{align}
++
++        \textbf{[CANONICAL]}: This equation factorizes SST into four sectors:
++        \begin{align}
++            \text{medium scale} \times \text{geometric gate} \times \text{topological kernel} \times \text{clock impedance} .
++        \end{align}
++
++        \textbf{[DIMENSIONAL CHECK]}:
++        \begin{align}
++            \left[ \frac{\rhoF\,\norm{\vswirl}^2}{c^2} r_c^3 \right] = \mathrm{kg}
++        \end{align}
++        and all remaining factors are dimensionless, so Eq.~\ref{eq:sst_master_equation} has the correct mass dimension.
++
++        \textbf{[INTERPRETATION]}: The same local kinematic state that slows the Swirl-Clock also enters the effective mass scale; mass and local proper-time modulation are therefore treated as two aspects of one medium configuration.
+     
+     \subsection{Geometric Representation}
+         
+@@ -249,11 +309,12 @@
+         (\rho_f, v_{\swirlarrow}, \omega_c)
+             \rightarrow r_c
+             \rightarrow \Gamma_0
+-            \rightarrow \rho_{core}
++            \rightarrow (\rho_{core}, \rhoE, \rhoM, \SwirlClock)
++            \rightarrow M_K
+         \end{align}
+         
+         \textbf{[CRITICAL]}:
+-        No quantity is defined circularly.
++        No quantity is defined circularly. The canonical closure is summarized by Eq.~\ref{eq:sst_master_equation}.
+     
+     \subsection{Consistency Statement}
+         
+@@ -1202,25 +1263,27 @@
+     
+     \subsection{Mass as Trapped Circulation Energy}
+         
+-        From Section~\ref{sec:foundations} and Section~\ref{sec:delay}:
++        From Section~\ref{sec:foundations}, Section~\ref{sec:master-equation}, and Section~\ref{sec:delay}:
+         
+         \begin{itemize}
+             \item Energy is stored in rotational motion
+             \item Circulation defines the energy scale
++            \item Topology and the geometric gate select the realized mass sector
+         \end{itemize}
+         
+         \begin{align}
+-            E = m c^2
++            M_K(x)=\rhoM(x)\,r_c^3\,\Pi_K\,\Xi_K\,\SwirlClock(x)^{-2}
+         \end{align}
+         
+         \textbf{[UNIFIED INTERPRETATION]}:
+         \begin{center}
+-            Mass corresponds to localized, self-sustained circulation energy in the medium.
++            Mass corresponds to localized, self-sustained circulation energy in the medium,
++            modulated by state geometry, topology, and local clock impedance.
+         \end{center}
+     
+     \subsection{Time as a Relational Quantity}
+         
+-        From Section~\ref{sec:time} and Section~\ref{sec:foundations}:
++        From Section~\ref{sec:time}, Section~\ref{sec:foundations}, and Section~\ref{sec:master-equation}:
+         
+         \begin{itemize}
+             \item Time is measured through physical processes
+@@ -1234,6 +1297,8 @@
+         \textbf{[UNIFIED INTERPRETATION]}:
+         \begin{center}
+             Time is not fundamental, but emerges from the kinematic state of the medium.
++            In canonical form, the same local swirl state that slows the Swirl-Clock also enters
++            the effective mass scale through Eq.~\ref{eq:sst_master_equation}.
+         \end{center}
+     
+     \subsection{Discreteness without Quantization Postulates}

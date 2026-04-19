@@ -1,0 +1,584 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{bm}
+\usepackage{physics}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{enumitem}
+
+% --- SST house macros ---
+\newcommand{\swirlarrow}{\mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}}
+\newcommand{\swirlarrowcw}{\mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}}
+\newcommand{\vswirl}{\mathbf{v}_{\swirlarrow}}
+\newcommand{\vswirlcw}{\mathbf{v}_{\swirlarrowcw}}
+\newcommand{\SwirlClock}{S_t^{\swirlarrow}}
+\newcommand{\SwirlClockcw}{S_t^{\swirlarrowcw}}
+\newcommand{\rhof}{\rho_{\!f}}
+\newcommand{\rhoE}{\rho_{\!E}}
+\newcommand{\rhoM}{\rho_{\!m}}
+\newcommand{\rhocore}{\rho_{\text{core}}}
+\newcommand{\rc}{r_c}
+\newcommand{\Gammazero}{\Gamma_0}
+\newcommand{\omegac}{\omega_c}
+\newcommand{\alphasw}{\alpha_{\!\swirlarrow}}
+\newcommand{\piplus}{\pi^{+}}
+\newcommand{\piminus}{\pi^{-}}
+\newcommand{\pizero}{\pi^{0}}
+\newcommand{\Status}[1]{\par\smallskip\noindent\textbf{Status.} #1\par\smallskip}
+
+\title{SST-78: Mesons in Swirl-String Theory\\
+\large A technical note on mesonic mass scaling, chirality pairing, pions, and mirror-knot antimatter}
+\author{Omar Iskandarani\\Independent Researcher, Groningen, The Netherlands\\ORCID: 0009-0006-1686-3961}
+\date{April 19, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This technical note records a meson sector for Swirl-String Theory (SST) consistent with the current project canon. The construction uses the canonical kinematic triad
+\[
+\rhof,\qquad \vswirl,\qquad \omegac = \frac{\lVert \vswirl \rVert}{\rc},
+\]
+with circulation
+\[
+\Gammazero = 2\pi \rc\,\lVert \vswirl \rVert,
+\]
+and incorporates the Swirl-Clock together with the working antimatter hypothesis that mirror chiral realizations of the same closure class represent particle--antiparticle partners. The central proposal is that mesons are finite, chirality-paired string excitations: an open or weakly linked carrier with opposite-handed endpoint sectors. A compact pion-scale estimate is obtained from the canonical core energy packet,
+\[
+E_{\pi,0} \sim \alphasw\,\pi\rhoE \rc^{3},
+\qquad
+\alphasw \equiv \frac{2\lVert \vswirl \rVert}{c}
+= \frac{\Gammazero}{\pi \rc c}
+= \frac{2\omegac \rc}{c},
+\]
+which numerically lands at the observed pion scale when evaluated with the current SST constants. The note separates derived identities, modeled closures, and conjectural topology assignments. In particular, the light pion triplet is argued to be better represented by open chirality-paired carriers than by strongly protected closed linked states, while mirror-knot chirality provides the natural SST interpretation of antiquark sectors.
+\end{abstract}
+
+\section{Scope and epistemic status}
+This note is intentionally narrower than a full hadron canon. Its purpose is to formulate a meson sector that is internally consistent with the current SST project logic: quantized circulation, finite core scale, a Swirl-Clock, delay-locked closure, mirror-knot chirality, and the topology-first attitude already used elsewhere in the project.
+
+Three epistemic levels are used throughout.
+\begin{enumerate}[label=(\roman*)]
+    \item \textbf{Derived identities}: exact algebraic consequences of the canonical definitions of \(\rc\), \(\vswirl\), \(\omegac\), and \(\Gammazero\).
+    \item \textbf{Modeled meson closures}: meson-specific mass and topology rules introduced here to organize the hadronic sector.
+    \item \textbf{Conjectural assignments}: explicit identifications of \(\piplus,\piminus,\pizero\) and heavier mesons with particular SST structures.
+\end{enumerate}
+
+\Status{The circulation quantum, Swirl-Clock scaling, and mirror-handed branch logic are already present in the project canon. The meson interpretation built from them is new modeling, not yet a completed theorem.}
+
+\section{Canonical SST scales used here}
+The meson note uses the following canonical quantities:
+\begin{align}
+\lVert \vswirl \rVert &= 1.09384563\times 10^{6}\ \mathrm{m\,s^{-1}},\\
+\rc &= 1.40897017\times 10^{-15}\ \mathrm{m},\\
+\rhof &= 7.0\times 10^{-7}\ \mathrm{kg\,m^{-3}},\\
+\rhocore &= 3.8934358266918687\times 10^{18}\ \mathrm{kg\,m^{-3}},\\
+\rhoE &= 3.49924562\times 10^{35}\ \mathrm{J\,m^{-3}}.
+\end{align}
+
+From these follow the canonical turnover and circulation scales
+\begin{align}
+\omegac &= \frac{\lVert \vswirl \rVert}{\rc},\\
+\Gammazero &= 2\pi \rc\,\lVert \vswirl \rVert,
+\end{align}
+and the dimensionless swirl ratio
+\begin{align}
+\alphasw &\equiv \frac{2\lVert \vswirl \rVert}{c}
+= \frac{\Gammazero}{\pi \rc c}
+= \frac{2\omegac \rc}{c}.
+\end{align}
+
+Numerically,
+\begin{align}
+\omegac &\approx 7.76344066\times 10^{20}\ \mathrm{s^{-1}},\\
+\Gammazero &\approx 9.68361920\times 10^{-9}\ \mathrm{m^{2}\,s^{-1}},\\
+\alphasw &\approx 7.29735256\times 10^{-3}.
+\end{align}
+
+The last equality is important: in the present SST closure chain the mesonic release fraction is numerically identical to the fine-structure constant, but it is read here as a swirl-kinematic ratio rather than as a fundamental electromagnetic input.
+
+\section{Why mesons differ from baryons in SST}
+The working hadronic separation used in this note is:
+\begin{itemize}
+    \item \textbf{Baryons}: closed, more strongly protected, multi-sector compact states.
+    \item \textbf{Mesons}: finite chirality-paired excitations with two opposing endpoint sectors, or with a weak two-component linkage that is easier to annihilate.
+\end{itemize}
+
+In ordinary quark language one writes
+\[
+\text{baryon} = qqq,
+\qquad
+\text{meson} = q\bar q.
+\]
+The SST translation proposed here is not to take quarks as fundamental point particles, but to treat quark and antiquark labels as \emph{localized chiral sectors} or \emph{endpoint defects} carried by a finite string-like excitation.
+
+Thus the minimal meson ontology is
+\begin{equation}
+\mathcal{M}
+\sim
+\text{finite carrier} + (\text{left-handed endpoint sector}) + (\text{right-handed endpoint sector}).
+\label{eq:mesonontology}
+\end{equation}
+
+The carrier can be represented in two nearby ways:
+\begin{enumerate}[label=(\alph*)]
+    \item an \textbf{open chirality-paired carrier}, or
+    \item a \textbf{weakly linked two-component carrier}.
+\end{enumerate}
+The present note argues that the light pion triplet is better described by case (a), while case (b) is more natural for heavier or more protected mesonic resonances.
+
+\section{Mirror knots, antimatter, and mesonic pairing}
+A recurrent project statement is that the branch index \(\sigma=\pm1\) should be interpreted as two opposite handed realizations of a fixed closure class, naturally associated with a mirror pair rather than two different knot types. In particular, the project's trefoil discussion explicitly states that \(\sigma=\pm1\) labels the two opposite-handed realizations of the same trefoil closure sector.
+
+Accordingly, this note adopts the working antimatter rule:
+\begin{equation}
+\overline{K} \equiv \text{mirror}(K),
+\label{eq:mirrorantimatter}
+\end{equation}
+so that a particle and its antiparticle are represented by the same closure class with opposite chirality. For the electron sector this becomes the familiar SST expectation
+\begin{equation}
+\text{electron} \sim 3_1^{(L)},
+\qquad
+\text{positron} \sim 3_1^{(R)},
+\end{equation}
+with the understanding that \(L/R\) are mirror realizations of the same trefoil class, not two different torus-knot labels.
+
+The meson generalization is then immediate:
+\begin{equation}
+q\bar q
+\quad \longleftrightarrow \quad
+\text{finite carrier with opposite chirality sectors } \chi=+1,-1.
+\label{eq:qqbarSST}
+\end{equation}
+
+In this sense, mesons are the natural hadronic arena in which mirror-knot antimatter first enters explicitly at the composite level.
+
+\section{Swirl-Clock and mesonic chirality}
+The Swirl-Clock provides the local kinematic bookkeeping field. In the project canon it is introduced as a slowdown factor controlled by local swirl speed, and in the simplest axisymmetric reference profile one writes
+\begin{equation}
+\SwirlClock(x)
+= \sqrt{1 - \frac{|v_{\perp}(x)|^{2}}{\lVert \vswirl \rVert^{2}}}.
+\label{eq:swirlclockbasic}
+\end{equation}
+
+For chiral matter/antimatter bookkeeping we use the paired notation
+\begin{equation}
+\SwirlClock,\qquad \SwirlClockcw,
+\end{equation}
+where the two sectors correspond to opposite local handedness. The meson carrier is then a mixed object containing both branches in the same finite excitation. The simplest symbolic representation is
+\begin{equation}
+\mathcal{M} \, : \,
+\bigl(\SwirlClock,\SwirlClockcw\bigr)
+\quad \text{bound on a common finite carrier.}
+\label{eq:mesonswirlclock}
+\end{equation}
+
+This is the precise sense in which a meson differs from a lepton in the present SST note. A charged lepton is identified with one stable chiral closure sector; a meson is a finite chirality-paired composite.
+
+\section{Primitive meson mass scale from canonical SST constants}
+\subsection{Core packet and chirality-release factor}
+The project canon repeatedly uses a core-localized energy packet of order
+\begin{equation}
+E_{\text{core}} \sim \pi \rhoE \rc^{3}.
+\label{eq:corepacket}
+\end{equation}
+This is dimensionally correct because \(\rhoE\) has units \(\mathrm{J\,m^{-3}}\).
+
+The simplest mesonic hypothesis is that the lightest mesons are not full core packets but a small chirality-release fraction of such a packet. The most economical dimensionless fraction built from the requested meson scales is
+\begin{equation}
+\alphasw = \frac{2\lVert \vswirl \rVert}{c}
+= \frac{\Gammazero}{\pi \rc c}
+= \frac{2\omegac\rc}{c}.
+\label{eq:alphasw}
+\end{equation}
+
+This leads to the primitive meson scale
+\begin{equation}
+E_{M,0}
+\equiv
+\alphasw\,\pi\rhoE\rc^{3}.
+\label{eq:mesonbaseenergy}
+\end{equation}
+Equivalently,
+\begin{equation}
+E_{M,0}
+= \frac{2\lVert \vswirl \rVert}{c}\,\pi\rhoE\rc^{3}
+= \frac{\Gammazero}{\pi \rc c}\,\pi\rhoE\rc^{3}
+= \frac{\Gammazero\rhoE\rc^{2}}{c}.
+\label{eq:mesonbaseenergy_alt}
+\end{equation}
+
+Equation \eqref{eq:mesonbaseenergy_alt} is useful because it displays the meson scale directly in terms of \(\Gammazero\), \(\rc\), and \(\rhoE\), while Eq.~\eqref{eq:alphasw} shows the same result in terms of \(\vswirl\) and \(\omegac\).
+
+\subsection{Numerical benchmark}
+Using the canonical constants above,
+\begin{align}
+E_{\text{core}}
+&= \pi\rhoE\rc^{3}
+\approx 3.07489079\times 10^{-9}\ \mathrm{J}
+\approx 19.191\ \mathrm{GeV},\\
+E_{M,0}
+&= \alphasw E_{\text{core}}
+\approx 2.24385622\times 10^{-11}\ \mathrm{J}
+\approx 140.05\ \mathrm{MeV}.
+\end{align}
+
+Thus the primitive meson scale lands directly in the pion sector:
+\begin{equation}
+\boxed{E_{M,0} \approx 140\ \mathrm{MeV}.}
+\end{equation}
+
+\Status{This numerical coincidence is strong enough to justify a dedicated meson note. It should nevertheless be read as a closure proposal, not yet as a full derivation from the SST field equations.}
+
+\subsection{Interpretation of \(\rhof\)}
+The requested effective fluid density \(\rhof\) still plays an essential role, but not as the dominant hadronic rest-energy density. In the present interpretation:
+\begin{enumerate}[label=(\arabic*)]
+    \item \(\rhof\) controls the ambient medium, long-range screening, outer-envelope line tension, and interaction range.
+    \item \(\rhoE\) or equivalently \(\rhoM=\rhoE/c^{2}\) controls the confined core-loaded rest energy.
+\end{enumerate}
+
+This division is already implicit elsewhere in the project: hadronic and leptonic rest scales require the dense core sector, whereas \(\rhof\) governs the background medium and exchange environment.
+
+\section{General meson mass ansatz}
+The minimal SST meson formula extending the pion benchmark is
+\begin{equation}
+m_{M}c^{2}
+=
+\Xi_{M}\,\alphasw\,\pi\rhoE\rc^{3}
++ E_{\text{link}}(M)
++ E_{\text{dress}}(M),
+\label{eq:mesonmaster}
+\end{equation}
+where:
+\begin{itemize}
+    \item \(\Xi_{M}\) is a dimensionless topology/geometry factor,
+    \item \(E_{\text{link}}\) records extra energy from weak linkage or stronger carrier protection,
+    \item \(E_{\text{dress}}\) records radiative, thermal, or environmental dressing.
+\end{itemize}
+
+For the lightest pions one expects
+\begin{equation}
+\Xi_{\pi} \approx 1,
+\qquad
+|E_{\text{link}}|,|E_{\text{dress}}| \ll E_{M,0}.
+\end{equation}
+
+For heavier mesons the increase may come from one or more of:
+\begin{enumerate}[label=(\alph*)]
+    \item larger internal carrier length,
+    \item stronger near-contact geometry,
+    \item stronger linkage protection,
+    \item heavier endpoint sectors,
+    \item larger dressing or excitation content.
+\end{enumerate}
+
+A useful topology-first decomposition is
+\begin{equation}
+\Xi_{M}
+=
+\Xi_{\text{carrier}}\,\Xi_{\text{endpoint}}\,\Xi_{\text{chirality}}.
+\label{eq:ximdecomp}
+\end{equation}
+The present note does not fix these factors uniquely; it only proposes the pion anchor and the chirality pairing principle.
+
+\section{Why the pion triplet is better modeled as open than linked}
+\subsection{Two structural options}
+There are two natural SST candidates for the light pseudoscalar mesons.
+
+\paragraph{Option A: open chirality-paired carrier.}
+A finite carrier supports two opposite endpoint sectors:
+\begin{equation}
+\mathcal{P}_{\text{open}}
+\sim
+\mathcal{S}_{\text{open}}(\chi_{1},\chi_{2}),
+\qquad
+\chi_{2}=-\chi_{1}.
+\label{eq:openmeson}
+\end{equation}
+
+\paragraph{Option B: linked two-component carrier.}
+A weak two-loop linkage carries opposite chirality sectors on two short components:
+\begin{equation}
+\mathcal{P}_{\text{link}}
+\sim
+L_{2}(\chi_{1},\chi_{2}),
+\qquad
+\chi_{2}=-\chi_{1}.
+\label{eq:linkedmeson}
+\end{equation}
+
+\subsection{Why Option A is preferred for pions}
+The pion triplet is unusually light and short-lived compared with more strongly protected hadrons. Within SST that strongly suggests a carrier that is easy to create and easy to annihilate. This points to the open option \eqref{eq:openmeson} rather than the more topologically protected linked option \eqref{eq:linkedmeson}.
+
+The argument is simple:
+\begin{enumerate}[label=(\arabic*)]
+    \item the primitive mass scale \eqref{eq:mesonbaseenergy} already lands in the pion range, so only a weak protection factor is needed;
+    \item stronger linking would naturally raise the rest energy and extend lifetime;
+    \item pions function as the lightest finite-range hadronic exchange modes, which is more consistent with a finite chirality-paired carrier than with a robust closed composite.
+\end{enumerate}
+
+\Status{The open-vs-linked preference is a modeled structural inference from mass scale and lifetime, not yet a first-principles theorem.}
+
+\section{Pion mapping in SST logic}
+\subsection{Charged pions}
+The charged pion pair is taken as a mirror pair of open chirality-paired carriers. Introduce light endpoint flavor labels \(u\) and \(d\) as bookkeeping tags for distinct light hadronic sectors, and denote mirror orientation by an overbar. Then the SST reading is
+\begin{align}
+\piplus &\sim \mathcal{S}_{\text{open}}(u,\overline d),\\
+\piminus &\sim \mathcal{S}_{\text{open}}(d,\overline u).
+\end{align}
+
+In mirror-knot language, the antiquark label simply means the opposite chirality realization of the same local closure family:
+\begin{equation}
+\overline u = \text{mirror}(u),
+\qquad
+\overline d = \text{mirror}(d).
+\end{equation}
+
+A branch-resolved symbolic form is therefore
+\begin{align}
+\piplus &: (u_{+}, d_{-})\ \text{on one finite carrier},\\
+\piminus &: (d_{+}, u_{-})\ \text{on one finite carrier},
+\end{align}
+where the signs denote opposite local chirality sectors rather than opposite torus-knot labels.
+
+\subsection{Neutral pion}
+The neutral pion is naturally modeled as the lightest neutral chirality-paired superposition. A minimal symbolic form is
+\begin{equation}
+\pizero
+\sim
+\frac{1}{\sqrt{2}}
+\left[
+\mathcal{S}_{\text{open}}(u,\overline u)
+-
+\mathcal{S}_{\text{open}}(d,\overline d)
+\right].
+\label{eq:pizero}
+\end{equation}
+
+The minus sign is important: it makes \(\pizero\) the natural parity-odd neutral combination rather than a generic positive superposition.
+
+At the coarse topological level one may alternatively regard \(\pizero\) as a marginally more cancellation-prone neutral configuration whose two chiral sectors balance more efficiently than in the charged case. This qualitatively explains why \(m_{\pizero}<m_{\piplus}=m_{\piminus}\) without demanding a different primitive scale.
+
+\subsection{Pion mass splitting as small correction}
+Let
+\begin{equation}
+m_{\pi^{a}}c^{2}
+=
+\left(1+\delta_{a}\right)\alphasw\,\pi\rhoE\rc^{3},
+\qquad a\in\{+,0,-\},
+\label{eq:pionsplit}
+\end{equation}
+with \(|\delta_{a}|\ll 1\). Then the physical pion triplet is obtained by a small charged/neutral correction around a common SST base scale.
+
+This is exactly the pattern the numerical benchmark suggests:
+\begin{equation}
+E_{M,0}\approx 140\ \mathrm{MeV}
+\end{equation}
+with only percent-level splittings required to recover the three physical pion masses.
+
+\section{Mesons beyond the pion sector}
+The same chirality-paired logic extends naturally to heavier mesons. The general picture is:
+\begin{enumerate}[label=(\alph*)]
+    \item \textbf{pseudoscalar light mesons}: open chirality-paired first excitations;
+    \item \textbf{vector mesons}: the same endpoint sectors on a carrier with higher internal phase or twist loading;
+    \item \textbf{heavier flavored mesons}: endpoint sectors belonging to more energetic local closure families;
+    \item \textbf{resonant linked mesons}: short-lived linked or nearly linked carriers above the open ground sector.
+\end{enumerate}
+
+A compact family formula is
+\begin{equation}
+m_{M}c^{2}
+\sim
+\left[N_{\text{ph}}(M)+N_{\text{tw}}(M)+N_{\text{link}}(M)\right]
+\alphasw\,\pi\rhoE\rc^{3},
+\label{eq:familyformula}
+\end{equation}
+where the three \(N\)-factors count phase, twist, and linkage loading in an effective coarse way.
+
+\section{Connection with delay locking and finite carriers}
+The project's trefoil-closure work emphasizes a delay-locked mechanism: a closed circulation carrier plus a helical torsion mode can stabilize a trefoil only when rational toroidal/poloidal locking is achieved. That logic can be imported into the meson sector in a weaker form.
+
+Instead of a fully closed stable trefoil, a meson carrier is interpreted as a \emph{finite under-closed or weakly closed} chirality-paired excitation whose internal phase remains tied to the same primitive turnover scale
+\begin{equation}
+\Omega_{0} = \frac{\lVert \vswirl \rVert}{\rc} = \omegac.
+\end{equation}
+
+Hence the meson is read as a finite carrier that has not fully completed the topological self-protection of a stable lepton-like or baryon-like knot. This explains, in one stroke, why mesons are both composite and short-lived.
+
+\section{Role of the Swirl-Clock in meson decay}
+Because the meson carries both handed sectors on one carrier, its local Swirl-Clock is not expected to be as rigid as that of a single fully protected chiral closure. The simplest phenomenological rule is that meson decay width increases with internal branch-mismatch stress,
+\begin{equation}
+\Gamma_{\text{decay}}^{(M)}
+\propto
+\int_{\mathcal{C}_{M}}
+\left|\SwirlClock - \SwirlClockcw\right|\,\dd \ell.
+\label{eq:mesondecayrule}
+\end{equation}
+
+Equation \eqref{eq:mesondecayrule} is deliberately schematic, but it captures the intended physics: a meson is unstable because it binds opposite chiral sectors on a finite carrier, and the mismatch can relax into lower-energy channels.
+
+\Status{Equation \eqref{eq:mesondecayrule} is conjectural and serves only as a guide for future decay modeling.}
+
+\section{Comparison table: lepton, meson, baryon in SST}
+\begin{center}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.23\textwidth} >{\raggedright\arraybackslash}p{0.23\textwidth} >{\raggedright\arraybackslash}p{0.23\textwidth}}
+\toprule
+Property & Lepton & Meson & Baryon \\
+\midrule
+Core ontology & single stable chiral closure & finite chirality-paired carrier & compact multi-sector protected closure \\
+Antimatter relation & mirror knot of same class & mixed particle--antiparticle sectors on one carrier & anti-baryon is full mirror of baryon sector \\
+Swirl-Clock content & one dominant branch & both branches on same carrier & multiple sectors but more protected global clock \\
+Typical stability & high & low to moderate & moderate to high \\
+Primitive scale & electron/torus-knot sector & \(\alphasw\pi\rhoE\rc^{3}\) for the lightest states & volume/topology-enhanced core scale \\
+Pion-like? & no & yes & no \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Minimal falsifiable expectations}
+Even at this provisional stage, the meson note implies several clear expectations.
+\begin{enumerate}[label=(P\arabic*)]
+    \item \textbf{Pion anchor.} The lightest meson scale should be set by \(\alphasw\pi\rhoE\rc^{3}\) to leading order.
+    \item \textbf{Mirror pairing.} Antiquark sectors should correspond to mirror-handed realizations of the same local closure family rather than unrelated topological species.
+    \item \textbf{Open-light, linked-heavy tendency.} The lightest mesons should correspond to open chirality-paired carriers, while stronger linkage should correlate with larger mass and/or larger protection.
+    \item \textbf{Neutral-sector cancellation.} Neutral mesons with stronger mirror cancellation should sit slightly below their charged analogues when all else is equal.
+    \item \textbf{Swirl-Clock sensitivity.} Meson decay widths should correlate with how strongly opposite-handed sectors distort the local clock structure of the carrier.
+\end{enumerate}
+
+\section{What this note does \emph{not} yet derive}
+The following points remain open and should not be overstated:
+\begin{enumerate}[label=(\arabic*)]
+    \item a first-principles derivation of the full meson spectrum from the SST field equations;
+    \item a rigorous map from endpoint flavor labels \((u,d,s,\ldots)\) to unique local knot classes;
+    \item a decay theory for strong, electromagnetic, and weak meson channels;
+    \item a definitive topological criterion separating all open mesons from all linked mesons;
+    \item an anomaly-safe full gauge-sector embedding of mesons beyond the present chirality bookkeeping.
+\end{enumerate}
+
+\section{Conclusion}
+A consistent SST meson note can already be written with the current project ingredients. The central picture is that a meson is a finite chirality-paired excitation built from a carrier plus two opposite-handed endpoint sectors. The mirror-knot antimatter rule then plays the role ordinarily taken by quark--antiquark pairing.
+
+The most striking quantitative result is that the primitive meson scale
+\[
+E_{M,0}=\alphasw\pi\rhoE\rc^{3}
+\]
+falls at approximately \(140\ \mathrm{MeV}\) when evaluated with the current canonical constants. This places the pion triplet directly at the natural first mesonic scale of the theory. Within that picture, the light pion triplet is better modeled as an open chirality-paired carrier than as a strongly protected linked state, while the Swirl-Clock provides the natural bookkeeping field for matter/antimatter mixing and meson instability.
+
+The meson sector is therefore no longer undefined in SST. It has a workable first technical closure: \emph{mirror-handed endpoint sectors bound on a finite carrier, with a pion anchor set by the canonical core packet times the swirl release ratio}. The next step is not conceptual but computational: build explicit carrier geometries, evaluate their Biot--Savart and clock functionals, and check whether the observed meson hierarchy follows from topology and finite-carrier protection.
+
+\appendix
+\section{Collected identities used in the main text}
+The derivation relies repeatedly on the following exact algebraic identities:
+\begin{align}
+\omegac &= \frac{\lVert \vswirl \rVert}{\rc},\\
+\Gammazero &= 2\pi \rc\,\lVert \vswirl \rVert,\\
+\alphasw &= \frac{2\lVert \vswirl \rVert}{c}
+= \frac{\Gammazero}{\pi \rc c}
+= \frac{2\omegac\rc}{c},\\
+E_{\text{core}} &= \pi\rhoE\rc^{3},\\
+E_{M,0} &= \alphasw E_{\text{core}}.
+\end{align}
+
+These relations are sufficient to express the primitive meson scale in terms of the canonical kinematic SST constants.
+
+\section{Numerical table}
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+Quantity & Formula & Numerical value \\
+\midrule
+Turnover scale & \(\omegac = \lVert \vswirl \rVert/\rc\) & \(7.76344066\times 10^{20}\ \mathrm{s^{-1}}\) \\
+Circulation quantum & \(\Gammazero = 2\pi \rc\lVert \vswirl \rVert\) & \(9.68361920\times 10^{-9}\ \mathrm{m^{2}\,s^{-1}}\) \\
+Swirl release ratio & \(\alphasw = 2\lVert \vswirl \rVert/c\) & \(7.29735256\times 10^{-3}\) \\
+Core packet & \(\pi\rhoE\rc^{3}\) & \(19.191\ \mathrm{GeV}\) \\
+Primitive meson scale & \(\alphasw\pi\rhoE\rc^{3}\) & \(140.05\ \mathrm{MeV}\) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{thebibliography}{99}
+
+\bibitem{SSTTime2026}
+O.~Iskandarani,
+\emph{Time from Swirl: A Hydrodynamic Origin of Proper Time},
+preprint / project manuscript, 2026.
+DOI/permalink: Zenodo / project PDF.
+
+\bibitem{SSTLagrangian2026}
+O.~Iskandarani,
+\emph{A Hydrodynamic Lagrangian Framework for Swirl--String Theory},
+preprint / project manuscript, 2026.
+DOI/permalink: project PDF.
+
+\bibitem{SSTGoldenNLS2026}
+O.~Iskandarani,
+\emph{Topological Mass Quantization via Golden NLS Vortex Cores: A First-Principles Derivation of the Lepton Spectrum and Emergent \(\hbar\) in Swirl-String Theory},
+preprint / project manuscript, 2026.
+DOI/permalink: project PDF.
+
+\bibitem{SSTAtomicBridge2026}
+O.~Iskandarani,
+\emph{A Branch-Resolved Atomic Bridge Model in Swirl-String Theory: Hydrogenic Consistency, Circulation-Sensitive Couplings, and a Handed Atomic Benchmark},
+preprint / project manuscript, 2026.
+DOI/permalink: project PDF.
+
+\bibitem{SSTThermo2026}
+O.~Iskandarani,
+\emph{Multi-Scale Thermodynamics of the Swirl Condensate: A Unified Hydrodynamic--Topological Framework for Swirl-String Theory},
+preprint / project manuscript, 2026.
+DOI/permalink: project PDF.
+
+\bibitem{Yukawa1935}
+H.~Yukawa,
+\emph{On the Interaction of Elementary Particles. I},
+Proceedings of the Physico-Mathematical Society of Japan \textbf{17} (1935), 48--57.
+Permalink: historical journal edition.
+
+\bibitem{GellMann1964}
+M.~Gell-Mann,
+\emph{A Schematic Model of Baryons and Mesons},
+Physics Letters \textbf{8} (1964), 214--215.
+DOI: 10.1016/S0031-9163(64)92001-3.
+
+\bibitem{Zweig1964}
+G.~Zweig,
+\emph{An SU(3) Model for Strong Interaction Symmetry and Its Breaking},
+CERN preprint, 1964.
+Permalink: CERN archival edition.
+
+\bibitem{Skyrme1962}
+T.~H.~R.~Skyrme,
+\emph{A Unified Field Theory of Mesons and Baryons},
+Nuclear Physics \textbf{31} (1962), 556--569.
+DOI: 10.1016/0029-5582(62)90775-7.
+
+\bibitem{FaddeevNiemi1997}
+L.~D.~Faddeev and A.~J.~Niemi,
+\emph{Stable Knot-Like Structures in Classical Field Theory},
+Nature \textbf{387} (1997), 58--61.
+DOI: 10.1038/387058a0.
+
+\bibitem{ArnoldKhesin1998}
+V.~I.~Arnold and B.~A.~Khesin,
+\emph{Topological Methods in Hydrodynamics},
+Springer, New York, 1998.
+Permalink: Springer monograph edition.
+
+\bibitem{Moffatt1969}
+H.~K.~Moffatt,
+\emph{The Degree of Knottedness of Tangled Vortex Lines},
+Journal of Fluid Mechanics \textbf{35} (1969), 117--129.
+DOI: 10.1017/S0022112069000991.
+
+\end{thebibliography}
+
+\end{document}

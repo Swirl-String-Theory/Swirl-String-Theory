@@ -1,0 +1,405 @@
+%! Author = Omar Iskandarani
+%! Date = 4/19/2026
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxx
+
+\newcommand{\paperdoi}{10.5281/zenodo.xxx}
+\newcommand{\papertitle}{A Canonical Master Equation for Swirl--String Theory\\
+\large Unified Mass, Clock, Geometric Gate, and Topological Kernel}
+\newcommand{\paperkeywords}{PAPER_KEYWORDS}
+
+
+%======================== SST MASTER EQUATION ARTICLE ========================
+\documentclass[11pt,a4paper]{article}
+
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools,bm}
+\usepackage{physics}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{microtype}
+
+% --- SST macro prelude ---
+\newcommand{\swirlarrow}{\mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}}
+\newcommand{\swirlarrowcw}{\mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}{\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}}
+\newcommand{\vswirl}{{\mathbf{v}_{\swirlarrow}}}
+\newcommand{\vswirlcw}{{\mathbf{v}_{\swirlarrowcw}}}
+\newcommand{\SwirlClock}{{S_t^{\swirlarrow}}}
+\newcommand{\SwirlClockcw}{{S_t^{\swirlarrowcw}}}
+\newcommand{\rhoF}{\rho_{\!f}}
+\newcommand{\rhoE}{\rho_{\!E}}
+\newcommand{\rhoM}{\rho_{\!m}}
+\providecommand{\rc}{r_c}
+
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\newtheorem{remark}{Remark}
+
+
+\usepackage{siunitx}
+\usepackage[hidelinks]{hyperref}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[absolute,overlay]{textpos}
+
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{pgfplots.groupplots}
+
+\begin{document}
+    \thispagestyle{empty}%
+    \begin{center}
+        \Large \bfseries \papertitle \par \vspace{1cm}
+        {\Large \itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par} \vspace{0.5cm}
+        {\small Independent Researcher, Groningen, The Netherlands\par} \vspace{0.5cm}
+        {\today \par}  \vspace{0.5cm}
+    \end{center}
+    
+    \begin{abstract}
+        We derive a compact master equation for Swirl--String Theory (SST) that absorbs the currently separated sectors of mass generation, geometric shielding, swirl-clock kinematics, and topological state selection into a single hierarchical formula. The resulting expression factors into four pieces: a medium scale, a geometric gate, a topological kernel, and a local clock-impedance factor. We show that the formula is dimensionally exact, reduces to the existing SST mass-functional and swirl-clock sectors in the appropriate limits, and numerically reproduces the canonical geometric gate
+        \(
+        \lambda_c/(\pi \rc)=4/\alpha
+        \)
+        using the canonical SST constants. The result is proposed as a canonical organizing equation rather than as a completed full derivation of all coefficient values.
+    \end{abstract}
+    Keywords: \paperkeywords
+
+
+    \begin{textblock*}{1\textwidth}(0.15\textwidth,1.1\textheight)\raggedright\footnotesize\renewcommand{\arraystretch}{1.0} \noindent\rule{\textwidth}{0.4pt}\\begin{equation}0.5em]
+        \textsuperscript{\textbf{*}} Email: \texttt{info@omariskandarani.com}\\  
+        ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}}\\
+        DOI: \href{https://doi.org/\paperdoi}{\paperdoi}    
+    \end{textblock*}
+
+
+
+
+
+
+        
+
+        
+        \section{Purpose}
+            
+            Several SST papers presently encode closely related structures in different notations:
+            \begin{itemize}[leftmargin=1.5em]
+\item mass as localized swirl energy,
+\item the Swirl-Clock as a local slowing factor,
+\item the shielding gate as the ratio \(\lambda_c/(\pi \rc)\),
+\item topological state dependence through crossing, ropelength, helicity, and Golden-layer factors.
+            \end{itemize}
+            
+            The aim of this article is to replace those parallel formulations by one canonical equation.
+        
+        \section{Primitive definitions}
+            
+            We take as primitive:
+            \begin{equation}
+                \rhoE(x)=\frac12 \rhoF(x)\,\norm{\vswirl(x)}^2,
+                \qquad
+                \rhoM(x)=\frac{\rhoE(x)}{c^2},
+            \end{equation}
+            so that
+            \begin{equation}
+                \rhoM(x)=\frac12 \rhoF(x)\frac{\norm{\vswirl(x)}^2}{c^2}.
+            \end{equation}
+            
+            The local matter-branch swirl clock is
+            \begin{equation}
+                \SwirlClock(x)=\sqrt{1-\frac{\norm{\vswirl(x)}^2}{c^2}}.
+            \end{equation}
+            
+            We also define the binary geometric exposure gate
+            \begin{equation}
+                G(K)\in\{0,1\},
+            \end{equation}
+            and a dimensionless topological kernel \(\Xi_K\).
+            
+            \begin{definition}[Topological kernel]
+                The canonical dimensionless topology kernel is taken to be
+                \begin{equation}
+                    \Xi_K=
+                    \left[\alpha_C\,C(K)+\beta_L\,L(K)+\gamma_H\,\mathcal H(K)\right]\varphi^{-2k(K)},
+                \end{equation}
+                where \(C(K)\) is a crossing-type invariant, \(L(K)\) a ropelength-type invariant,
+                \(\mathcal H(K)\) a helicity/Hopf-type invariant contribution, and \(k(K)\) the discrete Golden-layer index.
+            \end{definition}
+        
+        \section{Geometric gate lemma}
+            
+            \begin{lemma}[Canonical geometric shielding gate]
+                The geometric sector factor is
+                \begin{equation}
+                    \Pi_K=\left(\frac{\lambda_c}{\pi \rc}\right)^{G(K)}.
+                \end{equation}
+                Using the SST closure relation, this is equivalently
+                \begin{equation}
+                    \Pi_K=\left(\frac{4}{\alpha}\right)^{G(K)}.
+                \end{equation}
+            \end{lemma}
+            
+            \begin{proof}
+                The existing SST geometric closure identifies the dimensionless shielding ratio as
+                \begin{equation}
+                    \frac{\lambda_c}{\pi \rc}=\frac{4}{\alpha}.
+                \end{equation}
+                Since \(G(K)\) is binary, the state either remains unamplified (\(G=0\)) or receives one geometric exposure factor (\(G=1\)).
+            \end{proof}
+        
+        \section{Master equation}
+            
+            \begin{theorem}[Canonical SST master equation]
+                For a topological state \(K\) and local position \(x\), define
+                \begin{equation}
+                    M_K(x)=\rhoM(x)\,\rc^3\,\Pi_K\,\Xi_K\,\SwirlClock(x)^{-2}.
+                \end{equation}
+                Equivalently,
+                \begin{equation}
+                    \boxed{
+                        M_K(x)=
+                        \left(\frac{\rhoF(x)\,\norm{\vswirl(x)}^2}{2c^2}\right)\rc^3
+                        \left(\frac{\lambda_c}{\pi \rc}\right)^{G(K)}
+                        \left[\alpha_C\,C(K)+\beta_L\,L(K)+\gamma_H\,\mathcal H(K)\right]
+                        \varphi^{-2k(K)}
+                        \SwirlClock(x)^{-2}
+                    }
+                \end{equation}
+                with
+                \begin{equation}
+                    \SwirlClock(x)=\sqrt{1-\frac{\norm{\vswirl(x)}^2}{c^2}}.
+                \end{equation}
+            \end{theorem}
+            
+            \subsection*{Dimensional check}
+                
+                We verify the units of the prefactor:
+                \begin{equation}
+                    \left[\frac{\rhoF\,\norm{\vswirl}^2}{c^2}\rc^3\right]
+                    =
+                    \left[\frac{\mathrm{kg\,m^{-3}}\cdot \mathrm{m^2\,s^{-2}}}{\mathrm{m^2\,s^{-2}}}\cdot \mathrm{m^3}\right]
+                    =
+                    \mathrm{kg}.
+                \end{equation}
+                All remaining factors are dimensionless. Therefore \(M_K\) has units of mass.
+        
+        \section{Reduction limits}
+            
+            \subsection{Static spectrum limit}
+                
+                If the local state is approximately stationary with
+                \begin{equation}
+                    \rhoF(x)\to \rhoF,\qquad \norm{\vswirl(x)}\to \norm{\vswirl},\qquad \SwirlClock(x)\to 1,
+                \end{equation}
+                then
+                \begin{equation}
+                    M_K
+                    =
+                    \left(\frac{\rhoF\norm{\vswirl}^2}{2c^2}\right)\rc^3
+                    \left(\frac{\lambda_c}{\pi \rc}\right)^{G(K)}
+                    \Xi_K.
+                \end{equation}
+                This is the canonical static mass-spectrum form.
+            
+            \subsection{Geometric-mass limit}
+                
+                If one packages the topological kernel into a ropelength/topology factor
+                \begin{equation}
+                    \Xi_K \longrightarrow \widetilde{L}_{\mathrm{tot}}(K)\,\mathcal K(K),
+                \end{equation}
+                then
+                \begin{equation}
+                    M_K
+                    =
+                    \rhoM \rc^3
+                    \left(\frac{\lambda_c}{\pi \rc}\right)^{G(K)}
+                    \widetilde{L}_{\mathrm{tot}}(K)\,\mathcal K(K),
+                \end{equation}
+                which is the pure geometric mass-functional structure.
+            
+            \subsection{Clock-only limit}
+                
+                If the state label \(K\) is fixed and only the local swirl field varies, then
+                \begin{equation}
+                    M_K(x)\propto \SwirlClock(x)^{-2}.
+                \end{equation}
+                Thus the same local swirl field that slows the clock also strengthens the local effective mass scale.
+        
+        \section{Weak-swirl expansion}
+            
+            Since
+            \begin{equation}
+                \SwirlClock^{-2}(x)= \frac{1}{1-\norm{\vswirl(x)}^2/c^2},
+            \end{equation}
+            one has for \(\norm{\vswirl}^2/c^2\ll 1\),
+            \begin{equation}
+                \SwirlClock^{-2}(x)
+                =
+                1+\frac{\norm{\vswirl(x)}^2}{c^2}
+                +\mathcal O\!\left(\frac{\norm{\vswirl}^4}{c^4}\right).
+            \end{equation}
+            Hence the leading correction is positive and quadratic in the local swirl speed.
+        
+        \section{Numerical benchmark using canonical SST constants}
+            
+            Use
+            \begin{equation}
+                \norm{\vswirl}=1.09384563\times 10^6\ \mathrm{m\,s^{-1}},
+                \qquad
+                \rc=1.40897017\times 10^{-15}\ \mathrm{m},
+                \qquad
+                \rhoF=7.0\times 10^{-7}\ \mathrm{kg\,m^{-3}}.
+            \end{equation}
+            
+            Then
+            \begin{equation}
+                \rhoE=\frac12 \rhoF \norm{\vswirl}^2
+                \approx 4.1877439\times 10^5\ \mathrm{J\,m^{-3}},
+            \end{equation}
+            and
+            \begin{equation}
+                \rhoM=\frac{\rhoE}{c^2}
+                \approx 4.6594935\times 10^{-12}\ \mathrm{kg\,m^{-3}}.
+            \end{equation}
+            
+            The bare mass scale is
+            \begin{equation}
+                M_\star=\rhoM \rc^3 \approx 1.303\times 10^{-56}\ \mathrm{kg}.
+            \end{equation}
+            
+            The geometric gate is
+            \begin{equation}
+                \frac{\lambda_c}{\pi \rc}\approx 5.48144\times 10^2,
+            \end{equation}
+            which matches
+            \begin{equation}
+                \frac{4}{\alpha}\approx 5.48144\times 10^2.
+            \end{equation}
+            
+            The Swirl-Clock at the canonical swirl speed is
+            \begin{equation}
+                \SwirlClock=\sqrt{1-\frac{\norm{\vswirl}^2}{c^2}}
+                \approx 0.999993344,
+            \end{equation}
+            hence
+            \begin{equation}
+                \SwirlClock^{-2}\approx 1.0000133.
+            \end{equation}
+            
+            Therefore:
+            \begin{enumerate}[leftmargin=1.5em]
+\item the absolute mass scale is set by \(\rhoF,\vswirl,\rc\),
+\item the hierarchy must predominantly come from \(\Pi_K\Xi_K\),
+\item the clock factor is a small but coherent impedance correction in the canonical regime.
+            \end{enumerate}
+        
+        \section{Interpretation}
+            
+            The master equation separates SST into four logically distinct sectors:
+            \begin{equation}
+                \boxed{
+                    \text{medium scale}
+                    \times
+                    \text{geometric gate}
+                    \times
+                    \text{topological kernel}
+                    \times
+                    \text{clock impedance}
+                }
+            \end{equation}
+            
+            More explicitly,
+            \begin{equation}
+                M_K(x)
+                \sim
+                (\text{localized swirl energy density})
+                \times
+                (\text{core volume})
+                \times
+                (\text{state geometry})
+                \times
+                (\text{topological identity})
+                \times
+                (\text{local time impedance}).
+            \end{equation}
+        
+        \section{Status and assumptions}
+            
+            \subsection*{Derived / structurally fixed}
+                \begin{equation}
+                    \rhoE=\frac12 \rhoF \norm{\vswirl}^2,
+                    \qquad
+                    \rhoM=\rhoE/c^2,
+                    \qquad
+                    \SwirlClock=\sqrt{1-\norm{\vswirl}^2/c^2},
+                    \qquad
+                    \frac{\lambda_c}{\pi \rc}=\frac4\alpha.
+                \end{equation}
+            
+            \subsection*{Closure-level / modeled}
+                \begin{equation}
+                    G(K)\in\{0,1\},
+                    \qquad
+                    \Xi_K=
+                    \left[\alpha_C C+\beta_L L+\gamma_H \mathcal H\right]\varphi^{-2k}.
+                \end{equation}
+            
+            \subsection*{Open}
+                The exact coefficient values \( \alpha_C,\beta_L,\gamma_H \), the optimal invariant set, and whether the clock coupling is best represented by \( \SwirlClock^{-2} \), \( \SwirlClock^{-1} \), or a weaker deformation ansatz.
+        
+        \section{Falsifiable consequences}
+            
+            \begin{enumerate}[leftmargin=1.5em]
+\item If two states have identical \(\Pi_K\) and \(\Xi_K\), then their rest masses must differ only through local medium variations.
+\item If the geometric gate interpretation is correct, state families should cluster by binary exposure class \(G(K)\).
+\item If the clock-impedance coupling is correct, strong local swirl regions should induce a correlated increase in effective inertial scale and proper-time slowing.
+            \end{enumerate}
+            
+            A kid analogy: a particle is like a tied spinning knot in water; its mass comes from how much spinning is packed into the knot, how complicated the knot is, and how much the local spinning slows the knot’s own rhythm.
+            
+            \begin{thebibliography}{99}
+                
+                \bibitem{Batchelor1967}
+                G.~K. Batchelor, 1967,
+                \textit{An Introduction to Fluid Dynamics},
+                Cambridge University Press,
+                permalink: \url{https://doi.org/10.1017/CBO9780511800955}.
+                
+                \bibitem{Saffman1992}
+                P.~G. Saffman, 1992,
+                \textit{Vortex Dynamics},
+                Cambridge University Press,
+                permalink: \url{https://doi.org/10.1017/CBO9780511624063}.
+                
+                \bibitem{Allen1992}
+                L.~Allen, M.~W. Beijersbergen, R.~J.~C. Spreeuw, and J.~P. Woerdman, 1992,
+                \textit{Orbital angular momentum of light and the transformation of Laguerre-Gaussian laser modes},
+                Physical Review A \textbf{45}, 8185--8189,
+                DOI: \url{https://doi.org/10.1103/PhysRevA.45.8185}.
+                
+                \bibitem{JacobsonMattingly2004}
+                T.~Jacobson and D.~Mattingly, 2004,
+                \textit{Einstein-Aether gravity: a status report},
+                Foundations of Physics \textbf{43},
+                permalink: \url{https://doi.org/10.1007/s10701-012-9661-5}.
+                
+                \bibitem{GW170817}
+                B.~P. Abbott et al., 2017,
+                \textit{GW170817: Observation of Gravitational Waves from a Binary Neutron Star Inspiral},
+                Physical Review Letters \textbf{119}, 161101,
+                DOI: \url{https://doi.org/10.1103/PhysRevLett.119.161101}.
+                
+                \bibitem{IskandaraniCanon}
+                O.~Iskandarani, 2026,
+                \textit{Swirl--String Theory Canon and related SST papers},
+                Independent Research / project canon.
+            
+            \end{thebibliography}
+    
+
+
+
+\end{document}

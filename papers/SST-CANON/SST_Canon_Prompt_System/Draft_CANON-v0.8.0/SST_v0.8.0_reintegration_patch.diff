@@ -1,0 +1,342 @@
+--- /mnt/data/Draft_v0.8.0.tex	2026-04-19 14:37:24.852253230 +0000
++++ /mnt/data/Draft_v0.8.0_patched.tex	2026-04-19 14:41:57.917746654 +0000
+@@ -1171,7 +1171,104 @@
+ % ---------- TIME ----------
+     \section{Relational Time Framework}
+         \label{sec:time}
+-        
++
++    \subsection{Clock Field and Foliation Variable}
++
++        \textbf{[DERIVED / EFT LAYER]} The scalar Swirl-Clock field is promoted from the kinematic relation
++        of Eq.~\eqref{eq:swirl_clock} to a long-wavelength foliation variable
++        \begin{align}
++            \chi(x),
++        \end{align}
++        whose normalized gradient defines a preferred local clock frame:
++        \begin{align}
++            u_\mu
++            =
++            \frac{\nabla_\mu \chi}
++            {\sqrt{g^{\alpha\beta}\nabla_\alpha\chi\,\nabla_\beta\chi}}.
++            \label{eq:clock_foliation_vector}
++        \end{align}
++
++        \textbf{[ORTHODOX]} Equation~\eqref{eq:clock_foliation_vector} matches the standard hypersurface-orthogonal
++        foliation construction used in khronometric / Einstein--\AE ther effective field theory
++        \cite{Jacobson2008,BlasPujolasSibiryakov2011}.
++
++        \textbf{[DERIVED]} Within SST, the interpretation is different: \(u_\mu\) is not taken as a fundamental
++        spacetime structure, but as the coarse-grained clock-flow direction associated with the medium.
++
++    \subsection{Clock-Sector Effective Action}
++
++        \textbf{[ORTHODOX EFT TEMPLATE]} The most general second-order covariant clock-sector action compatible
++        with hypersurface orthogonality is
++        \begin{align}
++        S_\chi
++        =
++        \int d^4x \sqrt{-g}\,
++        \Big[
++        & c_1 (\nabla_\mu u_\nu)(\nabla^\mu u^\nu)
++        + c_2 (\nabla_\mu u^\mu)^2 \nonumber\\
++        & + c_3 (\nabla_\mu u_\nu)(\nabla^\nu u^\mu)
++        + c_4 u^\mu u^\nu (\nabla_\mu u_\alpha)(\nabla_\nu u^\alpha)
++        \Big].
++        \label{eq:clock_sector_action}
++        \end{align}
++
++        \textbf{[SPECULATIVE SST INTERPRETATION]} Equation~\eqref{eq:clock_sector_action} is not itself derived
++        from first-principles filament dynamics in the present Canon. It is recorded as the minimal orthodox EFT
++        bridge into a relativistic clock-field description.
++
++    \subsection{Poisson Limit and Effective Gravity Bridge}
++
++        \textbf{[DERIVED BRIDGE]} In the weak-field, slowly varying limit, the scalar clock field is taken to obey
++        a Poisson-type closure
++        \begin{align}
++            \nabla^2 \chi(x)
++            =
++            4\pi G_{\mathrm{eff}} \,\rho_{\mathrm{matter}}(x),
++            \label{eq:poisson_clock}
++        \end{align}
++        so that outside localized sources
++        \begin{align}
++            \chi(r) \propto \frac{1}{r},
++            \qquad
++            \mathbf{g}_{\mathrm{eff}} = - \nabla \chi.
++            \label{eq:effective_gravity_clock}
++        \end{align}
++
++        \textbf{[ORTHODOX]} The \(1/r\) scalar potential and \(1/r^2\) force law are standard consequences of
++        Eq.~\eqref{eq:poisson_clock}.
++
++        \textbf{[SPECULATIVE]} The identification of \(\chi\) with the Swirl-Clock and the interpretation of
++        Eq.~\eqref{eq:poisson_clock} as an emergent gravity law are SST-specific.
++
++    \subsection{Observational Constraint from Tensor-Mode Speed}
++
++        \textbf{[ORTHODOX CONSTRAINT]} If the clock-sector EFT is used, multimessenger gravitational-wave
++        observations require \cite{Monitor2017}
++        \begin{align}
++            c_{13} \equiv c_1 + c_3 = 0,
++            \label{eq:c13_constraint}
++        \end{align}
++        to enforce luminal tensor-mode propagation at observational precision.
++
++        \textbf{[CRITICAL]} Any SST realization employing the EFT bridge of Eq.~\eqref{eq:clock_sector_action}
++        must preserve Eq.~\eqref{eq:c13_constraint}.
++
++    \subsection{Interpretive Role in the Canon}
++
++        This section has a deliberately limited role:
++        \begin{itemize}
++            \item it upgrades the Swirl-Clock from a purely local kinematic factor to a candidate field variable;
++            \item it records a minimal orthodox EFT bridge for relativistic comparison;
++            \item it supplies the internal reference point needed by Section~\ref{sec:unification} for the time--gravity link.
++        \end{itemize}
++
++        \textbf{Status summary.}
++        \begin{itemize}
++            \item Eq.~\eqref{eq:clock_foliation_vector}: \textbf{[ORTHODOX / DERIVED INTERPRETATION]}
++            \item Eq.~\eqref{eq:clock_sector_action}: \textbf{[ORTHODOX EFT TEMPLATE]}
++            \item Eq.~\eqref{eq:poisson_clock}: \textbf{[DERIVED BRIDGE]}
++            \item gravity interpretation: \textbf{[SPECULATIVE]}
++        \end{itemize}
+ 
+ % ---------- UNIFICATION ----------
+ %    \section{Unified Interpretation}
+@@ -1354,12 +1451,195 @@
+ % ---------- INTEGRATION ----------
+     \section{Integration of Prior Canon Versions}
+         \label{sec:integration}
+-        
++
++    \subsection{Integration Policy}
++
++        This section records only material from prior internal SST development that can be retained inside the
++        v0.8.0 architecture \emph{without} weakening the epistemic classification framework of
++        Section~\ref{sec:consistency}.
++
++        \textbf{Rule.}
++        Older canon documents are \emph{not} cited as external authorities. Instead, transferable content is
++        rewritten here as current-canon statements, each labeled as \textbf{[ORTHODOX]}, \textbf{[DERIVED]},
++        or \textbf{[SPECULATIVE]}.
++
++    \subsection{Particle-Candidate Mapping Layer}
++        \label{subsec:integration_knotmap}
++
++        \textbf{[SPECULATIVE]} A minimal knot / composition dictionary retained from earlier SST work is summarized
++        in Table~\ref{tab:particle_candidate_mapping}. This table is organizational rather than definitive; it records
++        the current topological assignments used by the mass and taxonomy program.
++
++        \begin{table}[h]
++        \centering
++        \caption{Minimal knot-class to particle-candidate summary retained in v0.8.0.}
++        \label{tab:particle_candidate_mapping}
++        \begin{tabular}{lll}
++        \hline
++        Knot class / composition & Candidate & Status / role \\
++        \hline
++        $3_1$ & electron & baseline lepton calibration \\
++        $T(2,5)$ or equivalent higher torus class & muon & lepton hierarchy candidate \\
++        $T(2,7)$ or equivalent higher torus class & tau & lepton hierarchy candidate \\
++        $5_2 + 5_2 + 6_1$ & proton & composite baryon candidate \\
++        analogous nearby composite class & neutron & composite baryon candidate \\
++        \hline
++        \end{tabular}
++        \end{table}
++
++        \textbf{[CRITICAL]} Table~\ref{tab:particle_candidate_mapping} is a working dictionary only. A full canonical
++        assignment requires an explicit invariant set and a mass-functional comparison program.
++
++    \subsection{Hydrodynamic Exchange and the Pauli Barrier}
++        \label{subsec:integration_pauli}
++
++        \textbf{[ORTHODOX FLUID-MECHANICAL INPUT]} For two thin filamentary loops \(C_1\) and \(C_2\) in an
++        incompressible medium, the Biot--Savart interaction energy is \cite{Batchelor1967}
++        \begin{align}
++            E_{\mathrm{int}}
++            =
++            \frac{\rho_{\!f}\Gamma_1\Gamma_2}{4\pi}
++            \oint_{C_1}\oint_{C_2}
++            \frac{d\mathbf{l}_1\cdot d\mathbf{l}_2}
++            {\lVert \mathbf{r}_1 - \mathbf{r}_2 \rVert}.
++            \label{eq:biot_savart_interaction}
++        \end{align}
++
++        \textbf{[DERIVED SST BRIDGE]} If two identical electron-candidate loops are forced into the same spatial state,
++        regularization at the core radius \(r_c\) yields the overlap penalty
++        \begin{align}
++            V_{\mathrm{Pauli}}(\mathbf{d})
++            \approx
++            \frac{\rho_{\!f}\Gamma_0^2}{4\pi}
++            \oint\!\!\oint
++            \frac{d\mathbf{l}_1\cdot d\mathbf{l}_2}
++            {\sqrt{\lVert \mathbf{r}_1(\theta_1)-\mathbf{r}_2(\theta_2)+\mathbf{d}\rVert^2+r_c^2}},
++            \label{eq:pauli_barrier_regularized}
++        \end{align}
++        with maximal-overlap scale
++        \begin{align}
++            V_{\mathrm{Pauli}}^{\max}
++            \approx
++            \frac{\rho_{\!f}\Gamma_0^2}{4\pi}\left(\frac{L}{r_c}\right)\mathcal{O}(1).
++            \label{eq:pauli_barrier_scale}
++        \end{align}
++
++        Using the canonical values
++        \begin{align}
++            \rho_{\!f} &= 7.0 \times 10^{-7}\ \mathrm{kg\,m^{-3}}, \nonumber\\
++            r_c &= 1.40897017 \times 10^{-15}\ \mathrm{m}, \nonumber\\
++            \Gamma_0 &= 2\pi r_c \lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}} \rVert
++            \approx 9.6836\times 10^{-9}\ \mathrm{m^2\,s^{-1}},
++        \end{align}
++        and \(L \sim 2\pi a_0\) at the hydrogenic scale, one obtains the benchmark estimate
++        \begin{align}
++            V_{\mathrm{Pauli}}^{\max}
++            \sim 1.23\times 10^{-18}\ \mathrm{J}
++            \sim 7.6\ \mathrm{eV}.
++            \label{eq:pauli_barrier_numeric}
++        \end{align}
++
++        \textbf{[CRITICAL]} This is retained as a canonical scale benchmark, not yet as a closed theorem. Its role is
++        to show that the exclusion-energy estimate falls in an atomically relevant window rather than at obviously
++        pathological scales.
++
++    \subsection{Numerical Benchmark Layer}
++        \label{subsec:integration_benchmarks}
++
++        \textbf{[DERIVED / COMPUTATIONAL PROGRAM]} Earlier SST work contained explicit benchmark tables for particle and
++        atomic masses. In v0.8.0, the benchmark layer is retained as a reproducibility requirement rather than as a
++        standalone authority claim.
++
++        \begin{table}[h]
++        \centering
++        \caption{Benchmark summary structure to be populated from canonical scripts and archived CSV output.}
++        \label{tab:benchmark_summary_structure}
++        \begin{tabular}{lrrrrc}
++        \hline
++        Particle & $m_{\mathrm{exp}}$ (MeV) & $m_{\mathrm{SST}}$ (MeV) & rel.\ error & mode & class \\
++        \hline
++        $e$   & 0.51099895 & 0.51099895 & 0 & predictive/closure & $3_1$ \\
++        $\mu$ & 105.6583745 & \dots & \dots & predictive & candidate torus class \\
++        $\tau$& 1776.86 & \dots & \dots & predictive & candidate torus class \\
++        $p$   & 938.272088 & \dots & \dots & predictive or closure & composite class \\
++        $n$   & 939.565420 & \dots & \dots & predictive or closure & composite class \\
++        \hline
++        \end{tabular}
++        \end{table}
++
++        \textbf{[CRITICAL]} A future v0.8.x benchmark appendix should include:
++        \begin{itemize}
++            \item the exact script or package path used for generation,
++            \item archived CSV outputs,
++            \item mode definitions (predictive vs.\ exact-closure),
++            \item uncertainty propagation on canonical constants and geometric factors.
++        \end{itemize}
++
++    \subsection{Gauge-Sector Roadmap}
++        \label{subsec:integration_gauge}
++
++        \textbf{[SPECULATIVE STRUCTURAL LAYER]} A retained minimal statement of the gauge program is:
++        \begin{align}
++            \mathfrak{g}_{\mathrm{eff}}
++            =
++            \mathfrak{su}(3)\oplus\mathfrak{su}(2)\oplus\mathfrak{u}(1),
++        \end{align}
++        with effective gauge phases organized as holonomy data of multi-director transport.
++
++        A minimal phase-based representation is
++        \begin{align}
++            A_\mu^{\,a}(x) = \partial_\mu \theta^a(x),
++            \label{eq:gauge_phase_potential}
++        \end{align}
++        and clock coupling acts as a common phase reference,
++        \begin{align}
++            \theta^a(x) \mapsto \theta^a(x) + q^a \chi(x)
++            \quad\Rightarrow\quad
++            A_\mu^{\,a} \mapsto A_\mu^{\,a} + q^a \partial_\mu \chi.
++            \label{eq:gauge_clock_shift}
++        \end{align}
++
++        \textbf{[CRITICAL]} The gauge layer is retained in v0.8.0 only as a roadmap statement. Running couplings,
++        anomaly cancellation, and realistic mixing matrices remain open work.
+ 
+ % ---------- DISCUSSION ----------
+     \section{Discussion and Limits}
+         \label{sec:discussion}
+-        
++
++    \subsection{What v0.8.0 Now Retains}
++
++        After integration, the present Canon retains the following prior-development sectors in current-canon form:
++        \begin{itemize}
++            \item a particle-candidate topological dictionary (Section~\ref{subsec:integration_knotmap});
++            \item a hydrodynamic exchange-energy estimate for fermionic exclusion
++            (Section~\ref{subsec:integration_pauli});
++            \item a benchmark / reproducibility layer (Section~\ref{subsec:integration_benchmarks});
++            \item a minimal gauge-sector roadmap (Section~\ref{subsec:integration_gauge});
++            \item a clock-field EFT bridge and Poisson gravity limit (Section~\ref{sec:time}).
++        \end{itemize}
++
++    \subsection{What is Deliberately Not Claimed}
++
++        The present document still does \emph{not} claim:
++        \begin{itemize}
++            \item a completed first-principles derivation of the Standard Model;
++            \item a unique finalized knot-to-particle dictionary;
++            \item a closed proof of the exclusion barrier beyond the current scaling benchmark;
++            \item a fully renormalized relativistic field theory for the gauge and clock sectors.
++        \end{itemize}
++
++        These omissions are deliberate. v0.8.0 is intended to remain logically strict even when phenomenological
++        sectors are reintroduced.
++
++    \subsection{Canon Rule Going Forward}
++
++        Any further reintegrated material must satisfy all of the following:
++        \begin{enumerate}
++            \item it can be written without citing older internal canon versions as authorities;
++            \item it can be assigned an explicit epistemic label;
++            \item it includes either an internal derivation path or a reproducible benchmark route;
++            \item it preserves compatibility with the orthodox limits recorded earlier in the document.
++        \end{enumerate}
+ 
+ % ===========================
+ % APPENDICES
+@@ -1413,12 +1693,29 @@
+             \newblock Science \textbf{376} (2022), 170--176,
+             \newblock DOI: 10.1126/science.abk1781.
+             
+-            \bibitem{SST_v0_7_8}
+-            O. Iskandarani, Swirl String Theory Canon v0.7.8
++            \bibitem{Batchelor1967}
++            G.~K. Batchelor,
++            \newblock \emph{An Introduction to Fluid Dynamics},
++            \newblock Cambridge University Press (1967).
++            
++            \bibitem{Jacobson2008}
++            T.~Jacobson,
++            \newblock Einstein-\AE ther gravity: a status report,
++            \newblock PoS QG-PH (2007) 020,
++            \newblock DOI: 10.22323/1.043.0020.
++            
++            \bibitem{BlasPujolasSibiryakov2011}
++            D.~Blas, O.~Pujol\`as, and S.~Sibiryakov,
++            \newblock Models of non-relativistic quantum gravity: the good, the bad and the healthy,
++            \newblock JHEP \textbf{04} (2011) 018,
++            \newblock DOI: 10.1007/JHEP04(2011)018.
+             
+-            \bibitem{Iskandarani_SST}
+-            Omar Iskandarani, Swirl String Theory (various versions)
++            \bibitem{Monitor2017}
++            B.~P. Abbott et al. (LIGO Scientific Collaboration and Virgo Collaboration),
++            \newblock GW170817: Observation of gravitational waves from a binary neutron star inspiral,
++            \newblock Phys. Rev. Lett. \textbf{119} (2017) 161101,
++            \newblock DOI: 10.1103/PhysRevLett.119.161101.
+         
+         \end{thebibliography}
+ 
+-\end{document}
++\end{document}
+\ No newline at end of file

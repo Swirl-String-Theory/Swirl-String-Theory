@@ -1,0 +1,300 @@
+--- Draft_v0.8.0_filled.tex
++++ Draft_v0.8.0_cleaned.tex
+@@ -136,9 +136,6 @@
+         \end{center}
+ 
+ % ---------- FOUNDATIONS ----------
+-%    \section{Formal Foundations}
+-%        \label{sec:foundations}
+-        
+ \section{Formal Foundations}
+     \label{sec:foundations}
+     
+@@ -148,14 +145,14 @@
+         
+         \textbf{Primitive set:}
+         \begin{align}
+-            \mathcal{P} = \{ \rho_f, v_{\swirlarrow}, \omega_c \}
++            \mathcal{P} = \{ \rhoF, \vswirl, \omega_c \}
+         \end{align}
+         
+         where:
+         \begin{itemize}
+-            \item $\rho_f$ is the effective background fluid density
+-            \item $v_{\swirlarrow}$ is the characteristic swirl velocity
+-            \item $\omega_c$ is the Compton angular frequency
++            \item $\rhoF$ is the effective background fluid density,
++            \item $\vswirl$ is the characteristic swirl velocity,
++            \item $\omega_c$ is the Compton angular frequency.
+         \end{itemize}
+         
+         \textbf{[ORTHODOX]}: $\omega_c = \frac{m_e c^2}{\hbar}$ is a standard physical constant.
+@@ -167,7 +164,7 @@
+         The characteristic core radius is defined as:
+         
+         \begin{align}
+-            r_c = \frac{v_{\swirlarrow}}{\omega_c}
++            \rc = \frac{\vnorm}{\omega_c}
+             \label{eq:rc_definition}
+         \end{align}
+         
+@@ -184,7 +181,7 @@
+         We introduce the fundamental circulation quantum:
+         
+         \begin{align}
+-            \Gamma_0 = 2\pi r_c v_{\swirlarrow}
++            \Gamma_0 = 2\pi \rc \, \vnorm
+             \label{eq:gamma0}
+         \end{align}
+         
+@@ -215,7 +212,7 @@
+         We define the dimensionless ratio:
+         
+         \begin{align}
+-            \eta_0 = \frac{v_{\swirlarrow}}{c}
++            \eta_0 = \frac{\vnorm}{c}
+         \end{align}
+         
+         Empirically:
+@@ -231,7 +228,7 @@
+         We introduce the Swirl-Clock as a local scalar field encoding relativistic time dilation:
+         
+         \begin{align}
+-            S_{(t)} = \sqrt{1 - \frac{v^2}{c^2}}
++            \SwirlClock = \sqrt{1 - \frac{\vnorm^2}{c^2}}
+             \label{eq:swirl_clock}
+         \end{align}
+         
+@@ -244,9 +241,10 @@
+         We distinguish three densities:
+         
+         \begin{align}
+-            \rho_f &\quad \text{(background fluid)} \\
+-            \rho_E &= \frac{E}{c^2} \\
+-            \rho_{core} &\quad \text{(saturated vortex core)}
++            \rhoF &\quad \text{(effective background fluid density)}, \\
++            \rhoE &= \tfrac12 \rhoF \, \vnorm^2 \quad \text{(swirl energy density)}, \\
++            \rhoM &= \rhoE / c^2 \quad \text{(mass-equivalent density)}, \\
++            \rhocore &\quad \text{(saturated vortex-core density)}.
+         \end{align}
+     
+     \subsection{Core Density Closure}
+@@ -254,12 +252,48 @@
+         The core density follows from a force constraint:
+         
+         \begin{align}
+-            \rho_{core} \sim \frac{m_e c^2}{2\pi v_{\swirlarrow}^2 r_c^3}
++            \rhocore \sim \frac{m_e c^2}{2\pi \vnorm^2 \rc^3}
+             \label{eq:core_density}
+         \end{align}
+         
+         \textbf{[DERIVED]}: This eliminates $\rho_{core}$ as an independent parameter.
+     
++    \subsection{Canonical Master Equation}
++        \label{sec:master-equation}
++
++        The previously separated SST sectors of medium scale, geometric shielding, topology, and relational clocking can be written in a single canonical form. First define
++        \begin{align}
++            \rhoE(x) &= \frac12 \, \rhoF(x) \, \norm{\vswirl(x)}^2, \\
++            \rhoM(x) &= \frac{\rhoE(x)}{c^2}, \\
++            \SwirlClock(x) &= \sqrt{1 - \frac{\norm{\vswirl(x)}^2}{c^2}}.
++        \end{align}
++        Introduce the binary geometric exposure gate
++        \begin{align}
++            G(K) \in \{0,1\},
++            \qquad
++            \Pi_K = \left(\frac{\lambda_c}{\pi \rc}\right)^{G(K)},
++        \end{align}
++        and the dimensionless topology kernel
++        \begin{align}
++            \Xi_K = \left[\alpha_C C(K) + \beta_L L(K) + \gamma_H \mathcal{H}(K)\right] \varphi^{-2k(K)}.
++        \end{align}
++        The canonical SST master equation is then
++        \begin{align}
++            M_K(x)
++            &= \rhoM(x) \, \rc^3 \, \Pi_K \, \Xi_K \, \SwirlClock(x)^{-2} \\
++            &= \left(\frac{\rhoF(x) \, \norm{\vswirl(x)}^2}{2c^2}\right) \rc^3
++            \left(\frac{\lambda_c}{\pi \rc}\right)^{G(K)}
++            \left[\alpha_C C(K) + \beta_L L(K) + \gamma_H \mathcal{H}(K)\right]
++            \varphi^{-2k(K)}
++            \SwirlClock(x)^{-2}.
++            \label{eq:sst_master_equation}
++        \end{align}
++        This equation is best read as
++        \begin{center}
++            \textit{medium scale $\times$ geometric gate $\times$ topological kernel $\times$ clock impedance.}
++        \end{center}
++        In the stationary weak-swirl limit $\SwirlClock \to 1$, it reduces to the static mass-functional form; in the local-kinematic limit at fixed $K$, it reduces to a pure clock-impedance correction. The hierarchy is therefore carried predominantly by the geometric and topological factors, while the Swirl-Clock supplies a coherent local correction rather than the primary source of mass separation.
++
+     \subsection{Geometric Representation}
+         
+         A swirl-string is represented as a closed curve:
+@@ -275,10 +309,12 @@
+         The full dependency chain is:
+         
+         \begin{align}
+-        (\rho_f, v_{\swirlarrow}, \omega_c)
+-            \rightarrow r_c
++        (\rhoF, \vswirl, \omega_c)
++            \rightarrow \rc
+             \rightarrow \Gamma_0
+-            \rightarrow \rho_{core}
++            \rightarrow (\rhoE, \rhoM, \rhocore)
++            \rightarrow \SwirlClock
++            \rightarrow M_K.
+         \end{align}
+         
+         \textbf{[CRITICAL]}:
+@@ -303,9 +339,6 @@
+         \end{itemize}
+ 
+ % ---------- AXIOMS ----------
+-%    \section{Axiomatic Framework}
+-%        \label{sec:axioms}
+-        
+ \section{Axiomatic Framework}
+     \label{sec:axioms}
+     
+@@ -318,7 +351,7 @@
+     \subsection{Axiom 1: Continuum Substrate}
+         
+         \textbf{Statement.}
+-        There exists a continuous, incompressible, inviscid medium filling $\mathcal{M}$, characterized by a constant background density $\rho_f$.
++        There exists a continuous, incompressible, inviscid medium filling $\mathcal{M}$, characterized by a constant background density $\rhoF$.
+         
+         \begin{align}
+             \nabla \cdot \mathbf{v} = 0
+@@ -364,7 +397,7 @@
+         The characteristic angular frequency of the vortex core satisfies:
+         
+         \begin{align}
+-            \frac{v_{\swirlarrow}}{r_c} = \omega_c
++            \frac{\vnorm}{\rc} = \omega_c
+         \end{align}
+         
+         \textbf{[ORTHODOX]}: $\omega_c$ is the Compton frequency.
+@@ -380,7 +413,7 @@
+         Finite propagation time along closed vortex structures is a fundamental dynamical ingredient.
+         
+         \begin{align}
+-            \tau = \frac{L}{v_{\swirlarrow}}
++            \tau = \frac{L}{\vnorm}
+         \end{align}
+         
+         \textbf{[DERIVED]}: Follows from finite signal speed.
+@@ -409,7 +442,7 @@
+         Local time is encoded in a scalar field derived from fluid kinematics:
+         
+         \begin{align}
+-            S_{(t)} = \sqrt{1 - \frac{v^2}{c^2}}
++            \SwirlClock = \sqrt{1 - \frac{\vnorm^2}{c^2}}
+         \end{align}
+         
+         \textbf{[ORTHODOX]}: Matches Lorentz time dilation.
+@@ -422,7 +455,7 @@
+     \subsection{Axiom 8: Density Saturation and Core Structure}
+         
+         \textbf{Statement.}
+-        The vortex core exhibits a saturated density $\rho_{core}$ determined by mechanical constraints of the medium.
++        The vortex core exhibits a saturated density $\rhocore$ determined by mechanical constraints of the medium.
+         
+         \textbf{[DERIVED]}: From force balance and geometric closure (Eq.~\ref{eq:core_density}).
+         
+@@ -541,10 +574,20 @@
+             \textit{A valid SST canon must be internally consistent, externally compatible, and explicitly stratified by epistemic status.}
+         \end{center}
+ 
+-% ---------- GEOMETRY ----------
+     \section{Geometric and Topological Sector}
+         \label{sec:geometry}
+         
++    \subsection{Role of geometry and topology in the canon}
++        This sector collects those parts of SST in which the identity of a state depends not only on local field amplitudes but on the global organization of the carrier. Geometry enters through lengths, radii, and closure constraints; topology enters through linking, crossing, chirality, and other invariant features that survive smooth deformations. At canon level, the main role of this sector is selective rather than exhaustive: it provides the organizing variables that feed the topological kernel $\Xi_K$ and the geometric gate $\Pi_K$ in Eq.~\eqref{eq:sst_master_equation}.
++
++        The canon therefore treats geometry and topology as follows:
++        \begin{enumerate}
++            \item geometry sets admissible scales and shielding ratios,
++            \item topology labels persistent identity classes,
++            \item only those quantities that survive smooth deformation are allowed to enter the long-lived state classification.
++        \end{enumerate}
++
++        This is also why layer or dressing indices are not treated as primary identity labels: they may modify a state, but they do not replace the topology-first classification of the carrier itself.
+ 
+ \subsection{Spectral Structure of Locked Closed Carriers (Secondary Result)}
+     \label{subsec:spectral_locked_carriers}
+@@ -704,7 +747,7 @@
+         For a closed vortex filament of effective length $L$ and characteristic propagation speed $v_{\swirlarrow}$, the circulation time is defined as:
+         
+         \begin{align}
+-            \tau = \frac{L}{v_{\swirlarrow}}
++            \tau = \frac{L}{\vnorm}
+             \label{eq:delay_time}
+         \end{align}
+         
+@@ -793,7 +836,6 @@
+         
+         This mechanism forms one of the central pillars of the SST canon.
+ 
+-% ---------- ATOMIC ----------
+ %    \section{Atomic Bridge Model}
+ %        \label{sec:atomic}
+         
+@@ -853,7 +895,6 @@
+         - Atomic structure emerges from circulation-modulated dynamics
+         - Quantum numbers correspond to stable vortex modes
+ 
+-% ---------- SPECTROSCOPY ----------
+ %    \section{Spectroscopic Constraints}
+ %        \label{sec:spectroscopy}
+         
+@@ -1215,7 +1256,7 @@
+     \subsection{Carrier-local clocking and the turnover scale}
+         For localized carriers the natural microscopic rate is the turnover frequency
+         \begin{align}
+-            \Omega_0 = \frac{v_{\swirlarrow}}{r_c} = \omega_c,
++            \Omega_0 = \frac{\vnorm}{\rc} = \omega_c,
+         \end{align}
+         which coincides with the Compton anchoring scale. A complete SST clock description therefore involves two linked but distinct levels:
+         \begin{itemize}
+@@ -1256,7 +1297,6 @@
+         \end{center}
+         This statement should be read as a canon-level organizing principle, not yet as a completed field-theoretic proof.
+ 
+-% ---------- UNIFICATION ----------
+ %    \section{Unified Interpretation}
+ %        \label{sec:unification}
+         
+@@ -1311,7 +1351,7 @@
+         \end{itemize}
+         
+         \begin{align}
+-            S_{(t)} = \sqrt{1 - \frac{v^2}{c^2}}
++            \SwirlClock = \sqrt{1 - \frac{\vnorm^2}{c^2}}
+         \end{align}
+         
+         \textbf{[UNIFIED INTERPRETATION]}:
+@@ -1434,7 +1474,6 @@
+             }
+         \end{center}
+ 
+-% ---------- INTEGRATION ----------
+     \section{Integration of Prior Canon Versions}
+         \label{sec:integration}
+         
+@@ -1449,7 +1488,7 @@
+         \begin{itemize}
+             \item a continuum substrate with effective density $\rhoF$,
+             \item a core scale $r_c$ fixed by Compton anchoring,
+-            \item circulation quantization through $\Gamma_0 = 2\pi r_c v_{\swirlarrow}$,
++            \item circulation quantization through $\Gamma_0 = 2\pi \rc \, \vnorm$,
+             \item the interpretation of matter as stable organized structures rather than point primitives.
+         \end{itemize}
+         These elements remain non-negotiable because later sectors depend on them directly.
+@@ -1504,7 +1543,6 @@
+         The purpose of v0.8.0 is therefore not to maximize novelty per page, but to minimize duplication and to expose the dependency graph of the theory. Whenever two earlier canon fragments make the same structural claim in different language, the present version keeps one canonical form and demotes the others to historical context.
+ 
+ 
+-% ---------- DISCUSSION ----------
+     \section{Discussion and Limits}
+         \label{sec:discussion}
+         

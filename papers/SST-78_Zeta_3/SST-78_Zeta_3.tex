@@ -1,0 +1,674 @@
+%! Author = Omar Iskandarani
+%! Date = 4/17/2026
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxx
+
+\newcommand{\paperdoi}{10.5281/zenodo.xxx}
+\newcommand{\papertitle}{Helical-Locking Universality, Three-Sector Phase Structure, and a Possible \texorpdfstring{$\zeta(3)$}{zeta(3)} Spectral Invariant}
+\newcommand{\paperkeywords}{helical locking, triple gear, trefoil, spectral sums, zeta(3), Swirl-String Theory, mode decomposition, universality class}
+
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsfonts,bm}
+\usepackage{siunitx}
+\usepackage[hidelinks]{hyperref}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[absolute,overlay]{textpos}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{pgfplots.groupplots}
+
+\begin{document}
+    \thispagestyle{empty}%
+    \begin{center}
+        \Large \bfseries \papertitle \par \vspace{1cm}
+        {\Large \itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par} \vspace{0.5cm}
+        {\small Independent Researcher, Groningen, The Netherlands\par} \vspace{0.5cm}
+        {\today \par}  \vspace{0.5cm}
+    \end{center}
+    
+    \begin{abstract}
+        We formulate a minimal architecture-independent model for helical locking in two mechanically distinct but kinematically similar systems: a rigid triple-gear realization and a modular trefoil-like folded carrier driven by a central helix. The common structure is expressed as a helical-locking universality class defined by a constrained phase-transfer law between one central driver and three surrounding sectors. We then extend the model in two steps. First, the three-sector phase space is decomposed into normal modes under approximate \(C_3\) symmetry. Second, we show that if the closed carrier supports an infinite asymptotically linear excitation ladder, then cubic inverse-frequency spectral sums produce a natural \(\zeta(3)\) term. We emphasize that this does not establish \(\zeta(3)\) as a primitive topological invariant of either the triple gear or the trefoil alone. Rather, it identifies a precise spectral mechanism by which \(\zeta(3)\) can emerge across an entire class of closed locked carriers. We conclude with a cautious Swirl-String Theory interpretation and a clear status separation between derived results, modeling assumptions, open steps, and falsifiers.
+    \end{abstract}
+    Keywords: \paperkeywords
+    
+    \begin{textblock*}{1\textwidth}(0.15\textwidth,1.1\textheight)\raggedright\footnotesize\renewcommand{\arraystretch}{1.0} \noindent\rule{\textwidth}{0.4pt}\\[0.5em]
+        \textsuperscript{\textbf{*}} Email: \texttt{info@omariskandarani.com}\\
+        ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}}\\
+        DOI: \href{https://doi.org/\paperdoi}{\paperdoi}
+    \end{textblock*}
+    
+    \section{Introduction}
+        
+        A recurring observation in mechanical prototype work is that distinct physical realizations may nevertheless display nearly the same coarse-grained transport law when driven by a single central helix. This raises the possibility that the primary invariant is not exact body plan, material composition, or fabrication strategy, but rather membership in a common kinematic locking class.
+        
+        The present note is motivated by two questions. First, can rigid and compliant three-sector carriers be assigned to the same helical-locking universality class? Second, if so, can that common class support a universal spectral mechanism capable of generating special constants such as \(\zeta(3)\)?
+        
+        The answer developed here is deliberately minimal. We first define the helical-locking class in a purely kinematic way. We then resolve its small fluctuations into normal modes. Finally, we identify the exact mathematical condition under which a \(\zeta(3)\) term arises: not from the mere existence of three sectors, but from a closed carrier whose internal excitation spectrum is asymptotically linear and whose relevant correction is cubic inverse-frequency weighted.
+        
+        \subsection{Helical-Locking Universality Across Distinct Mechanical Architectures}
+            \label{subsec:helical_locking_universality_architecture}
+            
+            A central observation from physical prototypes is that two mechanically distinct systems can realize closely similar collective motion when driven by a single central helix:
+            
+            \begin{enumerate}
+                \item a rigid monolithic triple-gear assembly printed in PLA, in which the triple gear and helical axle are fixed-shape contact elements;
+                \item a modular trefoil-based carrier printed as multiple compliant TPU segments, later folded into a closed trefoil-like body, together with a separate printed central helical insert.
+            \end{enumerate}
+            
+            These systems are not topologically identical and are not mechanically identical. Nevertheless, both appear to realize the same effective three-sector progression around a central helical driver. This motivates a distinction between:
+            \begin{equation}
+                \text{topology}, \qquad
+                \text{mechanical architecture}, \qquad
+                \text{helical-locking class}.
+            \end{equation}
+            
+            \paragraph{Definition.}
+                Let \(\phi\) denote the phase of the central helical driver, and let \(\theta_i\) \((i=1,2,3)\) denote the phases of the three surrounding sectors. A system belongs to a given \emph{helical-locking class} if its coarse-grained motion obeys
+            \begin{equation}
+                \theta_i = \sigma_i \kappa_i \phi + \delta_i,
+                \qquad i=1,2,3,
+                \label{eq:HL-law-arch}
+                \end{equation}
+                with fixed handedness signs \(\sigma_i\in\{+1,-1\}\), effective pitch ratios \(\kappa_i\), and phase offsets \(\delta_i\), and if no phase discontinuity (``gear jumping'') occurs over the admissible motion range.
+            
+            \paragraph{Architecture-independent equivalence.}
+                Two systems \(A\) and \(B\) are said to be \emph{helical-lock equivalent},
+            \begin{equation}
+                A \sim_{\mathrm{HL}} B,
+                \end{equation}
+                if they satisfy:
+            \begin{align}
+                \theta_i^{(A)}(\phi) - \sigma_i^{(A)}\kappa_i^{(A)}\phi
+                &\approx
+                \delta_i^{(A)}, \\
+                \theta_i^{(B)}(\phi) - \sigma_i^{(B)}\kappa_i^{(B)}\phi
+                &\approx
+                \delta_i^{(B)},
+                \end{align}
+                with small residuals, and if the two systems share approximately the same tuple
+            \begin{equation}
+                \mathcal{C}_{\mathrm{HL}}
+                =
+                \bigl\{(\sigma_i,\kappa_i,\delta_i)\bigr\}_{i=1}^{3}.
+                \end{equation}
+                This definition does not require identical topology or identical material realization.
+            
+            \paragraph{Effective theory.}
+                At coarse scale, both rigid and compliant realizations reduce to
+            \begin{equation}
+                \mathcal{L}_{\mathrm{eff}}
+                =
+                \frac{I_{\mathrm{eff}}}{2}\dot{\phi}^{\,2}
+                -
+                V_{\mathrm{eff}}(\phi),
+                \label{eq:Leff-arch}
+                \end{equation}
+                where
+            \begin{equation}
+                I_{\mathrm{eff}}
+                =
+                I_{\phi}
+                +
+                \sum_{i=1}^{3} I_i \kappa_i^2
+                +
+                I_{\mathrm{comp}},
+                \label{eq:Ieff-arch}
+                \end{equation}
+                and \(I_{\mathrm{comp}}\) is an architecture-dependent correction term encoding elastic compliance, local deformation, and contact redistribution.
+                
+                For a rigid PLA realization,
+            \begin{equation}
+                I_{\mathrm{comp}} \approx 0
+                \end{equation}
+                to leading order.
+                
+                For a folded TPU realization,
+            \begin{equation}
+                I_{\mathrm{comp}} \neq 0,
+                \end{equation}
+                but if the phase-locking law \eqref{eq:HL-law-arch} remains intact, then the compliant architecture belongs to the same helical-locking class as the rigid one.
+            
+            \paragraph{Interpretation.}
+                This suggests that the robust invariant is not the detailed body plan itself, but the existence of:
+            \begin{equation}
+                \text{three sectors}
+                \;+\;
+                \text{single central helix}
+                \;+\;
+                \text{continuous non-jumping phase transfer}.
+                \end{equation}
+            
+            \paragraph{SST implication.}
+                Within SST, this motivates the conjecture that particle-like identity may be determined first by a \emph{locking universality class}, and only secondarily by precise topological representative or material realization. In this view, distinct carriers can implement the same effective degree of freedom if they preserve the same locked helical transport law.
+            
+            \paragraph{Empirical status.}
+                The claim is experimentally motivated: printed PLA and TPU realizations with distinct architectures nevertheless appear to exhibit similar collective motion under a central helical drive. The present evidence is kinematic and qualitative; quantitative validation requires measured phase residuals, torque curves, and slip thresholds.
+            
+            \paragraph{Minimal falsifiers.}
+                The conjecture fails if:
+            \begin{enumerate}
+                \item the phase-lock law differs between the two realizations;
+                \item one system exhibits unavoidable phase slip while the other remains locked;
+                \item the effective periodic potential \(V_{\mathrm{eff}}(\phi)\) differs qualitatively;
+                \item the inferred collective mode spectrum is not asymptotically equivalent.
+                \end{enumerate}
+            
+            \paragraph{Measured locking ratio.}
+                For the printed triple-gear realization, direct manual rotation shows that five complete turns of the central helix produce one complete rotation of each of the three linked rings. Hence the experimentally inferred locking coefficient is
+            \begin{equation}
+                \kappa = \frac{1}{5},
+                \end{equation}
+                so that
+            \begin{equation}
+                \theta_i = \sigma_i \frac{1}{5}\phi + \delta_i,
+                \qquad i=1,2,3.
+                \end{equation}
+                This provides a concrete measured representative of the helical-locking law.
+    
+    \subsection{Three-Sector Symmetry and Normal-Mode Decomposition}
+        \label{subsec:three_sector_modes}
+        
+        The observed helical-locking structure suggests that the relevant coarse-grained configuration
+        space is not merely a set of three independent angles, but a cyclic three-sector phase space.
+        In the ideal symmetric limit, we write
+        \begin{equation}
+            \delta_i = \delta_0 + \frac{2\pi i}{3},
+            \qquad i\in\mathbb{Z}_3,
+        \end{equation}
+        so that the locking background becomes
+        \begin{equation}
+            \theta_i^{(0)}(\phi)=\sigma_i \kappa \phi + \delta_0 + \frac{2\pi i}{3}.
+        \end{equation}
+        
+        To study fluctuations around the locked configuration, define
+        \begin{equation}
+            \theta_i(\phi,t)=\theta_i^{(0)}(\phi(t))+\eta_i(t),
+            \qquad |\eta_i|\ll 1.
+        \end{equation}
+        
+        At quadratic order, the effective Lagrangian takes the form
+        \begin{equation}
+            \mathcal{L}_{\mathrm{quad}}
+            =
+            \frac{I_{\mathrm{eff}}}{2}\dot{\phi}^{\,2}
+            +
+            \sum_{i=1}^{3}\frac{m_i}{2}\dot{\eta}_i^{\,2}
+            -
+            \frac{1}{2}\sum_{i,j=1}^{3}K_{ij}\eta_i\eta_j.
+        \end{equation}
+        
+        If the locked architecture is approximately \(C_3\)-symmetric, then \(K_{ij}\) is circulant and
+        the normal modes are the discrete Fourier modes
+        \begin{equation}
+            \eta_i(t)=\sum_{m=0}^{2} a_m(t)\exp\!\left(\frac{2\pi i m i}{3}\right).
+        \end{equation}
+        
+        Thus the helical-locking class naturally decomposes into one symmetric mode and two
+        nontrivial twisted sector modes.
+        
+        \paragraph{Interpretation.}
+            This decomposition is important because it shows that the three-sector carrier already carries a minimal cyclic representation structure. In particular, the coarse-grained excitation space splits into:
+            \begin{equation}
+                m=0
+                \quad \text{(fully symmetric mode)},
+                \qquad
+                m=1,2
+                \quad \text{(twisted sector modes)}.
+            \end{equation}
+            This is the first point at which a threefold architecture becomes a structured spectral object rather than a purely geometric one.
+            
+            
+            % ============================================================
+    \subsection{Spectral Structure of Locked Closed Carriers (Secondary Result)}
+    \label{subsec:spectral_locked_carriers}
+% ============================================================
+    
+    \paragraph{Scope and status.}
+        This subsection records a \emph{secondary consequence} of the kinematics of rationally locked, closed carriers. It does not introduce new primitives. All results are conditional on the existence of a well-defined phase field and a regular mode spectrum. Status: \textbf{derived under spectral assumptions; experimentally unverified}.
+
+% ------------------------------------------------------------
+    \paragraph{Kinematic reduction.}
+        Consider a closed carrier with a single central driving phase $\phi(t)$ and $N_s$ sector variables $\theta_i(t)$ $(i=1,\dots,N_s)$ subject to a rational locking relation
+        \begin{equation}
+            \theta_i = \sigma_i \kappa_i \phi + \delta_i,
+            \qquad
+            \sigma_i \in \{+1,-1\},\quad \kappa_i \in \mathbb{Q}.
+            \label{eq:locking_relation}
+        \end{equation}
+        In the rigid-lock limit, the dynamics reduce to a single collective coordinate $\phi(t)$ with effective Lagrangian
+        \begin{equation}
+            \mathcal{L}_{\mathrm{eff}}
+            =
+            \frac{I_{\mathrm{eff}}}{2}\dot{\phi}^{\,2}
+            -
+            V(\phi),
+            \label{eq:Leff_canonical}
+        \end{equation}
+        where $I_{\mathrm{eff}}$ is an effective inertia and $V(\phi)$ is a periodic locking potential.
+
+% ------------------------------------------------------------
+    \paragraph{Distributed phase field.}
+        On a closed carrier of length $L$, allow small phase fluctuations
+        \begin{equation}
+            \phi(t) \;\longrightarrow\; \phi_0 + \eta(s,t),
+            \qquad s\in[0,L],
+        \end{equation}
+        with periodic boundary condition
+        \begin{equation}
+            \eta(s+L,t)=\eta(s,t).
+        \end{equation}
+        A minimal quadratic field model consistent with Eq.~\eqref{eq:Leff_canonical} is
+        \begin{equation}
+            \mathcal{L}_{\mathrm{field}}
+            =
+            \int_0^L
+            \left[
+                \frac{\mu_{\mathrm{eff}}}{2}(\partial_t \eta)^2
+            -
+                \frac{T_{\mathrm{eff}}}{2}(\partial_s \eta)^2
+            -
+                \frac{\mu_{\mathrm{eff}}\omega_0^2}{2}\eta^2
+            \right] ds,
+            \label{eq:field_model}
+        \end{equation}
+        where $\mu_{\mathrm{eff}}$ is an effective phase inertia density, $T_{\mathrm{eff}}$ an effective stiffness, and $\omega_0$ the small-oscillation frequency set by $V(\phi)$.
+        
+        Dimensional consistency:
+        \[
+            [\mu_{\mathrm{eff}}]=\mathrm{kg\,m},\qquad
+            [T_{\mathrm{eff}}]=\mathrm{N},\qquad
+            [\omega_0]=\mathrm{s^{-1}}.
+        \]
+
+% ------------------------------------------------------------
+    \paragraph{Mode spectrum.}
+        Expanding in normal modes
+        \begin{equation}
+            \eta(s,t) = \sum_{n\in\mathbb{Z}} a_n(t)\, e^{i k_n s},
+            \qquad
+            k_n = \frac{2\pi n}{L},
+        \end{equation}
+        yields the dispersion relation
+        \begin{equation}
+            \boxed{
+                \omega_n^2
+                =
+                \omega_0^2
+                +
+                c_\phi^2 k_n^2,
+                \qquad
+                c_\phi^2 = \frac{T_{\mathrm{eff}}}{\mu_{\mathrm{eff}}}.
+            }
+            \label{eq:dispersion}
+        \end{equation}
+        For large $n$,
+        \begin{equation}
+            \omega_n \sim \frac{2\pi c_\phi}{L}\, n.
+            \label{eq:asymptotic_linear}
+        \end{equation}
+
+% ------------------------------------------------------------
+    \paragraph{Regulated cubic spectral sum and \texorpdfstring{$\zeta(3)$}{zeta(3)}.}
+        Define the regulated cubic sum
+        \begin{equation}
+            S_3(\omega_0,\alpha)
+            :=
+            \sum_{n=1}^{\infty}
+            \frac{1}{\left(\omega_0^2+\alpha^2 n^2\right)^{3/2}},
+            \qquad
+            \alpha := \frac{2\pi c_\phi}{L}.
+            \label{eq:S3_regulated}
+        \end{equation}
+        Then the cubic-weighted spectral contribution is written as
+        \begin{equation}
+            \Delta \mathcal{E}^{(3)}
+            =
+            A_3\,S_3(\omega_0,\alpha),
+            \qquad
+            [A_3]=\mathrm{J\,s^{-3}}.
+            \label{eq:cubic_sum_regulated}
+        \end{equation}
+        This weighting is not derived here from first principles; it is introduced as the minimal spectral ansatz under which a cubic inverse-frequency correction can be tested.
+
+        In the high-mode or weak-gap regime,
+        \begin{equation}
+            \omega_0 \ll \alpha n,
+        \end{equation}
+        one has asymptotically
+        \begin{equation}
+            S_3(\omega_0,\alpha)
+            \approx
+            \frac{1}{\alpha^3}\sum_{n=1}^{\infty}\frac{1}{n^3}
+            =
+            \frac{\zeta(3)}{\alpha^3}.
+            \label{eq:S3_asymptotic_main}
+        \end{equation}
+        Hence
+        \begin{equation}
+            \boxed{
+                \Delta \mathcal{E}^{(3)}
+                \approx
+                A_3
+                \left(\frac{L}{2\pi c_\phi}\right)^3
+                \zeta(3).
+            }
+            \label{eq:zeta3_result}
+        \end{equation}
+
+% ------------------------------------------------------------
+    \paragraph{Interpretation.}
+        Equation \eqref{eq:zeta3_result} shows that $\zeta(3)$ arises from the \emph{high-mode spectral tail} of a closed carrier, not from the geometric threefold structure alone. The role of the locking relation \eqref{eq:locking_relation} is indirect: it fixes $I_{\mathrm{eff}}$, $\omega_0$, and admissible boundary conditions, thereby determining the spectral scale $(L,c_\phi)$. The unresolved step is not the asymptotics of the mode tower, but the physical identification of an SST quantity whose correction naturally carries the cubic inverse-frequency weighting of Eq.~\eqref{eq:cubic_sum_regulated}.
+
+% ------------------------------------------------------------
+    \paragraph{Universality.}
+        Different geometric realizations (e.g., distinct multi-sector carriers) that reduce to the same class of effective phase dynamics and share the asymptotic linear spectrum \eqref{eq:asymptotic_linear} will produce the same $\zeta(3)$ factor in Eq.~\eqref{eq:zeta3_result}, up to system-dependent prefactors.
+        
+        \begin{equation}
+            \boxed{
+                \text{$\zeta(3)$ is a spectral invariant of the mode tower, not a direct invariant of the carrier geometry.}
+            }
+        \end{equation}
+
+% ------------------------------------------------------------
+    \paragraph{Limitations and falsifiers.}
+        The result fails if:
+        \begin{enumerate}
+            \item the mode spectrum is not asymptotically linear in $n$,
+            \item strong damping or nonlocal coupling invalidates the expansion \eqref{eq:field_model},
+            \item the system does not admit a well-defined periodic phase field on a closed domain.
+        \end{enumerate}
+
+% ------------------------------------------------------------
+    \paragraph{Minimal experimental test.}
+        Measure mode frequencies $\omega_n$ for $n=1,2,3,\dots$ and verify
+        \begin{equation}
+            \frac{\omega_n}{n} \to \text{constant}
+            \quad\text{as } n\to\infty.
+        \end{equation}
+        Deviation from this scaling excludes Eq.~\eqref{eq:zeta3_result}.
+
+% ------------------------------------------------------------
+    \paragraph{Status.}
+        \textbf{Secondary derived result under explicit spectral assumptions.} The dispersion relation \eqref{eq:dispersion} and the emergence of \(\zeta(3)\) are derived within the quadratic closed-carrier field model \eqref{eq:field_model}. The physical origin of the cubic weighting in Eq.~\eqref{eq:cubic_sum_regulated} remains open. This subsection is therefore not a defining postulate.
+    
+    \section{Assessment of the \texorpdfstring{$\zeta(3)$}{zeta(3)} Mechanism}
+    
+    \subsection{Formal assessment}
+        
+        The main strength of the construction above is that it cleanly separates three logically distinct steps:
+        \begin{equation}
+            \text{helical locking}
+            \;\longrightarrow\;
+            \text{collective mode reduction}
+            \;\longrightarrow\;
+            \text{asymptotically linear spectral ladder}.
+        \end{equation}
+        Once these hold, a zeta-type constant is no longer mysterious; it becomes a standard consequence of the high-mode structure.
+        
+        The main caution is that the appearance of \(\zeta(3)\) is not yet by itself a proof of a trefoil-specific invariant. Rather, it establishes a spectral universality mechanism. The correct statement is therefore:
+        \begin{equation}
+            \zeta(3)
+            \text{ is not yet derived as a primitive invariant of the trefoil alone,}
+        \end{equation}
+        but may arise as a universal spectral constant across a class of closed locked carriers.
+    
+    \subsection{SST status block}
+    
+    \paragraph{Derived.}
+        The following statements are structurally derived within the present model:
+        \begin{enumerate}
+            \item helical-locking architectures reduce to a constrained effective collective coordinate \(\phi\);
+            \item approximate \(C_3\) symmetry yields one symmetric and two twisted normal modes;
+            \item a closed carrier with distributed phase transport supports a mode ladder of the form
+            \[
+                \omega_n^2=\omega_0^2+\alpha^2 n^2;
+            \]
+            \item in the asymptotically linear regime, cubic inverse-frequency sums reduce to \(\zeta(3)\).
+        \end{enumerate}
+    
+    \paragraph{Modeled.}
+        The following inputs are modeling assumptions rather than experimentally established facts:
+        \begin{enumerate}
+            \item the use of a coarse-grained phase field \(\eta(s,t)\) on the closed carrier;
+            \item the effective field Lagrangian \eqref{eq:field_model};
+            \item the existence of a physically relevant cubic inverse-frequency correction \eqref{eq:cubic_sum_regulated};
+            \item the assignment of the triple-gear and trefoil carriers to one spectral universality class.
+        \end{enumerate}
+    
+    \paragraph{Open.}
+        The key unresolved issues are:
+        \begin{enumerate}
+            \item whether the trefoil carrier actually exhibits the asymptotically linear mode ladder \(\omega_n\sim \alpha n\);
+            \item whether the relevant SST observable is an energy correction, free-energy correction, entropy term, or response coefficient;
+            \item whether the cubic weighting is fundamental, thermodynamic, geometric, or nonlinear-response induced;
+            \item whether the same \(\zeta(3)\) prefactor survives beyond the idealized locking limit.
+        \end{enumerate}
+    
+    \paragraph{Minimal falsifiers.}
+        The \(\zeta(3)\) mechanism proposed here fails if:
+        \begin{enumerate}
+            \item measured mode frequencies do not approach asymptotically linear scaling,
+            \[
+                \omega_n \not\sim \alpha n;
+            \]
+            \item the closed carrier cannot be modeled as supporting distributed locked phase transport;
+            \item cubic inverse-frequency weighting lacks any identifiable physical origin in the relevant SST quantity;
+            \item the triple-gear and trefoil systems fall into different asymptotic spectral classes.
+        \end{enumerate}
+    
+    
+    \subsection{Toy Spectral Comparison: Triple Gear vs.\ Trefoil Target}
+    \label{subsec:toy_spectral_comparison}
+    
+    To make the spectral mechanism more concrete, we compare two representative locked carriers:
+    the measured triple-gear system with
+    \begin{equation}
+        \kappa_{\mathrm{TG}}=\frac{1}{5},
+    \end{equation}
+    and a trefoil-target class with
+    \begin{equation}
+        \kappa_{\mathrm{Tr}}=\frac{2}{3}.
+    \end{equation}
+    
+    Assume for simplicity that the three surrounding sectors are identical, with common sector inertia
+    \(I_s\), and let the central helical driver carry inertia \(I_\phi\). Then the reduced locked inertia is
+    \begin{equation}
+        I_{\mathrm{eff}} = I_\phi + 3\kappa^2 I_s.
+        \label{eq:Ieff_toy_general}
+    \end{equation}
+    Hence
+    \begin{equation}
+        I_{\mathrm{eff}}^{\mathrm{TG}}
+        =
+        I_\phi + \frac{3}{25}I_s,
+        \label{eq:Ieff_toy_TG}
+    \end{equation}
+    whereas
+    \begin{equation}
+        I_{\mathrm{eff}}^{\mathrm{Tr}}
+        =
+        I_\phi + \frac{4}{3}I_s.
+        \label{eq:Ieff_toy_Tr}
+    \end{equation}
+    
+    For a common quadratic locking stiffness \(K_{\mathrm{eff}}\), the corresponding small-oscillation
+    frequencies are
+    \begin{equation}
+        \omega_0^{\mathrm{TG}}
+        =
+        \sqrt{
+            \frac{K_{\mathrm{eff}}^{\mathrm{TG}}}
+            {I_\phi + \frac{3}{25}I_s}
+        },
+        \qquad
+        \omega_0^{\mathrm{Tr}}
+        =
+        \sqrt{
+            \frac{K_{\mathrm{eff}}^{\mathrm{Tr}}}
+            {I_\phi + \frac{4}{3}I_s}
+        }.
+        \label{eq:omega0_toy_compare}
+    \end{equation}
+    
+    Thus, even before any distributed field extension is introduced, the locking ratio \(\kappa\)
+    already changes the spectral scale through the effective inertia.
+    
+    \paragraph{Closed-carrier field extension.}
+        Let the corresponding closed carriers support phase transport with arclength \(L\) and internal
+        transport speed \(c_\phi\). Then the mode frequencies satisfy
+        \begin{equation}
+            \omega_n^2 = \omega_0^2 + \alpha^2 n^2,
+            \qquad
+            \alpha := \frac{2\pi c_\phi}{L}.
+            \label{eq:toy_dispersion_alpha}
+        \end{equation}
+        The regulated cubic spectral sum is
+        \begin{equation}
+            S_3(\omega_0,\alpha)
+            :=
+            \sum_{n=1}^{\infty}
+            \frac{1}{\left(\omega_0^2+\alpha^2 n^2\right)^{3/2}}.
+            \label{eq:S3_toy}
+        \end{equation}
+        
+        Accordingly, the two carriers define
+        \begin{equation}
+            S_3^{\mathrm{TG}}
+            =
+            S_3\!\left(\omega_0^{\mathrm{TG}},\alpha_{\mathrm{TG}}\right),
+            \qquad
+            S_3^{\mathrm{Tr}}
+            =
+            S_3\!\left(\omega_0^{\mathrm{Tr}},\alpha_{\mathrm{Tr}}\right).
+            \label{eq:S3_TG_TR}
+        \end{equation}
+        
+        In the weak-gap or high-mode regime,
+        \begin{equation}
+            \omega_0 \ll \alpha n,
+        \end{equation}
+        the sum reduces asymptotically to
+        \begin{equation}
+            S_3(\omega_0,\alpha)
+            \approx
+            \frac{1}{\alpha^3}\sum_{n=1}^{\infty}\frac{1}{n^3}
+            =
+            \frac{\zeta(3)}{\alpha^3}.
+            \label{eq:S3_asymptotic_toy}
+        \end{equation}
+        Therefore,
+        \begin{equation}
+            S_3^{\mathrm{TG}}
+            \approx
+            \frac{\zeta(3)}{\alpha_{\mathrm{TG}}^3},
+            \qquad
+            S_3^{\mathrm{Tr}}
+            \approx
+            \frac{\zeta(3)}{\alpha_{\mathrm{Tr}}^3}.
+            \label{eq:S3_compare_asymptotic}
+        \end{equation}
+    
+    \paragraph{Interpretation.}
+        The important point is that \(\zeta(3)\) remains universal at the asymptotic spectral level,
+        while the prefactor depends on carrier-specific quantities such as
+        \begin{equation}
+            I_{\mathrm{eff}}, \qquad \omega_0, \qquad c_\phi, \qquad L.
+        \end{equation}
+        Thus the triple gear and the trefoil target need not produce identical numerical coefficients.
+        What they may share is the same spectral mechanism.
+    
+    \paragraph{Dimensionless comparison ratio.}
+        A convenient quantity for comparing carrier classes is
+        \begin{equation}
+            \mathcal{R}_{3}
+            :=
+            \frac{S_3^{\mathrm{Tr}}}{S_3^{\mathrm{TG}}}.
+            \label{eq:R3ratio}
+        \end{equation}
+        In the asymptotic regime this becomes
+        \begin{equation}
+            \mathcal{R}_{3}
+            \approx
+            \left(
+                \frac{\alpha_{\mathrm{TG}}}{\alpha_{\mathrm{Tr}}}
+            \right)^3
+            =
+            \left(
+                \frac{c_{\phi,\mathrm{TG}}\,L_{\mathrm{Tr}}}
+                {c_{\phi,\mathrm{Tr}}\,L_{\mathrm{TG}}}
+            \right)^3.
+            \label{eq:R3ratio_asymptotic}
+        \end{equation}
+        Hence equal appearance of \(\zeta(3)\) does not imply equal absolute magnitude of the cubic
+        spectral correction.
+    
+    \paragraph{Minimal toy benchmark.}
+        If, purely as a reference case, the two carriers are assigned the same closure length and the same
+        internal transport speed,
+        \begin{equation}
+            L_{\mathrm{TG}} = L_{\mathrm{Tr}},
+            \qquad
+            c_{\phi,\mathrm{TG}} = c_{\phi,\mathrm{Tr}},
+        \end{equation}
+        then
+        \begin{equation}
+            \alpha_{\mathrm{TG}}=\alpha_{\mathrm{Tr}},
+            \qquad
+            \mathcal{R}_{3}\approx 1.
+        \end{equation}
+        In that idealized limit, the spectral constant \(\zeta(3)\) and its prefactor coincide, and the
+        difference between the two carriers survives only in the gap scale \(\omega_0\) and low-mode structure.
+    
+    \paragraph{SST implication.}
+        Within SST, this toy comparison suggests the following disciplined interpretation:
+        the triple gear and trefoil-target carriers may belong to the same \emph{spectral universality class}
+        if they share a closed locked transport law and asymptotically linear internal mode ladder,
+        even if their detailed geometry, compliance, or low-order spectra differ.
+        
+        
+    \section{SST Interpretation}
+    
+    In SST language, the natural reading is not that \(\zeta(3)\) is a primitive invariant of the trefoil or triple gear taken separately. The more disciplined statement is:
+    \begin{equation}
+        \zeta(3)
+        \text{ may arise as a spectral invariant of a closed locked swirl-string carrier}
+    \end{equation}
+    whenever:
+    \begin{enumerate}
+        \item the carrier supports distributed internal phase transport;
+        \item the associated excitation spectrum is asymptotically linear;
+        \item the relevant physical correction is cubic inverse-frequency weighted.
+    \end{enumerate}
+    
+    Thus topology, commensurability, and locking ratio do not directly \emph{equal} \(\zeta(3)\). Instead, they determine the effective inertia, stiffness, closure length, and boundary conditions of the carrier, which in turn determine the mode ladder and its asymptotic sums.
+    
+    In this sense, the most cautious SST conclusion is:
+    \begin{equation}
+        \boxed{
+            \zeta(3)\text{ is not here established as a primitive topological invariant,}
+        }
+    \end{equation}
+    \begin{equation}
+        \boxed{
+            \text{but as a plausible universal spectral constant of the helical-locking class.}
+        }
+    \end{equation}
+    
+    This is compatible with the broader SST program in which particle-like identity may depend first on a universality class of locked transport and only secondarily on a precise material or geometric representative.
+    
+    \section{Conclusion}
+    
+    Two mechanically distinct systems --- a rigid triple-gear carrier and a compliant trefoil-like folded carrier --- appear to support a common coarse-grained helical-locking law. This motivates the definition of a helical-locking universality class independent of exact material realization.
+    
+    Once the three-sector structure is treated as a cyclic phase space and extended to a closed field-supporting carrier, the system acquires an infinite mode ladder. In the asymptotically linear regime, cubic inverse-frequency spectral sums reduce naturally to \(\zeta(3)\). This does not by itself prove that the trefoil carries a primitive \(\zeta(3)\) invariant. It does, however, isolate a mathematically clean and physically testable mechanism by which \(\zeta(3)\) may emerge in a whole class of closed locked carriers.
+    
+    The central next step is experimental and spectral: measure the internal oscillation spectrum of both the triple-gear and trefoil realizations, determine whether
+    \begin{equation}
+        \omega_n \approx \alpha n
+    \end{equation}
+    holds asymptotically, and identify whether a cubic inverse-frequency correction is physically realized in the relevant observable. If so, the appearance of \(\zeta(3)\) ceases to be numerology and becomes a structural consequence of the carrier class itself.
+
+\end{document}
