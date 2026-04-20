@@ -1,0 +1,465 @@
+%! Author = Omar Iskandarani
+%! Title = SST-01 Rosetta-v0.8
+%! Date = 2026-04-20
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts,mathtools}
+\usepackage{siunitx}
+\usepackage{booktabs,array,tabularx,longtable}
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{mathpazo}
+\usepackage[scaled=0.95]{inconsolata}
+\usepackage{helvet}
+\usepackage{sectsty}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{amsthm}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!50!black,
+  citecolor=blue!50!black,
+  urlcolor=blue!50!black,
+  pdftitle={Swirl--String Theory Rosetta Stone v0.8},
+  pdfauthor={Omar Iskandarani},
+  pdfkeywords={Swirl-String Theory, Rosetta, Canon v0.8.0, analogue metric, Swirl Clock, topology}
+}
+
+\sectionfont{\Large\bfseries\sffamily}
+\subsectionfont{\large\bfseries\sffamily}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{SST Rosetta v0.8}
+\rhead{Draft}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+\setlist[itemize]{leftmargin=1.5em}
+\setlist[enumerate]{leftmargin=1.7em}
+\sisetup{scientific-notation=true,round-mode=figures,round-precision=4}
+
+% ---------- SST house macros ----------
+\newcommand{\swirlarrow}{%
+  \mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}%
+  {\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}%
+  {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
+  {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}% 
+}
+\newcommand{\swirlarrowcw}{%
+  \mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}%
+  {\mkern-2mu\scriptstyle\boldsymbol{\circlearrowright}}%
+  {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}%
+  {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowright}}% 
+}
+\newcommand{\vswirl}{\mathbf{v}_{\swirlarrow}}
+\newcommand{\vswirlcw}{\mathbf{v}_{\swirlarrowcw}}
+\newcommand{\SwirlClock}{S_t^{\swirlarrow}}
+\newcommand{\SwirlClockcw}{S_t^{\swirlarrowcw}}
+\newcommand{\rhoF}{\rho_{\!f}}
+\newcommand{\rhoE}{\rho_{\!E}}
+\newcommand{\rhoM}{\rho_{\!m}}
+\newcommand{\rhocore}{\rho_{\mathrm{core}}}
+\newcommand{\vnorm}{\lVert \vswirl \rVert}
+\newcommand{\rc}{r_c}
+\newcommand{\VolH}[1]{\operatorname{Vol}_{\!\mathbb{H}}(#1)}
+\newcommand{\FmaxEM}{F_{\mathrm{EM}}^{\max}}
+\newcommand{\FmaxG}{F_{\mathrm{G}}^{\max}}
+\newcommand{\Umax}{U_{\max}}
+\newcommand{\Uloc}{U_{\mathrm{swirl}}}
+\newcommand{\chiswirl}{\chi_{\mathrm{swirl}}}
+\newcommand{\Geff}{\mathfrak g_{\mathrm{eff}}}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\RosettaCard}[1]{\begin{tcolorbox}[colback=blue!4,colframe=blue!60!black,boxrule=0.6pt,arc=3pt,title={#1}]}
+\newcommand{\EndRosettaCard}{\end{tcolorbox}}
+
+\title{\textbf{Swirl--String Theory Rosetta Stone v0.8}\\[2mm]
+\large Translation guide aligned to Canon v0.8.0}
+\author{Omar Iskandarani\\
+\normalsize Independent Researcher, Groningen, The Netherlands\\
+\normalsize ORCID: \href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}}
+\date{20 April 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This draft Rosetta note updates the earlier SST translation layer to the language and structure of Canon v0.8.0. Its role is narrow and methodological. It does not replace the canon, and it does not introduce new primitive claims. Instead, it translates the retained SST sectors into orthodox fluid-mechanical, weak-field gravitational, topological, and gauge-theoretic comparison language. The governing rule is the \emph{Rosetta principle}: whenever a standard description already works, SST must map to it before claiming any deeper reinterpretation \cite{SSTCanon08}. Relative to Rosetta v0.6, this version is tightened around the sectors actually retained in Canon v0.8.0: kinematic densities, Swirl-Clock transport, the canonical mass-factorization pattern, the pressure-law sector, the analogue-metric and clock-field bridge, the minimal gauge roadmap, the radiation bridge, and the compact visible/quasi-dark/dark classifier. String- and QCD-inspired correspondences are retained only as secondary comparison cards, not as core authority.\end{abstract}
+
+\section{Scope and use policy}
+This Rosetta is a \emph{translation layer}. It is not a second canon. Its intended uses are:
+\begin{enumerate}
+  \item to let an SST statement be checked against an orthodox benchmark before any stronger claim is made,
+  \item to keep symbols and constants stable across manuscripts,
+  \item to separate canonical, derived, calibration, and research-roadmap layers,
+  \item to supply compact comparison cards for gravity, fluid dynamics, radiation, topology, and the gauge roadmap.
+\end{enumerate}
+The operative rule remains:
+\[
+\text{orthodox description} \longleftrightarrow \text{SST statement} \longleftrightarrow \text{status label}.
+\]
+Whenever these three are not simultaneously clear, the Rosetta entry is incomplete.
+
+\section{House symbols and canonical constants}
+\subsection{Primary notation}
+The v0.8 house symbols are
+\[
+\rhoF \quad (\text{effective fluid density}),
+\qquad
+\rhoE = \frac12\rhoF\vnorm^2 \quad (\text{swirl energy density}),
+\qquad
+\rhoM = \frac{\rhoE}{c^2} \quad (\text{mass-equivalent density}),
+\]
+with core density \(\rhocore\), characteristic speed \(\vswirl\), and core radius \(\rc\) \cite{Rosetta06,SSTCanon08}.
+
+\subsection{Canonical numerical anchors}
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Quantity & Symbol & Value \\
+\midrule
+Characteristic swirl speed & \(\lVert \vswirl \rVert\) & \SI{1.09384563e6}{m.s^{-1}} \\
+Core radius & \(\rc\) & \SI{1.40897017e-15}{m} \\
+Core density & \(\rhocore\) & \SI{3.8934358266918687e18}{kg.m^{-3}} \\
+Background effective density & \(\rhoF\) & \SI{7.0e-7}{kg.m^{-3}} \\
+Maximum EM-like force & \(\FmaxEM\) & \SI{29.053507}{N} \\
+Maximum universal force & \(\FmaxG\) & \SI{3.02563e43}{N} \\
+\bottomrule
+\end{tabular}
+\end{center}
+These are calibration anchors rather than free fit parameters in the late-canon presentation \cite{SSTCanon08, Rosetta06}.
+
+\section{Primitive kinematic identities}
+\RosettaCard{Rosetta Card 1: basic fluid-mechanical identities}
+\textbf{Orthodox side.} In incompressible, inviscid flow the basic local kinetic-energy density is
+\[
+\mathcal E_{\mathrm{kin}}(x)=\frac12\rho(x)\,\lVert \mathbf v(x)\rVert^2.
+\]
+\textbf{SST side.} Canon v0.8.0 identifies
+\[
+\rhoE(x)=\frac12\rhoF(x)\,\vnorm^2,
+\qquad
+\rhoM(x)=\frac{\rhoE(x)}{c^2}.
+\]
+This gives the local mass-factor for all later canonical decompositions. The coarse-graining rule retained from the Rosetta line is
+\[
+K = \frac{\rhocore\rc}{\left.\vnorm\right|_{r=\rc}},
+\qquad
+\rhoF = K\,\Omega,
+\]
+where \(\Omega\) is a coarse-grained angular-rate variable, not the microscopic core frequency \cite{Rosetta06}.\par
+\medskip
+\textbf{Status.} The density identities are canonical kinematics. The specific coarse-graining closure is a retained calibration bridge.
+\EndRosettaCard
+
+\section{Swirl-Clock and transport layer}
+\RosettaCard{Rosetta Card 2: Swirl-Clock and Chronos--Kelvin transport}
+\textbf{Clock rule.} The local SST clock factor is written
+\[
+S_t^{\swirlarrow}(x)=\sqrt{1-\frac{\vnorm^2}{c^2}}.
+\]
+At the Rosetta level, this is the direct bridge to special-relativistic time-scaling in terms of the local tangential transport speed \cite{SSTCanon08}.\par
+\medskip
+\textbf{Orthodox side.} Kelvin's theorem gives conservation of circulation for incompressible, inviscid, barotropic flow without reconnection. In the thin-loop approximation this yields
+\[
+\frac{D}{Dt}\bigl(R^2\omega\bigr)=0.
+\]
+\textbf{SST side.} Using the core relation \(v_t=\omega\rc\) together with the Swirl-Clock rule, Canon v0.8.0 rewrites the same invariant as
+\[
+\frac{D}{Dt}\left(\frac{c}{\rc}R^2\sqrt{1-\bigl(S_t^{\swirlarrow}\bigr)^2}\right)=0.
+\]
+This is the Chronos--Kelvin invariant in late-canon wording \cite{SSTCanon08, Helmholtz1858, Batchelor1967, Saffman1992}.\par
+\medskip
+\textbf{Interpretation.} The orthodox law is circulation conservation. The SST reading is that loop-radius transport and local clock impedance are two parameterizations of the same invariant.\par
+\medskip
+\textbf{Status.} Orthodox fluid identity plus SST rewriting.
+\EndRosettaCard
+
+\section{Canonical mass-factorization pattern}
+\RosettaCard{Rosetta Card 3: master mass organization}
+Canon v0.8.0 organizes the mass sector into four factors: medium scale, geometric gate, topological kernel, and clock impedance. In house notation,
+\[
+\rhoM(x)=\frac{\rhoF(x)\,\vnorm^2}{2c^2},
+\qquad
+\Pi_K = \left(\frac{\lambda_c}{\pi \rc}\right)^{G(K)} = \left(\frac{4}{\alpha}\right)^{G(K)},
+\]
+\[
+\Xi_K = \bigl[\alpha_C C(K)+\beta_L L(K)+\gamma_H H(K)\bigr]\,\varphi^{-2k(K)}.
+\]
+The canonical master equation is then recorded as
+\[
+M_K(x)=\rhoM(x)\,\rc^3\,\Pi_K\,\Xi_K\,\bigl(S_t^{\swirlarrow}(x)\bigr)^{-2}.
+\]
+\textbf{Orthodox side.} The factorization itself is SST-specific, but each constituent has a standard comparison object: local energy density, binary geometric exposure factor, knot-energy kernel, and time-dilation impedance.\par
+\medskip
+\textbf{Use in Rosetta.} This entry should be read as an organizational identity, not as a claim that every subfactor is already first-principles derived.\par
+\medskip
+\textbf{Status.} Canonical organizing equation with mixed derived and speculative substructure \cite{SSTCanon08}.
+\EndRosettaCard
+
+\section{Pressure law and large-scale bridge}
+\RosettaCard{Rosetta Card 4: Euler radial balance and organized large-scale support}
+For steady axisymmetric swirl, Euler radial balance gives
+\[
+\frac{1}{\rhoF}\frac{\dd p_{\mathrm{swirl}}}{\dd r}=\frac{v_\theta(r)^2}{r}.
+\]
+This is an orthodox hydrodynamic relation. For a locally rigid profile \(v_\theta(r)=\Omega r\), integration yields
+\[
+ p_{\mathrm{swirl}}(r)=p_0+\frac12\rhoF\Omega^2 r^2.
+\]
+For a flat-tail regime \(v_\theta(r)\to v_0\), one obtains the logarithmic form
+\[
+ p_{\mathrm{swirl}}(r)=p_0+\rhoF v_0^2\ln\!\left(\frac{r}{r_0}\right),
+\]
+which is the retained Rosetta bridge for organized large-scale support fields.\par
+\medskip
+\textbf{Orthodox side.} This is steady radial Euler balance.\par
+\textbf{SST side.} Canon v0.8.0 treats this as the main orthodox anchor beneath later galactic and dark-sector bridge proposals.\par
+\medskip
+\textbf{Status.} Orthodox equation; SST interpretation layer still bridge-level \cite{SSTCanon08}.
+\EndRosettaCard
+
+\section{Weak-field metric and clock-field bridge}
+\RosettaCard{Rosetta Card 5: analogue metric, Poisson bridge, and clock-sector EFT}
+\textbf{Weak-field metric map.} Rosetta v0.6 introduced the local energy fraction
+\[
+\Uloc = \frac12\rhoF\vnorm^2,
+\qquad
+\Umax = \rhocore c^2,
+\qquad
+\chiswirl = \frac{\Uloc}{\Umax},
+\]
+and the weak-field identification
+\[
+ g_{tt}=-(1-\chiswirl),
+ \qquad
+ g_{ij}=(1+\gamma\chiswirl)\,\delta_{ij},
+\qquad
+ \Phi_{\mathrm{SST}}\equiv -\frac{\Uloc}{2\rhocore}.
+\]
+This remains the basic weak-field Rosetta card, with \(\gamma=1\) used as the canonical calibration \cite{Rosetta06}.\par
+\medskip
+\textbf{Clock-field EFT bridge.} Canon v0.8.0 upgrades the clock sector to an orthodox EFT comparison layer via a hypersurface-orthogonal unit time-like field \(u^\mu\) and the standard second-order clock-sector action
+\[
+S_\chi = \int \dd^4x\,\sqrt{-g}\,\bigl[c_1(\nabla_\mu u_\nu)(\nabla^\mu u^\nu)+c_2(\nabla_\mu u^\mu)^2+c_3(\nabla_\mu u_\nu)(\nabla^\nu u^\mu)+c_4 u^\mu u^\nu(\nabla_\mu u_\alpha)(\nabla_\nu u^\alpha)\bigr],
+\]
+with the observational tensor-speed requirement
+\[
+ c_{13}\equiv c_1+c_3 = 0
+\]
+for luminal propagation in the multimessenger regime \cite{SSTCanon08, Jacobson2001, Blas2011, GW170817, Baker2017}.\par
+\medskip
+\textbf{Poisson closure.} In the weak-field, slowly varying limit the scalar clock field is recorded with the bridge closure
+\[
+\nabla^2\chi(x)=4\pi G_{\mathrm{eff}}\,\rho_{\mathrm{matter}}(x),
+\qquad
+\chi(r)\propto \frac{1}{r},
+\qquad
+\mathbf g_{\mathrm{eff}}=-\nabla\chi.
+\]
+\textbf{Status.} Weak-field metric card: calibration. Clock-sector EFT: orthodox comparison tool, not yet first-principles derived from filament dynamics.
+\EndRosettaCard
+
+\section{Radiation and gauge-sector cards}
+\RosettaCard{Rosetta Card 6: radiation bridge and minimal gauge roadmap}
+\textbf{Radiation card.} In the linearized, uniform-background Rosetta line, a director phase \(\theta\) satisfies
+\[
+\mathcal L_{\theta}=\frac12\Umax\left[\frac{1}{c^2}(\partial_t\theta)^2-|\nabla\theta|^2\right],
+\qquad
+\partial_t^2\theta-c^2\nabla^2\theta=0,
+\]
+which is the standard wave-equation bridge beneath the minimal radiation picture \cite{Rosetta06}. Canon v0.8.0 then interprets the retained radiation excitation as a finite-duration torsional packet on a closed carrier, i.e. an unknotted \(R\)-phase packet in the effective field sector \cite{SSTCanon08}.\par
+\medskip
+\textbf{Gauge roadmap.} The minimal retained gauge-level statement is
+\[
+\Geff = \mathfrak{su}(3)\oplus \mathfrak{su}(2)\oplus \mathfrak{u}(1),
+\]
+with effective gauge phases interpreted as holonomy data of coarse-grained multi-director transport. This is a roadmap statement, not yet a completed derivation of observed charge assignments or couplings \cite{SSTCanon08}.\par
+\medskip
+\textbf{Status.} Radiation kinematics: canonical. Full gauge emergence: roadmap.
+\EndRosettaCard
+
+\section{String- and QCD-inspired comparison layer}
+\RosettaCard{Rosetta Card 7: string/QCD comparison layer (research use only)}
+This card is imported from the later \emph{String-Theory-SST-Rosetta} note, but only in the reduced v0.8-compatible form \cite{StringRosetta}.\par
+\medskip
+\textbf{Worldsheet comparison.} The orthodox string-theory side uses the Nambu--Goto or Polyakov worldsheet action,
+\[
+S_{\mathrm{NG}}=-T\int \dd^2\sigma\,\sqrt{-\gamma},
+\]
+with possible coupling to a two-form field \(B_{\mu\nu}\). The SST comparison statement is only structural: closed swirl strings support a two-form flux language and can be compared to worldsheet-coupled string sectors, but SST does not identify its medium as a fundamental target-space string theory.\par
+\medskip
+\textbf{QCD comparison.} The orthodox QCD side uses the Yang--Mills form
+\[
+\mathcal L_{\mathrm{YM}}=-\frac14 F^a_{\mu\nu}F^{a\mu\nu}.
+\]
+The SST comparison statement is that linked or knotted flux-carrying structures provide a structural analogue of confinement and flux-tube binding. The comparison is useful at the level of organized binding, not as a completed derivation of QCD.\par
+\medskip
+\textbf{Status.} Research comparison only.
+\EndRosettaCard
+
+\section{Compact taxonomy card}
+\RosettaCard{Rosetta Card 8: visible, quasi-dark, and dark classifier}
+Canon v0.8.0 retains a compact sector classifier in terms of chirality \(\chi(K)\), helicity \(H[K]\), and low-order unstable-mode count \(N_u^{(1)}(K)\):
+\[
+\text{dark}:\quad \chi(K)=0,\qquad H[K]\approx 0,\qquad N_u^{(1)}(K)=0,
+\]
+\[
+\text{quasi-dark}:\quad |\chi(K)|\ll 1,\qquad H[K]\approx 0,\qquad 0<N_u^{(1)}(K)\le 2,
+\]
+\[
+\text{visible}:\quad \chi(K)\neq 0\quad \text{or}\quad H[K]\neq 0.
+\]
+At the Rosetta level, \(H[K]\) is the standard helicity functional of ideal-vortex dynamics,
+\[
+H[K]=\int \mathbf v\cdot(\nabla\times\mathbf v)\,\dd V,
+\]
+while the matter-sector interpretation of the classifier is SST-specific \cite{SSTCanon08, Moffatt1969, Arnold1998}.\par
+\medskip
+\textbf{Status.} Helicity: orthodox. Classifier interpretation: retained SST model choice.
+\EndRosettaCard
+
+\section{Calibration anchors and falsifiers}
+\RosettaCard{Rosetta Card 9: calibration and failure modes}
+The current Rosetta layer supports the following hard checks.
+\begin{itemize}
+  \item \textbf{Dimensional closure.} Every Rosetta card must pass direct SI-unit checking.
+  \item \textbf{Known-limit recovery.} Weak-field GR, Kelvin circulation, and linear wave propagation must be recovered in their intended limits.
+  \item \textbf{Tensor-mode speed.} Any clock-field EFT use must preserve \(c_{13}=0\).
+  \item \textbf{Pressure-law traceability.} Any galactic-scale closure must be built above the radial Euler law, not replace it.
+  \item \textbf{Gauge humility.} The low-energy algebra card must not be read as a finished derivation of charges or couplings.
+  \item \textbf{Taxonomy humility.} The visible/quasi-dark/dark classifier is a retained organization rule, not yet a fully benchmarked population theorem.
+\end{itemize}
+\textbf{Rosetta principle.} Whenever an SST claim cannot be translated into one of the cards above, it does not yet belong in Rosetta-v0.8.
+\EndRosettaCard
+
+\section{Summary table}
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+SST structural layer & Orthodox comparison layer & Present role \\
+\midrule
+Kinematic densities & Fluid kinetic-energy density & Canonical \\
+Swirl-Clock transport & Kelvin circulation / SR-style clock scaling & Canonical + derived rewriting \\
+Mass-factorization pattern & Energy \(\times\) geometry \(\times\) topology \(\times\) clock & Canonical organizer \\
+Pressure law & Radial Euler balance & Orthodox anchor \\
+Clock-field bridge & Weak-field metric / preferred-foliation EFT & Comparison tool \\
+Radiation card & Linear wave equation / Maxwell-like sector & Canonical kinematics \\
+Gauge roadmap & Holonomy / effective gauge algebra & Roadmap \\
+Taxonomy card & Helicity + symmetry + stability labels & Retained classifier \\
+String/QCD card & Worldsheet and flux-tube analogies & Research comparison \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{Conclusion}
+Rosetta-v0.8 is narrower and stricter than Rosetta-v0.6. It keeps only the bridges that are either canonical in v0.8.0 or necessary for disciplined comparison to standard physics. Its job is not to make SST look like every other framework; its job is to state exactly where the mappings hold, where they are only calibration bridges, and where they remain roadmap-level. In that sense this note should be used as a checking instrument: it sits between the canon and any external reading, and it should become more compact rather than less as the canon matures.
+
+\begin{thebibliography}{99}
+
+\bibitem{SSTCanon08}
+O.~Iskandarani,
+\textit{Swirl--String Theory Canon v0.8.0},
+internal canon manuscript / project PDF, 2026.
+
+\bibitem{Rosetta06}
+O.~Iskandarani,
+\textit{Swirl--String Theory Rosetta Stone v0.6: Translation Guide for Symbols, Macros, and Constants},
+Zenodo, 2026.
+DOI: \texttt{10.5281/zenodo.17606846}.
+
+\bibitem{StringRosetta}
+O.~Iskandarani,
+\textit{String-Theoretic and QCD-Inspired Structure in Swirl--String Theory (SST)},
+internal research note, 2026.
+
+\bibitem{Helmholtz1858}
+H.~von Helmholtz,
+\textit{Uber Integrale der hydrodynamischen Gleichungen, welche den Wirbelbewegungen entsprechen},
+Journal fur die reine und angewandte Mathematik \textbf{55} (1858), 25--55.
+
+\bibitem{Batchelor1967}
+G.~K.~Batchelor,
+\textit{An Introduction to Fluid Dynamics},
+Cambridge University Press, 1967.
+DOI: \texttt{10.1017/CBO9780511800955}.
+
+\bibitem{Saffman1992}
+P.~G.~Saffman,
+\textit{Vortex Dynamics},
+Cambridge University Press, 1992.
+DOI: \texttt{10.1017/CBO9780511624063}.
+
+\bibitem{Moffatt1969}
+H.~K.~Moffatt,
+\textit{The degree of knottedness of tangled vortex lines},
+Journal of Fluid Mechanics \textbf{35} (1969), 117--129.
+DOI: \texttt{10.1017/S0022112069000991}.
+
+\bibitem{Arnold1998}
+V.~I.~Arnold and B.~A.~Khesin,
+\textit{Topological Methods in Hydrodynamics},
+Springer, 1998.
+DOI: \texttt{10.1007/978-1-4612-0645-3}.
+
+\bibitem{Jacobson2001}
+T.~Jacobson and D.~Mattingly,
+\textit{Gravity with a Dynamical Preferred Frame},
+Physical Review D \textbf{64} (2001), 024028.
+DOI: \texttt{10.1103/PhysRevD.64.024028}.
+
+\bibitem{Blas2011}
+D.~Blas, O.~Pujolas, and S.~Sibiryakov,
+\textit{Models of non-relativistic quantum gravity: the good, the bad and the healthy},
+Journal of High Energy Physics \textbf{04} (2011), 018.
+DOI: \texttt{10.1007/JHEP04(2011)018}.
+
+\bibitem{GW170817}
+B.~P.~Abbott et al. (LIGO Scientific Collaboration and Virgo Collaboration),
+\textit{GW170817: Observation of Gravitational Waves from a Binary Neutron Star Inspiral},
+Physical Review Letters \textbf{119} (2017), 161101.
+DOI: \texttt{10.1103/PhysRevLett.119.161101}.
+
+\bibitem{Baker2017}
+T.~Baker et al.,
+\textit{Strong Constraints on Cosmological Gravity from GW170817 and GRB 170817A},
+Physical Review Letters \textbf{119} (2017), 251301.
+DOI: \texttt{10.1103/PhysRevLett.119.251301}.
+
+\bibitem{Unruh1981}
+W.~G.~Unruh,
+\textit{Experimental Black-Hole Evaporation?},
+Physical Review Letters \textbf{46} (1981), 1351--1353.
+DOI: \texttt{10.1103/PhysRevLett.46.1351}.
+
+\bibitem{Visser1998}
+M.~Visser,
+\textit{Acoustic black holes: horizons, ergospheres and Hawking radiation},
+Classical and Quantum Gravity \textbf{15} (1998), 1767--1791.
+DOI: \texttt{10.1088/0264-9381/15/6/024}.
+
+\bibitem{Polchinski1998}
+J.~Polchinski,
+\textit{String Theory, Vol. I},
+Cambridge University Press, 1998.
+
+\bibitem{Peskin1995}
+M.~E.~Peskin and D.~V.~Schroeder,
+\textit{An Introduction to Quantum Field Theory},
+Westview Press, 1995.
+
+\bibitem{FaddeevNiemi1997}
+L.~Faddeev and A.~J.~Niemi,
+\textit{Stable knot-like structures in classical field theory},
+Nature \textbf{387} (1997), 58--61.
+DOI: \texttt{10.1038/387058a0}.
+
+\end{thebibliography}
+
+\end{document}
