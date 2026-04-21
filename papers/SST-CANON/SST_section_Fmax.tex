@@ -1,0 +1,319 @@
+% ============================================================
+% SST Canon v0.8.1 — New Section 2.16
+% Maximal Swirl Tension: Definition, Identities, and
+% Threefold Physical Interpretation
+% Ready for insertion after Section 2.15 in the main canon
+% ============================================================
+
+\subsection{Maximal Swirl Tension}
+\label{sec:Fmax}
+
+\subsubsection{Definition and canonical form}
+
+Within the primitive set $\mathcal{P} = \{\rho_f, v_\circlearrowleft, \omega_c\}$,
+a characteristic force scale emerges naturally from the Compton energy stored
+over the core cross-section. We define the \emph{maximal swirl tension} as
+
+\begin{equation}
+  F_{\rm swirl}^{\max}
+  \;=\; \frac{v_\circlearrowleft\,\hbar}{2r_c^2}
+  \;=\; \frac{\hbar\omega_c}{2r_c}.
+  \label{eq:Fmax-def}
+\end{equation}
+
+\noindent
+[\textsc{Derived}] \textit{Canonical form}: substituting
+$v_\circlearrowleft = \omega_c r_c$ into Eq.~\eqref{eq:Fmax-def} gives
+$F_{\rm swirl}^{\max} = \hbar\omega_c / 2r_c$,
+the Compton energy scale divided by twice the core radius.
+Numerically, $F_{\rm swirl}^{\max} = 29.053507\;\text{N}$.
+
+\noindent
+[\textsc{Critical Note}] $F_{\rm swirl}^{\max}$ is a mechanical
+reformulation of the Compton energy scale over the core cross-section.
+It is \emph{not} independent of $\hbar$ and $m_e$; its role in the
+canon is interpretive and organisational rather than that of an
+independent primitive.
+
+\subsubsection{Internal consistency identities}
+
+The following expressions are algebraically equivalent within the
+canonical constant chain and serve as coherence verifications rather
+than independent derivations:
+
+\begin{align}
+  F_{\rm swirl}^{\max}
+  &= \frac{e^2}{16\pi\varepsilon_0 r_c^2},
+  \label{eq:Fmax-em}\\
+  &= \frac{h\alpha c}{8\pi r_c^2},
+  \label{eq:Fmax-hac}\\
+  &= \pi r_c^2\,\rho_{\rm calc}\,v_\circlearrowleft^2,
+  \label{eq:Fmax-rho}
+\end{align}
+
+\noindent
+where $\rho_{\rm calc} = 4F_{\rm swirl}^{\max}/(\pi\alpha^2 c^2 r_c^2)$
+is the derived bulk density consistent with the canonical core closure.
+
+\noindent
+[\textsc{Derived}] \textit{Consistency check}:
+Eqs.~\eqref{eq:Fmax-em}--\eqref{eq:Fmax-rho} are equivalent given
+$v_\circlearrowleft = \alpha c/2$ and the standard identity
+$e^2/(4\pi\varepsilon_0) = \alpha\hbar c$.
+Their mutual agreement constitutes a non-trivial numerical
+self-consistency test of the primitive set.
+
+\subsubsection{Strongest non-circular identity: the Rydberg constant}
+
+\noindent
+[\textsc{Derived}] The Rydberg constant is recoverable directly from
+the three SST primitives without $e$, $\varepsilon_0$, or $m_e$ as
+explicit input:
+
+\begin{equation}
+  R_\infty \;=\; \frac{v_\circlearrowleft^3}{\pi\,r_c\,c^3}.
+  \label{eq:Rydberg-SST}
+\end{equation}
+
+\noindent
+This is the canonical benchmark for the internal non-redundancy of the
+primitive set. Combining Eq.~\eqref{eq:Rydberg-SST} with
+Eq.~\eqref{eq:Fmax-def} yields the compact relation
+
+\begin{equation}
+  \boxed{
+  F_{\rm swirl}^{\max}
+  \;=\; \frac{32\pi^2\hbar R_\infty^2 c}{\alpha^5},
+  }
+  \label{eq:Fmax-Rydberg}
+\end{equation}
+
+\noindent
+which expresses $F_{\rm swirl}^{\max}$ in terms of spectroscopic
+observables alone, with no reference to $m_e$, $r_c$, or $e$ as
+separate inputs.
+
+\noindent
+[\textsc{Derived}] A further identity connecting atomic and
+force scales is
+
+\begin{equation}
+  R_\infty \;=\; F_{\rm swirl}^{\max}
+  \cdot \frac{\alpha^3}{4\pi m_e c^2},
+  \label{eq:Rydberg-Fmax}
+\end{equation}
+
+\noindent
+which states that the Rydberg constant is the maximal swirl tension
+scaled by the Compton energy and a purely geometric factor $\alpha^3/4\pi$.
+Spectroscopy is thereby connected directly to the æther tension scale.
+
+\subsubsection{Threefold physical interpretation}
+
+The quantity $F_{\rm swirl}^{\max}$ admits three distinct physical
+interpretations, each arising from a different sector of physics.
+Their numerical coincidence within the canonical constant chain
+is a non-trivial coherence result.
+
+\paragraph{(i) Gravitational analogue: the Planck force ceiling.}
+
+In general relativity, the combination $c^4/4G$ sets the maximum
+force that any physical process can transmit without forming a
+causal horizon~\cite{Gibbons2002}. We denote this scale the maximal
+gravitational tension:
+
+\begin{equation}
+  F_{\rm gr}^{\max} \;=\; \frac{c^4}{4G}.
+  \label{eq:Fgr}
+\end{equation}
+
+\noindent
+[\textsc{Orthodox}] $F_{\rm gr}^{\max}$ is the Planck force,
+an invariant upper bound in classical general relativity.
+
+\noindent
+[\textsc{Derived}] The ratio of the two tension scales reduces to
+
+\begin{equation}
+  \boxed{
+  \frac{F_{\rm swirl}^{\max}}{F_{\rm gr}^{\max}}
+  \;=\; \frac{4\alpha_g}{\alpha},
+  }
+  \label{eq:ratio}
+\end{equation}
+
+\noindent
+where $\alpha_g = Gm_e^2/\hbar c$ is the gravitational
+fine-structure constant of the electron and $\alpha$ is the
+electromagnetic fine-structure constant.
+Numerically, $4\alpha_g/\alpha \approx 9.6\times10^{-43}$,
+in agreement with the directly computed ratio
+$29.053507\,\text{N} / 3.026\times10^{43}\,\text{N}$.
+
+\noindent
+[\textsc{Speculative}] \textit{Interpretation}:
+the hierarchy between the electromagnetic and gravitational
+force scales in SST is not an unexplained numerical accident
+but the ratio of the two fundamental coupling constants of the
+electron. The medium is $\sim\!10^{42}$ times stiffer than the
+space-time geometry, and this stiffness ratio is exactly
+$4\alpha_g/\alpha$.
+
+\paragraph{(ii) Electrostatic interpretation: the Coulomb ceiling
+at core scale.}
+
+When two protons are compressed to a centre-to-centre separation
+equal to the vortex core radius $r_c$, the Coulomb repulsion is
+
+\begin{equation}
+  F_{pp}(r_c)
+  \;=\; \frac{e^2}{4\pi\varepsilon_0 r_c^2}
+  \;=\; 4\,F_{\rm swirl}^{\max}.
+  \label{eq:Coulomb-core}
+\end{equation}
+
+\noindent
+[\textsc{Derived}] The maximal Coulomb repulsion on the core scale
+is exactly four times $F_{\rm swirl}^{\max}$.
+The factor of four matches the denominator structure of
+Eq.~\eqref{eq:Fgr}, and is not numerically coincidental within
+the canonical chain.
+
+\noindent
+[\textsc{Speculative}] \textit{Interpretation}: $F_{\rm swirl}^{\max}$
+is the quarter-Coulomb force at core scale. The medium can sustain
+one quarter of the maximum proton--proton Coulomb repulsion before
+the topological structure of the vortex core fails. This provides a
+physical ceiling on the compression of charged vortex configurations.
+
+\paragraph{(iii) Mechanical interpretation: the spring constant of
+photon--electron interaction.}
+
+The VAM appendix~\cite{VAMAppendix} models the electron's internal
+vortex as a linear spring with stiffness
+
+\begin{equation}
+  K_e \;=\; \frac{F_{\rm swirl}^{\max}}{n\,r_c},
+  \qquad n = 2,
+  \label{eq:spring-K}
+\end{equation}
+
+\noindent
+where $n$ counts the number of half-wavelength segments on the core
+and is fixed empirically to $n = 2$ by the photon--electron matching
+condition. The natural oscillation frequency of the electron core
+under this spring is
+
+\begin{equation}
+  \omega_{\rm spring}
+  \;=\; \sqrt{\frac{K_e}{m_e}}
+  \;=\; \sqrt{\frac{F_{\rm swirl}^{\max}}{2\,r_c\,m_e}}.
+  \label{eq:omega-spring}
+\end{equation}
+
+\noindent
+Substituting Eq.~\eqref{eq:Fmax-def} and $m_e = \hbar\omega_c/c^2$:
+
+\begin{equation}
+  \omega_{\rm spring}
+  \;=\; \frac{\omega_c}{\alpha}
+  \;=\; \frac{m_e c^2}{\alpha\hbar},
+  \label{eq:omega-spring-result}
+\end{equation}
+
+\noindent
+a frequency intermediate between the atomic Rydberg scale
+$(\sim\!\alpha^2\omega_c)$ and the Compton scale $(\omega_c)$.
+
+\noindent
+[\textsc{Derived}] The energy stored in this spring at maximum
+compression $\delta = r_c$ is
+
+\begin{equation}
+  E_{\rm spring}
+  \;=\; \tfrac{1}{2}\,K_e\,r_c^2
+  \;=\; \frac{F_{\rm swirl}^{\max}\,r_c}{4}
+  \;=\; \frac{\hbar\omega_c}{8}
+  \;=\; \frac{m_e c^2}{8}.
+  \label{eq:Espring}
+\end{equation}
+
+\noindent
+One eighth of the electron rest energy is stored as internal
+vortex-spring potential at maximum compression.
+
+\noindent
+[\textsc{Speculative}] \textit{Physical picture}: during
+photon absorption, the electron's vortex core is compressed
+for a duration of order one Planck time $t_p$ into a transient
+mass-like configuration. The restoring force scale for this
+compression is $F_{\rm swirl}^{\max}$, and the energy scale
+of the transient is $m_e c^2/8$, one eighth of the rest energy.
+The spring releases at the Compton period, generating the
+recoil that initiates the Coulomb interaction with the proton.
+
+\noindent
+[\textsc{Critical Note}] Equation~\eqref{eq:omega-spring-result}
+assumes $n = 2$ from empirical matching. A first-principles
+derivation of the photon wrap number from the delay dynamics
+of Section~\ref{sec:delay} is an open step.
+
+\subsubsection{Unified summary}
+
+The three interpretations are collected in Table~\ref{tab:Fmax}.
+Together they identify $F_{\rm swirl}^{\max}$ as the
+\emph{structural tension threshold of the medium}: the scale at
+which a physical system --- gravitational, electrostatic, or
+mechanical --- exhausts its capacity to store energy in the
+current configuration and must either fail topologically,
+form a horizon, or release energy as radiation.
+
+\begin{table}[h]
+\centering
+\caption{Threefold interpretation of $F_{\rm swirl}^{\max}$
+         within the SST canonical framework.}
+\label{tab:Fmax}
+\begin{tabular}{llll}
+\hline
+\textbf{Context} & \textbf{Expression} & \textbf{Physical meaning}
+  & \textbf{Status} \\
+\hline
+Gravitational ceiling &
+  $F_{\rm gr}^{\max}/F_{\rm swirl}^{\max} = \alpha/(4\alpha_g)$ &
+  Medium stiffer than space-time by $\alpha/4\alpha_g$ &
+  [Derived] \\
+Coulomb ceiling &
+  $F_{pp}(r_c) = 4\,F_{\rm swirl}^{\max}$ &
+  Quarter of max.\ Coulomb force at core scale &
+  [Derived] \\
+Vortex spring &
+  $K_e = F_{\rm swirl}^{\max}/2r_c$ &
+  Spring constant of photon--electron interaction &
+  [Speculative] \\
+\hline
+\end{tabular}
+\end{table}
+
+\noindent
+[\textsc{Speculative}] \textit{Canonical interpretation}:
+$F_{\rm swirl}^{\max}$ is the tension at which the structured
+æther medium reaches its topological integrity limit. It plays
+the same organisational role for the electromagnetic and
+mechanical sectors that $F_{\rm gr}^{\max} = c^4/4G$ plays for
+the gravitational sector. Their ratio is the ratio of the two
+fundamental coupling constants of the electron.
+
+% ============================================================
+% References to add to main bibliography:
+%
+% \bibitem{Gibbons2002}
+% G.~W.~Gibbons,
+% The maximum tension principle in general relativity,
+% Found.\ Phys.\ \textbf{32} (2002) 1891--1901,
+% DOI: 10.1023/A:1022370717626.
+%
+% \bibitem{VAMAppendix}
+% O.~Iskandarani,
+% Appendix X: From \AE{}ther Tension to Planck's Constant
+% and the Bohr Radius (internal SST working document, 2025).
+% ============================================================
