@@ -1,0 +1,21 @@
+# Delegate to repository-root latexmkrc (so builds from this folder use ../out and ../auxil).
+use Cwd qw(abs_path);
+use File::Basename qw(dirname);
+use File::Spec;
+
+my $d = abs_path( $ENV{PWD} || '.' );
+for ( 0 .. 24 ) {
+  my $try = File::Spec->catfile( $d, 'latexmkrc' );
+  if ( -f $try ) {
+    open my $F, '<', $try or next;
+    my $head = do { local $/; <$F> };
+    close $F;
+    if ( defined $head && $head =~ /^#\s*LATEXMK_ROOT_SWIRL/m ) {
+      do $try;
+      last;
+    }
+  }
+  my $parent = dirname($d);
+  last if $parent eq $d;
+  $d = $parent;
+}
