@@ -880,6 +880,18 @@
 
     \textbf{[SPECULATIVE]}: the interpretation of Eq.~\eqref{eq:dark_knot_taxonomy} as a matter-sector taxonomy is an SST model choice.
 
+    \paragraph{Heuristic balance diagnostic from the SST helicity archive.}
+    As a supporting diagnostic (not a stand-alone classifier), define
+    \begin{align}
+        \Delta_H(K)=\abs{\widehat{\mathcal{H}}_{b}(K)+\frac{1}{2}},
+    \end{align}
+    where $\widehat{\mathcal{H}}_{b}(K)$ is the archived normalized helicity-like base indicator for class $K$.
+    Near-balanced values with $\Delta_H(K)\ll 1$ are treated only as candidate evidence for dark or quasi-dark sectors.
+
+    \textbf{[CRITICAL NOTE]}: in canon usage, the diagnostic above is subordinate to Eq.~\eqref{eq:dark_knot_taxonomy}; no single scalar is sufficient for dark-sector membership without the symmetry and instability filters.
+
+    \textbf{[CANON WORKFLOW NOTE]}: if SST-labelled and parallel legacy-labelled helicity exports are numerically identical, only the SST-labelled archive is required for canon workflows.
+
 \section{Swirl--Electromagnetic Bridge}
     \label{sec:embridge}
 
@@ -2173,7 +2185,10 @@
             \item the exact script or package path used for generation,
             \item archived CSV outputs,
             \item mode definitions (predictive vs.\ exact-closure),
-            \item uncertainty propagation on canonical constants and geometric factors.
+            \item uncertainty propagation on canonical constants and geometric factors,
+            \item theorem-style pass/fail metadata (including tail-quality checks, postchecks, and extrapolation summaries),
+            \item explicit separation between practical best-estimate closure and theorem-level closure,
+            \item normalization of legacy constant names into SST notation (\(\rhoF,\rc,\Gamma_0\)) while preserving numerical values.
         \end{itemize}
 
         This requirement is included to keep the benchmark layer falsifiable and reproducible, rather than merely illustrative.

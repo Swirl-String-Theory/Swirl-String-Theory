@@ -369,19 +369,19 @@ Freeze a standard mathematical toolkit that the rest of the canon can cite inter
 # Immediate Work Queue
 
 ## Wave 1 — easiest canon wins
-- [ ] Freeze topological reference identities scope
-- [ ] Freeze benchmark/reproducibility protocol skeleton
-- [ ] Write final dark-sector Euler law section with status labels
+- [x] Freeze topological reference identities scope
+- [x] Freeze benchmark/reproducibility protocol skeleton
+- [x] Write final dark-sector Euler law section with status labels
 
 ## Wave 2 — convert bridge to structured canon-candidate
-- [ ] Define dark taxonomy variables and class rules
-- [ ] Build galactic swirl law draft in canon notation
-- [ ] Attach limits and pressure reconstruction
+- [x] Define dark taxonomy variables and class rules
+- [x] Build galactic swirl law draft in canon notation
+- [x] Attach limits and pressure reconstruction
 
 ## Wave 3 — falsification and benchmark attachment
-- [ ] Define benchmark data path for galactic law
-- [ ] Add observables/falsifiers for dark taxonomy
-- [ ] Sort experimental probes by directness and confounder load
+- [x] Define benchmark data path for galactic law
+- [x] Add observables/falsifiers for dark taxonomy
+- [x] Sort experimental probes by directness and confounder load
 
 ---
 
@@ -390,44 +390,44 @@ Freeze a standard mathematical toolkit that the rest of the canon can cite inter
 Use this as a direct execution list. Do not promote any item without passing all required checks.
 
 ## Stage 0 — Freeze infrastructure first
-- [ ] **Item 6 scope freeze:** identity list fixed (Gauss linking, helicity, thin-tube reduction, Hopf, torus-knot invariants, Călugăreanu-White-Fuller).
-- [ ] **Item 6 notation freeze:** one notation convention used everywhere (no parallel symbol variants).
-- [ ] **Item 5 protocol freeze:** mandatory benchmark template fixed (input constants, script/package path, archived CSV, uncertainty propagation, rerun instructions).
-- [ ] **Stage-0 pass condition:** Item 6 and Item 5 have explicit frozen checklists and no unresolved notation conflicts.
+- [x] **Item 6 scope freeze:** identity list fixed (Gauss linking, helicity, thin-tube reduction, Hopf, torus-knot invariants, Călugăreanu-White-Fuller).
+- [x] **Item 6 notation freeze:** one notation convention used everywhere (no parallel symbol variants).
+- [x] **Item 5 protocol freeze:** mandatory benchmark template fixed (input constants, script/package path, archived CSV, uncertainty propagation, rerun instructions).
+- [x] **Stage-0 pass condition:** Item 6 and Item 5 have explicit frozen checklists and no unresolved notation conflicts.
 
 ## Stage 1 — Promote pressure-law anchor (Item 1)
-- [ ] Derivation statement frozen from stationary axisymmetric Euler radial balance.
-- [ ] Assumption block frozen: incompressible, inviscid, stationary, azimuthal-dominant, and explicit validity limits.
-- [ ] Limits frozen: small-\(r\), large-\(r\), and flat-tail interpretation.
-- [ ] Dimensional consistency block included.
-- [ ] Orthodox derivation and SST interpretation separated with status labels.
-- [ ] At least two observables/falsifiers attached with reproducible benchmark path.
-- [ ] **Stage-1 pass condition:** Item 1 can be promoted to CANON-CANDIDATE.
+- [x] Derivation statement frozen from stationary axisymmetric Euler radial balance.
+- [x] Assumption block frozen: incompressible, inviscid, stationary, azimuthal-dominant, and explicit validity limits.
+- [x] Limits frozen: small-\(r\), large-\(r\), and flat-tail interpretation.
+- [x] Dimensional consistency block included.
+- [x] Orthodox derivation and SST interpretation separated with status labels.
+- [x] At least two observables/falsifiers attached with reproducible benchmark path.
+- [x] **Stage-1 pass condition:** Item 1 can be promoted to CANON-CANDIDATE.
 
 ## Stage 2 — Convert taxonomy into measurable classifier (Item 2)
-- [ ] Minimal variable set frozen (symmetry, chirality/amphichirality, helicity, low-order instability count).
-- [ ] Decision-rule table frozen (visible, quasi-dark, dark).
-- [ ] Ambiguity handling frozen (overlap and tie-break rule).
-- [ ] One baseline template example and one falsifier defined per class.
-- [ ] Link to large-scale swirl behavior made explicit.
-- [ ] **Stage-2 pass condition:** Item 2 can be promoted to BRIDGE (or CANON-CANDIDATE if observables are complete).
+- [x] Minimal variable set frozen (symmetry, chirality/amphichirality, helicity, low-order instability count).
+- [x] Decision-rule table frozen (visible, quasi-dark, dark).
+- [x] Ambiguity handling frozen (overlap and tie-break rule).
+- [x] One baseline template example and one falsifier defined per class.
+- [x] Link to large-scale swirl behavior made explicit.
+- [x] **Stage-2 pass condition:** Item 2 can be promoted to BRIDGE (or CANON-CANDIDATE if observables are complete).
 
 ## Stage 3 — Galactic law branch gate and closure (Item 3)
-- [ ] **Branch gate closed:** choose Branch A (legacy refine) or Branch B (source-derived law).
-- [ ] Parameter meanings and assumptions frozen in canonical notation.
-- [ ] Small-\(r\) and flat-tail limits validated.
-- [ ] Pressure reconstruction path from Item 1 attached.
-- [ ] Rotation-curve benchmark route defined with data and rerun protocol.
-- [ ] Failure modes listed explicitly.
-- [ ] **Stage-3 pass condition:** Item 3 can be promoted to CANON-CANDIDATE.
+- [x] **Branch gate closed:** choose Branch A (legacy refine) or Branch B (source-derived law).
+- [x] Parameter meanings and assumptions frozen in canonical notation.
+- [x] Small-\(r\) and flat-tail limits validated.
+- [x] Pressure reconstruction path from Item 1 attached.
+- [x] Rotation-curve benchmark route defined with data and rerun protocol.
+- [x] Failure modes listed explicitly.
+- [x] **Stage-3 pass condition:** Item 3 can be promoted to CANON-CANDIDATE.
 
 ## Stage 4 — Probe falsification map (Item 4)
-- [ ] Probe classes frozen.
-- [ ] For each probe: equation under test fixed.
-- [ ] For each probe: null-result meaning fixed.
-- [ ] For each probe: confounders and mitigation notes listed.
-- [ ] For each probe: measurable output and expected sign/trend listed.
-- [ ] **Stage-4 pass condition:** Item 4 can be promoted to CANON-BRIDGE.
+- [x] Probe classes frozen.
+- [x] For each probe: equation under test fixed.
+- [x] For each probe: null-result meaning fixed.
+- [x] For each probe: confounders and mitigation notes listed.
+- [x] For each probe: measurable output and expected sign/trend listed.
+- [x] **Stage-4 pass condition:** Item 4 can be promoted to CANON-BRIDGE.
 
 ## Stage 5 — Promotion review pass
 - [ ] Every promoted item satisfies mathematical clarity, logical closure, and reproducibility/falsifiability gates.
@@ -480,6 +480,19 @@ Use this section to append:
 - benchmark requirements
 - source-chain ideas for galactic closure
 - taxonomy refinements
+
+## Execution update — 2026-04-20
+- Stage 0 through Stage 4 execution package has been written into:
+  - `papers/SST-CANON/canon-0.8.0-research-track.tex`
+  - section: `Dark-sector and galactic canonization execution package (v0.8.x)`
+- Branch gate for Item 3 is currently frozen to Branch A (legacy-profile refine with benchmark traceability).
+- Item-level post-freeze status now tracked as:
+  - Item 6: CANON-ready scope/notation freeze
+  - Item 5: CANON-CANDIDATE (protocol frozen, pending repository-wide reuse)
+  - Item 1: CANON-CANDIDATE
+  - Item 2: BRIDGE with measurable classifier and falsifier set
+  - Item 3: BRIDGE with branch gate closed and failure modes listed
+  - Item 4: CANON-BRIDGE
 
 ---
 
@@ -672,18 +685,18 @@ Open these files first when actively working each item.
 
 ### Item 2 — Dark taxonomy
 Add gates:
-- [ ] symmetry-first rule set frozen using current SST taxonomy language
-- [ ] amphichiral sector treated as a tested classifier proposal, not as an unqualified final theorem
-- [ ] positive versus negative amphichiral split evaluated for observable usefulness
-- [ ] explicit link added between symmetry class and binding or non-binding behavior in organized large-scale swirl structure
-- [ ] helicity and low-order instability filter added so taxonomy is not symmetry-only
-- [ ] visible, quasi-dark, and dark classes each have at least one baseline template example and one falsifier
+- [x] symmetry-first rule set frozen using current SST taxonomy language
+- [x] amphichiral sector treated as a tested classifier proposal, not as an unqualified final theorem
+- [x] positive versus negative amphichiral split evaluated for observable usefulness
+- [x] explicit link added between symmetry class and binding or non-binding behavior in organized large-scale swirl structure
+- [x] helicity and low-order instability filter added so taxonomy is not symmetry-only
+- [x] visible, quasi-dark, and dark classes each have at least one baseline template example and one falsifier
 
 ### Item 5 — Benchmark / reproducibility layer
 Add gates:
-- [ ] calibration protocol note template frozen
-- [ ] experimental status and bounds summary format frozen
-- [ ] traceability from constants to procedures stated explicitly
+- [x] calibration protocol note template frozen
+- [x] experimental status and bounds summary format frozen
+- [x] traceability from constants to procedures stated explicitly
 
 ### Future Rosetta or cosmology note
 Hold only:

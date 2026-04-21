@@ -152,6 +152,33 @@ n & 939.565420 & \dots & \dots & predictive or closure \\
 
 \textbf{[CRITICAL NOTE]}: a future v0.8.x benchmark appendix should include the exact script or package path used for generation, archived CSV outputs, mode definitions (predictive vs. exact-closure), and uncertainty propagation on canonical constants and geometric factors.
 
+\subsection{Helicity-by-base archive (diagnostic layer)}
+\textbf{[DERIVED] Archive role:} the SST helicity-by-base outputs are retained as a measurable balance diagnostic for taxonomy support, not as an independent law.
+Define the midpoint-distance diagnostic
+\begin{align}
+    \Delta_H(K)=\abs{\widehat{\mathcal{H}}_{b}(K)+\frac{1}{2}},
+\end{align}
+where $\widehat{\mathcal{H}}_{b}(K)$ is the archived normalized helicity-like base indicator for class $K$.
+
+Near-balanced values with $\Delta_H(K)\ll 1$ indicate candidate dark or quasi-dark sectors only when symmetry and instability filters are also satisfied.
+
+\textbf{[CRITICAL NOTE]}: no single helicity-like scalar is sufficient for sector assignment; classifier decisions remain conjunction rules over symmetry, helicity balance, and low-order stability content.
+
+\textbf{[CANON WORKFLOW NOTE]}: if SST-labelled and parallel VAM-labelled helicity outputs are numerically identical, the SST-labelled archive is the only required source for canon workflows.
+
+\subsection{Trefoil-closure archive (benchmark discipline)}
+\textbf{[DERIVED] Benchmark role:} ideal-trefoil robustness sweeps, final-best-estimate tables, and theorem-style reports are retained as benchmark-discipline infrastructure.
+
+\textbf{[CRITICAL NOTE]}: practical best-estimate closure and theorem-level closure are distinct.
+A result may remain useful for calibration while still failing strict theorem-level tail or postcheck requirements.
+
+\textbf{[REQUIRED METADATA]}: benchmark reports should include explicit pass/fail logic, postchecks, extrapolation summaries, and local-curve diagnostics so that closure claims are auditable.
+
+\subsection{\texorpdfstring{$\phi_{3_1}$}{phi3_1} transform archive (deferred)}
+\textbf{[SPECULATIVE] Status:} retained as research-track spectral evidence for later zeta/spectral programs.
+
+\textbf{[SCOPE RULE]}: this archive is not part of the current dark-sector or galactic canonization closure path in v0.8.x.
+
 \subsection{Gauge-Sector Roadmap}
 \textbf{[SPECULATIVE] Structural roadmap:} a retained minimal statement of the gauge program is
 \begin{align}
@@ -171,5 +198,169 @@ and clock coupling acts as a common phase reference,
 \end{align}
 
 \textbf{[CRITICAL NOTE]}: the gauge layer is retained only as a roadmap statement. Running couplings, anomaly cancellation, and realistic mixing matrices remain open work.
+
+\section{Dark-sector and galactic canonization execution package (v0.8.x)}
+\label{sec:dark-sector-execution-package}
+
+\subsection{Stage-0 freeze: topology toolkit and benchmark protocol}
+\textbf{[DERIVED] Scope freeze:} the mandatory topology toolkit for v0.8.x canonization is fixed to:
+\begin{enumerate}
+    \item Gauss linking integral,
+    \item helicity in ideal fluids,
+    \item thin-tube helicity reduction,
+    \item Hopf invariant,
+    \item basic torus-knot invariants $(c,b,g)$,
+    \item Calugareanu--White--Fuller relation $Lk=Tw+Wr$.
+\end{enumerate}
+
+\textbf{[DERIVED] Notation freeze:} one notation family is used in this package:
+\[
+\rhoF,\quad v_\theta(r),\quad p_{\mathrm{swirl}}(r),\quad
+\mathcal{H}(K),\quad N_u^{(1)}(K),\quad \Gamma,\quad \kappa,\quad \SwirlClock.
+\]
+No parallel symbol aliases are introduced for the same quantity.
+
+\textbf{[DERIVED] Mandatory benchmark protocol template:}
+\begin{enumerate}
+    \item \textbf{Inputs:} canonical constants, topology identifiers, profile parameters, and dataset/version tags.
+    \item \textbf{Procedure:} exact script or package path, run command, and branch/commit hash.
+    \item \textbf{Outputs:} archived CSV files with fixed column schema and an attached metadata note.
+    \item \textbf{Uncertainty:} first-order propagation for calibrated constants and sensitivity sweep on profile parameters.
+    \item \textbf{Rerun:} deterministic rerun steps and acceptance tolerances.
+\end{enumerate}
+
+\textbf{[CANON WORKFLOW NOTE]}: every promoted quantitative claim in this package is invalid without an explicit input-to-CSV trace.
+
+\subsection{Stage-1 freeze: dark-sector Euler pressure anchor}
+\textbf{[ORTHODOX] Euler radial balance (steady, axisymmetric, azimuthal-dominant):}
+\begin{align}
+    \frac{1}{\rhoF}\frac{dp_{\mathrm{swirl}}}{dr}
+    =
+    \frac{v_\theta(r)^2}{r}.
+    \label{eq:exec_swirl_pressure}
+\end{align}
+
+\textbf{[DERIVED] Flat-tail limit (constant tail speed):}
+\begin{align}
+    v_\theta(r)\to v_0
+    \quad\Longrightarrow\quad
+    p_{\mathrm{swirl}}(r)
+    =
+    p_0 + \rhoF v_0^2\ln\!\left(\frac{r}{r_0}\right).
+\end{align}
+
+\textbf{[DERIVED] Assumption block:}
+incompressible, inviscid, stationary, axisymmetric, azimuthal-dominant flow, with validity restricted to regions where radial drift and stratification corrections are subleading.
+
+\textbf{[DERIVED] Dimensional check:}
+\[
+\left[\frac{1}{\rhoF}\frac{dp}{dr}\right]
+=
+\frac{\mathrm{kg\,m^{-2}\,s^{-2}}}{\mathrm{kg\,m^{-3}}}
+=
+\mathrm{m\,s^{-2}}
+=
+\left[\frac{v^2}{r}\right].
+\]
+
+\textbf{[SPECULATIVE] SST interpretation:}
+Eq.~\eqref{eq:exec_swirl_pressure} is interpreted as a classifier/driver layer for dark-sector support. This interpretation is model-level and separate from the orthodox derivation.
+
+\textbf{[DERIVED] Attached observables/falsifiers:}
+\begin{enumerate}
+    \item Rotation-curve consistency after pressure reconstruction from archived $v_\theta(r)$ data.
+    \item Null falsifier: systematic mismatch in the reconstructed pressure gradient sign or scale across validated radial windows.
+\end{enumerate}
+
+\subsection{Stage-2 freeze: measurable dark taxonomy}
+\textbf{[DERIVED] Minimal classifier variables:}
+symmetry class (including amphichirality status), chirality sign/state, helicity-balance indicator $\Delta_H(K)$, and low-order instability count $N_u^{(1)}(K)$.
+
+\textbf{[DERIVED] Decision rules (symmetry-first, then stability-filtered):}
+\begin{align}
+    \text{Dark}
+    &:\ \text{amphichiral candidate}
+    \ \wedge\
+    \Delta_H(K)\ll 1
+    \ \wedge\
+    N_u^{(1)}(K)=0,\\
+    \text{Quasi-dark}
+    &:\ \text{near-balanced symmetry/helicity}
+    \ \wedge\
+    0 < N_u^{(1)}(K)\le 2,\\
+    \text{Visible}
+    &:\ \text{chiral-dominant and/or helicity-unbalanced sectors}.
+\end{align}
+
+\textbf{[DERIVED] Ambiguity tie-break:}
+if classes overlap, choose the class with the strongest conjunction score in the order
+\[
+\text{symmetry gate} \rightarrow \text{helicity balance gate} \rightarrow \text{stability gate}.
+\]
+
+\textbf{[DERIVED] Baseline templates and falsifiers:}
+\begin{itemize}
+    \item \textbf{Visible baseline:} trefoil-like chiral template; falsifier = persistent amphichiral-plus-balanced signature under validated data updates.
+    \item \textbf{Quasi-dark baseline:} Borromean-type weak-coupling template; falsifier = stable zero-instability assignment across independent scans.
+    \item \textbf{Dark baseline:} figure-eight/amphichiral template; falsifier = robust nonzero chirality or high-instability assignment.
+\end{itemize}
+
+\textbf{[CANON WORKFLOW NOTE]}:
+amphichiral $\Rightarrow$ dark remains a classifier proposal tested against observables, not a closed theorem.
+
+\subsection{Stage-3 freeze: galactic law branch gate and closure route}
+\textbf{[DERIVED] Branch-gate decision:} Branch A (legacy profile refine) is selected for current v0.8.x closure because it preserves tested limits while allowing benchmark traceability.
+
+Working profile:
+\begin{align}
+    v_\theta(r)
+    =
+    \frac{C_{\mathrm{core}}}{\sqrt{1+(r_c/r)^2}}
+    +
+    C_{\mathrm{tail}}\left(1-e^{-r/r_c}\right).
+\end{align}
+
+\textbf{[DERIVED] Required checks:}
+small-$r$ behavior, flat-tail behavior, parameter semantics, and pressure reconstruction via Eq.~\eqref{eq:exec_swirl_pressure}.
+
+\textbf{[DERIVED] Failure modes:}
+\begin{enumerate}
+    \item non-physical parameter combinations (wrong sign or unstable growth),
+    \item failure to satisfy tail-limit behavior in benchmark windows,
+    \item inability to reconstruct a consistent pressure profile from the same archived inputs.
+\end{enumerate}
+
+\subsection{Stage-4 freeze: probe falsification map}
+\textbf{[DERIVED]} probe classes are fixed as astrophysical, laboratory pressure/swirl analog, HV-coil/thrust-inspired, optical/torsional coupling, and null dark-sector tests.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{p{2.7cm}p{3.1cm}p{2.5cm}p{2.2cm}p{2.2cm}}
+\hline
+Probe class & Equation under test & Null-result meaning & Primary confounder & Expected sign/trend \\
+\hline
+Astrophysical rotation curves & Eq.~\eqref{eq:exec_swirl_pressure} + profile closure & weakens pressure-law applicability window & baryonic-model bias & reconstructed $dp/dr$ consistent with $v_\theta^2/r$ \\
+Lab swirl analog & Euler radial balance scaling & weakens scale-transfer claim & viscosity/edge forcing & monotone pressure rise with imposed swirl \\
+HV-coil/thrust-inspired & circulation-pressure bridge claims & kills quantized-bridge claim if no scaling & EM/thermal artifacts & response tracks circulation proxy \\
+Optical/torsional coupling & swirl-clock bridge signatures & weakens coupling interpretation & detector drift/noise & phase/timing shift with controlled swirl proxy \\
+Null dark tests & taxonomy conjunction rules & kills classifier branch if conjunction fails & mislabelled topology class & class score decreases under contradictory diagnostics \\
+\hline
+\end{tabular}
+\caption{Frozen equation-to-probe map for falsification-first workflow in the v0.8.x dark-sector program.}
+\label{tab:exec-probe-map}
+\end{table}
+
+\textbf{[CANON WORKFLOW NOTE]}: probe outcomes can support or reject already-stated equations, but they do not replace derivation-level closure.
+
+\subsection{Promotion snapshot after execution}
+\textbf{[DERIVED]} post-freeze status in this package:
+\begin{itemize}
+    \item Item 6 (topology toolkit): CANON-ready in scope and notation.
+    \item Item 5 (benchmark protocol): CANON-CANDIDATE pending repository-wide protocol reuse.
+    \item Item 1 (Euler pressure anchor): CANON-CANDIDATE with explicit assumptions, limits, and falsifier path.
+    \item Item 2 (dark taxonomy): BRIDGE with measurable classifier gates and falsifiers.
+    \item Item 3 (galactic swirl law): BRIDGE with branch gate closed and benchmark route fixed.
+    \item Item 4 (probe map): CANON-BRIDGE with equation/null-result mapping frozen.
+\end{itemize}
 
 \end{document}
