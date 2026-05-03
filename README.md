@@ -8,7 +8,12 @@ SST is historically continuous with earlier internal drafts labeled *Vortex Æth
 
 ---
 
-## 🔗 Reproducible notebooks (Google Colab)
+## 🔗 Reproducible notebooks 
+(Google NotebookLM) Chat on with Gemini over the Canon-v0.8.x
+
+https://notebooklm.google.com/notebook/d39d953b-0e75-49da-93ab-0752eebeba4b
+
+(Google Colab) Python scripts
 
 These are executable “proof notebooks” used to reproduce core calculations and cross-checks:
 
