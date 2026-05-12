@@ -150,7 +150,7 @@ Educational and research use welcome. Commercial reuse requires permission.
 | SST-58 vacuum stress energy engineering                          |   4 |   4 |   4 |   3 |   4 |  4 |  4 |   4 |    31 | Bridge                  |                          |                    |
 | SST-57 FermionMasses                                             |   3 |   4 |   3 |   3 |   3 |  4 |  5 |   4 |    29 | Support                 |                          |                    |
 | SST-56 superfluid                                                |   5 |   4 |   4 |   3 |   3 |  4 |  5 |   4 |    32 | Bridge                  |                          |                    |
-| SST-55 Delay-Induced mode selection Circulating Feedback Systems |   4 |   4 |   4 |   4 |   3 |  3 |  4 |   4 |    30 | Bridge                  | CHAOS → AIP-A            | rejected           |
+| SST-55 Delay-Induced mode selection Circulating Feedback Systems |   4 |   4 |   4 |   4 |   3 |  3 |  4 |   4 |    30 | Bridge                  | CHAOS → AIP-A            | Under Review       |
 | SST-54 Delay-Induced mode discreteness nonlinear ring systems    |   4 |   4 |   4 |   4 |   4 |  4 |  4 |   4 |    32 | Bridge / Constraint     | CHAOS → AIP-A            | rejected           |
 | SST-53 Thermodynamic Origin of Quantization                      |   4 |   4 |   4 |   4 |   3 |  3 |  3 |   4 |    29 | Bridge                  |                          |                    |
 | SST-52 Kelvin Mode Suppression Gap                               |   5 |   4 |   4 |   4 |   5 |  4 |  4 |   4 |    34 | Anchor/Constraint       | EPJplus                  | ...                |
