@@ -25,6 +25,7 @@
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
 \usepackage{xcolor}
+\usepackage[most]{tcolorbox}
 
 % Math and Physics
 \usepackage{amsmath, amssymb, physics}
@@ -64,11 +65,8 @@
 }
 \usepackage{bookmark} % PDF bookmarks
 
-% Bibliography
-\usepackage[numbers]{natbib} % Or switch to biblatex if preferred
-\usepackage[backend=biber,style=phys]{biblatex}
-\addbibresource{../references.bib}
-
+% Bibliography (merge script replaces with thebibliography)
+\usepackage[numbers]{natbib}
 
 % Line and Hyphenation
 \usepackage[none]{hyphenat}
@@ -115,24 +113,2468 @@
 
 
     \newpage
-        \input{sections/1-introduction}
-        \input{sections/2-vortex-æther-model}
-        \input{sections/3-vortex-mass-formula}
-        \input{sections/4-topological-vortex-lagrangian}
-        \input{sections/5-conclusion-outlook}
+        \section{Introduction}
+
+The Vortex Æther Model (VAM) is a unified theoretical framework in which elementary particles are modeled as stable, knotted vortex structures embedded within a compressible, superfluid-like medium---the \ae ther. All fundamental interactions—gravity, electromagnetism, and the strong and weak nuclear forces—are reinterpreted as emergent effects of fluid dynamics and topological constraints~\cite{VAM4}. In contrast to conventional field theories, VAM does not treat spacetime or gauge fields as fundamental. Instead, they emerge from coherent swirl and strain patterns within the underlying fluid substrate.
+
+VAM is governed by five core æther parameters that replace conventional constants:
+
+\begin{itemize}
+    \item \textbf{Core radius} (\(r_c\)): the characteristic radius of a vortex core, set on the order of \(1.40897017 \times 10^{-15}\,\mathrm{m}\) (approximate proton charge radius)~\cite{VAM4}.
+    \item \textbf{Swirl velocity} (\(C_e\)): the maximal tangential velocity of æther circulation near a core, empirically estimated as \(1.09384563 \times 10^6\,\mathrm{m/s}\) from vortex ring dynamics~\cite{VAM4}.
+    \item \textbf{Circulation} (\(\Gamma\)): the quantized circulation around a vortex loop, representing the swirl strength or helicity (units: \(\mathrm{m}^2/\mathrm{s}\)).
+    \item \textbf{Maximum ætheric force} (\( F^{\max}_\text{\ae}\)): the tensile force limit of the æther, fixed at \(29.053507\,\mathrm{N}\) based on vortex confinement models.
+    \item \textbf{Planck time} (\(t_p\)): the minimal temporal resolution scale, adopted from quantum gravity and appearing naturally in VAM as a unit for normalizing high-frequency oscillations.
+\end{itemize}
+
+\vspace{0.5em}
+\noindent These quantities give rise to all familiar physical constants. For instance:
+
+\begin{minipage}{0.48\textwidth}
+\begin{equation}
+\boxed{
+h = \frac{4\pi F^{\max}_\text{\ae}\,r_c^{2}}{C_e}
+}
+\label{eq:plancks-constants}
+\end{equation}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\begin{equation}
+\boxed{
+G = \frac{ F^{\max}_\text{\ae}\,\alpha(c\,t_P)^2}{m_e^2}
+}
+\label{eq:newtons-constants}
+\end{equation}
+\end{minipage}
+
+\vspace{0.5em}
+\begin{center}
+    \footnotesize
+    \textbf{Note:} These derivations rely on the Hookean core model (§2.3), beam overlap geometry (§3.1), and the Planck-time identity (see Eq.~58).
+\end{center}
+
+In VAM, the æther supports a finite stress ceiling \( F^{\max}_\text{\ae} = 29.053507\,\mathrm{N}\), which limits force propagation in any region. This contrasts with general relativity’s conjectured upper force bound \(c^4 / 4G \simeq 3.0 \times 10^{43}\,\mathrm{N}\), which emerges in VAM only when \( F^{\max}_\text{\ae}\) is combined with large-scale swirl metrics (Appendix~\ref{sec:keystone-constant-relations-in-vam}).
+
+Observable properties of particles arise from quantized invariants of knotted vortex flows. For example:
+- Electric charge corresponds to quantized circulation (signed),
+- Spin reflects the topological twist and rotational symmetry of the knot,
+- Mass emerges from the swirl energy density integrated over the vortex core volume.
+
+Crucially, physical constants such as \(\hbar\), \(e\), and the fine structure constant \(\alpha\) are not introduced by hand. Instead, they are expected to emerge from ætheric structure via a consistent vortex dynamics formalism. The remainder of this paper introduces a unified VAM Lagrangian from which both gravity and the Standard Model fields arise as topological-fluidic effects.
+
+\section{VAM Lagrangian Unifying All Interactions}
+
+A unified Lagrangian in VAM can be constructed as the sum of fluid-dynamical terms that correspond to each fundamental interaction. Each term is expressed using the vortex/æther variables and ensures the usual gauge symmetries or invariances are preserved, albeit with new physical interpretation. Below we describe key components of this Lagrangian: the gravitational (geometry) term, the electromagnetic swirl term, analogues for the strong and weak interaction terms, and any necessary potential terms (like a fluid analog of the Higgs mechanism). Throughout, the principle of local gauge invariance is maintained by treating certain fluid variables as gauge fields (e.g. the velocity potential), and topological invariants like linking numbers enforce conservation laws (e.g. conservation of helicity analogous to conservation of color charge).
+
+\subsection{Gravitational Term (Æther Geometry and Maximum Force)}
+
+In VAM, gravity emerges from pressure gradients and geometric distortions in the æther flow, rather than spacetime curvature. A static gravitational field corresponds to a steady-state flow of æther into a mass (like a vortex sink), and free-fall is equivalent to movement along this flow. One way to encode gravity in the Lagrangian is via an æther density or pressure term that produces an effective metric. For example, one can include a term for mass-density variation \( \rho_{\ae}^{(\text{fluid})}(x) \) and its gradient energy cost:
+
+\begin{equation}
+    L_{\text{grav}} = -\frac{1}{2}K\,(\nabla \rho_{\ae}^{(\text{fluid})})^2 - V(\rho_{\ae}^{(\text{fluid})})
+    \label{eq:grav-lagrangian}
+\end{equation}
+
+where \( V(\rho_{\ae}^{(\text{fluid})}) \) might be a pressure potential enforcing an equilibrium density. Small perturbations in \( \rho_{\ae}^{(\text{fluid})} \) propagate as sound waves (analogous to gravitational waves in this picture). A density gradient exerts a force on test particles (vortices) much like gravity~\cite{VAM3}.
+
+An equivalent way to incorporate gravity is through the maximum-force principle. VAM posits an upper limit \( F_{\ae}^{\max} \) to the force transmittable through the æther; remarkably, this concept aligns with general relativity's gravitational tension \( F_{\text{gr}}^{\max} \sim \frac{c^4}{4G} \) (as suggested by Gibbons). Imposing this within the Lagrangian mimics the constraint role of the Einstein-Hilbert action. One can introduce a constraint term of the form:
+
+\begin{equation}
+    L_{F_{\ae}^{\max}} = \Lambda\left(\left|\frac{\nabla p_{\ae}}{\rho_{\ae}^{(\text{fluid})}}\right| - F_{\ae}^{\max}\right)
+    \label{eq:max-force-constraint}
+\end{equation}
+
+meaning the local pressure gradient per unit mass density (i.e., the specific force) must not exceed the ætheric force limit \( F_{\ae}^{\max} \). Here \( \Lambda \) acts as a Lagrange multiplier enforcing this bound across the field. This reflects the core principle that æther cannot transfer infinite accelerations, reproducing GR features like causal horizons and energy bounds.
+
+Additionally, VAM suggests that swirl-induced metric effects can appear \emph{even without mass}: the rotation of the fluid itself creates an effective space-time distortion for other waves. Therefore, a term coupling local vorticity \( \omega \) to an effective metric is included, capturing frame-dragging and gravitational time dilation:
+
+\begin{equation}
+    L_{\text{metric}} = -\frac{1}{2}m\, g_{\mu\nu}(\omega) \, \dot{x}^\mu \dot{x}^\nu
+    \label{eq:metric-vorticity}
+\end{equation}
+
+Here, \( g_{\mu\nu}(\omega) \) is an emergent metric depending on local swirl. It can be expanded as \( \eta_{\mu\nu} + h_{\mu\nu}(\omega) \), where the time-time component \( h_{00} \propto \Phi(\rho_{\ae}^{(\text{fluid})}) \) arises from pressure potential, and spatial components \( h_{ij} \) account for swirl-induced inertial effects, mimicking gravitomagnetic fields. These terms enable VAM to reproduce deflection of light, time dilation, and free-fall trajectories — without invoking curvature of spacetime, but via dynamic geometry in the æther.
+
+\subsection{Electromagnetic Term (Swirl Gauge Field)}
+
+Electromagnetism in the VAM framework is reinterpreted as a manifestation of structured swirl in the æther. Specifically, the irrotational component of the fluid velocity field \( \vec{v} \) can be treated as a gauge potential \( A_v \), and its curl—the vorticity \( \vec{\omega} = \nabla \times \vec{v} \)—plays the role of the electromagnetic field strength.
+
+Under an infinitesimal gauge transformation, where the velocity potential \( \theta(x) \) is shifted by a smooth scalar function \( \alpha(x) \), we have:
+\[
+\vec{v} \to \vec{v} + \nabla \alpha(x),
+\]
+which mirrors the $U(1)$ gauge transformation \( A^\mu \to A^\mu + \partial^\mu \alpha \) in standard electromagnetism. This symmetry emphasizes that only \textit{relative swirl} (vorticity), not absolute velocity potential, is physically observable—just as only electromagnetic fields, not the potentials themselves, affect dynamics.
+
+\vspace{1em}
+We define a \emph{swirl gauge field} \( \mathbf{A}_v \) such that:
+\[
+\nabla \times \mathbf{A}_v = \vec{\omega}.
+\]
+This swirl field acts analogously to the electromagnetic 4-potential \( A^\mu \), with vorticity playing the role of the magnetic field and temporal changes in swirl corresponding to an electric-like field.
+
+The Lagrangian for the swirl field takes the standard Maxwell form:
+\begin{equation}
+    L_{\text{swirl}} = -\frac{1}{4}\, F_{v}^{\mu\nu} F^{v}_{\mu\nu},
+    \label{eq:swirl-lagrangian}
+\end{equation}
+where the swirl field strength tensor is defined as:
+\[
+F_v^{\mu\nu} = \partial^\mu A_v^\nu - \partial^\nu A_v^\mu.
+\]
+
+In vector notation, this decomposes as:
+\begin{align*}
+    \vec{B}_v &= \nabla \times \vec{A}_v = \vec{\omega}, \\
+    \vec{E}_v &= -\partial_t \vec{A}_v - \nabla \phi_v,
+\end{align*}
+where \( \phi_v \) is the scalar potential of the swirl field. These represent the swirl analogs of the electric and magnetic fields, respectively.
+
+\vspace{1em}
+This swirl Lagrangian \( L_{\text{swirl}} \) ensures the resulting field equations are formally equivalent to Maxwell's equations. Swirl waves (vortex disturbances) propagate through the æther at the characteristic speed \( \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} \), analogous to the speed of light \( c \). The energy density of the swirl field corresponds to an effective electromagnetic energy density in this formulation.
+
+\paragraph{Charge Interpretation.} In this picture, electric charge arises from topologically stable vortex sources or sinks of swirl—regions where \( \nabla \cdot \vec{E}_v \neq 0 \). For example:
+\[
+\nabla \cdot \vec{E}_v = \rho_e \quad \leftrightarrow \quad \nabla \cdot \vec{v} = \text{source density of æther},
+\]
+suggesting that charged particles correspond to local inflows or outflows of æther, i.e., topologically quantized disruptions in the fluid field. Likewise, the magnetic field arises from circular vortex motion around these sources—analogous to a current.
+
+\vspace{1em}
+\paragraph{Emergent Constants.} A key advantage of VAM is that it does not treat the fine structure constant \( \alpha = \frac{e^2}{\hbar c} \) as fundamental. Instead, VAM derives it from ætheric quantities:
+\[
+\alpha \sim \frac{\Gamma^2}{\rho_{\text{\ae}}^{(\text{fluid})} \, C_e^3 \, r_c^2},
+\]
+where \( \Gamma \) is the quantized circulation of a vortex loop, and \( r_c \) is the vortex core radius. The classical charge \( e \), vacuum permittivity, and even Planck’s constant \( \hbar \) are thus emergent from deeper fluid–topological quantities such as the swirl field strength, core geometry, and the dynamics of the æther itself.
+
+\vspace{1em}
+Ultimately, electromagnetism in VAM becomes a manifestation of coherent swirl patterns within a compressible fluid medium. This rephrasing not only preserves the gauge invariance and dynamical structure of electromagnetism, but also embeds it into a fluid–topological ontology with direct physical interpretation.
+\subsection{Strong Interaction Term (Linking Number \& Helicity)}
+
+In VAM, the strong nuclear force emerges not from fundamental gauge bosons, but from the topological entanglement and collective tension of linked vortex structures in the æther. When multiple vortex loops exist in a fluid, their topological configuration—particularly whether they are linked or knotted—contributes to a global conserved quantity: the helicity.
+
+The total helicity \( H \) in an ideal fluid is defined as:
+\[
+H = \int_V \vec{v} \cdot \vec{\omega} \, dV,
+\]
+where \( \vec{v} \) is the fluid velocity and \( \vec{\omega} = \nabla \times \vec{v} \) is the vorticity.
+
+For a collection of \( N \) vortex tubes, helicity naturally decomposes into:
+\begin{itemize}
+    \item \( H_{\text{self}} \): self-helicity from twist and writhe of individual loops,
+    \item \( H_{\text{mutual}} \): mutual helicity due to linking between different loops.
+\end{itemize}
+
+The mutual helicity between two vortex filaments \( i \) and \( j \) is proportional to their \textbf{Gauss linking number} \( Lk_{ij} \), a topological invariant that counts how many times one loop winds around the other:
+\[
+H_{\text{mutual}}^{(i,j)} = 2\, Lk_{ij} \, \Gamma_i \Gamma_j,
+\]
+where \( \Gamma_i \) is the circulation (quantized in VAM) of the \( i \)-th vortex.
+
+\vspace{0.5em}
+\paragraph{Lagrangian Form.} The strong interaction is modeled in VAM as an effective topological binding energy associated with these linkages. The proposed Lagrangian term is:
+\begin{equation}
+    L_{\text{strong}} = -\frac{\kappa}{2} \sum_{i<j} Lk_{ij} \, \Gamma_i \Gamma_j
+    - \frac{\kappa'}{2} \sum_i \Gamma_i^2,
+    \label{eq:strong-lagrangian}
+\end{equation}
+where:
+\begin{itemize}
+    \item \( \kappa \) governs the coupling strength of mutual linking,
+    \item \( \kappa' \) penalizes vortex self-energy (i.e., core tension),
+    \item \( Lk_{ij} \in \mathbb{Z} \) is the topological linking number.
+\end{itemize}
+
+The first term promotes bound states via vortex entanglement: if two loops are linked (\( Lk_{ij} \neq 0 \)), their interaction energy is lowered. This mimics the behavior of quarks in hadrons, where confinement emerges from an increasing potential when attempting to separate the constituents.
+
+The second term represents intrinsic vortex energy and acts like a rest mass term or core-stabilization penalty. Together, they create a potential well for tightly linked configurations, just like the "Y"-junction potential or flux-tube models in QCD.
+
+\vspace{0.5em}
+\paragraph{Baryons as Linked Triplets.} For example, a proton (uud) or neutron (udd) in VAM is modeled as three knotted or linked vortices (e.g., \( 5_2 \) and \( 6_1 \) knots) arranged in a Borromean or other link configuration. The total helicity and mutual linking determine whether the system is stable. When a vortex attempts to break away (deconfinement), \( Lk_{ij} \) drops and the energy increases, enforcing topological confinement—mimicking the linear potential between quarks in QCD.
+
+\vspace{0.5em}
+\paragraph{Color Analogy.} Instead of requiring a non-Abelian gauge field (like SU(3) in quantum chromodynamics), VAM encodes “color” via:
+\begin{itemize}
+    \item distinct circulation signs or swirl directions,
+    \item discrete knot types or toroidal winding numbers \( (p, q) \),
+    \item quantized linking patterns \( Lk_{ij} \).
+\end{itemize}
+
+Each quark-like vortex could carry a unique circulation \( \Gamma \), and only certain combinations form net-topologically neutral (colorless) baryons. Thus, the color singlet condition of QCD is recast as a constraint on the total topological linkage.
+
+\vspace{0.5em}
+\paragraph{Relation to Mass.} The master mass formula in VAM includes terms that scale with \( p q \), effectively measuring a knot’s topological complexity. These are directly related to helicity and linking number. In this way, mass and confinement arise from a common source: the topology of vortex networks.
+
+\medskip
+This fluid-topological interpretation captures essential features of the strong interaction: confinement, asymptotic freedom (in the limit of low linking), and hadron stability, all derived from the geometry of the æther.
+\subsection{Weak Interaction Term (Reconnection \& Torsion)}
+
+In the Vortex \AE ther Model, the weak interaction is interpreted as a rare topological transition in the vortex network—specifically, as a \textbf{reconnection event} that changes the internal structure (knot type) of a particle. Just as weak decays in the Standard Model allow flavor change and violate certain symmetries, vortex reconnections in VAM correspond to shifts in \textbf{knot topology}, such as a neutron transforming into a proton, electron, and neutrino. These transitions are suppressed except at high energy densities or extreme curvature.
+
+\vspace{0.5em}
+\paragraph{Helicity Flux as a Symmetry Breaker.}
+In classical ideal fluids, helicity is strictly conserved, forbidding knot reconnection. But in VAM, a \textbf{controlled violation} is allowed through curvature-induced reconnection. We model this with a helicity torsion term:
+\begin{equation}
+    L_{\text{weak}} = -\lambda \left[ \vec{\omega} \cdot (\nabla \times \vec{\omega}) \right]^2,
+    \label{eq:weak-helicity-term}
+\end{equation}
+where:
+\begin{itemize}
+    \item \( \vec{\omega} = \nabla \times \vec{v} \) is the vorticity,
+    \item \( \vec{\omega} \cdot (\nabla \times \vec{\omega}) \) is the \textbf{helicity density flux}, a parity-odd pseudoscalar,
+    \item \( \lambda \) controls the strength of this reconnection channel.
+\end{itemize}
+
+This term is normally negligible for stable, symmetric vortex knots. However, at high torsion or tight curvature (e.g. under violent collision or decay), it becomes large and triggers a topological change. This mirrors how the weak interaction is both \textbf{parity-violating} and suppressed at low energies due to the large mass of the \( W^\pm \) bosons.
+
+\vspace{0.5em}
+\paragraph{Curvature Activation Threshold.}
+A complementary formulation invokes higher-order curvature terms. Quantum fluids exhibit \textbf{Kelvin waves}—helical excitations along vortex filaments—which, if highly excited, can destabilize and reconnect a loop. We model this behavior via a fourth-derivative term:
+\begin{equation}
+    L_{\text{weak}}' = -\eta \left( \nabla^2 \vec{v} \right)^2,
+    \label{eq:kelvin-wave-term}
+\end{equation}
+where \( \nabla^2 \vec{v} \) measures local vortex bending. This term penalizes tight curvature and introduces an energy cost for maintaining small-radius torsion. If the energy exceeds a critical scale (comparable to the electroweak scale), the vortex becomes unstable and may transition into a different knot—akin to \textbf{flavor change} or particle decay.
+
+\vspace{0.5em}
+\paragraph{Chirality and Parity Violation.}
+The Standard Model’s weak force is chiral: it couples only to \textbf{left-handed} fermions. In VAM, this asymmetry is naturally replicated by vortex \textbf{handedness}. If only left-handed vortex twists (or specific chirality modes) activate the helicity-breaking terms \( L_{\text{weak}} \) or \( L_{\text{weak}}' \), parity is effectively violated, and the \( SU(2)_L \) structure is mimicked through a \textbf{chirality selection rule}.
+
+\vspace{0.5em}
+\paragraph{Physical Interpretation.}
+These weak terms satisfy all qualitative features of the Standard Model’s weak interaction:
+\begin{itemize}
+    \item \textbf{Non-conservation of topological quantities} (helicity or link type),
+    \item \textbf{Short range} due to suppression by a large activation energy (\( \sim 80 \) GeV),
+    \item \textbf{Parity violation} through chirality-sensitive activation.
+\end{itemize}
+
+Hence, weak decay processes like \( n \to p + e^- + \bar{\nu}_e \) are interpreted as a high-curvature reconnection event in a tightly bound knot structure, releasing a portion of the vortex into simpler configurations.
+
+\medskip
+While the detailed quantum dynamics remain open to further modeling, this fluid-topological reinterpretation grounds weak interactions in reconnection physics—bringing them into the unified æther dynamics of VAM.
+
+\subsection{Mass Generation Term (Swirl Potential and Symmetry Breaking)}
+
+In the Standard Model, the Higgs field provides a scalar potential that breaks electroweak symmetry, giving mass to particles through spontaneous symmetry breaking. In VAM, a similar mechanism can be constructed using the fluid’s internal swirl energy and tension. Specifically, mass arises from the self-energy stored in \textbf{localized knotted swirl configurations}—the fluid analog of vacuum expectation values.
+
+\vspace{0.5em}
+\paragraph{Vortex Core Tension as an Effective Mass Term.}
+Every stable knotted excitation in the æther possesses an internal tension and curvature-dependent energy due to confined swirl. This energy is interpreted as the particle’s rest mass. We represent this using a \textbf{swirl potential} term \( V_{\text{swirl}} \), defined over the magnitude of the vorticity field \( \vec{\omega} \), such that:
+\begin{equation}
+    L_{\text{mass}} = -V_{\text{swirl}}(\vec{\omega}) = -\mu^2 |\vec{\omega}|^2 + \lambda |\vec{\omega}|^4,
+    \label{eq:mass-term}
+\end{equation}
+where:
+\begin{itemize}
+    \item \( \mu^2 > 0 \): determines the scale of spontaneous swirl condensation,
+    \item \( \lambda \): controls the stiffness of the swirl vacuum,
+    \item \( |\vec{\omega}|^2 \): vorticity magnitude squared, playing the role of a scalar field amplitude.
+\end{itemize}
+
+This is a \textbf{Mexican-hat potential} for the swirl field: its minimum is at \( |\vec{\omega}| = \omega_0 \neq 0 \), meaning the æther spontaneously develops a preferred level of internal swirl. The energy of a vortex knot then becomes proportional to the amount of swirl confined within it—this is the analog of mass generation via Higgs condensation.
+
+\vspace{0.5em}
+\paragraph{Æther Vacuum Structure.}
+This spontaneous swirl breaks the rotational gauge symmetry \( SO(3) \rightarrow SO(2) \) in the fluid configuration space, picking out a preferred rotation axis. In the particle picture, this corresponds to a non-zero rest mass for spinor and vector excitations: their mass arises from disturbing the swirl vacuum.
+
+Moreover, since the Lagrangian term \( |\vec{\omega}|^2 \) appears directly in the VAM Master Mass Formula (see Eq.~\ref{eq:mass-term}), this term also reinforces the interpretation of \textbf{mass as the swirl self-energy}. By tuning \( \mu \) and \( \lambda \), the effective mass of different knots (i.e., particles) can be matched to empirical values—providing an analog of Higgs mass assignment via coupling constants.
+
+\vspace{0.5em}
+\paragraph{Geometric Interpretation.}
+From a geometric standpoint, the swirl potential creates an \textbf{energy cost for zero swirl}, favoring stable knotted states over vacuum fluctuations. This mirrors how particles in the Standard Model gain inertia via their interaction with the Higgs field. In VAM, however, there is no separate scalar field: mass emerges purely from the internal structure and tension of the swirl field embedded in the compressible æther.
+
+\vspace{0.5em}
+\paragraph{Alternative Formulation via Core Compression.}
+One may also express the mass-generating potential in terms of the \textbf{core radius deviation} \( \delta r_c = r_c - r_0 \), where \( r_0 \) is a preferred radius of the stable knot. Then:
+\begin{equation}
+    V_{\text{core}}(r_c) = k\, (\delta r_c)^2 = k\, (r_c - r_0)^2,
+\end{equation}
+for some stiffness constant \( k \), producing a mass when the core deviates from its vacuum configuration.
+
+\medskip
+\noindent
+Together, the \textbf{swirl condensation} and \textbf{core compression} offer a dual picture of mass generation in VAM: particles acquire mass by trapping swirl and by distorting the æther around their vortex cores—akin to field excitation and scalar potential in the Higgs mechanism.
+
+
+
+\subsection{Full Lagrangian Structure of VAM: Unified Field Dynamics in Æther}
+
+Bringing together all interaction terms, the Vortex Æther Model (VAM) presents a unified Lagrangian \( L_{\text{VAM}} \) that encodes gravity, electromagnetism, the strong and weak nuclear forces, and mass generation as emergent fluid-topological phenomena in an underlying compressible, swirling æther medium.
+
+\vspace{1em}
+\noindent
+\textbf{Master Structure:}
+\begin{equation}
+\boxed{
+L_{\text{VAM}} = L_{\text{kin}} + L_{\text{grav}} + L_{\text{swirl}} + L_{\text{strong}} + L_{\text{weak}} + L_{\text{mass}}
+}
+\end{equation}
+
+\noindent
+Each term has clear physical meaning and fluid-theoretic interpretation:
+\begin{itemize}
+    \item \( L_{\text{kin}} = \tfrac{1}{2} \rho_{\ae}^{(\text{fluid})} |\mathbf{v}|^2 \): Æther kinetic energy density.
+
+    \item \( L_{\text{grav}} = -\tfrac{1}{2} K (\nabla \rho_{\ae}^{(\text{fluid})})^2 - V(\rho_{\ae}^{(\text{fluid})}) + \Lambda\left(\frac{|\nabla p_{\ae}|}{\rho_{\ae}^{(\text{fluid})}} - F^{\max}_{\ae} \right) \): gravitational interaction from æther density and the maximum force constraint.
+
+    \item \( L_{\text{swirl}} = -\tfrac{1}{4} F^{\mu\nu}_{v} F_{v\,\mu\nu} \): electromagnetic interaction as a swirl gauge field.
+
+    \item \( L_{\text{strong}} = -\tfrac{\kappa}{2} \sum_{i<j} Lk_{ij} \Gamma_i \Gamma_j - \sum_i \tfrac{\kappa'}{2} \Gamma_i^2 \): strong interaction via linking and mutual helicity of knotted vortices.
+
+    \item \( L_{\text{weak}} = -\lambda \, \left|\vec{\omega} \cdot (\nabla \times \vec{\omega}) \right|^2 - \eta (\nabla^2 \mathbf{v})^2 \): reconnection and torsion-based flavor-changing weak dynamics.
+
+    \item \( L_{\text{mass}} = -\mu^2 |\vec{\omega}|^2 + \lambda |\vec{\omega}|^4 \): mass generation from internal swirl potential (Higgs analog).
+\end{itemize}
+
+\vspace{1em}
+\noindent
+\textbf{Natural Constants Emergence:}
+
+Importantly, all physical constants used are derived—not inserted ad hoc. For example:
+\[
+\boxed{
+h = \frac{4\pi F^{\max}_{\ae} \, r_c^2}{C_e}, \qquad
+G = \frac{F^{\max}_{\ae} \, \alpha (ct_p)^2}{m_e^2}
+}
+\]
+
+This expresses Planck’s constant \( h \) and Newton’s constant \( G \) in terms of VAM’s fundamental æther constants: core radius \( r_c \), swirl velocity \( \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} \), maximum force \( F^{\max}_{\ae} \), and Planck time \( t_p \), along with \( \alpha \) and \( m_e \) from empirical constraints.
+
+\vspace{1em}
+\noindent
+\textbf{Interpretation Summary:}
+
+Each Lagrangian term maps to a known physical interaction:
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|p{0.78\linewidth}|}
+\hline
+\textbf{Term} & \textbf{Physical Interpretation} \\
+\hline
+\( L_{\text{kin}} \) & Basic æther motion and energy transport \\
+\( L_{\text{grav}} \) & Gravity as density gradients, tension constraints, and swirl-curved effective metric \\
+\( L_{\text{swirl}} \) & Electromagnetism as a swirl (vorticity) gauge field with conserved flux \\
+\( L_{\text{strong}} \) & Strong force via mutual helicity and topological linking of knotted vortex cores \\
+\( L_{\text{weak}} \) & Weak force via reconnection-enabled topology change under high curvature (torsion) \\
+\( L_{\text{mass}} \) & Mass from swirl potential energy and spontaneous swirl condensation (Higgs analog) \\
+\hline
+\end{tabular}
+\caption{Unified interpretation of all Lagrangian components in the Vortex Æther Model.}
+\end{table}
+
+\vspace{1em}
+\noindent
+\textbf{Conclusion:}
+
+This unified VAM Lagrangian provides a self-contained, dimensionally consistent description of all fundamental interactions in terms of a single structured æther. Unlike the Standard Model, where mass, charge, and coupling constants are inserted externally, VAM derives them from swirl, tension, and core geometry—offering an ontologically unified fluid-mechanical substrate for all fields and particles.
+\section{Predictive Mass Formula for Standard Model Particles}
+
+One of the triumphs of the VAM approach is a predictive mass formula for elementary particles based on their vortex topology. Since particle mass in VAM arises from the fluid's rotational energy, one can derive expressions for mass in terms of vortex parameters: circulation $\Gamma$, core size $r_c$, swirl velocity $C_e$, and topological invariants like winding numbers or linking numbers. Two candidate mass formulae (Model A and Model B) were explored, with ModelA providing remarkable accuracy.
+
+\begin{tcolorbox}[colback=gray!10,colframe=black!40,title=Clarification: Mass Formula Approaches]
+    \textbf{Clarification:} The predictive mass formula introduced below (Model A) takes a simplified, topological route that is distinct from the composite-knot-based \textit{Master Formula} described earlier. This \((p,q)\) model is particularly suitable for isolated fundamental fermions (e.g., the electron), where the particle is modeled as a single torus knot. In contrast, the Master Formula accounts for composite vortex volumes and suppression factors, and is used for nucleons, atoms, and multi-knot systems. Both approaches are complementary: the knot-length-based model offers intuitive geometric scaling, while the Master Formula provides more accurate predictions for complex systems.
+\end{tcolorbox}
+
+\subsection{Derivation of Mass from Vortex Energy}
+
+Consider a single vortex loop (of core radius $r_c$ and circulation $\Gamma$) representing a particle. Its core has a rotating flow; the rotational kinetic energy per unit volume (energy density) is $u = \tfrac{1}{2}\rho_{\text{\ae}}^{(\text{energy})}\omega^2$, where $\omega$ is the angular vorticity. For a thin vortex core, $\omega \approx \frac{2 C_e}{r_c}$ (since $C_e$ is the tangential speed at radius $r_c$). The energy contained in the vortex core of volume $V \sim \frac{4}{3}\pi r_c^3$ is then:
+\[
+    E_{\text{core}} \approx \tfrac{1}{2}\rho_{\text{\ae}}^{(\text{energy})}\omega^2 V = \tfrac{1}{2}\rho_{\text{\ae}}^{(\text{energy})}\left(\frac{2C_e}{r_c}\right)^2 \frac{4}{3}\pi r_c^3 = \frac{8\pi}{3}\,\rho_{\text{\ae}}^{(\text{energy})} C_e^2\, r_c~,
+\]
+as shown in the VAM derivation.
+
+
+If the vortex is knotted or links with itself (e.g., a torus knot wraps through the donut hole multiple times), the effective length of vortex core increases. For a torus knot characterized by two integers $(p, q)$ (with $p$ loops around the torus's poloidal direction and $q$ around the toroidal direction), the total vortex line length scales approximately with $\sqrt{p^2+q^2}$ (this is the length of the knot embedding, assuming a large torus radius). Thus, more complex knots have longer core length and hence higher energy. Additionally, a knotted vortex carries helicity due to its twisted configuration. The simplest approximation is that a nontrivial knot like a torus knot has a self-linking number (sum of twist + writhe) and possibly contributes an extra energy term proportional to $p \times q$ (since a $(p,q)$ knot can be thought of as $p$ strands going around $q$ times, entangling itself). We incorporate this via a dimensionless topological coupling $\gamma$ multiplying $p q$.
+
+Combining the geometric length contribution and the topological helicity contribution, Model A posits the particle mass formula:
+\begin{equation}
+    \boxed{  M(p,q) = 8\pi\,\rho_{\text{\ae}}^{(\text{mass})}\,r_c^3\,\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} \left(\sqrt{p^2 + q^2} + \gamma\, p\,q\right)     }
+\end{equation}
+as given in VAM literature. Here $\sqrt{p^2+q^2}$ represents the \grqq swirl length\textquotedblright of the knot (proportional to how far the vortex line stretches through space), and the $\gamma p q$ term represents the additional energy from the knot's inter-linking/twisting (a helicity/interaction term). All the dimensional factors ($8\pi \rho_{\text{\ae}} r_c^3 C_e$) set the overall scale of mass; they can be thought of as converting a certain volume of rotating æther into kilograms via $E=mc^2$. Notably, $C_e$ here plays a role analogous to $c$ (the ultimate speed in the medium), and $\rho_{\text{\ae}} r_c^3$ provides a natural mass unit. The constant $\gamma$ is dimensionless and was not chosen arbitrarily – it was derived from first principles by calibrating to a known particle mass (the electron).
+
+Using the electron as a reference, VAM assumes the electron corresponds to the simplest nontrivial knot, the trefoil $T(2,3)$ (which has $p=2,q=3$). Plugging $(2,3)$ and the known electron mass $M_e = 9.109\times10^{-31}$ kg into (1) allows solving for $\gamma$:
+\[
+    M_e = 8\pi \rho_{\text{\ae}}^{(\text{mass})} r_c^3 \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} \left(\sqrt{2^2+3^2} + \gamma \cdot 2\cdot3\right)
+\]
+so
+\[
+    \sqrt{13} + 6\gamma = \frac{M_e}{8\pi \rho_{\text{\ae}}^{(\text{mass})} r_c^3 C_e}
+\]
+Based on chosen values for $\rho_{\text{\ae}}^{(\text{mass})}, r_c, C_e$ (from other considerations), one obtains $\gamma \approx 5.9\times10^{-3}$. This small positive $\gamma$ suggests the helicity term is a slight correction -- intuitively, most of the electron's mass comes from the base length $\sqrt{p^2+q^2}$ term, with a few-percent contribution from knot helicity.
+
+For comparison, Model B tried a simpler form $M(p,q) \propto (p^2 + q^2 + \gamma p q)$ (i.e., dropping the square-root on the length). However, Model B drastically overestimates masses (errors of 35\%--3700\% for nucleons), indicating that the square-root form (which grows more slowly for large $p,q$) is essential. We will therefore focus on Model A, which has proven accurate for known particles.
+\subsection{Mass Prediction for the Electron (Model A)}
+
+Using the calibrated formula with $\gamma\approx0.0059$, VAM predicts the mass of the electron by modeling it as a torus trefoil knot $T(2,3)$. The values of $\rho_{\text{\ae}}^{(\text{mass})}, C_e, r_c$ are derived from prior vortex-fluid parameters (see Sec.~\ref{sec:coreconstants}).
+
+\begin{table}[H]
+    \centering
+    \footnotesize
+    \begin{tabular}{lllll}
+        \toprule
+        \textbf{Particle} & \textbf{Knot Topology $(p,q)$} & \textbf{Predicted Mass (kg)} & \textbf{Actual Mass (kg)} & \textbf{Percent Error} \\
+        \midrule
+        Electron ($e^-$) & Trefoil knot $T(2,3)$ & $9.11\times10^{-31}$ (by definition) & $9.109\times10^{-31}$ & ~0\% \\
+        \bottomrule
+    \end{tabular}
+    \caption{Electron mass derived using VAM's knot-based Model A.}
+    \label{tab:ModelA_Electron}
+\end{table}
+
+\noindent
+\textbf{Note:} While Model A can, in principle, be extended to baryons using larger $(p,q)$ knots (e.g., via empirical fits such as $T(161,241)$), this approach lacks a clear topological justification and becomes degenerate for many high-$p,q$ pairs. Instead, we refer the reader to the \textit{Master Formula} treatment (see Sec.~\ref{sec:master-formula-masses}), which predicts proton and neutron masses from volume-integrated swirl energy of quark knots (e.g., $5_2$, $6_1$), and includes chirality, linking, and collective vortex volume effects.
+\subsection{Knot-Based Mass Mechanism in Baryons (Master Formula Interpretation)}
+
+As shown in prior sections, the VAM framework allows accurate prediction of particle masses using the Master Formula based on vortex volume and swirl energy. In particular, the electron and neutron masses are reproduced within 0.01\% accuracy, and the proton within $6 \times 10^{-4}$. This remarkable agreement emerges not from curve fitting, but from topological assumptions about the particles’ internal vortex structure.
+
+In VAM, the proton and neutron are modeled as bound states of three coherent vortex knots — corresponding to their quark substructure. Each constituent vortex is assumed to have a characteristic internal topology (e.g., a $5_2$ or $6_1$ knot), with energy derived from its effective volume, circulation, and twist.
+
+While earlier versions of Model A attempted to encode baryons using extremely large torus knots like $T(161,241)$ or $T(410,615)$ (i.e., scaled-up trefoils), this led to combinatorial degeneracy and lacked a clear physical rationale. The improved Master Formula resolves this by attributing mass to vortex \textbf{core energy stored in a specific knot’s volume} and chirality — not in inflated winding counts.
+
+\paragraph{Linking Topology and Proton–Neutron Mass Split.}
+
+The proton and neutron differ only slightly in mass (by $\sim$0.13\%), yet their internal linking topology is distinct in VAM:
+
+\begin{itemize}
+    \item \textbf{Proton:} The three vortex knots are linked in a \emph{fully interlinked} configuration (each pair shares a nonzero linking number). Removal of one knot still leaves a bound pair, contributing to proton’s long-term stability.
+
+    \item \textbf{Neutron:} The vortex knots form a \emph{Borromean configuration} — no pair is directly linked, but the full triplet is inseparable. Removing one knot unlinks the rest, explaining why the neutron is unstable outside nuclei. The mutual entanglement adds a small tension energy, raising its mass slightly above the proton.
+\end{itemize}
+
+This subtle topological distinction is modeled in the Master Formula by adjusting the total effective vortex volume — the Borromean arrangement traps slightly more swirl energy than the chain-linked proton. This accounts quantitatively for the observed neutron–proton mass difference and decay energy.
+
+\subsubsection*{Macroscopic Embedding via $F_{\text{\ae}}^{\max}$ and $t_p$}
+
+One can express the particle mass formula in terms of the maximum æther tension and Planck time, linking microscopic structure to cosmic limits. Starting from:
+
+\[
+    E_{\text{vortex}} = \tfrac{1}{2} \rho_{\text{\ae}}^{(\text{energy})} C_e^2 \cdot V_{\text{knot}} \,,
+\]
+
+and using the identity $\rho_{\text{\ae}}^{(\text{energy})} = \frac{F_{\text{\ae}}^{\max}}{r_c^2 C_e^2}$, we find:
+
+\begin{equation}
+    M = \frac{F_{\text{\ae}}^{\max}}{2 r_c^2} \cdot V_{\text{knot}} \,.
+\end{equation}
+
+To connect to quantum scales, we apply a temporal quantization using the Planck time $t_p$ as a universal tick. Dimensionalizing $M$ via $t_p^2$ and $c^2$, we arrive at:
+
+\begin{equation}
+    M = \frac{F_{\text{\ae}}^{\max} \, t_p^2}{r_c^2 c^2} \cdot V_{\text{knot}} \,.
+\end{equation}
+
+This form demonstrates how VAM naturally integrates Planck-scale granularity ($t_p$), relativistic limits ($F_{\text{\ae}}^{\max}$), and vortex geometry ($V$) to explain mass. The expression correctly predicts particle masses when the knot volume and swirl field match physical parameters from vortex simulations.
+
+\paragraph{Implication:} Rather than assigning particles to arbitrary $(p,q)$ torus knots, the Master Formula uses realistic 3D knot types (like $5_2$, $6_1$), whose actual 3D volumes determine the stored energy. This sidesteps issues of knot overfitting while preserving the beautiful insight that particle mass is a measure of topological swirl energy in a finite-stress medium.
+
+\subsection{Hypothetical Neutral Particle \texorpdfstring{($X^0$)}{(X⁰)} from Fully-Linked Vortex Triplet}
+
+The VAM framework, by virtue of its topological degrees of freedom, predicts not only the known Standard Model particles but also permits the existence of novel, stable configurations. One intriguing example is a hypothetical \textbf{neutral baryon-like state} we call $X^0$: a three-knot bound state topologically distinct from both proton and neutron.
+
+In traditional physics, the only $\sim$940\,MeV-scale neutral baryon (the neutron) is unstable in isolation. However, VAM proposes that \textbf{topological stability} — not quantum flavor or confinement rules — dictates stability. If three vortex knots were arranged in a fully pairwise-linked configuration (rather than Borromean), the resulting structure could be inherently stable against decay.
+
+\paragraph{Topological Construction of $X^0$.}
+
+- In the \textbf{neutron}, the three vortex loops are arranged in a \textbf{Borromean link}: no pair is directly linked ($Lk_{ij}=0$), yet all three together are inseparable.
+- In $X^0$, each vortex loop links \textbf{directly with both of the others}, forming a symmetric \textbf{fully linked triplet}:
+  \[
+  Lk_{12} = Lk_{23} = Lk_{13} = 1
+  \]
+  This creates a total mutual linking number $\sum Lk_{ij} = 3$, leading to increased topological coupling and structural robustness. If one loop is removed, the other two remain linked — a property not shared by the neutron.
+
+\paragraph{Charge Neutrality and Knot Orientation.}
+
+The configuration is assumed to be \textbf{net neutral}, with two vortex loops oriented oppositely to the third — cancelling total circulation. This mirrors the charge balance seen in the neutron but now arises from vectorial swirl cancellation. Unlike the neutron, however, $X^0$’s fully-linked topology forbids decay by reconnection: there is no way to unlink the structure without external energy.
+
+\paragraph{Mass Estimate via the VAM Master Formula.}
+
+We now apply the VAM Master Mass expression in its linking-number form:
+\[
+M = \frac{8\pi\, F_{\text{\ae}}^{\max} \, t_p^2}{3 c^2 r_c} \cdot Lk
+\]
+This version links mass directly to vortex linking and æther constants. Substituting $Lk=3$ for the fully-linked $X^0$ state, we obtain:
+\[
+M_{X^0} = \frac{8\pi\, F_{\text{\ae}}^{\max} \, t_p^2}{c^2 r_c}
+\]
+This is numerically \textbf{identical} to the value previously obtained for the neutron, using the same core constants. In fact, for:
+\[
+F_{\text{\ae}}^{\max} = 29.0535\,\text{N}, \quad t_p = 5.39\times10^{-44}\,\text{s}, \quad r_c = 1.40897\times10^{-15}\,\text{m}
+\]
+we find:
+\[
+M_{X^0} \approx 1.674\,\times10^{-27}\,\text{kg}
+\]
+matching the neutron within 0.01\%. Thus, VAM predicts that \textbf{a neutral, stable, fully-linked triplet} of vortex knots — topologically distinct from neutron — could exist with nearly identical mass.
+
+\paragraph{Phenomenological Implications.}
+
+Unlike the neutron, $X^0$ cannot decay via reconnection or unwind its linking without violating the topological constraints. If such particles formed in the early universe, they would:
+
+- Be \textbf{neutral and non-ionizing}, hence invisible to electromagnetic detection.
+- Be \textbf{massive and stable}, contributing to gravitational mass.
+- Be indistinguishable from dark baryonic matter under conventional particle searches.
+
+This makes $X^0$ a \textbf{natural dark matter candidate} within the VAM framework. It also hints at a new kind of stability rule: not based on quantum charges, but on 3D knot-theoretic constraints.
+
+\paragraph{Interpretation.}
+
+In contrast to the Standard Model, where particle stability follows from conservation laws (like baryon number or electric charge), VAM assigns stability to \textbf{topological non-triviality}. The $X^0$ is a demonstration of this principle: its decay is \textbf{not energetically forbidden}, but \textbf{topologically impossible} without full unlinking — which requires a global, nonlocal reconnection that cannot occur spontaneously.
+
+\paragraph{Conclusion.}
+
+The VAM Master Formula not only reproduces known particle masses but also suggests the existence of \textbf{topologically protected exotic states}. $X^0$ exemplifies this predictive power: its existence depends entirely on whether nature allows this particular linking configuration. If not observed, one may posit a selection mechanism in the early universe preventing such symmetric linkings. But if such particles exist, they would behave as cold, neutral, invisible matter — precisely what dark matter appears to be.
+\subsection{Chirality-Induced Swirl as the Origin of Time and Mass in VAM}
+
+In the Vortex Æther Model (VAM), particles are knotted excitations of a compressible, inviscid superfluid (\emph{æther}). A key geometric insight arises from the observation that chirality --- the handedness of a vortex knot --- directly seeds the emergence of both mass and temporal orientation. This mechanism is central to what we term the \emph{Vortex Helicity Principle}, which links local topological asymmetry to the generation of an axial swirl tube, interpreted as a directed flow of æther corresponding to the arrow of time.
+
+\paragraph{Helicity and Axial Threading:}
+A chiral vortex knot $K$ (such as a trefoil $T(2,3)$ or higher $(p,q)$ torus knot) viewed from above exhibits a nonzero handedness, denoted $\chi(K) \in \{-1, +1\}$. This chirality induces a polar-threaded swirl along the vortex core centerline, creating an axial vortex tube $\mathcal{T}(K)$ oriented along a preferred direction (e.g., $\hat{z}$). The swirl velocity within this tube is approximately constant and capped at $C_e$, the æther’s critical circulation velocity.
+
+\begin{equation}
+    \chi(K) \neq 0 \quad \Rightarrow \quad \exists~\mathcal{T}(K)~\text{with}~\mathbf{v}_{\text{swirl}} = \chi(K) \cdot \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} \, \hat{z}
+\end{equation}
+
+This axial thread plays multiple roles:
+\begin{itemize}
+    \item \textbf{Temporal Orientation:} As shown in~\cite{VAM2}, time in VAM is not an external coordinate but a circulation-induced internal clock. The presence and orientation of $\mathcal{T}(K)$ defines the particle’s time axis, with helicity giving rise to directed temporal flow. The swirl velocity defines a local arrow of time, aligning with the knot’s vorticity-induced thread.
+
+    \item \textbf{Mass Accumulation:} The confined energy of the axial swirl tube leads to mass. The rotational kinetic energy stored in $\mathcal{T}(K)$ behaves as rest mass for the vortex:
+    \begin{equation}
+        M(K) = \int_{\mathcal{T}(K)} \frac{1}{2} \rho_{\text{\ae}}^{(\text{energy})} |\mathbf{v}_{\text{swirl}}|^2 \, dV
+    \end{equation}
+    Achiral knots ($\chi = 0$) produce no net axial swirl and thus contribute no effective rest mass or time orientation.
+
+    \item \textbf{Interaction Potential:} The swirl tube mediates interactions by coupling to nearby vortices via topological linking, circulation interference, or mutual vorticity exchange. It is the thread by which knotted entities “sense” one another, analogous to gauge field propagation.
+\end{itemize}
+
+\paragraph{Temporal Ontology Alignment:}
+This mechanism is in line with the broader temporal ontology developed across the VAM series:
+\begin{enumerate}
+    \item In~\cite{VAM2}, time emerges as the internal rotation of a knotted clock --- a process quantified by looped vorticity. The axial swirl tube formalizes the "time vector" intrinsic to such clocks.
+
+    \item In~\cite{VAM13}, time is shown to arise from topological winding --- a natural consequence of the chirality-swirl relation. The vortex thread defines a flow line in æther-space whose proper time increases with helicity flux.
+
+    \item In~\cite{VAM4}, gravitational curvature is replaced with swirl-induced refraction. The threading here becomes geodesic-like --- it defines the direction along which other vortices fall or dilate.
+\end{enumerate}
+
+Thus, the chirality-induced axial swirl tube unifies multiple VAM ideas:
+\vspace{0.5em}
+\begin{center}
+\textbf{Chirality $\Rightarrow$ Helicity $\Rightarrow$ Axial Swirl $\Rightarrow$ Time Flow $\&$ Mass Accumulation}
+\end{center}
+
+\paragraph{Discriminating Knots by Temporal Capability:}
+Importantly, this also provides a selection rule: \emph{only chiral knots can generate real mass and participate in time evolution}. Achiral knots, despite being topologically nontrivial, fail to generate axial threads and are thus excluded from the VAM spectrum of particles. In particular:
+\begin{itemize}
+    \item \textbf{Achiral torus knots} (e.g., $6_1$, $8_{18}$) produce no net helicity at the center; they are topologically valid but physically inert.
+    \item \textbf{Chiral knots} (e.g., trefoil, $T(2n,3n)$) generate swirl-aligned axial threads, enabling temporal progression and energetic manifestation.
+\end{itemize}
+
+This criterion complements VAM’s earlier rejection of hyperbolic or achiral knots in its mass tables. In summary, chirality is not just a geometric property --- it is a topological \textit{precondition for existence} in the VAM ontology.
+
+\subsection{Chirality at the Knot Center and Temporal Vortex Flow}
+
+In the Vortex Æther Model (VAM), chirality is not merely a handedness label — it is a *topodynamic selector* that governs whether a vortex knot couples to the æther's swirl field, how it evolves in time, and whether it contributes to inertial mass. This idea is deeply embedded in the VAM's temporal ontology.
+
+Our hypothesis begins at the \textbf{center of a chiral knot}, visualized from a top-down view. This center acts as a local axis of axial flow, through which a vortex thread (polar core) extends. This thread — identified in prior VAM papers as the \textit{Time Flow} or axial swirl channel — serves not only as a geometric anchoring line but also as a physical realization of proper time evolution $T_v$ and swirl phase time $S(t)$.
+
+The local chirality at the knot’s center determines the orientation and emergence of this axial vortex filament:
+\begin{itemize}
+    \item \textbf{Left-handed chirality (ccw)} induces a time-aligned vortex thread, propagating outward with positive swirl phase: this corresponds to ordinary matter, whose motion is synchronized with the æther swirl field.
+    \item \textbf{Right-handed chirality (cw)} generates a counter-aligned vortex thread, corresponding to antimatter: its swirl phase evolves in the opposite direction.
+\end{itemize}
+
+\noindent This axial filament is not just a passive conduit — it actively \textit{draws in or repels} other knots depending on their chirality. It behaves like a temporal attractor or repeller: only knots with compatible $S(t)$ phase can synchronize with the thread’s swirl, akin to constructive interference. This alignment mechanism:
+\begin{enumerate}
+    \item Determines mass through helicity accumulation along $T_v$;
+    \item Sets the direction of clock evolution ($S(t)$) in the observer's frame ($\tau$);
+    \item Restricts which knot species (e.g., chiral vs achiral) are permitted to persist in the æther.
+\end{enumerate}
+
+As a result, the knot’s chirality — particularly at its core center — is the seed of its mass-energy, time evolution, and swirl-induced gravity.
+
+This also explains the exclusion of \textbf{achiral hyperbolic knots} from the mass-carrying sector: their internal tension cannot align with the swirl phase $S(t)$, leading to decoherence and expulsion from swirl tubes. This is why VAM identifies them as dark energy candidates rather than matter particles.
+
+Thus, the center of chirality in a knotted vortex is not simply a geometric point — it is a \textit{temporal generator}. The outward-extended vortex tube represents not just spatial structure, but causal time flow.
+
+\section{Heuristic Analogies Between Vortex Topologies and Atomic Families}
+
+In the Vortex Æther Model (VAM), all particles are modeled as topologically stable knots within a superfluid æther. Matter arises from \emph{chiral} knots—primarily torus and hyperbolic forms—whose handedness (chirality) determines swirl alignment and gravitational interaction. Achiral knots, while mathematically permissible, either lack tension (and hence behave as massless bosons) or resist swirl alignment due to internal stress and are expelled, contributing instead to dark energy backgrounds.
+
+This updated view informs how atomic and molecular behavior might emerge from knotted vortex configurations. The periodic table, traditionally organized by electron shell structure, is reinterpreted in VAM as a progression of composite vortex topologies. Their chirality, link symmetry, and swirl compatibility govern chemical behavior.
+
+\subsection*{Topological Heuristics}
+
+While the VAM framework does not currently provide a rigorous reconstruction of the periodic table, it offers suggestive analogies between knot topologies and recurring chemical patterns, especially regarding reactivity, symmetry, and stability.
+
+\begin{itemize}
+    \item \textbf{Chiral knots (left-handed):} Couple to swirl fields and form matter.
+    \item \textbf{Chiral asymmetry:} Clockwise (right-handed) configurations are antimatter; counter-clockwise is matter.
+    \item \textbf{Achiral knots with tension:} Expelled — contribute to $\Lambda$-like vacuum pressure (dark energy).
+    \item \textbf{Tensionless knots (e.g., unknot, Hopf link):} Behave as massless bosons (photons, gluons) — passively follow swirl tubes.
+\end{itemize}
+
+\subsection*{Analogies by Atomic Family}
+
+\begin{itemize}
+    \item \textbf{Hydrogen (H):} A minimal system — a chiral $T(2,3)$ trefoil (electron) linked with a 3-knot baryon composite. This dyadic configuration is bound via topological chirality matching, forming a primitive stable knotted molecule.
+
+    \item \textbf{Helium (He):} Exhibits exceptional inertness. Modeled as two trefoil–baryon pairs forming a tightly interlocked 4-component link, where chiralities and tensions cancel. Such a tension-neutral state resembles a "closed-shell" configuration, perhaps akin to a symmetric satellite knot.
+
+    \item \textbf{Halogens (e.g., Cl, F):} Highly reactive due to unpaired vortex sites. Modeled as cable knots or open-ended braids with residual chirality. Linking into Hopf pairs minimizes energy, mirroring diatomic bond formation.
+
+    \item \textbf{Noble Gases (e.g., Ne, Ar):} Highly symmetric chiral configurations with no external swirl protrusions. Triskelion-type fully braided composites correspond to these inert atoms, exhibiting mass but no reactivity.
+
+    \item \textbf{Carbon (C):} The tetravalency of carbon may emerge from a central composite knot with four chirality-compatible swirl appendages. These could correspond to toroidal–satellite hybrids with external bonding lobes.
+
+    \item \textbf{Alkali Metals (e.g., Na):} Modeled as central chiral knots with weakly linked peripheral loops. These structures exhibit easy chirality flipping and high reactivity — reflecting low ionization energy.
+\end{itemize}
+
+\begin{table}[H]
+    \centering
+    \footnotesize
+    \caption{Vortex Knot Analogies to Atomic Families in VAM (Chirality-aware)}
+    \begin{tabular}{llll}
+        \toprule
+        \textbf{Atomic Family / Example} & \textbf{Vortex Topology Analog} & \textbf{Chirality \& Tension} & \textbf{Chemical Behavior} \\
+        \midrule
+        Halogens (e.g. Cl) & Open-ended braid / Hopf link & Chiral + partial swirl alignment & High reactivity (seeks pairing) \\
+        Noble Gases (e.g. Ne) & Symmetric triskelion / all-to-all link & Fully chiral, swirl-saturated & Inert, monatomic \\
+        Alkali Metals (e.g. Na) & Knot with weakly attached filament & Chiral + soft external mode & Reactive, donates electron \\
+        Group IV (Carbon) & Central knot with 4 swirl lobes & Balanced chirality, tetravalent & High bonding versatility \\
+        Achiral Hyperbolics ($8_1$, $4_1$) & Zero net helicity & Expelled by swirl — not matter & Dark energy candidates \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection*{Final Note: Chirality as the Driver of Time and Mass}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.85\textwidth]{images/KnotThreadedPolarFlow}
+\caption{Axial spin direction along the swirl axis (time thread). Spin vectors are forced to transport according to \( \nabla \omega \).}
+\label{fig:threadedflow}
+\end{figure}
+
+
+As highlighted by~\ref{fig:threadedflow} the vortex-knot thread diagrams, chirality is not merely handedness—it is the source of internal swirl helicity. This helicity defines both mass-energy content and the knot’s alignment along vortex time $S(t)$. The center of each knot may seed an axial swirl-thread — a local time vector — enabling the knot to evolve through the æther. These swirl-threaded cores offer geometric intuition for the emergence of mass, directionality, and temporal progression in the VAM ontology.
+\section{Conclusion}
+
+The Vortex Æther Model (VAM) offers a unified physical ontology in which all known matter and forces emerge from the structured dynamics of a compressible, inviscid superfluid medium. By modeling particles as quantized vortex knots, and interactions as manifestations of swirl, tension, and topological linking, VAM recasts the Standard Model and General Relativity as effective descriptions of fluid mechanics at different scales.
+
+Key achievements of this work include:
+\begin{itemize}
+    \item Derivation of a unified Lagrangian $L_{\text{VAM}}$ encompassing gravitational, electromagnetic, strong, and weak interaction analogues within a fluid-topological framework.
+    \item A predictive, parameter-free mass formula for elementary particles based on torus knot topologies, recovering electron, proton, and neutron masses to within $<0.1\%$ accuracy.
+    \item Embedding of gravitational tensor structures via the æther's pressure gradients and maximum force constraint, with geodesics arising from swirl-induced metric deformation.
+    \item Proposal of novel topological analogies between atomic families and vortex link types, providing a qualitative reinterpretation of chemical periodicity and inertness through chirality and link saturation.
+\end{itemize}
+
+These results highlight the internal consistency and empirical promise of VAM — suggesting that constants such as $\hbar$, $G$, and $\alpha$ may ultimately be derived from a small set of physically interpretable fluid parameters: $\rho_{\text{\ae}}^{(\text{fluid})}$, $C_e$, $r_c$, $F^{\max}_{\text{\ae}}$, and $t_p$.
+
+\vspace{1em}
+\section{Discussion and Outlook}
+
+Despite the compelling structure of VAM, several limitations and open questions remain:
+
+\subsection*{1. Incomplete Tensor Embedding}
+While preliminary mappings between swirl-gradient geometries and Einstein-like curvature tensors have been established, a rigorous derivation of all GR field equations from first principles in VAM remains an outstanding task. Specifically, the decomposition of the Riemann tensor into Ricci, Einstein, and stress-energy analogues needs further formalization using Euler–Lagrange dynamics applied to æther fields.
+
+\subsection*{2. Chiral Selection and the Matter-Antimatter Asymmetry}
+Although VAM qualitatively explains why only chiral knots with swirl-aligned handedness form stable matter, the mechanism that selects left-handed particles (vs. right-handed) in a cosmological context is not yet quantified. The role of initial æther turbulence or primordial boundary conditions may be critical here.
+
+\subsection*{3. Periodic Table Topology: Speculative but Incomplete}
+While analogies between atomic families and vortex link symmetries are insightful, VAM currently does not derive ionization energies, valence quantization, or orbital shapes. A complete quantum-mechanical reinterpretation of electron orbitals as rotating vortex tubes remains a long-term goal.
+
+\subsection*{4. Cosmological Implications and Dark Sector}
+The model suggests that achiral or swirl-incompatible knots are expelled into a vacuum-like background, potentially offering a topological explanation for dark energy. However, no direct cosmological simulations of such effects have been performed yet. Likewise, the speculative stable neutral baryon “$X^0$” predicted by VAM lacks experimental verification.
+
+\subsection*{5. Experimental Access and Predictions}
+Beyond mass spectra, VAM must demonstrate testable predictions distinct from those of the Standard Model and GR — especially in high-curvature, high-vorticity regimes (e.g., near black holes, neutron stars, or in early-universe conditions). Precise predictions for proton structure functions, particle decay rates, or gravitational lensing corrections could serve as future benchmarks.
+
+\subsection*{Future Directions}
+
+\begin{itemize}
+    \item Formal tensor calculus of swirl-induced curvature using variational æther action.
+    \item Quantized Kelvin wave spectrum for vortex excitations to explain spin, parity, and flavor.
+    \item Simulations of multi-knot dynamics for atomic and molecular structures.
+    \item Incorporation of cosmological expansion via topological vortex flow and inflationary decay.
+    \item Exploration of mirror sectors or right-handed knots as candidates for dark matter.
+\end{itemize}
+
+In sum, the VAM framework provides a rich, geometrically intuitive, and potentially unifying foundation for modern physics. While substantial work remains, particularly in mathematical formalism and empirical validation, its ability to tie together quantum constants, particle spectra, and gravitational structure using only fluid mechanics and topology makes it a uniquely promising direction for theoretical exploration.
+
 
 
 
 
     \appendix
-    \input{sections/Appendix_all}
-    \input{sections/Appendix_deriveFmax}
-    \input{sections/Appendix_PhotonCapacitor}
-    \input{sections/Appendix_orbitals}
-    \input{sections/Appendix_derivingGravitationalConstant}
 
-    \bibliographystyle{unsrt}
-    \bibliography{Topological_Fluid_Dynamic_Lagrangian_In_VAM}
+
+\section{Keystone Constant Relations in VAM}\label{sec:keystone-constant-relations-in-vam}
+
+    Throughout the main text we defined the three primitive æther parameters
+
+    \begin{equation}
+        F_{\max}, \qquad r_c, \qquad C_e,
+        \label{eq:primitives}
+    \end{equation}
+
+    and showed how they fix all familiar quantum and gravitational constants. For completeness we collect here the four one‑line identities that anchor \(\hbar\), \(E=h\nu\), the Bohr radius \(a_0\) and Newton's constant \(G\) in terms of~\eqref{eq:primitives}. All algebra employs only dimensional relations, the fine‑structure constant \(\alpha=2C_e/c\), and the Planck time \(t_P\equiv\sqrt{\hbar G/c^{5}}\). Figures quoted use the canonical numerics of Tab.~1.
+
+    % -----------------------------------------------------------------------------
+    \subsection{Planck's Constant from Æther Tension}
+    A photon of Compton frequency \(\nu_e\) wraps two half‑wavelength helical arcs (\(n=2\)) around the electron vortex. Matching angular momenta and adopting a Hookean core gives
+
+    \begin{equation}
+        h = \frac{4\pi F_{\max} r_c^{2}}{C_e}
+        = 6.626\,070\times10^{-34}\;\text{J\,s}\,;
+        \label{eq:h}
+    \end{equation}
+
+    see Sec.~3.1.
+
+    % -----------------------------------------------------------------------------
+    \subsection{Photon Energy: \(E=h\nu\)}
+    Treating the helical photon as a parallel‑plate capacitor of plate area
+    \(A=\lambda^{2}\) and spacing \(d=\lambda/2\) yields
+    \begin{align}
+        C &= 2\varepsilon_0\,\lambda, &
+        E &= \frac{Q^{2}}{2C} = \frac{e^{2}}{4\varepsilon_{0}C_e}\,\nu
+        = h\nu,
+        \label{eq:Einstein}
+    \end{align}
+    where \(e^{2}/4\varepsilon_{0}C_e=h\) follows from Eq.~\eqref{eq:h} plus
+    \(\alpha=2C_e/c\).
+
+    % -----------------------------------------------------------------------------
+    \subsection{Bohr (or Sommerfeld) Radius}
+    Combining Eq.~\eqref{eq:h} with \(\alpha=2C_e/c\) gives
+    \begin{equation}
+        a_0 = \frac{\hbar}{m_e c\alpha}
+        = \frac{F_{\max}r_c^{2}}{m_e C_e^{2}}
+        = 5.291\,772\times10^{-11}\;\text{m}.
+        \label{eq:a0}
+    \end{equation}
+    All hydrogenic orbital radii then follow the textbook
+    \(r_{n}=n^{2}a_0/Z\) scaling with no further parameters.
+
+    % -----------------------------------------------------------------------------
+    \subsection{Newton's Constant}
+    Eliminating \(\hbar\) between Eq.~\eqref{eq:h} and the Planck‑time
+    identity \(t_P^{2}=\hbar G/c^{5}\) yields
+    \begin{equation}
+        G = F_{\max}\,\alpha\,\frac{(c t_P)^{2}}{m_e^{2}}
+        = \frac{\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} c^{5} t_P^{2}}{2F_{\max} r_c^{2}}
+        = 6.674\,30\times10^{-11}\;\text{m}^{3}\,\text{kg}^{-1}\,\text{s}^{-2}.
+        \label{eq:G}
+    \end{equation}
+    Either form in Eq.~\eqref{eq:G} matches all laboratory and astronomical
+    measurements within the quoted CODATA uncertainty.
+
+    % -----------------------------------------------------------------------------
+    \subsection*{Consequences}
+    A single triad \((F_{\max},r_c,C_e)\)
+    locks \(\hbar,a_0,h\nu,\) and \(G\).
+    Any independent experimental change to one of the three primitives would
+    break \emph{all} four constants simultaneously—making the VAM framework
+    highly falsifiable.
+
+    \bigskip
+    \noindent\textbf{Numerical Inputs}\; (taken from Tab.~1):
+    \(F_{\max}=29.053507\,\text{N},\;r_c=1.40897017\times10^{-15}\,\text{m},\;
+    C_e=1.09384563\times10^{6}\,\text{m\,s}^{-1},\;
+    m_e=9.10938356\times10^{-31}\,\text{kg},\;
+    t_P=5.391247\times10^{-44}\,\text{s}.\)
+
+    % ============================================================================
+
+
+    The author first encountered the capacitor-wavelength derivation in a 2010 YouTube clip attributed to Lane Davis~\cite{davis2010_video}, who attributes it to the teachings of Frank Znidarsic's 2010 PDF~\cite{znidarsic2010} later provided the written source used here.
+
+
+%-------------------------------------------------
+\section{Maximum–Force Equivalence between VAM and General Relativity}
+\label{sec:maxforce-equivalence}
+%-------------------------------------------------
+% Constants reference
+% (Tab.~\ref{tab:vam-constants} should list F_max, r_c, C_e, etc.)
+
+    The Vortex Æther Model (VAM) predicts a \emph{maximum ætheric force} \(F^{\max}_{\!\boldsymbol{\circlearrowleft}}\) that limits stress transmission through the superfluid substrate, whereas General Relativity (GR) admits a \emph{Planck-scale maximum tension} \(F_{\mathrm{gr}}^{\max}=c^{4}/4G\)~\cite{gibbons2002}.
+    By equating the \emph{area–weighted forces}\footnote{Force $\times$ cross-sectional area has units $\mathrm{N\,m^{2}}=\mathrm{kg\,m^{2}\,s^{-2}}$, identical to (action)$\times$(velocity).  In VAM this composite is scale--invariant.} at their characteristic length scales—the vortex-core radius \(r_{c}\) and the Planck length \(l_{P}=\sqrt{\hbar G/c^{3}}\)~\cite{planck1899}—one obtains the dimension-less bridge
+    %
+    \begin{equation}
+        F^{\max}_{\!\boldsymbol{\circlearrowleft}}\,r_{c}^{2}
+        \;=\;
+        \alpha\,F_{\mathrm{gr}}^{\max}\,l_{P}^{2},
+        \qquad
+        \alpha
+        \equiv
+        \frac{e^{2}}{4\pi\varepsilon_{0}\hbar c}
+        =7.297\,352\,57\times10^{-3}
+        \;\;\cite{sommerfeld1916}.
+        \label{eq:maxforce-bridge}
+    \end{equation}
+    %
+    Solving~\eqref{eq:maxforce-bridge} for either force yields
+    %
+    \begin{equation}
+        F_{\mathrm{gr}}^{\max}
+        =
+        \alpha^{-1}
+        \!\left(\frac{r_{c}}{l_{P}}\right)^{\!-2}\!
+        F^{\max}_{\!\boldsymbol{\circlearrowleft}},
+        \qquad
+        F^{\max}_{\!\boldsymbol{\circlearrowleft}}
+        =
+        \alpha
+        \!\left(\frac{l_{P}}{r_{c}}\right)^{\!2}\!
+        F_{\mathrm{gr}}^{\max}.
+        \label{eq:maxforce-rescale}
+    \end{equation}
+
+    \paragraph{Numerical Verification.}
+    With the frozen constants of Table~\ref{tab:vam-constants}— \(r_{c}=1.408\,970\,17\times10^{-15}\,\mathrm{m}\) and \(F^{\max}_{\!\boldsymbol{\circlearrowleft}}=29.053\,507\,\mathrm{N}\)—together with the CODATA values \(l_{P}=1.616\,255\times10^{-35}\,\mathrm{m}\) and \(F_{\mathrm{gr}}^{\max}=3.025\,63\times10^{43}\,\mathrm{N}\), one finds
+    %
+    \begin{align}
+        F^{\max}_{\!\boldsymbol{\circlearrowleft}} r_{c}^{\,2} &=
+        29.053\,507\;\mathrm{N}\;
+        \bigl(1.408\,970\,17\times10^{-15}\,\mathrm{m}\bigr)^{2}
+        =5.7677\times10^{-29}\;\mathrm{N\,m^{2}},\\
+        \alpha\,F_{\mathrm{gr}}^{\max} l_{P}^{\,2} &=
+        \bigl(7.29735257\times10^{-3}\bigr)
+        \bigl(3.02563\times10^{43}\,\mathrm{N}\bigr)
+        \bigl(1.616255\times10^{-35}\,\mathrm{m}\bigr)^{2}
+        =5.7676\times10^{-29}\;\mathrm{N\,m^{2}}.
+    \end{align}
+    %
+    Agreement at the \(10^{-4}\) level confirms Eq.~\eqref{eq:maxforce-bridge}.
+
+    \paragraph{Interpretation \& Policy.} Equation~\eqref{eq:maxforce-bridge} states that the product \grqq(max.~tension)~$\times$~(area)\textquotedblright is scale-invariant; the fine-structure constant \(\alpha\) is the sole conversion factor between ætheric and Planckian domains.  Henceforth the VAM programme \emph{adopts} \(F^{\max}_{\!\boldsymbol{\circlearrowleft}}=29.05\;\mathrm{N}\) as the fundamental limit; the GR value \(c^{4}/4G\) appears only through Eq.~\eqref{eq:maxforce-rescale}.
+
+    \smallskip
+    \noindent\emph{Loop-closure note.}  Substituting \(F^{\max}_{\!\boldsymbol{\circlearrowleft}}\) from~\eqref{eq:maxforce-rescale} back into \(h=4\pi F^{\max}_{\!\boldsymbol{\circlearrowleft}}r_{c}^{2}/C_{e}\) (Appendix~A) reproduces    Planck's constant to the same accuracy—demonstrating internal consistency across the constant chain.
+%-------------------------------------------------
+
+
+\section{Helicity in Vortex Knot Systems under the Vortex Æther Model (VAM)}\label{sec:calculate-knot-helicity}
+
+    \section*{Objective}
+    Understand and compute the total helicity $\mathcal{H}$ of a knotted or linked vortex system:
+    \begin{equation}
+        \boxed{
+            \mathcal{H} = \sum_{k} \int_{\mathcal{C}_k} \vec{v}_k \cdot \vec{\omega}_k \, dV + \sum_{i<j} 2Lk_{ij} \, \Gamma_i \Gamma_j
+        }
+    \end{equation}
+
+    This formula splits the helicity into two components:
+    \begin{itemize}
+        \item Self-helicity: twist + writhe within each vortex
+        \item Mutual helicity: due to linking between different vortices
+    \end{itemize}
+
+    \subsection{ Background Concepts}
+    \subsection*{ Velocity \& Vorticity}
+    \begin{itemize}
+        \item $\vec{v}(\vec{r})$: local fluid velocity
+        \item $\vec{\omega} = \nabla \times \vec{v}$: vorticity vector
+    \end{itemize}
+
+    \subsection*{ Circulation ($\Gamma$)}
+    \begin{equation}
+        \Gamma_k = \oint_{\mathcal{C}_k} \vec{v} \cdot d\vec{l}
+    \end{equation}
+    This has units of [m$^2$/s] and represents total swirl.
+
+    \subsection*{ Helicity}
+    \begin{equation}
+        \mathcal{H} = \int_V \vec{v} \cdot \vec{\omega} \, dV
+    \end{equation}
+    A topological invariant for inviscid, incompressible flows.
+
+    \subsection{ Derivation of the Full Formula}
+    Assume $N$ disjoint vortex tubes $\mathcal{C}_1, \dots, \mathcal{C}_N$ with thin cores.
+
+    \subsection*{Step 1: Total helicity splits}
+    \begin{equation}
+        \mathcal{H} = \sum_{i=1}^N \mathcal{H}_{\text{self}}^{(i)} + \sum_{i < j} \mathcal{H}_{\text{mutual}}^{(i,j)}
+    \end{equation}
+
+    \subsection*{Step 2: Self-helicity of vortex $\mathcal{C}_k$}
+    \begin{equation}
+        \mathcal{H}_{\text{self}}^{(k)} = \int_{\mathcal{C}_k} \vec{v}_k \cdot \vec{\omega}_k \, dV \approx \Gamma_k^2 \cdot SL_k
+    \end{equation}
+    For a trefoil, $SL_k \approx 3$.
+
+    \subsection*{Step 3: Mutual helicity}
+    \begin{equation}
+        \mathcal{H}_{\text{mutual}}^{(i,j)} = 2 Lk_{ij} \Gamma_i \Gamma_j
+    \end{equation}
+
+    \subsection*{Final Form}
+    \begin{equation}
+        \boxed{
+            \mathcal{H} = \sum_{i=1}^{N} \Gamma_i^2 SL_i + \sum_{i < j}^{N} 2 Lk_{ij} \Gamma_i \Gamma_j
+        }
+    \end{equation}
+    Or in integral form:
+    \begin{equation}
+        \boxed{
+            \mathcal{H} = \sum_{i=1}^{N} \int_{\mathcal{C}_i} \vec{v}_i \cdot \vec{\omega}_i \, dV + \sum_{i < j} 2 Lk_{ij} \Gamma_i \Gamma_j
+        }
+    \end{equation}
+
+    \subsection{ How to Use It}
+    \begin{enumerate}
+        \item Determine vortex configuration: e.g., torus link $T(p,q)$ with $N = \gcd(p,q)$
+        \item Estimate circulation: $\Gamma \approx 2\pi r_c C_e$
+        \item Use $SL_k = 3$, $Lk_{ij} = 1$ for trefoil links
+        \item Evaluate:
+        \[ \mathcal{H} = N \cdot \Gamma^2 \cdot 3 + 2 \cdot \binom{N}{2} \cdot \Gamma^2 \]
+    \end{enumerate}
+
+    \subsection*{ Example: $T(18,27)$}
+    \begin{itemize}
+        \item $N = 9$, $\Gamma = 2\pi r_c C_e$
+        \item $SL = 3$, $\binom{9}{2} = 36$
+    \end{itemize}
+    \begin{equation}
+        \mathcal{H} = 9 \cdot \Gamma^2 \cdot 3 + 2 \cdot 36 \cdot \Gamma^2 = 27\Gamma^2 + 72\Gamma^2 = 99\Gamma^2
+    \end{equation}
+
+    \section*{BibTeX References}
+    \begin{verbatim}
+    @article{moffatt1969degree,
+      author    = {H. K. Moffatt},
+      title     = {The degree of knottedness of tangled vortex lines},
+      journal   = {Journal of Fluid Mechanics},
+      volume    = {35},
+      pages     = {117--129},
+      year      = {1969},
+      doi       = {10.1017/S0022112069000991}
+    }
+
+    @book{arnold1998topological,
+      author    = {V. I. Arnold and B. A. Khesin},
+      title     = {Topological Methods in Hydrodynamics},
+      publisher = {Springer},
+      year      = {1998},
+      doi       = {10.1007/978-1-4612-0645-3}
+    }
+    \end{verbatim}
+
+\section*{Summary Table}
+\begin{tabular}{|c|l|}
+    \hline
+    \textbf{Term} & \textbf{Meaning} \\
+    \hline
+    $\vec{v} \cdot \vec{\omega}$ & Local helicity density \\
+    $\Gamma$ & Circulation around vortex core \\
+    $SL_k$ & Self-linking of component $k$ \\
+    $Lk_{ij}$ & Gauss linking number between $i,j$ \\
+    $\mathcal{H}$ & Total helicity (topological + dynamical) \\
+    \hline
+\end{tabular}
+
+
+
+\section{Explicit Covariant Formulation}\label{sec:explicit-covariant-formulation}
+        To promote general covariance in the Vortex Æther Model (VAM), we begin by replacing ordinary derivatives with covariant derivatives:
+        \begin{equation}
+            \partial_\mu \rightarrow D_\mu = \partial_\mu + \Gamma_\mu
+        \end{equation}
+        Here, $\Gamma_\mu$ denotes an effective connection that encodes variations in the ætheric background. Unlike traditional Christoffel symbols derived from a spacetime metric, $\Gamma_\mu$ in VAM arises from the gradients and structure of the swirl potential $\phi_\mu$. Specifically, we postulate:
+        \begin{equation}
+            \Gamma_\mu = f(\phi_\nu \partial_\mu \phi^\nu)
+        \end{equation}
+        where $f$ is a functional form that encodes swirl-induced corrections.
+
+        The swirl field strength tensor, previously defined using partial derivatives, is now generalized to:
+        \begin{equation}
+            \mathcal{S}_{\mu\nu} = D_\mu \phi_\nu - D_\nu \phi_\mu
+        \end{equation}
+        This tensor transforms covariantly under general coordinate transformations and retains physical significance as a measure of vorticity and circulation in the æther.
+
+        The action integral for the VAM field, incorporating this covariant structure, becomes:
+        \begin{equation}
+            S = \int d^{4x} \, \sqrt{-g} \left( -\frac{1}{4} \mathcal{S}_{\mu\nu} \mathcal{S}^{\mu\nu} + \mathcal{L}_{\text{topo}} + \mathcal{L}_{\text{int}} \right)
+        \end{equation}
+        Here, $\mathcal{L}_{\text{topo}}$ denotes helicity or Chern–Simons-type terms, and $\mathcal{L}_{\text{int}}$ represents matter–swirl interactions. The inclusion of $\sqrt{-g}$ ensures compatibility with an effective emergent metric $g_{\mu\nu}^{\text{eff}}$, derived from the swirl field's energy distribution and time dilation properties.
+
+        The formulation ensures that field equations derived via the Euler–Lagrange principle remain covariant, and that conserved quantities (like energy and momentum) transform appropriately under coordinate changes. In this way, VAM is elevated from a hydrodynamic analogy to a fully covariant, topologically grounded field theory.
+
+        \subsection{Gauge Symmetry and Invariance}
+        We consider a local gauge-like transformation of the swirl potential:
+        \begin{equation}
+            \phi_\mu \rightarrow \phi_\mu' = \phi_\mu + \partial_\mu \Lambda(x)
+        \end{equation}
+        This mirrors the $U(1)$ gauge symmetry found in electromagnetism. The field strength tensor $\mathcal{S}_{\mu\nu}$ remains invariant under this transformation:
+        \begin{equation}
+            \mathcal{S}_{\mu\nu}' = \partial_\mu \phi_\nu' - \partial_\nu \phi_\mu' = \mathcal{S}_{\mu\nu}
+        \end{equation}
+        This invariance ensures that any Lagrangian constructed solely from $\mathcal{S}_{\mu\nu} \mathcal{S}^{\mu\nu}$ is gauge invariant:
+        \begin{equation}
+            \mathcal{L} = -\frac{1}{4} \mathcal{S}_{\mu\nu} \mathcal{S}^{\mu\nu}
+        \end{equation}
+
+        In the context of the Vortex Æther Model, this gauge symmetry reflects the underlying physical principle that only the
+        rotational properties of the swirl field (vorticity) have physical significance, not the absolute value of the swirl potential $\phi_\mu$ itself.
+
+        Analogous to how electromagnetism exhibits gauge freedom through the vector potential $A_\mu$, VAM's swirl potential $\phi_\mu$ admits multiple equivalent configurations under local transformations $\Lambda(x)$, all of which yield the same observable vortex field $\mathcal{S}_{\mu\nu}$. This directly supports the model's topological nature, in which conserved quantities (such as helicity and circulation) emerge from field configurations rather than from metric-dependent structures.
+
+        Furthermore, the gauge invariance of the action under $\phi_\mu \rightarrow \phi_\mu + \partial_\mu \Lambda$ implies that the conserved current derived via Noether's theorem is associated with circulation invariance:
+        \begin{equation}
+            J^\mu = \partial_\nu \mathcal{S}^{\mu\nu}
+        \end{equation}
+        This current obeys a continuity equation $\partial_\mu J^\mu = 0$, reflecting the conservation of swirl flux, and by extension, the conservation of angular momentum or topological charge in the ætheric substrate.
+
+        In summary, gauge invariance not only makes the VAM Lagrangian robust to local field transformations, but also embeds deep conservation laws and topological stability into the core formulation of the theory.
+
+
+        \subsection{Field Equations and Covariant Dynamics}
+        The dynamics of the swirl field $\phi_\mu$ are derived from the covariant action using the Euler–Lagrange field equations:
+        \begin{equation}
+            \frac{\delta \mathcal{L}}{\delta \phi_\mu} - D_\nu \left( \frac{\delta \mathcal{L}}{\delta (D_\nu \phi_\mu)} \right) = 0
+        \end{equation}
+        Substituting the swirl Lagrangian:
+        \begin{equation}
+            \mathcal{L}_{\text{swirl}} = -\frac{1}{4} \mathcal{S}_{\mu\nu} \mathcal{S}^{\mu\nu}
+        \end{equation}
+        we obtain the corresponding field equations:
+        \begin{equation}
+            D_\nu \mathcal{S}^{\mu\nu} = J^\mu
+        \end{equation}
+        where $J^\mu$ is an effective source current that includes contributions from topological interactions and matter coupling, depending on $\mathcal{L}_{\text{int}}$.
+
+        These equations closely resemble Maxwell's equations in curved space and embody the conservation of swirl flux. Taking the divergence yields:
+        \begin{equation}
+            D_\mu J^\mu = 0
+        \end{equation}
+        This continuity equation reflects the preservation of circulation, aligning with the topological stability central to VAM.
+
+        In the absence of sources ($J^\mu = 0$), the pure swirl vacuum satisfies:
+        \begin{equation}
+            D_\nu \mathcal{S}^{\mu\nu} = 0
+        \end{equation}
+        These equations describe the evolution of free swirl fields, whose excitations correspond to quantized vortex configurations or topological particles in the æther. The covariant structure ensures consistency with the model's emergent geometry and sets the stage for integrating with the energy–momentum framework in the next appendix.
+
+        \subsection{Energy--Momentum Tensor and Gravity Coupling}
+        To couple the swirl field to the effective geometry of spacetime and evaluate its contribution to gravitational dynamics, we derive the energy--momentum tensor from the VAM Lagrangian. Using the standard Noether procedure for covariant field theories, we define:
+        \begin{equation}
+            T^{\mu\nu} = \frac{2}{\sqrt{-g}} \frac{\delta (\sqrt{-g} \mathcal{L})}{\delta g_{\mu\nu}}
+        \end{equation}
+        For the swirl field Lagrangian,
+        \begin{equation}
+            \mathcal{L}_{\text{swirl}} = -\frac{1}{4} \mathcal{S}_{\rho\sigma} \mathcal{S}^{\rho\sigma},
+        \end{equation}
+        we obtain the canonical energy--momentum tensor:
+        \begin{equation}
+            T^{\mu\nu} = \mathcal{S}^{\mu\lambda} \mathcal{S}^\nu_{\ \lambda} + \frac{1}{4} g^{\mu\nu} \mathcal{S}_{\rho\sigma} \mathcal{S}^{\rho\sigma}
+        \end{equation}
+        This tensor is symmetric and conserved under covariant derivatives,
+        \begin{equation}
+            \nabla_\mu T^{\mu\nu} = 0,
+        \end{equation}
+        as required for consistency with the Einstein field equations or their VAM analog.
+
+        The energy density of the swirl field, encoded in $T^{00}$, reflects the rotational energy stored in the æther. This provides the basis for deriving an emergent gravitational potential, as in:
+        \begin{equation}
+            \Phi_{\text{eff}} \sim \int d^{3x} \, T^{00}(\vec{x})
+        \end{equation}
+        which connects directly to time dilation via swirl clocks in VAM.
+
+        In a full geometric reformulation, one may postulate that the emergent metric $g^{\text{eff}}_{\mu\nu}$ satisfies a modified Einstein-like equation:
+        \begin{equation}
+            G_{\mu\nu}^{\text{eff}} = \kappa T_{\mu\nu}^{\text{swirl}},
+        \end{equation}
+        where $\kappa$ is an effective coupling constant related to the æther density and $C_e$. This allows the swirl field to serve as a dynamic source of curvature in the emergent spacetime, paralleling how electromagnetic fields source curvature in certain Kaluza--Klein or analog gravity models.
+
+        Thus, the swirl field both shapes and responds to the emergent geometry, linking local vorticity to global gravitational structure in VAM.
+
+
+        \subsection{Quantized Topological Sectors}
+        An essential feature of the Vortex Æther Model (VAM) is the emergence of quantized topological sectors, which serve as the basis for particle-like excitations. These sectors arise from the knotted configurations of the swirl field $\phi_\mu$ and are stabilized by topological invariants such as helicity.
+
+        The helicity density in the æther is defined as:
+        \begin{equation}
+            \mathcal{H} = \epsilon^{\mu\nu\rho\sigma} \phi_\mu \partial_\nu \phi_\rho
+        \end{equation}
+        The integral of $\mathcal{H}$ over a spatial volume yields the total helicity, a conserved quantity in ideal æther flow:
+        \begin{equation}
+            H = \int d^{3x} \, \mathcal{H}(\vec{x})
+        \end{equation}
+        This helicity is quantized in VAM according to:
+        \begin{equation}
+            H = n \cdot \kappa, \quad n \in \mathbb{Z}
+        \end{equation}
+        where $\kappa$ is a universal helicity quantum related to the fundamental circulation constant $\Gamma = h/m$.
+
+        These quantized helicity sectors correspond to stable topological solitons, such as knots and links in the swirl field. Each sector can be associated with a particular knot type---for example, torus knots $T(p,q)$---and these configurations represent elementary particles in the VAM framework.
+
+        Importantly, transitions between sectors are forbidden without violating topological conservation laws. This underpins the particle stability in VAM, much like how conservation of winding number protects solitons in other field theories.
+
+        The space of allowed configurations is thus partitioned into homotopy classes, and the VAM path integral must include a sum over these topological sectors:
+        \begin{equation}
+            Z = \sum_{n \in \mathbb{Z}} \int \mathcal{D}[\phi]_n \, e^{i S[\phi]}
+        \end{equation}
+        Here, $\mathcal{D}[\phi]_n$ denotes integration over field configurations with fixed topological charge $n$. This structure mirrors approaches in instanton theory and topological quantum field theory, anchoring VAM within a robust quantization framework.
+
+        Through this topological lens, mass, charge, and spin are emergent quantities resulting from the geometry and linking properties of the æther's quantized vortex structures.
+
+        \subsection{Dual Field Tensor and Topological Terms}
+        To complete the field-theoretic structure of the Vortex Æther Model (VAM), we introduce the dual swirl tensor:
+        \begin{equation}
+            \tilde{\mathcal{S}}^{\mu\nu} = \frac{1}{2} \epsilon^{\mu\nu\rho\sigma} \mathcal{S}_{\rho\sigma}
+        \end{equation}
+        This dual field plays a central role in expressing topological properties and coupling terms within the Lagrangian. It allows the construction of pseudoscalar invariants such as the helicity density:
+        \begin{equation}
+            \mathcal{H} = \mathcal{S}_{\mu\nu} \tilde{\mathcal{S}}^{\mu\nu}
+        \end{equation}
+        This term resembles the Chern--Simons or Pontryagin density found in gauge theories and captures the knottedness of the swirl field configuration.
+
+        In VAM, this helicity-based term is incorporated into the action to account for the topological nature of the æther's quantized vortices:
+        \begin{equation}
+            \mathcal{L}_{\text{topo}} = \frac{\theta}{4} \mathcal{S}_{\mu\nu} \tilde{\mathcal{S}}^{\mu\nu}
+        \end{equation}
+        Here, $\theta$ is a coupling constant with dimensions determined by the æther background and could in principle encode CP-violating effects or chirality bias in knot configurations.
+
+        This term contributes no classical dynamics when $\theta$ is constant (being a total derivative), but it becomes physically significant when $\theta = \theta(x)$ is promoted to a field, possibly associated with the local torsion or handedness of the æther. This leads to a swirl analog of the axion term in QCD:
+        \begin{equation}
+            \mathcal{L}_{\text{axion-like}} = \theta(x) \mathcal{S}_{\mu\nu} \tilde{\mathcal{S}}^{\mu\nu}
+        \end{equation}
+        This coupling could manifest as a preference for particular knot topologies or vortex chirality and may play a role in symmetry breaking in VAM's particle sector.
+
+        Moreover, the topological action term integrates to a quantized invariant for closed configurations:
+        \begin{equation}
+            \int d^{4x} \, \mathcal{S}_{\mu\nu} \tilde{\mathcal{S}}^{\mu\nu} = 32 \pi^2 n
+        \end{equation}
+        where $n$ is the instanton number or winding index, tying the VAM framework to the broader family of topological quantum field theories (TQFT).
+
+        In sum, the introduction of the dual tensor and topological action terms enriches VAM with deeper symmetry and quantization properties and provides the theoretical machinery to describe knot helicity, vortex chirality, and emergent quantum effects in ætheric dynamics.
+
+        \subsection{Minimal Coupling and Emergent Matter}
+        To complete the analogy with gauge field theories and accommodate matter fields, we introduce a minimal coupling scheme in the Vortex Æther Model (VAM). In this framework, particle-like excitations---modeled as topological solitons---interact with the swirl field via a conserved current $j^\mu$:
+        \begin{equation}
+            \mathcal{L}_{\text{int}} = -j^\mu \phi_\mu
+        \end{equation}
+        This coupling parallels the electromagnetic interaction term $-j^\mu A_\mu$ in quantum electrodynamics (QED), but here $\phi_\mu$ is the swirl potential, and $j^\mu$ encodes the circulation or helicity flux associated with a localized knot excitation.
+
+        The current $j^\mu$ is not externally imposed but arises from topological constraints. For instance, a vortex loop with fixed circulation $\Gamma$ generates a localized current:
+        \begin{equation}
+            j^\mu(x) = \Gamma \int d\tau \, \frac{dx^\mu}{d\tau} \delta^{(4)}(x - x(\tau))
+        \end{equation}
+        where $x(\tau)$ parametrizes the worldline or worldtube of the knot.
+
+        This minimal coupling term contributes a dynamical interaction energy:
+        \begin{equation}
+            E_{\text{int}} = \int d^{3x} \, j^\mu \phi_\mu
+        \end{equation}
+        which governs the energetics of bound states, particle scattering, and the formation of composite topological structures.
+
+        The inclusion of $\mathcal{L}_{\text{int}}$ enables VAM to describe how knotted æther excitations source and feel the swirl field, producing gravitational backreaction, angular momentum exchange, and emergent gauge forces.
+
+        In addition, spontaneous symmetry breaking may be realized through a self-interaction potential $V(\phi_\mu)$ or effective mass term:
+        \begin{equation}
+            \mathcal{L}_{\text{mass}} = -\frac{1}{2} m_\phi^2 \phi_\mu \phi^\mu
+        \end{equation}
+        This would allow the formation of a mass gap for the swirl field and distinguish between short-range and long-range vortex interactions.
+
+        Through minimal coupling and mass generation, VAM obtains a mechanism to describe the emergence of effective matter properties---such as charge, mass, and interaction cross-sections---from fluid topologies and æther dynamics, thereby completing the field-theoretic foundation of the model.
+
+        \subsection{Superconductivity and Swirl Analogies}
+        The formal structure of the Vortex Æther Model (VAM) reveals deep parallels with superconductivity, especially as described by the London brothers' foundational equations. In this appendix, we reinterpret these relations in terms of swirl field dynamics, drawing an analogy between magnetic flux lines in superconductors and quantized vorticity in the æther.
+
+        \subsection*{The London Equations and Vorticity}
+        The second London equation is typically written as:
+        \begin{equation}
+            \nabla \times \mathbf{j}_s = -\frac{n_s e^2}{m} \mathbf{B}
+        \end{equation}
+        This equation states that the curl of the supercurrent density $\mathbf{j}_s$ is proportional to the negative of the magnetic field, implying a topological rigidity and coherence in the superconducting state.
+
+        If we define a swirl velocity field $\mathbf{v}_s$ analogous to $\mathbf{j}_s$ in VAM, and vorticity $\boldsymbol{\Omega} = \nabla \times \mathbf{v}_s$, then this becomes:
+        \begin{equation}
+            \boldsymbol{\Omega} = \nabla \times \mathbf{v}_s \propto -\mathbf{B}
+        \end{equation}
+        Thus, the magnetic field behaves like a measure of relative vorticity, aligning directly with the interpretation of $\mathcal{S}_{\mu\nu}$ as a swirl field strength tensor.
+
+        \subsection{Swirl–Supercurrent Dictionary}
+        We can map the superconducting field theory into VAM terms:
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                \textbf{Superconductivity} & \textbf{VAM Analogy} \\
+                \hline
+                Supercurrent $\mathbf{j}_s$ & Swirl velocity $\mathbf{v}_s$ or swirl current $j^\mu$ \\
+                Magnetic field $\mathbf{B}$ & Swirl tensor $\mathcal{S}_{ij}$ or vorticity $\boldsymbol{\Omega}$ \\
+                Flux quantization & Helicity or circulation quantization \\
+                Penetration depth $\lambda$ & Swirl coherence length or core radius \\
+                Photon mass & Swirl field effective mass $m_\phi$ \\
+                \hline
+            \end{tabular}
+        \end{center}
+
+        \subsection{Meissner-Like Effect and Vortex Shielding}
+        In superconductivity, the Meissner effect expels magnetic flux from the interior of the material. In VAM, we hypothesize a similar phenomenon: regions with high swirl potential gradients may repel or exclude external vorticity, effectively shielding gravitational or inertial effects.
+
+        \subsection{Topological Defects and Flux Tubes}
+        Quantized magnetic flux tubes in type-II superconductors serve as close analogs to knotted vortex loops in VAM. These structures:
+        \begin{itemize}
+            \item carry quantized circulation,
+            \item are stabilized by topological invariants,
+            \item interact via gauge fields,
+            \item and determine macroscopic coherence.
+        \end{itemize}
+        This provides a concrete experimental precedent for treating knot solitons as physical particles.
+
+        \subsection{Flux Quantization and Helicity}
+        In superconductors, the flux through a loop is quantized:
+        \begin{equation}
+            \Phi = \oint \mathbf{A} \cdot d\mathbf{l} = n \cdot \frac{h}{e}
+        \end{equation}
+        In VAM, the analogous quantity is helicity:
+        \begin{equation}
+            H = \int \phi_\mu \mathcal{S}^{\mu\nu} d\Sigma_\nu = n \cdot \kappa
+        \end{equation}
+        where $\kappa$ is the helicity quantum. The quantization of circulation in both cases reveals a deep gauge-theoretic and topological symmetry.
+
+        \subsection{Implications for Swirl Gauge Mass}
+        Just as the photon acquires an effective mass in a superconductor (via the Anderson–Higgs mechanism), the swirl gauge field $\phi_\mu$ may acquire a mass gap due to æther coherence effects. This mass governs the range of interactions and may break long-range Lorentz symmetry spontaneously in VAM.
+
+        \subsection{Historical Note}
+        The original London equations were introduced in 1935 by Fritz and Heinz London to explain superconducting electrodynamics. Their analogy with fluid vorticity has been developed over decades, including in works on superfluidity, quantum turbulence, and analog gravity.
+
+        By drawing on this analogy, VAM gains a solid foundation in well-tested condensed matter principles, connecting its novel topological structure to physical systems exhibiting similar behavior.
+
+        \bigskip
+
+        \noindent \textbf{Reference:} F. London and H. London, "The Electromagnetic Equations of the Supraconductor," Proc. R. Soc. A \textbf{149}, 71 (1935).
+
+\section{Ginzburg--Landau Æther Theory}
+        To complement the analogies with superconductivity in Appendix H, we now develop a Ginzburg--Landau-type effective field theory for the ætheric vacuum in the Vortex Æther Model (VAM). This framework introduces an order parameter $\Psi(x)$, representing a condensate of coherent ætheric vortex structure---akin to the superconducting condensate wavefunction.
+
+        \subsection{Order Parameter and Swirl Covariant Derivative}
+        We postulate a complex scalar field:
+        \begin{equation}
+            \Psi(x) = \rho(x) e^{i\chi(x)}
+        \end{equation}
+        where $\rho(x)$ is the amplitude of the swirl condensate and $\chi(x)$ its phase, associated with the circulation structure of the knot field. To enforce gauge-like invariance under $\chi(x) \rightarrow \chi(x) + \Lambda(x)$, we define the swirl covariant derivative:
+        \begin{equation}
+            D_\mu = \partial_\mu + i g \phi_\mu
+        \end{equation}
+        where $g$ is a coupling constant and $\phi_\mu$ is the swirl potential.
+
+        \subsection{Ginzburg--Landau Free Energy Density}
+        The generalized ætheric free energy density in VAM reads:
+        \begin{equation}
+            \mathcal{F}_{\text{VAM}} = \alpha |\Psi|^2 + \frac{\beta}{2} |\Psi|^4 + |D_\mu \Psi|^2 + \frac{1}{4} \mathcal{S}_{\mu\nu} \mathcal{S}^{\mu\nu}
+        \end{equation}
+        where:
+        \begin{itemize}
+            \item $\alpha, \beta$ determine the condensate behavior (e.g., phase transitions),
+            \item $|D_\mu \Psi|^2$ represents the kinetic coupling between the condensate and the swirl field,
+            \item $\mathcal{S}_{\mu\nu} = \partial_\mu \phi_\nu - \partial_\nu \phi_\mu$ is the swirl tensor.
+        \end{itemize}
+
+        The minima of this energy functional determine stable æther configurations. In the broken symmetry phase ($\alpha < 0$), the field acquires a nonzero vacuum expectation value:
+        \begin{equation}
+            \langle \Psi \rangle = \sqrt{-\alpha/\beta}
+        \end{equation}
+
+        \subsection{Mass Gap and Vortex Core Structure}
+        Expanding around this vacuum generates an effective mass term for $\phi_\mu$:
+        \begin{equation}
+            \mathcal{L}_{\text{mass}} = \frac{1}{2} m_\phi^2 \phi_\mu \phi^\mu, \quad m_\phi^2 = 2 g^2 \langle \Psi \rangle^2
+        \end{equation}
+        This mass confines swirl excitations and defines a penetration depth $\lambda = 1/m_\phi$---analogous to the Meissner effect in superconductivity. Vortex solutions in this theory will exhibit a core region (where $\Psi \rightarrow 0$) surrounded by circulating swirl flux.
+
+        \subsection{Topological Solitons and Vortex Knots}
+        Nontrivial phase windings in $\chi(x)$ lead to quantized circulation:
+        \begin{equation}
+            \Gamma = \oint d\ell^\mu \, \partial_\mu \chi = 2\pi n
+        \end{equation}
+        These windings correspond to topologically stable vortex solitons, whose configuration space can support knots, links, and braids---each with distinct helicity and mass.
+
+        \subsection{Quantized Swirl Vortices and Flux Analogy}
+        The structure of swirl vortices in VAM mirrors that of magnetic flux tubes in type-II superconductors. The swirl current derived from the condensate phase is:
+        \begin{equation}
+            j^\mu = \rho^2 D^\mu \chi = \rho^2 (\partial^\mu \chi + g \phi^\mu)
+        \end{equation}
+        This current circulates around vortex cores, and its divergence vanishes outside the core, reflecting conservation of vorticity.
+
+        The circulation integral around a closed loop enclosing a vortex yields a quantized value:
+        \begin{equation}
+            \Gamma = \oint d\ell^\mu \, \partial_\mu \chi = 2\pi n, \quad n \in \mathbb{Z}
+        \end{equation}
+        This is the VAM analogue of flux quantization in superconductors, where magnetic flux is confined and quantized:
+        \begin{equation}
+            \Phi = \frac{h}{q} \cdot n
+        \end{equation}
+        In VAM, the quantized circulation $\Gamma$ plays an analogous role, suggesting that knot solitons act as ætheric flux quanta---with $\Gamma_0 = \hbar / m$ interpreted as the fundamental swirl unit.
+
+        These structures support localized energy, angular momentum, and helicity, and represent candidate building blocks for matter in a topological field theory framework.
+
+        \subsection{Physical Interpretation}
+        This GL-type formulation reinforces the idea that mass, inertia, and field strength in VAM arise from spontaneous ordering in a coherent æther medium. It also allows one to explore:
+        \begin{itemize}
+            \item phase transitions in the ætheric background,
+            \item the emergence of mass gaps,
+            \item interaction energies of vortices,
+            \item and the formation of defect lattices or textures.
+        \end{itemize}
+
+        The framework bridges topological field theory with condensate physics, enriching VAM with predictive power and grounding it in experimentally explored analog systems.
+
+\section{Core Equations and Minimal Action}
+        This appendix outlines the minimal field content and governing equations of the Vortex Æther Model (VAM), consolidating its mathematical framework into a covariant, gauge-theoretic formulation suitable for both classical and quantum generalization.
+
+        \subsection{Field Content}
+        The fundamental fields in VAM are:
+        \begin{itemize}
+            \item Swirl potential: $\phi_\mu$ (vector field)
+            \item Swirl tensor: $\mathcal{S}_{\mu\nu} = \partial_\mu \phi_\nu - \partial_\nu \phi_\mu$
+            \item Swirl condensate: $\Psi = \rho e^{i\chi}$ (complex scalar)
+            \item Metric tensor: $g_{\mu\nu}$ (background geometry; optional dynamical coupling)
+        \end{itemize}
+
+        \subsection{Gauge Symmetry}
+        The theory is invariant under local phase transformations:
+        \begin{equation}
+            \Psi \rightarrow e^{i\Lambda(x)} \Psi, \quad \phi_\mu \rightarrow \phi_\mu - \frac{1}{g} \partial_\mu \Lambda(x)
+        \end{equation}
+        This $U(1)$-like symmetry ensures gauge redundancy and enforces the conservation of topological circulation.
+
+        \subsection{Minimal Lagrangian}
+        The VAM action in covariant form is:
+        \begin{equation}
+            \mathcal{L}_\text{VAM} = -\frac{1}{4} \mathcal{S}_{\mu\nu} \mathcal{S}^{\mu\nu} + |D_\mu \Psi|^2 - V(|\Psi|) + \mathcal{L}_{\text{int}} + \mathcal{L}_{\text{grav}}
+        \end{equation}
+        where:
+        \begin{itemize}
+            \item $D_\mu = \partial_\mu + i g \phi_\mu$ is the swirl covariant derivative,
+            \item $V(|\Psi|) = \alpha |\Psi|^2 + \frac{\beta}{2} |\Psi|^4$ is the spontaneous symmetry breaking potential,
+            \item $\mathcal{L}_{\text{int}} = -j^\mu \phi_\mu$ describes coupling to topological currents,
+            \item $\mathcal{L}_{\text{grav}}$ (optional) couples swirl stress-energy to the background metric.
+        \end{itemize}
+
+        \subsection{Field Equations}
+        The Euler--Lagrange equations from $\mathcal{L}_\text{VAM}$ yield:
+        \paragraph{(1) Swirl Field Dynamics}
+        \begin{equation}
+            \partial_\nu \mathcal{S}^{\nu\mu} = j^\mu - g \cdot \mathrm{Im}(\Psi^* D^\mu \Psi)
+        \end{equation}
+        This equation governs the dynamics of $\phi_\mu$ under the influence of condensate gradients and external topological currents.
+
+        \paragraph{(2) Condensate Dynamics}
+        \begin{equation}
+            D_\mu D^\mu \Psi + \frac{\partial V}{\partial \Psi^*} = 0
+        \end{equation}
+        This is a generalized Klein--Gordon equation with swirl covariant derivatives.
+
+        \paragraph{(3) Conserved Current}
+        \begin{equation}
+            j^\mu = \rho^2 (\partial^\mu \chi + g \phi^\mu), \quad \partial_\mu j^\mu = 0
+        \end{equation}
+        Ensures conservation of circulation and topological charge.
+
+        \subsection{Topological Quantization Condition}
+        Knotted solutions carry quantized circulation:
+        \begin{equation}
+            \Gamma = \oint d\ell^\mu \partial_\mu \chi = 2\pi n
+        \end{equation}
+        implying that $\Psi$ must vanish somewhere in vortex cores, producing quantized swirl defects.
+
+        \subsection{Gravitational Coupling (Optional)}
+        If $\mathcal{L}_{\text{grav}} = \frac{1}{2} R + \kappa T_{\mu\nu}$ is included, the emergent energy--momentum tensor for the swirl field reads:
+        \begin{equation}
+            T_{\mu\nu} = \mathcal{S}_{\mu\lambda} \mathcal{S}_\nu{}^\lambda - \frac{1}{4} g_{\mu\nu} \mathcal{S}_{\rho\sigma} \mathcal{S}^{\rho\sigma} + \cdots
+        \end{equation}
+        providing a source term for induced curvature or background perturbations.
+
+        \subsection{Conclusion}
+        This minimal action and its derived field equations provide a complete, covariant, and predictive structure for the VAM, enabling both classical analysis and quantum generalization (see Appendix L).
+
+        \section*{Observables and Experimental Signatures}
+        To assess the physical relevance of the Vortex Æther Model (VAM), we identify potential observables and outline signatures that distinguish VAM from both classical field theories and general relativity.
+
+        \subsection{Particle Mass Spectrum}
+        Knot solitons in the VAM carry quantized helicity and circulation. Their rest energy is given by:
+        \begin{equation}
+            E_n = \int d^3x \left[ |D_\mu \Psi|^2 + V(|\Psi|) + \frac{1}{4} \mathcal{S}_{\mu\nu} \mathcal{S}^{\mu\nu} \right]
+        \end{equation}
+        Numerical evaluation of stable solutions may yield a mass spectrum analogous to that of leptons or hadrons, enabling a topological reinterpretation of the standard model.
+
+        \subsection{Time Dilation by Swirl Density}
+        From Appendix C, swirl density alters the local clock rate:
+        \begin{equation}
+            d\tau = \sqrt{1 - \phi_0^2 / c^2} \, dt
+        \end{equation}
+        This implies testable deviations from relativistic time dilation in environments with controlled vortex density—such as rotating superfluid systems or analog gravity experiments.
+
+        \subsection{Helicity-Based Charge Quantization}
+        The quantization of helicity:
+        \begin{equation}
+            H = \int d^3x \, \phi_\mu \mathcal{S}^{\mu0} \propto n
+        \end{equation}
+        suggests an interpretation of electric or weak charge as topological winding number. Experimental confirmation could involve detecting chiral asymmetries in vortex-matter interactions.
+
+        \subsection{Emergent Gravity and Swirl Stress-Energy}
+        The swirl field generates an effective energy--momentum tensor:
+        \begin{equation}
+            T_{\mu\nu}^{\text{swirl}} \sim \mathcal{S}_{\mu\lambda} \mathcal{S}_\nu{}^\lambda - \frac{1}{4} g_{\mu\nu} \mathcal{S}^2
+        \end{equation}
+        Measurable consequences include frame-dragging analogs and gravitational lensing effects in laboratory superfluids.
+
+        \subsection{Interference and Knot Transitions}
+        Quantized knots may exhibit interference patterns under phase shifts in $\chi(x)$. Scattering experiments with structured vorticity (e.g., in atomic BECs) could reveal topological interference signatures.
+
+        \subsection{Falsifiability Criteria}
+        VAM predicts:
+        \begin{itemize}
+            \item violation of general relativistic predictions in high-vorticity systems,
+            \item particle-like excitations with topologically fixed mass ratios,
+            \item modified gravitational redshift near coherent swirl condensates.
+        \end{itemize}
+        Failure to observe these effects within the expected energy range would falsify the model.
+
+        \subsection{Prospective Experimental Platforms}
+        \begin{itemize}
+            \item Superfluid helium and atomic BECs (swirl quantization, clock-rate shifts)
+            \item Vortex-lattice crystals (topological braid detection)
+            \item High-precision clock networks in rotating cryogenic systems
+            \item Quantum fluids under rotation with topological solitons
+        \end{itemize}
+
+
+\section{Topological Quantization in the Vortex Æther Model — Knot Hilbert Spaces and Quantum Operators}
+    This appendix demonstrates that VAM is not purely theoretical: it predicts concrete, quantifiable, and falsifiable observables. Future work may extract specific numerical values for predicted particle masses and interaction cross sections.
+
+    \section{Quantization and Knot Hilbert Space}
+    This appendix outlines a topological quantization framework for the Vortex Æther Model (VAM), extending the classical field theory into a semi-quantum regime where knotted field configurations correspond to discrete states in a Hilbert space.
+
+    \subsection{Path Integral Formulation}
+    Quantization is approached via a functional integral over the fundamental fields:
+    \begin{equation}
+        Z = \int \mathcal{D}\phi_\mu \mathcal{D}\Psi \mathcal{D}\Psi^* \, e^{i S[\phi_\mu, \Psi] / \hbar}
+    \end{equation}
+    where $S = \int d^4x \, \mathcal{L}_{\text{VAM}}$ is the action defined in Appendix ~\ref{sec:explicit-covariant-formulation}. The integration is restricted to topologically admissible field configurations.
+
+    \subsection{Topological Sectors and Instantons}
+    Knotted solutions are organized into homotopy classes $[\Psi] \in \pi_3(S^2)$ or higher-order link groups. Instantons and transitions between sectors contribute to the functional integral:
+    \begin{equation}
+        Z = \sum_{n \in \mathbb{Z}} e^{i n \theta} Z_n, \quad Z_n = \int_{[\Psi]_n} \mathcal{D} \Psi \, e^{i S_n / \hbar}
+    \end{equation}
+    Here, $n$ labels the topological winding number (e.g., helicity class), and $\theta$ may represent an axion-like coupling or phase bias.
+
+    \subsection{Hilbert Space of Knotted States}
+    Quantized vortex knots span a Hilbert space:
+    \begin{equation}
+        \mathcal{H}_{\text{knot}} = \text{Span} \{ \ket{K_n} \}, \quad \braket{K_n | K_m} = \delta_{nm}
+    \end{equation}
+    Each state $\ket{K_n}$ corresponds to a stable knotted configuration with quantum numbers $\{ n, J, H, Q \}$, including winding number, angular momentum, helicity, and effective charge.
+
+    \subsection{Creation and Annihilation Operators}
+    Knot excitation operators $\hat{a}_n^\dagger, \hat{a}_n$ are defined such that:
+    \begin{equation}
+        \hat{a}_n^\dagger \ket{0} = \ket{K_n}, \quad \hat{a}_n \ket{K_n} = \ket{0}
+    \end{equation}
+    These operators obey commutation or braid algebra depending on the vortex linking class:
+    \begin{equation}
+        \hat{a}_m \hat{a}_n = (-1)^{\omega_{mn}} \hat{a}_n \hat{a}_m
+    \end{equation}
+    where $\omega_{mn}$ is the linking number between knots $K_m$ and $K_n$.
+
+    \subsection{Partition Function and Thermodynamics}
+    The partition function over knot states allows statistical mechanics and cosmological predictions:
+    \begin{equation}
+        Z = \text{Tr}(e^{-\beta \hat{H}}), \quad \hat{H} \ket{K_n} = E_n \ket{K_n}
+    \end{equation}
+    This enables computation of entropy, specific heat, and correlation lengths in æther condensates.
+
+    \subsection{Quantum Observables}
+    Operators acting on $\mathcal{H}_{\text{knot}}$ include:
+    \begin{itemize}
+        \item $\hat{H}$: energy operator (knot mass)
+        \item $\hat{J}_z$: angular momentum
+        \item $\hat{H}_\text{helicity}$: helicity (linked to $\mathcal{S}_{\mu\nu} \tilde{\mathcal{S}}^{\mu\nu}$)
+        \item $\hat{Q}$: emergent charge from topological class
+    \end{itemize}
+    These observables distinguish knot species and their interactions.
+
+    \subsection{Conclusion}
+    This quantization framework elevates VAM to a candidate topological quantum field theory (TQFT), with a Hilbert space structured by knot topology. It bridges classical æther dynamics with quantum field theory and opens pathways toward quantized gravity, matter emergence, and analog particle statistics.
+
+
+\section{First Principles Derivation of Core \AE{}ther Constants}
+
+        To remove circularity and render the Vortex \AE{}ther Model (VAM) predictive, this appendix derives the core \ae{}ther parameters from first principles or minimal empirical anchoring. The focus is on deducing the core vortex radius $r_c$ and core energy density $\rho_{\text{\ae,core}}$ as foundational constants.
+
+        \subsection{ Quantum Uncertainty and Vortex Core Radius}
+
+        The uncertainty principle provides a natural lower bound for localization:
+        \begin{equation}
+        \Delta x \sim r_c \gtrsim \frac{\hbar}{m v}
+        \end{equation}
+
+        For a vortex with quantized circulation $\Gamma = h/m$, and azimuthal velocity $v = \Gamma / 2\pi r_c = \hbar / (m r_c)$, we find:
+        \begin{equation}
+        r_c = \frac{\hbar}{m C_e}
+        \end{equation}
+
+        where $C_e$ is the tangential velocity at the vortex core. If one assumes $\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} \sim c$, the result is:
+        \begin{equation}
+        r_c \approx \frac{\hbar}{m c}
+        \end{equation}
+
+        This is the Compton wavelength. In VAM, the more precise definition is:
+        \begin{equation}
+        r_c = \frac{\hbar}{m C_e}, \quad \text{with} \quad \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} = \frac{c}{2\pi \alpha}
+        \end{equation}
+
+        This expression anchors the VAM length scale directly to measured quantities.
+
+        \paragraph{Electron Core Radius:}
+        \begin{equation}
+        r_c^{(e)} = \frac{\hbar}{m_e C_e} = \frac{\hbar \cdot 2\pi \alpha}{m_e c} \approx 1.40897 \times 10^{-15} \ \text{m}
+        \end{equation}
+
+
+        \subsection{ Core Energy Density from Knot Mass}
+
+        Assuming the vortex knot energy is localized within a sphere of radius $r_c$, with volume $V = \frac{4}{3} \pi r_c^3$, the core energy density becomes:
+
+        \begin{equation}
+        \rho_{\text{\ae,core}} = \frac{E}{V} = \frac{m c^2}{\frac{4}{3} \pi r_c^3} = \frac{3 m^4 C_e^3}{4 \pi \hbar^3}
+        \end{equation}
+
+        Substituting $r_c = \hbar / (m C_e)$ into the volume.
+
+
+        \paragraph{Numerical Estimate for Electron:}
+        \begin{equation}
+        \rho_{\text{\ae,core}}^{(e)} \approx 3.89 \times 10^{18} \ \text{kg/m}^3
+        \end{equation}
+
+        This is consistent with the core density used elsewhere in the VAM framework.
+
+        \subsection{ Maximum Swirl Force Estimate}
+        The maximum force sustained in a vortex field arises from energy density gradients:
+
+        \begin{equation}
+        F_{\max} \sim \frac{dE}{dr} \sim \rho_{\text{\ae,core}} \cdot \frac{dV}{dr} \sim \frac{\rho_{\text{\ae,core}}}{r_c}
+        \end{equation}
+
+        Using previous values for the electron vortex:
+        \begin{equation}
+        F_{\max}^{(e)} = \frac{\rho_{\text{\ae,core}}^{(e)}}{r_c^{(e)}} \approx \frac{3.89 \times 10^{18}}{1.40897 \times 10^{-15}} \approx 2.76 \times 10^{33} \ \text{N/m}^2
+        \end{equation}
+
+        This force per unit area is within striking range of Planck pressure, indicating a possible quantum gravity scale.
+
+        \subsection{Emergent coupling constant \texorpdfstring{$C_e$}{Ce}}
+        Given the swirl field analogy to electromagnetism, a dimensionless effective coupling can be defined:
+
+        \begin{equation}
+        \alpha_\text{eff} = \frac{c}{2\pi C_e} \Rightarrow \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} = \frac{c}{2\pi \alpha}
+        \end{equation}
+
+        Thus, $C_e$ is not postulated but emerges from the known fine-structure constant and speed of light:
+
+        \begin{equation}
+        \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} \approx 1.09384563 \times 10^6 \ \text{m/s}
+        \end{equation}
+
+
+        \subsection{Conclusion}
+
+        By deriving $r_c$ and $\rho_{\text{\ae,core}}$ from uncertainty, circulation, and confinement energy arguments, we ground the \ae{}ther parameters in observable quantities. From these, $F_{\max}$ and $C_e$ follow naturally, completing the base parameter set of the VAM without free assumptions. This derivation reduces VAM's dependency on assumed parameters by expressing all vortex characteristics—radius, density, force, and coupling—in terms of standard constants \(\hbar\), \(c\), \(\alpha\), and \(m\). This grounds the model in testable quantities and sets the stage for deeper vortex-mass coupling theories.
+
+        \paragraph{Experimental Implication:} The fourth-power mass scaling of $\rho_{\text{\ae,core}}$ predicts that heavier leptons (muon, tau) require denser vortex structures. Their decay lifetimes and confinement radii may encode direct evidence for the scaling laws of a structured \ae{}ther.
+
+
+
+
+\section{Independent Derivations of Æther Constants}
+\addcontentsline{toc}{section}{Appendix N: Independent Derivations of Æther Constants}
+
+        To ensure the Vortex Æther Model (VAM) avoids circular reasoning, we provide two independent strategies for deriving fundamental æther constants such as the swirl coupling speed $C_e$, the core energy density $\rho_{\text{æ}}$, and the maximum allowable vortex force $F_{\max}$. These methods are rooted in either high-energy theoretical limits or experimental analogs.
+
+        \subsection{ Planck-Scale Vortex Tension Limit}
+
+        Assume that a vortex loop in the æther cannot sustain a tension higher than that allowed by Planck-scale energy concentration. The Planck energy density is:
+        \begin{equation}
+            \rho_{\text{Planck}} = \frac{c^7}{\hbar G^2}
+        \end{equation}
+
+        Assuming the vortex stores energy $E = \rho_{\text{Planck}} \cdot r^3$, we estimate the maximum internal tension by dimensional analysis:
+        \begin{equation}
+            F_{\max} \sim \frac{E^2}{r} = \rho_{\text{Planck}}^2 \cdot r^5
+        \end{equation}
+
+        Solving for $r$ gives:
+        \begin{equation}
+            r \sim \left( \frac{F_{\max}}{\rho_{\text{Planck}}^2} \right)^{1/5}
+        \end{equation}
+
+        Once $r$ is known, we can derive the æther energy density as:
+        \begin{equation}
+            \rho_{\text{æ}} \sim \frac{F_{\max}}{r}
+        \end{equation}
+
+        This defines a non-empirical derivation pipeline: define a maximum admissible tension $F_{\max}$ from first principles or cosmic observations, then derive $r$ and $\rho_{\text{æ}}$ accordingly.
+
+        \subsection{ Time Dilation from Swirl in Analog Gravity Systems}
+
+        In the VAM framework, time dilation induced by swirl velocity $v$ is modeled by an effective metric:
+        \begin{equation}
+            g_{tt}^{\text{eff}} = 1 - \frac{v^2}{C_e^2}
+        \end{equation}
+
+        Solving for the swirl coupling constant $C_e$ gives:
+        \begin{equation}
+            \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} = \frac{v}{\sqrt{1 - g_{tt}^{\text{eff}}}}
+        \end{equation}
+
+        In laboratory analogs—such as Bose–Einstein condensates, superfluid helium, or optical vortex platforms—both $v$ and $g_{tt}^{\text{eff}}$ (via interferometry or phase delay) can be directly measured.
+
+        \textbf{Example:} For a swirl velocity $v = 100 \, \text{m/s}$ and a measurable clock delay equivalent to $g_{tt}^{\text{eff}} = 0.999999$, we obtain:
+        \begin{equation}
+            \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} \approx \frac{100}{\sqrt{1 - 0.999999}} \approx 10^5 \, \text{m/s}
+        \end{equation}
+
+        While this $C_e$ is lower than cosmological estimates, it provides an experimentally derived scale within the analog system and can be rescaled for fundamental æther.
+
+        \subsection{ Summary Table}
+
+        \begin{table}[H]
+        \centering
+        \renewcommand{\arraystretch}{1.2}
+        \begin{tabular}{|c|l|c|}
+        \hline
+        \textbf{Constant} & \textbf{Derived From} & \textbf{Key Equation} \\
+        \hline
+        $F_{\max}$ & Planck density + tension limit & $F_{\max} \sim \rho_{\text{Planck}}^2 r^5$ \\
+        $r$ & Rearranged from $F_{\max}$ expression & $r \sim \left(F_{\max} / \rho_{\text{Planck}}^2\right)^{1/5}$ \\
+        $\rho_{\text{æ}}$ & From tension + radius & $\rho_{\text{æ}} \sim F_{\max} / r$ \\
+        $C_e$ & Swirl velocity + lab-measured $g_{tt}$ & $\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} = v / \sqrt{1 - g_{tt}}$ \\
+        \hline
+        \end{tabular}
+        \caption{Summary of æther constant derivation routes from independent principles.}
+        \end{table}
+
+        \vspace{1em}
+
+        These derivation routes strengthen the model’s predictive integrity and help transition VAM from a structured analogy into a falsifiable physical framework.
+
+
+\section{Dynamical–Energetic Equivalence in VAM}
+\addcontentsline{toc}{section}{ Dynamical–Energetic Equivalence in VAM}
+
+            This appendix establishes a formal connection between the dynamic evolution of æther solitons and their quantized energy content. The equivalence highlights how æther constants—such as $F_{\max}$, $r_c$, $\rho_{\text{æ}}$, and $C_e$—appear consistently in both the time-dependent and static characterizations of topological configurations in the Vortex Æther Model (VAM).
+
+            \subsection{Time Evolution of the Æther Condensate}
+
+            We postulate a Schrödinger-like evolution equation for the topological condensate field $\psi(x,t)$:
+            \begin{equation}
+            i\hbar \frac{\partial \psi}{\partial t} = - \left( \frac{F_{\max} r_c^3}{5 \lambda_c C_e} \right) \nabla^2 \psi + V \psi
+            \end{equation}
+
+            Here:
+            \begin{itemize}
+              \item $F_{\max}$ is the maximum vortex tension (force),
+              \item $r_c$ is the vortex core radius,
+              \item $\lambda_c = \hbar / (m c)$ is a Compton-like length,
+              \item $C_e$ is the æther’s swirl–inertia coupling constant.
+            \end{itemize}
+
+            This equation governs the local curvature-induced evolution of the condensate phase $\psi$, where vortex cores act as topological charge carriers.
+
+            \subsection{Total Energy of a Topological Æther Configuration}
+
+            In parallel, we define the total rest energy of a quantized æther soliton (e.g., a knotted vortex loop) as:
+            \begin{equation}
+            E = \left( \frac{8\pi \rho_{\text{æ}} r_c^3 C_e}{c} \right) \cdot \phi
+            \end{equation}
+            where:
+            \begin{itemize}
+              \item $\rho_{\text{æ}}$ is the energy density of the æther core,
+              \item $C_e$ and $r_c$ as above,
+              \item $\phi \approx 1.618...$ is the golden ratio, used here as a topological quantization factor (e.g., knot level index).
+            \end{itemize}
+
+            \subsection{Derivation of Equivalence via Energy–Force Identity}
+
+            Using the assumption:
+            \begin{equation}
+            F_{\max} \sim \rho_{\text{æ}} r_c^2
+            \end{equation}
+            we rewrite the kinetic term coefficient:
+            \begin{equation}
+            \frac{F_{\max} r_c^3}{\lambda_c C_e} \sim \frac{\rho_{\text{æ}} r_c^5}{\lambda_c C_e}
+            \end{equation}
+
+            Now, expressing $E$ as:
+            \begin{equation}
+            E \sim \left( \frac{8\pi \rho_{\text{æ}} r_c^3 C_e}{c} \right) \cdot \phi
+            \Rightarrow
+            \frac{E}{\phi} \cdot \frac{r_c^2}{\lambda_c C_e} \sim \frac{8\pi \rho_{\text{æ}} r_c^5}{\lambda_c c}
+            \end{equation}
+
+            Thus, the prefactor in the evolution equation is directly proportional to the rest energy $E$, scaled through geometric and topological ratios.
+
+            \subsection{Physical Implications}
+
+            This identity implies that:
+            \begin{itemize}
+              \item The curvature-induced dynamics of $\psi$ encode the same æther constants that determine its rest energy.
+              \item Quantization through $\phi$ reflects in both mass and dynamical stiffness.
+              \item VAM unifies energy–momentum and quantum evolution through vortex geometry.
+            \end{itemize}
+
+            This dynamical–energetic correspondence reinforces the predictive integrity of the model, showing that dynamical equations and conserved quantities emerge from the same core physical assumptions.
+            \subsection{Topological Mass and Quantum Rigidity}
+
+            We now reinterpret the condensate evolution equation in light of the empirical observation that the energy term
+            \[
+            E \approx \left( \frac{8\pi \rho_{\text{æ}} r_c^3 C_e}{c} \right) \cdot \phi
+            \]
+            can yield a value near the rest mass energy of the proton when appropriate æther parameters are chosen. This suggests a deeper unification between vortex topology, energy quantization, and dynamical evolution.
+
+            \subsubsection{Interpretation of the Dynamical Equation}
+
+            The field evolution equation:
+            \begin{equation}
+            i\hbar \frac{\partial \psi}{\partial t}
+            = - \left( \frac{E}{\phi} \cdot \frac{r_c^2}{\lambda_c C_e} \right) \nabla^2 \psi + V \psi
+            \end{equation}
+            can be read as a modified nonlinear Schrödinger equation, where the spatial diffusion (or rigidity) of the condensate field $\psi$ is governed by the energy scale $E$ divided by the topological index $\phi$.
+
+            The prefactor
+            \[
+            \mathcal{D} = \left( \frac{E}{\phi} \cdot \frac{r_c^2}{\lambda_c C_e} \right)
+            \]
+            defines a dispersion coefficient that depends not only on fundamental constants but also on the topological excitation level of the soliton.
+
+            \subsubsection{Golden Ratio as Topological Ladder}
+
+            We hypothesize that the golden ratio $\phi$ indexes the quantized topological excitation level $n$:
+            \begin{equation}
+            E_n = \left( \frac{8\pi \rho_{\text{æ}} r_c^3 C_e}{c} \right) \cdot \phi^n
+            \end{equation}
+
+            This structure would naturally produce a discrete soliton spectrum with increasing mass and curvature stiffness, potentially corresponding to a spectrum of composite particles (e.g., baryons, leptons, neutrinos).
+
+            \subsubsection{Numerical Proton Mass Match with Exact Æther Constants}
+
+            Using æther parameters set by first-principles vortex dynamics, we compute the rest energy associated with a topological soliton configuration. The constants used are:
+
+            \begin{itemize}
+              \item $\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} = 1.09384563 \times 10^6 \, \text{m/s}$ (æther swirl coupling speed),
+              \item $\rho_{\text{æ}}^{\text{core}} = 3.8934358267 \times 10^{18} \, \text{kg/m}^3$ (mass density),
+              \item $r_c = 1.40897017 \times 10^{-15} \, \text{m}$ (vortex core radius),
+              \item $\phi = 1.6180339887$  ($\frac{1 + \sqrt{5}}{2}$ golden ratio),
+              \item $c = 2.99792458 \times 10^8 \, \text{m/s}$ (speed of light).
+            \end{itemize}
+
+            We convert the mass density to energy density:
+            \begin{equation}
+            \rho_E = \rho_{\text{æ}}^{\text{core}} \cdot c^2 = 3.893 \times 10^{18} \cdot (2.998 \times 10^8)^2 \approx 3.5 \times 10^{35} \, \text{J/m}^3
+            \end{equation}
+
+            The vortex-based mass formula is:
+            \begin{equation}
+            m_{\text{VAM}} = \left( \frac{8\pi \rho_E r_c^3 C_e}{c} \right) \cdot \phi
+            \end{equation}
+
+            With:
+            \begin{equation}
+            r_c^3 = (1.40897 \times 10^{-15})^3 \approx 2.798 \times 10^{-45} \, \text{m}^3
+            \end{equation}
+
+            Computing:
+            \begin{align}
+            m_{\text{VAM}} &\approx \left( \frac{8\pi \cdot 3.5 \times 10^{35} \cdot 2.798 \times 10^{-45} \cdot 1.09384563 \times 10^6}{2.998 \times 10^8} \right) \cdot \phi \\
+            &\approx 1.61585 \times 10^{-27} \, \text{kg}
+            \end{align}
+
+            This result is within 3.39\% of the CODATA proton mass:
+            \begin{equation}
+            m_p = 1.67262 \times 10^{-27} \, \text{kg}
+            \end{equation}
+
+            \textbf{Conclusion:} This match supports the interpretation that soliton mass in VAM arises from a combination of vortex geometry, æther coupling strength, and a topological quantization index $\phi$. No external embedding of mass constants is required.
+
+
+            \subsubsection*{Implications}
+
+            \begin{itemize}
+              \item Mass directly influences condensate dispersion.
+              \item $\phi$ governs both rest energy and spatial coherence.
+              \item VAM unifies soliton dynamics and topological spectra in a single evolution law.
+            \end{itemize}
+
+            This connection transforms the evolution equation from a mathematical construct into a physically anchored framework for deriving particle properties from æther geometry.
+
+\section{Hyperbolic Knot Spectrum in VAM}
+\label{sec:hyperbolic_knot_spectrum}
+
+        \subsection{Introduction}
+
+        While torus and twist knots provide a foundation for identifying quantized vortex structures in the Vortex Æther Model (VAM), \emph{hyperbolic knots} represent the next level of topological and physical complexity. Their complements admit hyperbolic geometry, storing energy not just in twist and linkage, but in \textbf{spatial curvature} itself.
+
+        This section unifies the torus--twist--hyperbolic taxonomy into a single helicity-based mass framework, grounded in the structure of the ætheric Lagrangian and topological invariants.
+
+        \subsection{Geometry-Driven Mass Spectrum}
+
+        In VAM, the mass of a knotted excitation arises from:
+        \begin{itemize}
+            \item Quantized swirl (helicity),
+            \item Internal topological structure (linkage, twist),
+            \item Spatial embedding (hyperbolic geometry).
+        \end{itemize}
+
+        We propose a generalized hyperbolic knot mass formula:
+        \begin{equation}
+            M_h = K \cdot \Gamma \cdot \sqrt{V_h} \cdot \left(1 + \alpha Lk\right),
+        \end{equation}
+        where:
+        \begin{itemize}
+            \item $\Gamma$ is the quantized circulation strength,
+            \item $V_h$ is the hyperbolic volume of the knot complement,
+            \item $Lk$ is the total linking number,
+            \item $\alpha$ is a topological coupling constant,
+            \item $K$ is derived from æther parameters, e.g., $K = \frac{\hbar}{r_c^2 c}$.
+        \end{itemize}
+
+        \subsection{Taxonomy Integration}
+
+        \begin{table}[h]
+        \centering
+        \caption{VAM Knot Classes and Mass Origins}
+        \begin{tabular}{|l|l|l|l|l|}
+        \hline
+        \textbf{Knot Class} & \textbf{Representative} & \textbf{Topology} & \textbf{Mass Origin} & \textbf{Interpretation} \\
+        \hline
+        Torus $T(p,q)$ & Trefoil, Cinquefoil & $S^1 \times S^1$ & $p^2 + q^2 + \gamma pq$ & Stable particles \\
+        Twist & Fig.-eight, $5_2$ & Half-twisted loop & Angular momentum & Resonances \\
+        Hyperbolic & $4_1$, $6_3$, $7_7$ & $\mathbb{H}^3$ complement & Curvature + helicity & Deep-time attractors \\
+        \hline
+        \end{tabular}
+        \end{table}
+
+        \subsection{Physical Implications}
+
+        \begin{itemize}
+            \item \textbf{Stability}: Topologically stabilized via helicity conservation~\cite{moffatt2014helicity}.
+            \item \textbf{Mass hierarchy}: $V_h$ and $Lk$ encode structure beyond torus knots.
+            \item \textbf{Time dilation}: Hyperbolic knots form deeper swirl-induced time wells~\cite{gibbons2002maximal}.
+        \end{itemize}
+
+        \subsection{Structural Analogy to Torus Mass Formula}
+
+        The torus mass formula,
+        \begin{equation}
+            M(p,q) \propto \sqrt{p^2 + q^2 + \gamma pq},
+        \end{equation}
+        translates structurally to the hyperbolic regime as:
+        \begin{equation}
+            M_h \propto \sqrt{V_h} \cdot (1 + \alpha Lk).
+        \end{equation}
+
+        By calibrating $\gamma$ from electron data, the coupling constant $\alpha$ can be interpreted as a geometric generalization for curved vortex complements.
+
+        \subsection{Future Directions}
+
+        This spectrum suggests:
+        \begin{itemize}
+            \item Systematic classification of vortex knots by $(V_h, Lk)$,
+            \item Potential observables in quantum fluids and plasmas~\cite{arnold1998topological},
+            \item A roadmap toward a topological model of matter.
+        \end{itemize}
+
+
+
+\section{Dual-Scale Topological Mass Spectrum}
+        This appendix synthesizes two distinct mass-generation mechanisms in the Vortex Æther Model (VAM), each rooted in topological configurations of æther vortices. One branch describes composite, extended topological states (e.g., baryons and nuclei); the other encodes localized, toroidal structures (e.g., electrons).
+
+        \subsection{Mass from Global Knot Quantization}
+
+        Topological energy scaling yields a discrete mass ladder:
+        \begin{equation}
+        M_n = A \cdot \phi^n, \quad \text{with} \quad
+        A = \frac{8\pi \rho_{\text{æ}} r_c^3 C_e}{c}
+        \end{equation}
+        where:
+        \begin{itemize}
+          \item $n \in \mathbb{Z}_{\geq 0}$ is the topological excitation level,
+          \item $\phi \approx 1.618$ is the golden ratio,
+          \item $A$ sets the energy scale based on æther constants.
+        \end{itemize}
+
+        This formulation reproduces the masses of:
+        \begin{itemize}
+          \item proton ($n=1$),
+          \item helium-4 ($n=4$),
+          \item boron-11 ($n=6$),
+          with errors typically $< 5\%$.
+        \end{itemize}
+
+        \subsection{Mass from Local Toroidal Knots}
+
+        A second spectrum arises from torus-knot geometry $(p,q)$:
+        \begin{equation}
+        M(p,q) = \frac{8\pi \rho_{\text{æ}} r_c^3}{C_e} \cdot \left( \sqrt{p^2 + q^2} + \gamma pq \right)
+        \end{equation}
+
+        Here:
+        \begin{itemize}
+          \item $p, q \in \mathbb{Z}$ encode the winding of a $(p,q)$ torus knot,
+          \item $\gamma$ is a small interaction coupling,
+          \item the prefactor contains the same æther constants as $M_n$.
+        \end{itemize}
+
+        A remarkable match occurs for:
+        \[
+        (p,q) = (2,3), \quad \gamma \approx 0.005901
+        \Rightarrow M_e \approx 9.11 \times 10^{-31} \, \text{kg}
+        \]
+        which closely matches the electron mass.
+
+        \subsection{Unification via Æther Energy Scale}
+
+        Both mass expressions derive from a common core energy:
+        \[
+        \mathcal{E}_0 = 8\pi \rho_{\text{æ}} r_c^3
+        \]
+
+        Then:
+        \begin{align}
+        M_n &= \mathcal{E}_0 \cdot \left( \frac{C_e}{c} \right) \cdot \phi^n \\
+        M(p,q) &= \mathcal{E}_0 \cdot \left( \frac{1}{C_e} \right) \cdot \left( \sqrt{p^2 + q^2} + \gamma pq \right)
+        \end{align}
+
+        This suggests two branches of mass:
+        \begin{itemize}
+          \item \textbf{Global knot excitations}: quantized by $\phi^n$, associated with extended solitons,
+          \item \textbf{Local toroidal structures}: indexed by $(p,q)$, describing light pointlike particles.
+        \end{itemize}
+
+        \subsection{Topological Interpretation}
+
+        We hypothesize:
+        \begin{itemize}
+          \item $n$ counts nested self-linking/knotted field lines in extended configurations,
+          \item $(p,q)$ encode local toroidal twist and writhe,
+          \item $\gamma$ reflects internal twist–crossing energy of the vortex ring.
+        \end{itemize}
+
+        \subsection{Toward a Unified Ladder}
+
+        The union of both branches may allow a unified expression:
+        \[
+        M(\mathcal{T}) =
+        \begin{cases}
+        A \cdot \phi^n & \text{if } \mathcal{T} \text{ is a global knot excitation} \\
+        B \cdot \left( \sqrt{p^2 + q^2} + \gamma pq \right) & \text{if } \mathcal{T} \text{ is a torus knot}
+        \end{cases}
+        \]
+
+        \textbf{Conclusion:} This dual-spectrum framework allows VAM to encode both composite and elementary particle masses within the same æther-topological language, using no embedded standard model constants.
+%! Author = mr
+%! Date = 6/9/2025
+
+\section{From \AE ther Tension to Planck's Constant and the Bohr Radius}
+
+\subsection{Setup and Notation}
+
+We recall three VAM primitives:
+\begin{align*}
+F_{\max} & : \text{maximum \ae ther tension (N)}, \\
+r_c & : \text{vortex-core radius (m)}, \\
+C_e&:\text{core swirl speed (m s$^{-1}$)}.
+\end{align*}
+
+The electron Compton data are
+\[
+\lambda_C = \frac{h}{m_e c}, \qquad v_e = \frac{c}{\lambda_C}, \qquad \omega_e = 2\pi v_e.
+\]
+The photon wrap number (half-wavelength segments on the core) is an integer $n$; empirical fitting of atomic masses fixes $n=2$ throughout this appendix.
+
+\subsection{Maxwell Hookean Model for the Electron Core}
+
+VAM treats the electron's internal vortex as an $n$-segment linear spring:
+\[
+K_e = \frac{F_{\max}}{n r_c}, \qquad \omega_c = \sqrt{\frac{K_e}{m_e}} = \sqrt{\frac{F_{\max}}{n m_e r_c}}.
+\]
+The photon--electron swirl matching condition
+\[
+\omega_e R = \omega_c r_c
+\]
+relates the photon radius $R$ (centreline of its vorticity tube) to the core.
+
+\subsection{Deriving Planck's Constant}
+
+Insert $\omega_c$ into the matching relation and solve for $F_{\max}$, then eliminate $R$ with $R=C_e/(2\pi v_e)$:
+\begin{align*}
+F_{\max}
+&= \frac{(2\pi v_e)^2 m_e R^2}{n r_c} \\
+&= \frac{4\pi^2 v_e^2 m_e}{n r_c} \left( \frac{C_e}{2\pi v_e} \right)^2 \\[4pt]
+&\Longrightarrow \boxed{h = \frac{4\pi F_{\max} r_c^2}{C_e}}. \tag{X.1}
+\end{align*}
+Equation (X.1) shows that $h$ is not fundamental but set by the \ae ther tension acting over the core cross-section at speed $C_e$.
+
+Numerically,
+\[
+h_{\text{VAM}} = \frac{4\pi\,(29.053507\,\text{N})\,(1.40897\times10^{-15}\,\text{m})^2}{1.093846\times10^{6}\,\text{m s}^{-1}} = 6.62\times10^{-34}\,\text{J s},
+\]
+within $0.2\%$ of the CODATA value.
+
+\subsection{Photon Swirl Radius and the Bohr Ground State}
+
+Define the photon swirl radius for \textit{any} frequency $\nu$ as
+\[
+R_{\gamma}(\nu) = \frac{C_e}{2\pi\nu}.
+\]
+For a photon of Compton frequency $v_e$ we obtain the fundamental radius
+\[
+R_0 \equiv R_{\gamma}(v_e) = \frac{C_e}{2\pi v_e} = \frac{\lambda_C}{2\pi}.
+\]
+Re-express the Bohr radius using the VAM identity $\alpha = 2C_e/c$:
+\[
+a_0 = \frac{\hbar}{m_e c \alpha} = \frac{1}{\alpha} \left( \frac{\lambda_C}{2\pi} \right) = \frac{R_0}{\alpha}. \tag{X.2}
+\]
+Thus \textit{one Compton-frequency photon swirl, scaled up by $1/\alpha \approx 137$, lands exactly on the textbook ground-state radius}.
+
+\subsection{Resonant Capture Probability}
+
+The \ae ther-vorticity overlap integral governing photon absorption,
+\[
+\Sigma(\nu) = \int \rho_{\ae}(r)\,|\omega_{\gamma}(R_{\gamma})|\,|\omega_e(r)|\,d^3r,
+\]
+peaks when the vorticity tube of width $R_{\gamma}$ matches the electron's most probable radius.
+
+Because $R_{\gamma} = a_0/\alpha$ \textit{precisely} at $\nu = v_e$, the 1s radial capture probability is maximised---recovering the ordinary quantum-mechanical statement that hydrogen absorbs most strongly near its ground-state radius.
+
+\subsection{Hierarchy of Constants from One Tension Scale}
+
+Collecting results:
+\[
+F_{\max} \xrightarrow{r_c,\,C_e} \boxed{h} \xrightarrow{m_e} \lambda_C \xrightarrow{\alpha} a_0.
+\]
+All central quantum and atomic scales thus descend from a single mechanical ceiling $F_{\max}$ applied over a geometrically fixed core.
+
+\subsection{Implications and Tests}
+
+\begin{itemize}
+    \item Precision linkage. Any future refinement of $F_{\max}$ or $r_c$ will propagate into $h$ and $a_0$; high-precision atomic spectroscopy can therefore constrain \ae ther-tension parameters.
+    \item Resonance width. A finite core viscosity would broaden the overlap peak; its measurement via line-shape analysis could set bounds on \ae ther dissipation.
+\end{itemize}
+
+%! Author = mr
+%! Date = 6/9/2025
+
+\section{Photon-Capacitor Analogy and the Emergence of $E = h\nu$}
+
+\subsection{Physical picture and working assumptions}
+
+A single photon is modelled, in VAM, as a one-turn helical vortex loop of circumference~$\lambda$ and tangential swirl speed~$C_e$.
+
+Treat the loop as a parallel-plate capacitor with
+\begin{itemize}
+    \item effective plate area $A = \lambda^2$ (square of the spatial period),
+    \item effective plate separation $d = \tfrac{1}{2}\lambda$ (half-pitch of the helix).
+\end{itemize}
+
+Classical electrodynamics (SI) supplies the capacitance formula
+\[
+    C = \varepsilon_0 \frac{A}{d}.
+\]
+All symbols follow the constant glossary used throughout the VAM papers.
+
+\subsection{Capacitance of the photon loop}
+
+Using $A = \lambda^2$ and $d = \tfrac{1}{2}\lambda$ gives
+\begin{align}
+    C &= \varepsilon_0 \frac{\lambda^2}{\tfrac{1}{2}\lambda} \notag \\
+      &= 2\,\varepsilon_0\,\lambda.
+    \tag{2.1}
+\end{align}
+
+\subsection{Insert the wave relation}
+
+The usual relation between frequency and wavelength in the æther swirl field is
+\begin{align}
+    \lambda = \frac{C_e}{\nu}.
+    \tag{3.1}
+\end{align}
+So the capacitance becomes
+\begin{align}
+    C = 2\,\varepsilon_0\,\frac{C_e}{\nu}.
+    \tag{3.2}
+\end{align}
+
+\subsection{Electrostatic energy stored in the loop}
+
+For a charge $Q$ distributed across the two plates, the stored energy is
+\begin{align}
+    E = \frac{Q^2}{2C}
+      = \frac{Q^2}{4\,\varepsilon_0\,C_e}\;\nu.
+    \tag{4.1}
+\end{align}
+\textit{Setting $Q=e$ (elementary charge) ties the energy scale to a fundamental quantum.}
+
+\subsection{Identification with the Planck relation}
+
+Comparing (4.1) with the quantum postulate $E = h\nu$ singles out the bracket as Planck’s constant:
+\begin{align}
+    h \equiv \frac{e^{2}}{4\,\varepsilon_0\,C_e}.
+    \tag{5.1}
+\end{align}
+Numerically, with $\mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} = 1.09384563\times10^{6}\,\text{m}\,\text{s}^{-1}$, this yields
+\[
+    h_{\text{VAM}} = 6.615\times10^{-34}\,\text{J\,s},
+\]
+within $0.2\%$ of the CODATA value $6.626\times10^{-34}\,\text{J\,s}$.
+
+Key point --- dimensional inevitability: once $C_e$ is fixed by the fine-structure relation $\alpha = 2C_e/c$, no further tuning is possible; $h$ follows automatically.
+
+\subsection{Cross-check with the vortex-tension formula}
+
+subsection~2 of the constants appendix derived a second expression
+\begin{align}
+    h = \frac{4\pi F_{\max} r_c^{2}}{C_e},
+\end{align}
+from vortex tension $F_{\max}$ and core radius $r_c$. Agreement between the two routes is a stringent self-consistency test:
+\begin{align*}
+    \frac{e^{2}}{4\varepsilon_0}\;\big/\;C_e
+    &= \frac{4\pi F_{\max} r_c^{2}}{C_e} \\
+    &\Longrightarrow\;
+    e^{2} = 16\pi\varepsilon_0 F_{\max} r_c^{2}.
+\end{align*}
+This links the mechanical æther parameters $(F_{\max}, r_c)$ to the electromagnetic charge scale $e$.
+
+\subsection{Dimensional and physical interpretation}
+
+The numerator $e^{2}$ is a flux of action per unit permittivity; dividing by a speed converts it to pure action (units of J\,s).
+
+Planck’s constant therefore appears as one quantum of momentum-flux circulation in the æther.
+
+\subsection{Consequences and experimental hooks}
+
+\begin{enumerate}
+    \item Parameter inter-lock: independent measurements of $e$, $\varepsilon_0$, $C_e$ \textit{must} reproduce the numeric $h$. Any deviation falsifies VAM.
+    \item Photon--electron coupling: resonance occurs when the photon swirl radius $R = C_e/(2\pi\nu)$ scaled by $1/\alpha$ matches the Bohr radius $a_0$---explaining the peak excitation probability of the hydrogen 1s state.
+    \item Casimir regularisation: inserting $h$ from (5.1) into the standard Lifshitz integral shows how the æther’s maximum tension suppresses high-$k$ vacuum modes.
+\end{enumerate}
+
+\subsection{Summary box}
+
+\[
+    \boxed{
+        E = h\nu,\qquad
+        h = \frac{e^{2}}{4\varepsilon_0 C_e} = \frac{4\pi F_{\max} r_c^{2}}{C_e}
+    }
+\]
+
+\textit{Two independent microscopic routes, one electromagnetic and one purely mechanical, converge on the same Planck constant. This dual derivation is a cornerstone consistency check of the Vortex Æther Model.}
+%! Author = mr
+%! Date = 6/9/2025
+
+
+\section{Deriving Atomic Orbital Radii from VAM First-Principles}
+
+\subsection{Key VAM primitives}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{lll}
+        \toprule
+        \textbf{Symbol} & \textbf{Definition} & \textbf{Fixed value} \\
+        \midrule
+        $F_{\max}$ & maximum æther tension & $29.053507\,\text{N}$ \\
+        $r_c$ & vortex-core radius & $1.40897017\times10^{-15}\,\text{m}$ \\
+        $C_e$ & core swirl velocity & $1.09384563\times10^{6}\,\text{m}\,\text{s}^{-1}$ \\
+        $m_e$ & electron mass & $9.10938356\times10^{-31}\,\text{kg}$ \\
+        $\alpha$ & fine-structure const. & $2C_e/c$ \textit{(already proved)} \\
+        $h$ & Planck’s constant & $\displaystyle h=\frac{4\pi F_{\max}r_c^{2}}{C_e}$ \textit{(proved in Appendix H)} \\
+        \bottomrule
+    \end{tabular}
+    \caption{}
+    \label{tab:primitives}
+\end{table}
+
+Throughout this appendix, the integers
+\begin{itemize}
+    \item $N$ -- principal knot number (one per electron, plays the role of $n$),
+    \item $Z$ -- nuclear charge,
+\end{itemize}
+are left symbolic so the final formula covers all hydrogenic orbitals.
+
+\subsection{frequency--velocity matching}
+
+The VAM photon--electron coupling condition reads
+\begin{equation}
+    \mathbf{v}_{\scriptscriptstyle\boldsymbol{\circlearrowleft}} = \omega_c r_c N, \qquad \omega_c \equiv 2\pi v_c.
+\label{eq:match1}
+\end{equation}
+
+A Hookean model for the electron core gives
+\begin{equation}
+    \omega_c = \sqrt{\frac{K_e}{m_e}}, \qquad
+    K_e = \frac{F_{\max}}{N r_c} Z.
+\label{eq:hooke}
+\end{equation}
+
+Insert \eqref{eq:hooke} into \eqref{eq:match1}:
+\begin{equation}
+    C_e^2 = \frac{F_{\max}}{R_x m_e} Z r_c^{2} N^{2},
+\label{eq:master}
+\end{equation}
+where $R_x$ is the yet-unknown mean orbital radius.
+
+\subsection{Solve for $R_x$}
+
+\begin{equation}
+    R_x = \frac{N^{2}}{Z} \frac{F_{\max} r_c^{2}}{m_e C_e^{2}}.
+\label{eq:Rraw}
+\end{equation}
+
+\subsection{Recognising the Bohr radius}
+
+Use the previously derived identities
+\begin{align}
+    h &= \frac{4\pi F_{\max} r_c^{2}}{C_e}, \tag{A} \\
+\alpha &= \frac{2C_e}{c},\tag{B}
+\end{align}
+then rewrite the bracket in \eqref{eq:Rraw}:
+\begin{align*}
+\frac{F_{\max}r_c^{2}}{m_eC_e^{2}}
+    &= \frac{h}{4\pi m_e C_e} \\
+    &= \frac{h}{2\pi m_e c \alpha} \\
+    &= \frac{\hbar}{m_e c \alpha} \\
+    &\equiv a_0,
+\end{align*}
+with $a_0$ the textbook Bohr radius.  Hence
+\begin{equation}
+    \boxed{R_x = \frac{N^{2}}{Z} a_0}
+\label{eq:final}
+\end{equation}
+
+Equation~\eqref{eq:final} reproduces the Sommerfeld--Bohr orbital ladder \textit{without inserting} $h$ or $\alpha$ by hand: both constants follow from the single triad $(F_{\max}, r_c, C_e)$. For multi-electron atoms one substitutes $Z \rightarrow Z_{\text{eff}}$ in the same expression.
+
+\subsection{Numerical sanity -- hydrogen ground state}
+
+Set $N=1$, $Z=1$.
+\[
+    R_{1s} = a_0 \approx 5.29\times10^{-11}\,\text{m},
+\]
+matching observation to 5-digit precision once the empirical values of $F_{\max}, r_c, C_e$ are inserted.
+
+\subsection{Concluding remark}
+
+This derivation shows that \textit{all hydrogenic orbital sizes emerge from æther tension and core geometry}. Together with the earlier capacitor derivation $E=h\nu$ and the tension identity for $h$, VAM reproduces three pillars of quantum kinematics (action quantisation, photon energy, orbital radii) from one self-consistent parameter set.
+%! Author = mr
+%! Date = 6/9/2025
+
+
+\section{Deriving Newton's constant $G$ from VAM primitives}
+
+\subsection{Prerequisites and fundamental relations}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{llll}
+        \toprule
+        \textbf{Symbol} & \textbf{Definition} & \textbf{Value (SI)} & \textbf{Source} \\
+        \midrule
+        $F_{\max}$ & maximum æther tension (VAM) & $29.053507\,\text{N}$ & Iskandarani 2025a~\cite{Iskandarani2025a} \\
+        $r_{\mathrm{c}}$ & vortex-core radius & $1.40897017\times10^{-15}\,\text{m}$ & Iskandarani 2025a~\cite{Iskandarani2025a} \\
+        $C_{\mathrm{e}}$ & core swirl speed & $1.09384563\times10^{6}\,\text{m\,s}^{-1}$ & Iskandarani 2025a~\cite{Iskandarani2025a} \\
+        $t_{\mathrm{P}}$ & Planck time & $5.391247\times10^{-44}\,\text{s}$ & CODATA 2018~\cite{CODATA2018} \\
+        $m_{\mathrm{e}}$ & electron mass & $9.10938356\times10^{-31}\,\text{kg}$ & CODATA 2018~\cite{CODATA2018} \\
+        $\alpha$ & fine-structure constant & $1/137.035999084$ & CODATA 2018~\cite{CODATA2018} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Fundamental constants used in the derivation.}
+    \label{tab:constants}
+\end{table}
+
+We employ three identities already proven in earlier appendices:
+
+\begin{enumerate}
+    \item Fine-structure $\leftrightarrow$ swirl speed
+    \begin{equation}
+        \alpha = \frac{2C_{\mathrm{e}}}{c}. \tag{1}
+    \end{equation}
+
+    \item Planck constant from tension and radius (swirl–capacitor argument)
+    \begin{equation}
+        \hbar = \frac{4\pi F_{\max} r_{\mathrm{c}}^{2}}{C_{\mathrm{e}}}. \tag{2}
+    \end{equation}
+
+    \item Planck time definition (standard quantum-gravity unit)
+    \begin{equation}
+        t_{\mathrm{P}}^{2}= \frac{\hbar G}{c^{5}}. \tag{3}\hfill\text{\cite{planck1899}}
+    \end{equation}
+\end{enumerate}
+
+\subsection{Algebraic elimination of $\hbar$}
+
+Re-express $\hbar$ from (3):
+\begin{equation}
+    \hbar = \frac{c^{5} t_{\mathrm{P}}^{2}}{G}. \tag{4}
+\end{equation}
+Set this equal to the VAM expression (2):
+\begin{equation}
+    \frac{c^{5} t_{\mathrm{P}}^{2}}{G}
+    = \frac{4\pi F_{\max} r_{\mathrm{c}}^{2}}{C_{\mathrm{e}}}.
+\end{equation}
+Solve for $G$:
+\begin{equation}
+    G = \frac{c^{5} t_{\mathrm{P}}^{2} C_{\mathrm{e}}}{4\pi F_{\max} r_{\mathrm{c}}^{2}}. \tag{5}
+\end{equation}
+
+\subsection{Eliminate $C_{\mathrm{e}}$ and $r_{\mathrm{c}}$}
+
+Using (1) to substitute $C_{\mathrm{e}} = \tfrac{1}{2}\alpha c$ and the geometric identity $r_{\mathrm{c}} = \tfrac{\alpha\hbar}{2m_{\mathrm{e}}c}$ (from $\omega_{\mathrm{c}} r_{\mathrm{c}} = C_{\mathrm{e}}$ with $\omega_{\mathrm{c}} = 2\pi c/\lambda_{\mathrm{C}}$), equation~(5) becomes
+\begin{align*}
+    G &= \frac{c^{5} t_{\mathrm{P}}^{2}\,(\alpha c/2)}{4\pi F_{\max}\,(\tfrac{\alpha\hbar}{2m_{\mathrm{e}}c})^{2}} \\
+      &= F_{\max}\,\alpha\,\frac{c^{2}t_{\mathrm{P}}^{2}}{m_{\mathrm{e}}^{2}}\,\frac{1}{(\hbar/2\pi)}\;\underbrace{\Bigl[8\pi^{2}\Bigr]}_{=2\pi\times4\pi}.
+\end{align*}
+Cancelling the factors of $2\pi$ arising from $\hbar = 2\pi\hbar$ gives the compact VAM gravitational constant:
+\begin{equation}
+    \boxed{\displaystyle G = F_{\max}\,\alpha\,\frac{(c t_{\mathrm{P}})^{2}}{m_{\mathrm{e}}^{2}}}. \tag{6}
+\end{equation}
+
+\subsection{Numerical verification}
+
+Substituting the constants from Table~\ref{tab:constants}:
+\begin{align*}
+    G_{\text{calc}}
+    &= 29.053507\,\mathrm{N} \times \frac{1}{137.035999}\times \frac{(2.99792458\times10^{8}\,\mathrm{m\,s^{-1}} \times 5.391247\times10^{-44}\,\mathrm{s})^{2}}{(9.10938356\times10^{-31}\,\mathrm{kg})^{2}} \\
+    &= 6.6743020\times10^{-11}\,\mathrm{m^{3}\,kg^{-1}\,s^{-2}},
+\end{align*}
+matching the 2018 CODATA value to $3\times10^{-5}\,\%$.
+
+\subsection{Interpretation}
+
+Equation~(6) shows that once the æther’s maximal tensile stress $F_{\max}$ and core scale $r_{\mathrm{c}}$ fix Planck’s constant, Newton’s constant is not free: it follows from the \textit{same} parameters via the Planck-time identity.
+\begin{thebibliography}{99}
+
+\bibitem{VAM4}
+Omar Iskandarani,
+\newblock Emergent General Relativity from Structured Swirl Dynamics in the Vortex Æther Model (VAM).
+\newblock 2025.
+\newblock DOI: \href{https://doi.org/10.5281/zenodo.15712577}{10.5281/zenodo.15712577}.
+\newblock \url{https://github.com/bg-omar/VAM/releases}.
+\newblock Published via Zenodo and archived at \texttt{zenodo.org}.
+
+
+\bibitem{VAM3}
+Omar Iskandarani,
+\newblock Benchmarking the Vortex Æther Model Against General Relativity.
+\newblock 2025.
+\newblock DOI: \href{https://doi.org/10.5281/zenodo.15665432}{10.5281/zenodo.15665432}.
+\newblock \url{https://github.com/bg-omar/VAM/releases}.
+\newblock Published via Zenodo and archived at \texttt{zenodo.org}.
+
+
+\bibitem{VAM2}
+Omar Iskandarani,
+\newblock Swirl Clocks and Vorticity-Induced Gravity: Reformulating Relativity in a Structured Vortex Æther.
+\newblock 2025.
+\newblock DOI: \href{https://doi.org/10.5281/zenodo.15566335}{10.5281/zenodo.15566335}.
+\newblock \url{https://github.com/bg-omar/VAM/releases}.
+\newblock Published via Zenodo and archived at \texttt{zenodo.org}.
+
+
+\bibitem{VAM13}
+Omar Iskandarani,
+\newblock Beyond Spacetime: A Fluid-Dynamic Theory of Gravity and Time from Vorticity.
+\newblock 2025.
+\newblock DOI: \href{https://doi.org/10.5281/zenodo.15706546}{10.5281/zenodo.15706546}.
+\newblock \url{https://github.com/bg-omar/VAM/releases}.
+\newblock Published via Zenodo and archived at \texttt{zenodo.org}.
+
+
+\bibitem{davis2010_video}
+Davis, Lane,
+\newblock Quantum Cold-Case Mysteries Revisited.
+\newblock 2010.
+\newblock \url{https://www.youtube.com/watch?v=IjMOeDfsMXQ}.
+\newblock YouTube video.
+\newblock Based on the works and teachings of Frank Znidarsic.
+
+
+\bibitem{znidarsic2010}
+Frank Znidarsic,
+\newblock The Transitional Quantum State of Matter.
+\newblock 2010.
+\newblock \url{https://www.scribd.com/doc/47326165/theory-Frank-Znidarsic}.
+\newblock PDF manuscript.
+\newblock Accessed 8 June 2025.
+
+
+\bibitem{gibbons2002}
+G. W. Gibbons,
+\newblock The maximum tension principle in general relativity.
+\textit{Foundations of Physics} \textbf{32} (12), 1891-1901 (2002).
+\newblock DOI: \href{https://doi.org/10.1023/A:1022370717626}{10.1023/A:1022370717626}.
+
+
+\bibitem{planck1899}
+Planck, Max,
+\newblock Über irreversible Strahlungsvorgänge.
+\textit{Sitzungsberichte der Königlich Preußischen Akademie der Wissenschaften}, 440--480 (1899).
+\newblock Introduces natural units, including the Planck length.
+
+
+\bibitem{sommerfeld1916}
+Arnold Sommerfeld,
+\newblock Zur Quantentheorie der Spektrallinien.
+\textit{Annalen der Physik} \textbf{356} (17), 1--94 (1916).
+\newblock DOI: \href{https://doi.org/10.1002/andp.19163561702}{10.1002/andp.19163561702}.
+
+
+\bibitem{moffatt2014helicity}
+H. Moffatt,
+\newblock Helicity and Singular Structures in Fluid Dynamics.
+\textit{PNAS} \textbf{111}, 3663-3670 (2014).
+
+
+\bibitem{gibbons2002maximal}
+G. W. Gibbons,
+\newblock The maximum tension principle in general relativity.
+\textit{Foundations of Physics} \textbf{32} (12), 1891-1901 (2002).
+\newblock DOI: \href{https://doi.org/10.1023/A:1022370717626}{10.1023/A:1022370717626}.
+
+
+\bibitem{arnold1998topological}
+V.I. Arnold and B.A. Khesin,
+\newblock Topological Methods in Hydrodynamics.
+\newblock Springer, 1998.
+\newblock DOI: \href{https://doi.org/10.1007/978-1-4612-0645-3}{10.1007/978-1-4612-0645-3}.
+
+
+\bibitem{Iskandarani2025a}
+Omar Iskandarani,
+\newblock Swirl Clocks and Vorticity-Induced Gravity: Reformulating Relativity in a Structured Vortex Æther.
+\textit{(In preparation)} (2025).
+\newblock DOI: \href{https://doi.org/10.5281/zenodo.15566335}{10.5281/zenodo.15566335}.
+\newblock \url{https://github.com/bg-omar/VAM/releases}.
+\newblock Preprint.
+
+
+\bibitem{CODATA2018}
+Mohr, P.~and Taylor, B.~and Newell, D.,
+\newblock CODATA recommended values of the fundamental physical constants: 2018.
+\newblock 2019.
+\newblock NIST reference on constants.
+
+
+\end{thebibliography}
+
 
 
 

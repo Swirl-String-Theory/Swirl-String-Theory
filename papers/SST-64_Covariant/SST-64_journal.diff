@@ -1,0 +1,507 @@
+--- SST-64_Revised.tex
++++ SST-64_journal_ready.tex
+@@ -1,44 +1,16 @@
+-\documentclass[12pt,a4paper]{article}
+
+-
+
+-\usepackage[utf8]{inputenc}
+
+-\usepackage[T1]{fontenc}
+
++\documentclass[aps,prd,preprint,longbibliography,nofootinbib]{revtex4-2}
+
++
+
+ \usepackage{amsmath,amssymb,amsthm}
+
+-\usepackage{geometry}
+
+ \usepackage{doi}
+
+-\usepackage{hyperref}
+
++\usepackage[colorlinks=true,linkcolor=blue!60!black,
+
++            citecolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
+
+ \usepackage{cleveref}
+
+ \usepackage{xcolor}
+
+ \usepackage{mdframed}
+
+ \usepackage{booktabs}
+
+ \usepackage{array}
+
+ \usepackage{enumitem}
+
+-\usepackage{authblk}
+
+-\usepackage{natbib}
+
+-
+
+-\geometry{a4paper, top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+
+-
+
+-\hypersetup{colorlinks=true, linkcolor=blue!60!black,
+
+-            citecolor=blue!60!black, urlcolor=blue!60!black}
+
+-
+
+-% ── Patch-note environment ────────────────────────────────────────────────────
+
+-\definecolor{patchbg}{RGB}{232,240,251}
+
+-\definecolor{patchborder}{RGB}{46,117,182}
+
+-\definecolor{patchtext}{RGB}{31,78,121}
+
+-
+
+-\newmdenv[
+
+-  backgroundcolor=patchbg,
+
+-  linecolor=patchborder,
+
+-  linewidth=1.2pt,
+
+-  innerleftmargin=10pt, innerrightmargin=10pt,
+
+-  innertopmargin=6pt,   innerbottommargin=6pt,
+
+-  skipabove=8pt, skipbelow=8pt,
+
+-  roundcorner=3pt
+
+-]{patchbox}
+
+-
+
+-\newcommand{\patchnote}[1]{%
+
+-  \begin{patchbox}
+
+-    {\small\color{patchtext}\textbf{PATCH NOTE\,---\,}#1}
+
+-  \end{patchbox}}
+
++
+
+ 
+
+ % ── Abbreviation for AEther ──────────────────────────────────────────────────
+
+ \newcommand{\Aether}{\AE ther}
+
+@@ -61,36 +33,19 @@
+        and Einsteinian Gravitational Dynamics\\
+
+        from a Minimal Vector--Tensor Action}
+
+ 
+
+-\author[1]{Omar Iskandarani}
+
+-\affil[1]{Independent Researcher, Groningen, The Netherlands\quad
+
+-  \texttt{info@omariskandarani.com}\quad ORCID: 0009-0006-1686-3961}
+
+-\date{January 27, 2026 (revised)}
+
++\author{Omar Iskandarani}
+
++\affiliation{Independent Researcher, Groningen, The Netherlands}
+
++\email{info@omariskandarani.com}
+
++\orcid{0009-0006-1686-3961}
+
++\date{January 27, 2026}
+
+ 
+
+ % =============================================================================
+
+ \begin{document}
+
+ \maketitle
+
+ 
+
+-\patchnote{\textbf{Title revised.}
+
+-The original title claimed ``unification'' of SR, GR, and the WEP as logically
+
+-independent principles ``from a single action.'' Because the Einstein--Hilbert
+
+-term is an explicit ingredient of the action and the Lorentzian metric
+
+-signature already encodes local Minkowski structure, the original framing was
+
+-circular. The revised title accurately describes the result: given a minimal
+
+-covariant vector--tensor framework, standard relativistic kinematics and
+
+-Einsteinian dynamics \emph{emerge structurally}, with the WEP following from
+
+-minimal coupling. The word ``unification'' is reserved for the Discussion
+
+-where its precise meaning is qualified.}
+
+ 
+
+ % =============================================================================
+
+ \begin{abstract}
+
+-\patchnote{\textbf{Abstract revised.}
+
+-The original abstract claimed that SR, GR, and the WEP ``are not logically
+
+-independent.'' The revised abstract accurately describes what is
+
+-\emph{assumed} (Lorentzian metric, EH action, unit timelike field, minimal
+
+-coupling) and what is \emph{derived} (local SR kinematics as consequences of
+
+-metric structure; EH field equations by variation; WEP from the Bianchi
+
+-identity and minimal coupling). The relationship to
+
+-Einstein--\Aether\ theory is now acknowledged upfront.}
+
+ 
+
+ We study a minimal covariant vector--tensor framework consisting of the
+
+ Einstein--Hilbert action, a generally covariant action for a unit timelike
+
+@@ -144,13 +99,6 @@
+ \subsection{Strategy and Key Assumptions}
+
+ \label{sec:assumptions}
+
+ 
+
+-\patchnote{\textbf{Assumption list revised.}
+
+-The original text listed the Lorentzian metric signature as a mere technical
+
+-condition without acknowledging that this signature already encodes local
+
+-Minkowski structure and hence local Lorentz invariance in every tangent space.
+
+-This is now stated explicitly in \cref{sec:kinematics}. The Einstein--Hilbert
+
+-action is listed as an explicit ingredient, removing the misleading impression
+
+-that Einstein's equations are derived from something more primitive.}
+
+ 
+
+ We adopt a minimal strategy. The theory is defined by:
+
+ \begin{itemize}[noitemsep]
+
+@@ -168,11 +116,6 @@
+ \subsection{Relation to Einstein--\texorpdfstring{\Aether}{AEther} Theory}
+
+ \label{sec:aether}
+
+ 
+
+-\patchnote{\textbf{Section~1.3 substantially revised.}
+
+-The original text dismissed the relationship to Einstein--\Aether\ theory as
+
+-merely ``mathematical'' while claiming ``conceptual'' distinction. A referee
+
+-correctly noted this distinction was philosophical rather than technical. The
+
+-revised section states the relationship precisely.}
+
+ 
+
+ The framework studied here is a special case of the Einstein--\Aether\ (E\AE)
+
+ class of theories introduced by Jacobson and Mattingly~\citep{jacobson2001}
+
+@@ -217,13 +160,6 @@
+ \section{Main Structural Proposition}
+
+ \label{sec:proposition}
+
+ 
+
+-\patchnote{\textbf{Section~2 revised throughout.}
+
+-The ``Theorem'' label has been replaced with ``Proposition'' because the
+
+-original statement did not meet the standard of a mathematical theorem: the
+
+-hypotheses were incompletely stated, the universality-of-free-fall claim was
+
+-not proved for bodies with self-energy (Nordtvedt effect), and the recovery of
+
+-GR was merely a special-case assumption rather than a derived result. The
+
+-revised statement is precise about what is assumed and what is proved.}
+
+ 
+
+ \subsection{Assumptions}
+
+ 
+
+@@ -282,10 +218,6 @@
+ 
+
+ \subsection{Corollary: Recovery of General Relativity}
+
+ 
+
+-\patchnote{\textbf{Corollary clarified.}
+
+-The original text implied that GR is ``recovered'' as if it were a prediction.
+
+-It is a special case obtained by setting $\Tuu=0$, which is an additional
+
+-assumption. This is now stated explicitly.}
+
+ 
+
+ \begin{corollary}
+
+ If the dynamics of $u^{\mu}$ are such that $\Tuu=0$---a self-consistent
+
+@@ -312,12 +244,6 @@
+ 
+
+ \subsection{Kinematic Setup and the Role of Lorentzian Signature}
+
+ 
+
+-\patchnote{\textbf{Section~3.1 expanded.}
+
+-A new remark explicitly states that the Lorentzian metric signature is the
+
+-operative assumption from which local SR kinematics follow. Section~3 is
+
+-therefore a derivation of the kinematic \emph{formulae} from the metric
+
+-structure, not a derivation of Lorentz invariance from something
+
+-non-Lorentzian.}
+
+ 
+
+ Let $(M,g_{\mu\nu})$ be a Lorentzian manifold with signature $(-,+,+,+)$.
+
+ Introduce a unit timelike vector field $u^{\mu}$ satisfying
+
+@@ -419,12 +345,6 @@
+   \label{eq:geodesic}
+
+ \end{equation}
+
+ 
+
+-\patchnote{\textbf{Reference corrected.}
+
+-The original manuscript cited Ryder's \emph{Quantum Field Theory} for the
+
+-derivation of geodesic motion from stress--energy conservation. The correct
+
+-references are Misner, Thorne \& Wheeler~\citep{misner1973} and
+
+-Carroll~\citep{carroll2004}. The Ryder citation has been removed from this
+
+-context.}
+
+ 
+
+ \subsection{Recovery of GR and the Newtonian Limit}
+
+ 
+
+@@ -445,10 +365,6 @@
+ \subsection{The \texorpdfstring{$\gamma$}{gamma} and
+
+             \texorpdfstring{$\beta$}{beta} Parameters}
+
+ 
+
+-\patchnote{\textbf{Broken citation repaired.}
+
+-The original manuscript contained a broken citation ``[?]'' for the PPN
+
+-framework in this section. It has been replaced by
+
+-Will~(1993)~\citep{will1993} and Will~(2014)~\citep{will2014}.}
+
+ 
+
+ We work in the PPN expansion~\citep{will1993,will2014}:
+
+ \begin{equation}
+
+@@ -473,13 +389,6 @@
+ 
+
+ \subsection{Preferred-Frame Parameters}
+
+ 
+
+-\patchnote{\textbf{Section~5.2 substantially revised.}
+
+-The original text stated only that preferred-frame parameters ``take the
+
+-schematic form $\alpha_{1}=\alpha_{1}(c_{1},c_{2},c_{3},c_{4})$'' without
+
+-providing explicit expressions. A referee correctly noted this was
+
+-insufficient. The explicit PPN expressions from Foster \&
+
+-Jacobson~\citep{foster2006} are now given, and that reference is added to the
+
+-bibliography.}
+
+ 
+
+ The dynamical vector field $u^{\mu}$ allows preferred-frame effects
+
+ parameterised by $\alpha_{1}$ and $\alpha_{2}$. Following~\citet{foster2006}:
+
+@@ -512,8 +421,8 @@
+ \end{equation}
+
+ Substituting \cref{eq:c13constraint} into \cref{eq:alpha1,eq:alpha2} gives
+
+ \begin{equation}
+
+-  \alpha_{1}^{\mathrm{SST}}=-4c_{14},\qquad
+
+-  \alpha_{2}^{\mathrm{SST}}=\alpha_{2}(c_{14},c_{2}),
+
++  \alpha_{1}\big|_{c_{13}\approx 0}=-4c_{14},\qquad
+
++  \alpha_{2}\big|_{c_{13}\approx 0}=\alpha_{2}(c_{14},c_{2}),
+
+ \end{equation}
+
+ where $c_{14}\equiv c_{1}+c_{4}$ and $c_{2}$ governs the scalar
+
+ sector~\citep{foster2006}. The viable parameter space reduces to $(c_{14},
+
+@@ -531,12 +440,6 @@
+ \section{Logical Structure of the Derivations}
+
+ \label{sec:logic}
+
+ 
+
+-\patchnote{\textbf{Figure~1 replaced.}
+
+-The original Figure~1 showed an arrow from ``Bianchi identity'' to ``Einstein
+
+-equations,'' which inverts the logical flow: the contracted Bianchi identity
+
+-$\nabla_{\!\mu}G^{\mu\nu}\equiv 0$ is a \emph{consequence} of the metric
+
+-structure, not an input to the field equations. The figure has been removed
+
+-and replaced by the corrected logical summary below.}
+
+ 
+
+ The three results of \cref{prop:main} depend on distinct ingredients and are
+
+ logically independent:
+
+@@ -598,15 +501,8 @@
+ the precision and scope of this manuscript.
+
+ 
+
+ % =============================================================================
+
+-\patchnote{\textbf{Reference list revised.}
+
+-(i)~Ryder's \emph{Quantum Field Theory} removed from the geodesic-derivation
+
+-context and replaced by the correct references MTW and Carroll.
+
+-(ii)~Will~(1993) added as \texttt{will1993} to repair the broken PPN citation.
+
+-(iii)~Foster \& Jacobson~(2006) added as \texttt{foster2006} to support the
+
+-explicit PPN expressions in \cref{sec:obs}.
+
+-(iv)~Numbering updated throughout.}
+
+-
+
+-\bibliographystyle{plainnat}
+
++
+
++\bibliographystyle{apsrev4-2}
+
+ \begin{thebibliography}{99}
+
+ 
+
+ \bibitem[Will(2014)]{will2014}
+
+@@ -641,8 +537,6 @@
+ C.~M. Will (1993).
+
+ \newblock \emph{Theory and Experiment in Gravitational Physics}.
+
+ \newblock Cambridge University Press.
+
+-\newblock [\emph{Added to repair broken citation ``[?]'' in original
+
+-  Section~5.}]
+
+ 
+
+ \bibitem[Weinberg(1972)]{weinberg1972}
+
+ S.~Weinberg (1972).
+
+@@ -679,8 +573,7 @@
+   theory.
+
+ \newblock \emph{Physical Review D} \textbf{73}, 064015.
+
+ \newblock \doi{10.1103/PhysRevD.73.064015}
+
+-\newblock [\emph{New --- added to support explicit PPN expressions
+
+-  \eqref{eq:alpha1}--\eqref{eq:alpha2}.}]
+
++
+
+ 
+
+ \bibitem[Abbott et al.(2017a)]{abbott2017gw}
+
+ B.~P. Abbott et al.\ (LIGO/Virgo) (2017).
+
+@@ -698,5 +591,4 @@
+ \end{thebibliography}
+
+ 
+
+ 
+
+-
+
+ \end{document}

@@ -14,6 +14,8 @@
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\providecommand{\glqq}{\textquotedblleft}
+\providecommand{\grqq}{\textquotedblright}
 \usepackage{subfiles}
 \input{vamstyle.sty}
 \input{vam_appendix_setup.sty}
@@ -35,25 +37,425 @@
 %    \tableofcontents
 
     \section{Introduction}\label{sec:introduction}
-    \input{sections/1}
-    \input{sections/2}
-    \input{sections/3}
-    \input{sections/4}
-    \input{sections/5-mapping_logic}
+    \section*{Swirl-Coherent Vortex Model of the Galaxy}
+
+In the Vortex \AE ther Model (VAM), mass and gravity are emergent from a network of \emph{chiral vortex knots} (fluid-dynamic analogues of particles) embedded in a superfluid \ae ther. We model the Milky Way as a coherent lattice of such chiral knots -- each knot is a helical vortex (with a definite handedness) that generates a local swirl gravity field and carries an internal clock phase. All knots share a common Swirl Clock phase $S(t)$, meaning their internal rotation states are synchronized across the galactic network\cite{iskandarani2025vam2}.
+
+This synchronization is analogous to phase-locking in coupled oscillators and reflects a single global chirality for the galactic vortex system (a ``swirl domain'' of aligned vortex orientation). Gravitation in this picture arises not from spacetime curvature but from \emph{vorticity-induced pressure gradients} in the \ae ther fluid: the gravitational potential $\Phi_v(\mathbf{r})$ satisfies a Poisson-like equation driven by vorticity magnitude\cite{iskandarani2025vam2}:
+\begin{equation}
+\nabla^2 \Phi_v(\mathbf{r}) = -\rho_{\text{\ae}} |\boldsymbol{\omega}(\mathbf{r})|^2,
+\label{eq:swirl-grav}
+\end{equation}
+where $\boldsymbol{\omega}=\nabla\times \mathbf{v}$ is the local vorticity of the \ae ther flow and $\rho_{\text{\ae}}$ its density\cite{iskandarani2025vam2}.
+
+This ``Bernoulli pressure potential'' implies that regions of high swirl (vorticity) produce low pressure (potential wells) that draw in other vortex knots -- effectively reproducing gravity via fluid dynamics. Objects move by aligning with vortex streamlines rather than following geodesics\cite{iskandarani2025vam2}.
+
+Time dilation in this framework emerges from the same swirl dynamics. A local proper time $\tau$ (termed \emph{Chronos-Time}) for an observer inside the vortex field is determined by the swirl kinetic energy. In particular, clock rates slow in regions of high tangential \ae ther velocity $v_{\varphi}$ (i.e., near vortex cores). Quantitatively, one finds an analogous formula to special relativity for the time dilation factor:
+\begin{equation}
+\frac{d\tau}{dt} = \sqrt{1 - \frac{v_{\varphi}(r)^2}{c^2}},
+\label{eq:swirl-time}
+\end{equation}
+where $v_{\varphi}(r)$ is the local swirl (tangential) speed of the \ae ther at radius $r$ from a vortex core. Near a rotating core, $v_{\varphi}$ is large and $d\tau/dt$ drops below 1 (time runs slow), while far outside the vortex (where $v_{\varphi}\to 0$) the factor approaches unity, recovering normal time flow. This captures gravitational and kinematic time dilation within a unified fluid picture: time slowdown is caused by vortex-induced pressure deficits and swirl energy, rather than spacetime curvature\cite{iskandarani2025vam2}.
+
+Indeed, VAM distinguishes multiple time scales: an absolute universal time $N$ (the \ae ther's global time), the local proper time $\tau$, and an internal Swirl Clock phase $S(t)$ for each vortex\footnote{Iskandarani, O. (2025). \textit{Swirl Clocks and Vorticity-Induced Gravity. Appendix: Temporal Ontology}. doi:10.5281/zenodo.15566336.}. The Swirl Clock tracks the cyclical phase of a knot's rotation and effectively acts as a ``handed'' internal clock tied to vorticity, while $\tau$ measures the cumulative time experienced (akin to an external clock reading).
+
+Crucially, the rate at which a given knot's proper time $\tau$ advances is proportional to the local helicity density (vorticity aligned with velocity) of the \ae ther flow around it:
+\begin{equation}
+d\tau = \lambda (\mathbf{v}\cdot\boldsymbol{\omega}) dt,
+\label{eq:helicity-time}
+\end{equation}
+for some constant $\lambda$. In other words, helicity $\mathbf{v}\cdot\boldsymbol{\omega}$ -- a measure of swirling twist of flow lines -- effectively drives the passage of proper time for the vortex. A vortex knot ``threads'' time forward by its internal rotation, functioning like a tiny clock whose ticking rate depends on how strongly it stirs the \ae ther.
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\section*{Helicity, Chirality, and Knot Topology (Writhe + Twist)}
+
+The helicity of a vortex knot is a topological invariant closely related to the knot's chirality. In fluid mechanics, the total helicity $H$ of a closed vortex loop can be decomposed into contributions from the knot's writhe (Wr) and twist (Tw) -- essentially, the geometry of the loop's centerline and the twisting of vorticity around it. In fact, for a single knotted flux tube (or vortex filament), the Călugăreanu-White formula gives the linking number as $\text{Link} = \text{Wr} + \text{Tw}$, and the helicity is proportional to this sum~\cite{knot_theroy_in_fluid}. For example, in a magnetic flux tube of flux $\Phi$, one finds $H = (\text{Wr} + \text{Tw}),\Phi^2$\cite{knot_theroy_in_fluid}. By analogy, a vortex knot's helicity is determined by $W+T$, the sum of its writhe (how coiled or knotted its centerline is in space) and twist (internal twisting of vorticity along the tube)\cite{knot_theroy_in_fluid}.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lllll}
+        \toprule
+        \textbf{Knot Type} & \textbf{Example} & \textbf{Chirality} & \textbf{Geometry} & \textbf{Gravity Response} \\
+        \midrule
+        Unknot & $\emptyset$ & Achiral & Trivial & No — \textit{follows æther vortex paths} \\
+        Hopf Link & $2_1^2$ & Achiral & Trivial link & No — \textit{follows æther vortex paths} \\
+        Achiral Hyperbolic & $4_1$ (Figure Eight) & Achiral & Hyperbolic & No — \textit{\textbf{expelled from tubes}} \\
+        Chiral Torus Knot & $T(2,3)$ & Chiral & Toroidal & Yes — lepton gravity \\
+        Chiral Hyperbolic & $5_2$, $6_1$ & Chiral & Hyperbolic & Yes — quark gravity \\
+        \bottomrule
+    \end{tabular}
+    \caption{}
+    \label{tab:knot_classification}
+\end{table}
+
+
+\subsection*{Chiral knots -- those distinguishable from their mirror images -- }
+Generally Chiral knots have nonzero $W+T$, endowing them with a net helicity (a preferred handedness of circulation in the \ae ther). A prime example is the trefoil knot, which is chiral and would carry a nonzero helicity in one orientation (and opposite helicity in the mirror orientation). These chiral vortex knots inject helicity flux into the surrounding \ae ther; $\mathbf{v}\cdot\boldsymbol{\omega}\neq 0$ in their vicinity, which, by Eq.(\ref{eq:helicity-time}), slows local time flow and creates a vortex-induced gravity well.
+
+\begin{center}
+    \fbox{
+        \parbox{0.95\textwidth}{
+            \textbf{Hyperbolic Mass Wells —} Chiral hyperbolic vortex knots generate deep ætheric swirl wells due to their internal curvature and topological linking. These defects concentrate rotational energy and induce strong pressure gradients in the surrounding æther field. As a result, they act as gravitational mass sources within the Vortex Æther Model, mimicking the mass-energy tensor of General Relativity through structured vorticity rather than spacetime curvature.
+        }
+    }
+\end{center}
+
+
+\subsection*{Achiral knots}
+By contrast, achiral knots are symmetric under mirror reflection and thus carry \textit{vanishing net helicity}. The classic example is the \textit{figure-eight knot}, which is an amphichiral knot (identical to its mirror image). For such a structure, the contributions of writhe and twist cancel out to give $W+T \approx 0$. In essence, the figure-eight vortex's loops twist one way as much as the other, yielding no overall helicity in the \ae ther. This has profound dynamical implications: with $H \approx 0$, an achiral vortex does not induce the usual swirl gravity or time-dilation effects. The \ae ther flow around it carries no net helicity flux to slow clocks or produce a persistent low-pressure well. One can say the figure-eight spins both ways'' in balance, generating \textit{no screw-like time threading}. In terms of Eq.(\ref{eq:helicity-time}), for an ideal achiral knot $\mathbf{v}\cdot\boldsymbol{\omega}\to 0$, so the proper time increment $d\tau$ essentially equals the background time increment $dt$ -- no significant dilation. Equivalently, the chronometric ratio $d\tau/dN$ tends to 1 for achiral knots, where $N$ is the uniform \ae ther time. This corresponds to $d\tau/d\mathcal{N} \to 1$'' as the exclusion criterion: if a structure's proper time advances nearly unimpeded (equal to absolute time), it is not embedded in any gravitational potential well.
+
+
+In the full VAM time-dilation formula, achiral knots effectively remove the helicity-dependent terms. For instance, the unified expression for local vs. absolute time includes subtractive contributions from swirl rotation and vorticity-induced mass. An achiral knot sets those terms to zero, yielding $d\tau/dN \approx 1$ (no slowing). Thus, the figure-eight or any achiral topology would experience negligible vortex-induced time dilation -- its internal clock $\tau$ ticks almost at the same rate as the cosmic \ae ther time $N$, even if it were placed deep in the galaxy. This is in stark contrast to chiral matter knots, whose $\tau$ can be substantially slowed by the galactic swirl field (e.g., near massive cores or in strong rotation)
+
+
+
+
+\section*{Exclusion from the Galactic Swirl Potential Well}
+
+Because it generates no helicity and no swirl gravity, an achiral knot cannot couple'' to the galactic vortex potential well that is sustaining the Milky Way's gravity. The entire coherent galactic vortex can be thought of as a deep swirl-induced potential well -- a pressure deficit and time-dilated region extending out to a radius $R \sim 50~\text{kpc}$. Chiral knots (ordinary matter) settle into this well, synchronized with the swirl flow and experiencing time dilation (lower $\tau$ rate) near the galactic core. They are \textit{bound} by the collective vortex: effectively, their internal Swirl Clocks $S(t)$ are phase-locked with the galaxy's swirl phase. In fluid terms, they co-rotate or align with the \ae ther currents and thus remain in the low-pressure region (analogous to how dust or air is pulled into a tornado's core). By contrast, an achiral knot is invisible'' to the swirl phase -- lacking a defined chirality, it cannot lock onto the $S(t)$ phase of the surrounding vortex network. Its Swirl Clock either does not exist or is unsynchronized (random phase)~\cite{iskandarani2025vam1}. This lack of resonance with the galactic swirl means the achiral structure feels no sustained inward pull; it does not experience the reduced pressure that holds chiral matter in.
+
+Instead, the achiral knot behaves akin to a buoyant or foreign object in the rotating \ae ther flow -- it is actively repelled from regions of high swirl. One intuitive explanation is that, since it does not partake in the swirl's helical motion, it cannot shed its energy by phase-aligning; any attempt to enter the vortex bundle leads to a mismatch in flow that pushes it back out (much like a gear that doesn't mesh gets forced out of a running gear train). From the perspective of the fluid pressure: inside the galactic vortex, static pressure is lower (due to fast swirl) than outside. A chiral knot normally \textit{experiences} that low pressure (and is pulled inward) because it drags a co-rotating \ae ther region with it. But an achiral knot doesn't co-rotate; the surrounding \ae ther flow sees it as an obstacle. Higher-pressure \ae ther from outside pushes against it, preventing entry into the low-pressure core. The result is a radial outward force on the achiral object -- effectively ``antigravity'' within the galactic halo. In summary, achiral knots are excluded from the vortex potential well: they tend to inhabit the outskirts or voids where the swirl field is weak, experiencing nearly full $d\tau/dt=1$ (no time slowdown) as per the exclusion criterion. If somehow an achiral knot is introduced into the dense swirl region, it would be expelled until it reaches a radius where the swirl-induced helicity field is negligible.
+
+Criterion for exclusion: We can formalize this by saying that a stable orbit or containment within the galaxy requires a coupling to the swirl phase and a corresponding time dilation ($d\tau/dN < 1$). For an achiral knot, taking the limit $d\tau/dN \to 1$ signals that it \textit{cannot} lower its time rate to match the bound matter -- thus it cannot remain gravitationally bound. In the limit, its required orbital speed would exceed what the swirl drag can provide, so it escapes.
+
+\section*{Repulsive Force on an Achiral Knot in the Halo}
+
+We now estimate the effective force/acceleration on an achiral knot due to this exclusion from the galactic vortex. Treat the galactic swirl field as roughly axisymmetric. For a chiral test mass at radius $r$, the inward swirl gravity acceleration can be approximated by $g_{\rm swirl}(r) \approx \frac{d\Phi_v}{dr}$, which for a flat rotation curve is on the order of $v_{\rm rot}^2/r$. (Indeed VAM reproduces Newtonian limits~\cite{iskandarani2025vam2}; one can think of $M_{\rm eff}(r)$ as an enclosed vortex mass that generates $g(r)$.) Take $r \sim 50~\text{kpc}$ (the outer halo) and an effective rotational speed $v_{\rm rot}\sim 200~\text{km/s}$ typical of the Milky Way. The inward gravitational acceleration on normal matter there is:
+
+\[
+g_{\rm grav}(50~\text{kpc}) \sim \frac{(200\times10^3~\text{m/s})^2}{50~\text{kpc}} \approx 6\times10^{-11}~\text{m/s}^2.
+\]
+
+An achiral knot at this radius experiences essentially the opposite: since it is not bound, the galaxy cannot hold it, so in the galaxy’s rest frame the knot will accelerate outward with $a_{\rm repulse} \sim +6\times10^{-11}~\text{m/s}^2$. This is the order of the \textit{maximum} repulsive acceleration on achiral matter due to a galaxy of Milky Way size. Closer in (smaller $r$), the normal gravitational pull is larger (e.g. $r\sim 8~\text{kpc}$, $v\sim220~\text{km/s}$ gives $g\sim2\times10^{-10}$~m/s² inward); an achiral object attempting to reside at 8 kpc would be flung outward with $\sim2\times10^{-10}$~m/s² – but likely it never gets that deep in the first place. Once outside the halo ($r \gg 50$~kpc), the swirl field dies off (virtually zero gravity), so the repulsive force would drop to zero. Thus, the achiral knot essentially feels a “potential barrier” around the galaxy: an outward push in the halo that prevents it from entering the vortex region.
+
+We can also express the \textit{force} or \textit{pressure} on an extended medium of achiral structures. Consider a dilute “gas” of figure-eight vortex rings permeating the galactic halo. Each small element of this gas (with mass density $\rho_{\rm ach}$) is pushed outward by the gradient of $\Phi_v$. The force density (per volume) is $f_{\rm rep} \approx \rho_{\rm ach} \, g_{\rm swirl}(r)$. As a rough number, if $\rho_{\rm ach}$ were, say, $10^{-24}$–$10^{-27}$~kg/m³ (a range bracketing the intergalactic medium density), and using $g_{\rm swirl}\sim10^{-10}$~m/s², we get a pressure $P \sim \rho_{\rm ach} \, g \, r$ over a scale $r\sim50$~kpc. Inserting $\rho_{\rm ach}=10^{-26}$~kg/m³, $g=10^{-10}$, $r=1.5\times10^{21}$~m yields:
+
+\[
+P_{\rm achiral} \sim 10^{-26}\times10^{-10}\times1.5\times10^{21}~\text{kg}\,\text{m}^{-1}\,\text{s}^{-2} = 1.5\times10^{-15}~\text{Pa}.
+\]
+
+(This corresponds to an energy density of $1.5\times10^{-15}$~J/m³ since $1~\text{Pa}=1~\text{J/m}^3$.) This is the outward pressure exerted on an achiral gas by the galactic swirl field in the halo region. The pressure is quite small – many orders of magnitude below typical interstellar pressures – but spread over large volumes it might have a cumulative effect.
+
+
+\section*{Achiral Repulsion as a Cosmological Acceleration (Dark Energy?)}
+
+The observed cosmological constant $\Lambda \approx 1\times10^{-52}~\text{m}^{-2}$ corresponds to an extremely small acceleration scale and energy density. In $\Lambda$CDM, the vacuum (dark energy) has an equivalent mass density $\rho_\Lambda c^2 \approx 5.6\times10^{-10}~\text{J/m}^3$ (about $6\times10^{-27}~\text{kg/m}^3$) and exerts a uniform cosmic acceleration $a_\Lambda$ on the order of $10^{-10}$~m/s² at the scale of the Hubble radius. We compare this to the achiral knot repulsion scenario:
+
+\begin{itemize}
+\item
+\textbf{Local acceleration magnitude:} As shown, an achiral knot near a galaxy can be accelerated outward on the order $10^{-10}$~m/s² or less. This is intriguingly comparable to $a_\Lambda$ (though $a_\Lambda$ applies on gigaparsec scales rather than tens of kpc). The repulsion is not uniform everywhere – it originates around galaxies (which are the sources of the coherent chiral vortex fields) and would diminish in intergalactic voids. However, if galaxies are distributed throughout the universe, they could collectively drive achiral matter outward on large scales. The effect on an achiral test particle in intergalactic space would be a net acceleration away from concentrations of galaxies – effectively a \textit{global expansion push} if averaged over all directions.
+
+\item
+\textbf{Pressure/energy density:} The outward pressure on achiral gas we estimated (∼$10^{-15}$~Pa for typical halo densities) is several orders of magnitude smaller than the dark-energy pressure (which is $p_\Lambda = -\rho_\Lambda c^2 \approx -5.6\times10^{-10}$~J/m³, with negative sign indicating tension). To mimic $\Lambda$ quantitatively, the density of achiral “fluid” or the magnitude of its repulsion would need to be higher. For instance, taking our formula $P \sim \rho_{\rm ach} \, g \, r$, we would need either a much higher $\rho_{\rm ach}$ or a larger effective region contributing. If $\rho_{\rm ach}$ were on the order of $10^{-21}$~kg/m³ (extremely high for intergalactic gas), then $P$ could approach $10^{-10}$~J/m³ under the same $g$ and $r$ – matching the dark energy scale~\cite{knot_theroy_in_fluid}. While such a high density of achiral knots is not evident, it suggests that if a significant fraction of the universe’s content were in an achiral form \textit{and} subject to galactic repulsion, it could contribute a global outward pressure.
+
+\item
+\textbf{Global acceleration field:} In a rough sense, one can envision the universe’s chiral vortex network (galaxies, clusters) as filling space and continuously ejecting achiral structures into the voids. The achiral medium would then behave like a smooth uniform component on large scales, because it cannot cluster (it’s repelled from clusters). This uniform component with a persistent outward acceleration could act like a dark energy field, driving accelerated expansion. The key difference from a true cosmological constant is that the effect here is generated by inhomogeneous, discrete sources (the galaxies), rather than being an innate property of space. Nonetheless, if the distribution of galaxies is fairly uniform on large scales, the aggregate effect on achiral matter might approximate a uniform acceleration.
+\end{itemize}
+
+\textbf{Numerical comparison:} Taking the cosmic dark energy density $\rho_\Lambda \approx 6\times10^{-27}$~kg/m³, the corresponding repulsion per unit mass would be $a_\Lambda \sim \frac{\Lambda c^2}{3} R \approx 1\times10^{-9}$~m/s² at $R\sim$ one Hubble radius (on the order of $10^{26}$~m). The achiral-knot mechanism gives $a \sim10^{-10}$~m/s² at $R\sim50$~kpc for each galaxy, and near zero far from galaxies. While stronger locally, it covers only a tiny fraction of cosmic volume (the galactic halos). For it to mimic a true $\Lambda$, the achiral repulsion must be effective over enormous scales – which might require a pervasive sea of achiral knots pushed by many galaxies over cosmic time. In an optimistic scenario, \textit{if} every galaxy drives out achiral knots that fill intergalactic space, the long-range outcome could be an accelerating flow of this achiral “gas” everywhere, effectively a repulsive background. The energy density in this achiral component would then be the kinetic + potential energy of those knots being pushed. For instance, if an achiral knot of mass $m$ is expelled from a galaxy with escape speed $v_{\rm esc}$, it carries kinetic energy $\frac{1}{2}mv_{\rm esc}^2$. Spread over a huge volume, this energy could be nearly uniform. Estimating $v_{\rm esc}\sim 300$~km/s for a galaxy, $\frac{1}{2}m v^2 \sim 5\times10^{11}$~J per kg of achiral mass. To yield $5\times10^{-10}$~J/m³, we’d need on the order of $10^{-12}$~kg of achiral mass per cubic meter of the universe, which is $\sim10^3$ times the normal matter density. This rough check suggests that unless achiral knots are extremely abundant (and thus far undetected as such), their repulsive effect might fall short of $\Lambda$ by a few orders of magnitude.
+
+\medskip
+
+\textit{Achiral vortex knots (like figure-eight knots) are effectively excluded from the Milky Way’s chiral swirl potential well due to their vanishing net helicity and lack of $S(t)$ phase coupling. They experience a repulsive force in the galactic halo, which can be quantified in terms of an outward acceleration ($\sim 10^{-10}$~m/s$^2$ at 50~kpc) and a corresponding pressure on any achiral “fluid.” While this mechanism qualitatively resembles a negative gravity or cosmological expansion effect, the estimated pressure/energy density of expelled achiral matter is smaller than the dark energy requirement (by several orders of magnitude for realistic densities). With a sufficiently pervasive achiral component or different parameter choices, however, the global outcome could mimic a small uniform acceleration field similar to that from $\Lambda$. In spirit, the swirl-knot model offers an intuitive picture for cosmic acceleration: regions of aligned helical time-flow (galaxies of one chirality) naturally repel any non-helical structures, potentially contributing to the observed accelerated separation of cosmic structures.}
+
+\medskip
+
+\section*{Standard Model Particles as Vortex Knots in the Vortex Æther Model (VAM)}
+
+\subsection*{Summary}
+
+In the Vortex Æther Model (VAM), each elementary particle of the Standard Model is reinterpreted as a stable knotted vortex structure embedded in a universal incompressible æther~\cite{iskandarani2025vam5}. Key topological properties of these vortex knots—such as chirality (handedness), writhe ($W_r$, or spatial coiling), twist ($T_w$, internal filament winding), and total helicity $H = \int \mathbf{v} \cdot \boldsymbol{\omega} \, d^3x$—correspond to physical particle attributes like mass, spin, and electric charge~\cite{iskandarani2025vam5}.
+
+Only chiral, nontrivial hyperbolic knots induce asymmetric swirl flows, resulting in local time dilation (a gravitational analogue) and thus rest mass. These include knots like the trefoil ($3_1$) and cinquefoil ($5_1$). In contrast, achiral knots (e.g. the figure-eight, $4_1$) or trivial loops (unknot) do not produce net swirl asymmetry and thus correspond to massless or unstable states~\cite{iskandarani2025vam5}.
+
+This section presents a classification of leptons, quarks, and gauge bosons as specific vortex knot states. Each assignment is backed by VAM’s time dilation framework, involving swirl clock phase $S(t)$, vortex proper time $T_v$, and helicity-based gravitational analogs. We also explain parity violation in weak interactions as a chirality-selection effect of the global swirl field, and show how mass generation emerges from æther tension without invoking a Higgs scalar field~\cite{iskandarani2025vam5}. Experimental tests (e.g., vortex knot simulations in superfluids) are proposed to validate these interpretations.
+
+\begin{table}[H]
+\centering
+\scriptsize
+\begin{tabular}{|l|l|c|c|c|c|l|c|}
+\hline
+\textbf{Particle} & \textbf{Knot Type} & $L_k$ & $W_r$ & $T_w$ & $H$ & \textbf{Notes} & \textbf{Stretch Factor} \\
+\hline
+Photon $\gamma$ & Unknot ($0_1$) & 0 & 0 & 0 & 0 & No mass; no swirl & 0 \\
+Electron $e^-$ & Trefoil ($3_1$, torus) & 3 & +1 & +2 & $>0$ & Chiral, lightest massive fermion & 2 \\
+Muon $\mu^-$ & Cinquefoil ($5_1$, torus) & 5 & +2 & +3 & $>\!e^-$ & Heavier; more twisted & 3 \\
+Tau $\tau^-$ & Heptfoil ($7_1$, torus) & 7 & +3 & +4 & High & Deepest time dilation of leptons & 4 \\
+Neutrino $\nu_L$ & Open vortex strand & — & $\sim$0 & low & $\sim$0 & Left-chiral only; low mass & 1 \\
+W boson $W^+$ & Linked loop (nontrivial) & — & chiral & spin-1 & — & Mediates chirality flips & 3 \\
+Z boson $Z^0$ & Vortex reconnection loop & — & chiral & spin-1 & — & Neutral massive carrier & 3 \\
+Gluon $g$ & Triple strand braid & — & — & — & — & Color exchange via reconnection & 2 \\
+Higgs $H^0$ & Æther pressure mode & — & — & — & — & Scalar mode of vortex tension & n/a \\
+Figure-eight & $4_1$ (achiral, hyperbolic) & 4 & 0 & 0 & 0 & Cannot sustain swirl tension & 0 \\
+$5_2$ knot & Chiral hyperbolic & 5 & +2 & +3 & High & Quark candidate (e.g. $d$, $s$) & 5 \\
+$6_1$ knot & Chiral hyperbolic & 6 & +2.5 & +3.5 & Very high & Possible heavier baryon & 5 \\
+\hline
+\end{tabular}
+\caption{Particle–Knot Correspondence in VAM with Estimated Stretch Factor. Vortex stretching enhances swirl-induced time dilation and correlates with particle mass. Only chiral knots induce swirl asymmetry.}
+\label{tab:stretch-factor}
+\end{table}
+
+
+
+\section*{Mapping Logic and Time Dilation Equations in VAM}
+
+\textbf{Key Definitions:} \\
+$W_r$ = net writhe (coiling of loop in space),\\
+$T_w$ = internal twist of vortex filament,\\
+$H = \int \mathbf{v}\cdot\boldsymbol{\omega}\,d^3x$ = fluid helicity (measures linking of flow lines, conserved in ideal flow),\\
+$\tau$ = proper time of the vortex (its internal clock rate),\\
+$N$ = absolute æther time (universal background clock).
+
+\textbf{Topological origin of mass.} In the Vortex Æther Model (VAM), a particle’s rest mass arises not from coupling to a Higgs field, but from the vortex energy stored in its knotted topology~\cite{iskandarani2025vam5}. Quantitatively, the mass $M_K$ of a vortex-knot is linked to its topological complexity via the linking number $L_k$ (e.g., the trefoil has $L_k = 3$), and satisfies an approximate formula:
+\[
+M_K \approx \frac{\rho_{\text{\ae}}\, \Gamma^2}{2 L_k\, \pi\, r_c\, c^2},
+\]
+where $\rho_{\text{\ae}}$ is the æther density, $\Gamma$ is the circulation, $r_c$ is the vortex core radius, and $c$ is the speed of light~\cite{iskandarani2025vam5}. Though higher $L_k$ implies smaller $M_K$ for fixed $\Gamma$, more complex knots often have higher internal twist and circulation, resulting in higher total energy — consistent with heavier particles such as the muon or tau.
+
+Crucially, only chiral knots (e.g. the trefoil or $5_1$) generate asymmetric swirl fields, producing pressure gradients and localized time dilation~\cite{iskandarani2025vam5}. Achiral knots (e.g. the figure-eight) generate balanced flow and cannot sustain rest mass or gravity. In VAM, a chiral knot acts like a screw threading through the æther, locally “winding” time. An achiral loop spins like a ring, generating no net swirl asymmetry and thus no effective time-thread~\cite{iskandarani2025vam5}.
+
+\textbf{Swirl clocks and proper time.} VAM defines an absolute æther time $N$ and a local proper time $\tau$ for each vortex particle~\cite{iskandarani2025vam1}. The internal clock of a particle is modeled by a swirl clock $S(t)$, ticking with each $2\pi$ rotation of its vortex core~\cite{iskandarani2025vam1}. For an ideal vortex rotating with angular velocity $\omega_0$, its proper time relates to lab time via relativistic-like dilation:
+\[
+\tau_{\text{obs}} = \omega_0 \sqrt{1 - \frac{v^2}{c^2}}.
+\]
+
+In regions of strong swirl gravity (i.e., large vorticity), $\tau$ also slows due to rotational energy stored in the core. This mimics gravitational redshift and is governed by the local helicity density $H = \mathbf{v} \cdot \boldsymbol{\omega}$~\cite{iskandarani2025vam5}. The local clock rate is approximately:
+\[
+\frac{d\tau}{dt} \propto \frac{1}{\mathbf{v} \cdot \boldsymbol{\omega}}.
+\]
+Thus, in regions of high swirl and twist (large $H$), proper time slows significantly — replacing the geometric curvature of general relativity with a swirl-induced "drag" effect~\cite{iskandarani2025vam5}.
+
+For a given knot, one may define the vortex proper time $T_v$ — the time it takes for the swirl clock to complete a full circulation. Chiral hyperbolic knots have finite $T_v$, meaning their internal time progresses more slowly than the universal $N$. This corresponds to inertial mass. In contrast, photons (unknots) have $\mathbf{v} \cdot \boldsymbol{\omega} = 0$ in the co-moving frame, so $d\tau/dt = 1$: they propagate with $N$ and thus do not experience time dilation.
+
+\textbf{Chirality, gravity, and stability.} The handedness $C = \pm 1$ of a vortex knot determines how it couples to the cosmic swirl field. VAM suggests the universe has a slight global chirality~\cite{iskandarani2025vam5}, which stabilizes vortices of matching handedness and destabilizes those of opposite orientation. This could explain the matter–antimatter imbalance (e.g., dominance of electrons over positrons) and the left-handedness of neutrinos: only matching chiralities can phase-lock with the global swirl clock~\cite{iskandarani2025vam5}.
+
+In conclusion, in VAM:
+\begin{itemize}
+  \item Mass arises from internal swirl energy stored in chiral knot topology.
+  \item Time dilation is a result of local helicity density.
+  \item Only chiral knots experience swirl gravity and can exist as massive particles.
+  \item The more complex (in writhe and twist) the knot, the greater its mass and slower its clock.
+\end{itemize}
+
+This provides a physical, geometric origin for time dilation, gravity, and mass — unified through topological vorticity in an incompressible æther.
+
+\section*{Implications for Mass Generation and Symmetry Breaking in VAM}
+
+\subsection*{Eliminating the Higgs Mechanism}
+
+In the Standard Model, particle masses arise from coupling to the Higgs field via spontaneous symmetry breaking. In the Vortex Æther Model (VAM), this mechanism is replaced entirely by the inertia of knotted vortex structures embedded in an incompressible æther~\cite{iskandarani2025vam5}.
+
+The Higgs-like effect in VAM is attributed to the \emph{compressibility} of the æther and a \emph{maximum tension principle}. A knotted vortex deforms the surrounding æther density, creating a localized region of lower pressure around the vortex core. This is balanced by an external high-pressure shell, leading to a stress-energy configuration that stores rest mass~\cite{iskandarani2025vam5}. The equilibrium æther density and pressure act as an effective vacuum expectation value (VEV). Thus, what appears as mass is the mechanical cost of maintaining curvature and twist in the ætheric flow field.
+
+\subsection*{Symmetry Breaking as Chirality Selection}
+
+Rather than an abstract symmetry breaking mechanism, VAM interprets $SU(2)_L \times U(1)_Y \rightarrow U(1)_{\text{EM}}$ as a \emph{physical alignment} phenomenon. Only \emph{left-chiral vortex knots} can exchange swirl momentum with the $W$ boson’s twisted vortex field~\cite{iskandarani2025vam5}. This explains the observed chirality of weak interactions: right-handed fermion knots cannot couple to the global swirl direction and thus do not participate in weak interactions. The global chirality of the æther becomes the symmetry-breaking agent.
+
+Such a bias may have emerged during early-universe fluctuations, favoring one swirl orientation (say, counter-clockwise). Once a dominant chirality took hold, only vortex knots aligned with that handedness became stable particles, while their opposites unraveled or decayed~\cite{iskandarani2025vam5}.
+
+\subsection*{Mass Hierarchy and Generations}
+
+This topological interpretation provides a natural mass hierarchy. The electron’s trefoil knot (3 crossings) is the simplest stable configuration, while the muon and tau correspond to 5- and 7-crossing knots, respectively~\cite{iskandarani2025vam5}. These possess more internal twist and writhe, storing more ætheric energy and producing stronger swirl-induced time dilation. Generations in VAM are thus successive twist-adding operations (denoted $S2$ in the vortex algebra), each increasing the particle’s rest mass and spin moment~\cite{iskandarani2025vam5}.
+
+Unlike the Standard Model where Yukawa couplings are free parameters, VAM anchors mass ratios to discrete topological invariants: linking numbers, helicity, twist counts. This also implies a limited number of generations: only a finite number of knotted configurations are stable in an inviscid æther medium~\cite{iskandarani2025vam5}.
+
+\subsection*{Charge and Coupling as Topological Quantities}
+
+Electric charge is reinterpreted in VAM as a \emph{topological winding number}. A vortex knot’s swirl direction (left- or right-handed helix) corresponds to the sign of electric charge~\cite{iskandarani2025vam5}. The fine-structure constant $\alpha$ emerges from the ratio of core swirl velocity $C_e$ to the speed of light $c$, and the quantization of vortex circulation $\Gamma$~\cite{iskandarani2025vam5}. Thus:
+\[
+e \sim \rho_{\text{\ae}}\, \Gamma, \quad \alpha \sim \left(\frac{C_e}{c}\right)^2.
+\]
+
+Non-Abelian charges are also fluid-dynamical: weak isospin corresponds to a chirality-flip state — a topological switching between mirror knot types. The $W$ boson mediates such transitions by applying local angular momentum twist~\cite{iskandarani2025vam5}.
+
+Color charge emerges from the identity of each filament in a three-stranded braided structure. Quarks are interpreted as triple-linked vortex loops (a triskelion), and gluons represent twist exchanges (braid generators) between these strands~\cite{iskandarani2025vam5}. Quark confinement arises from topological conservation: unlinking a strand would require breaking a vortex, an energetically forbidden process.
+
+\subsection*{Parity Violation and the Arrow of Time}
+
+VAM provides a unified origin for two phenomena often treated separately: parity violation and the arrow of time. Both result from the global chirality of the æther. Left-handed neutrinos phase-lock with the global swirl and can interact weakly; right-handed neutrinos are orthogonal to this field and effectively sterile~\cite{iskandarani2025vam5}.
+
+At cosmological scales, this alignment leads to synchronization: all massive particle-vortices “screw” forward through æther-time. Thus, VAM explains the dominance of matter over antimatter, the handedness of weak interactions, and the directionality of time as consequences of a universal chirality.
+
+\bigskip
+
+\section*{Experimental and Numerical Verification Proposals}
+
+VAM, being a physical reformulation of field theory, lends itself to concrete testing through analogue systems and simulations. Many predictions can be explored experimentally using superfluid condensates or through numerical integration of Euler or Gross–Pitaevskii equations with knotted vortex initial conditions~\cite{iskandarani2025vam5}.
+
+\subsection*{Swirl-Induced Time Dilation}
+
+A core prediction of VAM is that regions of high helicity density ($H = \mathbf{v} \cdot \boldsymbol{\omega}$) exhibit slower local proper time $\tau$, analogous to gravitational time dilation. One test is to create a vortex clock in a Bose–Einstein condensate and compare its rotation frequency when immersed in a strong external vortex flow versus isolated. According to VAM, the clock immersed in background swirl will experience a lag in its internal phase $S(t)$, quantifying time dilation via local vorticity~\cite{iskandarani2025vam5}.
+
+\subsection*{Chirality and Parity Violation in Vortex Interactions}
+
+Using either a rotating fluid tank or numerical simulations, one can generate pairs of knotted vortices with opposite chirality. VAM predicts that one chirality will stabilize in a rotating background swirl (e.g. left-handed in CCW flow), while its mirror image will destabilize or deflect anomalously~\cite{iskandarani2025vam5}. This behavior mimics the parity violation seen in weak interactions. Reversing the global circulation ("antimatter æther") should invert this asymmetry, offering a laboratory analogue of chirality selection.
+
+\subsection*{Knot Energy Spectra and Mass Ratios}
+
+Superfluid simulations can track the energy, angular momentum, and decay pathways of various knotted vortex rings (e.g. trefoil, cinquefoil). If the vortex mass formula $M_K \propto \Gamma^2 / L_k$ holds, the 5-crossing knot ($5_1$) should exhibit higher energy than the trefoil, consistent with the mass hierarchy from electron to muon~\cite{iskandarani2025vam5}. Experimental confirmation of these energy scaling relationships would provide direct support for VAM’s topological-mass correspondence.
+
+\subsection*{Gluon Analogues as Reconnection Events}
+
+In VAM, gluons correspond to twist-exchange interactions between three linked vortex loops (as in baryon triskelion topology). Laboratory analogues could involve controlled reconnection events between vortex rings in superfluid helium or magnetized fluids. High-speed visualization and phase-tracking could detect whether twist (topological phase) is conserved or exchanged across reconnection points~\cite{iskandarani2025vam5}. Observation of braid-conserving reconnections would support the gluon interpretation in VAM.
+
+\subsection*{Detecting Time-Threads via Swirl Tubes}
+
+VAM predicts that massive particles (knotted vortices) are surrounded by swirl “time-thread” tubes — localized bundles of ætheric circulation that mimic gravitational curvature~\cite{iskandarani2025vam2}. A tabletop analogue could use a rotating superfluid ring as a mass analogue, then track deflection or phase drift of smaller vortex probes or sound pulses sent nearby. Deviations in trajectory due to background swirl would emulate geodetic precession or lensing, testing VAM’s swirl-replacement of spacetime curvature~\cite{iskandarani2025vam2}.
+
+\subsection*{Cosmological Chirality and Neutrino Observations}
+
+At cosmological scale, if the æther possesses global swirl chirality, it may leave detectable signatures in:
+\begin{itemize}
+  \item Galaxy spin alignments (polarization anisotropies),
+  \item Preference for left-handed neutrinos (no detection of right-handed neutrinos),
+  \item Suppression of EDMs (electric dipole moments) due to global time-thread synchronization.
+\end{itemize}
+If a right-handed neutrino is detected, it may suggest the presence of a second chiral domain, possibly separated by topological defects (e.g. æther domain walls or vortex domain transitions)~\cite{iskandarani2025vam5}.
+
+\subsection*{Concluding Remarks}
+
+The Vortex Æther Model transforms particle classification into a topological problem: massive particles are stable, chiral knotted vortices with internal swirl clocks. Parity violation, mass hierarchy, and even cosmic time’s arrow arise from their interaction with the global swirl field. While VAM breaks from spacetime curvature paradigms, it replaces them with experimentally testable vorticity-driven dynamics grounded in classical fluid mechanics. If validated, VAM reinterprets the Standard Model not as a set of abstract symmetries, but as a fluid-kinematic unfolding of an ætheric universe where \emph{knots tie matter to space and swirl weaves time into existence}~\cite{iskandarani2025vam5}.
+
+
+
 % ============= End of main content ============
 
     % ============= References ============
     \textbf{References:} The above analysis builds on the Vortex Æther Model formalism for swirl-induced gravity and time. Key equations were adapted from “\textit{Swirl Clocks and Vorticity-Induced Gravity}”~\cite{iskandarani2025vam2} and the layered time constructs of “\textit{Appendix: Ætheric Now}”. Helicity-topology relations follow from standard fluid-knot theory~\cite{knot_theroy_in_fluid}, illustrating how an amphichiral (figure-eight) knot yields $H=0$. Time dilation and clock rates in a rotating æther are given by Eqs.~(2) and~(3) above, as derived in VAM. The exclusion criterion $d\tau/dN\to1$ for achiral knots is consistent with the limit of the unified time-dilation formula with zero swirl terms~\cite{iskandarani2025vam2}. These results suggest a novel interpretation of cosmological “dark energy” as an emergent effect of chiral vs. achiral vortex dynamics on galaxy scales, although a quantitative match to $\Lambda$ remains to be demonstrated.
 
     % ============= References ============
-    \bibliographystyle{unsrt}
-    \bibliography{../references}
+\begin{thebibliography}{99}
 
-% ============= Appendices ============
-    \appendix
+\bibitem{iskandarani2025vam2}
+Omar Iskandarani,
+\newblock Swirl Clocks and Vorticity-Induced Gravity: Reformulating Relativity in a Structured Vortex Æther.
+\textit{(In preparation)} (2025).
+\newblock DOI: \href{https://doi.org/10.5281/zenodo.15566335}{10.5281/zenodo.15566335}.
+\newblock \url{https://github.com/bg-omar/VAM/releases}.
+\newblock Preprint.
+
+
+\bibitem{knot_theroy_in_fluid}
+Moffatt, H. K. and Ricca, R. L.,
+\newblock Applications of Knot Theory in Fluid Mechanics.
+\textit{Proceedings of Symposia in Applied Mathematics} \textbf{45}, 3--20 (1992).
+\newblock Helicity formula and vortex topology.
+
+
+\bibitem{iskandarani2025vam1}
+Omar Iskandarani,
+\newblock Time Dilation in a 3D Superfluid Æther Model.
+\textit{(In preparation)} (2025).
+\newblock DOI: \href{https://doi.org/10.5281/zenodo.15669794}{10.5281/zenodo.15669794}.
+\newblock \url{https://github.com/bg-omar/VAM/releases}.
+\newblock Preprint.
+
+
+\bibitem{iskandarani2025vam5}
+Iskandarani, Omar,
+\newblock Topological Reformulation of the Standard Model via Vortex Æther Dynamics.
+\textit{(In preparation)} (2025).
+\newblock DOI: \href{https://doi.org/10.5281/zenodo.15848010}{10.5281/zenodo.15848010}.
+
+
+\bibitem{iskandarani2025VAM3}
+Omar Iskandarani,
+\newblock Benchmarking the Vortex Æther Model Against General Relativity.
+\textit{(In preparation)} (2025).
+\newblock DOI: \href{https://doi.org/10.5281/zenodo.15665432}{10.5281/zenodo.15665432}.
+\newblock \url{https://github.com/bg-omar/VAM/releases}.
+\newblock Preprint.
+
+
+\end{thebibliography}
+\appendix
     \def\standalonechapter{false}
-    \subfile{sections/appendix_1.tex}  % Sets standalone=false
-    \subfile{sections/appendix_2.tex}
+    \newcommand{\appendixtitle}{Appendix A: Annotated Conceptual Insights from VAM and Knot Theory}
+\section{\appendixtitle}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{4.3cm}|p{9.5cm}|}
+\hline
+\textbf{Topic} & \textbf{Summary + Citation} \\
+\hline
+\textbf{Multilayered Temporal Ontology} &
+VAM introduces a multilayered temporal ontology, distinguishing absolute causal time ($N$), local proper time ($\tau$), and internal vortex phase time $S(t)$ (Swirl Clock). A scale-dependent æther density governs transitions between dense core regions and asymptotic vacuum, leading to testable predictions in rotating systems, gravitational redshift anomalies, and LENR.\\
+& \textit{Source:}\texttt{Swirl Clocks and Vorticity-Induced Gravity}\\
+\hline
+
+\textbf{Inertia and Gravitation as Vortex Topology} &
+Inertia emerges as topologically stable vortex knots. Geodesic motion is replaced by alignment along vortex streamlines with conserved circulation, and gravitational force is modeled as a Bernoulli pressure potential.\\
+& \textit{Source:}\texttt{Swirl Clocks and Vorticity-Induced Gravity}\\
+\hline
+
+\textbf{Gravitation as Bernoulli Pressure Potential} &
+Gravitational force is modeled as a Bernoulli pressure potential.\\
+& \textit{Source:}\texttt{Swirl Clocks and Vorticity-Induced Gravity}\\
+\hline
+
+\textbf{Energetic Time Dilation Interpretation} &
+Time dilation is reinterpreted as an energetic effect of swirl phase and vortex pressure gradients. The measurable proper time $\tau$—termed Chronos-Time—is derived from vortex energetics.\\
+& \textit{Source:}\texttt{Swirl Clocks and Vorticity-Induced Gravity}\\
+\hline
+
+\textbf{Helicity from Knot Geometry (Knot Theory)} &
+$H(K_m) = \text{Lk} \, \Phi^2 = (\text{Wr} + \text{Tw}) \Phi^2$ — helicity of knotted vortex tubes expressed in terms of writhe and twist.\\
+& \textit{Source:}  \texttt{Applications of Knot Theory in Fluid Mechanics} \\
+\hline
+
+\textbf{Temporal Desynchronization via Swirl} &
+Time dilation emerges from disparities in local swirl energy or core circulation, yielding phase mismatches across identical ætheric backgrounds. Two particles can share the same ætheric Now, $\nu_0$, while their $\tau$ or $S(t)$ progress at different rates.\\
+& \textit{Source:}  \texttt{Time Dilation in a 3D Superfluid Æther Model}\\
+\hline
+
+\textbf{Newtonian + Lense–Thirring Recovery} &
+The model reproduces Newtonian gravity and Lense–Thirring frame-dragging in appropriate limits and provides a topologically invariant theory of time and gravitation.\\
+& \textit{Source:} \texttt{Swirl Clocks and Vorticity-Induced Gravity}\\
+\hline
+
+\textbf{Hybrid Mass-Gravitational Model} &
+$2G_\text{hybrid}(r) M_\text{hybrid}(r)/r c^2 - C^2$ — composite gravitational model expressed with hybrid vortex mass.\\
+& \textit{Source:} \texttt{Swirl Clocks and Vorticity-Induced Gravity}\\
+\hline
+\end{tabular}
+\caption{Annotated conceptual insights with BibTeX keys from VAM and knot theory sources}
+\label{tab:annotated_refs}
+\end{table}
+    \newcommand{\appendixtitleII}{Appendix: Key References on the Vortex Æther Model}
+\section{\appendixtitleII}
+\section*{Key References on the Vortex Æther Model (VAM)}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|p{5.2cm}|p{9.5cm}|}
+\hline
+\textbf{Reference} & \textbf{Description / Relevance to VAM} \\
+\hline
+Iskandarani, O. (2025). \textit{A Topological Reformulation of the Standard Model via Vortex Æther Dynamics}~\cite{iskandarani2025vam5} & Introduces the knot-particle correspondence; mass, charge, and gauge symmetries emerge from vortex topology. Replaces Higgs mechanism with æther tension and chirality-based mass generation. \\
+\hline
+Iskandarani, O. (2025). \textit{Time Dilation in a 3D Superfluid Æther Model}~\cite{iskandarani2025vam1} & Defines swirl clock $S(t)$, absolute time $N$, and proper time $\tau$; derives relativistic-style time dilation from vortex helicity and swirl density. \\
+\hline
+Iskandarani, O. (2025). \textit{Swirl Clocks and Vorticity-Induced Gravity}~\cite{iskandarani2025vam2} & Shows that gravity arises from helicity gradients. Chiral vortex structures induce swirl-pressure gradients mimicking GR curvature. \\
+\hline
+Iskandarani, O. (2025). \textit{Benchmarking VAM vs General Relativity}~\cite{iskandarani2025VAM3} & Demonstrates that VAM reproduces GR predictions for $G$, redshift, and orbits, using æther dynamics and no spacetime curvature. \\
+\hline
+Iskandarani, O. (2025). \textit{Appendix: Ætheric Time Ontology and Swirl Algebra}~\cite{iskandarani2025vam2} & Defines all time modes ($\mathcal{N}$, $\nu_0$, $\tau$, $T_v$, $S(t)$, $\kappa$). Introduces knot operators $S_1$, $S_2$, $S_3$ for chirality flip, twist-add, reconnection. \\
+\hline
+Annala, T. et al. (2022). \textit{Topologically Protected Vortex Knots and Links} & Shows certain vortex knots are long-lived in simulations; supports the idea of stable knotted particles in VAM. \\
+\hline
+Kleckner, D. \& Irvine, W. (2013). \textit{Creation and dynamics of knotted vortices in fluid flow} & First experimental creation of knotted vortices (e.g. trefoil); validates physical realizability of vortex knots in fluid systems. \\
+\hline
+Volovik, G. (2003). \textit{The Universe in a Helium Droplet} & Foundational treatise on emergent spacetime and field theories from superfluid analogs. Supports VAM’s fluid ontological framework. \\
+\hline
+Michell, J. \& Tippett, B. (2020). \textit{Helicity Conservation in Fluid Dynamics} & Describes helicity as a conserved quantity analogous to charge; relevant to VAM's topological charges. \\
+\hline
+Randoux, S. et al. (2020). \textit{Interplay of topology and dynamics in shaping vortex knots} & Simulation-based study of knot energy spectra; can be used to numerically test VAM’s knot-mass predictions. \\
+\hline
+\end{tabular}
+\caption{Primary theoretical, experimental, and conceptual sources underlying VAM.}
+\end{table}
 % ============= End of content ============
 
 
