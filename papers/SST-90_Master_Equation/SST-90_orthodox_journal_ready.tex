@@ -1,0 +1,768 @@
+%! Author = Omar Iskandarani
+%! Date = 02/06/2026
+%! Affiliation = Independent Researcher, Appingedam, The Netherlands
+%! ORCID = 0009-0006-1686-3961
+%! DOI = 10.5281/zenodo.xxx
+
+% =========================
+% Metadata
+% =========================
+\newcommand{\papertitle}{A Hierarchical Mass-Energy Functional for Localized Vortex Structures:\\
+Kinematic Scale, Geometric Shielding, and Topological State Classification}
+\newcommand{\papershorttitle}{Relational Time-of-Arrival}
+\newcommand{\paperemail}{info@omariskandarani.com}
+\newcommand{\paperlocation}{Appingedam}
+\newcommand{\paperkeywords}{relational time, time of arrival, quantum time observables, covariant observables, event currents, clock holonomy, quantum field theory}
+\newcommand{\paperdoi}{10.5281/zenodo.xxx}
+\newcommand{\paperorcid}{0009-0006-1686-3961}
+
+
+
+
+
+% ============================================================
+%  A Hierarchical Mass-Energy Functional for Localized
+%  Vortex Structures: Kinematic Scale, Geometric Shielding,
+%  and Topological State Classification
+% ============================================================
+%\documentclass[aps,prd,preprint,longbibliography,nofootinbib]{revtex4-2}
+\documentclass[11pt, a4paper]{article}
+
+
+
+% --- STANDARD MATH PACKAGES ---
+\usepackage{amsmath,amssymb,amsfonts,bm}
+\usepackage{siunitx}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{silence}
+\WarningFilter{latex}{Command \showhyphens has changed}
+
+% =========================
+% Core packages (lean)
+% =========================
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{bbm}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,
+            linkcolor=blue!60!black,
+            citecolor=blue!60!black,
+            urlcolor=blue!60!black]{hyperref}
+\usepackage{cleveref}
+
+% ── Theorem environments ─────────────────────────────────────
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+
+% ── Handy shorthand ──────────────────────────────────────────
+\newcommand{\vv}{v}          % characteristic circulation speed
+\newcommand{\rc}{r_c}        % core radius
+\newcommand{\rhof}{\rho_f}   % background fluid density
+\newcommand{\rhoE}{\rho_E}   % kinetic energy density
+\newcommand{\rhom}{\rho_m}   % mass-equivalent density
+\newcommand{\lc}{\lambda_c}  % Compton wavelength
+\newcommand{\Stv}{S_t}       % local time-dilation factor
+% ─────────────────────────────────────────────────────────────
+\usepackage[absolute,overlay]{textpos}
+
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{pgfplots.groupplots}
+
+\begin{document}
+    \thispagestyle{empty}%
+    \begin{center}
+        \Large \bfseries \papertitle \par \vspace{1cm}
+        {\Large \itshape \textbf{Omar Iskandarani}\textsuperscript{\textbf{*}} \par} \vspace{0.5cm}
+        {\small Independent Researcher, Groningen, The Netherlands\par} \vspace{0.5cm}
+        {\today \par}  \vspace{0.5cm}
+    \end{center}
+
+    \begin{abstract}
+        \normalsize
+        We derive and organise a hierarchical mass-energy functional
+        $M_K = \rhom\,\rc^3\,\Pi_K\,\Xi_K\,\Stv^{-2}$
+        for a localised vortex filament in an ideal incompressible
+        fluid, where $\rhom = \frac{1}{2}\rhof v^2/c^2$ is the
+        kinetic mass-equivalent density, $\rc$ is the vortex core
+        radius, $\Pi_K$ is a dimensionless geometric shielding factor,
+        $\Xi_K$ a topological state kernel, and $\Stv$ a local
+        time-dilation factor.
+        Four results are established without circular reasoning.
+        First, the kinetic energy density $\rhoE = \frac{1}{2}\rhof v^2$
+        and its mass-equivalent $\rhom = \rhoE/c^2$ follow from
+        standard fluid mechanics and special relativity.
+        Second, for a vortex filament whose core radius satisfies
+        $\rc = \alpha\hbar/(2m_e c)$ (the Compton-scale core hypothesis),
+        the dimensionless length ratio $\lc/(\pi\rc) = 4/\alpha$
+        follows by pure algebra from the definitions of the Compton
+        wavelength $\lc = h/(m_e c)$ and the fine-structure constant
+        $\alpha = e^2/(4\pi\varepsilon_0\hbar c)$; no additional
+        assumptions are required.
+        Third, the local time-dilation factor $\Stv = (1-v^2/c^2)^{1/2}$
+        is the standard special-relativistic expression applied to the
+        circulation speed.
+        Fourth, the topological kernel $\Xi_K$ is explicitly identified
+        as an open modelling ansatz whose coefficient values are not
+        yet derived from first principles; the paper proposes a
+        concrete parameterisation and lists the measurable consequences
+        that would confirm or refute it.
+        The functional is proposed as an organising framework for
+        further analytical and numerical work.
+    \end{abstract}
+    \vspace{0.5cm}
+    \textbf{Keywords:} \paperkeywords
+
+
+    \begin{textblock*}{1\textwidth}(0.15\textwidth,1.1\textheight)\raggedright\footnotesize\renewcommand{\arraystretch}{1.0} \noindent\rule{\textwidth}{0.4pt}\\[0.5em]
+        \textsuperscript{\textbf{*}} Email: \texttt{info@omariskandarani.com}\\
+        ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}}\\
+        DOI: \href{https://doi.org/\paperdoi}{\paperdoi}
+    \end{textblock*}
+
+    \vfill
+
+
+% ─────────────────────────────────────────────────────────────
+
+
+% =============================================================
+\section{Introduction and Scope}
+\label{sec:intro}
+% =============================================================
+
+The mass-energy of a localised fluid structure is determined by
+its internal kinetic energy, the spatial extent of the
+structure, any geometric factors that modulate the coupling to
+the surrounding medium, and the identity of the topological
+state.
+These four contributions have been studied separately in the
+literature on vortex dynamics~\cite{Batchelor1967,Saffman1992},
+topological field theory~\cite{FaddeevNiemi1997}, and analogue
+gravity~\cite{Barcelo2005}, but have not been assembled into a
+single hierarchical formula with explicit status labels for
+each factor.
+
+The purpose of this paper is to do exactly that.
+We derive each factor in turn, assign it an unambiguous
+epistemic label (derived, calibrated, or conjectural), and
+assemble the factors into a single mass-energy functional.
+The result is an organising framework rather than a predictive
+theory: it is predictive only when the topological kernel
+$\Xi_K$ is specified by an independent theory of the vortex
+topology.
+
+We work throughout in SI units.
+Greek indices $\mu,\nu$ run over spacetime; Latin indices
+$i,j,k$ over spatial coordinates.
+The speed of light in vacuo is $c$; $\hbar = h/(2\pi)$;
+$m_e$ and $e$ are the electron mass and charge;
+$\varepsilon_0$ is the permittivity of free space.
+
+% =============================================================
+\section{Kinematic Scale and Mass-Equivalent Density}
+\label{sec:kinematic}
+% =============================================================
+
+\subsection{Kinetic energy density of a circulatory flow}
+\label{sec:kinetic}
+
+Consider an ideal incompressible fluid of mass density
+$\rhof$ (\si{kg.m^{-3}}) supporting a localised circulatory
+velocity field $\mathbf{v}(\mathbf{x})$.
+The local kinetic energy density is~\cite{Batchelor1967,Lamb1932}
+\begin{equation}
+  \rhoE(\mathbf{x}) = \tfrac{1}{2}\rhof\,|\mathbf{v}(\mathbf{x})|^2.
+  \label{eq:rhoE}
+\end{equation}
+For a vortex whose peak circulation speed is $\vv$,
+the characteristic energy density is
+$\rhoE = \frac{1}{2}\rhof\vv^2$.
+
+\subsection{Mass-equivalent density via $E=mc^2$}
+\label{sec:rhom}
+
+By the special-relativistic energy--mass equivalence~\cite{Einstein1905},
+any energy density $\rhoE$ contributes a mass-equivalent
+density
+\begin{equation}
+  \rhom = \frac{\rhoE}{c^2} = \frac{\rhof\vv^2}{2c^2}.
+  \label{eq:rhom}
+\end{equation}
+This expression is dimensionally consistent:
+$[\rhof\vv^2/c^2] = \si{kg.m^{-3}}$.
+No assumptions beyond standard fluid mechanics and special
+relativity are used.
+
+\subsection{Bare mass scale}
+\label{sec:Mstar}
+
+The mass enclosed in a spherical core of radius $\rc$ is
+\begin{equation}
+  M_\star = \rhom\,\rc^3 = \frac{\rhof\vv^2}{2c^2}\,\rc^3.
+  \label{eq:Mstar}
+\end{equation}
+Here $\rc$ is a free parameter (the vortex core radius) until
+it is specified by the topological model; see
+\cref{sec:geometric} and \cref{sec:calib}.
+
+% =============================================================
+\section{Geometric Shielding Gate}
+\label{sec:geometric}
+% =============================================================
+
+\subsection{Compton-scale core hypothesis}
+\label{sec:core_hypothesis}
+
+\begin{definition}[Compton-scale core]
+\label{def:core}
+We adopt as a modelling hypothesis the identification
+\begin{equation}
+  \rc = \frac{\alpha\hbar}{2m_e c},
+  \label{eq:rc}
+\end{equation}
+where $\alpha = e^2/(4\pi\varepsilon_0\hbar c)$ is the
+fine-structure constant.
+This is a \emph{calibration}, not a derivation: no microscopic
+mechanism is asserted here, and the hypothesis is testable by
+any experiment that independently constrains the vortex core
+radius.
+\end{definition}
+
+\subsection{Algebraic derivation of the shielding ratio}
+\label{sec:4alpha}
+
+\begin{lemma}[Shielding ratio]
+\label{lem:shield}
+Under \cref{def:core}, the ratio of the electron Compton
+wavelength $\lc = h/(m_e c)$ to the quantity $\pi\rc$ satisfies
+\begin{equation}
+  \frac{\lc}{\pi\rc} = \frac{4}{\alpha}.
+  \label{eq:shielding}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The Compton wavelength is $\lc = h/(m_e c) = 2\pi\hbar/(m_e c)$.
+Substituting \cref{eq:rc}:
+\begin{equation}
+  \frac{\lc}{\pi\rc}
+  = \frac{2\pi\hbar/(m_e c)}{\pi \cdot \alpha\hbar/(2m_e c)}
+  = \frac{2\pi\hbar}{m_e c}\cdot\frac{2m_e c}{\pi\alpha\hbar}
+  = \frac{4}{\alpha}.
+\end{equation}
+The result is an algebraic identity among $\lc$, $\rc$, and
+$\alpha$.
+It does not depend on the numerical value of any of these
+quantities, and introduces no new assumptions beyond
+\cref{def:core}.
+\end{proof}
+
+\begin{remark}
+The ratio $4/\alpha \approx 548.1$ is numerically large because
+$\alpha \approx 1/137.036$.
+This amplification factor is therefore a direct consequence of
+the smallness of the fine-structure constant and the assumption
+that the core radius is set at the Compton scale.
+\end{remark}
+
+\subsection{Geometric shielding factor}
+\label{sec:Pik}
+
+We introduce a binary exposure index $G(K) \in \{0,1\}$ for a
+topological state $K$ (see \cref{sec:topo}) and define the
+geometric shielding factor
+\begin{equation}
+  \Pi_K = \left(\frac{\lc}{\pi\rc}\right)^{G(K)}
+         = \left(\frac{4}{\alpha}\right)^{G(K)}.
+  \label{eq:Pik}
+\end{equation}
+When $G(K)=0$ the factor is unity (no geometric amplification);
+when $G(K)=1$ the factor is $4/\alpha \approx 548$.
+The physical interpretation is that states with $G(K)=1$
+couple to the medium at the Compton scale, while states with
+$G(K)=0$ remain in the bare core regime.
+The assignment of $G(K)$ to specific topological states is a
+\emph{modelling choice} that lies outside the scope of this
+paper.
+
+% =============================================================
+\section{Local Time-Dilation Factor}
+\label{sec:clock}
+% =============================================================
+
+A fluid element moving with speed $v = |\mathbf{v}|$ relative
+to the laboratory frame experiences a standard special-relativistic
+time dilation~\cite{Will2014,Misner1973}:
+\begin{equation}
+  \Stv = \sqrt{1 - \frac{v^2}{c^2}},
+  \label{eq:St}
+\end{equation}
+with $d\tau = \Stv\,dt$.
+For $v \ll c$ one has $\Stv \approx 1 - v^2/(2c^2)$ and
+$\Stv^{-2} \approx 1 + v^2/c^2$.
+This factor appears in the mass-energy functional through
+the local effective inertia: a region of strong circulation
+is both kinetically energetic and locally time-dilated; the
+combination amplifies the effective mass.
+
+% =============================================================
+\section{Topological State Kernel}
+\label{sec:topo}
+% =============================================================
+
+\subsection{Motivation and status}
+\label{sec:topo_status}
+
+The topological identity of a vortex filament is encoded in
+its knot type $K$.
+In the mathematical theory of knotted vortices, three families
+of invariants are relevant~\cite{Moffatt1969,Ricca2008,Kauffman2001}:
+\begin{enumerate}[label=(\roman*)]
+  \item \emph{Crossing invariants} $C(K)$, such as the
+        crossing number or writhe, which count the complexity of
+        the knot diagram;
+  \item \emph{Geometric invariants} $L(K)$, such as the
+        ropelength~\cite{CantarellaKusner2002}, which encode
+        the minimum length required to realise the knot at a
+        given core thickness;
+  \item \emph{Helicity invariants} $\mathcal{H}(K)$, related
+        to the Gauss linking integral and the Hopf
+        invariant~\cite{Moffatt1969,Arnold1966}, which measure
+        the self-linking of the vorticity field.
+\end{enumerate}
+A natural dimensionless state kernel is a linear combination
+of these invariants.
+
+\subsection{Proposed kernel ansatz}
+\label{sec:topo_ansatz}
+
+\begin{definition}[Topological kernel]
+\label{def:kernel}
+We propose the ansatz
+\begin{equation}
+  \Xi_K
+  = \bigl[\alpha_C\,C(K) + \beta_L\,L(K) + \gamma_H\,\mathcal{H}(K)\bigr]
+    \varphi^{-2k(K)},
+  \label{eq:Xik}
+\end{equation}
+where $\alpha_C$, $\beta_L$, $\gamma_H$ are dimensionless
+coefficients, $k(K) \in \mathbb{Z}_{\geq 0}$ is a discrete
+state-level index, and $\varphi = (1+\sqrt{5})/2$ is the
+golden ratio.
+\end{definition}
+
+\begin{remark}[Epistemic status of \cref{def:kernel}]
+The kernel \eqref{eq:Xik} is a \emph{conjectural modelling
+ansatz}, not a derivation.
+Three elements are not justified from first principles in this
+paper:
+\begin{enumerate}[label=(\roman*)]
+  \item The coefficients $\alpha_C$, $\beta_L$, $\gamma_H$
+        are free parameters; their values must be determined
+        by fitting to observed particle masses or by a
+        separate dynamical derivation.
+  \item The golden-ratio ladder $\varphi^{-2k}$ is motivated
+        by the fixed-point structure of the nonlinear
+        Schr\"{o}dinger equation on a closed loop
+        (cf.~\cite{Pitaevskii1961,Pethick2008}) but is not
+        derived from a variational principle for the present
+        system.
+  \item The binary exposure index $G(K)$ is assigned to knot
+        types by a rule not stated in this paper.
+\end{enumerate}
+These three open points define the research programme that
+this paper proposes.
+\end{remark}
+
+% =============================================================
+\section{The Hierarchical Mass-Energy Functional}
+\label{sec:master}
+% =============================================================
+
+\subsection{Assembly}
+\label{sec:assembly}
+
+Combining \cref{eq:Mstar,eq:Pik,eq:Xik,eq:St}, we define
+
+\begin{proposition}[Hierarchical mass-energy functional]
+\label{prop:master}
+Under the kinematic, Compton-core, time-dilation, and
+topological-kernel hypotheses of
+\cref{sec:kinematic,sec:geometric,sec:clock,sec:topo},
+the mass-energy of a topological vortex state $K$ at
+position $\mathbf{x}$ is
+\begin{equation}
+  \boxed{
+    M_K(\mathbf{x})
+    = \frac{\rhof(\mathbf{x})\,|\mathbf{v}(\mathbf{x})|^2}{2c^2}
+      \;\rc^3
+      \left(\frac{4}{\alpha}\right)^{G(K)}
+      \Xi_K
+      \left(1-\frac{|\mathbf{v}(\mathbf{x})|^2}{c^2}\right)^{-1}
+  }
+  \label{eq:master}
+\end{equation}
+with $\Xi_K$ as in \cref{def:kernel}.
+\end{proposition}
+
+\begin{proof}
+Substitute \cref{eq:rhom} into \cref{eq:Mstar}, apply
+\cref{eq:Pik}, include the state kernel \cref{def:kernel},
+and note that $\Stv^{-2} = (1-v^2/c^2)^{-1}$.
+The result follows by direct substitution.
+The dimensional check gives
+$[\rhof v^2/c^2\cdot r_c^3] = \si{kg.m^{-3}.m^3} = \si{kg}$;
+all remaining factors are dimensionless.
+\end{proof}
+
+\subsection{Factored interpretation}
+\label{sec:factors}
+
+The functional separates into four physically distinct sectors:
+\begin{equation}
+  M_K
+  = \underbrace{\vphantom{\Big|}\rhom\,\rc^3}_{\text{medium scale}}
+    \times
+    \underbrace{\vphantom{\Big|}(4/\alpha)^{G(K)}}_{\text{geometric gate}}
+    \times
+    \underbrace{\vphantom{\Big|}\Xi_K}_{\text{topological kernel}}
+    \times
+    \underbrace{\vphantom{\Big|}\Stv^{-2}}_{\text{clock factor}}.
+  \label{eq:factored}
+\end{equation}
+Each factor is independently testable in principle:
+the medium scale is set by macroscopic fluid measurements;
+the geometric gate follows from the core-radius hypothesis;
+the topological kernel depends only on knot invariants;
+the clock factor is a standard relativistic correction.
+
+% =============================================================
+\section{Reduction Limits}
+\label{sec:limits}
+% =============================================================
+
+\subsection{Static limit ($v \ll c$)}
+
+For $v \ll c$, $\Stv^{-2} \to 1$ and \cref{eq:master} reduces to
+\begin{equation}
+  M_K \approx \rhom\,\rc^3\,(4/\alpha)^{G(K)}\,\Xi_K,
+\end{equation}
+the static mass spectrum.
+
+\subsection{Homogeneous medium}
+
+If $\rhof$ and $v$ are spatially uniform, $\rhom$ is constant
+and the spatial integration over the core volume gives a
+factor $\propto \rc^3$, consistent with \cref{eq:Mstar}.
+
+\subsection{Weak-circulation expansion}
+
+For $v^2/c^2 \ll 1$,
+\begin{equation}
+  \Stv^{-2} = 1 + \frac{v^2}{c^2} + \mathcal{O}\!\left(\frac{v^4}{c^4}\right),
+\end{equation}
+so the leading relativistic correction to the mass is positive
+and quadratic in the circulation speed.
+
+% =============================================================
+\section{Calibration and Numerical Check}
+\label{sec:calib}
+% =============================================================
+
+\subsection{Calibrated parameters}
+\label{sec:calib_params}
+
+The functional \cref{eq:master} contains three parameters
+that are not derived in this paper and must be supplied
+externally:
+\begin{enumerate}[label=(\roman*)]
+  \item $\rhof$: the background effective fluid density.
+        We adopt the phenomenological value
+        $\rhof = 7.0\times10^{-7}$~\si{kg.m^{-3}},
+        consistent with calibrations of the electron vortex
+        model against the electron mass~\cite{Iskandarani2026a}.
+        This value is a \emph{calibration}, not a prediction.
+  \item $\vv$: the characteristic circulation speed.
+        We adopt $\vv = \alpha c/2 \approx 1.094\times10^6$~\si{m.s^{-1}},
+        the value that identifies the circulation speed with
+        $\alpha c/2$~\cite{Iskandarani2026a}.
+        Again, this is a \emph{calibration}.
+  \item $\rc$: by \cref{def:core},
+        $\rc = \alpha\hbar/(2m_e c) \approx 1.409\times10^{-15}$~\si{m}.
+\end{enumerate}
+The topological coefficients $\alpha_C$, $\beta_L$, $\gamma_H$
+and the level index $k(K)$ are open parameters to be
+determined.
+
+\subsection{Numerical benchmark}
+\label{sec:numerical}
+
+With the calibrated values above:
+\begin{align}
+  \rhoE &= \tfrac{1}{2}\rhof\vv^2
+          \approx 4.188\times10^{5}~\si{J.m^{-3}}, \\
+  \rhom &= \rhoE/c^2
+          \approx 4.659\times10^{-12}~\si{kg.m^{-3}}, \\
+  M_\star &= \rhom\,\rc^3
+           \approx 1.303\times10^{-56}~\si{kg}.
+\end{align}
+The geometric gate evaluates to
+\begin{equation}
+  \frac{4}{\alpha} \approx 548.14,
+\end{equation}
+in exact numerical agreement with $\lc/(\pi\rc)$, which
+confirms \cref{lem:shield} numerically.
+The local time-dilation factor at the calibrated speed is
+\begin{equation}
+  \Stv = \sqrt{1 - \vv^2/c^2} \approx 0.999993,
+  \qquad
+  \Stv^{-2} \approx 1.000013,
+\end{equation}
+so the clock correction is at the level of $1.3\times10^{-5}$
+and is negligible in the present calibration regime.
+
+The bare scale $M_\star \approx 1.3\times10^{-56}$~\si{kg}
+is much smaller than the electron mass
+$m_e \approx 9.1\times10^{-31}$~\si{kg}.
+The ratio $m_e/M_\star \approx 7\times10^{25}$ must be supplied
+by the product $\Pi_K \Xi_K$, which is the open problem that
+the topological kernel \cref{def:kernel} is designed to address.
+
+% =============================================================
+\section{Falsifiable Consequences}
+\label{sec:falsifiers}
+% =============================================================
+
+The functional \cref{eq:master} yields three testable predictions
+that are independent of the open parameters
+$\alpha_C, \beta_L, \gamma_H$:
+
+\begin{enumerate}[label=(\roman*)]
+
+  \item \textbf{Scaling with core radius.}
+        Equation~\eqref{eq:Mstar} predicts $M_\star \propto \rc^3$
+        for fixed fluid parameters.
+        An independent measurement of $\rc$ that is inconsistent
+        with $\rc = \alpha\hbar/(2m_e c)$ would falsify
+        \cref{def:core}.
+
+  \item \textbf{Binary geometric clustering.}
+        States with $G(K)=1$ should have masses larger than
+        states with $G(K)=0$ by a factor of order $4/\alpha \approx 548$,
+        holding all other factors equal.
+        This is a sharp prediction that does not require knowledge
+        of $\Xi_K$.
+
+  \item \textbf{Mass--clock correlation.}
+        If the same circulation field $\mathbf{v}(\mathbf{x})$ is
+        responsible for both the inertial mass and the time dilation,
+        regions of higher effective mass should exhibit a proportionally
+        larger proper-time retardation.
+        The coupling is $\delta M / M \approx v^2/c^2$ and
+        $\delta\tau/\tau \approx -v^2/(2c^2)$ at leading order, giving
+        \begin{equation}
+          \frac{\delta M}{M} \approx -2\,\frac{\delta\tau}{\tau}.
+        \end{equation}
+        This relation is independent of all calibrated parameters.
+
+\end{enumerate}
+
+% =============================================================
+\section{Status Summary}
+\label{sec:status}
+% =============================================================
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Factor & Status & Dependencies \\
+\midrule
+$\rhoE = \tfrac{1}{2}\rhof v^2$ & Derived (fluid mechanics) &
+  Batchelor~\cite{Batchelor1967}, Lamb~\cite{Lamb1932} \\
+$\rhom = \rhoE/c^2$ & Derived ($E=mc^2$) &
+  Einstein~\cite{Einstein1905} \\
+$\lc/(\pi\rc) = 4/\alpha$ & Derived (algebra, given \cref{def:core}) &
+  \cref{lem:shield} \\
+$\Stv = (1-v^2/c^2)^{1/2}$ & Derived (special relativity) &
+  Will~\cite{Will2014} \\
+$\rc = \alpha\hbar/(2m_e c)$ & Calibration hypothesis & \cref{def:core} \\
+$\rhof = 7.0\times10^{-7}$~\si{kg.m^{-3}} & Calibrated &
+  \cref{sec:calib_params} \\
+$\vv = \alpha c/2$ & Calibrated & \cref{sec:calib_params} \\
+$G(K) \in \{0,1\}$ & Modelling rule, not derived & Open \\
+$\alpha_C,\beta_L,\gamma_H$ & Free parameters & Open \\
+$k(K)$ (golden-ladder level) & Conjectural ansatz & Open \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% =============================================================
+\section{Discussion and Outlook}
+\label{sec:discussion}
+% =============================================================
+
+The functional \cref{eq:master} separates cleanly into
+established physics (kinetic energy density, mass--energy
+equivalence, special-relativistic time dilation, algebraic
+properties of the fine-structure constant) and open modelling
+choices (core-radius hypothesis, topological kernel ansatz,
+golden-ladder level assignment).
+The boundary between the two is made explicit in
+\cref{sec:status}.
+
+The main open problem is the determination of $\Xi_K$ from
+a microscopic or variational principle.
+Partial progress has been made using the knotted-vortex
+energy functionals of Faddeev and Niemi~\cite{FaddeevNiemi1997}
+and the ropelength bounds of Cantarella et al.~\cite{CantarellaKusner2002};
+a complete derivation remains outstanding.
+
+The core-radius hypothesis \cref{def:core} could in principle
+be tested via high-precision measurements of the electron charge
+radius or by atomic spectroscopy experiments sensitive to the
+inner structure of the Coulomb potential at the femtometre scale.
+Existing Lamb-shift data constrain any additional short-range
+contribution to the potential at a level that is broadly
+consistent with, but does not uniquely select, the value
+$\rc = \alpha\hbar/(2m_e c)$~\cite{Bethe1947,Karshenboim2005}.
+
+This paper employs the functional as a toy model for the
+purpose of identifying which parts of a localized-vortex mass
+formula are generic (following from fluid mechanics and
+special relativity) and which parts require a specific
+microscopic model.
+The three falsifiable predictions of \cref{sec:falsifiers}
+hold for any model that shares the kinematic and geometric
+sectors, irrespective of the topological kernel.
+
+% =============================================================
+\section*{Acknowledgements}
+% =============================================================
+
+The author thanks the independent research community for
+discussions that helped sharpen the separation between derived
+and conjectural elements of this framework.
+
+% =============================================================
+\begin{thebibliography}{99}
+
+\bibitem{Batchelor1967}
+G.~K. Batchelor,
+\textit{An Introduction to Fluid Dynamics},
+Cambridge University Press, 1967.
+\doi{10.1017/CBO9780511800955}
+
+\bibitem{Saffman1992}
+P.~G. Saffman,
+\textit{Vortex Dynamics},
+Cambridge University Press, 1992.
+\doi{10.1017/CBO9780511624063}
+
+\bibitem{Lamb1932}
+H.~Lamb,
+\textit{Hydrodynamics}, 6th ed.,
+Cambridge University Press, 1932.
+
+\bibitem{Einstein1905}
+A.~Einstein,
+Ist die Tr\"{a}gheit eines K\"{o}rpers von seinem Energieinhalt abh\"{a}ngig?,
+\textit{Annalen der Physik} \textbf{18}, 639 (1905).
+\doi{10.1002/andp.19053231314}
+
+\bibitem{Moffatt1969}
+H.~K. Moffatt,
+The degree of knottedness of tangled vortex lines,
+\textit{Journal of Fluid Mechanics} \textbf{35}, 117 (1969).
+\doi{10.1017/S0022112069000991}
+
+\bibitem{Arnold1966}
+V.~I. Arnold,
+Sur la g\'{e}om\'{e}trie diff\'{e}rentielle des groupes de Lie de dimension infinie
+et ses applications \`{a} l'hydrodynamique des fluides parfaits,
+\textit{Annales de l'Institut Fourier} \textbf{16}, 319 (1966).
+\doi{10.5802/aif.233}
+
+\bibitem{Ricca2008}
+R.~L. Ricca,
+Topology bounds energy of knots and links,
+\textit{Proceedings of the Royal Society A} \textbf{464}, 293 (2008).
+\doi{10.1098/rspa.2007.0174}
+
+\bibitem{FaddeevNiemi1997}
+L.~D. Faddeev and A.~J. Niemi,
+Stable knot-like structures in classical field theory,
+\textit{Nature} \textbf{387}, 58 (1997).
+\doi{10.1038/387058a0}
+
+\bibitem{Kauffman2001}
+L.~H. Kauffman,
+\textit{Knots and Physics}, 3rd ed.,
+World Scientific, 2001.
+\doi{10.1142/4256}
+
+\bibitem{CantarellaKusner2002}
+J.~Cantarella, R.~B. Kusner, and J.~M. Sullivan,
+On the minimum ropelength of knots and links,
+\textit{Inventiones Mathematicae} \textbf{150}, 257 (2002).
+\doi{10.1007/s00222-002-0234-y}
+
+\bibitem{Barcelo2005}
+C.~Barceló, S.~Liberati, and M.~Visser,
+Analogue gravity,
+\textit{Living Reviews in Relativity} \textbf{8}, 12 (2005).
+\doi{10.12942/lrr-2005-12}
+
+\bibitem{Will2014}
+C.~M. Will,
+The confrontation between general relativity and experiment,
+\textit{Living Reviews in Relativity} \textbf{17}, 4 (2014).
+\doi{10.12942/lrr-2014-4}
+
+\bibitem{Misner1973}
+C.~W. Misner, K.~S. Thorne, and J.~A. Wheeler,
+\textit{Gravitation},
+W.~H. Freeman, 1973.
+
+\bibitem{Pitaevskii1961}
+L.~P. Pitaevskii,
+Vortex lines in an imperfect Bose gas,
+\textit{Soviet Physics JETP} \textbf{13}, 451 (1961).
+
+\bibitem{Pethick2008}
+C.~J. Pethick and H.~Smith,
+\textit{Bose--Einstein Condensation in Dilute Gases}, 2nd ed.,
+Cambridge University Press, 2008.
+\doi{10.1017/CBO9780511802850}
+
+\bibitem{Bethe1947}
+H.~A. Bethe,
+The electromagnetic shift of energy levels,
+\textit{Physical Review} \textbf{72}, 339 (1947).
+\doi{10.1103/PhysRev.72.339}
+
+\bibitem{Karshenboim2005}
+S.~G. Karshenboim,
+Precision physics of simple atoms: QED tests, nuclear structure and
+fundamental constants,
+\textit{Physics Reports} \textbf{422}, 1 (2005).
+\doi{10.1016/j.physrep.2005.08.008}
+
+\bibitem{Iskandarani2026a}
+O.~Iskandarani,
+Resolving three open problems in the swirl-vortex model via the
+electron Compton frequency,
+Zenodo preprint, 2026.
+\doi{10.5281/zenodo.18390075}
+
+\end{thebibliography}
+
+\end{document}
