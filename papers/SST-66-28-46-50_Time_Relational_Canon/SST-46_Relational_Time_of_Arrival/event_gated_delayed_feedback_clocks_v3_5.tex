@@ -41,6 +41,20 @@
 %  [FIG]      Added TikZ architecture figure separating engine, detector,
 %             delayed reinjection, and entropy-accounting channels.
 %  [FIX]      Removed a stray residual phrase after Eq. (accuracy).
+%  v3.5 patch log (referee-level minor edits m1-m9):
+%  [m1]  Stated k_B=1 (entropy rates in units of k_B); dropped /k_B in
+%        the detector estimate for notational consistency.
+%  [m2]  Identified Eq.(TUR) as the Brownian-clock form and softened the
+%        "not constrained" wording to "outside Markov/overdamped assumptions".
+%  [m3]  Added necessary-vs-sufficient stability note for the delay loop.
+%  [m4]  Clarified D_phi as the cycle-averaged effective coefficient and
+%        Eq.(accuracy) as the leading-order N>>1 result.
+%  [m5]  Stated the white-frequency/renewal assumption for the Allan form.
+%  [m6]  Fixed affiliation punctuation.
+%  [m7]  Added Gong (2026) Comment and a sentence engaging the contested
+%        status of the extraction-cost claim.
+%  [m8]  Relabelled falsifier #3 as a consistency check, not a prediction.
+%  [m9]  Removed duplicated "no quantum-specific assumptions" phrase.
 % ======================================================================
 \documentclass[aps,pre,reprint,amsmath,amssymb,floatfix,nofootinbib]{revtex4-2}
 
@@ -65,7 +79,7 @@
 trade-offs in autonomous oscillator clocks}
 
 \author{Omar Iskandarani}
-\affiliation{Independent Researcher, Appingedam The Netherlands}
+\affiliation{Independent Researcher, Appingedam, The Netherlands}
 
 \date{\today}
 
@@ -99,7 +113,7 @@ which the extraction channel contributes its own entropy production, and
 we give measurable discriminators, including delay-dependent suppression
 of phase diffusion. The framework unifies stochastic-transition clocks,
 optomechanical pendulum clocks and delay-feedback clocks within a common
-thermodynamic accounting and requires no assumptions specific to the quantum regime.
+thermodynamic accounting.
 \end{abstract}
 
 \maketitle
@@ -114,16 +128,21 @@ timekeeping have made this precise by bounding the achievable accuracy in
 terms of dissipation~\cite{BaratoSeifert2016,Erker2017,Milburn2020,Pearson2021,Meier2023,Prech2025}.
 A central benchmark is the thermodynamic uncertainty relation (TUR)
 \cite{BaratoSeifert2015,Gingrich2016,HorowitzGingrich2020}, which for a
-clock takes the form
+clock takes the Brownian-clock form of Ref.~\cite{BaratoSeifert2016}
 \begin{equation}
   \mathcal{N} \;\le\; \tfrac{1}{2}\,\avg{\tau}\,\Sdot ,
   \label{eq:TUR}
 \end{equation}
 where $\mathcal{N}$ is the accuracy, $\avg{\tau}$ the mean inter-tick
-time and $\Sdot$ the entropy-production rate. The bound
+time and $\Sdot$ the entropy-production rate; several inequivalent
+accuracy and kinetic-uncertainty bounds exist~\cite{Meier2023,Prech2025},
+and Eq.~\eqref{eq:TUR} is the one against which the violations below are
+measured. Throughout we set $k_B=1$, so that $\Sdot$ has dimensions of
+inverse time and Eq.~\eqref{eq:TUR} is dimensionless. The bound
 \eqref{eq:TUR} is rigorous for systems obeying Markovian rate equations
-or overdamped Langevin dynamics, but most practical clocks are based on
-an underdamped oscillatory degree of freedom and are not constrained by
+or overdamped Langevin dynamics; most practical clocks are based on
+an underdamped oscillatory degree of freedom, which falls outside these
+Markovian/overdamped assumptions and need not obey
 it~\cite{Pietzonka2022,Gopal2024,Culhane2024,Scheer2024,Brunelli2026}.
 Violations of \eqref{eq:TUR} have accordingly been reported in classical
 pendulum clocks~\cite{Pietzonka2022,Gopal2024} and, recently, in an
@@ -411,7 +430,11 @@ $\mathrm{Var}(\tau)=2\,\Dphi\,\Delta\phi/\omega^{3}$, so that
 \end{equation}
 Equation \eqref{eq:accuracy} is dimensionless, as required. For a clock
 producing one tick per period ($\Delta\phi=2\pi$), it gives
-$\mathcal{N}=\pi\omega/\Dphi$.
+$\mathcal{N}=\pi\omega/\Dphi$. Here $\Dphi$ is the cycle-averaged
+effective phase-diffusion coefficient of Eq.~\eqref{eq:phase}, obtained by
+projecting the phase-dependent noise of the locked cycle onto the limit
+cycle; Eq.~\eqref{eq:accuracy} is then the leading-order result in the
+$\mathcal{N}\gg1$ regime.
 
 \paragraph*{Allan variance.}
 For uncorrelated successive intervals the overlapping Allan variance
@@ -422,7 +445,11 @@ follows the standard white-frequency form~\cite{Allan1966}
 \end{equation}
 the agreement of which with single-trajectory estimates at small averaging
 factor $m$ is a direct test of the renewal assumption underlying
-\eqref{eq:accuracy}.
+\eqref{eq:accuracy}. Equation~\eqref{eq:allan} assumes white frequency
+noise and statistically independent intervals; flicker contributions or
+the inter-tick correlations induced by the delay loop
+(Sec.~\ref{sec:phase}) would modify the $m$-dependence and are detectable
+as a departure from the $1/m$ law.
 
 \paragraph*{Role of the delay.}
 Each delayed kick $A\delta(t-t_j)$ projects onto the phase through the
@@ -502,6 +529,14 @@ reduces to the low-frequency expression
   \qquad 1+\kappa\taud>0 .
   \label{eq:pure_delay_diffusion}
 \end{equation}
+The condition $1+\kappa\taud>0$ is necessary but not sufficient for
+loop stability: the closed-loop poles are the roots of the characteristic
+equation $z=-\kappa\,(1-e^{-z\taud})$, and these acquire positive real
+part once $\kappa\taud$ exceeds an $O(1)$ threshold, at which point the
+monotonic suppression \eqref{eq:pure_delay_diffusion} ceases to apply.
+Equation~\eqref{eq:pure_delay_diffusion} therefore holds within the
+stable-locking window assumed throughout, and the unbounded
+$\kappa\taud\to\infty$ limit is not physical.
 Equation~\eqref{eq:pure_delay_diffusion} applies to pure delayed phase
 stabilization with frequency-independent small-signal gain. Periodic
 dependence on $\omega\taud$ is a separate, resonantly gated case: it appears
@@ -647,7 +682,11 @@ We stress that \eqref{eq:hypothesis} is \emph{not} guaranteed: the
 extraction channel may be cheap enough that the inequality still fails,
 and indeed the entropic cost of converting microscopic ticks into a
 classical signal has been shown to be finite but
-nonzero~\cite{Wadhia2025}. The contribution of the present framework is
+nonzero~\cite{Wadhia2025}. Whether that measured cost reflects a
+fundamental bound or device-specific engineering dissipation is itself
+contested~\cite{Gong2026Comment}, which is precisely why it is useful to
+make $\Sdot_{\mathrm{det}}$ an explicit, model-defined dynamical quantity
+rather than a single experimental number. The contribution of the present framework is
 to make $\Sdot_{\mathrm{det}}$ an explicit dynamical quantity---the
 dissipation of the leaky integrator and comparator defined by
 Eqs.~\eqref{eq:detector_ode}--\eqref{eq:tick_rule}---so that the balance \eqref{eq:hypothesis} can
@@ -663,7 +702,7 @@ analog detector current is modeled as a dissipative coordinate with
 effective detector-noise strength $D_I$, then the housekeeping entropy
 production rate of the analog stage scales as
 \begin{equation}
-  \frac{\Sdot_{\mathrm{det}}}{k_B}
+  \Sdot_{\mathrm{det}}
   \sim
   \frac{\Gamma}{D_I}\,\avg{\big(I-\avg{I}\big)^2},
   \label{eq:sdet_estimate_general}
@@ -846,8 +885,9 @@ delay, with extrema fixed by the measured loop transfer function, as in
 Eqs.~\eqref{eq:delaydiff_general}--\eqref{eq:delaydiff_sinusoidal}. A flat $\mathcal{N}(\taud)$ over a range where the loop gain is independently nonzero would falsify the
 delayed-feedback character of the escapement.
 
-\item \textbf{Resolution--accuracy trade-off.}
-The product $\mathcal{N}\,\nu$ (and $\mathcal{N}\,\nu^2$) must respect the
+\item \textbf{Resolution--accuracy trade-off (consistency check).}
+This is a consistency requirement rather than a new prediction: the
+product $\mathcal{N}\,\nu$ (and $\mathcal{N}\,\nu^2$) must respect the
 bounds of Refs.~\cite{Meier2023,Prech2025}; exceeding them would indicate
 a measurement or accounting error rather than new physics.
 
@@ -1014,6 +1054,11 @@ P.~Erker, and N.~Ares,
 \emph{Entropic costs of extracting classical ticks from a quantum clock},
 Phys. Rev. Lett. \textbf{135}, 200407 (2025).
 DOI: \href{https://doi.org/10.1103/5rtj-djfk}{10.1103/5rtj-djfk}.
+
+\bibitem{Gong2026Comment}
+L.~Gong,
+\emph{Comment on ``Entropic Costs of Extracting Classical Ticks from a Quantum Clock''},
+arXiv:2605.21833 (2026).
 
 \bibitem{Meier2025}
 F.~Meier, Y.~Minoguchi, S.~Sundelin, T.~J.~G.~Apollaro, P.~Erker, S.~Gasparinetti, and M.~Huber,
