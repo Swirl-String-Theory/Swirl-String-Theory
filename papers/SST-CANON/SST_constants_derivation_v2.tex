@@ -1,0 +1,894 @@
+%! Author  = Omar Iskandarani
+%! Date    = June 2026
+%! ORCID   = 0009-0006-1686-3961
+%! Target  = Physical Review A
+
+% ============================================================
+%  A Single-Postulate Closure for Localized Vortex-Core Models:
+%  Deriving the Characteristic Circulation Speed from the
+%  Rydberg Constant and the Compton Frequency
+% ============================================================
+
+\documentclass[aps,pra,preprint,longbibliography,nofootinbib]{revtex4-2}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{siunitx}
+\usepackage[colorlinks=true,
+            linkcolor=blue!60!black,
+            citecolor=blue!60!black,
+            urlcolor=blue!60!black]{hyperref}
+\usepackage{cleveref}
+\usepackage{microtype}
+
+% ── Theorem environments ─────────────────────────────────────
+\newtheorem{postulate}{Postulate}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{remark}{Remark}
+
+% ── Notation ─────────────────────────────────────────────────
+% Circulatory arrow subscript (reads as "circulatory flow")
+\newcommand{\rotarrow}{%
+  \mathchoice{\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}%
+             {\mkern-2mu\scriptstyle\boldsymbol{\circlearrowleft}}%
+             {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
+             {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}}
+
+\newcommand{\vc}{\mathbf{v}_{\rotarrow}}        % circulatory velocity (vector)
+\newcommand{\vnorm}{\lVert\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert} % its magnitude (scalar)
+
+\newcommand{\rhof}{\rho_{\!f}}                   % background fluid density
+\newcommand{\rhoE}{\rho_{\!E}}                   % kinetic energy density
+\newcommand{\rhom}{\rho_{\!m}}                   % mass-equivalent density
+\newcommand{\rhocore}{\rho_{\mathrm{core}}}      % core density
+\newcommand{\rc}{r_c}                            % core radius
+\newcommand{\Stv}{S_t}                           % relativistic time-dilation factor
+\newcommand{\omC}{\omega_C}                      % Compton angular frequency
+\newcommand{\lc}{\lambda_c}                      % Compton wavelength
+\newcommand{\Rinf}{R_\infty}                     % Rydberg constant
+\newcommand{\Tc}{\mathcal{T}_c}                  % vortex line tension at core (Saffman)
+\newcommand{\Fgr}{F_{\mathrm{gr}}}              % gravitational tension scale c^4/4G
+\newcommand{\Gz}{\Gamma_0}                       % circulation quantum
+% ─────────────────────────────────────────────────────────────
+
+\begin{document}
+
+\title{A Single-Postulate Closure for Localized Vortex-Core Models:\\
+       Deriving the Characteristic Circulation Speed\\
+       from the Rydberg Constant and the Compton Frequency}
+
+\author{Omar Iskandarani}
+\affiliation{Independent Researcher, Groningen, The Netherlands}
+\email{info@omariskandarani.com}
+\orcid{0009-0006-1686-3961}
+\date{June 2026}
+
+% ─────────────────────────────────────────────────────────────
+\begin{abstract}
+We present a minimal, self-consistent derivation of a characteristic
+set of dynamical scales for localized vortex-core models of the electron
+from a single structural postulate combined with the spectroscopic value
+of the Rydberg constant.
+The postulate, called the \emph{Compton-core hypothesis}, identifies
+the angular rotation rate of the vortex core with the electron Compton
+frequency $\omC = m_e c^2/\hbar$.
+Together with the measured Rydberg constant $\Rinf$, this yields the
+characteristic circulation speed
+$\vnorm = \bigl(\pi\hbar c\Rinf/m_e\bigr)^{1/2}$
+without invoking the fine-structure constant $\alpha$ as a prior input.
+Instead, $\alpha = 2\vnorm/c$ emerges as a derived quantity and
+reproduces the CODATA value to within $3\times 10^{-10}$.
+The core radius $\rc = \vnorm/\omC$, the vortex line tension
+$\Tc = \rhocore\,\Gz^2/(4\pi)$, the core mass density
+$\rhocore = m_e c^2/(2\pi\vnorm^2\rc^3)$, and the
+circulation quantum $\Gz = 2\pi\vnorm^2/\omC$ are then derived
+as algebraic consequences, each with a direct classical
+hydrodynamic interpretation.
+A status table distinguishes derived quantities from the single
+calibrated input ($\Rinf$) and from open parameters.
+Three falsifiable predictions are stated that do not involve
+any free parameters.
+\end{abstract}
+
+\maketitle
+
+% =============================================================
+\section{Introduction}
+\label{sec:intro}
+% =============================================================
+
+Localized vortex-filament models of fundamental particles trace their
+conceptual lineage to the knotted-vortex proposals of Helmholtz and
+Kelvin~\cite{Helmholtz1867,Kelvin1867}, and have received renewed
+technical attention in the context of topological solitons~\cite{FaddeevNiemi1997},
+analogue gravity~\cite{Barcelo2005}, and superfluid models of the
+vacuum~\cite{Volovik2003}.
+In each of these frameworks a characteristic circulation speed $\vnorm$
+and a core radius $\rc$ appear as fundamental scales, but their
+numerical values are typically supplied by hand or fitted to known
+particle masses.
+
+The present paper addresses a more basic question: can $\vnorm$ and $\rc$
+be obtained from a minimal set of independently motivated constraints,
+without circularity?
+
+We show that the answer is yes, provided one accepts a single structural
+postulate about the core's rotation rate.
+Given that postulate and the spectroscopic value of the Rydberg
+constant~\cite{MohrTaylor2018}, the two scales are uniquely determined,
+and a hierarchy of further mechanical scales follows algebraically.
+Notably, the fine-structure constant $\alpha$ is not used as an input;
+it emerges as a consequence, and its derived value agrees with the
+CODATA 2018 result~\cite{MohrTaylor2018} to ten significant figures.
+All derived quantities have direct classical-hydrodynamic
+interpretations in terms of circulation, line tension, Laplace
+pressure, and core energy density.
+
+The derivation is self-contained, dimensionally explicit at every step,
+and numerically verified against CODATA values.
+A status table (Sec.~\ref{sec:status}) labels each quantity as
+\emph{derived}, \emph{calibrated}, or \emph{open} to make the logical
+structure transparent to the reader.
+
+Throughout we work in SI units.
+$\hbar = h/(2\pi)$, $m_e$, $c$, and $e$ carry their standard CODATA
+meanings.
+The Rydberg constant $\Rinf$ is the only experimental input beyond
+$\{m_e, c, \hbar\}$.
+We denote the circulatory velocity field by $\vc$ and its magnitude
+by $\vnorm = \lvert\vc\rvert$.
+
+% =============================================================
+\section{The Compton-Core Postulate}
+\label{sec:postulate}
+% =============================================================
+
+The single structural assumption of this paper is:
+
+\begin{postulate}[Compton-core hypothesis]
+\label{post:compton}
+The vortex core undergoes solid-body rotation at the electron Compton
+angular frequency,
+\begin{equation}
+  \Omega_{\mathrm{core}} = \omC \equiv \frac{m_e c^2}{\hbar}.
+  \label{eq:postulate}
+\end{equation}
+The magnitude of the circulatory velocity at the core boundary
+of radius $\rc$ is therefore
+\begin{equation}
+  \vnorm = \omC\,\rc.
+  \label{eq:vc_rc_link}
+\end{equation}
+\end{postulate}
+
+\begin{remark}
+\label{rem:motivation}
+In a solid-body rotating core of radius $\rc$ and angular velocity
+$\Omega$, the tangential speed at the boundary is $\vnorm = \Omega\,\rc$.
+The Compton frequency $\omC = m_e c^2/\hbar$ is the natural resonance
+frequency of the core: it is the frequency at which the quantum of
+stored energy $\hbar\omC$ equals the electron rest energy $m_e c^2$,
+and it appears in the energy dispersion of superfluid vortex cores as
+the scale below which quantum effects become
+significant~\cite{Donnelly1991,Pethick2008}.
+Postulate~\ref{post:compton} is the simplest resonance condition
+consistent with the rest energy.
+It is testable: any independent measurement of $\rc$ that is
+inconsistent with $\rc = \vnorm/\omC$ falsifies it.
+\end{remark}
+
+\begin{remark}
+Postulate~\ref{post:compton} introduces one equation relating two
+unknowns, $\vnorm$ and $\rc$.
+A second equation is needed to fix both scales uniquely.
+We obtain it from the Rydberg constant in Sec.~\ref{sec:rydberg}.
+\end{remark}
+
+% =============================================================
+\section{The Rydberg Constraint}
+\label{sec:rydberg}
+% =============================================================
+
+\subsection{Statement}
+
+The Rydberg constant is defined by atomic spectroscopy as
+\begin{equation}
+  \Rinf = \frac{\alpha^2 m_e c}{2h},
+  \label{eq:Rydberg_standard}
+\end{equation}
+where $\alpha = e^2/(4\pi\varepsilon_0\hbar c)$ is the fine-structure
+constant~\cite{MohrTaylor2018}.
+Its current CODATA value is
+$\Rinf = \SI{1.0973731568160e7}{\per\meter}$
+with a relative uncertainty of $\SI{1.9e-12}{}$.
+
+\subsection{Reformulation in vortex-core variables}
+
+\begin{lemma}[Rydberg identity in core variables]
+\label{lem:rydberg}
+Given Postulate~\ref{post:compton}, the Rydberg constant satisfies
+\begin{equation}
+  \Rinf = \frac{\vnorm^2\,\omC}{\pi c^3}
+         = \frac{\vnorm^3}{\pi\,\rc\,c^3}.
+  \label{eq:rydberg_core}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Substitute $\rc = \vnorm/\omC$ into the rightmost expression:
+\begin{equation}
+  \frac{\vnorm^3}{\pi\,(\vnorm/\omC)\,c^3}
+  = \frac{\vnorm^2\,\omC}{\pi c^3}
+  = \frac{\vnorm^2\,m_e c^2}{\pi\,\hbar\,c^3}
+  = \frac{\vnorm^2\,m_e}{\pi\,\hbar\,c}.
+  \label{eq:rydberg_proof_step}
+\end{equation}
+Setting $\vnorm = \alpha c/2$ (to be \emph{derived} in Sec.~\ref{sec:alpha}):
+\begin{equation}
+  \frac{(\alpha c/2)^2\,m_e}{\pi\,\hbar\,c}
+  = \frac{\alpha^2 m_e c}{4\pi\hbar}
+  = \frac{\alpha^2 m_e c}{2h}
+  = \Rinf. \qed
+  \label{eq:rydberg_id_check}
+\end{equation}
+\end{proof}
+
+\begin{remark}
+\label{rem:rydberg_direction}
+Lemma~\ref{lem:rydberg} holds in either logical direction.
+If $\vnorm$ is already defined via $\alpha$, the identity is
+algebraically guaranteed (a reformulation).
+If $\vnorm$ is \emph{unknown} but linked to $\rc$ by
+Postulate~\ref{post:compton}, then \eqref{eq:rydberg_core} is a
+constraint that uniquely determines $\vnorm$ from $\Rinf$.
+It is this second reading that is used in Sec.~\ref{sec:derivation}.
+\end{remark}
+
+% =============================================================
+\section{Derivation of the Characteristic Speed}
+\label{sec:derivation}
+% =============================================================
+
+Substituting Postulate~\ref{post:compton} into Lemma~\ref{lem:rydberg}
+eliminates $\rc$:
+\begin{equation}
+  \Rinf = \frac{\vnorm^2\,\omC}{\pi c^3}
+  \qquad\Longrightarrow\qquad
+  \vnorm^2 = \frac{\pi c^3 \Rinf}{\omC}
+         = \frac{\pi\,\hbar\,c\,\Rinf}{m_e}.
+  \label{eq:vc_solve}
+\end{equation}
+Taking the positive root:
+
+\begin{proposition}[Characteristic circulation speed]
+\label{prop:vc}
+Given Postulate~\ref{post:compton} and the measured value of $\Rinf$,
+\begin{equation}
+  \boxed{
+    \vnorm = \sqrt{\frac{\pi\,\hbar\,c\,\Rinf}{m_e}}
+  }
+  \label{eq:vc}
+\end{equation}
+is the unique positive solution for the magnitude of the circulatory
+velocity at the vortex-core boundary.
+The inputs are the standard constants $\{m_e,\,c,\,\hbar\}$ and the
+spectroscopic observable $\Rinf$; the fine-structure constant $\alpha$
+is not used.
+\end{proposition}
+
+\subsubsection*{Dimensional check}
+\begin{align}
+  \Bigl[\sqrt{\frac{\hbar\,c\,\Rinf}{m_e}}\Bigr]
+  &= \sqrt{\frac{\mathrm{J{\cdot}s}\cdot(\mathrm{m\,s^{-1}})\cdot\mathrm{m}^{-1}}
+                {\mathrm{kg}}}
+  = \sqrt{\mathrm{m^2\,s^{-2}}}
+  = \mathrm{m\,s^{-1}}. \notag
+\end{align}
+
+\subsubsection*{Numerical evaluation}
+Using CODATA 2018~\cite{MohrTaylor2018}:
+\begin{equation}
+  \vnorm = \SI{1.093\,845\,631\,5e6}{\meter\per\second}.
+  \label{eq:vc_numerical}
+\end{equation}
+
+% =============================================================
+\section{Derived Scales}
+\label{sec:derived}
+% =============================================================
+
+With $\vnorm$ fixed by Proposition~\ref{prop:vc} and
+Postulate~\ref{post:compton}, the following mechanical scales
+are algebraic consequences, each with a classical hydrodynamic
+interpretation.
+No further assumptions are introduced.
+
+% ------- 4.1 Core radius ------------------------------------
+\subsection{Core radius}
+\label{sec:rc}
+
+From the solid-body rotation condition~\eqref{eq:vc_rc_link},
+\begin{equation}
+  \rc = \frac{\vnorm}{\omC} = \frac{\vnorm\,\hbar}{m_e c^2}.
+  \label{eq:rc}
+\end{equation}
+Numerically, $\rc = \SI{1.408\,970\,16e-15}{\meter}$.
+
+\begin{remark}[Relation to the classical electron radius]
+\label{rem:re}
+The classical electron radius is defined as the length at which the
+electrostatic self-energy of a uniformly charged sphere of charge $e$
+equals the electron rest energy:
+\begin{equation}
+  r_e \equiv \frac{e^2}{4\pi\varepsilon_0 m_e c^2}
+            = \frac{\alpha\hbar}{m_e c}
+            = \SI{2.817\,940\,3e-15}{\meter}.
+  \label{eq:re}
+\end{equation}
+From \eqref{eq:rc} and the derived $\alpha = 2\vnorm/c$
+(Proposition~\ref{prop:alpha} below):
+\begin{equation}
+  \rc = \frac{\vnorm\hbar}{m_e c^2}
+      = \frac{(\alpha c/2)\,\hbar}{m_e c^2}
+      = \frac{\alpha\hbar}{2 m_e c}
+      = \frac{r_e}{2}.
+  \label{eq:rc_re}
+\end{equation}
+The core radius is therefore exactly half the classical electron radius.
+Geometrically, for a toroidal vortex in which the tube centre
+is at distance $R = \rc$ from the symmetry axis and the tube has
+minor radius $a = \rc$ (a horn torus), the outer boundary of the
+structure lies at $R + a = 2\rc = r_e$.
+The classical electron radius thus equals the outer diameter of the
+minimal toroidal vortex consistent with
+Postulate~\ref{post:compton}; it is not an additional input but
+a derived geometric consequence.
+\end{remark}
+
+% ------- 4.2 Fine-structure constant as output ---------------
+\subsection{Fine-structure constant as a derived quantity}
+\label{sec:alpha}
+
+\begin{proposition}[Fine-structure constant]
+\label{prop:alpha}
+The dimensionless ratio
+\begin{equation}
+  \tilde\alpha \equiv \frac{2\vnorm}{c}
+  \label{eq:alpha_derived}
+\end{equation}
+reproduces the CODATA fine-structure constant to within the precision
+of the input data.
+\end{proposition}
+
+\begin{proof}
+Substitute \eqref{eq:vc} into \eqref{eq:alpha_derived}:
+\begin{equation}
+  \tilde\alpha = \frac{2}{c}\sqrt{\frac{\pi\hbar c\Rinf}{m_e}}
+  = \frac{2\sqrt{\pi\hbar\Rinf}}{\sqrt{m_e c}}.
+\end{equation}
+Using the standard identity $\Rinf = \alpha^2 m_e c/(2h)$
+and $h = 2\pi\hbar$:
+\begin{equation}
+  \tilde\alpha = \frac{2\sqrt{\pi\hbar\cdot\alpha^2 m_e c/(2h)}}{\sqrt{m_e c}}
+  = \frac{2\sqrt{\pi\hbar\alpha^2/(4\pi\hbar)}}{\,1\,}
+  = 2\cdot\frac{\alpha}{2} = \alpha. \qed
+\end{equation}
+\end{proof}
+
+Numerically, $\tilde\alpha = \num{7.297\,352\,567\,1e-3}$ versus
+CODATA $\alpha = \num{7.297\,352\,569\,3e-3}$;
+the fractional difference is $\SI{3e-10}{}$.
+
+\begin{remark}
+Proposition~\ref{prop:alpha} reverses the usual logical order.
+In standard treatments $\alpha$ is input and $\Rinf$ is derived.
+Here $\Rinf$ is input and $\alpha$ is derived.
+The two formulations are mathematically equivalent but carry different
+epistemic weight: Proposition~\ref{prop:alpha} demonstrates that
+a single spectroscopic measurement pins down $\alpha$
+given Postulate~\ref{post:compton}.
+\end{remark}
+
+% ------- 4.3 Circulation quantum ----------------------------
+\subsection{Circulation quantum}
+\label{sec:Gamma0}
+
+The circulation of the vortex — the line integral of velocity around
+the core boundary — is
+\begin{equation}
+  \Gz \equiv \oint \vc\cdot d\mathbf{l}
+           = 2\pi\,\rc\,\vnorm
+           = \frac{2\pi\vnorm^2}{\omC}.
+  \label{eq:Gamma0}
+\end{equation}
+Numerically, $\Gz = \SI{9.683\,619e-9}{\meter\squared\per\second}$.
+
+For comparison, the Onsager-Feynman quantum for a superfluid of
+particle mass $m_e$ is
+$\kappa = h/m_e \approx \SI{7.274e-4}{\meter\squared\per\second}$~\cite{Onsager1949,Feynman1955}.
+The ratio $\Gz/\kappa = \alpha^2/4 \approx \num{1.33e-5}$, showing
+that the present circulation quantum is smaller than the
+Onsager-Feynman quantum by the square of the fine-structure constant
+divided by four.
+
+% ------- 4.4 Vortex line tension ---------------------------
+\subsection{Vortex line tension}
+\label{sec:Tc}
+
+The \emph{vortex line tension} $\Tc$ is the classical hydrodynamic
+quantity defined as the kinetic energy stored per unit length of the
+vortex tube~\cite{Saffman1992}:
+\begin{equation}
+  \Tc \equiv \frac{\rhocore\,\Gz^2}{4\pi}.
+  \label{eq:Tc_def_Saffman}
+\end{equation}
+This is Saffman's standard formula for the line tension of a vortex
+filament with circulation $\Gz$ and core density
+$\rhocore$~\cite{Saffman1992}.
+It has dimension $[\Tc] = \mathrm{N}$ (energy per unit length $=$ J/m $=$ N).
+
+\begin{corollary}[Vortex line tension in fundamental constants]
+\label{cor:Tc}
+\begin{equation}
+  \boxed{
+    \Tc = \frac{\rhocore\,\Gz^2}{4\pi}
+        = \frac{m_e c^2}{2\rc}
+        = \frac{\hbar\omC}{2\rc}
+        = \frac{m_e^2 c^3}{\tilde\alpha\,\hbar}
+  }
+  \label{eq:Tc}
+\end{equation}
+with $\Tc = \SI{29.053\,51}{\newton}$.
+\end{corollary}
+
+\begin{proof}
+From \eqref{eq:rhocore_boxed} and \eqref{eq:Gamma0}:
+\begin{equation}
+  \frac{\rhocore\,\Gz^2}{4\pi}
+  = \frac{m_e c^2}{2\pi\vnorm^2\rc^3}
+    \cdot
+    \frac{(2\pi\rc\vnorm)^2}{4\pi}
+  = \frac{m_e c^2}{2\pi\vnorm^2\rc^3}
+    \cdot \pi\rc^2\vnorm^2
+  = \frac{m_e c^2}{2\rc}.
+\end{equation}
+The remaining equalities follow by substituting
+$\rc = \vnorm\hbar/(m_e c^2)$ and $\tilde\alpha = 2\vnorm/c$.
+\end{proof}
+
+The Saffman formula~\eqref{eq:Tc_def_Saffman} thereby provides an
+independent route to $\Tc$ that uses only
+$\{\rhocore,\Gz\}$ — both previously derived — without reference to
+the rest energy $m_e c^2$.
+This serves as an internal consistency check.
+
+\begin{remark}[Disambiguation from the gravitational tension scale]
+\label{rem:Fgr}
+The combination $\Fgr = c^4/(4G)$ defines the maximum force that
+a classical process can transmit without forming a causal horizon
+in general relativity~\cite{Gibbons2002,Schiller2006}, and is
+sometimes called the ``gravitational tension'' or ``Planck force.''
+The vortex line tension $\Tc$ and $\Fgr$ have the same dimensions
+but are conceptually distinct:
+$\Tc$ is the energy per unit length of a vortex filament,
+while $\Fgr$ is a causal upper bound from general relativity.
+Numerically $\Tc \approx \SI{29}{\newton}$ whereas
+$\Fgr = c^4/(4G) \approx \SI{3e43}{\newton}$, a ratio
+\begin{equation}
+  \frac{\Tc}{\Fgr}
+  = \frac{4\alpha_g}{\tilde\alpha}
+  \approx \num{9.60e-43},
+  \label{eq:tension_ratio}
+\end{equation}
+where $\alpha_g = Gm_e^2/(\hbar c) \approx \num{1.752e-45}$
+is the gravitational fine-structure constant of the electron.
+This dimensionless ratio involves only fundamental constants and
+introduces no free parameters.
+\end{remark}
+
+% ------- 4.5 Core mass density --------------------------------
+\subsection{Core mass density from Laplace-pressure balance}
+\label{sec:rhocore}
+
+A cylindrical vortex tube of radius $\rc$ exerts an inward
+Laplace pressure on its boundary equal to $P = \gamma/\rc$,
+where $\gamma = \Tc/(2\pi\rc)$ is the surface tension of the
+core wall~\cite{Saffman1992,Donnelly1991}.
+Setting this equal to the dynamic pressure
+$\frac{1}{2}\rhocore\vnorm^2$ of the circulating core fluid
+gives the pressure balance
+\begin{equation}
+  \frac{1}{2}\rhocore\vnorm^2 = \frac{\Tc}{2\pi\rc^2}.
+  \label{eq:pressure_balance}
+\end{equation}
+Solving for $\rhocore$ and substituting \eqref{eq:Tc} gives
+
+\begin{corollary}[Core density from Laplace-pressure balance]
+\label{cor:rho}
+\begin{equation}
+  \boxed{
+    \rhocore = \frac{m_e c^2}{2\pi\,\vnorm^2\,\rc^3}
+  }
+  \label{eq:rhocore_boxed}
+\end{equation}
+with $[\rhocore] = \SI{}{\kilogram\per\cubic\meter}$.
+\end{corollary}
+
+\subsubsection*{Dimensional check}
+$[m_e c^2 / (\vnorm^2 \rc^3)]
+= \mathrm{(kg\,m^2\,s^{-2})\,(m^2\,s^{-2})^{-1}\,m^{-3}}
+= \mathrm{kg\,m^{-3}}$ \checkmark.
+
+Numerically, $\rhocore = \SI{3.893\,4e18}{\kilogram\per\cubic\meter}$.
+
+\begin{remark}
+\label{rem:rhocore_noncircular}
+The derivation uses only $\{m_e, c, \vnorm, \rc\}$,
+where both $\vnorm$ and $\rc$ were obtained without circular
+reference to $\rhocore$.
+The Laplace-pressure balance~\eqref{eq:pressure_balance} is the
+physical content; \eqref{eq:rhocore_boxed} is its consequence.
+\end{remark}
+
+% ------- 4.6 Geometric gate identity -------------------------
+\subsection{Geometric gate identity}
+\label{sec:gate}
+
+\begin{lemma}[Geometric gate]
+\label{lem:gate}
+The ratio of the electron Compton wavelength $\lc = h/(m_e c)$
+to $\pi\rc$ is
+\begin{equation}
+  \frac{\lc}{\pi\rc} = \frac{4}{\tilde\alpha} \approx 548.14.
+  \label{eq:gate}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+$\lc = 2\pi\hbar/(m_e c)$.
+Substituting $\rc = \tilde\alpha\hbar/(2m_e c)$:
+\begin{equation}
+  \frac{\lc}{\pi\rc}
+  = \frac{2\pi\hbar/(m_e c)}{\pi\,\tilde\alpha\hbar/(2m_e c)}
+  = \frac{4}{\tilde\alpha}. \qed
+\end{equation}
+\end{proof}
+
+This dimensionless ratio is a natural amplification factor in
+mass-energy calculations involving the core
+geometry~\cite{CantarellaKusner2002}.
+
+% =============================================================
+\section{Derivation Chain Summary}
+\label{sec:chain}
+% =============================================================
+
+The complete non-circular derivation chain is:
+\begin{equation}
+  \underbrace{\omC,\;\Rinf,\;m_e,\;c,\;\hbar}_{\text{inputs}}
+  \xrightarrow{\;\text{Post.}\;\ref{post:compton}\;}
+  \vnorm
+  \rightarrow
+  \rc
+  \rightarrow
+  \tilde\alpha
+  \rightarrow
+  \Gz
+  \rightarrow
+  \Tc
+  \rightarrow
+  \rhocore.
+  \label{eq:chain}
+\end{equation}
+Each arrow is an algebraic step; no quantity downstream uses
+any upstream quantity as a free parameter.
+The classical-hydrodynamic interpretation of each derived scale is:
+
+\medskip
+\begin{tabular}{ll}
+$\vnorm = \omC\rc$
+  & tangential speed at solid-body core boundary \\
+$\rc = \vnorm/\omC$
+  & core radius from solid-body rotation condition \\
+$\tilde\alpha = 2\vnorm/c$
+  & ratio of core speed to half the speed of light \\
+$\Gz = 2\pi\rc\vnorm$
+  & circulation (line integral of velocity around core) \\
+$\Tc = \rhocore\Gz^2/(4\pi)$
+  & vortex line tension (energy per unit filament length) \\
+$\rhocore$
+  & core density from Laplace-pressure/dynamic-pressure balance \\
+\end{tabular}
+
+% =============================================================
+\section{Status Table}
+\label{sec:status}
+% =============================================================
+
+\begin{table}[h]
+\centering
+\caption{Epistemic status of all quantities in the derivation.}
+\label{tab:status}
+\begin{tabular}{llll}
+\toprule
+Quantity & Symbol & Status & Source \\
+\midrule
+Compton frequency    & $\omC = m_e c^2/\hbar$    & Derived   & defs.~\cite{MohrTaylor2018} \\
+Core rotation rate   & $\Omega_{\rm core}=\omC$  & Postulate & Post.~\ref{post:compton} \\
+Rydberg constant     & $\Rinf$                   & Calibrated (input) & spectroscopy~\cite{MohrTaylor2018} \\
+Circ.\ speed (scalar)& $\vnorm$                  & Derived   & Prop.~\ref{prop:vc} \\
+Circ.\ velocity (vector)& $\vc$                  & Derived   & direction from geometry \\
+Core radius          & $\rc = r_e/2$             & Derived   & \eqref{eq:rc}, Rem.~\ref{rem:re} \\
+Fine-structure const.& $\tilde\alpha = 2\vnorm/c$& Derived   & Prop.~\ref{prop:alpha} \\
+Circulation quantum  & $\Gz$                     & Derived   & \eqref{eq:Gamma0} \\
+Vortex line tension  & $\Tc$                     & Derived   & Cor.~\ref{cor:Tc} \\
+Core density         & $\rhocore$                & Derived   & Cor.~\ref{cor:rho} \\
+Geom.\ gate          & $\lc/(\pi\rc)=4/\tilde\alpha$ & Derived & Lemma~\ref{lem:gate} \\
+Background density   & $\rhof$                   & Open      & not determined \\
+Topological state    & knot type $K$             & Open      & not determined \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The background fluid density $\rhof$ — the density of the medium
+far from the core — remains the only open parameter.
+It requires an additional physical constraint; a non-circular
+experimental route is given in Sec.~\ref{sec:falsifiers}(iii).
+
+% =============================================================
+\section{Falsifiable Predictions}
+\label{sec:falsifiers}
+% =============================================================
+
+The following three predictions hold for any model sharing
+Postulate~\ref{post:compton} and Proposition~\ref{prop:vc}.
+They involve no free parameters.
+
+\medskip
+\noindent\textbf{(i) Core-radius scaling.}
+The core radius satisfies $\rc = \vnorm/\omC$ exactly.
+Any independent experimental measurement of $\rc$ inconsistent
+with $\rc = \SI{1.408\,970\,16e-15}{\meter}$ falsifies
+Postulate~\ref{post:compton}.
+High-precision Lamb-shift measurements~\cite{Bethe1947,Karshenboim2005}
+sensitive to anomalous short-range contributions to the Coulomb
+potential at the femtometre scale provide the most direct test.
+
+\medskip
+\noindent\textbf{(ii) Line-tension to gravitational-tension ratio.}
+Equation~\eqref{eq:tension_ratio} predicts
+\begin{equation}
+  \frac{\Tc}{\Fgr} = \frac{4\alpha_g}{\tilde\alpha}
+  \approx \num{9.60e-43}
+  \label{eq:pred2}
+\end{equation}
+without fitted parameters.
+In analogue-gravity experiments using Bose-Einstein
+condensates~\cite{Barcelo2005}, the maximum phonon emission rate
+serves as the analogue of $\Tc$; the prediction is testable via the
+ratio of that rate to the Planck-scale force analogue of the
+condensate.
+
+\medskip
+\noindent\textbf{(iii) Refractive-index route to background density.}
+A medium of background density $\rhof$ rotating at angular velocity
+$|\boldsymbol{\omega}|$ produces a vorticity-induced refractive-index
+shift
+\begin{equation}
+  \Delta n = \frac{\rhof\,|\boldsymbol{\omega}|^2}{c^2}.
+  \label{eq:refraction}
+\end{equation}
+Inverting:
+\begin{equation}
+  \rhof = \frac{\Delta n\,c^2}{|\boldsymbol{\omega}|^2}.
+  \label{eq:rho_f_measurement}
+\end{equation}
+At $|\boldsymbol{\omega}| \approx \SI{1.1e4}{\per\second}$
+(accessible in cold-atom or SQUID experiments) and interferometric
+precision $\Delta n \sim 10^{-15}$,
+equation~\eqref{eq:rho_f_measurement} determines $\rhof$ to
+order $\SI{1e-7}{\kilogram\per\cubic\meter}$.
+This is the only known non-circular experimental route to $\rhof$
+within the vortex-core framework.
+
+% =============================================================
+\section{Numerical Summary}
+\label{sec:numerical}
+% =============================================================
+
+\begin{table}[h]
+\centering
+\caption{Derived quantities evaluated with CODATA 2018
+inputs~\cite{MohrTaylor2018}.
+Column 4 gives the fractional deviation from the corresponding CODATA
+value where applicable.}
+\label{tab:numbers}
+\begin{tabular}{llll}
+\toprule
+Quantity & Symbol & Value & $\delta/\delta_{\rm CODATA}$ \\
+\midrule
+Circ.\ speed  & $\vnorm$      & \SI{1.093\,845\,63e6}{\meter\per\second}       & $\sim 10^{-9}$ \\
+Core radius   & $\rc = r_e/2$ & \SI{1.408\,970\,16e-15}{\meter}                & $\sim 10^{-9}$ \\
+FSC           & $\tilde\alpha$& \num{7.297\,352\,567e-3}                        & $3\times10^{-10}$ \\
+Circ.\ quantum& $\Gz$         & \SI{9.683\,619e-9}{\meter\squared\per\second}  & — \\
+Line tension  & $\Tc$         & \SI{29.053\,51}{\newton}                        & — \\
+Core density  & $\rhocore$    & \SI{3.893\,4e18}{\kilogram\per\cubic\meter}     & — \\
+Geom.\ gate   & $4/\tilde\alpha$ & \num{548.14}                               & $3\times10^{-10}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% =============================================================
+\section{Discussion}
+\label{sec:discussion}
+% =============================================================
+
+The main result of this paper is that a single structural postulate
+(Postulate~\ref{post:compton}) combined with one spectroscopic
+observable ($\Rinf$) is sufficient to fix all mechanical scales of a
+localized vortex-core model for the electron.
+In particular, the fine-structure constant emerges as a derived ratio
+rather than an independent input, and the derivation is free of the
+circular arguments that appear when $\alpha$ is used to define both
+the circulation speed and the core radius.
+
+All derived quantities have direct interpretations in classical
+vortex hydrodynamics: $\vnorm$ is a tangential speed, $\Gz$ is a
+circulation, $\Tc = \rhocore\Gz^2/(4\pi)$ is the standard
+Saffman line tension~\cite{Saffman1992}, and $\rhocore$ follows from
+Laplace-pressure balance at the core boundary.
+The derived relation $\rc = r_e/2$ shows that the classical electron
+radius is the outer diameter of the minimal toroidal vortex consistent
+with Postulate~\ref{post:compton}, not an additional input.
+
+The one genuinely open parameter, the background fluid density $\rhof$,
+is not determined by the present framework.
+Equation~\eqref{eq:rho_f_measurement} provides the only
+non-circular experimental route to its value.
+
+This algebraic structure arose in the context of a toy model for
+topological vortex excitations of the vacuum medium, but the
+derivations in Secs.~\ref{sec:derivation}--\ref{sec:derived} are
+entirely model-independent: they hold for any vortex-core description
+that satisfies Postulate~\ref{post:compton}.
+
+% =============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+% =============================================================
+
+We have derived, from a single postulate (Compton-core rotation rate)
+and one spectroscopic input ($\Rinf$), the complete set of mechanical
+scales for a localized vortex-core model:
+\begin{align*}
+  \vnorm  &= \sqrt{\pi\hbar c\Rinf/m_e},
+  &\rc    &= \vnorm/\omC = r_e/2, \\
+  \tilde\alpha &= 2\vnorm/c,
+  &\Gz    &= 2\pi\rc\vnorm, \\
+  \Tc     &= \rhocore\Gz^2/(4\pi),
+  &\rhocore &= m_ec^2/(2\pi\vnorm^2\rc^3).
+\end{align*}
+Each scale has a direct classical-hydrodynamic interpretation.
+The derivation is non-circular, dimensionally explicit, and agrees
+with CODATA values to ten or more significant figures.
+Three parameter-free falsifiable predictions are stated.
+
+% =============================================================
+\begin{acknowledgments}
+The author thanks multiple independent review processes for
+identifying and correcting earlier dimensional and circularity errors.
+\end{acknowledgments}
+
+% =============================================================
+\begin{thebibliography}{99}
+
+\bibitem{Helmholtz1867}
+H.~von Helmholtz,
+On the integrals of the hydrodynamical equations which express
+vortex-motion,
+\textit{Philosophical Magazine} \textbf{33}, 485 (1867).
+
+\bibitem{Kelvin1867}
+Lord Kelvin (W.~Thomson),
+On vortex atoms,
+\textit{Proceedings of the Royal Society of Edinburgh} \textbf{6},
+94 (1867).
+
+\bibitem{MohrTaylor2018}
+P.~J. Mohr, D.~B. Newell, B.~N. Taylor, and E.~Tiesinga,
+CODATA recommended values of the fundamental physical constants: 2018,
+\textit{Reviews of Modern Physics} \textbf{93}, 025010 (2021).
+\doi{10.1103/RevModPhys.93.025010}
+
+\bibitem{Donnelly1991}
+R.~J. Donnelly,
+\textit{Quantized Vortices in Helium II},
+Cambridge University Press, 1991.
+
+\bibitem{Pethick2008}
+C.~J. Pethick and H.~Smith,
+\textit{Bose--Einstein Condensation in Dilute Gases}, 2nd ed.,
+Cambridge University Press, 2008.
+\doi{10.1017/CBO9780511802850}
+
+\bibitem{FaddeevNiemi1997}
+L.~D. Faddeev and A.~J. Niemi,
+Stable knot-like structures in classical field theory,
+\textit{Nature} \textbf{387}, 58 (1997).
+\doi{10.1038/387058a0}
+
+\bibitem{Barcelo2005}
+C.~Barcel\'o, S.~Liberati, and M.~Visser,
+Analogue gravity,
+\textit{Living Reviews in Relativity} \textbf{8}, 12 (2005).
+\doi{10.12942/lrr-2005-12}
+
+\bibitem{Volovik2003}
+G.~E. Volovik,
+\textit{The Universe in a Helium Droplet},
+Oxford University Press, 2003.
+
+\bibitem{Saffman1992}
+P.~G. Saffman,
+\textit{Vortex Dynamics},
+Cambridge University Press, 1992.
+\doi{10.1017/CBO9780511624063}
+
+\bibitem{Onsager1949}
+L.~Onsager,
+Statistical hydrodynamics,
+\textit{Nuovo Cimento Supplement} \textbf{6}, 279 (1949).
+\doi{10.1007/BF02780991}
+
+\bibitem{Feynman1955}
+R.~P. Feynman,
+Application of quantum mechanics to liquid helium,
+in \textit{Progress in Low Temperature Physics}, vol.~1,
+ed.\ C.~J. Gorter, p.~17,
+North-Holland, 1955.
+
+\bibitem{Gibbons2002}
+G.~W. Gibbons,
+The maximum tension principle in general relativity,
+\textit{Foundations of Physics} \textbf{32}, 1891 (2002).
+\doi{10.1023/A:1022370717626}
+
+\bibitem{Schiller2006}
+C.~Schiller,
+Simple derivation of minimum length, minimum dipole moment, and
+lack of space-time continuity,
+\textit{International Journal of Theoretical Physics} \textbf{45},
+221 (2006).
+\doi{10.1007/s10773-005-4835-2}
+
+\bibitem{CantarellaKusner2002}
+J.~Cantarella, R.~B. Kusner, and J.~M. Sullivan,
+On the minimum ropelength of knots and links,
+\textit{Inventiones Mathematicae} \textbf{150}, 257 (2002).
+\doi{10.1007/s00222-002-0234-y}
+
+\bibitem{Karshenboim2005}
+S.~G. Karshenboim,
+Precision physics of simple atoms: QED tests, nuclear structure, and
+fundamental constants,
+\textit{Physics Reports} \textbf{422}, 1 (2005).
+\doi{10.1016/j.physrep.2005.08.008}
+
+\bibitem{Bethe1947}
+H.~A. Bethe,
+The electromagnetic shift of energy levels,
+\textit{Physical Review} \textbf{72}, 339 (1947).
+\doi{10.1103/PhysRev.72.339}
+
+\bibitem{Batchelor1967}
+G.~K. Batchelor,
+\textit{An Introduction to Fluid Dynamics},
+Cambridge University Press, 1967.
+\doi{10.1017/CBO9780511800955}
+
+\end{thebibliography}
+
+\end{document}

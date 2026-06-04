@@ -1,0 +1,437 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\e}{\mathrm{e}}
+\newcommand{\kappaQ}{\kappa_{Q}}
+\newcommand{\GammaStar}{\Gamma_{*}}
+\newcommand{\omegaC}{\omega_{C}}
+\newcommand{\lambdaC}{\lambda_{C}}
+\newcommand{\uStar}{u_{*}}
+\newcommand{\aStar}{a_{*}}
+\newcommand{\hbareff}{\hbar_{\mathrm{eff}}}
+\newcommand{\meff}{m_{\mathrm{eff}}}
+\newcommand{\re}{r_{e}}
+
+\title{\textbf{A Circulation-Normalization Constraint in the Inverse Madelung Problem}}
+\author{Omar Iskandarani\\
+\small Independent Researcher, Groningen, The Netherlands\\
+\small ORCID: 0009-0006-1686-3961\\
+\small \texttt{info@omariskandarani.com}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The Madelung transformation rewrites the nonrelativistic Schr\"odinger equation as a continuity equation coupled to a Hamilton--Jacobi equation containing the quantum potential. This hydrodynamic form motivates a precise normalization question: when can an independently defined mechanical circulation be identified with the phase circulation of the Madelung velocity field? We examine this question for the specific kinematic ansatz in which a particle of mass $m$ is assigned a subluminal turnover speed $u_*=\eta c$, with $0<\eta<1$, and a length scale fixed by the Compton angular frequency, $a_*=u_*/\omega_C$, where $\omega_C=mc^2/\hbar$. The corresponding mechanical circulation is $\Gamma_* = 2\pi a_* u_*$. Comparison with the Onsager--Feynman phase-circulation quantum $\kappa_Q=h/m$ gives the exact dimensionless relation
+\begin{equation*}
+    \frac{\Gamma_*}{\kappa_Q}=\eta^2.
+\end{equation*}
+Thus, within this Compton-clock normalization, mechanical turnover circulation and quantum phase circulation coincide only in the limiting case $\eta=1$. For the benchmark electron scale $a_*=r_e/2$, equivalently $u_*=\alpha c/2$, the mismatch is $\alpha^2/4 \simeq 1.3313\times10^{-5}$. We formulate the result as an inverse Madelung circulation-normalization constraint: a model intended to reproduce Schr\"odinger phase flow must either distinguish carrier circulation from phase circulation, introduce an effective ratio $\hbar_{\mathrm{eff}}/m_{\mathrm{eff}}$, or supply an additional dispersive stress reproducing the Madelung quantum potential. The result is a narrow consistency test for hydrodynamic and superfluid analogies of nonrelativistic quantum mechanics.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Madelung transformation; quantum hydrodynamics; circulation quantization; Compton frequency; quantum potential; inverse problem.
+
+\section{Introduction}
+
+The Madelung transformation expresses the Schr\"odinger equation in a form resembling fluid mechanics: a continuity equation for a density and a Hamilton--Jacobi equation modified by a quantum potential \cite{Madelung1927,Schrodinger1926,Takabayasi1952,Holland1993}. The same formal structure underlies the de Broglie--Bohm pilot-wave representation \cite{Bohm1952a,Bohm1952b} and has influenced a broad class of hydrodynamic analogies to quantum motion. Separately, circulation quantization is an established feature of superfluid hydrodynamics: single-valued phase implies quantized circulation in units $h/m$ \cite{Onsager1949,Feynman1955,Donnelly1991}. 
+
+These two facts invite a natural but delicate question. If a mechanical or hydrodynamic carrier is assigned an internal circulation scale, when can that circulation be identified with the quantum phase circulation appearing in the Madelung velocity field? The question is not semantic. The quantum phase velocity
+\begin{equation}
+    \mathbf{u}=\frac{\hbar}{m}\nabla\theta
+\end{equation}
+has circulation fixed by single-valuedness and topology of the phase, whereas a mechanical circulation constructed from a finite speed and length scale need not share the same normalization.
+
+The present paper isolates a minimal consistency condition. We introduce no new dynamics and make no claim that quantum mechanics is reducible to classical fluid mechanics. Instead, we test a specific Compton-clock normalization: a turnover scale determined by a subluminal speed $\uStar=\eta c$ and the standard Compton angular frequency $\omegaC=mc^2/\hbar$. The resulting mechanical circulation is then compared with the Onsager--Feynman circulation quantum. The comparison yields a simple exact mismatch factor $\eta^2$.
+
+The result should be read as a conditional normalization test, not as a theorem against all mechanical or hydrodynamic analogies. At fixed subluminal speed, one could choose a different radius and thereby obtain a different circulation. What is tested here is the particular ansatz $\aStar=\uStar/\omegaC$, i.e. the identification of the turnover angular frequency with the Compton angular frequency. Under that ansatz, a direct identification of mechanical turnover circulation with Madelung phase circulation fails unless $\eta=1$ or an additional effective map is supplied. The same comparison also gives a constructive inverse condition: a hydrodynamic model may reproduce Schr\"odinger phase flow only if the phase circulation is treated as an effective field variable, if the effective ratio $\hbareff/\meff$ differs from the microscopic carrier circulation ratio, or if an additional dispersive stress term supplies the quantum potential.
+
+\section{Madelung representation of the Schr\"odinger equation}
+
+Consider the spinless nonrelativistic Schr\"odinger equation
+\begin{equation}
+    \ii\hbar\partial_t\psi
+    =
+    \left(-\frac{\hbar^2}{2m}\nabla^2+V\right)\psi,
+    \label{eq:schrodinger}
+\end{equation}
+where $m$ is the particle mass and $V$ is an external potential energy. Write
+\begin{equation}
+    \psi(\mathbf{x},t)=\sqrt{\rho(\mathbf{x},t)}\,\e^{\ii\theta(\mathbf{x},t)},
+    \label{eq:madelung_ansatz}
+\end{equation}
+where $\rho\geq 0$ and $\theta$ is a dimensionless phase. The Madelung velocity field is
+\begin{equation}
+    \mathbf{u}=\frac{\hbar}{m}\nabla\theta.
+    \label{eq:madelung_velocity}
+\end{equation}
+Substitution of Eq.~\eqref{eq:madelung_ansatz} into Eq.~\eqref{eq:schrodinger} and separation into real and imaginary parts gives
+\begin{align}
+    \partial_t\rho+\nabla\cdot(\rho\mathbf{u}) &= 0,
+    \label{eq:continuity}\\
+    \partial_t\theta
+    +\frac{\hbar}{2m}\lVert\nabla\theta\rVert^2
+    +\frac{V+Q}{\hbar} &= 0,
+    \label{eq:hamilton_jacobi_phase}
+\end{align}
+with quantum potential
+\begin{equation}
+    Q
+    =
+    -\frac{\hbar^2}{2m}
+    \frac{\nabla^2\sqrt{\rho}}{\sqrt{\rho}}.
+    \label{eq:quantum_potential}
+\end{equation}
+Equivalently, multiplying Eq.~\eqref{eq:hamilton_jacobi_phase} by $\hbar$ and defining $S=\hbar\theta$ gives the action form
+\begin{equation}
+    \partial_t S+\frac{\lVert\nabla S\rVert^2}{2m}+V+Q=0.
+    \label{eq:HJ_action}
+\end{equation}
+
+\begin{remark}[Scope of the Madelung transformation]
+Equations~\eqref{eq:continuity}--\eqref{eq:quantum_potential} are exactly equivalent to Eq.~\eqref{eq:schrodinger} wherever $\psi\neq0$ and appropriate phase regularity conditions hold. They do not by themselves derive the quantum potential from classical hydrodynamics; rather, Eq.~\eqref{eq:quantum_potential} is the additional dispersive term required for exact equivalence with Schr\"odinger dynamics.
+\end{remark}
+
+\section{Quantum phase circulation}
+
+For a closed contour $C$ on which $\psi\neq0$, the circulation of the Madelung velocity is
+\begin{equation}
+    \oint_C\mathbf{u}\cdot\dd\boldsymbol{\ell}
+    =
+    \frac{\hbar}{m}\oint_C\nabla\theta\cdot\dd\boldsymbol{\ell}.
+\end{equation}
+If $C$ bounds a surface on which a single-valued phase branch exists and no node of $\psi$ is enclosed, the winding number is zero. Nonzero circulation occurs when $C$ winds around a nodal defect, vortex line, or other phase singularity excluded from the domain. Single-valuedness of the wavefunction then requires
+\begin{equation}
+    \oint_C\nabla\theta\cdot\dd\boldsymbol{\ell}=2\pi n,
+    \qquad n\in\mathbb{Z},
+\end{equation}
+so that
+\begin{equation}
+    \oint_C\mathbf{u}\cdot\dd\boldsymbol{\ell}
+    =
+    n\frac{h}{m}.
+\end{equation}
+The fundamental phase-circulation quantum is therefore
+\begin{equation}
+    \kappaQ=\frac{h}{m}=\frac{2\pi\hbar}{m},
+    \label{eq:kappa_Q}
+\end{equation}
+with SI dimension $\mathrm{m^2\,s^{-1}}$.
+
+This is the same normalization appearing in the Onsager--Feynman circulation condition for a single-component condensate of particles of mass $m$ \cite{Onsager1949,Feynman1955,Donnelly1991}. The point of the present analysis is that Eq.~\eqref{eq:kappa_Q} is a phase quantization condition, not automatically the circulation of any independently posited mechanical turnover motion.
+
+\section{Compton-normalized turnover scale}
+
+Let
+\begin{equation}
+    \omegaC=\frac{mc^2}{\hbar}
+    \label{eq:omega_C}
+\end{equation}
+be the Compton angular frequency of a particle of mass $m$. Introduce a subluminal turnover speed
+\begin{equation}
+    \uStar=\eta c,
+    \qquad 0<\eta<1,
+    \label{eq:u_star}
+\end{equation}
+and define the associated Compton-normalized length scale
+\begin{equation}
+    \aStar=\frac{\uStar}{\omegaC}
+    =
+    \eta\frac{\hbar}{mc}.
+    \label{eq:a_star}
+\end{equation}
+This definition uses only the standard Compton frequency and a dimensionless speed fraction $\eta$. It should not be read as a derived internal radius of a particle. Rather, it defines a diagnostic scale for models or analogies that identify a turnover angular frequency with the Compton angular frequency.
+
+The mechanical circulation associated with one circular turnover at radius $\aStar$ and speed $\uStar$ is
+\begin{equation}
+    \GammaStar=2\pi\aStar\uStar.
+    \label{eq:Gamma_star_def}
+\end{equation}
+Substituting Eqs.~\eqref{eq:u_star}--\eqref{eq:a_star} gives
+\begin{equation}
+    \GammaStar
+    =
+    2\pi\eta^2\frac{\hbar}{m}.
+    \label{eq:Gamma_star_eta}
+\end{equation}
+
+\section{Circulation mismatch theorem}
+
+\begin{proposition}[Compton-normalized circulation mismatch]
+Let $\GammaStar$ be the mechanical turnover circulation defined by Eqs.~\eqref{eq:Gamma_star_def}--\eqref{eq:Gamma_star_eta}, and let $\kappaQ=h/m$ be the quantum of phase circulation in Eq.~\eqref{eq:kappa_Q}. Then
+\begin{equation}
+    \boxed{
+    \frac{\GammaStar}{\kappaQ}=\eta^2.
+    }
+    \label{eq:mismatch_theorem}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Using $\kappaQ=2\pi\hbar/m$ and Eq.~\eqref{eq:Gamma_star_eta},
+\begin{equation}
+    \frac{\GammaStar}{\kappaQ}
+    =
+    \frac{2\pi\eta^2\hbar/m}{2\pi\hbar/m}
+    =
+    \eta^2.
+\end{equation}
+\end{proof}
+
+Equation~\eqref{eq:mismatch_theorem} is dimensionless and contains no additional assumptions about the microscopic origin of the turnover motion. It has two immediate limits:
+\begin{align}
+    \eta\to 1 &: \quad \GammaStar\to\kappaQ,\\
+    \eta\to 0 &: \quad \GammaStar/\kappaQ\to 0.
+\end{align}
+Thus exact equality between mechanical turnover circulation and quantum phase circulation occurs only when the turnover speed equals $c$ in this normalization. Any subluminal turnover scale has a smaller circulation by the factor $\eta^2$.
+
+The mismatch is conditional on the Compton-clock normalization $\aStar=\uStar/\omegaC$. It is not a universal obstruction to all possible mechanical circulation scales. For example, at fixed subluminal speed $\uStar=\eta c$, one could formally choose $a=\hbar/(m\uStar)$, which gives $2\pi a\uStar=h/m$. Such a choice, however, no longer identifies the turnover angular frequency with $\omegaC$ and must justify its own scale-setting mechanism. The present result therefore tests the specific hypothesis that the turnover scale is Compton-normalized.
+
+\section{Electron scale example}
+
+For the electron, the classical electron radius can be written as
+\begin{equation}
+    \re=\frac{e^2}{4\pi\varepsilon_0m_ec^2}
+    =
+    \alpha\frac{\hbar}{m_ec},
+    \label{eq:classical_electron_radius}
+\end{equation}
+where $\alpha$ is the fine-structure constant. The following choice is used only as an orthodox electromagnetic length-scale benchmark, not as a literal model of electron structure:
+\begin{equation}
+    \aStar=\frac{\re}{2}.
+\end{equation}
+It is equivalent, through Eq.~\eqref{eq:a_star}, to
+\begin{equation}
+    \eta=\frac{\alpha}{2},
+    \qquad
+    \uStar=\frac{\alpha c}{2}.
+\end{equation}
+The mismatch theorem gives
+\begin{equation}
+    \frac{\GammaStar}{\kappaQ}
+    =
+    \frac{\alpha^2}{4}.
+    \label{eq:alpha_mismatch}
+\end{equation}
+
+Using CODATA 2022 values \cite{CODATA2022},
+\begin{align}
+    \alpha &= 7.2973525643\times10^{-3},\\
+    c &= 2.99792458\times10^8\ \mathrm{m\,s^{-1}},\\
+    m_e &= 9.1093837139\times10^{-31}\ \mathrm{kg},\\
+    \hbar &= 1.054571817\times10^{-34}\ \mathrm{J\,s},
+\end{align}
+one obtains the values summarized in Table~\ref{tab:numerics}.
+
+\begin{table}[h]
+\centering
+\caption{Electron-scale numerical values for $\eta=\alpha/2$.}
+\label{tab:numerics}
+\begin{tabular}{lll}
+\toprule
+Quantity & Value & Unit \\
+\midrule
+$\eta=\alpha/2$ & $3.648676282\times10^{-3}$ & dimensionless \\
+$\omega_C=m_ec^2/\hbar$ & $7.76344072\times10^{20}$ & $\mathrm{s^{-1}}$ \\
+$u_* = \alpha c/2$ & $1.09384563\times10^{6}$ & $\mathrm{m\,s^{-1}}$ \\
+$a_* = u_*/\omega_C$ & $1.40897016\times10^{-15}$ & $\mathrm{m}$ \\
+$\Gamma_*=2\pi a_*u_*$ & $9.68361914\times10^{-9}$ & $\mathrm{m^2\,s^{-1}}$ \\
+$\kappa_Q=h/m_e$ & $7.27389509\times10^{-4}$ & $\mathrm{m^2\,s^{-1}}$ \\
+$\Gamma_*/\kappa_Q=\alpha^2/4$ & $1.33128386\times10^{-5}$ & dimensionless \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Equivalently,
+\begin{equation}
+    \GammaStar
+    =
+    \left(1.33128386\times10^{-5}\right)\kappaQ.
+\end{equation}
+The electron-scale turnover circulation is therefore about $7.51\times10^4$ times smaller than the quantum phase circulation $h/m_e$.
+
+\section{The inverse circulation-normalization condition}
+
+Suppose one starts from a mechanical carrier with circulation $\GammaStar$ and asks for a Schr\"odinger-type phase field whose circulation quantum equals this mechanical circulation. The corresponding effective Madelung velocity would have the form
+\begin{equation}
+    \mathbf{u}_{\mathrm{eff}}
+    =
+    \frac{\hbareff}{\meff}\nabla\theta.
+\end{equation}
+The circulation quantum of this effective phase field is
+\begin{equation}
+    \kappa_{\mathrm{eff}}
+    =
+    2\pi\frac{\hbareff}{\meff}.
+\end{equation}
+Matching $\kappa_{\mathrm{eff}}=\GammaStar$ gives
+\begin{equation}
+    \boxed{
+    \frac{\hbareff}{\meff}
+    =
+    \eta^2\frac{\hbar}{m}.
+    }
+    \label{eq:inverse_condition}
+\end{equation}
+This is the inverse circulation-normalization constraint associated with the Madelung form.
+
+If one holds $\hbareff=\hbar$ fixed, Eq.~\eqref{eq:inverse_condition} requires
+\begin{equation}
+    \meff=\frac{m}{\eta^2}.
+    \label{eq:meff_condition}
+\end{equation}
+For the electron-scale value $\eta=\alpha/2$,
+\begin{equation}
+    \meff
+    =
+    \frac{4m_e}{\alpha^2}
+    \simeq
+    7.5115\times10^4\,m_e.
+    \label{eq:meff_electron}
+\end{equation}
+Alternatively, if one holds $\meff=m$ fixed, then
+\begin{equation}
+    \hbareff=\eta^2\hbar.
+\end{equation}
+Both options show that a direct identification of mechanical turnover circulation with the physical quantum phase circulation is not automatic. It requires an effective parameter map.
+
+\section{Role of the quantum potential}
+
+The mismatch above concerns circulation normalization. It is independent of the second major obstruction to deriving Schr\"odinger dynamics from a classical fluid: the quantum potential. A purely classical Hamilton--Jacobi fluid would contain
+\begin{equation}
+    \partial_t S+\frac{\lVert\nabla S\rVert^2}{2m}+V=0,
+\end{equation}
+whereas Schr\"odinger equivalence requires Eq.~\eqref{eq:HJ_action}, namely the additional term
+\begin{equation}
+    Q
+    =
+    -\frac{\hbar^2}{2m}
+    \frac{\nabla^2\sqrt{\rho}}{\sqrt{\rho}}.
+\end{equation}
+In fluid language, this term acts as a dispersive stress depending on gradients of the density amplitude. Therefore a mechanical or hydrodynamic interpretation must satisfy two independent requirements:
+\begin{enumerate}
+    \item a circulation-normalization condition, Eq.~\eqref{eq:inverse_condition};
+    \item a dispersive-stress condition reproducing Eq.~\eqref{eq:quantum_potential}.
+\end{enumerate}
+Meeting the first condition does not by itself solve the second. Conversely, postulating a quantum-pressure-like stress does not by itself identify the mechanical carrier circulation with the phase circulation.
+
+\section{Implications for hydrodynamic interpretations}
+
+The result can be summarized as a consistency filter for circulation-based interpretations of quantum mechanics.
+
+First, the Madelung velocity is a phase-gradient velocity. Its circulation is fixed by the topology of the wavefunction phase and the coefficient $\hbar/m$. A separate mechanical turnover velocity, even when normalized to the Compton frequency, need not share this circulation.
+
+Second, if a proposed comparison scale has a subluminal speed $\uStar=\eta c$, then the mechanical circulation constructed from the Compton-normalized radius $\aStar=\uStar/\omegaC$ is smaller than the quantum circulation by $\eta^2$. For small $\eta$, the mismatch is large.
+
+Third, the mismatch does not refute hydrodynamic analogies. It only rules out the naive identification
+\begin{equation}
+    \text{mechanical circulation} = \text{quantum phase circulation}
+\end{equation}
+under the Compton-clock ansatz, unless an intervening effective map is supplied. A consistent model has several options:
+\begin{align}
+    &\text{distinguish carrier motion from phase flow,}\nonumber\\
+    &\text{renormalize }\hbar/m\text{ to }\hbareff/\meff,\nonumber\\
+    &\text{derive a separate dispersive stress yielding }Q,\nonumber\\
+    &\text{or combine these mechanisms.}\nonumber
+\end{align}
+
+\section{Limitations}
+
+The analysis is deliberately narrow. It is restricted to spinless nonrelativistic Madelung hydrodynamics and does not treat spin, gauge coupling, relativistic wave equations, many-body configuration space, or quantum field theory. The turnover scale $\aStar$ is introduced only as a kinematic comparison scale tied to the Compton angular frequency; no physical rigid rotor is assumed. The electron-scale example uses the classical electron radius solely as an orthodox length-scale benchmark, not as a literal model of electron structure.
+
+These restrictions are useful because they isolate the algebraic point: Compton-normalized mechanical circulation and quantum phase circulation have different normalizations unless $\eta=1$ or an effective parameter map is supplied. Other scale choices can evade this particular mismatch, but they must then justify why their chosen length or frequency scale should be identified with the Madelung phase-circulation normalization.
+
+\section{Conclusion}
+
+The Madelung representation makes quantum mechanics look hydrodynamic, but the hydrodynamic velocity is a phase-gradient field whose circulation is quantized in units $h/m$. A mechanical turnover circulation constructed from a subluminal speed $u_* = \eta c$ and the Compton angular frequency $\omega_C=mc^2/\hbar$ gives
+\begin{equation}
+    \Gamma_* = 2\pi a_*u_* = 2\pi\eta^2\frac{\hbar}{m}.
+\end{equation}
+Therefore
+\begin{equation}
+    \boxed{\Gamma_*/\kappa_Q=\eta^2.}
+\end{equation}
+This exact relation supplies a simple inverse circulation-normalization constraint within the Madelung representation. Any hydrodynamic or mechanical interpretation that aims to reproduce Schr\"odinger phase flow must explain how the physical phase-circulation coefficient $\hbar/m$ emerges from, or differs from, the carrier circulation scale. In addition, it must account for the quantum potential as an effective dispersive stress. The distinction is small in notation but large in physics: quantum phase circulation is not generically identical to Compton-normalized mechanical circulation.
+
+\begin{thebibliography}{99}
+
+\bibitem{Schrodinger1926}
+E.~Schr\"odinger,
+``Quantisierung als Eigenwertproblem,''
+\emph{Annalen der Physik} \textbf{384} (1926), 361--376.
+DOI: \href{https://doi.org/10.1002/andp.19263840404}{10.1002/andp.19263840404}.
+
+\bibitem{Madelung1927}
+E.~Madelung,
+``Quantentheorie in hydrodynamischer Form,''
+\emph{Zeitschrift f\"ur Physik} \textbf{40} (1927), 322--326.
+DOI: \href{https://doi.org/10.1007/BF01400372}{10.1007/BF01400372}.
+
+\bibitem{Bohm1952a}
+D.~Bohm,
+``A Suggested Interpretation of the Quantum Theory in Terms of Hidden Variables. I,''
+\emph{Physical Review} \textbf{85} (1952), 166--179.
+DOI: \href{https://doi.org/10.1103/PhysRev.85.166}{10.1103/PhysRev.85.166}.
+
+\bibitem{Bohm1952b}
+D.~Bohm,
+``A Suggested Interpretation of the Quantum Theory in Terms of Hidden Variables. II,''
+\emph{Physical Review} \textbf{85} (1952), 180--193.
+DOI: \href{https://doi.org/10.1103/PhysRev.85.180}{10.1103/PhysRev.85.180}.
+
+\bibitem{Takabayasi1952}
+T.~Takabayasi,
+``On the Formulation of Quantum Mechanics Associated with Classical Pictures,''
+\emph{Progress of Theoretical Physics} \textbf{8} (1952), 143--182.
+DOI: \href{https://doi.org/10.1143/PTP.8.143}{10.1143/PTP.8.143}.
+
+\bibitem{Onsager1949}
+L.~Onsager,
+``Statistical Hydrodynamics,''
+\emph{Nuovo Cimento Supplemento} \textbf{6} (1949), 279--287.
+Permalink: \href{https://doi.org/10.1007/978-3-0348-9259-9_10}{10.1007/978-3-0348-9259-9\_10}.
+
+\bibitem{Feynman1955}
+R.~P.~Feynman,
+``Application of Quantum Mechanics to Liquid Helium,''
+in C.~J. Gorter, ed., \emph{Progress in Low Temperature Physics}, Vol.~1,
+North-Holland, 1955, pp.~17--53.
+DOI: \href{https://doi.org/10.1016/S0079-6417(08)60077-3}{10.1016/S0079-6417(08)60077-3}.
+
+\bibitem{Donnelly1991}
+R.~J.~Donnelly,
+\emph{Quantized Vortices in Helium II},
+Cambridge University Press, 1991.
+DOI: \href{https://doi.org/10.1017/CBO9780511524240}{10.1017/CBO9780511524240}.
+
+\bibitem{Holland1993}
+P.~R.~Holland,
+\emph{The Quantum Theory of Motion: An Account of the de Broglie--Bohm Causal Interpretation of Quantum Mechanics},
+Cambridge University Press, 1993.
+DOI: \href{https://doi.org/10.1017/CBO9780511622687}{10.1017/CBO9780511622687}.
+
+\bibitem{CODATA2022}
+E.~Tiesinga, P.~J. Mohr, D.~B. Newell, and B.~N. Taylor,
+``The 2022 CODATA Recommended Values of the Fundamental Physical Constants,''
+\emph{Reviews of Modern Physics} \textbf{95} (2023), 025003.
+DOI: \href{https://doi.org/10.1103/RevModPhys.95.025003}{10.1103/RevModPhys.95.025003}.
+
+\end{thebibliography}
+
+\end{document}
