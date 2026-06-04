@@ -155,7 +155,13 @@ Appendix~\ref{app:numerics} records the numerical convergence and
 robustness requirements; Appendix~\ref{app:sensitivity} gives the
 sensitivity and falsification checks; and Appendix~\ref{app:history}
 quarantines historical numerical coincidences that are not used as
-evidence in the derivation.
+evidence in the derivation.  The accompanying supplementary script
+\texttt{reproduce\_alpha\_cell\_closure.py} implements the minimal numerical
+audit pipeline used in this paper: Fourier ideal-trefoil loading,
+Biot--Savart cutoff-energy scanning, extraction of $A_K$, the
+no-contact check $a_{\rm nc}/r_c=\sqrt{4\pi A_K}$, and the final
+spherical-cell evaluation of $\alpha_{\rm cell}$; see
+Appendix~\ref{app:numerics} for the reproducibility protocol.
 
 
 We also record a more ambitious closure candidate motivated by the
@@ -911,6 +917,14 @@ causal-horizon scale.
 \section{Numerical Summary}
 \label{sec:numerical}
 % =============================================================
+
+The numerical values in Table~\ref{tab:numbers} are accompanied by the
+standalone supplementary script
+\texttt{reproduce\_alpha\_cell\_closure.py}.  The script is not used as a
+substitute for the assumptions in Appendix~\ref{app:assumptions}; it is
+only a reproducibility aid for the Biot--Savart coefficient extraction,
+the local closure ratio, and the spherical-cell numerical evaluation
+described in Appendix~\ref{app:numerics}.
 
 \begin{table}[h]
 \centering
