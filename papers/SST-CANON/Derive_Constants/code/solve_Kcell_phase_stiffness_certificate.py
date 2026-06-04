@@ -155,7 +155,11 @@ def exterior_energy_radial_check(K_cell: float, phi: float, r_min: float, r_max:
     """
     r = np.logspace(math.log10(r_min), math.log10(r_max), n)
     integrand = 4.0 * math.pi * r * r * (phi * phi / (r**4))
-    integral = float(np.trapz(integrand, r))
+    # NumPy 2.x / Python 3.13 compatibility: np.trapz may be unavailable.
+    if hasattr(np, "trapezoid"):
+        integral = float(np.trapezoid(integrand, r))
+    else:
+        integral = float(np.trapz(integrand, r))
     A_num = 0.5 * K_cell * integral
     A_exact_finite = 2.0 * math.pi * K_cell * phi * phi * (1.0 / r_min - 1.0 / r_max)
     A_infinite = 2.0 * math.pi * K_cell * phi * phi / r_min
