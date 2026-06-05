@@ -65,40 +65,28 @@ Spherical and NLS Pressure-Cell Closure for the Fine-Structure Scale}
 \maketitle
 
 \begin{abstract}
-A previous Compton-core finite-filament scaling model showed that several electron-scale
-quantities can be fixed algebraically once a single dimensionless core aspect scale is supplied.
-This note develops the intermediate pressure-cell closure needed to replace that external
-aspect scale by a finite-cell eigenvalue in the companion BEM/NLS calculation.  The local
-Biot--Savart logarithmic coefficient is reviewed in the slender-core normalization, leading to
-the no-contact core condition \(a_{\rm nc}=r_c\) when \(A_K\to1/(4\pi)\).  A spherical
-control-volume response gives
-\[
-  \Xi_{\rm sph}
-  =
-  1+\frac{3}{4\mathcal L_K}+\frac{1}{16\mathcal L_K^2}.
-\]
-The main new ingredient is the NLS finite-shell pressure scale
+A previous Compton-core finite-filament scaling model showed that several
+electron-scale quantities can be fixed algebraically once a dimensionless core
+aspect scale is supplied.  This note develops the pressure-cell closure used by
+the companion BEM/NLS calculation.  The strongest derived element is the
+pressure-sector count \(N_p=4\), obtained from the spherical surface spectrum
+and supported by nonlinear and global topology checks.  The pressure scale
 \[
   E_p^{\rm NLS}
   =
   \frac{16\pi}{3}\mathcal L_K
-  \left(1-\frac{11}{48\mathcal L_K^2}\right),
+  \left(1-\frac{11}{48\mathcal L_K^2}\right)
 \]
-together with the shell stiffness
-\[
-  \kappa_{\rm NLS}^{\rm shell}=8\pi\mathcal L_K^2.
-\]
-For the ideal trefoil value \(\mathcal L_K=16.371637\), these give
-\(E_p^{\rm NLS}=274.0748756568\) and
-\(\kappa_{\rm NLS}^{\rm shell}=6736.341149\).  These quantities are not obtained from
-\(\alpha\), \(m_e\), \(\hbar\), \(e\), or \(R_\infty\).  The updated gate
-calculations derive \(N_p=4\) inside the spherical finite-cell surface
-variation and derive \(\chi_R=2\) inside the Laplace-matched reciprocal
-pressure model.  The coefficient \(11/48\) is derived within the unweighted
-isotropic GP/NLS shell reduction, with the microscopic normalization
-\(w_\perp=1\) remaining as the explicit primitive-equation gate.  The numerical
-extraction of the stationary aspect value \(E_\star\) and the far-field
-identification are treated as companion results.
+is therefore a conditional finite-cell closure: the factor \(16\pi/3\) still
+requires the sector-volume normalization \(4\pi/3\) per pressure sector per unit
+ropelength, and the coefficient \(11/48\) requires the unweighted shell
+normalization \(w_\perp=1\).  The latter is not yet derived from the full GP/NLS
+core dynamics; the supplied relaxed-core proxy returns \(w_\perp\simeq2.076\).
+For \(\mathcal L_K=16.371637\), the conditional scale is
+\(E_p^{\rm NLS}=274.0748756568\).  This paper should therefore be read as a
+structured pressure-cell/NLS-shell closure and gate isolation, not as a
+stand-alone first-principles derivation of the electromagnetic fine-structure
+constant.
 \end{abstract}
 
 \section{Purpose and status}
@@ -379,6 +367,32 @@ model, giving
 \]
 The remaining robustness requirement is to exclude same-order nonreciprocal
 terms such as \(\log\chi_R\), \(\chi_R^2\), or \(\chi_R^{-2}\).
+
+
+\section{Claim-status correction: \(16\pi/3\) and \(11/48\)}
+\label{sec:claim-status-16pi-11over48}
+
+The surface-spectrum calculation derives \(N_p=4\), but this does not by itself
+derive the numerical prefactor \(16\pi/3\).  The additional step is
+\[
+  E_p^{(0)}
+  =
+  N_p\left(\frac{4\pi}{3}\right)\mathcal L_K,
+\]
+which assumes a sector-volume normalization \(4\pi/3\) per pressure sector per
+unit ropelength.  This is a compact and useful closure ansatz, but it is still a
+load-bearing open coefficient until obtained from a variational pressure-cell
+principle.
+
+Similarly,
+\[
+  \sigma=3+\frac23w_\perp
+\]
+is the derived shell structure.  The value \(11/48\) follows only after setting
+\(w_\perp=1\) and \(\chi_R=2\).  The current relaxed-core proxy gives
+\(w_\perp\simeq2.076\), so the primitive GP/NLS derivation of \(w_\perp=1\) is
+not established.  All precision claims that use \(11/48\) are therefore
+conditional on the unweighted isotropic shell normalization.
 
 \section{Finite-core filament energy}
 
@@ -718,13 +732,15 @@ The corresponding shell stiffness is
   }
   \label{eq:kappaNLS}
 \end{equation}
-The coefficient \(11/48\) is not fitted to \(\alpha\).  The post-review
-GP core-profile audit derives the decomposition
-\(\sigma=3+(2/3)w_\perp\) and shows that the unweighted isotropic GP/NLS shell
-normalization \(w_\perp=1\) gives \(\sigma=11/3\) and therefore
-\(11/(48\mathcal L_K^2)\) at \(\chi_R=2\).  The stronger microscopic claim is
-still conditional: a full primitive GP/SST core-profile reduction must derive
-\(w_\perp=1\), not insert it as a shell normalization.  The stiffness
+The coefficient \(11/48\) is not fitted to \(\alpha\), but it is conditional.
+The post-review GP core-profile audit derives the decomposition
+\(\sigma=3+(2/3)w_\perp\).  The unweighted isotropic shell normalization
+\(w_\perp=1\) gives \(\sigma=11/3\) and therefore
+\(11/(48\mathcal L_K^2)\) at \(\chi_R=2\).  However, the current relaxed-core
+proxy gives \(w_\perp\simeq2.076\).  Thus a full primitive GP/SST core-profile
+reduction must still explain why the shell normalization relevant to the
+finite-cell pressure response is \(w_\perp=1\), or else the \(11/48\) correction
+must be replaced.  The stiffness
 \(\kappa_{\rm NLS}^{\rm shell}\) is the corresponding thin-shell stiffness; it is large
 because \(\eta_K\ll1\).
 
@@ -889,6 +905,41 @@ NLS shell stiffness & \(\kappaNLS=8\pi\mathcal L_K^2\) & \(6736.341149\) \\
 \end{table}
 
 
+
+\subsection{Phase--pressure normal-mode closure of the far-field Hessian}
+
+The far-field stiffness gate has also been sharpened by the companion
+normal-mode audit.  The exterior Hodge calculation gives
+\[
+  q_\phi=1,\qquad \Lambda_\phi=4\pi R\mathcal K_{\rm cell}.
+\]
+The interior chain now proceeds as follows.  The radial phase problem gives the
+optimal profile \(n_{\rm eff}(r)\propto r^{-2}\).  The accessible-area
+projection gives
+\[
+  M_{\rm acc}=M_\phi\frac{(R-a)^2}{R^2}.
+\]
+Finally, in the canonical linearized Madelung/GP normal-mode reduction,
+\[
+  H_k=\frac12p_k^2+\frac12\omega_k^2q_k^2
+\]
+has equal cycle-averaged phase/flow and pressure/compression budgets:
+\[
+  M_\phi=M_p=\frac{E_{\rm eff}}{2}.
+\]
+Therefore
+\[
+  \Lambda_\phi=\frac{E_{\rm eff}}{2R^2},
+\]
+and for \(R=1\),
+\[
+  \Lambda_\phi=\frac{E_{\rm eff}}{2}.
+\]
+This closes the far-field Hessian gate within the canonical normal-mode
+reduction.  The remaining bridge assumption is that the \(E_{\rm eff}\) used in
+the pressure-cell chain is the cycle-averaged quadratic energy of that same
+interior canonical mode family.
+
 \section{Reproducibility files for the coefficient gates}
 \label{sec:gate-reproducibility-files}
 
@@ -898,10 +949,16 @@ relative to the \texttt{Manuscripts} directory:
 \item \(N_p=4\): \texttt{derive\_pressure\_mode\_cutoff\_surface\_spectrum.py},
 \texttt{test\_finite\_core\_nonspherical\_shape\_corrections.py}, and
 \texttt{solve\_nonlinear\_shape\_stability.py};
-\item \(11/48\): \texttt{derive\_gp\_core\_profile\_second\_variation.py};
+\item \(11/48\) conditional on \(w_\perp=1\):
+\texttt{derive\_gp\_core\_profile\_second\_variation.py};
+\item \(w_\perp\) warning check:
+\texttt{derive\_relaxed\_gp\_core\_hessian\_wperp.py};
 \item \(\chi_R=2\): \texttt{derive\_pressure\_self\_duality\_from\_laplace\_matching.py};
 \item \(q_\phi=1\) and exterior capacity:
-\texttt{solve\_one\_cell\_hodge\_phase\_hessian.py}.
+\texttt{solve\_one\_cell\_hodge\_phase\_hessian.py};
+\item \(\Lambda_\phi=E_{\rm eff}/2\) within the canonical phase--pressure
+normal-mode reduction:
+\texttt{derive\_phase\_pressure\_exchange\_self\_duality.py}.
 \end{itemize}
 The corresponding CSV and Markdown outputs are in the matching
 \texttt{../code/outputs\_*} directories.
@@ -933,9 +990,9 @@ pressure model.  What remains is:
 \item derive the unweighted transverse normalization \(w_\perp=1\) from the
 full GP/SST core-profile reduction;
 \item extend the nonlinear shape-stability audit beyond star-shaped finite-perimeter cells only if the physical pressure-cell admissibility class is enlarged beyond reduced boundaries;
-\item derive the interior one-cell phase Hessian
-\(\Lambda_\phi=E_{\rm eff}/2\), which is needed for the far-field stiffness
-normalization in Paper~III.
+\item identify the \(E_{\rm eff}\) entering the pressure-cell chain with the
+cycle-averaged quadratic energy of the same canonical interior mode family used
+in the phase--pressure normal-mode reduction.
 \end{enumerate}
 
 \subsection{Open Theorem I: topological aspect eigenvalue}
@@ -1364,6 +1421,23 @@ F. Maggi,
 \emph{Sets of Finite Perimeter and Geometric Variational Problems},
 Cambridge University Press, Cambridge (2012).
 DOI: 10.1017/CBO9781139108133.
+
+\bibitem{Madelung1927}
+E. Madelung,
+``Quantentheorie in hydrodynamischer Form,''
+\emph{Zeitschrift f\"ur Physik} \textbf{40}, 322--326 (1927).
+DOI: 10.1007/BF01400372.
+
+\bibitem{Gross1961}
+E. P. Gross,
+``Structure of a Quantized Vortex in Boson Systems,''
+\emph{Nuovo Cimento} \textbf{20}, 454--477 (1961).
+DOI: 10.1007/BF02731494.
+
+\bibitem{Bogoliubov1947}
+N. N. Bogoliubov,
+``On the Theory of Superfluidity,''
+\emph{Journal of Physics USSR} \textbf{11}, 23--32 (1947).
 
 \end{thebibliography}
 

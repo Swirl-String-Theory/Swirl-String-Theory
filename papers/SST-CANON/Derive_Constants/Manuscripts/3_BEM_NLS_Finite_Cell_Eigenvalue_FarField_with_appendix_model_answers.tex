@@ -37,25 +37,27 @@
 \maketitle
 
 \begin{abstract}
-We report a finite-cell stationary-point computation for the missing zeroth-order aspect scale in a Compton-core finite-filament closure model. The domain is a finite-core ideal trefoil cell with an outer spherical boundary, approximated by a scalar single-layer boundary-element response and an NLS finite-shell pressure-compliance term. The pressure scale and stiffness are fixed by the ideal trefoil ropelength, not by electron mass, charge, Planck's constant, the Rydberg constant, or CODATA data:
+We report a finite-cell BEM/NLS certificate for the missing zeroth-order aspect
+scale in a Compton-core finite-filament closure model.  The domain is a
+finite-core ideal trefoil cell with an outer spherical boundary, approximated
+by a scalar single-layer boundary-element response and an NLS finite-shell
+pressure-compliance term.  The calculation is not a direct calibration of
+\(E_0\): using \(\mathcal L_K=16.371637\), the batch run gives
 \[
-E_p^{\rm NLS}=\frac{16\pi}{3}\LK\left(1-\frac{11}{48\LK^2}\right),
-\qquad
-\kappa_{\rm NLS}=8\pi\LK^2.
+  E_\star=274.074903758\pm5.51\times10^{-5},
+  \qquad
+  \alpha_{\rm cell}^{-1}=137.035953090\pm2.76\times10^{-5}.
 \]
-Using the Knot Atlas ideal-trefoil value \(\LK=16.371637\), the batch calculation gives 16/16 successful interior stationary points over a four-by-four grid of discretizations and regularization factors. The aggregate result is
-\[
-\Estar=274.074903758\pm 5.51e-05,
-\qquad
-\alphacell^{-1}=137.035953090\pm 2.76e-05,
-\]
-where the uncertainty is the run-to-run standard deviation, not a statistical measurement error. The calculation is therefore no longer a direct calibration of \(E_0\). It is a conditional derivation of a dimensionless fine-structure-scale eigenvalue inside the stated BEM/NLS finite-cell closure. A full identification with the electromagnetic fine-structure constant still requires the companion far-field interaction theorem proving \(V(r)=\alphacell\hbar c/r+O(r^{-2})\).
-The BEM-only negative control does not produce an interior aspect scale, so the
-stationary point should be interpreted as the NLS pressure scale plus a small
-BEM compliance shift, not as an independent spectral discovery.  The far-field
-calculation is an internal Green-function consistency check conditional on the
-stiffness normalization \(\mathcal K_{\rm cell}=E_{\rm eff}/(8\pi)\).
-
+The BEM-only negative control does not produce an interior scale, so the
+stationary point should be interpreted as a robustness certificate for the
+analytic pressure scale \(E_p^{\rm NLS}\), plus a small BEM compliance shift,
+not as an independent spectral discovery.  The pressure scale itself remains
+conditional on the sector-volume prefactor \(16\pi/3\) and the shell
+normalization \(w_\perp=1\).  A full identification with the electromagnetic
+fine-structure constant still requires the physical far-field interaction law
+\(V(r)=\alpha_{\rm cell}\hbar c/r+O(r^{-2})\); until then the result is a
+dimensionless fine-structure-scale certificate inside the stated finite-cell
+closure.
 \end{abstract}
 
 \section{Purpose and status}
@@ -367,18 +369,23 @@ also strengthened by the SST pressure identity
 which gives \(A_\chi=\chi_R+N_p/\chi_R\) and \(\chi_R=2\) in the
 Laplace-matched reciprocal model.
 
-The finite-shell coefficient \(11/48\) is derived only within the unweighted
-isotropic GP/NLS shell reduction.  The open microscopic gate is
-\(w_\perp=1\).  The far-field Hodge calculation derives
+The finite-shell coefficient \(11/48\) is conditional on the unweighted
+isotropic GP/NLS shell normalization.  The open microscopic gate is
+\(w_\perp=1\), and the current relaxed-core proxy gives \(w_\perp\simeq2.076\).
+The far-field Hodge calculation derives
 \[
   q_\phi=1,
   \qquad
   \Lambda_\phi=4\pi R\mathcal K_{\rm cell},
 \]
-but the interior identity \(\Lambda_\phi=E_{\rm eff}/2\) remains open.
-Consequently the numerical BEM/NLS stationary point should be read as a
-pressure-selected stationary point with a conditional far-field normalization,
-not as an independent spectral derivation of \(\alpha\).
+and the interior identity \(\Lambda_\phi=E_{\rm eff}/2\) is derived within
+the canonical linearized phase--pressure normal-mode reduction.  The numerical
+BEM/NLS stationary point should therefore be read as a pressure-selected
+stationary point with a far-field normalization derived inside the stated
+finite-cell normal-mode reduction, not as an unconstrained derivation of QED
+\(\alpha\).  The remaining physical bridge is the identification of the
+pressure-cell \(E_{\rm eff}\) with the cycle-averaged quadratic energy of that
+same interior canonical mode family.
 
 \section{Far-field coupling theorem}
 
@@ -388,12 +395,14 @@ only the constant boundary phase produces the leading \(1/r\) mode, so
 \(q_\phi=\dim H^0(S^2)=1\).  It also gives the exterior capacity relation
 \(\Lambda_\phi=4\pi R\mathcal K_{\rm cell}\).  The present paper keeps the
 two-cell calculation separate: it tests the finite-cell stationary point and
-the conditional Green-function implementation.  The remaining far-field gate is
-the interior operator identity \(\Lambda_\phi=E_{\rm eff}/2\), without which
-\(\mathcal K_{\rm cell}=E_{\rm eff}/(8\pi R)\) is conditional.
+the conditional Green-function implementation.  The remaining far-field normalization is supplied, within the finite-cell
+reduction, by the canonical phase--pressure normal-mode identity
+\(\Lambda_\phi=E_{\rm eff}/2\).  The qualification is that \(E_{\rm eff}\) must
+be the cycle-averaged quadratic energy of the same interior canonical mode
+family.
 
 
-The one-cell phase-Hessian normalization required to make this theorem independent is isolated in Appendix~\ref{app:farfield-stiffness-target}. The appendix proves the exterior Green-function identity \(\Lambda_\phi=4\pi\mathcal K_{\rm cell}\) and states the remaining operator target \(\Lambda_\phi=E_{\rm eff}/2\).
+The one-cell phase-Hessian normalization is isolated in Appendix~\ref{app:farfield-stiffness-target}. The appendix proves the exterior Green-function identity \(\Lambda_\phi=4\pi\mathcal K_{\rm cell}\) and records the canonical phase--pressure normal-mode derivation of \(\Lambda_\phi=E_{\rm eff}/2\) within the stated finite-cell reduction.
 
 
 The reason the far-field phase sector is restricted to the \(H^0(S^2)\) mode is
@@ -564,9 +573,11 @@ minimal-reduction uniqueness theorem, the stronger statement becomes
 
 
 For the far-field part specifically, the \(H^0(S^2)\) argument fixes the
-multiplicity \(q_\phi=1\) of the leading \(1/r\) exterior phase mode.  What
-remains to be independently derived is the operator Hessian value
-\(\Lambda_\phi=E_{\rm eff}/2\), not the monopole multiplicity itself.
+multiplicity \(q_\phi=1\) of the leading \(1/r\) exterior phase mode.  The
+operator Hessian value \(\Lambda_\phi=E_{\rm eff}/2\) is now derived within the
+canonical normal-mode phase--pressure reduction.  What remains is the physical
+identification of the pressure-cell \(E_{\rm eff}\) with the cycle-averaged
+quadratic energy of that same interior mode family.
 
 
 The exact far-field stiffness gate is formulated in Appendix~\ref{app:farfield-stiffness-target}; this appendix should be cited whenever the two-cell coefficient is described as conditional.
@@ -585,8 +596,9 @@ That stronger label requires three additional analytical results:
 \begin{enumerate}
 \item a derivation of the pressure prefactor \(16\pi/3\);
 \item a derivation of the finite-shell coefficient \(11/48\);
-\item an independent one-cell phase-Hessian derivation of
-      \(\mathcal K_{\rm cell}=E_{\rm eff}/(8\pi)\).
+\item the physical identification of \(E_{\rm eff}\) with the cycle-averaged
+      quadratic energy of the same canonical interior mode family that gives
+      \(\Lambda_\phi=E_{\rm eff}/2\).
 \end{enumerate}
 The accompanying audit script \texttt{audit\_derived\_label\_gates.py} encodes
 these requirements as explicit pass/fail gates.
@@ -602,9 +614,15 @@ conditional closure claim:
 core-profile reduction.  The current script derives \(11/48\) inside the
 unweighted isotropic GP/NLS shell model, but profile-weight sensitivity shows
 that \(w_\perp=1\) is the remaining primitive-equation gate;
-\item obtain \(\Lambda_\phi=E_{\rm eff}/2\) from an independent one-cell
-phase-Hessian operator.  The exterior Hodge calculation already gives
-\(\Lambda_\phi=4\pi R\mathcal K_{\rm cell}\) and \(q_\phi=1\);
+\item derive the sector-volume normalization \(4\pi/3\) per pressure sector
+per unit ropelength, which is the open gate behind the prefactor \(16\pi/3\);
+\item resolve the \(w_\perp\) gate.  The precision correction \(11/48\) uses
+\(w_\perp=1\), whereas the present relaxed GP-core proxy gives
+\(w_\perp\simeq2.076\);
+\item verify, in the full finite-cell dynamics, that the \(E_{\rm eff}\) used
+in the pressure-cell stationary point is the cycle-averaged quadratic energy of
+the same canonical interior mode family that gives
+\(\Lambda_\phi=E_{\rm eff}/2\);
 \item repeat the nonlinear shape-stability audit at higher \(\ell_{\max}\) only as a numerical robustness extension.  The current evidence through \(\ell_{\max}=6\), together with the isoperimetric bound for finite-perimeter cells, already prevents \(\ell\ge2\) from entering the leading pressure manifold within the stated admissibility class;
 \item run the same pipeline for the unknot, \(4_1\), and other low-complexity
 knots as a discriminator for the trefoil assignment;
@@ -626,9 +644,11 @@ surface-spectrum and shape-stability checks use
 \texttt{solve\_nonlinear\_shape\_stability.py}.  The pressure-radius,
 GP-shell, and Hodge-capacity gates use
 \texttt{derive\_pressure\_self\_duality\_from\_laplace\_matching.py},
-\texttt{derive\_gp\_core\_profile\_second\_variation.py}, and
-\texttt{solve\_one\_cell\_hodge\_phase\_hessian.py}.  The numerical outputs are
-stored in the corresponding \texttt{../code/outputs\_*} directories.
+\texttt{derive\_gp\_core\_profile\_second\_variation.py}, ,
+\texttt{solve\_one\_cell\_hodge\_phase\_hessian.py}, and
+\texttt{derive\_phase\_pressure\_exchange\_self\_duality.py}.  The numerical
+outputs are stored in the corresponding \texttt{../code/outputs\_*}
+directories.
 
 \section{Conclusion}
 
@@ -783,6 +803,35 @@ with the left-hand side obtained from the cell operator rather than inserted as
 a normalization.
 
 
+
+\subsection{Lemma B2: canonical phase--pressure half-budget}
+
+In the canonical linearized Madelung/GP reduction, density perturbation and
+phase form a conjugate pair.  After diagonalization, each interior normal mode
+has
+\[
+  H_k=\frac12p_k^2+\frac12\omega_k^2q_k^2.
+\]
+For a periodic mode,
+\[
+  \left\langle\frac12p_k^2\right\rangle_T
+  =
+  \left\langle\frac12\omega_k^2q_k^2\right\rangle_T.
+\]
+Identifying the phase/flow budget with the kinetic part and the
+pressure/compression budget with the potential part gives
+\[
+  M_\phi=M_p=\frac{E_{\rm eff}}2.
+\]
+With the accessible-area projection and radial optimum of the companion
+pressure-cell reduction, this yields
+\[
+  \Lambda_\phi=\frac{E_{\rm eff}}2
+\]
+for the normalized cell \(R=1\).  The script
+\texttt{../code/derive\_phase\_pressure\_exchange\_self\_duality.py} records
+this calculation and the sensitivity to noncanonical splits \(M_\phi/M_p\ne1\).
+
 \subsection{Why only the \(H^0(S^2)\) mode contributes to the \(1/r\) coupling}
 
 The exterior phase field is harmonic outside the cell and therefore has the
@@ -895,6 +944,23 @@ F. Maggi,
 \emph{Sets of Finite Perimeter and Geometric Variational Problems},
 Cambridge University Press, Cambridge (2012).
 DOI: 10.1017/CBO9781139108133.
+
+\bibitem{Madelung1927}
+E. Madelung,
+``Quantentheorie in hydrodynamischer Form,''
+\emph{Zeitschrift f\"ur Physik} \textbf{40}, 322--326 (1927).
+DOI: 10.1007/BF01400372.
+
+\bibitem{Gross1961}
+E. P. Gross,
+``Structure of a Quantized Vortex in Boson Systems,''
+\emph{Nuovo Cimento} \textbf{20}, 454--477 (1961).
+DOI: 10.1007/BF02731494.
+
+\bibitem{Bogoliubov1947}
+N. N. Bogoliubov,
+``On the Theory of Superfluidity,''
+\emph{Journal of Physics USSR} \textbf{11}, 23--32 (1947).
 
 \end{thebibliography}
 

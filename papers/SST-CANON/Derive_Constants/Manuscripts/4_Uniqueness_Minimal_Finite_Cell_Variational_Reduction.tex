@@ -29,29 +29,24 @@ Independent Researcher, Appingedam, The Netherlands}
 \begin{abstract}
 The companion papers isolate a dimensionless fine-structure-scale closure based
 on the ideal-trefoil ropelength, a spherical pressure cell, and a finite-cell
-BEM/NLS stationary point.  This note records the updated status of the four
-coefficient gates after the post-review calculations.  The pressure-sector
-count is derived from the fixed-volume surface spectrum of a spherical cell:
-\(k_\ell=\ell(\ell+1)-2\), so \(\ell=0\) is the compression sector,
-\(\ell=1\) is the translation/centre-displacement sector, and \(\ell\ge2\) are
-positive-stiffness shape modes; hence \(N_p=1+3=4\).  The radius action is
-derived within the Laplace-matched reciprocal pressure model because the SST
-kinetic and circular Laplace pressures agree,
+BEM/NLS stationary point.  This note records the coefficient-gate status after
+the post-review calculations.  The pressure-sector count \(N_p=4\) is derived
+from the fixed-volume surface spectrum and is stable under perturbative,
+nonlinear star-shaped, and finite-perimeter global-topology checks.  The
+Laplace-matched reciprocal pressure model gives \(\chi_R=2\) within the minimal
+reciprocal action, provided same-order nonreciprocal terms are excluded.  The
+GP/NLS shell audit derives
 \[
-  \frac12\rho_{\rm core}\lVert\mathbf v_{\!\boldsymbol{\circlearrowleft}}\rVert^2
-  =
-  \frac{F_{\rm swirl}^{\max}}{2\pi r_c^2},
+  \sigma=3+\frac23 w_\perp,
 \]
-giving \(A_\chi=\chi_R+N_p/\chi_R\) and \(\chi_R=2\).  The GP/NLS shell audit
-derives \(\sigma=3+(2/3)w_\perp\); the value \(11/48\) follows for the
-unweighted isotropic shell normalization \(w_\perp=1\), while deriving
-\(w_\perp=1\) from the full microscopic core reduction remains open.  Finally,
-the exterior Hodge phase calculation derives \(q_\phi=1\) and
-\(\Lambda_\phi=4\pi R\mathcal K_{\rm cell}\), but the interior operator
-identity \(\Lambda_\phi=E_{\rm eff}/2\) remains the required step for an
-unconditional far-field stiffness.  Thus the present status is stronger than a
-free closure model but still below a complete first-principles derivation of
-the electromagnetic fine-structure constant.
+but the precision value \(11/48\) follows only after imposing \(w_\perp=1\);
+the current relaxed-core proxy returns \(w_\perp\simeq2.076\), so this remains
+an open primitive gate.  The exterior Hodge calculation gives \(q_\phi=1\) and
+\(\Lambda_\phi=4\pi R\mathcal K_{\rm cell}\), while the canonical normal-mode
+reduction gives \(\Lambda_\phi=E_{\rm eff}/2\) after the stated
+\(E_{\rm eff}\)-bridge.  The package is therefore a conditional finite-cell
+derivation/certificate, not a complete first-principles derivation of the QED
+fine-structure constant.
 \end{abstract}
 
 \section{Purpose and status}
@@ -309,7 +304,7 @@ boundaries of a physical pressure cell; if counted with multiplicity, their
 area cannot improve the isoperimetric bound.  Thus global topology does not
 promote \(\ell\ge2\) modes into the leading pressure manifold.
 
-\section{Theorem 2: isotropic NLS/GP shell variation gives \(\sigma=11/3\)}
+\section{Theorem 2: isotropic shell normalization gives \(\sigma=11/3\) only if \(w_\perp=1\)}
 
 Let
 \[
@@ -354,28 +349,28 @@ Equivalently,
   =
   \frac23.
 \]
-Thus the second-order shell coefficient is
+Thus the second-order shell coefficient has the form
 \[
   \sigma
   =
   \sigma_{\rm vol}+\sigma_\perp
   =
-  3+\frac23
-  =
-  \frac{11}{3}.
+  3+\frac23w_\perp .
+\]
+Only for the unweighted isotropic shell normalization \(w_\perp=1\) does this
+reduce to
+\[
+  \sigma=\frac{11}{3}.
 \]
 
 
 The GP core-profile audit confirms the angular result and computes the radial
 profile.  It shows that the normalized angular factor \(2/3\) is profile
 independent for isotropic radial weights.  It also shows that alternative
-profile-weight proxies do not generically reproduce \(11/48\).  Therefore the
-precise status is
-\[
-  \sigma=3+\frac23w_\perp,
-\]
-with \(11/48\) obtained for \(w_\perp=1\).  The equality \(w_\perp=1\) is the
-remaining microscopic normalization gate.
+profile-weight proxies do not generically reproduce \(11/48\).  More sharply,
+the relaxed GP-core Hessian proxy gives \(w_\perp\simeq2.076\), not \(1\).
+Therefore the equality \(w_\perp=1\) is not derived by the current primitive
+GP/NLS tests; it is the remaining microscopic normalization gate.
 
 \section{Theorem 3: reciprocal pressure stationarity gives \(\chi_R=2\)}
 
@@ -472,39 +467,53 @@ one has
   \int_{r\ge1}
   |\nabla u|^2\,d^3x
   =
-  \int_1^\infty
-  4\pi r^2\frac{\phi^2}{r^4}\,dr
-  =
   4\pi\phi^2.
 \]
 Thus
 \[
   \Lambda_\phi=4\pi\Kcell.
 \]
-The unit \(H^0\) one-cell phase Hessian gives
+
+\section{Theorem 4b: canonical phase--pressure normal modes give \(\Lambda_\phi=E_{\rm eff}/2\)}
+
+The remaining one-cell Hessian is supplied by the canonical linearized
+Madelung/GP normal-mode reduction.  The density perturbation and phase are a
+canonical pair; after diagonalization each interior mode has Hamiltonian
 \[
-  \Lambda_\phi=\frac{\Eeff}{2},
+  H_k=\frac12p_k^2+\frac12\omega_k^2q_k^2.
 \]
-and therefore
+For a periodic normal mode,
 \[
-  \Kcell
+  \left\langle\frac12p_k^2\right\rangle_T
   =
-  \frac{\Eeff}{8\pi}.
+  \left\langle\frac12\omega_k^2q_k^2\right\rangle_T.
 \]
-
-
-The exterior Hodge calculation derives \(q_\phi=1\) and the capacity relation
-\(\Lambda_\phi=4\pi R\mathcal K_{\rm cell}\).  It does not by itself derive the
-interior identity \(\Lambda_\phi=E_{\rm eff}/2\).  Thus
+The phase/flow and pressure/compression budgets therefore split equally:
 \[
-  \mathcal K_{\rm cell}=\frac{E_{\rm eff}}{8\pi R}
+  M_\phi=M_p=\frac{E_{\rm eff}}{2}.
 \]
-is conditional on the interior one-cell phase-Hessian result.  For \(R=1\), the
-conditional target is \(\mathcal K_{\rm cell}=E_{\rm eff}/(8\pi)\).
+Combining this half-budget identity with the accessible-area projection and
+the radial optimum gives
+\[
+  \Lambda_\phi=\frac{E_{\rm eff}}{2R^2}.
+\]
+For the normalized finite cell \(R=1\),
+\[
+  \Lambda_\phi=\frac{E_{\rm eff}}{2},
+\]
+and therefore, from Theorem~4,
+\[
+  \Kcell=\frac{E_{\rm eff}}{8\pi}.
+\]
+The remaining physical identification is that the \(E_{\rm eff}\) used in the
+pressure-cell chain is the cycle-averaged quadratic energy of this same
+canonical interior mode family.
 
 \section{Resulting pressure scale}
 
-Combining Theorems 1--3,
+Combining Theorems 1--3 gives a conditional pressure scale.  The derived
+sector count \(N_p=4\) must be supplemented by the sector-volume normalization
+\(4\pi/3\) per pressure sector per unit ropelength:
 \[
   E_p^{(0)}
   =
@@ -512,6 +521,8 @@ Combining Theorems 1--3,
   =
   \frac{16\pi}{3}\LK.
 \]
+This \(4\pi/3\)-per-sector normalization is a load-bearing closure coefficient,
+not yet a variational theorem.
 Moreover,
 \[
   \eta_K
@@ -520,7 +531,8 @@ Moreover,
   =
   \frac{1}{4\LK}.
 \]
-With \(\sigma=11/3\),
+With the additional normalization \(w_\perp=1\), one has
+\(\sigma=11/3\), and hence
 \[
   \sigma\eta_K^2
   =
@@ -528,6 +540,7 @@ With \(\sigma=11/3\),
   =
   \frac{11}{48\LK^2}.
 \]
+If \(w_\perp\neq1\), this precision correction changes.
 Therefore
 \[
   \boxed{
@@ -539,18 +552,23 @@ Therefore
   \right).
   }
 \]
-Theorem 4 then gives the far-field stiffness relation
+Theorem 4 then gives the far-field stiffness relation inside the canonical
+normal-mode reduction,
 \[
   \Kcell=\frac{\Eeff}{8\pi},
 \]
-so that the leading two-cell interaction has coefficient
+subject to the bridge identifying \(\Eeff\) with the cycle-averaged quadratic
+energy of the same interior mode family.  Only after the physical far-field law
+is established does the dimensionless cell coefficient
 \[
   \alphacell
   =
   \frac{1}{4\pi\Kcell}
   =
-  \frac{2}{\Eeff}.
+  \frac{2}{\Eeff}
 \]
+become an electromagnetic coupling rather than a fine-structure-scale cell
+number.
 
 
 \section{Reproducibility map}
@@ -569,7 +587,10 @@ GP/NLS shell coefficient and \(w_\perp\) sensitivity audit;
 \item \texttt{derive\_pressure\_self\_duality\_from\_laplace\_matching.py}:
 Laplace-matched reciprocal radius action;
 \item \texttt{solve\_one\_cell\_hodge\_phase\_hessian.py}:
-exterior Hodge capacity and \(q_\phi=1\).
+exterior Hodge capacity and \(q_\phi=1\);
+\item \texttt{derive\_phase\_pressure\_exchange\_self\_duality.py}:
+canonical normal-mode derivation of \(M_\phi=M_p=E_{\rm eff}/2\) and
+\(\Lambda_\phi=E_{\rm eff}/2\).
 \end{itemize}
 The numerical CSV and Markdown outputs are stored in the corresponding
 \texttt{../code/outputs\_*} directories and summarized in
@@ -607,22 +628,26 @@ finite-perimeter topology checks:
 The radius action is derived within the Laplace-matched reciprocal pressure
 model because the SST kinetic and circular Laplace pressures agree, giving
 \(\mu=1\), \(A_\chi=\chi_R+N_p/\chi_R\), and \(\chi_R=2\).  The finite-shell
-coefficient \(11/48\) is derived within the unweighted isotropic GP/NLS shell
-reduction, but the primitive-equation derivation of \(w_\perp=1\) remains open.
+coefficient \(11/48\) is conditional on the unweighted isotropic GP/NLS shell
+normalization \(w_\perp=1\); the primitive-equation derivation remains open and
+the current relaxed-core proxy gives \(w_\perp\simeq2.076\).
 The exterior phase-Hodge calculation derives \(q_\phi=1\) and
-\(\Lambda_\phi=4\pi R\mathcal K_{\rm cell}\), while the interior Hessian
-identity \(\Lambda_\phi=E_{\rm eff}/2\) remains open.
+\(\Lambda_\phi=4\pi R\mathcal K_{\rm cell}\).  The interior Hessian identity
+\(\Lambda_\phi=E_{\rm eff}/2\) is derived within the canonical linearized
+phase--pressure normal-mode reduction, provided \(E_{\rm eff}\) is identified
+with the cycle-averaged quadratic energy of that same interior mode family.
 
-Thus the package has moved beyond a free closure model for \(N_p\) and
-\(\chi_R\), and it has isolated \(11/48\) to a single microscopic normalization
-gate.  A complete first-principles derivation of the electromagnetic
-fine-structure constant still requires the two remaining primitive-equation
-results:
+Thus the package has moved beyond a free closure model for \(N_p\),
+\(\chi_R\), and the far-field phase stiffness.  It has isolated \(11/48\) to a
+single microscopic normalization gate and has isolated the far-field bridge to
+one physical identification of \(E_{\rm eff}\).  A complete first-principles
+derivation of the electromagnetic fine-structure constant still requires
 \[
-  w_\perp=1,
-  \qquad
-  \Lambda_\phi=\frac{E_{\rm eff}}{2}.
+  w_\perp=1
 \]
+from the full GP/SST core-profile reduction and the identification of
+\(E_{\rm eff}\) with the cycle-averaged quadratic energy of the canonical
+interior mode family.
 
 \begin{thebibliography}{9}
 
@@ -679,6 +704,23 @@ F. Maggi,
 \emph{Sets of Finite Perimeter and Geometric Variational Problems},
 Cambridge University Press, Cambridge (2012).
 DOI: 10.1017/CBO9781139108133.
+
+\bibitem{Madelung1927}
+E. Madelung,
+``Quantentheorie in hydrodynamischer Form,''
+\emph{Zeitschrift f\"ur Physik} \textbf{40}, 322--326 (1927).
+DOI: 10.1007/BF01400372.
+
+\bibitem{Gross1961}
+E. P. Gross,
+``Structure of a Quantized Vortex in Boson Systems,''
+\emph{Nuovo Cimento} \textbf{20}, 454--477 (1961).
+DOI: 10.1007/BF02731494.
+
+\bibitem{Bogoliubov1947}
+N. N. Bogoliubov,
+``On the Theory of Superfluidity,''
+\emph{Journal of Physics USSR} \textbf{11}, 23--32 (1947).
 
 \end{thebibliography}
 

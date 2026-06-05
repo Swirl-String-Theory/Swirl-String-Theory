@@ -99,18 +99,29 @@ phenomenological test templates in terms of a short-range potential
 correction or an electron form factor.
 
 As a controlled extension, we also state and analyze an explicit spherical
-pressure-cell closure in which a trefoil Biot--Savart coefficient with
-conjectured slender-core asymptote $\AK\to1/(4\pi)$ fixes the local core
-radius while a spherical volume-curvature response supplies a candidate
-finite-core correction to the fine-structure scale.  The dominant numerical input in this extension is the zeroth-order aspect scale
-$\Et=274.074996$, which fixes the first four to five significant figures of
-$\alpha_{\rm cell}\simeq2/\Et$.  In this paper that number is a retrospective
-closure target, not a non-circular prediction.  Thus the spherical-cell extension
-is a conditional reproduction given a conjectured external aspect scale, not a
-derivation from the Compton-core algebra alone.  Companion work supplies the
-non-CODATA BEM/NLS-shell stationary-point route, whose numerical value differs
-slightly from this retrospective target; the far-field coupling remains a
-separate theorem target.
+pressure-cell closure.  This extension contains two distinct numerical
+statements.  The value obtained by inserting the retrospective aspect scale
+$\Et=274.074996$ is a calibrated consistency check and is not used as evidence
+for a non-circular prediction.  The companion BEM/NLS-shell calculation gives
+the non-CODATA conditional certificate
+\[
+  \alpha_{\rm cell}^{-1}=137.035953(28),
+\]
+where the uncertainty is run-to-run scatter.  The parameter-light leading
+observation remains
+\[
+  \alpha_{\rm lead}^{-1}
+  =
+  \frac{8\pi}{3}\mathcal L_{3_1}
+  =
+  137.1547,
+\]
+which is within \(8.7\times10^{-4}\) of CODATA.  The conversion of the derived
+sector count \(N_p=4\) into the pressure prefactor \(16\pi/3\), the
+normalization \(w_\perp=1\) required for \(11/48\), and the physical far-field
+identification remain explicitly model-dependent gates.  We therefore use
+``fine-structure scale'' for the extension unless the far-field interaction law
+is separately assumed or derived.
 
 \end{abstract}
 
@@ -1124,14 +1135,17 @@ For the unweighted isotropic GP/NLS shell normalization \(w_\perp=1\),
   \frac{\sigma}{4\chi_R^2}=\frac{11}{48}
   \quad(\chi_R=2).
 \]
-The script confirms this result, but it also confirms that alternate
-profile-weight proxies need not give \(11/48\).  Therefore \(11/48\) is derived
-within the unweighted isotropic GP/NLS shell reduction, while the stronger
-primitive-equation claim still requires deriving \(w_\perp=1\) from the full
-core-profile reduction.
+The script confirms the angular identity, but the status of \(w_\perp=1\) is
+not derived from the primitive GP/NLS core dynamics.  In fact, the supplied
+relaxed-core proxy \texttt{derive\_relaxed\_gp\_core\_hessian\_wperp.py}
+returns \(w_\perp\simeq2.076\) in its smoke test, not \(1\).  Therefore
+\(11/48\) should be read as a coefficient derived only after imposing the
+unweighted isotropic shell normalization \(w_\perp=1\).  At the
+primitive-equation level, \(w_\perp=1\) remains an open gate and the current
+proxy is a warning sign rather than a confirmation.
 
-Fourth, the exterior Hodge/phase part is derived but the interior Hessian is
-still open.  For a connected spherical cell boundary,
+Fourth, the exterior Hodge/phase part and the interior phase budget now have a
+stronger status.  For a connected spherical cell boundary,
 \[
   q_\phi=\dim H^0(S^2)=1,
 \]
@@ -1141,17 +1155,30 @@ and the exterior constant phase mode obeys
   \qquad
   \Lambda_\phi=4\pi R\mathcal K_{\rm cell}.
 \]
-Thus
+The interior phase-Hessian chain is now closed within the canonical linearized
+normal-mode reduction.  In Madelung/GP variables, the density perturbation and
+phase are canonically conjugate; after diagonalization each normal mode has
 \[
-  \mathcal K_{\rm cell}=\frac{\Lambda_\phi}{4\pi R}.
+  H_k=\frac12p_k^2+\frac12\omega_k^2q_k^2,
 \]
-The additional identity
+so its cycle-averaged phase/flow and pressure/compression budgets are equal:
 \[
-  \Lambda_\phi=\frac{E_{\rm eff}}{2}
+  M_\phi=M_p=\frac{E_{\rm eff}}{2}.
 \]
-has not yet been independently obtained from an interior one-cell operator.
-Consequently \(\mathcal K_{\rm cell}=E_{\rm eff}/(8\pi R)\) remains
-conditional on that interior Hessian.
+Together with the radial optimum \(n_{\rm eff}(r)\propto r^{-2}\) and the
+accessible-area projection \(M_{\rm acc}=M_\phi(R-a)^2/R^2\), this gives
+\[
+  \Lambda_\phi=\frac{E_{\rm eff}}{2R^2}.
+\]
+For the normalized cell \(R=1\),
+\[
+  \Lambda_\phi=\frac{E_{\rm eff}}{2},
+  \qquad
+  \mathcal K_{\rm cell}=\frac{E_{\rm eff}}{8\pi}.
+\]
+The remaining qualification is physical rather than algebraic: the
+\(E_{\rm eff}\) used in the pressure-cell chain must be identified with the
+cycle-averaged quadratic energy of the same canonical interior mode family.
 
 The strongest current classification is therefore
 \[
@@ -1164,18 +1191,47 @@ The strongest current classification is therefore
 \]
 \[
   \frac{11}{48}
-  \quad[\text{derived within unweighted isotropic GP/NLS shell reduction}],
+  \quad[\text{conditional on the unweighted shell normalization }w_\perp=1],
 \]
 and
 \[
   \mathcal K_{\rm cell}=\frac{E_{\rm eff}}{8\pi}
-  \quad[\text{conditional on }\Lambda_\phi=E_{\rm eff}/2].
+  \quad[\text{derived inside the canonical normal-mode reduction, with the }E_{\rm eff}\text{ bridge explicitly assumed}].
 \]
 A complete first-principles derivation of the electromagnetic fine-structure
-constant still requires the final interior Hessian result and a microscopic
-derivation of \(w_\perp=1\).
+constant still requires a microscopic derivation of \(w_\perp=1\) and the
+physical bridge identifying \(E_{\rm eff}\) with the cycle-averaged quadratic
+energy of that same canonical interior mode family.
 
 
+
+
+\subsection*{Major-revision claim-status correction}
+
+The companion audit distinguishes three levels that must not be conflated.  First,
+\(N_p=4\) is the strongest derived result: it follows from the spherical surface
+spectrum and is stable under perturbative, nonlinear star-shaped, and
+finite-perimeter global-topology checks.  Second, the pressure prefactor
+\[
+  \frac{16\pi}{3}=N_p\frac{4\pi}{3}
+\]
+still contains the sector-volume normalization \(4\pi/3\) per pressure sector
+per unit ropelength.  The present manuscripts motivate this normalization but
+do not yet derive it from a pressure-cell variational principle.  Third, the
+precision-supplying coefficient
+\[
+  \frac{11}{48}
+\]
+requires \(w_\perp=1\).  Since the relaxed GP-core proxy gives
+\(w_\perp\simeq2.076\), this coefficient is conditional and should not be used
+as a primitive-derived input until the discrepancy is resolved.
+
+Accordingly, the retrospective value
+\(\alpha_{\rm cell}^{-1}=137.035999211\) is a calibrated consistency check.
+The non-CODATA BEM/NLS value \(\alpha_{\rm cell}^{-1}=137.035953(28)\) is a
+conditional finite-cell certificate, and the untuned leading relation
+\((8\pi/3)\mathcal L_{3_1}=137.1547\) is the appropriate parameter-light
+headline.
 
 \subsection*{Code evidence for the updated gate status}
 
@@ -1190,10 +1246,14 @@ and \texttt{../code/outputs\_finite\_core\_shape/};
 \texttt{../code/outputs\_nonlinear\_shape\_stability\_lmax6\_opt/};
 \item \texttt{../code/derive\_gp\_core\_profile\_second\_variation.py} and
 \texttt{../code/outputs\_gp\_core\_profile\_second\_variation/};
+\item \texttt{../code/derive\_relaxed\_gp\_core\_hessian\_wperp.py} and
+\texttt{../code/outputs\_relaxed\_gp\_wperp/};
 \item \texttt{../code/derive\_pressure\_self\_duality\_from\_laplace\_matching.py}
 and \texttt{../code/outputs\_laplace\_self\_duality/};
 \item \texttt{../code/solve\_one\_cell\_hodge\_phase\_hessian.py} and
-\texttt{../code/outputs\_hodge\_phase\_hessian/}.
+\texttt{../code/outputs\_hodge\_phase\_hessian/};
+\item \texttt{../code/derive\_phase\_pressure\_exchange\_self\_duality.py} and
+\texttt{../code/outputs\_phase\_pressure\_self\_duality/}.
 \end{itemize}
 
 \section{Discussion}
@@ -1204,9 +1264,11 @@ parameters; it has therefore been superseded by the fixed-volume surface
 spectrum, which gives \(k_\ell=(\ell-1)(\ell+2)\) and derives
 \(N_p=4\) in the spherical finite-cell reduction.  The pressure self-duality is
 also strengthened by the equality of the SST kinetic and Laplace pressures.
-The remaining nontrivial open targets are now narrowed to the microscopic
-normalization \(w_\perp=1\) and the interior phase-Hessian identity
-\(\Lambda_\phi=E_{\rm eff}/2\).
+The remaining nontrivial open target is now the microscopic normalization
+\(w_\perp=1\).  The interior phase-Hessian identity
+\(\Lambda_\phi=E_{\rm eff}/2\) is derived within the canonical normal-mode
+phase--pressure reduction, subject to the stated physical bridge for
+\(E_{\rm eff}\).
 
 
 The fourth companion note gives the uniqueness theorem for the finite-cell
@@ -1866,6 +1928,23 @@ F. Maggi,
 \emph{Sets of Finite Perimeter and Geometric Variational Problems},
 Cambridge University Press, Cambridge (2012).
 DOI: 10.1017/CBO9781139108133.
+
+\bibitem{Madelung1927}
+E. Madelung,
+``Quantentheorie in hydrodynamischer Form,''
+\emph{Zeitschrift f\"ur Physik} \textbf{40}, 322--326 (1927).
+DOI: 10.1007/BF01400372.
+
+\bibitem{Gross1961}
+E. P. Gross,
+``Structure of a Quantized Vortex in Boson Systems,''
+\emph{Nuovo Cimento} \textbf{20}, 454--477 (1961).
+DOI: 10.1007/BF02731494.
+
+\bibitem{Bogoliubov1947}
+N. N. Bogoliubov,
+``On the Theory of Superfluidity,''
+\emph{Journal of Physics USSR} \textbf{11}, 23--32 (1947).
 
 \end{thebibliography}
 
