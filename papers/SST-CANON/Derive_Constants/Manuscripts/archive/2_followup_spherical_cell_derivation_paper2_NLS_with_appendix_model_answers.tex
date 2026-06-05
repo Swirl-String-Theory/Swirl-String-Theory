@@ -91,11 +91,13 @@ together with the shell stiffness
 For the ideal trefoil value \(\mathcal L_K=16.371637\), these give
 \(E_p^{\rm NLS}=274.0748756568\) and
 \(\kappa_{\rm NLS}^{\rm shell}=6736.341149\).  These quantities are not obtained from
-\(\alpha\), \(m_e\), \(\hbar\), \(e\), or \(R_\infty\); they are geometric/NLS inputs for the
-companion finite-cell BEM eigenvalue problem.  The present paper therefore supplies the
-analytical pressure-cell and NLS-shell closure.  The numerical extraction of the stationary
-aspect eigenvalue \(E_\star\), and the far-field identification with the electromagnetic
-coupling, are treated as companion results.
+\(\alpha\), \(m_e\), \(\hbar\), \(e\), or \(R_\infty\), but the mode count
+\(N_p=4\), the shell coefficient \(11/48\), and the radius closure
+\(\chi_R=2\) are model assumptions of the minimal shell closure.  The present
+paper therefore supplies a structured pressure-cell/NLS-shell closure, not a
+stand-alone first-principles derivation of the electromagnetic fine-structure
+constant.  The numerical extraction of the stationary aspect value \(E_\star\)
+and the far-field identification are treated as companion results.
 \end{abstract}
 
 \section{Purpose and status}
@@ -119,6 +121,13 @@ the model succeeds as a closure theorem if the stated assumptions are accepted, 
 a fundamental derivation only if those assumptions are later obtained from a unique dynamical
 principle.
 
+
+
+The uniqueness of this finite-cell reduction is treated in the standalone
+companion Paper~IV.  In the present paper the same assumptions are used as the
+pressure-cell closure; Paper~IV proves that, within the stated minimal
+\(SO(3)\)-covariant variational class, these assumptions uniquely select
+\(N_p=4\), \(\sigma=11/3\), and \(\chi_R=2\).
 
 \section{Derived-label gate and assumption ledger}
 \label{sec:derived-label-gate}
@@ -144,16 +153,16 @@ Theorem &
 Already derived from the local Biot--Savart singularity\\
 Zeroth pressure prefactor &
 \(16\pi/3\) &
-Closure hypothesis &
-Derive from a specified spherical pressure-cell variational principle\\
+Minimal-shell closure hypothesis &
+Derive or independently justify the \(\ell=0\oplus\ell=1\) pressure manifold\\
 Finite-shell correction &
 \(11/(48\mathcal L_K^2)\) &
-Closure hypothesis &
-Derive from a controlled NLS/GP core-profile or shell expansion\\
+Minimal-shell closure hypothesis &
+Derive the unweighted \(3+2/3\) split from a controlled NLS/GP shell expansion\\
 Cell radius closure &
 \(R_{\rm cell}=2L_K\) &
-Closure hypothesis &
-Derive from stationarity or include \(\chi_R\)-sensitivity\\
+Minimal-shell closure hypothesis &
+Derive the self-dual inner/outer normalization or include \(\chi_R\)-sensitivity\\
 \bottomrule
 \end{tabular}
 \label{tab:derived-label-ledger}
@@ -193,6 +202,11 @@ surface-stiffness action containing \(\int_{S^2}|\nabla_{S^2}p|^2d\Omega\),
 they carry eigenvalues \(\ell(\ell+1)\) and enter as higher-order shape
 corrections, not as zeroth-order pressure sectors.  The detailed coefficient
 gates are summarized in Appendix~\ref{app:pressure-coefficient-targets}.
+For a complete robustness claim, the companion numerical package should also
+report an \(\ell\le2\) extension as a negative or sensitivity control.  If the
+quadrupolar sector shifts the result at leading order, the \(\ell\le1\) cutoff
+must be treated as a fit-relevant closure rather than a derived low-mode
+truncation.
 
 \subsection{Why the shell deficit is \(3+\langle\sin^2\theta\rangle\)}
 \label{subsec:why-shell-deficit}
@@ -232,6 +246,14 @@ Thus
 \[
   \sigma=3+\frac{2}{3}=\frac{11}{3}.
 \]
+More generally one may write
+\[
+  \sigma=3+\frac{2}{3}w_\perp,
+\]
+where \(w_\perp=1\) is the isotropic NLS-gradient weighting used by the
+minimal model.  This parameterization makes the remaining vulnerability
+explicit: a first-principles derivation must obtain \(w_\perp=1\), not tune it
+to the empirical fine-structure constant.
 With \(\eta_K=1/(2\chi_R\mathcal L_K)\) and \(\chi_R=2\), this gives
 \[
   \sigma\eta_K^2
@@ -777,6 +799,15 @@ NLS shell stiffness & \(\kappaNLS=8\pi\mathcal L_K^2\) & \(6736.341149\) \\
 \end{table}
 
 \section{What remains for a fundamental derivation}
+
+A further independent selection principle is required for the trefoil itself.
+The present paper uses \(K=3_1\) because that is the candidate finite-core
+filament assigned to the electron sector in the model.  This assignment is not
+derived here.  The falsifiable requirement is to run the same closure for the
+unknot, the figure-eight knot \(4_1\), and other low-complexity knots and to
+show that they do not reproduce the observed fine-structure scale under the
+same coefficient rules.
+
 \label{sec:fundamental}
 
 The preceding sections provide a conditional mathematical closure.  To upgrade it to a
@@ -844,6 +875,14 @@ The closure chain is falsified, or at least not fundamental, if any of the follo
 \end{enumerate}
 
 \section{Conclusion}
+
+
+The standalone uniqueness proof in Paper~IV shows that the pressure manifold,
+shell coefficient, and radius closure are not independent tunings once the
+minimal finite-cell variational reduction is imposed.  Without Paper~IV they
+should be read as closure hypotheses; with Paper~IV they are consequences of
+that stated reduction.
+
 
 The pressure-coefficient gates are stated explicitly in Appendix~\ref{app:pressure-coefficient-targets}; until those gates are closed, the NLS pressure scale should be called closure-derived rather than first-principles derived.
 

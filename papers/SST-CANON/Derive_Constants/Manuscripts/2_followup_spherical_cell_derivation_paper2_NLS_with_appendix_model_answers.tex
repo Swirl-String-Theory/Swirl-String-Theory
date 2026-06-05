@@ -91,13 +91,14 @@ together with the shell stiffness
 For the ideal trefoil value \(\mathcal L_K=16.371637\), these give
 \(E_p^{\rm NLS}=274.0748756568\) and
 \(\kappa_{\rm NLS}^{\rm shell}=6736.341149\).  These quantities are not obtained from
-\(\alpha\), \(m_e\), \(\hbar\), \(e\), or \(R_\infty\), but the mode count
-\(N_p=4\), the shell coefficient \(11/48\), and the radius closure
-\(\chi_R=2\) are model assumptions of the minimal shell closure.  The present
-paper therefore supplies a structured pressure-cell/NLS-shell closure, not a
-stand-alone first-principles derivation of the electromagnetic fine-structure
-constant.  The numerical extraction of the stationary aspect value \(E_\star\)
-and the far-field identification are treated as companion results.
+\(\alpha\), \(m_e\), \(\hbar\), \(e\), or \(R_\infty\).  The updated gate
+calculations derive \(N_p=4\) inside the spherical finite-cell surface
+variation and derive \(\chi_R=2\) inside the Laplace-matched reciprocal
+pressure model.  The coefficient \(11/48\) is derived within the unweighted
+isotropic GP/NLS shell reduction, with the microscopic normalization
+\(w_\perp=1\) remaining as the explicit primitive-equation gate.  The numerical
+extraction of the stationary aspect value \(E_\star\) and the far-field
+identification are treated as companion results.
 \end{abstract}
 
 \section{Purpose and status}
@@ -295,6 +296,89 @@ A more general action \(a\chi_R+bN_p/\chi_R\) would give
 \(\chi_R=\sqrt{bN_p/a}\).  Hence \(\chi_R=2\) is derived within the
 self-dual inner/outer pressure normalization \(a=b\).  Without that
 self-duality assumption, \(\chi_R=2\) remains a sensitivity parameter.
+
+
+\subsection{Post-review gate-script updates}
+\label{subsec:post-review-gate-updates}
+
+Three gate calculations update the status of the pressure-cell coefficients.
+
+First, the pressure-sector count is now supported by the fixed-volume surface
+spectrum of a spherical cell.  For a perturbation
+\(r(\Omega)=R[1+\epsilon f(\Omega)]\), the fixed-volume surface variation gives
+\[
+  \delta^2 A
+  =
+  \frac{R^2}{2}
+  \int_{S^2}
+  \left(|\nabla_{S^2}f|^2-2f^2\right)d\Omega .
+\]
+For \(f=Y_{\ell m}\),
+\[
+  k_\ell=\ell(\ell+1)-2=(\ell-1)(\ell+2).
+\]
+Thus \(\ell=1\) is the translation/centre-displacement zero-mode sector,
+\(\ell\ge2\) are positive-stiffness shape modes, and \(\ell=0\) is the scalar
+compression sector.  Hence
+\[
+  N_p=\dim\mathcal H_0+\dim\mathcal H_1=1+3=4
+\]
+is derived in the spherical finite-cell surface reduction.
+
+This cutoff is also robust beyond the quadratic spectrum.  A perturbative
+finite-core audit verifies that \(\ell\ge2\) remains separated from the retained
+sector when \(\|\delta H\|_{\rm op}<k_2/2=2\), and the physical scale
+\(\eta_K=1/(4\mathcal L_K)=1.52703116982\times10^{-2}\) is far below that
+bound.  A nonlinear star-shaped solve through \(\ell_{\max}=6\) tested 45 real
+\(\ell\ge2\) modes.  Across 300 random samples per amplitude and 20 local
+minimizations from amplitude-one random starts, no competing leading
+\(\ell\ge2\) pressure mode was found.  Global finite-perimeter cells are
+protected by the isoperimetric inequality \(P(\Omega)^3\ge36\pi V(\Omega)^2\),
+with equality only for a ball, so non-star-shaped, disconnected, or higher-genus
+admissible cells cannot lower the fixed-volume area below the sphere.
+
+
+Second, the GP core-profile second-variation audit solves the radial GP/NLS
+vortex profile and confirms that the angular transverse factor is profile
+independent under isotropic radial weights:
+\[
+  \left\langle\sin^2\theta\right\rangle_{S^2}=\frac23.
+\]
+The coefficient is therefore
+\[
+  \sigma=3+\frac23 w_\perp.
+\]
+For the unweighted isotropic shell normalization \(w_\perp=1\), one obtains
+\[
+  \sigma=\frac{11}{3},
+  \qquad
+  \frac{\sigma}{4\chi_R^2}=\frac{11}{48}
+  \quad(\chi_R=2).
+\]
+Sensitivity runs with alternative profile weights do not generically reproduce
+\(11/48\).  Hence the coefficient is derived within the unweighted isotropic
+GP/NLS shell reduction, and the remaining microscopic gate is to derive
+\(w_\perp=1\) from the full primitive reduction.
+
+Third, the reciprocal radius action is now tied to the SST pressure identity.
+With the canonical constants,
+\[
+  \frac12\rho_{\rm core}
+  \lVert\mathbf v_{\!\boldsymbol{\circlearrowleft}}\rVert^2
+  =
+  \frac{F_{\rm swirl}^{\max}}{2\pi r_c^2}
+  =
+  2.329244600448\times10^{30}\ {\rm Pa}.
+\]
+Thus \(P_{\rm in}/P_{\rm out}=1\) in the leading Laplace-matched reciprocal
+model, giving
+\[
+  A_\chi=\chi_R+\frac{N_p}{\chi_R},
+  \qquad
+  \chi_R=\sqrt{N_p}=2.
+\]
+The remaining robustness requirement is to exclude same-order nonreciprocal
+terms such as \(\log\chi_R\), \(\chi_R^2\), or \(\chi_R^{-2}\).
 
 \section{Finite-core filament energy}
 
@@ -634,7 +718,13 @@ The corresponding shell stiffness is
   }
   \label{eq:kappaNLS}
 \end{equation}
-The coefficient \(11/48\) is used here as a finite-shell closure coefficient, not as a fit to \(\alpha\).  At the present stage it should be read as a structured NLS-shell ansatz.  A first-principles derivation would require a controlled GP/NLS core-profile or shell expansion that produces this coefficient without reference to the empirical fine-structure constant.  The stiffness
+The coefficient \(11/48\) is not fitted to \(\alpha\).  The post-review
+GP core-profile audit derives the decomposition
+\(\sigma=3+(2/3)w_\perp\) and shows that the unweighted isotropic GP/NLS shell
+normalization \(w_\perp=1\) gives \(\sigma=11/3\) and therefore
+\(11/(48\mathcal L_K^2)\) at \(\chi_R=2\).  The stronger microscopic claim is
+still conditional: a full primitive GP/SST core-profile reduction must derive
+\(w_\perp=1\), not insert it as a shell normalization.  The stiffness
 \(\kappa_{\rm NLS}^{\rm shell}\) is the corresponding thin-shell stiffness; it is large
 because \(\eta_K\ll1\).
 
@@ -798,6 +888,24 @@ NLS shell stiffness & \(\kappaNLS=8\pi\mathcal L_K^2\) & \(6736.341149\) \\
 \label{tab:nls-pressure}
 \end{table}
 
+
+\section{Reproducibility files for the coefficient gates}
+\label{sec:gate-reproducibility-files}
+
+The gate calculations referenced in this paper are stored in \texttt{../code/}
+relative to the \texttt{Manuscripts} directory:
+\begin{itemize}
+\item \(N_p=4\): \texttt{derive\_pressure\_mode\_cutoff\_surface\_spectrum.py},
+\texttt{test\_finite\_core\_nonspherical\_shape\_corrections.py}, and
+\texttt{solve\_nonlinear\_shape\_stability.py};
+\item \(11/48\): \texttt{derive\_gp\_core\_profile\_second\_variation.py};
+\item \(\chi_R=2\): \texttt{derive\_pressure\_self\_duality\_from\_laplace\_matching.py};
+\item \(q_\phi=1\) and exterior capacity:
+\texttt{solve\_one\_cell\_hodge\_phase\_hessian.py}.
+\end{itemize}
+The corresponding CSV and Markdown outputs are in the matching
+\texttt{../code/outputs\_*} directories.
+
 \section{What remains for a fundamental derivation}
 
 A further independent selection principle is required for the trefoil itself.
@@ -813,6 +921,22 @@ same coefficient rules.
 The preceding sections provide a conditional mathematical closure.  To upgrade it to a
 fundamental derivation, the following results must be obtained without using \(\alpha\),
 \(R_\infty\), \(e\), or CODATA as input.
+
+
+\subsection{Updated open gates after the post-review scripts}
+
+The current open gates are narrower than in the original closure statement.
+The pressure-sector count \(N_p=4\) is derived in the spherical surface
+variation, and \(\chi_R=2\) is derived in the Laplace-matched reciprocal
+pressure model.  What remains is:
+\begin{enumerate}[label=(G\arabic*)]
+\item derive the unweighted transverse normalization \(w_\perp=1\) from the
+full GP/SST core-profile reduction;
+\item extend the nonlinear shape-stability audit beyond star-shaped finite-perimeter cells only if the physical pressure-cell admissibility class is enlarged beyond reduced boundaries;
+\item derive the interior one-cell phase Hessian
+\(\Lambda_\phi=E_{\rm eff}/2\), which is needed for the far-field stiffness
+normalization in Paper~III.
+\end{enumerate}
 
 \subsection{Open Theorem I: topological aspect eigenvalue}
 
@@ -1227,6 +1351,19 @@ P. J. Mohr, D. B. Newell, B. N. Taylor, and E. Tiesinga,
 ``CODATA Recommended Values of the Fundamental Physical Constants: 2022,''
 arXiv:2409.03787 (2024).
 Permalink: \url{https://arxiv.org/abs/2409.03787}.
+
+\bibitem{Osserman1978}
+R. Osserman,
+``The isoperimetric inequality,''
+\emph{Bulletin of the American Mathematical Society} \textbf{84},
+1182--1238 (1978).
+DOI: 10.1090/S0002-9904-1978-14553-4.
+
+\bibitem{Maggi2012}
+F. Maggi,
+\emph{Sets of Finite Perimeter and Geometric Variational Problems},
+Cambridge University Press, Cambridge (2012).
+DOI: 10.1017/CBO9781139108133.
 
 \end{thebibliography}
 

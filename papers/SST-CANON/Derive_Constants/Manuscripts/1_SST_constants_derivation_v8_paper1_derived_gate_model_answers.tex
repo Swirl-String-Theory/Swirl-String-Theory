@@ -1014,45 +1014,200 @@ Spherical factor & $\Xsph$ & \num{1.04604451} & closure-systematic \\
 \section{Derived-label policy for companion results}
 \label{sec:derived-label-policy}
 
+This section records the updated status after the post-review gate scripts.  The
+companion results should still be read as a hierarchy of derived, conditional,
+and open steps rather than as a single first-principles derivation of QED
+\(\alpha\).
 
-The uniqueness proof for this minimal reduction is separated into
-Paper~IV, ``Uniqueness of the Minimal Finite-Cell Variational Reduction.''  In
-the three-paper sequence, Paper~I remains the algebraic status ledger; Paper~IV
-is the proposed route for upgrading the companion coefficients from closure
-choices to consequences of a stated variational reduction.
+The following gates have strengthened.
 
-The companion pressure-cell and BEM/NLS papers should not be read as changing
-the epistemic classification inside the present closure audit.  A quantity may
-be labelled first-principles derived only if all coefficients entering it are
-obtained from a stated variational or boundary-value problem without empirical
-fine-structure input.  In the current package the local Biot--Savart coefficient
-\(A_K\to1/(4\pi)\) satisfies this standard.  The pressure prefactor \(16\pi/3\),
-the finite-shell coefficient \(11/48\), the cell-radius closure
-\(R_{\rm cell}=2L_K\), and the far-field stiffness normalization
-\(\mathcal K_{\rm cell}=E_{\rm eff}/(8\pi)\) remain explicit derived-label
-gates.  Until those gates are passed, the companion result should be described
-as a closure-derived dimensionless fine-structure-scale eigenvalue, not as a
-complete first-principles derivation of QED \(\alpha\).
+First, the pressure-sector count is now derived inside the spherical finite-cell
+surface variation.  For a boundary perturbation
+\[
+  r(\Omega)=R[1+\epsilon f(\Omega)]
+\]
+at fixed volume, the surface-area second variation gives
+\[
+  \delta^2 A
+  =
+  \frac{R^2}{2}
+  \int_{S^2}\left(|\nabla_{S^2}f|^2-2f^2\right)d\Omega .
+\]
+For \(f=Y_{\ell m}\),
+\[
+  k_\ell=\ell(\ell+1)-2=(\ell-1)(\ell+2).
+\]
+Thus \(\ell=1\) is the three-dimensional translation/centre-displacement
+zero-mode sector, \(\ell\ge2\) are positive-stiffness shape modes, and
+\(\ell=0\) is the scalar compression sector.  Therefore
+\[
+  \mathcal P_{\rm min}=\mathcal H_0\oplus\mathcal H_1,
+  \qquad
+  N_p=1+3=4
+\]
+is derived within the spherical finite-cell surface reduction.
 
-A sharper intermediate status is available if the companion papers adopt the
-minimal \(SO(3)\)-symmetric finite-cell shell model.  In that model the
-pressure manifold is the lowest spherical subspace
-\(\mathcal H_0\oplus\mathcal H_1\), so \(N_p=1+3=4\); the finite-shell deficit
-is
-\(\sigma=3+\langle\sin^2\theta\rangle_{S^2}=3+2/3=11/3\); the cell-radius
-ratio follows from the reciprocal inner/outer pressure action
-\(A_\chi=\chi_R+N_p/\chi_R\), giving \(\chi_R=\sqrt{N_p}=2\); and the leading
-far-field mode is the unique exterior harmonic monopole, i.e.
-\(q_\phi=\dim H^0(S^2)=1\).  These statements justify the phrase
-``derived within the minimal finite-cell shell model.''  They still do not
-justify the stronger phrase ``first-principles derived from the full microscopic
-field equations,'' because the minimal shell model itself remains an additional
-theoretical closure.  The numerical value \(\Et=274.074996\) used in this
-paper should therefore be read only as the retrospective ledger value.  The
-companion BEM/NLS calculation gives its own \(E_\star\) and should be cited as
-the non-circular finite-cell route whenever an \(\alpha\)-free scale is meant.
+The perturbative and nonlinear robustness checks now strengthen this statement.
+The perturbative finite-core audit uses the first positive shape-mode gap
+\(k_2=4\) and verifies that corrections at the finite-core scale
+\[
+  \eta_K=\frac{1}{4\mathcal L_K}=1.52703116982\times10^{-2}
+\]
+are far below the half-gap criterion.  The nonlinear star-shaped solve uses
+\[
+  r(\Omega)=\exp\!\left(\sum_{\ell=2}^{\ell_{\max}}\sum_m
+  a_{\ell m}Y_{\ell m}(\Omega)\right)
+\]
+with exact volume rescaling.  For \(\ell_{\max}=6\), the
+\(\ell\ge2\) sector contains 45 real modes; 300 random samples per amplitude
+at \(\eta_K,0.05,0.10,0.25,0.50,1.00\) found no negative fixed-volume area
+excess, and 20 L-BFGS-B minimizations from amplitude-one random starts returned
+to the spherical solution with
+\[
+  \max\lVert a_{\ell m}^{\rm final}\rVert=5.830157\times10^{-7}.
+\]
+The global topological loophole is closed, within the finite-perimeter pressure
+cell class, by the Euclidean isoperimetric inequality
+\[
+  P(\Omega)^3\ge 36\pi V(\Omega)^2,
+\]
+with equality only for a ball.  Thus non-star-shaped, disconnected, and
+higher-genus admissible cells cannot lower the fixed-volume perimeter below the
+sphere.  Self-intersecting immersed surfaces are not admissible reduced
+boundaries of a pressure cell; if counted with multiplicity, they cannot
+improve the isoperimetric bound.
+
+
+Second, the radius action has a stronger SST-internal support.  The
+Laplace-matching script evaluates
+\[
+  P_{\rm kin}=\frac12\rho_{\rm core}
+  \lVert\mathbf v_{\!\boldsymbol{\circlearrowleft}}\rVert^2
+  =
+  2.329244600448\times10^{30}\ {\rm Pa},
+\]
+and
+\[
+  P_{\rm Laplace}=\frac{F_{\rm swirl}^{\max}}{2\pi r_c^2}
+  =
+  2.329244600448\times10^{30}\ {\rm Pa}.
+\]
+Hence \(\mu=P_{\rm in}/P_{\rm out}=1\) in the leading reciprocal pressure
+model, giving
+\[
+  A_\chi=\chi_R+\frac{N_p}{\chi_R},
+  \qquad
+  \chi_R=\sqrt{N_p}=2,
+  \qquad
+  \lambda_\chi=4 .
+\]
+This is derived within the Laplace-matched reciprocal pressure model, subject
+to excluding same-order nonreciprocal corrections such as \(\log\chi_R\),
+\(\chi_R^2\), or \(\chi_R^{-2}\).
+
+Third, the finite-shell coefficient is now localized to one explicit
+normalization gate.  The GP/NLS core-profile audit solves the radial vortex
+profile and derives
+\[
+  \sigma_{\rm vol}=3,
+  \qquad
+  \langle\sin^2\theta\rangle_{S^2}=\frac23.
+\]
+Thus
+\[
+  \sigma=3+\frac23 w_\perp .
+\]
+For the unweighted isotropic GP/NLS shell normalization \(w_\perp=1\),
+\[
+  \sigma=\frac{11}{3},
+  \qquad
+  \frac{\sigma}{4\chi_R^2}=\frac{11}{48}
+  \quad(\chi_R=2).
+\]
+The script confirms this result, but it also confirms that alternate
+profile-weight proxies need not give \(11/48\).  Therefore \(11/48\) is derived
+within the unweighted isotropic GP/NLS shell reduction, while the stronger
+primitive-equation claim still requires deriving \(w_\perp=1\) from the full
+core-profile reduction.
+
+Fourth, the exterior Hodge/phase part is derived but the interior Hessian is
+still open.  For a connected spherical cell boundary,
+\[
+  q_\phi=\dim H^0(S^2)=1,
+\]
+and the exterior constant phase mode obeys
+\[
+  \int_{r\ge R}|\nabla(\phi R/r)|^2\,d^3x=4\pi R\phi^2,
+  \qquad
+  \Lambda_\phi=4\pi R\mathcal K_{\rm cell}.
+\]
+Thus
+\[
+  \mathcal K_{\rm cell}=\frac{\Lambda_\phi}{4\pi R}.
+\]
+The additional identity
+\[
+  \Lambda_\phi=\frac{E_{\rm eff}}{2}
+\]
+has not yet been independently obtained from an interior one-cell operator.
+Consequently \(\mathcal K_{\rm cell}=E_{\rm eff}/(8\pi R)\) remains
+conditional on that interior Hessian.
+
+The strongest current classification is therefore
+\[
+  N_p=4
+  \quad[\text{derived in spherical surface spectrum; stable under perturbative, nonlinear star-shaped, and finite-perimeter global-topology checks}],
+\]
+\[
+  A_\chi=\chi_R+\frac{N_p}{\chi_R}
+  \quad[\text{derived in Laplace-matched reciprocal pressure model}],
+\]
+\[
+  \frac{11}{48}
+  \quad[\text{derived within unweighted isotropic GP/NLS shell reduction}],
+\]
+and
+\[
+  \mathcal K_{\rm cell}=\frac{E_{\rm eff}}{8\pi}
+  \quad[\text{conditional on }\Lambda_\phi=E_{\rm eff}/2].
+\]
+A complete first-principles derivation of the electromagnetic fine-structure
+constant still requires the final interior Hessian result and a microscopic
+derivation of \(w_\perp=1\).
+
+
+
+\subsection*{Code evidence for the updated gate status}
+
+The supporting scripts and outputs are stored in \texttt{../code/} relative to
+the \texttt{Manuscripts} directory.  The relevant reproducibility files are:
+\begin{itemize}
+\item \texttt{../code/derive\_pressure\_mode\_cutoff\_surface\_spectrum.py}
+and \texttt{../code/outputs\_surface\_mode\_cutoff/};
+\item \texttt{../code/test\_finite\_core\_nonspherical\_shape\_corrections.py}
+and \texttt{../code/outputs\_finite\_core\_shape/};
+\item \texttt{../code/solve\_nonlinear\_shape\_stability.py} and
+\texttt{../code/outputs\_nonlinear\_shape\_stability\_lmax6\_opt/};
+\item \texttt{../code/derive\_gp\_core\_profile\_second\_variation.py} and
+\texttt{../code/outputs\_gp\_core\_profile\_second\_variation/};
+\item \texttt{../code/derive\_pressure\_self\_duality\_from\_laplace\_matching.py}
+and \texttt{../code/outputs\_laplace\_self\_duality/};
+\item \texttt{../code/solve\_one\_cell\_hodge\_phase\_hessian.py} and
+\texttt{../code/outputs\_hodge\_phase\_hessian/}.
+\end{itemize}
 
 \section{Discussion}
+
+The post-review gate calculations sharpen the closure status.  The previous
+delay-stability route did not cleanly retain the \(\ell=1\) sector with default
+parameters; it has therefore been superseded by the fixed-volume surface
+spectrum, which gives \(k_\ell=(\ell-1)(\ell+2)\) and derives
+\(N_p=4\) in the spherical finite-cell reduction.  The pressure self-duality is
+also strengthened by the equality of the SST kinetic and Laplace pressures.
+The remaining nontrivial open targets are now narrowed to the microscopic
+normalization \(w_\perp=1\) and the interior phase-Hessian identity
+\(\Lambda_\phi=E_{\rm eff}/2\).
+
 
 The fourth companion note gives the uniqueness theorem for the finite-cell
 variational reduction: constrained \(S^2\) pressure minimization, isotropic
@@ -1698,6 +1853,19 @@ R.~Oros di Bartini,
 Relations between physical constants,
 \textit{Progress in Physics} \textbf{3}, 34 (2005).
 \url{https://www.ptep-online.com/2005/PP-03-06.PDF}
+
+\bibitem{Osserman1978}
+R. Osserman,
+``The isoperimetric inequality,''
+\emph{Bulletin of the American Mathematical Society} \textbf{84},
+1182--1238 (1978).
+DOI: 10.1090/S0002-9904-1978-14553-4.
+
+\bibitem{Maggi2012}
+F. Maggi,
+\emph{Sets of Finite Perimeter and Geometric Variational Problems},
+Cambridge University Press, Cambridge (2012).
+DOI: 10.1017/CBO9781139108133.
 
 \end{thebibliography}
 

@@ -102,14 +102,15 @@ As a controlled extension, we also state and analyze an explicit spherical
 pressure-cell closure in which a trefoil Biot--Savart coefficient with
 conjectured slender-core asymptote $\AK\to1/(4\pi)$ fixes the local core
 radius while a spherical volume-curvature response supplies a candidate
-finite-core correction to the fine-structure scale.  The dominant numerical
-input in this extension is the zeroth-order aspect scale
+finite-core correction to the fine-structure scale.  The dominant numerical input in this extension is the zeroth-order aspect scale
 $\Et=274.074996$, which fixes the first four to five significant figures of
-$\alpha_{\rm cell}\simeq2/\Et$.  Thus, within the present paper, the spherical-cell extension is a
-conditional reproduction given a conjectured external aspect eigenvalue,
-not a derivation from the Compton-core algebra alone.  Companion work replaces
-this external aspect input by a BEM/NLS-shell finite-cell eigenvalue and treats
-the far-field coupling as a separate theorem target.
+$\alpha_{\rm cell}\simeq2/\Et$.  In this paper that number is a retrospective
+closure target, not a non-circular prediction.  Thus the spherical-cell extension
+is a conditional reproduction given a conjectured external aspect scale, not a
+derivation from the Compton-core algebra alone.  Companion work supplies the
+non-CODATA BEM/NLS-shell stationary-point route, whose numerical value differs
+slightly from this retrospective target; the far-field coupling remains a
+separate theorem target.
 
 \end{abstract}
 
@@ -159,10 +160,10 @@ Appendix~\ref{app:spherical_geometry} derives the spherical pressure-cell
 Jacobian used in the closure factor; Appendix~\ref{app:alpha_theorem}
 states the resulting conditional fine-structure closure theorem;
 Appendix~\ref{app:numerics} records the numerical convergence and
-robustness requirements; Appendix~\ref{app:sensitivity} gives the
-sensitivity and falsification checks; and Appendix~\ref{app:history}
-quarantines historical numerical coincidences that are not used as
-evidence in the derivation.  A companion spherical/NLS pressure-cell paper
+robustness requirements, while Appendix~\ref{app:sensitivity} gives the
+sensitivity and falsification checks.  Historical numerical coincidences are
+omitted from the submission version because they are not evidentiary steps in
+the closure analysis.  A companion spherical/NLS pressure-cell paper
 derives the pressure scale \(E_p^{\rm NLS}\) and shell stiffness
 \(\kappa_{\rm NLS}^{\rm shell}\), while a companion BEM/NLS finite-cell
 paper numerically extracts the stationary aspect eigenvalue \(E_\star\).
@@ -1013,6 +1014,13 @@ Spherical factor & $\Xsph$ & \num{1.04604451} & closure-systematic \\
 \section{Derived-label policy for companion results}
 \label{sec:derived-label-policy}
 
+
+The uniqueness proof for this minimal reduction is separated into
+Paper~IV, ``Uniqueness of the Minimal Finite-Cell Variational Reduction.''  In
+the three-paper sequence, Paper~I remains the algebraic status ledger; Paper~IV
+is the proposed route for upgrading the companion coefficients from closure
+choices to consequences of a stated variational reduction.
+
 The companion pressure-cell and BEM/NLS papers should not be read as changing
 the epistemic classification inside the present closure audit.  A quantity may
 be labelled first-principles derived only if all coefficients entering it are
@@ -1039,9 +1047,19 @@ far-field mode is the unique exterior harmonic monopole, i.e.
 ``derived within the minimal finite-cell shell model.''  They still do not
 justify the stronger phrase ``first-principles derived from the full microscopic
 field equations,'' because the minimal shell model itself remains an additional
-theoretical closure.
+theoretical closure.  The numerical value \(\Et=274.074996\) used in this
+paper should therefore be read only as the retrospective ledger value.  The
+companion BEM/NLS calculation gives its own \(E_\star\) and should be cited as
+the non-circular finite-cell route whenever an \(\alpha\)-free scale is meant.
 
 \section{Discussion}
+
+The fourth companion note gives the uniqueness theorem for the finite-cell
+variational reduction: constrained \(S^2\) pressure minimization, isotropic
+NLS/GP shell variation, reciprocal radius stationarity, and exterior
+\(H^0(S^2)\) phase selection.  This is the strongest current justification for
+the phrase ``derived within the minimal finite-cell variational reduction.''
+
 
 The companion Paper~II appendix gives the pressure-sector and finite-shell
 arguments that turn the coefficients \(16\pi/3\), \(11/48\), and
@@ -1113,7 +1131,10 @@ candidate for the $\alpha$ closure,
 Eq.~\eqref{eq:alpha_spherical_prediction}.  It succeeds algebraically and
 numerically within the stated pressure-cell model, but its status remains
 conditional on deriving that functional from the full hydrodynamic or
-field-theoretic SST dynamics.
+field-theoretic SST dynamics.  In particular, the retrospective \(\Et\)
+value used for the ledger should not be conflated with the companion
+BEM/NLS stationary point; the latter is the non-CODATA route, whereas the
+former records what the original Compton-core closure would need to match.
 
 
 

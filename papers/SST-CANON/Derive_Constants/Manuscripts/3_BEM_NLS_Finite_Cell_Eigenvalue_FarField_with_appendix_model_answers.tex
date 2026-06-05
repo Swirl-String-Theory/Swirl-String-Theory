@@ -338,15 +338,59 @@ content resides primarily in the pressure-cell closure.  Those analytical
 closure ingredients are supplied by the companion pressure-cell paper and must
 not be described as a BEM-derived spectrum.
 
+
+\section{Updated coefficient-gate status}
+\label{sec:updated-gate-status}
+
+The companion gate scripts alter the status of several inputs used by the
+finite-cell calculation.  The pressure mode count \(N_p=4\) is now derived in
+the spherical finite-cell surface spectrum:
+\[
+  k_\ell=\ell(\ell+1)-2=(\ell-1)(\ell+2),
+\]
+so \(\ell=1\) is the translation sector, \(\ell\ge2\) are positive-stiffness
+shape modes, and \(\ell=0\) is the compression sector.  The perturbative and nonlinear robustness checks keep this cutoff intact:
+finite-core corrections at \(\eta_K=1/(4\mathcal L_K)\) remain far below the
+\(k_2/2=2\) half-gap bound, and the nonlinear star-shaped solve through
+\(\ell_{\max}=6\) found no finite-amplitude \(\ell\ge2\) competing mode.  The
+global finite-perimeter admissibility class is protected by the Euclidean
+isoperimetric inequality, so non-star-shaped, disconnected, or higher-genus
+cells cannot beat the fixed-volume spherical area.
+  The radius action is
+also strengthened by the SST pressure identity
+\[
+  \frac12\rho_{\rm core}
+  \lVert\mathbf v_{\!\boldsymbol{\circlearrowleft}}\rVert^2
+  =
+  \frac{F_{\rm swirl}^{\max}}{2\pi r_c^2},
+\]
+which gives \(A_\chi=\chi_R+N_p/\chi_R\) and \(\chi_R=2\) in the
+Laplace-matched reciprocal model.
+
+The finite-shell coefficient \(11/48\) is derived only within the unweighted
+isotropic GP/NLS shell reduction.  The open microscopic gate is
+\(w_\perp=1\).  The far-field Hodge calculation derives
+\[
+  q_\phi=1,
+  \qquad
+  \Lambda_\phi=4\pi R\mathcal K_{\rm cell},
+\]
+but the interior identity \(\Lambda_\phi=E_{\rm eff}/2\) remains open.
+Consequently the numerical BEM/NLS stationary point should be read as a
+pressure-selected stationary point with a conditional far-field normalization,
+not as an independent spectral derivation of \(\alpha\).
+
 \section{Far-field coupling theorem}
 
 
-The uniqueness of the \(H^0(S^2)\) far-field phase selection and its role in
-the full coefficient chain are proved in Paper~IV.  The present paper keeps the
+The exterior Hodge calculation fixes the \(H^0(S^2)\) far-field selection:
+only the constant boundary phase produces the leading \(1/r\) mode, so
+\(q_\phi=\dim H^0(S^2)=1\).  It also gives the exterior capacity relation
+\(\Lambda_\phi=4\pi R\mathcal K_{\rm cell}\).  The present paper keeps the
 two-cell calculation separate: it tests the finite-cell stationary point and
-the conditional Green-function implementation, while Paper~IV supplies the
-minimal variational reduction that fixes \(q_\phi=1\) and
-\(\mathcal K_{\rm cell}=E_{\rm eff}/(8\pi)\) within that reduction.
+the conditional Green-function implementation.  The remaining far-field gate is
+the interior operator identity \(\Lambda_\phi=E_{\rm eff}/2\), without which
+\(\mathcal K_{\rm cell}=E_{\rm eff}/(8\pi R)\) is conditional.
 
 
 The one-cell phase-Hessian normalization required to make this theorem independent is isolated in Appendix~\ref{app:farfield-stiffness-target}. The appendix proves the exterior Green-function identity \(\Lambda_\phi=4\pi\mathcal K_{\rm cell}\) and states the remaining operator target \(\Lambda_\phi=E_{\rm eff}/2\).
@@ -554,12 +598,14 @@ these requirements as explicit pass/fail gates.
 The following checks are required before the result can be promoted beyond a
 conditional closure claim:
 \begin{enumerate}
-\item derive the shell coefficient \(11/48\) from a controlled GP/NLS
-finite-core second variation;
+\item derive the microscopic normalization \(w_\perp=1\) from the full GP/SST
+core-profile reduction.  The current script derives \(11/48\) inside the
+unweighted isotropic GP/NLS shell model, but profile-weight sensitivity shows
+that \(w_\perp=1\) is the remaining primitive-equation gate;
 \item obtain \(\Lambda_\phi=E_{\rm eff}/2\) from an independent one-cell
-phase-Hessian operator;
-\item repeat the pressure-cell pipeline with an \(\ell\le2\) pressure manifold
-to test the \(\ell\le1\) cutoff;
+phase-Hessian operator.  The exterior Hodge calculation already gives
+\(\Lambda_\phi=4\pi R\mathcal K_{\rm cell}\) and \(q_\phi=1\);
+\item repeat the nonlinear shape-stability audit at higher \(\ell_{\max}\) only as a numerical robustness extension.  The current evidence through \(\ell_{\max}=6\), together with the isoperimetric bound for finite-perimeter cells, already prevents \(\ell\ge2\) from entering the leading pressure manifold within the stated admissibility class;
 \item run the same pipeline for the unknot, \(4_1\), and other low-complexity
 knots as a discriminator for the trefoil assignment;
 \item report the finite-core correction sensitivity
@@ -567,6 +613,22 @@ knots as a discriminator for the trefoil assignment;
 \end{enumerate}
 These checks do not invalidate the present conditional closure.  They specify
 what would be needed for a stronger derived label.
+
+
+\section{Code evidence used by this paper}
+\label{sec:paper3-code-evidence}
+
+The finite-cell stationary-point and far-field calculations are accompanied by
+gate-audit scripts in \texttt{../code/}.  In particular, the \(N_p=4\)
+surface-spectrum and shape-stability checks use
+\texttt{derive\_pressure\_mode\_cutoff\_surface\_spectrum.py},
+\texttt{test\_finite\_core\_nonspherical\_shape\_corrections.py}, and
+\texttt{solve\_nonlinear\_shape\_stability.py}.  The pressure-radius,
+GP-shell, and Hodge-capacity gates use
+\texttt{derive\_pressure\_self\_duality\_from\_laplace\_matching.py},
+\texttt{derive\_gp\_core\_profile\_second\_variation.py}, and
+\texttt{solve\_one\_cell\_hodge\_phase\_hessian.py}.  The numerical outputs are
+stored in the corresponding \texttt{../code/outputs\_*} directories.
 
 \section{Conclusion}
 
@@ -820,6 +882,19 @@ P. J. Mohr, D. B. Newell, B. N. Taylor, and E. Tiesinga,
 ``CODATA Recommended Values of the Fundamental Physical Constants: 2022,''
 arXiv:2409.03787 (2024).
 Permalink: \url{https://arxiv.org/abs/2409.03787}.
+
+\bibitem{Osserman1978}
+R. Osserman,
+``The isoperimetric inequality,''
+\emph{Bulletin of the American Mathematical Society} \textbf{84},
+1182--1238 (1978).
+DOI: 10.1090/S0002-9904-1978-14553-4.
+
+\bibitem{Maggi2012}
+F. Maggi,
+\emph{Sets of Finite Perimeter and Geometric Variational Problems},
+Cambridge University Press, Cambridge (2012).
+DOI: 10.1017/CBO9781139108133.
 
 \end{thebibliography}
 

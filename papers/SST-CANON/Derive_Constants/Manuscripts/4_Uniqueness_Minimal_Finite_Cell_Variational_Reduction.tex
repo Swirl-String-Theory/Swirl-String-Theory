@@ -8,8 +8,8 @@
 \usepackage{siunitx}
 \usepackage{enumitem}
 
-\title{Uniqueness of the Minimal Finite-Cell Variational Reduction:\\
-A Derivation Target for the Fine-Structure-Scale Pressure Closure}
+\title{Finite-Cell Gate Derivations and Remaining Operator Targets:\\
+Surface Spectrum, Laplace Matching, GP/NLS Shell Response, and Hodge Capacity}
 
 \author{Omar Iskandarani\\
 Independent Researcher, Appingedam, The Netherlands}
@@ -29,31 +29,29 @@ Independent Researcher, Appingedam, The Netherlands}
 \begin{abstract}
 The companion papers isolate a dimensionless fine-structure-scale closure based
 on the ideal-trefoil ropelength, a spherical pressure cell, and a finite-cell
-BEM/NLS stationary point.  The remaining question is whether the coefficients
-\(N_p=4\), \(\sigma=11/3\), \(\chi_R=2\), and \(q_\phi=1\) are merely closure
-choices or consequences of a more restrictive variational reduction.  This note
-states and proves a conditional uniqueness theorem: under \(SO(3)\) covariance,
-locality on the spherical cell boundary, positive quadratic order, volume and
-centre-displacement pressure constraints, inner/outer pressure reciprocity, and
-selection of the leading \(1/r\) exterior phase field, the minimal finite-cell
-variational reduction uniquely gives
+BEM/NLS stationary point.  This note records the updated status of the four
+coefficient gates after the post-review calculations.  The pressure-sector
+count is derived from the fixed-volume surface spectrum of a spherical cell:
+\(k_\ell=\ell(\ell+1)-2\), so \(\ell=0\) is the compression sector,
+\(\ell=1\) is the translation/centre-displacement sector, and \(\ell\ge2\) are
+positive-stiffness shape modes; hence \(N_p=1+3=4\).  The radius action is
+derived within the Laplace-matched reciprocal pressure model because the SST
+kinetic and circular Laplace pressures agree,
 \[
-  N_p=4,\qquad
-  \sigma=\frac{11}{3},\qquad
-  \chi_R=2,\qquad
-  q_\phi=1.
-\]
-Consequently,
-\[
-  \EpNLS
+  \frac12\rho_{\rm core}\lVert\mathbf v_{\!\boldsymbol{\circlearrowleft}}\rVert^2
   =
-  \frac{16\pi}{3}\LK
-  \left(1-\frac{11}{48\LK^2}\right)
+  \frac{F_{\rm swirl}^{\max}}{2\pi r_c^2},
 \]
-is derived within the stated finite-cell variational reduction.  The result is
-not claimed to be a complete first-principles derivation from the full
-microscopic field equations; rather, it identifies the precise reduction
-assumptions under which the pressure-cell closure is unique.
+giving \(A_\chi=\chi_R+N_p/\chi_R\) and \(\chi_R=2\).  The GP/NLS shell audit
+derives \(\sigma=3+(2/3)w_\perp\); the value \(11/48\) follows for the
+unweighted isotropic shell normalization \(w_\perp=1\), while deriving
+\(w_\perp=1\) from the full microscopic core reduction remains open.  Finally,
+the exterior Hodge phase calculation derives \(q_\phi=1\) and
+\(\Lambda_\phi=4\pi R\mathcal K_{\rm cell}\), but the interior operator
+identity \(\Lambda_\phi=E_{\rm eff}/2\) remains the required step for an
+unconditional far-field stiffness.  Thus the present status is stronger than a
+free closure model but still below a complete first-principles derivation of
+the electromagnetic fine-structure constant.
 \end{abstract}
 
 \section{Purpose and status}
@@ -76,6 +74,42 @@ It is not, by itself,
 \]
 That stronger statement would require deriving the axioms below directly from
 the underlying field theory.
+
+
+\section{Post-review gate status}
+
+The achieved results are:
+\[
+  N_p=4
+  \quad [\text{derived in spherical surface spectrum; stable under perturbative, nonlinear star-shaped, and finite-perimeter global-topology checks}],
+\]
+\[
+  A_\chi=\chi_R+\frac{N_p}{\chi_R},\quad \chi_R=2
+  \quad [\text{derived in Laplace-matched reciprocal pressure model}],
+\]
+\[
+  \frac{11}{48}
+  \quad [\text{derived within unweighted isotropic GP/NLS shell reduction}],
+\]
+and
+\[
+  q_\phi=1,\quad \Lambda_\phi=4\pi R\mathcal K_{\rm cell}
+  \quad [\text{derived by exterior Hodge capacity}].
+\]
+The remaining open targets are:
+\[
+  w_\perp=1
+  \quad [\text{full microscopic GP/SST core reduction}],
+\]
+and
+\[
+  \Lambda_\phi=\frac{E_{\rm eff}}{2}
+  \quad [\text{interior one-cell phase Hessian}].
+\]
+The earlier delay-stability route is no longer used as the primary justification
+for \(N_p=4\), because its default parameters did not cleanly retain the
+\(\ell=1\) sector.  The surface-spectrum route is parameter-free at quadratic
+order and is therefore the preferred derivation.
 
 \section{Axioms of the minimal finite-cell reduction}
 
@@ -167,6 +201,114 @@ subspace satisfying the volume and centre-displacement constraints.  Modes
 \(\ell\ge2\) represent quadrupolar and higher shape deformations and are not
 required by the constraints.
 
+
+\section{Theorem 1b: fixed-volume surface spectrum gives the same \(N_p=4\)}
+
+The constrained pressure argument above is strengthened by the fixed-volume
+surface spectrum.  Let the spherical boundary be
+\[
+  r(\Omega)=R[1+\epsilon f(\Omega)].
+\]
+At fixed volume,
+\[
+  \delta^2 A
+  =
+  \frac{R^2}{2}
+  \int_{S^2}
+  \left(
+  |\nabla_{S^2}f|^2-2f^2
+  \right)d\Omega.
+\]
+For \(f=Y_{\ell m}\),
+\[
+  k_\ell
+  =
+  \ell(\ell+1)-2
+  =
+  (\ell-1)(\ell+2).
+\]
+Thus \(k_1=0\), identifying the three translation/centre-displacement modes.
+For \(\ell\ge2\), \(k_\ell>0\), so these are positive-stiffness shape modes
+integrated out at zeroth order.  The \(\ell=0\) mode is retained separately as
+the scalar compression degree of freedom.  Hence
+\[
+  \mathcal P_{\rm min}
+  =
+  \mathcal H_0\oplus\mathcal H_1,
+  \qquad
+  N_p=1+3=4.
+\]
+This is the preferred derivation of \(N_p=4\) in the present package.
+
+
+\section{Theorem 1c: finite-core and nonlinear \(\ell\ge2\) shape stability}
+
+The first positive fixed-volume shape-mode gap is
+\[
+  k_2=4.
+\]
+Let \(\delta H\) be the finite-core or weak nonspherical perturbation of the
+\(\ell\ge2\) shape Hessian.  If
+\[
+  \|\delta H\|_{\rm op}<\frac{k_2}{2}=2,
+\]
+then the \(\ell\ge2\) block remains separated from the retained
+\(\mathcal H_0\oplus\mathcal H_1\) pressure manifold.  The finite-core scale in
+the trefoil cell is
+\[
+  \eta_K=\frac{1}{4\mathcal L_K}=1.52703116982\times10^{-2},
+\]
+far below this half-gap bound.
+
+A nonlinear star-shaped audit tests finite-amplitude deformations
+\[
+  r(\Omega)=
+  \exp\!\left(
+  \sum_{\ell=2}^{\ell_{\max}}\sum_m a_{\ell m}Y_{\ell m}(\Omega)
+  \right)
+\]
+with exact volume rescaling to \(V=4\pi/3\).  For \(\ell_{\max}=6\), the
+\(\ell\ge2\) coefficient space has 45 real modes.  Across 300 random samples
+per amplitude at \(\eta_K,0.05,0.10,0.25,0.50,1.00\), no negative fixed-volume
+area excess was found.  At the physical scale,
+\[
+  \min\Delta A_{\rm random}=1.71825494947\times10^{-3}.
+\]
+Moreover, 20 L-BFGS-B local minimizations from amplitude-one random starts
+returned to the spherical solution, with
+\[
+  \Delta A_{\rm final}\lesssim 1.2\times10^{-12},
+  \qquad
+  \max\lVert a_{\ell m}^{\rm final}\rVert
+  =
+  5.830157\times10^{-7}.
+\]
+Thus nonlinear \(\ell\ge2\) star-shaped deformations do not enter the leading
+pressure manifold in the tested class.
+
+\section{Theorem 1d: global topology admissibility}
+
+The nonlinear audit covers star-shaped surfaces.  The global loophole is closed
+for the larger admissible class of bounded finite-perimeter pressure cells by
+the Euclidean isoperimetric inequality:
+\[
+  P(\Omega)^3\ge 36\pi V(\Omega)^2,
+\]
+where \(P(\Omega)\) is the perimeter and \(V(\Omega)\) the enclosed volume.
+Equality holds only for a ball, up to null sets.  Hence, at fixed
+\(V(\Omega)=4\pi R^3/3\),
+\[
+  P(\Omega)\ge 4\pi R^2,
+  \qquad
+  \Delta A=P(\Omega)-4\pi R^2\ge0.
+\]
+Therefore no admissible non-star-shaped, disconnected, or higher-genus
+finite-perimeter pressure cell can lower the fixed-volume area below the
+sphere.  Self-intersecting immersed surfaces are not admissible reduced
+boundaries of a physical pressure cell; if counted with multiplicity, their
+area cannot improve the isoperimetric bound.  Thus global topology does not
+promote \(\ell\ge2\) modes into the leading pressure manifold.
+
 \section{Theorem 2: isotropic NLS/GP shell variation gives \(\sigma=11/3\)}
 
 Let
@@ -223,7 +365,48 @@ Thus the second-order shell coefficient is
   \frac{11}{3}.
 \]
 
+
+The GP core-profile audit confirms the angular result and computes the radial
+profile.  It shows that the normalized angular factor \(2/3\) is profile
+independent for isotropic radial weights.  It also shows that alternative
+profile-weight proxies do not generically reproduce \(11/48\).  Therefore the
+precise status is
+\[
+  \sigma=3+\frac23w_\perp,
+\]
+with \(11/48\) obtained for \(w_\perp=1\).  The equality \(w_\perp=1\) is the
+remaining microscopic normalization gate.
+
 \section{Theorem 3: reciprocal pressure stationarity gives \(\chi_R=2\)}
+
+
+The equal inner/outer normalization is now supported by the SST pressure
+identity.  With the canonical constants,
+\[
+  P_{\rm kin}
+  =
+  \frac12\rho_{\rm core}
+  \lVert\mathbf v_{\!\boldsymbol{\circlearrowleft}}\rVert^2
+  =
+  2.329244600448\times10^{30}\ {\rm Pa},
+\]
+and
+\[
+  P_{\rm Laplace}
+  =
+  \frac{F_{\rm swirl}^{\max}}{2\pi r_c^2}
+  =
+  2.329244600448\times10^{30}\ {\rm Pa}.
+\]
+Therefore the leading pressure ratio is
+\[
+  \mu=\frac{P_{\rm in}}{P_{\rm out}}=1.
+\]
+The general reciprocal action
+\[
+  A_\chi=\chi_R+\mu\frac{N_p}{\chi_R}
+\]
+then reduces to the self-dual form used below.
 
 Let
 \[
@@ -309,6 +492,16 @@ and therefore
   \frac{\Eeff}{8\pi}.
 \]
 
+
+The exterior Hodge calculation derives \(q_\phi=1\) and the capacity relation
+\(\Lambda_\phi=4\pi R\mathcal K_{\rm cell}\).  It does not by itself derive the
+interior identity \(\Lambda_\phi=E_{\rm eff}/2\).  Thus
+\[
+  \mathcal K_{\rm cell}=\frac{E_{\rm eff}}{8\pi R}
+\]
+is conditional on the interior one-cell phase-Hessian result.  For \(R=1\), the
+conditional target is \(\mathcal K_{\rm cell}=E_{\rm eff}/(8\pi)\).
+
 \section{Resulting pressure scale}
 
 Combining Theorems 1--3,
@@ -359,6 +552,29 @@ so that the leading two-cell interaction has coefficient
   \frac{2}{\Eeff}.
 \]
 
+
+\section{Reproducibility map}
+
+The supporting scripts and output files are stored in \texttt{../code/} relative
+to the \texttt{Manuscripts} directory:
+\begin{itemize}
+\item \texttt{derive\_pressure\_mode\_cutoff\_surface\_spectrum.py}:
+linear surface-spectrum derivation of \(N_p=4\);
+\item \texttt{test\_finite\_core\_nonspherical\_shape\_corrections.py}:
+perturbative finite-core/nonspherical half-gap audit;
+\item \texttt{solve\_nonlinear\_shape\_stability.py}:
+nonlinear star-shaped \(\ell\ge2\) shape-stability solve;
+\item \texttt{derive\_gp\_core\_profile\_second\_variation.py}:
+GP/NLS shell coefficient and \(w_\perp\) sensitivity audit;
+\item \texttt{derive\_pressure\_self\_duality\_from\_laplace\_matching.py}:
+Laplace-matched reciprocal radius action;
+\item \texttt{solve\_one\_cell\_hodge\_phase\_hessian.py}:
+exterior Hodge capacity and \(q_\phi=1\).
+\end{itemize}
+The numerical CSV and Markdown outputs are stored in the corresponding
+\texttt{../code/outputs\_*} directories and summarized in
+\texttt{../code/DERIVED\_GATE\_EVIDENCE\_MANIFEST.json}.
+
 \section{Falsification and robustness checks}
 
 The uniqueness theorem depends on the minimal axioms.  The following checks
@@ -377,15 +593,36 @@ operator and verify \(\Lambda_\phi=\Eeff/2\).
 
 \section{Conclusion}
 
-The four coefficient gates are not free once the minimal finite-cell
-variational reduction is imposed.  The pressure constraints uniquely select
-\(\Harm_0\oplus\Harm_1\) and hence \(N_p=4\); the isotropic shell second
-variation gives \(\sigma=11/3\); reciprocal inner/outer pressure stationarity
-gives \(\chi_R=2\); and the exterior \(1/r\) phase field gives \(q_\phi=1\) and
-\(\Kcell=\Eeff/(8\pi)\).  The resulting fine-structure-scale pressure closure
-is therefore derived within this unique minimal variational reduction.  The
-remaining task is to derive the reduction axioms themselves from the full
-microscopic field equations.
+The four gate calculations now have differentiated status.  The pressure-sector
+count is derived by the spherical fixed-volume surface spectrum and is stable
+under perturbative finite-core, nonlinear star-shaped, and global
+finite-perimeter topology checks:
+\[
+  k_\ell=(\ell-1)(\ell+2),
+  \qquad
+  \mathcal P_{\rm min}=\mathcal H_0\oplus\mathcal H_1,
+  \qquad
+  N_p=4.
+\]
+The radius action is derived within the Laplace-matched reciprocal pressure
+model because the SST kinetic and circular Laplace pressures agree, giving
+\(\mu=1\), \(A_\chi=\chi_R+N_p/\chi_R\), and \(\chi_R=2\).  The finite-shell
+coefficient \(11/48\) is derived within the unweighted isotropic GP/NLS shell
+reduction, but the primitive-equation derivation of \(w_\perp=1\) remains open.
+The exterior phase-Hodge calculation derives \(q_\phi=1\) and
+\(\Lambda_\phi=4\pi R\mathcal K_{\rm cell}\), while the interior Hessian
+identity \(\Lambda_\phi=E_{\rm eff}/2\) remains open.
+
+Thus the package has moved beyond a free closure model for \(N_p\) and
+\(\chi_R\), and it has isolated \(11/48\) to a single microscopic normalization
+gate.  A complete first-principles derivation of the electromagnetic
+fine-structure constant still requires the two remaining primitive-equation
+results:
+\[
+  w_\perp=1,
+  \qquad
+  \Lambda_\phi=\frac{E_{\rm eff}}{2}.
+\]
 
 \begin{thebibliography}{9}
 
@@ -422,6 +659,26 @@ L. C. Evans,
 \emph{Partial Differential Equations}, 2nd ed.,
 American Mathematical Society, Providence, RI (2010).
 ISBN: 978-0821849743.
+
+\bibitem{Osserman1978}
+R. Osserman,
+``The isoperimetric inequality,''
+\emph{Bulletin of the American Mathematical Society} \textbf{84},
+1182--1238 (1978).
+DOI: 10.1090/S0002-9904-1978-14553-4.
+
+\bibitem{EvansGariepy2015}
+L. C. Evans and R. F. Gariepy,
+\emph{Measure Theory and Fine Properties of Functions},
+revised ed.,
+CRC Press, Boca Raton (2015).
+ISBN: 978-1482242386.
+
+\bibitem{Maggi2012}
+F. Maggi,
+\emph{Sets of Finite Perimeter and Geometric Variational Problems},
+Cambridge University Press, Cambridge (2012).
+DOI: 10.1017/CBO9781139108133.
 
 \end{thebibliography}
 

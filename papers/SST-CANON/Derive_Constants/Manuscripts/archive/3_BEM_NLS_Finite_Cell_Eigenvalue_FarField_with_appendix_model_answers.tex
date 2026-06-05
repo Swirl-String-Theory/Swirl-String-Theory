@@ -28,8 +28,8 @@
 \newtheorem{proposition}{Proposition}
 \newtheorem{remark}{Remark}
 
-\title{A BEM/NLS Finite-Cell Eigenvalue for the Fine-Structure Scale\\
-\large Batch Convergence and a Far-Field Coupling Certificate}
+\title{A BEM/NLS Finite-Cell Stationary Point for a Fine-Structure-Scale Closure\\
+\large Batch Convergence and Conditional Far-Field Consistency}
 \author{Omar Iskandarani\\\small Independent Researcher, Appingedam, The Netherlands}
 \date{\today}
 
@@ -37,7 +37,7 @@
 \maketitle
 
 \begin{abstract}
-We report a finite-cell eigenvalue computation for the missing zeroth-order aspect scale in a Compton-core finite-filament closure model. The domain is a finite-core ideal trefoil cell with an outer spherical boundary, approximated by a scalar single-layer boundary-element response and an NLS finite-shell pressure-compliance term. The pressure scale and stiffness are fixed by the ideal trefoil ropelength, not by electron mass, charge, Planck's constant, the Rydberg constant, or CODATA data:
+We report a finite-cell stationary-point computation for the missing zeroth-order aspect scale in a Compton-core finite-filament closure model. The domain is a finite-core ideal trefoil cell with an outer spherical boundary, approximated by a scalar single-layer boundary-element response and an NLS finite-shell pressure-compliance term. The pressure scale and stiffness are fixed by the ideal trefoil ropelength, not by electron mass, charge, Planck's constant, the Rydberg constant, or CODATA data:
 \[
 E_p^{\rm NLS}=\frac{16\pi}{3}\LK\left(1-\frac{11}{48\LK^2}\right),
 \qquad
@@ -50,6 +50,12 @@ Using the Knot Atlas ideal-trefoil value \(\LK=16.371637\), the batch calculatio
 \alphacell^{-1}=137.035953090\pm 2.76e-05,
 \]
 where the uncertainty is the run-to-run standard deviation, not a statistical measurement error. The calculation is therefore no longer a direct calibration of \(E_0\). It is a conditional derivation of a dimensionless fine-structure-scale eigenvalue inside the stated BEM/NLS finite-cell closure. A full identification with the electromagnetic fine-structure constant still requires the companion far-field interaction theorem proving \(V(r)=\alphacell\hbar c/r+O(r^{-2})\).
+The BEM-only negative control does not produce an interior aspect scale, so the
+stationary point should be interpreted as the NLS pressure scale plus a small
+BEM compliance shift, not as an independent spectral discovery.  The far-field
+calculation is an internal Green-function consistency check conditional on the
+stiffness normalization \(\mathcal K_{\rm cell}=E_{\rm eff}/(8\pi)\).
+
 \end{abstract}
 
 \section{Purpose and status}
@@ -324,10 +330,24 @@ Therefore
 This is an important classification point: the numerical BEM calculation
 validates the finite-cell compliance shift around the NLS-shell pressure scale;
 it does not independently derive the prefactor \(16\pi/3\), the shell
-coefficient \(11/48\), or the pressure scale \(E_p\).  Those remain analytical
-closure ingredients supplied by the companion pressure-cell paper.
+coefficient \(11/48\), or the pressure scale \(E_p\).  The BEM-only control
+therefore supports a negative statement: without the NLS pressure enthalpy, the
+finite-cell BEM term does not select the observed aspect scale.  In the large
+stiffness limit the stationary point tends to \(E_p\), so the predictive
+content resides primarily in the pressure-cell closure.  Those analytical
+closure ingredients are supplied by the companion pressure-cell paper and must
+not be described as a BEM-derived spectrum.
 
 \section{Far-field coupling theorem}
+
+
+The uniqueness of the \(H^0(S^2)\) far-field phase selection and its role in
+the full coefficient chain are proved in Paper~IV.  The present paper keeps the
+two-cell calculation separate: it tests the finite-cell stationary point and
+the conditional Green-function implementation, while Paper~IV supplies the
+minimal variational reduction that fixes \(q_\phi=1\) and
+\(\mathcal K_{\rm cell}=E_{\rm eff}/(8\pi)\) within that reduction.
+
 
 The one-cell phase-Hessian normalization required to make this theorem independent is isolated in Appendix~\ref{app:farfield-stiffness-target}. The appendix proves the exterior Green-function identity \(\Lambda_\phi=4\pi\mathcal K_{\rm cell}\) and states the remaining operator target \(\Lambda_\phi=E_{\rm eff}/2\).
 
@@ -354,11 +374,15 @@ phase-Hessian normalization target.
 
 \label{sec:farfield-theorem}
 
-The result in this section is a conditional theorem.  It proves the Coulombic
-\(1/r\) form once the far-field stiffness normalization
-\(\mathcal K_{\rm cell}=E_{\rm eff}/(8\pi)\) is supplied.  The numerical
-two-cell certificate verifies the Green-function coefficient implied by that
-normalization.  A fully independent microscopic derivation requires a one-cell
+The result in this section is a conditional theorem and an internal
+consistency identity.  It proves the Coulombic \(1/r\) form only after the
+far-field stiffness normalization
+\(\mathcal K_{\rm cell}=E_{\rm eff}/(8\pi)\) has been supplied.  Since this
+normalization algebraically implies
+\(1/(4\pi\mathcal K_{\rm cell})=2/E_{\rm eff}=\alpha_{\rm cell}\), the
+two-cell certificate cannot be used as independent evidence for the value of
+\(\alpha\).  It verifies the Green-function implementation of the assumed
+stiffness.  A fully independent microscopic derivation requires a one-cell
 phase-Hessian calculation that obtains \(\Lambda_\phi=E_{\rm eff}/2\) without
 inserting the reduced quadratic action by hand.
 
@@ -488,6 +512,13 @@ A closed localized swirl-string by itself need not carry a monopolar \(1/r\) fie
 \section{Derived-label status}
 
 
+Paper~IV should be cited for the upgraded claim.  With only the numerical
+certificates in this paper, the far-field result is conditional; with the
+minimal-reduction uniqueness theorem, the stronger statement becomes
+``derived within the stated finite-cell variational reduction.''
+
+
+
 For the far-field part specifically, the \(H^0(S^2)\) argument fixes the
 multiplicity \(q_\phi=1\) of the leading \(1/r\) exterior phase mode.  What
 remains to be independently derived is the operator Hessian value
@@ -502,9 +533,11 @@ The exact far-field stiffness gate is formulated in Appendix~\ref{app:farfield-s
 The present calculation justifies the label ``closure-derived'' for
 \(E_\star\): given the NLS-shell pressure scale and stiffness, the BEM/NLS
 finite-cell action has a stable interior stationary point with controlled
-resolution and regularization dependence.  It does not yet justify the stronger
-label ``first-principles derived'' for the electromagnetic fine-structure
-constant.  That stronger label requires three additional analytical results:
+resolution and regularization dependence.  It also shows that the stationary
+point is pressure-selected: the BEM-only control does not derive \(E_0\), and
+\(E_\star=E_p+O(\kappa^{-1})\).  It does not yet justify the stronger label
+``first-principles derived'' for the electromagnetic fine-structure constant.
+That stronger label requires three additional analytical results:
 \begin{enumerate}
 \item a derivation of the pressure prefactor \(16\pi/3\);
 \item a derivation of the finite-shell coefficient \(11/48\);
@@ -513,6 +546,27 @@ constant.  That stronger label requires three additional analytical results:
 \end{enumerate}
 The accompanying audit script \texttt{audit\_derived\_label\_gates.py} encodes
 these requirements as explicit pass/fail gates.
+
+
+\section{Reviewer-facing robustness checks still required}
+\label{sec:reviewer-checks}
+
+The following checks are required before the result can be promoted beyond a
+conditional closure claim:
+\begin{enumerate}
+\item derive the shell coefficient \(11/48\) from a controlled GP/NLS
+finite-core second variation;
+\item obtain \(\Lambda_\phi=E_{\rm eff}/2\) from an independent one-cell
+phase-Hessian operator;
+\item repeat the pressure-cell pipeline with an \(\ell\le2\) pressure manifold
+to test the \(\ell\le1\) cutoff;
+\item run the same pipeline for the unknot, \(4_1\), and other low-complexity
+knots as a discriminator for the trefoil assignment;
+\item report the finite-core correction sensitivity
+\(\alpha_{\rm cell}(\beta)\) for \(\beta\in[1,1.10]\).
+\end{enumerate}
+These checks do not invalidate the present conditional closure.  They specify
+what would be needed for a stronger derived label.
 
 \section{Conclusion}
 
@@ -530,7 +584,7 @@ K=3_1
 \longrightarrow
 \alphacell.
 \]
-No electron mass, electric charge, Planck constant, Rydberg constant, or CODATA value is used in the derivation of \(\Estar\). Across 16 runs, the model yields \(\Estar=274.074903758\pm 5.51e-05\) and \(\alphacell^{-1}=137.035953090\pm 2.76e-05\). This is strong evidence that the missing aspect scale can be obtained from a finite-cell eigenvalue problem. A final claim that \(\alphacell\) is the electromagnetic fine-structure constant requires the far-field coupling certificate.
+No electron mass, electric charge, Planck constant, Rydberg constant, or CODATA value is used in the derivation of \(\Estar\). Across 16 runs, the model yields \(\Estar=274.074903758\pm 5.51e-05\) and \(\alphacell^{-1}=137.035953090\pm 2.76e-05\). This is strong evidence that the missing aspect scale can be obtained as a stationary point of the stated NLS pressure-cell closure.  It is not, by itself, evidence that the BEM term independently discovers the scale.  A final claim that \(\alphacell\) is the electromagnetic fine-structure constant requires an independent far-field stiffness derivation, not merely the internal Green-function certificate.
 
 \appendix
 \section{Full batch table}
