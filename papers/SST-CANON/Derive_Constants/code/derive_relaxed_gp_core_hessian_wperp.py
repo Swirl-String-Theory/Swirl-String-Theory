@@ -49,7 +49,7 @@ functional Schur-complement Hessian
 
     H_eff = E_eps eps - E_eps psi L_psi^{-1} E_psi eps.
 
-A pass w_perp≈1 is evidence for the gate; a fail means the primitive reduction
+A pass w_perp~=1 is evidence for the gate; a fail means the primitive reduction
 needs refinement.  A full theorem still requires the complete linearized GP
 operator response.
 
