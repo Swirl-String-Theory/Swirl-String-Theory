@@ -163,11 +163,11 @@ def parse_vec3_attr(s: str) -> np.ndarray:
 
 def ideal_id_to_name(bid: str) -> str:
     parts = str(bid).split(":")
-    if len(parts) >= 3 and parts[2] == "1":
-        return f"{parts[0]}_{parts[1]}"
+    if len(parts) >= 3:
+        return f"{parts[0]}_{parts[2]}"
     if len(parts) >= 2:
         return f"{parts[0]}_{parts[1]}"
-    return bid.replace(":", "_")
+    return str(bid).replace(":", "_")
 
 
 def is_xml_ideal(path: Path) -> bool:

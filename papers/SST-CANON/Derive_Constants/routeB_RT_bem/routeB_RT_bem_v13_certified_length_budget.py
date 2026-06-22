@@ -106,8 +106,8 @@ def parse_attrs_from_tag(tag: str) -> Dict[str, str]:
 
 def ideal_id_to_name(bid: str) -> str:
     parts = str(bid).split(":")
-    if len(parts) >= 3 and parts[2] == "1":
-        return f"{parts[0]}_{parts[1]}"
+    if len(parts) >= 3:
+        return f"{parts[0]}_{parts[2]}"
     if len(parts) >= 2:
         return f"{parts[0]}_{parts[1]}"
     return str(bid).replace(":", "_")
