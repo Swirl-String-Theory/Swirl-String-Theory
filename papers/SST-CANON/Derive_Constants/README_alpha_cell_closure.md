@@ -43,7 +43,7 @@ Install the required packages:
 ```bash
 python -m pip install numpy pandas matplotlib
 ```
-
+ 
 No compiled C++ extension, GPU backend, Torch, or SST-specific package is required.
 
 ---

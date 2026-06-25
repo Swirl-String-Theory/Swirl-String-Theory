@@ -1,0 +1,240 @@
+% =====================================================================
+% Foundations of Physics (FoP) -- Submission Manuscript
+% A Variational Origin of the Electron Magnetic Moment
+% Omar Iskandarani
+% =====================================================================
+
+\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}
+
+% =========================
+% Core packages
+% =========================
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsthm}
+% sn-jnl already loads hyperref; configure it instead of reloading.
+\hypersetup{hidelinks}
+
+% =========================
+% Theorem environments
+% =========================
+\theoremstyle{thmstyleone}
+\newtheorem{proposition}{Proposition}
+
+\theoremstyle{thmstyletwo}
+\newtheorem{remark}{Remark}
+
+\theoremstyle{thmstylethree}
+\newtheorem{definition}{Definition}
+
+% =========================
+% Paper metadata
+% =========================
+\newcommand{\papertitle}{A Variational Origin of the Electron Magnetic Moment}
+\newcommand{\papershorttitle}{Variational Origin of the Electron Magnetic Moment}
+\newcommand{\paperdoi}{10.5281/zenodo.18388692}
+\newcommand{\paperorcid}{0009-0006-1686-3961}
+\newcommand{\paperemail}{info@omariskandarani.com}
+\newcommand{\paperlocation}{Groningen, The Netherlands}
+
+\newcommand{\paperkeywords}{electron magnetic moment, self-interaction, dressing, variational principles, Hopfion, spinon, horn torus, Swirl-String Theory}
+
+% =========================
+% SST notation used in the consistency revision
+% =========================
+\newcommand{\vswirl}{\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}}
+\newcommand{\rc}{r_c}
+\newcommand{\lambdabarC}{\bar{\lambda}_C}
+\newcommand{\Htrefoil}{H^{0}_{3_1}}
+\newcommand{\spinon}{s^{-}}
+
+\raggedbottom
+
+\begin{document}
+
+    \title[\papershorttitle]{\papertitle}
+
+    \author*[1]{\fnm{Omar} \sur{Iskandarani}}\email{\paperemail}
+
+    \affil*[1]{\orgname{Independent Researcher},
+        \orgaddress{\city{\paperlocation}, \country{The Netherlands}}}
+
+% =========================
+% Abstract
+% =========================
+    \abstract{%
+        Recent work has shown that the electron’s magnetic moment is not uniquely determined at the level of the Dirac equation once electromagnetic self-interaction and dressing are treated consistently. This observation challenges the common textbook narrative in which Dirac theory alone fixes the observed magnetic moment and quantum electrodynamics (QED) merely supplies small radiative corrections. This revised version sharpens the Swirl-String Theory (SST) interpretation in light of compositeness and precision-$g$ constraints. The canonical scale $\rc$ is not treated as an electromagnetic tube radius or charge radius. It is instead interpreted as a horn-torus circulation radius, $\rc=\lVert\vswirl\rVert/\omega_C=(\alpha/2)\lambdabarC$, where $\lambdabarC=\hbar/(m_ec)$ is the reduced Compton wavelength. The visible electric charge and magnetic moment must therefore be carried primarily by a pointlike charged spinon sector, while the trefoil/Hopfion swirl envelope remains electromagnetically neutral to high precision. SST then supplies not a literal extended electromagnetic current model, but a variational selection principle for the bound state $e^- = \Htrefoil\otimes\spinon$: the neutral trefoil Hopfion encodes knot geometry, mass-scale selection, chirality, and ropelength data, whereas the bound spinon carries charge, spin, statistics, and the observed electromagnetic form factors. This reframes the empirical success of QED as evidence for a tightly selected pointlike electromagnetic sector bound to a neutral topological flow envelope.
+    }
+
+    \keywords{\paperkeywords}
+
+    \maketitle
+
+% ============================================================
+    \section{Introduction}\label{sec:intro}
+% ============================================================
+
+        The magnetic moment of the electron is widely regarded as one of the most precisely tested quantities in physics. Dirac’s relativistic wave equation predicts a gyromagnetic ratio $g=2$, while quantum electrodynamics (QED) accounts for the small anomalous correction with remarkable numerical accuracy. In standard presentations, the Dirac value is treated as exact at the one-particle level, with radiative effects merely perturbing it.
+
+        Recent analysis has clarified that this narrative rests on implicit assumptions about electromagnetic self-interaction and mass dressing. When the electron’s self-field is treated consistently—already within relativistic single-particle theory—the magnetic moment inferred from the theory becomes state-dependent rather than universal. This raises a foundational question: \emph{why does nature realize a single, sharply defined magnetic moment at all?}
+
+        The purpose of this paper is twofold. First, we summarize the conceptual implications of this self-interaction–induced indeterminacy. Second, we give the corrected SST interpretation: the extended swirl structure is not a visible electromagnetic charge distribution. It is a neutral topological flow envelope that binds a charged spinon. The magnetic moment observed by QED precision tests is therefore assigned to the spinon-dominated electromagnetic form factor, while the swirl-string geometry supplies the variational and topological selection conditions.
+
+% ============================================================
+    \section{Self-Interaction and the Limits of Dirac-Level Predictions}
+        \label{sec:selfinteraction}
+% ============================================================
+
+        Standard derivations of the electron’s magnetic moment proceed either by taking the non-relativistic limit of the Dirac equation in an external magnetic field or by decomposing the Dirac current into convective and spin contributions. Both approaches implicitly neglect the backreaction of the electron’s own electromagnetic field on its motion and current distribution.
+
+        When this backreaction is included, the separation between ``bare'' particle properties and ``field'' contributions becomes ambiguous. The magnetic moment inferred from the theory depends on how charge, current, and field energy are distributed in space. In other words, the Dirac equation alone does not fix a unique magnetic moment once self-interaction is treated consistently.
+
+        This observation does not contradict the numerical success of QED. Rather, it exposes a missing conceptual step: a physical mechanism is required to select one particular dressed configuration from a continuum of mathematically admissible ones.
+
+% ============================================================
+    \section{Extended Structure and Emergent Properties}
+        \label{sec:extended}
+% ============================================================
+
+        The state dependence revealed by self-interaction analysis strongly suggests that magnetic moment is not a primitive kinematic attribute. Instead, it is an emergent property of a self-consistent configuration of charge, current, and field.
+
+        This perspective aligns naturally with extended-structure models of particles. If the electron is not a point object but an excitation with internal structure, then its observable properties must be determined by the dynamics governing that structure. Universality, in this context, becomes a nontrivial achievement rather than an assumption.
+
+        The key question becomes: \emph{what physical principle selects the observed configuration?}
+
+% ============================================================
+    \section{Swirl-String Theory: Framework and Definitions}
+        \label{sec:framework}
+% ============================================================
+
+        Swirl-String Theory models particles as coherent excitations of an incompressible, inviscid effective medium. The fundamental degrees of freedom are swirl (vorticity-like) structures rather than point charges. In the ideal limit, the dynamics reduces to conservation laws familiar from fluid mechanics, while particle-like behavior arises from stable, localized configurations.
+
+        Energy in SST is stored in rotational motion of the medium. A generic swirl-energy functional takes the form
+        \begin{equation}
+            E = \frac{1}{2}\int \rho_{\!f}\,\lVert \mathbf{v} \rVert^2\, dV,
+        \end{equation}
+        where $\rho_{\!f}$ is the effective fluid density and $\mathbf{v}$ the local swirl velocity. This formulation automatically includes both ``core'' and ``field-like'' contributions inside the neutral medium response. It must not, however, be read as a literal electromagnetic charge-current distribution at the femtometre scale.
+
+        In the corrected interpretation, the canonical length $\rc$ is a circulation radius rather than a tube radius:
+        \begin{equation}
+            \rc = \frac{\lVert\vswirl\rVert}{\omega_C}
+            = \frac{\alpha}{2}\,\lambdabarC,
+            \qquad
+            \lambdabarC=\frac{\hbar}{m_ec}.
+            \label{eq:rc-circulation-radius}
+        \end{equation}
+        If $\lambda_C=h/(m_ec)$ denotes the unreduced Compton wavelength, then equivalently $\rc=(\alpha/4\pi)\lambda_C$. Equation~\eqref{eq:rc-circulation-radius} says that $\rc$ is the radius at which the internal tangential swirl speed $\lVert\vswirl\rVert$ rotates with Compton angular frequency $\omega_C$. Thus $\rc$ is naturally a horn-torus return-flow radius generated by the trefoil/Hopfion core, not the electromagnetic charge radius and not the microscopic defect radius.
+
+        We therefore distinguish the hierarchy
+        \begin{equation}
+            a_{\rm core} \ll R_{\rm charge} \ll \rc \ll \lambdabarC,
+            \label{eq:scale-hierarchy}
+        \end{equation}
+        where $a_{\rm core}$ is the microscopic core scale, $R_{\rm charge}$ is the electromagnetic charge radius governed by the charged spinon, and $\rc$ is the neutral horn-torus circulation radius. Any expression in the SST corpus that uses $\rc^3$ as a literal core volume must therefore be reread as a flow-averaged or envelope-scale quantity.
+
+% ============================================================
+    \section{Magnetic Moment as a Variationally Selected Property}
+        \label{sec:variational}
+% ============================================================
+
+        Within the corrected SST interpretation, a magnetic-moment analogue may arise geometrically from circulating swirl structure, but the observed electromagnetic magnetic moment cannot be a literal current moment of a femtometre-scale horn-torus flow. Precision electromagnetic form-factor and anomalous-moment constraints require the visible moment to be dominated by a pointlike charged sector. We therefore distinguish between a neutral geometric circulation scale and the electromagnetic moment carried by a bound spinon.
+
+        Universality enters only when the system is restricted by additional constraints, including:
+        \begin{itemize}
+            \item conservation of circulation-like quantities,
+            \item fixed topological class of the excitation,
+            \item and extremization of the swirl-energy functional.
+        \end{itemize}
+
+        \begin{proposition}
+            The physical electron corresponds to a dynamically stable bound state
+            \begin{equation}
+                e^- = \Htrefoil \otimes \spinon,
+                \label{eq:electron-bound-state}
+            \end{equation}
+            where the neutral trefoil/Hopfion sector fixes the topological and variational envelope, while the charged spinon sector carries the observed electric charge, spin, statistics, and electromagnetic magnetic moment.
+        \end{proposition}
+
+        All other configurations are dynamically unstable or inaccessible. In this way, a unique observed magnetic moment emerges not from an extended electromagnetic circulation at radius $\rc$, but from the selection of a unique spinon--Hopfion bound configuration.
+
+% ============================================================
+    \section{Electromagnetic Visibility and the Magnetic-Moment Constraint}
+        \label{sec:emvisibility}
+% ============================================================
+
+        The reinterpretation of $\rc$ as a horn-torus circulation radius solves the charge-compositeness problem only if the horn-torus flow is electromagnetically neutral to high precision. A femtometre-scale electromagnetic current distribution would generate visible charge and magnetic form factors at momenta of order $\hbar/\rc$, and would spoil the pointlike QED description of the electron.
+
+        The corrected SST form-factor decomposition is therefore
+        \begin{equation}
+            F_i(q^2)=F_i^{(s)}(q^2)+\epsilon_H F_i^{(H)}(q^2),
+            \qquad i=1,2,
+            \label{eq:form-factor-decomposition}
+        \end{equation}
+        with $F_i^{(s)}$ the spinon-dominated electromagnetic form factor, $F_i^{(H)}$ the neutral Hopfion-envelope contribution, and
+        \begin{equation}
+            |\epsilon_H|\ll 1.
+            \label{eq:epsilon-H-small}
+        \end{equation}
+        Thus the neutral flow may set a geometric and variational scale, but it cannot be an $O(1)$ electromagnetic current distribution.
+
+        This is the required correction to the literal ``moment from circulation'' reading. The magnetic moment may still have a variational origin in SST, but it is a variational origin of the \emph{spinon-bound electromagnetic state}, not a direct magnetic dipole moment of the horn-torus flow. The former is compatible with pointlike QED form factors; the latter is not.
+
+        \begin{remark}
+            In this revised reading, any previous SST-51 statement that assigns the observed electron magnetic moment to a literal electromagnetic current circulating at radius $\rc$ is superseded. The surviving statement is weaker and safer: the neutral swirl envelope supplies a topological and variational selection background for a pointlike charged spinon whose electromagnetic form factors reproduce the observed Dirac/QED moment.
+        \end{remark}
+
+% ============================================================
+    \section{Photons, Fermions, and the Role of Topology}
+        \label{sec:topology}
+% ============================================================
+
+        SST naturally distinguishes between particle types by topology and internal degrees of freedom. In the updated foundation, the electron is not a pure charged Hopfion. It is a composite bound state of a neutral trefoil/Hopfion envelope and a charged spinon. The Hopfion sector supplies knot type, chirality, ropelength data, and a neutral circulation geometry; the spinon sector supplies electric charge, spin-$\tfrac12$ statistics, and the visible electromagnetic moment.
+
+        Topology supplies discrete invariants where required, while variational selection fixes the allowed bound configuration. This explains why certain particle properties are robust and universal, while also avoiding the excluded picture of a large electromagnetic current loop. The condition that exactly one charged spinon binds to the trefoil/Hopfion remains an open spectral-selection problem rather than a consequence of identifying electric charge with Hopf charge.
+
+% ============================================================
+    \section{Reinterpreting the Success of QED}
+        \label{sec:qed}
+% ============================================================
+
+        From this perspective, the empirical success of QED does not imply that all deeper structure is absent. It does imply, however, that the electromagnetic charge and magnetic moment are pointlike to very high precision. SST must therefore place the visible electromagnetic form factors in the charged spinon sector, not in the neutral horn-torus flow envelope.
+
+        SST offers a complementary explanation: the observed electron corresponds to a unique, dynamically stable spinon--Hopfion bound configuration. QED computes fluctuations of the pointlike electromagnetic sector; SST aims to explain why that sector is bound to a particular neutral topological envelope.
+
+% ============================================================
+    \section{Conclusion}
+        \label{sec:conclusion}
+% ============================================================
+
+        Self-interaction analysis at the Dirac level shows that the electron’s magnetic moment is not uniquely fixed without additional assumptions. This result does not undermine quantum electrodynamics, but it does highlight the need for a physical selection principle.
+
+        Swirl-String Theory provides such a principle by treating particle properties as emergent features of bound topological excitations selected by variational dynamics. In the corrected interpretation developed here, the canonical radius $\rc$ is a neutral horn-torus circulation radius, not an electromagnetic charge radius. The visible magnetic moment is therefore assigned to the bound charged spinon sector, while the neutral trefoil/Hopfion envelope supplies the geometric and topological selection background.
+
+        Future work must address three open gates: the spectral mechanism that binds exactly one charged spinon to the neutral trefoil/Hopfion envelope, the metric-locking condition relating the spinon and photon propagation speeds, and the corpus-wide reinterpretation of all relations that previously used $\rc$ as a literal core volume or electromagnetic current radius.
+
+% ============================================================
+        \backmatter
+
+        \bmhead{Acknowledgements}
+        Not applicable.
+
+        \bmhead{Declarations}
+
+        \subsection*{Funding}
+            Not applicable.
+
+        \subsection*{Competing interests}
+            The author declares no competing interests.
+
+        \subsection*{Author contributions}
+            O.I. conceived the study, developed the analysis, and wrote the manuscript.
+
+            \bibliography{sn-bibliography}
+
+\end{document}

@@ -51,6 +51,36 @@ Important
 Passing this audit does not derive alpha. A true derivation still requires a
 canonical theorem-level map alpha^{-1}=F(S_RT^ren(3_1/0_1)) specified before
 comparison with data.
+
+Scale-role convention: r_c, R_horn, and a_tube
+----------------------------------------------
+Route-B BEM is a dimensionless certified-geometry programme.  Its numerical
+normalizers use L_cert, M_max, and DeltaF_pair; they do not require inserting a
+physical core radius into the BEM score.
+
+When a physical radius is discussed, use
+
+    r_c == R_horn
+
+where R_horn is the horn-torus / return-flow circulation radius.  Do not
+silently identify r_c with the local ideal-tube radius.  Use
+
+    a_tube = R_horn / chi_h = r_c / chi_h
+    ell_K_phys = 2 * a_tube * L_cert
+
+The dimensionless Route-B normalizer remains
+
+    N_RT = M_max * L_cert**2
+
+while physical reconstruction uses
+
+    L_phys**2 = 4 * a_tube**2 * L_cert**2
+              = 4 * r_c**2 * L_cert**2 / chi_h**2
+
+Only if chi_h is later made knot-dependent should a separate horn-effective
+scan use M_max * (L_cert / chi_h(K))**2.  BEMv1--BEMv19 default mode is the
+certified dimensionless geometry mode.
+
 """
 
 from __future__ import annotations
