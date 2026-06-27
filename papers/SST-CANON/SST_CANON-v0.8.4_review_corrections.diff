@@ -1,0 +1,220 @@
+--- SST_CANON-v0.8.4.tex
++++ SST_CANON-v0.8.4_corrected_review_patch.tex
+@@ -88,6 +88,7 @@
+ \newcommand{\rhoE}{\rho_{\!E}}
+ \newcommand{\rhoM}{\rho_{\!m}}
+ \newcommand{\rhocore}{\rho_{\mathrm{core}}}
++\newcommand{\rhohorn}{\rho_{\mathrm{horn}}^{\mathrm{eff}}}
+ \newcommand{\SwirlClock}{{S_{(t)}^{\swirlarrow}}}
+ \newcommand{\SwirlClockcw}{{S_{(t)}^{\swirlarrowcw}}}
+ \newcommand{\rc}{{r_c}}
+@@ -237,7 +238,7 @@
+         
+         \textbf{[ORTHODOX]}: $\omega_c = \frac{m_e c^2}{\hbar}$ is a standard physical constant.
+         
+-        \textbf{[SPECULATIVE]}: The identification of $\omega_c$ as a primitive dynamical frequency of the vortex core is an SST postulate.
++        \textbf{[SPECULATIVE]}: The identification of $\omega_c$ as the primitive Compton phase frequency of the SST carrier is an SST postulate; it is not a local vorticity variable.
+     
+     \subsection{Derived Horn/Circulation Radius}
+         \label{subsec:derived_horn_circulation_radius}
+@@ -359,27 +360,31 @@
+ 
+         \textbf{[SPECULATIVE] Interpretation}: The distinction between background, energetic, and saturated-core sectors is elevated in SST to a structural ontology of the medium.
+     
+-    \subsection{Core Density Closure}
+-        
+-        The core density follows from a force constraint:
+-        
+-        \begin{align}
+-            \rhocore \sim \frac{m_e c^2}{2\pi \vnorm^2 \rc^3}
++    \subsection{Horn-Envelope Density Closure}
++        
++        The density formerly denoted as a ``core density'' is now interpreted as an
++        effective horn-envelope normalization density, not as a measured local
++        material density of the resolved vortex tube:
++        
++        \begin{align}
++            \rhohorn
++            \equiv
++            \frac{m_e c^2}{2\pi \vnorm^2 R_{\mathrm{horn}}^3}
++            =
++            \frac{m_e c^2}{2\pi \vnorm^2 \rc^3}.
+             \label{eq:core_density}
+         \end{align}
+         
+-        \textbf{[SPECULATIVE] Closure ansatz}: Equation~\eqref{eq:core_density} is retained as the canonical core-density closure used by the present SST calibration program.
+-
+-        \textbf{[DERIVED] Consequence}: Within that closure, $\rhocore$ is no longer an independent parameter.
+-        \textbf{[CRITICAL NOTE AFTER RADIUS DISAMBIGUATION].}
+-        Equation~\eqref{eq:core_density} defines a canonical density associated
+-        with the neutral circulation envelope at scale \(\rc\). It should not be
+-        read as the material density of the microscopic rotation-dominated tube.
+-        If a local tube mass density is required, it must be introduced through
+-        the separate tube radius \(a_{\rm core}\) and a corresponding local
+-        tube-volume model. Thus \(\rhocore\) is retained as a calibrated
+-        envelope-equivalent density, while \(a_{\rm core}\) controls local
+-        filament cutoffs and reconnection-scale modelling.
++        \textbf{[CANON / SEMANTIC RULE]}: Equation~\eqref{eq:core_density}
++        defines the canonical horn-envelope density closure used by the present
++        SST calibration program. Legacy appearances of $\rhocore$ in expressions
++        proportional to $\rhocore\rc^3$ should be read as $\rhohorn$ unless a
++        separate resolved-tube model is explicitly introduced.
++
++        \textbf{[DERIVED] Consequence}: Within that closure, $\rhohorn$ is no
++        longer an independent parameter. If a local tube mass density is required,
++        it must be introduced through the separate tube radius $a_{\rm core}$ and
++        a corresponding local tube-volume or profile model.
+ 
+ 
+     \subsection{Chronos--Kelvin Invariant and Clock--Radius Transport}
+@@ -392,16 +397,16 @@
+             \label{eq:chronos_kelvin_basic}
+         \end{align}
+ 
+-        where $\omega$ is the characteristic local vorticity on the loop. Using the core relation $v_t = \omega \rc$ together with Eq.~\eqref{eq:swirl_clock}, one may rewrite
+-
+-        \begin{align}
+-            \omega = \frac{c}{\rc}\sqrt{1-S_{(t)}^2},
++        where $\omega$ is the characteristic local vorticity on the loop. For rigid local rotation, $v_t=(\omega/2)R$; evaluated at the canonical horn scale this gives $v_t=(\omega/2)\rc$. Using this relation together with Eq.~\eqref{eq:swirl_clock}, one may rewrite
++
++        \begin{align}
++            \omega = \frac{2c}{\rc}\sqrt{1-S_{(t)}^2},
+         \end{align}
+ 
+         so that Eq.~\eqref{eq:chronos_kelvin_basic} takes the equivalent form
+ 
+         \begin{align}
+-            \frac{D}{Dt}\left(\frac{c}{\rc} R^2 \sqrt{1-S_{(t)}^2}\right) = 0.
++            \frac{D}{Dt}\left(\frac{2c}{\rc} R^2 \sqrt{1-S_{(t)}^2}\right) = 0.
+             \label{eq:chronos_kelvin_clock}
+         \end{align}
+ 
+@@ -445,7 +450,7 @@
+             \label{eq:coarse_grain_density}
+         \end{align}
+ 
+-        where $\Omega$ is a coarse-grained local rotation rate and $K$ has dimensions $\mathrm{kg\,m^{-3}\,s}$. This relation records the canonical bridge between a sparse effective bulk density and a high-density localized core.
++        where $\Omega$ is a coarse-grained local rotation rate and $K$ has dimensions $\mathrm{kg\,m^{-3}\,s}$. This relation records the canonical bridge between a sparse effective bulk density and a high-density horn-envelope normalization; it is not a resolved local-tube density law unless $a_{\rm core}$ is supplied.
+ 
+         \textbf{[DERIVED COROLLARY]}: the older ``zero-parameter'' language is retained only as a statement of reparameterization discipline: once one primitive triplet is fixed, no additional dimensional constants should be introduced without explicit justification.
+ 
+@@ -791,7 +796,7 @@
+     \subsection{Axiom 4: Compton Anchoring}
+         
+         \textbf{Statement.}
+-        The characteristic angular frequency of the vortex core satisfies:
++        The Compton phase frequency of the canonical horn/circulation carrier satisfies:
+         
+         \begin{align}
+             \frac{\vnorm}{\rc} = \omega_c
+@@ -799,10 +804,10 @@
+         
+         \textbf{[ORTHODOX]}: $\omega_c$ is the Compton frequency.
+         
+-        \textbf{[SPECULATIVE]}: Identified as the intrinsic rotational frequency of the vortex core.
++        \textbf{[SPECULATIVE]}: Identified as the intrinsic Compton phase frequency of the SST carrier, not as the local vorticity of the resolved tube.
+         
+         \textbf{Consequence.}
+-        The core radius is not independent but derived (Eq.~\ref{eq:rc_definition}).
++        The horn/circulation radius is not independent but derived (Eq.~\ref{eq:rc_definition}); the local tube radius remains $a_{\rm core}$.
+     
+     \subsection{Axiom 5: Delay as a Constitutive Principle}
+         
+@@ -2877,7 +2882,7 @@
+     \subsection{What is established at canon level}
+         The present document supports the following as canon-level structures:
+         \begin{itemize}
+-            \item the primitive constant chain $(\rhoF, v_{\swirlarrow}, \omega_c) \to r_c \to \Gamma_0$,
++            \item the primitive constant chain $(\rhoF, v_{\swirlarrow}, \omega_c) \to R_{\mathrm{horn}}\equiv r_c \to \Gamma_0$,
+             \item the Swirl-Clock as the coarse-grained relational time factor,
+             \item delay-induced mode selection as the preferred discreteness mechanism,
+             \item the atomic bridge and spectroscopic sectors as compatibility filters,
+@@ -3005,7 +3010,7 @@
+     \section{Full Derivations}
+         \label{sec:appendix_derivations}
+ 
+-        \subsection{Canonical constant chain}
++        \subsection{Canonical horn-radius constant chain}
+             The present canon uses the closure chain
+             \begin{align}
+                 r_e &= \frac{\alpha \hbar}{m_e c}, \\
+@@ -3048,7 +3053,7 @@
+             \textbf{[CANON / MASS-FUNCTIONAL NOTE]}: Existing mass-functionals that use $\rho_{\mathrm{core}}\rc^3$ should be read as horn-envelope normalizations unless a separate local-core profile is explicitly introduced.
+ 
+         \subsection{Geometric gate identity}
+-            Using the Compton wavelength $\lambda_c = h/(m_e c)$ and the core closure $r_c = \alpha\hbar/(2m_e c)$, one obtains
++            Using the Compton wavelength $\lambda_c = h/(m_e c)$ and the horn-radius closure $r_c=R_{\mathrm{horn}} = \alpha\hbar/(2m_e c)$, one obtains
+             \begin{align}
+                 \frac{\lambda_c}{\pi r_c}
+                 =
+@@ -3718,4 +3723,4 @@
+ 
+         \end{thebibliography}
+ 
+-\end{document}+\end{document}
+
+--- SST_CANON-v0.8.4-research-track.tex
++++ SST_CANON-v0.8.4-research-track_corrected_review_patch.tex
+@@ -1,5 +1,5 @@
+ %! Author = Omar Iskandarani
+-%! Companion to Swirl-String-Theory Canon-v0.8.1 (included from \texttt{SST\_CANON-v0.8.1.tex} before the manual bibliography).
++%! Companion to Swirl-String-Theory Canon-v0.8.4 (included from \texttt{SST\_CANON-v0.8.1.tex} before the manual bibliography).
+ 
+ \section{Research-track sectors migrated from the main canon}
+ 
+@@ -74,7 +74,7 @@
+ Borromean-type analogue & neutron-like neutral baryon analogue & mechanical/topological model for zero exterior charge with internal triple linking \\
+ \hline
+ \end{tabular}
+-\caption{Minimal knot-class and analogue summary (v0.8.3 research-track), aligned with main canon semantic corrections.}
++\caption{Minimal knot-class and analogue summary (v0.8.4 research-track), aligned with main canon semantic corrections.}
+ \label{tab:particle-candidates}
+ \end{table}
+ 
+@@ -153,7 +153,7 @@
+     \qquad
+     N_{\mathrm{shell,segment}}=\frac{10}{3}.
+ \end{align}
+-If the same core-staft mechanism gives five core rotations per segment, then
++If the same core-shaft mechanism gives five core rotations per segment, then
+ \begin{align}
+     \frac{N_{\mathrm{shell,segment}}}{N_{\mathrm{core,segment}}}
+     =
+@@ -2201,15 +2201,15 @@
+             2.57205487\times10^{-13}\ \mathrm{J}.
+             \label{eq:pressure_energy_numeric}
+         \end{equation}
+-        At the canonical angular frequency
+-        \[
+-            \Omega_{\mathrm{SST}}
++        At the canonical Compton angular frequency
++        \[
++            \omega_c
+             =
+             7.76344066\times10^{20}\ \mathrm{s^{-1}},
+         \]
+         we have
+         \begin{equation}
+-            \hbar\Omega_{\mathrm{SST}}
++            \hbar\omega_c
+             =
+             8.18710572\times10^{-14}\ \mathrm{J}
+             =
+@@ -2221,7 +2221,7 @@
+             \Pi_{\mathrm{horn}}
+             =
+             \frac{P_{\max}V_{\mathrm{horn}}}
+-            {\hbar\Omega_{\mathrm{SST}}}
++            {\hbar\omega_c}
+             =
+             3.14159235
+             \approx \pi.
+@@ -3092,7 +3092,7 @@
+         0.999999993.
+         \label{eq:Bcore_Bqed_ratio}
+     \end{equation}
+-    The equality follows analytically from the SST Compton-core relation
++    The equality follows analytically from the SST Compton--horn-radius relation
+     \begin{equation}
+         \lambda_c
+         =

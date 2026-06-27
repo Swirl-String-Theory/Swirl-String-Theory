@@ -1,0 +1,220 @@
+
+    \subsection{Canonical Electromagnetic--Gravity Closure}
+        \label{subsec:canonical_em_gravity_closure}
+
+        \textbf{[CANONICAL BRIDGE LAW].} The electromagnetic and gravitational sectors of SST are canonically linked by a common local swirl state, but they remain distinct projections. Electromagnetic response is carried by transverse phase/flux variables and topological piercing changes. Gravitational response is carried by pressure gradients, swirl stress, and the local clock factor. Thus SST does not identify the ordinary electromagnetic field with gravity. It identifies both as different observable projections of the same incompressible, vorticity-bearing medium.
+
+        The canonical source state for the coupled EM--gravity bridge is
+        \begin{align}
+            \boxed{
+            \mathcal{X}^{\mathrm{EMG}}_{\swirlarrow}
+            =
+            \left(
+            \mathbf{u}_{\swirlarrow},
+            p_{\swirlarrow},
+            \boldsymbol{\omega}_{\swirlarrow},
+            \varrho_{\swirlarrow},
+            \boldsymbol{\sigma}^{\mathrm{swirl}},
+            \rhoE,
+            \rhoM
+            \right),
+            \qquad
+            \rhoM=\frac{\rhoE}{c^2}.
+            }
+            \label{eq:emg_source_state}
+        \end{align}
+        The topological piercing density \(\varrho_{\swirlarrow}\) belongs to the electromagnetic impulse channel, while \(p_{\swirlarrow}\), \(\rhoM\), and \(\boldsymbol{\sigma}^{\mathrm{swirl}}\) belong to the force and gravity channel.
+
+        \paragraph{Electromagnetic projection.}
+        The canonical topological electromagnetic impulse is
+        \begin{align}
+            \boxed{
+            \Delta\Phi_{\swirlarrow}
+            =
+            \Phi_0\,\Delta N,
+            \qquad
+            \Phi_0=\frac{h}{2e},
+            \qquad
+            \Delta N\in\mathbb{Z}.
+            }
+            \label{eq:canonical_em_flux_impulse_closure}
+        \end{align}
+        In local differential notation, the canonical part of the effective Faraday projection is
+        \begin{align}
+            \boxed{
+            \nabla\times\mathbf{E}_{\mathrm{eff}}
+            =
+            -\frac{\partial\mathbf{B}_{\mathrm{eff}}}{\partial t}
+            -
+            \Phi_0\frac{\partial\varrho_{\swirlarrow}}{\partial t}\,\hat{\mathbf n}
+            -
+            \mathbf{b}^{(\sigma)}_{\swirlarrow}.
+            }
+            \label{eq:canonical_effective_faraday_emg}
+        \end{align}
+        Here \(\mathbf{b}^{(\sigma)}_{\swirlarrow}\) is a calibrated stress-projection correction. It is not a primitive canonical constant. If no stress-projection closure has been derived for a given apparatus, set
+        \begin{align}
+            \mathbf{b}^{(\sigma)}_{\swirlarrow}=0.
+            \label{eq:stress_projection_zero_default}
+        \end{align}
+        Equation~\eqref{eq:canonical_effective_faraday_emg} is an effective-medium projection. In the R-phase null limit,
+        \begin{align}
+            \partial_t\varrho_{\swirlarrow}\to0,
+            \qquad
+            \mathbf{b}^{(\sigma)}_{\swirlarrow}\to0,
+        \end{align}
+        and the ordinary source-free Maxwell--Faraday identity is recovered.
+
+        \paragraph{Gravity projection.}
+        The canonical SST gravitational force density is
+        \begin{align}
+            \boxed{
+            \mathbf{f}_{\mathrm{grav},\swirlarrow}
+            =
+            \rhoM\mathbf{g}_{\swirlarrow}
+            +
+            \nabla\cdot\boldsymbol{\sigma}^{\mathrm{swirl}}.
+            }
+            \label{eq:canonical_sst_grav_force_density}
+        \end{align}
+        The bulk acceleration field is
+        \begin{align}
+            \boxed{
+            \mathbf{g}_{\swirlarrow}
+            =
+            -\nabla\Phi_{\swirlarrow}
+            -
+            \frac{\partial\mathbf{A}_{\swirlarrow}}{\partial t},
+            \qquad
+            \mathbf{B}_{\swirlarrow}
+            =
+            \nabla\times\mathbf{A}_{\swirlarrow}.
+            }
+            \label{eq:canonical_gravito_swirl_fields}
+        \end{align}
+        In the weak, stationary, coarse-grained limit the scalar sector obeys the Poisson-type closure
+        \begin{align}
+            \boxed{
+            \nabla\cdot\mathbf{g}_{\swirlarrow}
+            =
+            -4\pi G_{\mathrm{swirl}}\rhoM,
+            \qquad
+            \nabla^2\Phi_{\swirlarrow}
+            =
+            4\pi G_{\mathrm{swirl}}\rhoM.
+            }
+            \label{eq:canonical_weak_gravity_closure}
+        \end{align}
+        This closure is valid only after coarse graining over swirl-string microstructure and only in the weak-field, slow-flow regime where pressure reconstruction is consistent with Euler balance.
+
+        The canonical pressure anchor remains the incompressible Euler radial balance
+        \begin{align}
+            \boxed{
+            \frac{1}{\rhoF}\frac{dp_{\mathrm{swirl}}}{dr}
+            =
+            \frac{v_\theta(r)^2}{r}.
+            }
+            \label{eq:canonical_emg_euler_anchor}
+        \end{align}
+        Therefore the Newtonian-looking gravitational acceleration is not fundamental curvature in SST; it is the coarse-grained acceleration produced by pressure/stress gradients in the swirl medium.
+
+        \paragraph{Clock and optical closure.}
+        The clock sector supplies the shared time-rate projection:
+        \begin{align}
+            \boxed{
+            \frac{d\tau}{dt}
+            =
+            \SwirlClock
+            =
+            \sqrt{1-\frac{\lVert\mathbf{u}_{\swirlarrow}\rVert^2}{c^2}},
+            \qquad
+            n_\gamma=\SwirlClock^{-1}.
+            }
+            \label{eq:canonical_emg_clock_optical_closure}
+        \end{align}
+        Photon phase therefore probes \(n_\gamma\), while bulk matter probes Eq.~\eqref{eq:canonical_sst_grav_force_density}. These are coupled through \(\mathbf{u}_{\swirlarrow}\), but they need not have identical spatial gradients.
+
+        \paragraph{Coupling constant closure.}
+        The weak gravitational coupling is fixed by the canonical SST constants as
+        \begin{align}
+            \boxed{
+            G_{\mathrm{swirl}}
+            =
+            \frac{\lVert\vswirl\rVert c^3 t_p^2}{\rc M_e}
+            =
+            6.6743013\times10^{-11}\,\mathrm{m^3\,kg^{-1}\,s^{-2}}.
+            }
+            \label{eq:canonical_gswirl_emg_closure}
+        \end{align}
+        Thus the EM--gravity bridge is not a free-parameter assertion. Its topological electromagnetic impulse is normalized by \(\Phi_0=h/(2e)\), while its weak gravitational closure is normalized by \(G_{\mathrm{swirl}}\).
+
+        \paragraph{Dimensional checks.}
+        The electromagnetic source term has units
+        \begin{align}
+            \left[\Phi_0\partial_t\varrho_{\swirlarrow}\right]
+            =
+            (\mathrm{V\,s})(\mathrm{m^{-2}\,s^{-1}})
+            =
+            \mathrm{V\,m^{-2}},
+        \end{align}
+        matching \([\nabla\times\mathbf{E}_{\mathrm{eff}}]\). The gravitational force density has units
+        \begin{align}
+            [\rhoM\mathbf{g}_{\swirlarrow}]
+            =
+            \mathrm{kg\,m^{-3}}\,\mathrm{m\,s^{-2}}
+            =
+            \mathrm{N\,m^{-3}},
+            \qquad
+            [\nabla\cdot\boldsymbol{\sigma}^{\mathrm{swirl}}]
+            =
+            \mathrm{N\,m^{-3}}.
+        \end{align}
+        Finally,
+        \begin{align}
+            \left[
+            \frac{\lVert\vswirl\rVert c^3 t_p^2}{\rc M_e}
+            \right]
+            =
+            \frac{(\mathrm{m\,s^{-1}})(\mathrm{m^3\,s^{-3}})(\mathrm{s^2})}
+            {\mathrm{m}\,\mathrm{kg}}
+            =
+            \mathrm{m^3\,kg^{-1}\,s^{-2}}.
+        \end{align}
+
+        \paragraph{Numerical hierarchy.}
+        At the canonical speed \(\lVert\vswirl\rVert=1.09384563\times10^6\,\mathrm{m\,s^{-1}}\),
+        \begin{align}
+            \frac{1}{2}\rhoF\lVert\vswirl\rVert^2
+            &=
+            4.1877439\times10^5\,\mathrm{Pa},
+            \\
+            \SwirlClock
+            &=
+            0.9999933436,
+            \\
+            n_\gamma-1
+            &=
+            6.6564858\times10^{-6}.
+            \label{eq:canonical_emg_numerical_hierarchy}
+        \end{align}
+        Hence pressure/stress channels can be macroscopically large at canonical scale, while single-pass optical-index shifts are small unless a resonant optical path enhances them. This hierarchy is now part of the canonical interpretation of the EM--gravity bridge.
+
+        \paragraph{Canonical exclusion rules.}
+        The following statements are excluded from the canonical EM--gravity bridge:
+        \begin{enumerate}
+            \item Ordinary electromagnetic fields are not identified with gravity: \(\mathbf{B}_{\mathrm{eff}}\neq\mathbf{B}_{\swirlarrow}\).
+            \item Uncalibrated vorticity terms may not be inserted directly into Maxwell source equations.
+            \item Device-specific gains such as \(Q_\gamma\), \(\mathcal{G}^{(\sigma)}_{\swirlarrow}\), and impedance gains are research-track unless derived from a resonator or stress-closure model.
+            \item Apparent laboratory forces must first be decomposed into electromagnetic, thermal, acoustic, electrohydrodynamic, mechanical, and ordinary vorticity-impulse channels before any residual is interpreted as SST-specific.
+        \end{enumerate}
+
+        \paragraph{Canonical summary.}
+        The promoted law is therefore
+        \begin{align}
+            \boxed{
+            \text{EM response and gravity response are distinct sectoral projections of }\mathcal{X}^{\mathrm{EMG}}_{\swirlarrow}.
+            }
+            \label{eq:canonical_emg_summary_law}
+        \end{align}
+        The electromagnetic projection is controlled by topological flux impulse \(\Delta\Phi_{\swirlarrow}=\Phi_0\Delta N\). The gravitational projection is controlled by \(\rhoM\mathbf{g}_{\swirlarrow}+\nabla\cdot\boldsymbol{\sigma}^{\mathrm{swirl}}\) with weak closure \(\nabla\cdot\mathbf{g}_{\swirlarrow}=-4\pi G_{\mathrm{swirl}}\rhoM\). Both recover their orthodox limits when the SST projection channels vanish.
+

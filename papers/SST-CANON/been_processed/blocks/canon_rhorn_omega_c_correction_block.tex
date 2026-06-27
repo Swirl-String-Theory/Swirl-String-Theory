@@ -1,0 +1,91 @@
+        \subsection{Canonical horn-radius constant chain}
+            \label{subsec:canonical_horn_radius_chain}
+            The present canon retains the symbol $\omega_c$ for the orthodox Compton angular frequency,
+            \begin{align}
+                \omega_c \equiv \frac{m_e c^2}{\hbar}.
+            \end{align}
+            It no longer interprets $r_c$ as the literal local vortex-tube radius. Instead,
+            \begin{align}
+                r_c \equiv R_{\mathrm{horn}},
+            \end{align}
+            denotes the canonical neutral-circulation radius: the horn-torus return-flow/envelope scale at which the electron-sector Compton/swirl clock is anchored. The true local tube radius is a separate parameter,
+            \begin{align}
+                a_{\rm core}\neq r_c,
+                \qquad
+                \chi_h \equiv \frac{R_{\mathrm{horn}}}{a_{\rm core}},
+            \end{align}
+            when a finite-thickness filament, BEM/FEM tube model, or resolved core profile is required.
+
+            With this convention the canonical chain is
+            \begin{align}
+                r_e &= \frac{\alpha \hbar}{m_e c}, \\
+                r_c \equiv R_{\mathrm{horn}} &= \frac{r_e}{2}
+                    = \frac{\alpha\hbar}{2m_e c}, \\
+                \omega_c &= \frac{m_e c^2}{\hbar}, \\
+                v_{\swirlarrow} &= \omega_c R_{\mathrm{horn}}, \\
+                \Gamma_0 &= 2\pi R_{\mathrm{horn}} v_{\swirlarrow}.
+                \label{eq:canonical_horn_radius_chain}
+            \end{align}
+            Here $\omega_c$ is the Compton angular frequency. It may also be read as the angular frequency of the canonical horn-circulation clock because the electron-sector closure imposes $v_{\swirlarrow}=\omega_c R_{\mathrm{horn}}$. It must not be confused with local vorticity. For rigid local circular motion the corresponding vorticity scale is
+            \begin{align}
+                \omega_{\rm vort,c}=2\omega_c,
+            \end{align}
+            so a formula using $\omega_{\rm vort,c}$ would read
+            \begin{align}
+                R_{\mathrm{horn}}=\frac{2v_{\swirlarrow}}{\omega_{\rm vort,c}},
+            \end{align}
+            whereas the Compton-clock form is simply
+            \begin{align}
+                R_{\mathrm{horn}}=\frac{v_{\swirlarrow}}{\omega_c}.
+            \end{align}
+
+            Substituting $R_{\mathrm{horn}} = \alpha\hbar/(2m_e c)$ into
+            $v_{\swirlarrow}=\omega_c R_{\mathrm{horn}}$ gives
+            \begin{align}
+                v_{\swirlarrow}
+                =
+                \left(\frac{m_e c^2}{\hbar}\right)
+                \left(\frac{\alpha \hbar}{2m_e c}\right)
+                = \frac{\alpha}{2}c,
+            \end{align}
+            hence the canonical ratio
+            \begin{align}
+                \eta_0 = \frac{v_{\swirlarrow}}{c} = \frac{\alpha}{2}.
+            \end{align}
+
+            The equivalent horn-radius closure identities are therefore
+            \begin{align}
+                R_{\mathrm{horn}}
+                &=
+                \frac{v_{\swirlarrow}}{\omega_c}
+                =
+                \frac{\hbar v_{\swirlarrow}}{m_e c^2}
+                =
+                \sqrt{\frac{\hbar v_{\swirlarrow}}{2F_{\rm swirl}^{\max}}},
+                \label{eq:canonical_horn_radius_equivalents}
+            \end{align}
+            where the square-root form follows only after imposing the maximum-force closure $m_e c^2=2F_{\rm swirl}^{\max}R_{\mathrm{horn}}$. It is a consistency identity of the canonical closure chain, not an independent definition of the physical tube radius.
+
+        \subsection{Horn-envelope density normalization}
+            The legacy expression
+            \begin{align}
+                \rho_{\mathrm{core}}
+                \sim
+                \frac{m_e c^2}{2\pi v_{\swirlarrow}^2 r_c^3}
+            \end{align}
+            is retained only after relabelling it as an effective horn-envelope mass-density normalization:
+            \begin{align}
+                \rho_{\mathrm{horn}}^{\rm eff}
+                \equiv
+                \frac{m_e c^2}{2\pi v_{\swirlarrow}^2 R_{\mathrm{horn}}^3}.
+                \label{eq:horn_envelope_density_normalization}
+            \end{align}
+            This is dimensionally exact,
+            \begin{align}
+                \left[\frac{m_e c^2}{v^2 R^3}\right]
+                =
+                \frac{\mathrm{kg\,m^2\,s^{-2}}}{\mathrm{m^2\,s^{-2}}\,\mathrm{m^3}}
+                = \mathrm{kg\,m^{-3}},
+            \end{align}
+            but it must not be read as the material density inside the local vortex tube of radius $a_{\rm core}$. A local filament model must instead specify its own tube volume, e.g. through $a_{\rm core}$, ropelength, or a resolved core profile.
+

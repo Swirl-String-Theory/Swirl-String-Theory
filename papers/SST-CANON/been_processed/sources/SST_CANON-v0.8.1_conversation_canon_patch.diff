@@ -1,0 +1,171 @@
+--- SST_CANON-v0.8.1.tex
++++ SST_CANON-v0.8.1_conversation_canon_patch.tex
+@@ -239,19 +239,42 @@
+         
+         \textbf{[SPECULATIVE]}: The identification of $\omega_c$ as a primitive dynamical frequency of the vortex core is an SST postulate.
+     
+-    \subsection{Derived Length Scale}
+-        
+-        The characteristic core radius is defined as:
+-        
+-        \begin{align}
+-            \rc = \frac{\vnorm}{\omega_c}
++
++    \subsection{Derived Horn/Circulation Radius}
++        \label{subsec:derived_horn_circulation_radius}
++
++        The quantity previously denoted as the characteristic ``core radius'' is fixed more precisely as a
++        Compton-locked horn/circulation radius:
++        \begin{align}
++            \rc \equiv R_{\mathrm{horn}}
++            = \frac{\vnorm}{\omega_c}
++            = \frac{\hbar\vnorm}{m_e c^2}
++            = \frac{\alpha\hbar}{2m_e c}
++            = \frac{r_e}{2}.
+             \label{eq:rc_definition}
+         \end{align}
+-        
+-        \textbf{[SPECULATIVE] Definition}: We treat Eq.~\eqref{eq:rc_definition} as a canonical closure relation linking the characteristic core scale to the primitive pair $(\vnorm,\omega_c)$.
+-
+-        \textbf{[DERIVED] Consequence}: This removes $r_c$ as an independent parameter and eliminates one source of circular parameterization.
+-    
++        Here
++        \begin{align}
++            \omega_c \equiv \frac{m_e c^2}{\hbar}
++            \label{eq:omega_c_compton}
++        \end{align}
++        is the electron Compton angular frequency. Thus $\rc$ is the radius at which the canonical
++        tangential swirl speed $\vnorm$ is obtained at the Compton angular frequency.
++
++        \textbf{[CANON / NOTATION]}: $\omega_c$ denotes the Compton angular frequency. It must not be confused with the local vorticity scale. If $\omega_{\mathrm{vort},c}$ denotes the local vorticity of a rigid local rotation, then
++        \begin{align}
++            \omega_{\mathrm{vort},c}=2\omega_c,
++            \qquad
++            R_{\mathrm{horn}}=\frac{2\vnorm}{\omega_{\mathrm{vort},c}}.
++        \end{align}
++
++        \textbf{[CANON / SEMANTIC RULE]}: $\rc$ is not the resolved physical vortex-tube radius. The local tube/core thickness is denoted by $a_{\mathrm{core}}$ and remains a separate geometric or variational quantity:
++        \begin{align}
++            a_{\mathrm{core}} \neq \rc.
++        \end{align}
++
++        \textbf{[DERIVED] Consequence}: Eq.~\eqref{eq:rc_definition} removes $\rc$ as an independent parameter while avoiding the earlier ambiguity between horn-envelope scale, tube radius, and vorticity.
++
+     \subsection{Circulation Quantization}
+         
+         The circulation is defined as:
+@@ -2392,32 +2415,69 @@
+         \textbf{[DERIVED]}: it can be used internally to separate writhe-dominated from twist-dominated realizations of the same coarse knot class.\newline
+         \textbf{[SPECULATIVE]}: the mapping from sign$(Tw)$ or related chirality measures to particle/antiparticle sectors remains a model hypothesis.
+ 
++
++    \subsection{Framed-Tube Ontology and the Attachment Gate}
++        \label{subsec:framed_tube_attachment_gate}
++
++        The particle carrier in SST is not a bare centerline knot alone. The canonical object is a framed, phase-bearing tube,
++        \begin{align}
++            \mathcal{K}_{\mathrm{SST}}
++            =
++            \big(K,\,\mathcal{F},\,\Gamma,\,\theta_{\mathrm{core}}\big),
++        \end{align}
++        where $K$ is the centerline knot or link, $\mathcal{F}$ is a ribbon/framing, $\Gamma$ is circulation, and $\theta_{\mathrm{core}}$ is a material or order-parameter phase attached to the core.
++
++        The current Attachment Lemma is the statement that a local Compton/core cycle can be promoted to a globally closed framed-tube holonomy,
++        \begin{align}
++            \frac{1}{2\pi}\oint_K d\theta_{\mathrm{core}}
++            = \chi,
++            \qquad
++            \chi\in\mathbb{Z}.
++            \label{eq:attachment_gate_chi}
++        \end{align}
++        A compensated form allows local swirl-clock redistribution while preserving the exact global integer,
++        \begin{align}
++            \chi_{\mathrm{total}}
++            =
++            \chi_{\mathrm{local}}+\chi_{\mathrm{attachment}}
++            = \chi,
++            \qquad
++            \delta Q=0.
++            \label{eq:compensated_attachment_gate}
++        \end{align}
++
++        \textbf{[CANON / OPEN GATE]}: Eq.~\eqref{eq:attachment_gate_chi} is not yet a theorem of the Euler--SST dynamics. It is a load-bearing gate. Integer energy selection alone is insufficient; exact holonomy is required for canon status.
++
++        \textbf{[CANON / NOTATION]}: the framing phase follows the Compton angular cycle $\omega_c$, while the associated local vorticity scale is $2\omega_c$. The factor of two must not be absorbed into $\chi$.
++
++
+     \subsection{Particle-Candidate Mapping Layer}
+         \label{subsec:integration_knotmap}
+ 
+-        \textbf{[SPECULATIVE]} Working dictionary: a minimal knot / composition mapping retained from earlier SST work is summarized
+-        in Table~\ref{tab:particle_candidate_mapping}. This table is organizational rather than definitive; it records
+-        the current topological assignments used by the mass and taxonomy program.
++        \textbf{[SPECULATIVE]} Working dictionary: a minimal knot/composition mapping retained from earlier SST work is summarized in Table~\ref{tab:particle_candidate_mapping}. This table is organizational rather than definitive; it records current topological assignments and mechanical analogues used by the mass and taxonomy program.
+ 
+         \begin{table}[h]
+         \centering
+-        \caption{Minimal knot-class to particle-candidate summary retained in v0.8.1.}
++        \caption{Minimal knot-class and analogue summary retained in v0.8.1, with current semantic corrections.}
+         \label{tab:particle_candidate_mapping}
+         \begin{tabular}{lll}
+         \hline
+-        Knot class / composition & Candidate & Status / role \\
++        Carrier / composition & Candidate role & Status / interpretation \\
+         \hline
+-        $3_1$ & electron & baseline lepton calibration \\
++        $3_1$ trefoil & electron / positron sector & baseline chiral lepton calibration; not used for fractional quark charge \\
+         $T(2,5)$ or equivalent higher torus class & muon & lepton hierarchy candidate \\
+         $T(2,7)$ or equivalent higher torus class & tau & lepton hierarchy candidate \\
+-        $5_2 + 5_2 + 6_1$ & proton & composite baryon candidate \\
+-        analogous nearby composite class & neutron & composite baryon candidate \\
++        twist/clasp knots, quasi-unknot loops & quark-like defects & research-track fractional boundary winding candidates \\
++        $5_2+5_2+6_1$ and nearby composites & baryon candidates & legacy mass-functional dictionary, still under audit \\
++        triple-gear locked analogue & proton-like charged baryon analogue & mechanical model for nonzero exterior collective rotation \\
++        Borromean-type analogue & neutron-like neutral baryon analogue & mechanical/topological model for zero exterior charge with internal triple linking \\
+         \hline
+         \end{tabular}
+         \end{table}
+ 
+-        \textbf{[CRITICAL NOTE]} Table~\ref{tab:particle_candidate_mapping} is a working dictionary only. A full canonical
+-        assignment requires an explicit invariant set and a mass-functional comparison program.
++        \textbf{[CRITICAL NOTE]}: Table~\ref{tab:particle_candidate_mapping} is a working dictionary only. Electric charge is not identified with raw Hopf helicity or pairwise linking number. The safer current placeholder is a boundary-winding charge variable $q_{\partial}$, while knot/link data supply mass, chirality, confinement, and internal topological structure.
++
++        \textbf{[CANON / DECISION]}: The trefoil assignment is retained for the electron/positron sector only. Fractional values such as $2/3$ belong, if anywhere, to the twist-knot/quark-like boundary-winding research track rather than to the trefoil-electron calibration.
+ 
+     \subsection{Hydrodynamic Exchange and the Pauli Barrier}
+         \label{subsec:integration_pauli}
+@@ -2727,20 +2787,26 @@
+                 \eta_0 = \frac{v_{\swirlarrow}}{c} = \frac{\alpha}{2}.
+             \end{align}
+ 
+-        \subsection{Core density closure}
+-            Writing the electron rest energy as localized swirl energy inside a core region leads to the closure
++
++        \subsection{Horn-Envelope Density Normalization}
++            The electron rest-energy normalization may be written as an effective horn-envelope density relation,
+             \begin{align}
+-                \rho_{\mathrm{core}}
+-                \sim
+-                \frac{m_e c^2}{2\pi v_{\swirlarrow}^2 r_c^3},
++                \rho_{\mathrm{horn}}^{\mathrm{eff}}
++                \equiv
++                \frac{m_e c^2}{2\pi \vnorm^2 R_{\mathrm{horn}}^3}.
++                \label{eq:rho_horn_eff}
+             \end{align}
+-            which is the form already recorded in Eq.~\eqref{eq:core_density}. This relation is dimensionally exact:
++            This relation is dimensionally exact,
+             \begin{align}
+                 \left[\frac{m_e c^2}{v^2 r^3}\right]
+                 =
+-                \frac{\mathrm{kg\,m^2\,s^{-2}}}{\mathrm{m^2\,s^{-2}}\,\mathrm{m^3}}
+-                = \mathrm{kg\,m^{-3}}.
++                \mathrm{kg\,m^{-3}},
+             \end{align}
++            but its interpretation is now restricted.
++
++            \textbf{[CANON / SEMANTIC RULE]}: Eq.~\eqref{eq:rho_horn_eff} is an effective horn-envelope or normalization density. It is not a measured local material density of the resolved vortex tube. Any resolved-tube model must use $a_{\mathrm{core}}$, a profile function, or ropelength/finite-thickness data rather than silently identifying $a_{\mathrm{core}}=\rc$.
++
++            \textbf{[CANON / MASS-FUNCTIONAL NOTE]}: Existing mass-functionals that use $\rho_{\mathrm{core}}\rc^3$ should be read as horn-envelope normalizations unless a separate local-core profile is explicitly introduced.
+ 
+         \subsection{Geometric gate identity}
+             Using the Compton wavelength $\lambda_c = h/(m_e c)$ and the core closure $r_c = \alpha\hbar/(2m_e c)$, one obtains

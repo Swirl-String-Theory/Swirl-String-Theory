@@ -1,0 +1,54 @@
+
+        \subsection{Finite-cell $\alpha$ coincidence and obstruction summary}
+            \label{subsec:finite_cell_alpha_obstruction}
+
+            \textbf{[DERIVED-IN-MODEL / OPEN].}
+            A parameter-light finite-cell variational construction for an ideal trefoil filament
+            yields a leading dimensionless scale
+            \begin{align}
+                \alpha^{-1}_{\mathrm{lead}}
+                =
+                \frac{8\pi}{3}\,\mathcal{L}_{3_1}
+                \approx 137.15471,
+                \label{eq:alpha_lead_finite_cell}
+            \end{align}
+            using the numerically computed ideal trefoil ropelength
+            $\mathcal{L}_{3_1}=16.371637$ as a \emph{benchmark} topological-geometric input.
+            This lies within $866$~ppm of CODATA $\alpha^{-1}=137.035999$ and is an
+            $\alpha$-free sub-per-mille coincidence, not a part-per-million derivation.
+
+            The prefactor $8\pi/3$ contains a mode-count factor $N_p=4$ derived from the
+            soft sector of the spherical finite-cell surface spectrum
+            $k_\ell=\ell(\ell+1)-2$ (zero and unstable modes only). The sector volume
+            $4\pi/3$ and overall normalization remain partially open modelling choices.
+
+            \textbf{[NEGATIVE / OBSTRUCTION RESULT].}
+            Closing the residual to ppm accuracy is underdetermined: at fixed cell-radius
+            gate the required transverse shell weight is $w_\perp=1.0675$, not the round
+            value $1$ (which reaches only $10.5$~ppm). An independent Gross--Pitaevskii
+            core-profile proxy returns $w_\perp\approx 2.076$, overshooting to $-157$~ppm.
+            The $10.5$~ppm residual can be absorbed independently by any of five
+            sub-percent coefficients (shell weight, cell-radius gate, sector volume,
+            ropelength value, or a third-order term), so ppm closure carries no
+            discriminating power without pinning all inputs to $\sim10^{-6}$ relative
+            precision---beyond present ideal-knot ropelength certification.
+
+            The gate hierarchy is therefore
+            \begin{align}
+                G_0\ (\text{input provenance})
+                \longrightarrow
+                G_1\ (\text{identifiability})
+                \longrightarrow
+                G_2\ (\text{operator Hessians})
+                \longrightarrow
+                G_3\ (\text{ppm closure}),
+                \label{eq:finite_cell_gate_hierarchy}
+            \end{align}
+            with $G_0$ and $G_1$ blocking closure before Hessian-level work becomes relevant.
+
+            \textbf{[CANON / NON-CLAIM].}
+            This block does not assert a first-principles derivation of the fine-structure
+            constant. The defensible content is the $\alpha$-free sub-per-mille leading
+            coincidence with partially derived $N_p=4$, plus a localized obstruction to
+            ppm closure. Full scripts, appendices, and audit details are in
+            \texttt{finite\_cell\_obstruction.tex} and \texttt{Derive\_Constants/}.

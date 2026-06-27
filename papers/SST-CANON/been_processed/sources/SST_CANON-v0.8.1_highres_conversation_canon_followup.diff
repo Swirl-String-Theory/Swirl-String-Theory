@@ -1,0 +1,357 @@
+--- SST_CANON-v0.8.1.tex
++++ SST_CANON-v0.8.1.tex
+@@ -241,14 +241,14 @@
+     
+     \subsection{Derived Length Scale}
+         
+-        The characteristic core radius is defined as:
++        The canonical circulation radius is defined as:
+         
+         \begin{align}
+             \rc = \frac{\vnorm}{\omega_c}
+             \label{eq:rc_definition}
+         \end{align}
+         
+-        \textbf{[SPECULATIVE] Definition}: We treat Eq.~\eqref{eq:rc_definition} as a canonical closure relation linking the characteristic core scale to the primitive pair $(\vnorm,\omega_c)$.
++        \textbf{[SPECULATIVE] Definition}: We treat Eq.~\eqref{eq:rc_definition} as a canonical closure relation linking the neutral-circulation scale to the primitive pair $(\vnorm,\omega_c)$.
+ 
+         \textbf{[DERIVED] Consequence}: This removes $r_c$ as an independent parameter and eliminates one source of circular parameterization.
+     
+@@ -382,7 +382,7 @@
+             \rhoF &\quad \text{(effective background fluid density)}, \\
+             \rhoE &= \tfrac12 \rhoF \, \vnorm^2 \quad \text{(swirl energy density)}, \\
+             \rhoM &= \rhoE / c^2 \quad \text{(mass-equivalent density)}, \\
+-            \rhocore &\quad \text{(saturated vortex-core density)}.
++            \rhocore &\quad \text{(canonical saturated envelope-equivalent density)}.
+         \end{align}
+ 
+         \textbf{[ORTHODOX] Definition}: $\rhoM=\rhoE/c^2$ is the mass-equivalent density associated with the swirl kinetic accounting above; in orthodox limits, total energy $E$ in a region still yields mass density $E/c^2$.
+@@ -402,6 +402,16 @@
+ 
+         \textbf{[DERIVED] Consequence}: Within that closure, $\rhocore$ is no longer an independent parameter.
+ 
++        \textbf{[CRITICAL NOTE AFTER RADIUS DISAMBIGUATION].}
++        Equation~\eqref{eq:core_density} defines a canonical density associated
++        with the neutral circulation envelope at scale \(\rc\). It should not be
++        read as the material density of the microscopic rotation-dominated tube.
++        If a local tube mass density is required, it must be introduced through
++        the separate tube radius \(a_{\rm core}\) and a corresponding local
++        tube-volume model. Thus \(\rhocore\) is retained as a calibrated
++        envelope-equivalent density, while \(a_{\rm core}\) controls local
++        filament cutoffs and reconnection-scale modelling.
++
+     \subsection{Chronos--Kelvin Invariant and Clock--Radius Transport}
+         \label{subsec:chronos_kelvin}
+ 
+@@ -582,7 +592,7 @@
+ 
+         \subsubsection{Definition and canonical form}
+ 
+-        Within the primitive set $\mathcal{P} = \{\rhoF, \vswirl, \omega_c\}$, a characteristic force scale emerges naturally from the Compton energy stored over the core cross-section. We define the \emph{maximal swirl tension} as
++        Within the primitive set $\mathcal{P} = \{\rhoF, \vswirl, \omega_c\}$, a characteristic force scale emerges naturally from the Compton energy stored over the canonical circulation cross-section. We define the \emph{maximal swirl tension} as
+ 
+         \begin{align}
+             F_{\rm swirl}^{\max}
+@@ -591,9 +601,9 @@
+             \label{eq:Fmax_def}
+         \end{align}
+ 
+-        \textbf{[DERIVED] Canonical form}: substituting $\vnorm = \omega_c \rc$ into Eq.~\eqref{eq:Fmax_def} gives $F_{\rm swirl}^{\max} = \hbar\omega_c/2\rc$, the Compton energy scale divided by twice the core radius. Numerically, $F_{\rm swirl}^{\max} = 29.053507\;\text{N}$.
++        \textbf{[DERIVED] Canonical form}: substituting $\vnorm = \omega_c \rc$ into Eq.~\eqref{eq:Fmax_def} gives $F_{\rm swirl}^{\max} = \hbar\omega_c/2\rc$, the Compton energy scale divided by twice the canonical circulation radius. Numerically, $F_{\rm swirl}^{\max} = 29.053507\;\text{N}$.
+ 
+-        \textbf{[CRITICAL NOTE]} $F_{\rm swirl}^{\max}$ is a mechanical reformulation of the Compton energy scale over the core cross-section. It is \emph{not} independent of $\hbar$ and $m_e$; its role in the canon is interpretive and organisational rather than that of an independent primitive.
++        \textbf{[CRITICAL NOTE]} $F_{\rm swirl}^{\max}$ is a mechanical reformulation of the Compton energy scale over the canonical circulation cross-section. It is \emph{not} independent of $\hbar$ and $m_e$; its role in the canon is interpretive and organisational rather than that of an independent primitive.
+ 
+         \subsubsection{Internal consistency identities}
+ 
+@@ -609,7 +619,7 @@
+             \label{eq:Fmax_rho}
+         \end{align}
+ 
+-        where $\rho_{\rm calc} = 4F_{\rm swirl}^{\max}/(\pi\alpha^2 c^2 \rc^2)$ is the derived bulk density consistent with the canonical core closure.
++        where $\rho_{\rm calc} = 4F_{\rm swirl}^{\max}/(\pi\alpha^2 c^2 \rc^2)$ is the derived bulk density consistent with the canonical neutral-circulation closure.
+ 
+         \textbf{[DERIVED] Consistency check}: Eqs.~\eqref{eq:Fmax_em}--\eqref{eq:Fmax_rho} are equivalent given $\vnorm = \alpha c/2$ and the standard identity $e^2/(4\pi\varepsilon_0) = \alpha\hbar c$. Their mutual agreement constitutes a non-trivial numerical self-consistency test of the primitive set.
+ 
+@@ -668,11 +678,11 @@
+ 
+         where $\alpha_g = Gm_e^2/\hbar c$ is the gravitational fine-structure constant of the electron and $\alpha$ is the electromagnetic fine-structure constant. Numerically, $4\alpha_g/\alpha \approx 9.6\times10^{-43}$, in agreement with the directly computed ratio $29.053507\;\text{N}\,/\,3.026\times10^{43}\;\text{N}$.
+ 
+-        \textbf{[SPECULATIVE] Interpretation}: the hierarchy between the electromagnetic and gravitational force scales in SST is not an unexplained numerical coincidence but the ratio of the two fundamental coupling constants of the electron. The structured medium is $\sim\!10^{42}$ times stiffer than the space-time geometry at the core scale, and this stiffness ratio equals $\alpha/(4\alpha_g)$ exactly.
++        \textbf{[SPECULATIVE] Interpretation}: the hierarchy between the electromagnetic and gravitational force scales in SST is not an unexplained numerical coincidence but the ratio of the two fundamental coupling constants of the electron. The structured medium is $\sim\!10^{42}$ times stiffer than the space-time geometry at the canonical circulation scale, and this stiffness ratio equals $\alpha/(4\alpha_g)$ exactly.
+ 
+         \paragraph{(ii) Electrostatic interpretation: the Coulomb ceiling at core scale.}
+ 
+-        When two protons are compressed to a centre-to-centre separation equal to the vortex core radius $\rc$, the Coulomb repulsion is
++        When two protons are compressed to a centre-to-centre separation equal to the canonical circulation radius $\rc$, the Coulomb repulsion is
+ 
+         \begin{align}
+             F_{pp}(\rc)
+@@ -681,9 +691,9 @@
+             \label{eq:Coulomb_core}
+         \end{align}
+ 
+-        \textbf{[DERIVED]} The maximal Coulomb repulsion at core scale is exactly four times $F_{\rm swirl}^{\max}$. The factor of four matches the denominator structure of Eq.~\eqref{eq:Fgr} and is not numerically coincidental within the canonical chain.
++        \textbf{[DERIVED]} The maximal Coulomb repulsion at the canonical circulation scale is exactly four times $F_{\rm swirl}^{\max}$. The factor of four matches the denominator structure of Eq.~\eqref{eq:Fgr} and is not numerically coincidental within the canonical chain.
+ 
+-        \textbf{[SPECULATIVE] Interpretation}: $F_{\rm swirl}^{\max}$ is the quarter-Coulomb force at core scale. The medium sustains one quarter of the maximum proton--proton Coulomb repulsion before the topological structure of the vortex core fails. This provides a physical ceiling on the compression of charged vortex configurations.
++        \textbf{[SPECULATIVE] Interpretation}: $F_{\rm swirl}^{\max}$ is the quarter-Coulomb force at the canonical circulation scale. The medium sustains one quarter of the maximum proton--proton Coulomb repulsion before the neutral circulation envelope reaches its structural limit. This provides a physical ceiling on the compression of charged vortex configurations.
+ 
+         \paragraph{(iii) Mechanical interpretation: the spring constant of photon--electron interaction.}
+ 
+@@ -1420,6 +1430,67 @@
+         external field reservoir. The canon-safe reading is closure of a trapped
+         or incipient trefoil carrier under a boundary-supported R-to-T transition.
+ 
++
++    \subsection{Photon torsion packets and R-to-T closure bookkeeping}
++        \label{subsec:photon_torsion_r_to_t_closure}
++
++        \textbf{[DERIVED SST CONSTRAINT].}
++        The radiative photon sector is not represented as a free end of a vortex
++        filament. A photon is represented as an extended R-phase torsion packet
++        on a swirl-characteristic or transverse director field. Before trapping
++        and closure, it has no protected closed-knot type:
++        \begin{align}
++            K(\gamma_{\rm R})\quad\text{is not a closed matter-knot invariant.}
++        \end{align}
++
++        \textbf{[SPECULATIVE SST BRIDGE].}
++        Electron-trefoil formation from radiation is therefore admissible only
++        as a boundary-supported R-to-T conversion, not as bulk reconnection of
++        an already closed Euler vortex tube. The minimal bookkeeping reaction is
++        \begin{align}
++            \gamma_{\rm R}
++            +
++            \mathcal{B}_{\rm atom}
++            \overset{\mathcal{K}_{\rm Kairos}}{\longrightarrow}
++            e^-_{3_1}
++            +
++            \mathcal{R},
++            \label{eq:photon_r_to_t_kairos_closure}
++        \end{align}
++        where \(\mathcal{B}_{\rm atom}\) supplies the trapping/boundary
++        condition and \(\mathcal{R}\) carries recoil, momentum balance, and
++        topological compensation.
++
++        \textbf{[ORTHODOX CONSTRAINT / SST BOOKKEEPING].}
++        A single free photon cannot be promoted to a lone charged electron in
++        empty space without a reservoir for momentum and charge/topological
++        compensation. Free matter creation must instead involve a conjugate
++        sector or an external field reservoir, schematically
++        \begin{align}
++            \gamma+\gamma
++            \longrightarrow
++            3_1+\overline{3_1},
++            \qquad
++            \gamma+\mathcal{F}
++            \longrightarrow
++            3_1+\overline{3_1}+\mathcal{F}' .
++            \label{eq:pair_creation_topological_bookkeeping}
++        \end{align}
++
++        The Compton threshold bookkeeping is
++        \begin{align}
++            \omega_c = \frac{\vnorm}{\rc},
++            \qquad
++            \hbar\omega_c=m_e c^2,
++            \qquad
++            E_{\rm pair}=2m_e c^2 .
++            \label{eq:compton_pair_threshold_bookkeeping}
++        \end{align}
++        Thus \(\hbar\omega_c\) is the natural seed-closure scale for an
++        already boundary-supported trefoil event, while \(2\hbar\omega_c\) is
++        the natural pair-production scale for producing a trefoil and an
++        anti-trefoil sector.
++
+     \subsection{Swirl pressure law}
+         \label{subsec:swirl_pressure_law}
+ 
+@@ -1501,7 +1572,7 @@
+             \label{eq:delay_time}
+         \end{align}
+         
+-        In the special case of a minimal closed loop associated with the vortex core scale, this reduces to:
++        In the special case of a minimal closed loop associated with the neutral circulation scale, this reduces to:
+         
+         \begin{align}
+             \tau_c = \frac{2\pi \rc}{\vnorm} = \frac{2\pi}{\omega_c}
+@@ -1510,7 +1581,7 @@
+         
+         This establishes a direct identification between the circulation delay and the inverse Compton frequency.
+         
+-        \textbf{[DERIVED]}: The intrinsic delay of the vortex loop is identical to the Compton period.
++        \textbf{[DERIVED]}: The intrinsic delay of the neutral circulation loop is identical to the Compton period.
+     
+     \subsection{Delayed Self-Interaction Dynamics}
+         
+@@ -1636,6 +1707,12 @@
+ 
+         In particular, Eq.~\eqref{eq:softcore_potential} is retained as a bridge ansatz only. It is not promoted here to the primary atomic potential.
+ 
++        \textbf{[RADIUS USE RULE].}
++        The \(r_c\) appearing in Eq.~\eqref{eq:softcore_potential} is an
++        envelope-scale softening length for the neutral circulation response. It
++        is not the microscopic tube cutoff. Local tube-overlap, reconnection, or
++        filament self-energy calculations use \(a_{\rm core}\) instead.
++
+     \subsection{SST Circulation Correction}
+         
+         We introduce a circulation-dependent perturbation:
+@@ -2680,21 +2757,21 @@
+         \end{align}
+ 
+         \textbf{[DERIVED]} SST bridge: if two identical electron-candidate loops are forced into the same spatial state,
+-        regularization at the core radius \(r_c\) yields the overlap penalty
++        regularization at the physical tube radius \(a_{\rm core}\) yields the overlap penalty
+         \begin{align}
+             V_{\mathrm{Pauli}}(\mathbf{d})
+             \approx
+             \frac{\rho_{\!f}\Gamma_0^2}{4\pi}
+             \oint\!\!\oint
+             \frac{d\mathbf{l}_1\cdot d\mathbf{l}_2}
+-            {\sqrt{\lVert \mathbf{r}_1(\theta_1)-\mathbf{r}_2(\theta_2)+\mathbf{d}\rVert^2+r_c^2}},
++            {\sqrt{\lVert \mathbf{r}_1(\theta_1)-\mathbf{r}_2(\theta_2)+\mathbf{d}\rVert^2+a_{\rm core}^2}},
+             \label{eq:pauli_barrier_regularized}
+         \end{align}
+         with maximal-overlap scale
+         \begin{align}
+             V_{\mathrm{Pauli}}^{\max}
+             \approx
+-            \frac{\rho_{\!f}\Gamma_0^2}{4\pi}\left(\frac{L}{r_c}\right)\mathcal{O}(1).
++            \frac{\rho_{\!f}\Gamma_0^2}{4\pi}\left(\frac{L}{a_{\rm core}}\right)\mathcal{O}(1).
+             \label{eq:pauli_barrier_scale}
+         \end{align}
+ 
+@@ -2705,19 +2782,28 @@
+             \Gamma_0 &= 2\pi r_c \lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}} \rVert
+             \approx 9.6836\times 10^{-9}\ \mathrm{m^2\,s^{-1}},
+         \end{align}
+-        and \(L \sim 2\pi a_0\) at the hydrogenic scale, one obtains the benchmark estimate
++        and \(L \sim 2\pi a_0\) at the hydrogenic scale, the legacy
++        benchmark obtained in the closure limit \(a_{\rm core}=r_c\) is
+         \begin{align}
+-            V_{\mathrm{Pauli}}^{\max}
++            V_{\mathrm{Pauli}}^{\max}(a_{\rm core}=r_c)
+             \sim 1.23\times 10^{-18}\ \mathrm{J}
+             \sim 7.6\ \mathrm{eV}.
+             \label{eq:pauli_barrier_numeric}
+         \end{align}
++        Away from this closure limit the scaling is
++        \begin{align}
++            V_{\mathrm{Pauli}}^{\max}(a_{\rm core})
++            \sim
++            V_{\mathrm{Pauli}}^{\max}(r_c)
++            \left(\frac{r_c}{a_{\rm core}}\right).
++            \label{eq:pauli_barrier_acore_scaling}
++        \end{align}
+ 
+         \textbf{[CRITICAL NOTE]} This is retained as a canonical scale benchmark, not yet as a closed theorem. Its role is
+         to show that the exclusion-energy estimate falls in an atomically relevant window rather than at obviously
+         pathological scales.
+ 
+-        As written, Eq.~\eqref{eq:pauli_barrier_numeric} should be interpreted as an order-of-magnitude benchmark attached to the canonical constants, not yet as a unique parameter-free prediction.
++        As written, Eq.~\eqref{eq:pauli_barrier_numeric} should be interpreted as an order-of-magnitude benchmark attached to the canonical constants and to the closure-limit choice \(a_{\rm core}=r_c\), not yet as a unique parameter-free prediction.
+ 
+     \subsection{Numerical Benchmark Layer}
+         \label{subsec:integration_benchmarks}
+@@ -2973,7 +3059,7 @@
+             \end{align}
+ 
+         \subsection{Core density closure}
+-            Writing the electron rest energy as localized swirl energy inside a core region leads to the closure
++            Writing the electron rest energy as localized swirl energy inside the canonical neutral-circulation envelope leads to the closure
+             \begin{align}
+                 \rho_{\mathrm{core}}
+                 \sim
+@@ -3105,6 +3191,16 @@
+         \subsection{Dual-vacuum and photon sector status}
+             The project-level discussions also clarified a canon policy: the photon/torsion bridge and the dual-vacuum phenomenology are valuable and fertile, but they should not silently override the simpler core canon. They are best treated as phenomenological extensions built on top of the primitive constant chain and Swirl-Clock structure.
+ 
++        \subsection{State-transition taxonomy from the trefoil-closure discussion}
++            The present conversation also fixes a useful state-transition taxonomy:
++            \begin{align}
++                \text{smooth deformation/binding} &: K=3_1\ \text{preserved},\\
++                \text{R-to-T closure/nucleation} &: K\ \text{created at a boundary event},\\
++                \text{annihilation or weak capture} &: K\ \text{converted with compensation}.
++            \end{align}
++            This taxonomy prevents ordinary atomic binding, non-Euler closure,
++            and true particle conversion from being conflated.
++
+         \subsection{Open theorem ladder}
+             The most important unfinished task identified across the project is not adding new sectors, but tightening the derivational ladder between existing ones. In practice this means:
+             \begin{enumerate}
+--- SST_CANON-v0.8.1-research-track.tex
++++ SST_CANON-v0.8.1-research-track.tex
+@@ -88,19 +88,19 @@
+     \frac{d\ell_1\cdot d\ell_2}{\norm{r_1-r_2}}.
+ \end{align}
+ 
+-\textbf{[DERIVED]}: if two identical electron-candidate loops are forced into the same spatial state, regularization at the core radius $\rc$ yields the overlap penalty
++\textbf{[DERIVED]}: if two identical electron-candidate loops are forced into the same spatial state, regularization at the physical tube radius $a_{\rm core}$ yields the overlap penalty
+ \begin{align}
+     V_{\mathrm{Pauli}}(d)
+     \approx
+     \frac{\rhoF\Gamma_0^2}{4\pi}
+     \iint
+-    \frac{d\ell_1\cdot d\ell_2}{\sqrt{\norm{r_1(\theta_1)-r_2(\theta_2)+d}^2+\rc^2}},
++    \frac{d\ell_1\cdot d\ell_2}{\sqrt{\norm{r_1(\theta_1)-r_2(\theta_2)+d}^2+a_{\rm core}^2}},
+ \end{align}
+ with maximal-overlap scale
+ \begin{align}
+     V_{\mathrm{Pauli}}^{\max}
+     \approx
+-    \frac{\rhoF\Gamma_0^2}{4\pi}\left(\frac{L}{\rc}\right)\mathcal{O}(1).
++    \frac{\rhoF\Gamma_0^2}{4\pi}\left(\frac{L}{a_{\rm core}}\right)\mathcal{O}(1).
+ \end{align}
+ 
+ Using the canonical values
+@@ -109,9 +109,16 @@
+     \rc &= 1.40897017\times 10^{-15}\ \mathrm{m}, \\
+     \Gamma_0 &= 2\pi \rc\,\vnorm \approx 9.6836\times 10^{-9}\ \mathrm{m^2\,s^{-1}},
+ \end{align}
+-and $L\sim 2\pi a_0$ at the hydrogenic scale, one obtains the benchmark estimate
++and $L\sim 2\pi a_0$ at the hydrogenic scale, the legacy closure-limit benchmark is
+ \begin{align}
+-    V_{\mathrm{Pauli}}^{\max} \sim 1.23\times 10^{-18}\ \mathrm{J} \sim 7.6\ \mathrm{eV}.
++    V_{\mathrm{Pauli}}^{\max}(a_{\rm core}=\rc) \sim 1.23\times 10^{-18}\ \mathrm{J} \sim 7.6\ \mathrm{eV}.
++\end{align}
++Away from that closure limit,
++\begin{align}
++    V_{\mathrm{Pauli}}^{\max}(a_{\rm core})
++    \sim
++    V_{\mathrm{Pauli}}^{\max}(\rc)
++    \left(\frac{\rc}{a_{\rm core}}\right).
+ \end{align}
+ 
+ \textbf{[CRITICAL NOTE]}: this is retained as a canonical scale benchmark, not yet as a closed theorem. Its role is to show that the exclusion-energy estimate falls in an atomically relevant window rather than at obviously pathological scales.
+@@ -1954,7 +1961,7 @@
+         \[
+             T_{\mathrm{SST}} = 8.09329985\times10^{-21}\ \mathrm{s}.
+         \]
+-        Thus, a pulse with duration \(\tau_p\gg T_{\mathrm{SST}}\) is narrow relative to the core-scale carrier, whereas \(\tau_p\lesssim T_{\mathrm{SST}}\) is broadband at the canonical core scale.
++        Thus, a pulse with duration \(\tau_p\gg T_{\mathrm{SST}}\) is narrow relative to the canonical circulation-scale carrier, whereas \(\tau_p\lesssim T_{\mathrm{SST}}\) is broadband at the canonical circulation scale.
+     
+     \subsection*{Connection to Swirl Clock}
+         
+@@ -2218,7 +2225,7 @@
+     
+     \subsection*{Critical scale check}
+         
+-        For the canonical core scale,
++        For the canonical circulation scale,
+         \begin{equation}
+             \tau_c
+             =
+@@ -2926,9 +2933,9 @@
+     observed Maxwell structure.  It instead interprets charge and current as
+     effective descriptions of deeper circulation and vorticity organization.
+ 
+-\subsection{Core-Scale Calibration and the QED Critical Field}
++\subsection{Canonical Circulation-Scale Calibration and the QED Critical Field}
+     
+-    At the SST core scale the characteristic angular vorticity scale is
++    At the SST canonical circulation scale the characteristic angular frequency scale is
+     \begin{equation}
+         \Omega_{\rm core}
+         =
