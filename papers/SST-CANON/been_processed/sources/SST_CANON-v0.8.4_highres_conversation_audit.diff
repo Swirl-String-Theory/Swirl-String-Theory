@@ -1,0 +1,289 @@
+--- SST_CANON-v0.8.4_corrected_review_patch.tex
++++ SST_CANON-v0.8.4_corrected_review_patch.highres_conversation_audit.tex
+@@ -129,7 +129,7 @@
+ 
+     \begin{abstract}
+         \noindent
+-        This document presents Swirl-String Theory (SST) as a structured canonical synthesis rather than as a claim that every phenomenological sector has already been derived to theorem level. The text consolidates the primitive constant chain linking the effective fluid density, characteristic swirl speed, Compton anchoring, and core scale; records delay-induced mode selection as the preferred non-operator route to spectral discreteness; and organizes the atomic bridge, spectroscopic filter, relational-time sector, and topology-based mass program within one explicitly stratified framework. Throughout, orthodox inputs, SST-internal derivations, bridge-level constructions, and conjectural extensions are kept distinct so that the canon remains internally coherent, externally comparable, and open to falsification.
++        This document presents Swirl-String Theory (SST) as a structured canonical synthesis rather than as a claim that every phenomenological sector has already been derived to theorem level. The text consolidates the primitive constant chain linking the effective fluid density, characteristic swirl speed, Compton anchoring, and horn/circulation scale; records delay-induced mode selection as the preferred non-operator route to spectral discreteness; and organizes the atomic bridge, spectroscopic filter, relational-time sector, and topology-based mass program within one explicitly stratified framework. Throughout, orthodox inputs, SST-internal derivations, bridge-level constructions, and conjectural extensions are kept distinct so that the canon remains internally coherent, externally comparable, and open to falsification.
+     \end{abstract}
+ 
+     \vspace{0.2cm}
+@@ -358,7 +358,7 @@
+ 
+         \textbf{[ORTHODOX] Definition}: $\rhoM=\rhoE/c^2$ is the mass-equivalent density associated with the swirl kinetic accounting above; in orthodox limits, total energy $E$ in a region still yields mass density $E/c^2$.
+ 
+-        \textbf{[SPECULATIVE] Interpretation}: The distinction between background, energetic, and saturated-core sectors is elevated in SST to a structural ontology of the medium.
++        \textbf{[SPECULATIVE] Interpretation}: The distinction between background, energetic, and saturated envelope-equivalent sectors is elevated in SST to a structural ontology of the medium.
+     
+     \subsection{Horn-Envelope Density Closure}
+         
+@@ -512,6 +512,8 @@
+         \end{align}
+         and all remaining factors are dimensionless, so Eq.~\ref{eq:sst_master_equation} has the correct mass dimension.
+ 
++        \textbf{[CANON / SEMANTIC RULE]}: the factor \(\rc^3\) in Eq.~\eqref{eq:sst_master_equation} is a canonical horn/envelope normalization volume scale. It is not a resolved physical tube volume unless a separate model sets \(a_{\rm core}=\rc\). Resolved tube energies, cutoffs, and local vorticity estimates must use \(a_{\rm core}\) or an explicit profile.
++
+         \textbf{[SPECULATIVE] Interpretation}: The same local kinematic state that slows the Swirl-Clock also enters the effective mass scale; mass and local proper-time modulation are therefore treated as two aspects of one medium configuration.
+ 
+         \textbf{[CRITICAL NOTE]} Equation~\eqref{eq:sst_master_equation} is presently a canonical synthesis formula, not yet a theorem derived from first-principles filament dynamics alone.
+@@ -655,7 +657,7 @@
+ 
+         \textbf{[SPECULATIVE] Interpretation}: the hierarchy between the electromagnetic and gravitational force scales in SST is not an unexplained numerical coincidence but the ratio of the two fundamental coupling constants of the electron. The structured medium is $\sim\!10^{42}$ times stiffer than the space-time geometry at the canonical circulation scale, and this stiffness ratio equals $\alpha/(4\alpha_g)$ exactly.
+ 
+-        \paragraph{(ii) Electrostatic interpretation: the Coulomb ceiling at core scale.}
++        \paragraph{(ii) Electrostatic interpretation: the Coulomb ceiling at the canonical circulation scale.}
+ 
+         When two protons are compressed to a centre-to-centre separation equal to the canonical circulation radius $\rc$, the Coulomb repulsion is
+ 
+@@ -728,7 +730,7 @@
+           {[Derived]} \\[6pt]
+         Coulomb ceiling &
+           $F_{pp}(\rc) = 4\,F_{\rm swirl}^{\max}$ &
+-          Quarter of max.\ Coulomb force at core scale &
++          Quarter of max.\ Coulomb force at circulation scale &
+           {[Derived]} \\[6pt]
+         Vortex spring &
+           $K_e = F_{\rm swirl}^{\max}/2\rc$ &
+@@ -856,14 +858,20 @@
+         \textbf{Interpretation.}
+         Time is not fundamental but relational to the state of motion in the medium.
+     
+-    \subsection{Axiom 8: Density Saturation and Core Structure}
++    \subsection{Axiom 8: Density Saturation and Horn-Envelope Structure}
+         
+         \textbf{Statement.}
+-        The vortex core exhibits a saturated density $\rhocore$ determined by mechanical constraints of the medium.
+-        
+-        \textbf{[SPECULATIVE]} Closure hypothesis: the saturated density is fixed by the closure relation of Eq.~\eqref{eq:core_density}.
+-
+-        \textbf{[DERIVED]} Consequence: once that closure is adopted, matter corresponds to regions where energy density reaches a structural limit.
++        The canonical horn-envelope exhibits an effective saturated density
++        \(\rhohorn\) determined by the mechanical normalization constraints of the
++        medium. A resolved local tube density is not specified until
++        \(a_{\rm core}\) and a tube profile are supplied.
++        
++        \textbf{[SPECULATIVE]} Closure hypothesis: the effective saturated
++        envelope density is fixed by the closure relation of Eq.~\eqref{eq:core_density}.
++
++        \textbf{[DERIVED]} Consequence: once that closure is adopted, matter
++        corresponds to configurations whose neutral circulation envelope reaches
++        a structural normalization limit.
+     
+     \subsection{Logical Structure of the Axioms}
+         
+@@ -1015,6 +1023,34 @@
+         \end{enumerate}
+ 
+         This is also why layer or dressing indices are not treated as primary identity labels: they may modify a state, but they do not replace the topology-first classification of the carrier itself.
++
++    \subsection{Euler topological preservation and closure discipline}
++        \label{subsec:euler_topological_preservation_closure}
++
++        \textbf{[ORTHODOX].}
++        In a smooth incompressible inviscid Euler flow, with no boundaries, forcing,
++        viscosity, singular core collapse, or phase-slip defects, vortex lines are
++        materially transported by the flow. Consequently, linking and knot type of
++        already closed vortex carriers are preserved. A closed unknot cannot become
++        a trefoil by ordinary ideal-Euler evolution:
++        \begin{align}
++            0_1 \not\longrightarrow 3_1
++            \qquad
++            \text{under smooth ideal Euler flow.}
++            \label{eq:euler_no_unknot_to_trefoil}
++        \end{align}
++
++        \textbf{[DERIVED SST CONSTRAINT].}
++        Trefoil creation must therefore not be described as reconnection of an
++        already closed ideal-Euler vortex tube. It is admissible only as a
++        boundary-supported closure, phase-slip, nucleation, or other non-Euler
++        event occurring before the final carrier has acquired a protected closed
++        knot type. After closure, smooth evolution may deform the embedding but
++        must preserve the knot class.
++
++        \textbf{[CANON RULE].}
++        Topology protects existing closed carriers; it does not by itself provide
++        an ideal-Euler mechanism for creating them.
+ 
+ \subsection{Spectral Structure of Locked Closed Carriers (Secondary Result)}
+     \label{subsec:spectral_locked_carriers}
+@@ -1265,6 +1301,64 @@
+ 
+         \textbf{[SPECULATIVE]}: handedness of the local torsional packet is taken to encode polarization, while additional azimuthal phase winding encodes orbital angular momentum.
+ 
++        \textbf{[CANON / SEMANTIC RULE]}:
++        a photon-sector R-phase torsion packet is not a loose end of a vortex
++        filament and does not yet carry a protected closed matter-knot invariant.
++        It is a phase/torsion support on a swirl-characteristic. A spacetime
++        geodesic is only the orthodox comparison language for the coarse-grained
++        propagation path.
++
++    \subsection{R-to-T closure threshold and conservation bookkeeping}
++        \label{subsec:rt_closure_threshold_bookkeeping}
++
++        \textbf{[SPECULATIVE SST BRIDGE].}
++        If electron-trefoil creation is retained, the conservative bookkeeping
++        form is
++        \begin{align}
++            \gamma_{\rm R}
++            +
++            \mathcal{B}_{\rm atom}
++            \overset{\mathcal{K}_{\rm Kairos}}{\longrightarrow}
++            e^-_{3_1}
++            +
++            \mathcal{R},
++            \label{eq:kairos_rt_trefoil_closure}
++        \end{align}
++        where \(\gamma_{\rm R}\) is an extended R-phase torsion packet,
++        \(\mathcal{B}_{\rm atom}\) is a local boundary or trapping condition, and
++        \(\mathcal{R}\) carries recoil, momentum balance, and any required
++        topological or charge compensation. Equation~\eqref{eq:kairos_rt_trefoil_closure}
++        is not a pure Euler reconnection event.
++
++        The Compton anchoring gives the closure energy scale
++        \begin{align}
++            \omega_c = \frac{\vnorm}{\rc},
++            \qquad
++            \hbar\omega_c = m_e c^2.
++            \label{eq:compton_closure_energy_scale}
++        \end{align}
++        This scale may be used as a seed/closure threshold only in the presence
++        of a boundary reservoir or pre-existing attachment support. Free creation
++        of a matter carrier from radiation must respect charge, momentum, and
++        topological compensation. A lone photon-to-lone-electron channel is
++        therefore excluded in the canon-safe reading. The minimal free pair
++        bookkeeping is instead
++        \begin{align}
++            \gamma+\gamma
++            \longrightarrow
++            3_1+\overline{3_1},
++            \qquad
++            E_{\rm pair}=2m_e c^2,
++            \label{eq:trefoil_antitrefoil_pair_bookkeeping}
++        \end{align}
++        or a field-assisted version
++        \begin{align}
++            \gamma+\mathcal{F}
++            \longrightarrow
++            3_1+\overline{3_1}+\mathcal{F}' .
++            \label{eq:field_assisted_pair_bookkeeping}
++        \end{align}
++
+     \subsection{Swirl pressure law}
+         \label{subsec:swirl_pressure_law}
+ 
+@@ -1514,6 +1608,36 @@
+             \item $\swirlarrowcw$ (right-handed)
+         \end{itemize}
+     
++    \subsection{Electron trefoil identity under ordinary atomic binding}
++        \label{subsec:electron_trefoil_atomic_binding}
++
++        \textbf{[DERIVED SST CONSTRAINT].}
++        Ordinary propagation through vacuum and ordinary atomic binding do not
++        change the electron carrier's knot class. In the trefoil assignment, the
++        transition is
++        \begin{align}
++            3_1^{\rm free}
++            \longrightarrow
++            3_1^{\rm bound},
++            \label{eq:free_to_bound_trefoil}
++        \end{align}
++        not a breaking or unknotting of the carrier. Binding changes the embedding,
++        phase envelope, branch coupling, and dressing of the carrier:
++        \begin{align}
++            e^-_{\rm atom}
++            =
++            3_1^{\rm core}
++            \otimes
++            \Psi_{n\ell m\sigma}^{\rm envelope}.
++            \label{eq:atomic_electron_trefoil_tensor_envelope}
++        \end{align}
++
++        \textbf{[CANON RULE].}
++        Ordinary electron capture by an ion is a binding and phase-locking process.
++        Destruction or conversion of the separate electron trefoil requires a
++        non-Euler process such as annihilation with an anti-trefoil or weak-sector
++        capture, with the necessary compensation carried by the final state.
++
+     \subsection{Consistency Requirement}
+         
+         To remain compatible with atomic physics:
+@@ -2519,7 +2643,7 @@
+         \end{itemize}
+ 
+     \subsection{Notation and density cleanup}
+-        Earlier canon versions sometimes conflated background density, mass-equivalent density, and saturated core density. The present version adopts the cleaned hierarchy
++        Earlier canon versions sometimes conflated background density, mass-equivalent density, and saturated envelope-equivalent density. The present version adopts the cleaned hierarchy
+         \begin{align}
+             \rhoF \quad \text{(effective fluid density)},
+             \qquad
+@@ -2527,7 +2651,9 @@
+             \qquad
+             \rhoM = \rhoE/c^2,
+             \qquad
+-            \rhocore \quad \text{(saturated core density)}.
++            \rhohorn \quad \text{(canonical saturated envelope-equivalent density)},
++            \qquad
++            \rhocore \quad \text{(legacy alias, deprecated unless explicitly defined)}.
+         \end{align}
+         Any older passage that identifies a single symbol with more than one of these roles is superseded by the present separation.
+ 
+
+--- SST_CANON-v0.8.4-research-track_corrected_review_patch.tex
++++ SST_CANON-v0.8.4-research-track_corrected_review_patch.highres_conversation_audit.tex
+@@ -110,6 +110,54 @@
+     q_d=-\frac{1}{3}.
+ \end{align}
+ The topological knot supplies the defect carrier; $q_{\partial}$ supplies the charge-sector bookkeeping.
++
++\subsection{Twist-Ladder Closure from a Folded Clasp}
++\label{subsec:rt_twist_ladder_closure}
++
++\textbf{[ORTHODOX / RESEARCH TRACK].}
++The rope experiment described in the project discussion is naturally modeled as
++a twist box plus a single clasp closure. If \(m\) denotes the number of signed
++half-twists retained in the folded region at closure, the resulting twist-knot
++ladder is
++\begin{align}
++    K_m
++    =
++    \text{clasp}+\text{\(m\)-half-twist box},
++    \qquad
++    m\in\mathbb{Z}.
++    \label{eq:rt_twist_ladder_Km}
++\end{align}
++For the positive convention used here,
++\begin{align}
++    K_1=3_1,\qquad
++    K_2=4_1,\qquad
++    K_3=5_2,\qquad
++    K_4=6_1,\qquad
++    K_5=7_2,\qquad
++    K_6=8_1 .
++    \label{eq:rt_twist_ladder_first_terms}
++\end{align}
++The standard invariant checks are
++\begin{align}
++    c_{\min}(K_m)=m+2,
++    \qquad
++    \det(K_m)=2m+1
++    \quad (m\ge 1).
++    \label{eq:rt_twist_ladder_invariants}
++\end{align}
++Changing the twist sign gives the mirror sector,
++\begin{align}
++    K_{-m}=\overline{K_m}.
++    \label{eq:rt_twist_ladder_mirror}
++\end{align}
++
++\textbf{[CANON-COMPATIBLE INTERPRETATION].}
++End-rotation and plectonemic folding redistribute twist and writhe according
++to the framed-ribbon bookkeeping \(Lk=Tw+Wr\), but they do not change the
++topological class of an already closed ideal carrier. The knot class is fixed
++only when the clasp/boundary closure is performed. This module is therefore a
++research-track generator for twist/clasp candidates and for the \(m=1\) trefoil
++closure picture; it is not yet a dynamical theorem of Euler--SST.
+ 
+ \subsection{Triple-Gear and Borromean Baryon Analogues}
+ \label{subsec:rt_triple_gear_borromean_baryons}

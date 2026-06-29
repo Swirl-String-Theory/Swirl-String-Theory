@@ -1,0 +1,77 @@
+    \subsection{Framed self-linking of the swirl string and the spinorial selection of the lepton ladder}
+        \label{subsec:framed_selflinking_spinorial}
+
+        This subsection records the framed-tube self-linking of a closed torus-knot swirl
+        string and the boundary class that selects its physical winding. It is the first
+        genuinely non-circular topological result in the canon, in deliberate contrast to the
+        calibrated $\alpha$-identities of the Formal Foundations (which re-express $\alpha$
+        rather than predict it).
+
+        \textbf{[DERIVED] Torus-surface self-linking.}
+        Let $K=T(p,q)$ be a closed swirl string on the standard torus and let $U_{\rm tor}$ be
+        the torus surface-normal framing. The framed self-linking is
+        \begin{align}
+            SL_{\rm tor}(T(p,q)) \;=\; pq,
+            \label{eq:SL_torus_pq}
+        \end{align}
+        verified numerically to machine precision for $p\in\{2,3\}$ and $q=3,\dots,11$ with
+        \emph{no} target injected. For the lepton family $T(2,q)$, $SL_{\rm tor}=2q$.
+
+        \textbf{[DEFINITIONAL] Physical-framing winding.}
+        For any single-valued physical framing $U_{\rm phys}$ of $K$ (the direction of the core
+        swirl velocity $\vswirl$), the relative winding
+        \begin{align}
+            \chi \;:=\; SL(K,U_{\rm phys})-SL(K,U_{\rm tor})
+                  \;=\; \frac{1}{2\pi}\oint_K \mathrm{d}\!\left[\angle_{U_{\rm tor}}(U_{\rm phys})\right]
+                  \;\in\; \mathbb{Z}
+            \label{eq:chi_def}
+        \end{align}
+        is an integer relative winding number, so $SL_{\rm phys}(T(p,q))=pq+\chi$.
+
+        \textbf{[CRITICAL NOTE]} Any test that fixes the twist by $Tw=\mathrm{target}-Wr$ and
+        then confirms the target is circular: it passes for \emph{any} integer target and
+        proves only the Calugareanu identity $SL=Wr+Tw$. Only the target-free
+        framing~\eqref{eq:SL_torus_pq} and the selection argument below are admissible.
+
+        \textbf{[DERIVED NEGATIVE] Ordinary $U(1)$ closure gives $\chi=0$.}
+        With positive longitudinal phase stiffness $A_\parallel>0$, the winding energy
+        \begin{align}
+            E(\chi)\;=\;E_0+\frac{2\pi^2 A_\parallel}{L}\,\chi^2
+            \label{eq:E_chi}
+        \end{align}
+        is minimized over ordinary (periodic) $U(1)$ windings $\chi\in\mathbb{Z}$ at
+        $\chi_{\rm ground}=0$, hence $SL_{\rm phys}=pq$ (even). Pure framed-curve geometry with
+        positive stiffness therefore yields a \emph{boson} and cannot produce the lepton
+        $pq+1$ ladder.
+
+        \textbf{[CONDITIONAL DERIVED] Spinorial anti-periodicity gives $\chi=\pm1$.}
+        If the core phase is a section of a spinor (rather than a $U(1)$) bundle, then under one
+        circuit of $K$ the spin frame rotates by $2\pi$ and the phase is anti-periodic, so the
+        admissible windings are $\chi\in 2\mathbb{Z}+1$. Minimizing~\eqref{eq:E_chi} over this
+        sector gives the degenerate ground winding
+        \begin{align}
+            \chi_{\rm ground}=\pm1 \quad\Longrightarrow\quad
+            SL_{\rm phys}(T(p,q))=pq\pm1,
+            \qquad SL_{\rm phys}(T(2,q))=2q\pm1,
+            \label{eq:SL_phys_pq1}
+        \end{align}
+        the two signs being the matter and antimatter sectors. The selection is a
+        \emph{superselection} effect: the boson winding $\chi=0$ is always energetically lower
+        (by $2\pi^2 A_\parallel/L>0$), so it is the boundary class, not the energetics, that
+        renders the carrier fermionic. The result is independent of $(A_\parallel,L)$ for all
+        positive values.
+
+        \textbf{[OPEN] Derivation of the spinorial boundary condition.}
+        The spinorial anti-periodicity of the core phase is not yet derived from the swirl-field
+        dynamics; it is the single remaining premise of the $pq+1$ ladder.
+
+        \textbf{[CONDITIONAL] Unification with the magnetic moment.}
+        The spinor premise above is the \emph{same} posit as the spin-$\tfrac12$ assignment of
+        the magnetic-moment sector (Route~B): one spinorial lift of the core phase yields both
+        $g=2$ and $\chi=\pm1\Rightarrow pq\pm1$. If established, fermion statistics, the
+        gyromagnetic ratio, and the lepton self-linking ladder collapse into a single mechanism.
+
+        \textbf{[DERIVED] Falsifier.}
+        An independently computed $T(2,q)$ Hopfion self-linking with $Q_H\neq 2q\pm1$ (e.g.\
+        $T(2,5)\neq 11$) falsifies the conditional chain irrespective of the variational
+        argument.

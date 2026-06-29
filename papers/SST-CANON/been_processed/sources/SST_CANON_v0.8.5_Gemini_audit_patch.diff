@@ -1,0 +1,282 @@
+--- SST_CANON-v0.8.5.tex
++++ SST_CANON-v0.8.5_Gemini-audit-patched.tex
+@@ -93,6 +93,9 @@
+ \newcommand{\SwirlClockcw}{{S_{(t)}^{\swirlarrowcw}}}
+ \newcommand{\rc}{{r_c}}
+ \newcommand{\vnorm}{\lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}} \rVert}
++\newcommand{\vchar}{v_{\!\boldsymbol{\circlearrowleft}}^{\ast}}
++\newcommand{\uswirl}{\mathbf{u}_{\!\boldsymbol{\circlearrowleft}}}
++\newcommand{\omegaswirl}{\boldsymbol{\omega}_{\!\boldsymbol{\circlearrowleft}}}
+ 
+ 
+ 
+@@ -224,17 +227,25 @@
+         
+         We define the Swirl-String Theory (SST) as a continuum-based framework built on a minimal set of primitive quantities.
+         
+-        \textbf{Primitive set:}
+-        \begin{align}
+-            \mathcal{P} = \{ \rhoF, \vswirl, \omega_c \}
++        \textbf{Primitive calibration set:}
++        \begin{align}
++            \mathcal{P}_{\mathrm{cal}} = \{ \rhoF, \vchar, \omega_c \}
+         \end{align}
+         
+         where:
+         \begin{itemize}
+             \item $\rhoF$ is the effective background fluid density,
+-            \item $\vswirl$ is the characteristic swirl velocity,
++            \item $\vchar=\lVert\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert$ is the canonical characteristic swirl-speed magnitude,
+             \item $\omega_c$ is the Compton angular frequency.
+         \end{itemize}
++
++        \textbf{[CANON / NOTATION]}: $\vchar$ is a calibrated scalar speed. The local swirl-velocity field is denoted
++        \begin{align}
++            \uswirl(\mathbf{x},t),
++            \qquad
++            \omegaswirl(\mathbf{x},t)=\nabla\times\uswirl(\mathbf{x},t).
++        \end{align}
++        The symbol $\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}$ without explicit arguments is reserved for the canonical characteristic carrier velocity; it must not be used as the unrestricted local field in bridge equations.
+         
+         \textbf{[ORTHODOX]}: $\omega_c = \frac{m_e c^2}{\hbar}$ is a standard physical constant.
+         
+@@ -412,7 +423,7 @@
+ 
+         \textbf{[ORTHODOX]}: Eq.~\eqref{eq:chronos_kelvin_basic} is the thin-loop form of Kelvin circulation conservation in inviscid barotropic flow \cite{Batchelor1967,Saffman1992}.
+ 
+-        \textbf{[DERIVED]}: Eq.~\eqref{eq:chronos_kelvin_clock} is the SST rewriting of the same invariant in terms of the Swirl-Clock.
++        \textbf{[CONDITIONAL DERIVED]}: Eq.~\eqref{eq:chronos_kelvin_clock} is the SST rewriting of the same invariant in terms of the Swirl-Clock, conditional on evaluating the local tangential speed at the fixed horn/circulation scale $\rc$. It is not a generic radius-transport theorem for an arbitrary resolved tube radius $a_{\rm core}(t)$.
+ 
+         Differentiating Eq.~\eqref{eq:chronos_kelvin_clock} gives a useful transport identity:
+ 
+@@ -424,7 +435,7 @@
+             \label{eq:clock_radius_transport}
+         \end{align}
+ 
+-        \textbf{[DERIVED]}: contraction of a material loop drives stronger clock suppression, while expansion relaxes it.
++        \textbf{[CONDITIONAL DERIVED]}: within the horn-anchored approximation, contraction of a material loop drives stronger clock suppression, while expansion relaxes it.
+ 
+     \subsection{Reparametrized Zero-Parameter Corollary}
+         \label{subsec:zero_parameter_corollary}
+@@ -535,7 +546,7 @@
+         The full dependency chain is:
+         
+         \begin{align}
+-        (\rhoF, \vswirl, \omega_c)
++        (\rhoF, \vchar, \omega_c)
+             \rightarrow \rc
+             \rightarrow \Gamma_0
+             \rightarrow (\rhoE, \rhoM, \rhocore)
+@@ -549,9 +560,9 @@
+     \subsection{Consistency Statement}
+         
+         \begin{itemize}
+-            \item All derived quantities depend only on $\mathcal{P}$
+-            \item No external parameters are introduced
+-            \item The theory is closed under its primitive set
++            \item All derived quantities depend on the stated calibration set, explicit orthodox constants, and explicitly labeled bridge assumptions.
++            \item No \emph{unlabeled} external parameters are introduced.
++            \item Quantities fixed by $\alpha$, $m_e$, $\hbar$, $c$, $R_\infty$, or $t_p$ are labeled \textbf{[CALIBRATED]} rather than independent predictions.
+         \end{itemize}
+     
+     \subsection{Interpretation}
+@@ -1665,7 +1676,7 @@
+         
+         This transcendental equation admits a discrete set of stable solutions $\Omega_n$ determined by the delay parameter $\tau$.
+         
+-        \textbf{[DERIVED]}: Discrete mode selection arises from temporal nonlocality alone.
++        \textbf{[CONDITIONAL DERIVED]}: Given the effective DDE ansatz of Eq.~\eqref{eq:delay_phase}, the delayed feedback equation admits discrete locked branches. The claim that the SST medium obeys this specific DDE remains a bridge assumption, not a first-principles Euler theorem.
+     
+     \subsection{Delay-Induced Quantization Mechanism}
+         
+@@ -2479,8 +2490,8 @@
+         \end{align}
+         Photon phase therefore probes \(n_\gamma\), while bulk matter probes Eq.~\eqref{eq:canonical_sst_grav_force_density}. These are coupled through \(\mathbf{u}_{\swirlarrow}\), but they need not have identical spatial gradients.
+ 
+-        \paragraph{Coupling constant closure.}
+-        The weak gravitational coupling is fixed by the canonical SST constants as
++        \paragraph{Electron-normalized coupling calibration.}
++        The weak gravitational coupling is written in electron-normalized SST variables as
+         \begin{align}
+             \boxed{
+             G_{\mathrm{swirl}}
+@@ -2491,7 +2502,7 @@
+             }
+             \label{eq:canonical_gswirl_emg_closure}
+         \end{align}
+-        Thus the EM--gravity bridge is not a free-parameter assertion. Its topological electromagnetic impulse is normalized by \(\Phi_0=h/(2e)\), while its weak gravitational closure is normalized by \(G_{\mathrm{swirl}}\).
++        Thus the EM--gravity bridge is not an unlabeled free-parameter assertion. However, because \(t_p\) already contains \(G\) in orthodox units, Eq.~\eqref{eq:canonical_gswirl_emg_closure} is a \textbf{[CALIBRATED]} electron-normalized consistency identity unless a future SST sector derives \(t_p\) or \(G_{\mathrm{swirl}}\) independently from medium dynamics.
+ 
+         \paragraph{Dimensional checks.}
+         The electromagnetic source term has units
+@@ -2958,8 +2969,8 @@
+         as a refinement of the knot-based matter/antimatter dictionary.
+ 
+         \textbf{[ORTHODOX]}: Eq.~\eqref{eq:calugareanu} is a standard geometric identity for framed curves and ribbons.\newline
+-        \textbf{[DERIVED]}: it can be used internally to separate writhe-dominated from twist-dominated realizations of the same coarse knot class.\newline
+-        \textbf{[SPECULATIVE]}: the mapping from sign$(Tw)$ or related chirality measures to particle/antiparticle sectors remains a model hypothesis.
++        \textbf{[DERIVED BOOKKEEPING]}: once a framed curve is specified, the identity separates writhe and twist contributions.\newline
++        \textbf{[SPECULATIVE]}: the claim that writhe-dominated and twist-dominated realizations are dynamically stable physical isomers, or map to particle/antiparticle sectors, remains a model hypothesis.
+ 
+ 
+     \subsection{Framed-Tube Ontology and the Attachment Gate}
+
+--- SST_CANON-v0.8.5-research-track.tex
++++ SST_CANON-v0.8.5-research-track_Gemini-audit-patched.tex
+@@ -52,9 +52,9 @@
+ 
+ \textbf{[ORTHODOX]}: this is a standard geometric identity for framed curves and ribbons.
+ 
+-\textbf{[DERIVED]}: it can be used internally to separate writhe-dominated from twist-dominated realizations of the same coarse knot class.
+-
+-\textbf{[SPECULATIVE]}: the mapping from $\operatorname{sign}(Tw)$ or related chirality measures to particle/antiparticle sectors remains a model hypothesis.
++\textbf{[DERIVED BOOKKEEPING]}: once a framed curve is specified, the identity separates writhe and twist contributions.
++
++\textbf{[SPECULATIVE]}: the dynamical stability of writhe-dominated or twist-dominated realizations, and the mapping from $\operatorname{sign}(Tw)$ or related chirality measures to particle/antiparticle sectors, remains a model hypothesis.
+ 
+ \subsection{Particle-Candidate Mapping Layer}
+ \textbf{[SPECULATIVE] Working dictionary:} a minimal knot/composition mapping retained from earlier SST work is summarized in Table~\ref{tab:particle-candidates}. This table is organizational rather than definitive; it records the current topological assignments used by the mass and taxonomy program.
+@@ -236,19 +236,19 @@
+     \frac{d\ell_1\cdot d\ell_2}{\norm{r_1-r_2}}.
+ \end{align}
+ 
+-\textbf{[DERIVED]}: if two identical electron-candidate loops are forced into the same spatial state, regularization at the physical tube radius $a_{\rm core}$ yields the overlap penalty
++\textbf{[DERIVED]}: if two identical electron-candidate loops are forced into the same spatial state, regularization at a short-distance cutoff $a_{\rm cut}$ yields the overlap penalty
+ \begin{align}
+     V_{\mathrm{Pauli}}(d)
+     \approx
+     \frac{\rhoF\Gamma_0^2}{4\pi}
+     \iint
+-    \frac{d\ell_1\cdot d\ell_2}{\sqrt{\norm{r_1(\theta_1)-r_2(\theta_2)+d}^2+a_{\rm core}^2}},
++    \frac{d\ell_1\cdot d\ell_2}{\sqrt{\norm{r_1(\theta_1)-r_2(\theta_2)+d}^2+a_{\rm cut}^2}},
+ \end{align}
+ with maximal-overlap scale
+ \begin{align}
+     V_{\mathrm{Pauli}}^{\max}
+     \approx
+-    \frac{\rhoF\Gamma_0^2}{4\pi}\left(\frac{L}{a_{\rm core}}\right)\mathcal{O}(1).
++    \frac{\rhoF\Gamma_0^2}{4\pi}\left(\frac{L}{a_{\rm cut}}\right)\mathcal{O}(1).
+ \end{align}
+ 
+ Using the canonical values
+@@ -257,12 +257,12 @@
+     \rc &= 1.40897017\times 10^{-15}\ \mathrm{m}, \\
+     \Gamma_0 &= 2\pi \rc\,\vnorm \approx 9.6836\times 10^{-9}\ \mathrm{m^2\,s^{-1}},
+ \end{align}
+-and $L\sim 2\pi a_0$ at the hydrogenic scale, one obtains the benchmark estimate
++and \(L\sim 2\pi a_0\) at the hydrogenic scale, the legacy benchmark corresponds to the cutoff calibration \(a_{\rm cut}=\rc\). This does \emph{not} identify the resolved tube radius \(a_{\rm core}\) with \(\rc\); it only fixes the ultraviolet cutoff used in this benchmark. One obtains
+ \begin{align}
+     V_{\mathrm{Pauli}}^{\max} \sim 1.23\times 10^{-18}\ \mathrm{J} \sim 7.6\ \mathrm{eV}.
+ \end{align}
+ 
+-\textbf{[CRITICAL NOTE]}: this is retained as a canonical scale benchmark, not yet as a closed theorem. Its role is to show that the exclusion-energy estimate falls in an atomically relevant window rather than at obviously pathological scales.
++\textbf{[CRITICAL NOTE]}: this is retained as a cutoff-calibrated scale benchmark, not yet as a closed theorem. Its role is to show that the exclusion-energy estimate falls in an atomically relevant window rather than at obviously pathological scales. A physical resolved-core calculation must use an independently specified \(a_{\rm core}\) or profile model.
+ 
+ \subsection{Numerical Benchmark Layer}
+ \textbf{[DERIVED] Computational-program requirement:} earlier SST work contained explicit benchmark tables for particle and atomic masses. In v0.8.1, the benchmark layer is retained as a reproducibility requirement rather than as a stand-alone authority claim.
+@@ -406,10 +406,10 @@
+ \end{enumerate}
+ 
+ \subsection{Stage-2 freeze: measurable dark taxonomy}
+-\textbf{[DERIVED] Minimal classifier variables:}
++\textbf{[SPECULATIVE] Classifier variables:}
+ symmetry class (including amphichirality status), chirality sign/state, helicity-balance indicator $\Delta_H(K)$, and low-order instability count $N_u^{(1)}(K)$.
+ 
+-\textbf{[DERIVED] Decision rules (symmetry-first, then stability-filtered):}
++\textbf{[SPECULATIVE] Decision rules (symmetry-first, then stability-filtered):}
+ \begin{align}
+     \text{Dark}
+     &:\ \text{amphichiral candidate}
+@@ -425,13 +425,13 @@
+     &:\ \text{chiral-dominant and/or helicity-unbalanced sectors}.
+ \end{align}
+ 
+-\textbf{[DERIVED] Ambiguity tie-break:}
++\textbf{[CANON WORKFLOW NOTE] Ambiguity tie-break:}
+ if classes overlap, choose the class with the strongest conjunction score in the order
+ \[
+ \text{symmetry gate} \rightarrow \text{helicity balance gate} \rightarrow \text{stability gate}.
+ \]
+ 
+-\textbf{[DERIVED] Baseline templates and falsifiers:}
++\textbf{[SPECULATIVE] Baseline templates and falsifiers:}
+ \begin{itemize}
+     \item \textbf{Visible baseline:} trefoil-like chiral template; falsifier = persistent amphichiral-plus-balanced signature under validated data updates.
+     \item \textbf{Quasi-dark baseline:} Borromean-type weak-coupling template; falsifier = stable zero-instability assignment across independent scans.
+@@ -442,7 +442,7 @@
+ amphichiral $\Rightarrow$ dark remains a classifier proposal tested against observables, not a closed theorem.
+ 
+ \subsection{Stage-3 freeze: galactic law branch gate and closure route}
+-\textbf{[DERIVED] Branch-gate decision:} Branch A (legacy profile refine) is selected for current v0.8.x closure because it preserves tested limits while allowing benchmark traceability.
++\textbf{[CANON WORKFLOW NOTE] Branch-gate decision:} Branch A (legacy profile refine) is selected for current v0.8.x closure because it preserves tested limits while allowing benchmark traceability.
+ 
+ Working profile:
+ \begin{align}
+@@ -464,7 +464,7 @@
+ \end{enumerate}
+ 
+ \subsection{Stage-4 freeze: probe falsification map}
+-\textbf{[DERIVED]} probe classes are fixed as astrophysical, laboratory pressure/swirl analog, HV-coil/thrust-inspired, optical/torsional coupling, and null dark-sector tests.
++\textbf{[CANON WORKFLOW NOTE]} probe classes are fixed as astrophysical, laboratory pressure/swirl analog, HV-coil/thrust-inspired, optical/torsional coupling, and null dark-sector tests.
+ 
+ \begin{table}[h]
+ \centering
+@@ -509,6 +509,9 @@
+         {\mkern-2mu\scriptscriptstyle\boldsymbol{\circlearrowleft}}%
+     }
+     \providecommand{\vswirl}{\mathbf{v}_{\!\swirlarrow}}
++\providecommand{\vchar}{v_{\!\boldsymbol{\circlearrowleft}}^{\ast}}
++\providecommand{\uswirl}{\mathbf{u}_{\!\boldsymbol{\circlearrowleft}}}
++\providecommand{\omegaswirl}{\boldsymbol{\omega}_{\!\boldsymbol{\circlearrowleft}}}
+     \providecommand{\rhoF}{\rho_{\!f}}
+     \providecommand{\rhoE}{\rho_{\!E}}
+     \providecommand{\rhoM}{\rho_{\!m}}
+@@ -762,10 +765,11 @@
+             \qquad
+             \mathrm{no\ reconnection}.
+         \]
+-        In the dissipative, measurement, or decay sector, reconnection is allowed:
++        In the dissipative, measurement, or decay sector, reconnection is allowed only as a non-ideal event:
+         \[
+             \frac{D\mathcal K}{Dt}\neq0.
+         \]
++        This is not a free creation mechanism. A reconnection claim must state the trigger class, e.g. \(\nu_{\rm eff}>0\), a boundary injection, a phase-slip singularity, a resolved-core collapse, or an explicit external forcing term.
+         The helicity budget is written
+         \[
+             \Delta H_{\mathrm{topology}}
+@@ -2928,7 +2932,7 @@
+         \qquad
+         \boldsymbol{\omega}
+         =
+-        \nabla\times\vswirl .
++        \nabla\times\uswirl(\mathbf{x},t) .
+         \label{eq:B_from_vorticity}
+     \end{equation}
+     This is the cleanest form of the statement that magnetic flux arises from
+@@ -3463,7 +3467,7 @@
+         \quad
+         &\mathbf{A}_{\rm SI}
+         =
+-        \frac{m_e}{e}\vswirl,
++        \frac{m_e}{e}\uswirl(\mathbf{x},t),
+         \qquad
+         \mathbf{B}_{\rm SST}
+         =
+@@ -3529,7 +3533,7 @@
+         \[
+             \mathbf{A}_{\rm SI}
+             =
+-            \frac{m_e}{e}\vswirl.
++            \frac{m_e}{e}\uswirl(\mathbf{x},t).
+         \]
+         
+         \item The core-scale SST magnetic field equals the QED critical field:
+@@ -3688,7 +3692,7 @@
+ \[
+     \mathbf{A}_{\rm SI}
+     =
+-    \frac{m_e}{e}\vswirl,
++    \frac{m_e}{e}\uswirl(\mathbf{x},t),
+     \qquad
+     \mathbf{B}_{\rm SST}
+     =

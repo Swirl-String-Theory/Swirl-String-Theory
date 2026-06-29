@@ -1,121 +1,92 @@
-# 3D Visualization of the Starship Coil - Multiple Layers
+# Starship coil = SawShape on S=9 (+4/+4), mapped to 27-gon, 6 phases
 
 import numpy as np
-
 import matplotlib
-matplotlib.use('TkAgg')  # Ensure it uses Tkinter backend
-
+matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-rotation_steps=0
+STARSHIP_S = 9
+STARSHIP_STEP_FWD = 4
+STARSHIP_STEP_BWD = 4
+n_pairs = 4  # incremental pairs like SawShape (1→[1,5,9], 4→[1,5,9,4,8,3,7,2,6])
+
 rotation_angle = (2 * np.pi / 27) / 3
-# Define provided base sequence
-base_sequence = [1, 5, 9, 4, 8, 3, 7, 2, 6, 1]
-
-# Create explicit sequences as per user request
-sequence_A_forward = [((num * 3 - 0 - 1) % 27) + 1 for num in base_sequence]
-sequence_A_neutral = [((num * 3 - 0 - 1) % 27) + 1 for num in base_sequence]
-sequence_A_backward = [((num * 3 - 0 - 1) % 27) + 1 for num in base_sequence]
-
-sequence_B_forward = [((num * 3 - 1 - 1) % 27) + 1 for num in base_sequence]
-sequence_B_neutral = [((num * 3 - 1 - 1) % 27) + 1 for num in base_sequence]
-sequence_B_backward = [((num * 3 - 1 - 1) % 27) + 1 for num in base_sequence]
-
-sequence_C_forward = [((num * 3 - 2 - 1) % 27) + 1 for num in base_sequence]
-sequence_C_neutral = [((num * 3 - 2 - 1) % 27) + 1 for num in base_sequence]
-sequence_C_backward = [((num * 3 - 2 - 1) % 27) + 1 for num in base_sequence]
-
-# Points setup
-angles = np.linspace(0, 2 * np.pi, 28)[:-1]
-positions = {i+1: (np.cos(angle), np.sin(angle)) for i, angle in enumerate(angles)}
-segment_shift = ((2 * np.pi / 27) / 3)
+COIL_ANGLES = (
+    np.linspace(0, 2 * np.pi, 28)[:-1] - np.pi * 1.5 + (2 * np.pi / 27)
+)[::-1] + rotation_angle
+SEGMENT_SHIFT = (2 * np.pi / 27) / 3
+layer_spacing = 0.4
 
 
-# Recalculate positions with adjusted angles for rotation and reversed numbering
-angles_rotated = np.linspace(0, 2 * np.pi, 28)[:-1] - np.pi*1.5 +(2*np.pi*(1/27)) # Rotate 90° counterclockwise
-angles_rotated = angles_rotated[::-1]  # Reverse numbering for clockwise count
-positions_rotated = {i+1: (np.cos(angle), np.sin(angle)) for i, angle in enumerate(angles_rotated)}
+def alternating_skip_indices(S, step_fwd, step_bwd, n_pairs, start=1):
+    idx = start
+    seq = [idx]
+    for k in range(2 * n_pairs):
+        if k % 2 == 0:
+            idx = (idx + step_fwd - 1) % S + 1
+        else:
+            idx = (idx + step_bwd - 1) % S + 1
+        seq.append(idx)
+    return np.array(seq, dtype=int)
 
-angles_rotated += rotation_angle
 
-# Define parameters for multi-layer 3D coil
-num_layers = 10  # Number of layers in the coil
-layer_spacing = 0.1  # Distance between layers in the z-axis
+def saw_to_27(saw_seq, phase_offset_27):
+    return np.array([
+        ((int(s) * 3 - phase_offset_27 - 1) % 27) + 1 for s in saw_seq
+    ], dtype=int)
 
 
+saw_seq = alternating_skip_indices(STARSHIP_S, STARSHIP_STEP_FWD, STARSHIP_STEP_BWD, n_pairs)
+NUM_STEPS = len(saw_seq) - 1
+z_per_step = layer_spacing / max(NUM_STEPS, 1)
 
-# Function to generate multi-layer wire paths
-def generate_3d_wire(sequence, segment, z_layer, base_color, style, alpha=1.0):
-    # Recalculate 3D positions for multiple layers
-    angles = np.linspace(0, 2 * np.pi, 28)[:-1] - np.pi * 1.5 + (2 * np.pi * (1 / 27))
-    angles = angles[::-1]  # Reverse numbering for clockwise count
-    segment_shift = ((2 * np.pi / 27) / 3)
-    """Generates a 3D multi-layer wire visualization."""
-    for i in range(len(sequence) - 1):
-        num = sequence[i]
-        next_num = sequence[i + 1]
+PHASES = [
+    (0,  0.0,    False, ('blue', '-', 0.9), ('blue', '--', 0.3), ('cyan', '-', 0.9)),
+    (9,  0.0,    False, ('red', '-', 0.9), ('red', '--', 0.3), ('orange', '-', 0.9)),
+    (18, 0.0,    False, ('green', '-', 0.9), ('green', '--', 0.3), ('purple', '-', 0.9)),
+    (0,  np.pi,  True,  ('navy', '-', 0.9), ('navy', '--', 0.3), ('steelblue', '-', 0.9)),
+    (9,  np.pi,  True,  ('maroon', '-', 0.9), ('maroon', '--', 0.3), ('salmon', '-', 0.9)),
+    (18, np.pi,  True,  ('darkgreen', '-', 0.9), ('darkgreen', '--', 0.3), ('yellowgreen', '-', 0.9)),
+]
 
-        # Apply rotation and segment shift
-        angle_start = angles[(num - 1) % 27] + segment_shift * (segment - 1)
-        angle_end = angles[(next_num - 1) % 27] + segment_shift * (segment - 1)
 
-        x_start, y_start = np.cos(angle_start), np.sin(angle_start)
-        x_end, y_end = np.cos(angle_end), np.sin(angle_end)
+def draw_wire_step(seq_27, segment, phase_angle, step_i, z_start, z_end, color, style, alpha):
+    num = int(seq_27[step_i])
+    next_num = int(seq_27[step_i + 1])
+    seg = SEGMENT_SHIFT * (segment - 1)
+    angle_start = COIL_ANGLES[num - 1] + seg + phase_angle
+    angle_end = COIL_ANGLES[next_num - 1] + seg + phase_angle
+    ax.plot(
+        [np.cos(angle_start), np.cos(angle_end)],
+        [np.sin(angle_start), np.sin(angle_end)],
+        [z_start, z_end],
+        color=color, linestyle=style, linewidth=2, alpha=alpha,
+    )
 
-        # Move up one layer in z when sequence restarts
-        z_start = z_layer
-        z_end = z_layer
 
-        if i == len(sequence) - 2:  # If reaching the end, move to next layer
-            z_end = z_layer + layer_spacing
-
-        ax.plot([x_start, x_end], [y_start, y_end], [z_start, z_end],
-                color=base_color, linestyle=style, linewidth=2, alpha=alpha)
-
-# Setup 3D plot
 fig = plt.figure(figsize=(12, 12))
 ax = fig.add_subplot(111, projection='3d')
 
+for off27, phase_angle, reverse, fwd_s, neu_s, bwd_s in PHASES:
+    path = saw_seq[::-1] if reverse else saw_seq
+    seq_27 = saw_to_27(path, off27)
+    for step_i in range(NUM_STEPS):
+        z0 = step_i * z_per_step
+        z1 = (step_i + 1) * z_per_step
+        draw_wire_step(seq_27, 1, phase_angle, step_i, z0, z1, *fwd_s)
+        draw_wire_step(seq_27, 2, phase_angle, step_i, z0, z1, *neu_s)
+        draw_wire_step(seq_27, 3, phase_angle, step_i, z0, z1, *bwd_s)
 
-# Plot multiple layers of the coil
-for layer in range(num_layers):
-    z_layer = layer * layer_spacing-0.5
+ax.set_title(
+    f"Starship = Saw S={STARSHIP_S} (+{STARSHIP_STEP_FWD}/+{STARSHIP_STEP_BWD}), "
+    f"pairs={n_pairs}, seq={list(saw_seq)}"
+)
+ax.set_xlim(-1.2, 1.2); ax.set_ylim(-1.2, 1.2); ax.set_zlim(0, layer_spacing)
+ax.set_box_aspect([1, 1, 1])
 
-    # Phase A (Blue)
-    generate_3d_wire(sequence_A_forward, 1, z_layer, 'blue', '-', alpha=0.9)
-    generate_3d_wire(sequence_A_neutral, 2, z_layer, 'blue', '--', alpha=0.3)
-    generate_3d_wire(sequence_A_backward, 3, z_layer, 'cyan', '-', alpha=0.9)
-
-    # Phase B (Red)
-    generate_3d_wire(sequence_B_forward, 1, z_layer, 'red', '-', alpha=0.9)
-    generate_3d_wire(sequence_B_neutral, 2, z_layer, 'red', '--', alpha=0.3)
-    generate_3d_wire(sequence_B_backward, 3, z_layer, 'orange', '-', alpha=0.9)
-
-    # Phase C (Green)
-    generate_3d_wire(sequence_C_forward, 1, z_layer, 'green', '-', alpha=0.9)
-    generate_3d_wire(sequence_C_neutral, 2, z_layer, 'green', '--', alpha=0.3)
-    generate_3d_wire(sequence_C_backward, 3, z_layer, 'purple', '-', alpha=0.9)
-
-# Set plot title and display
-ax.set_title("3D Multi-Layer Starship Rodin Coil", fontsize=16)
-# Set axis labels
-ax.set_xlim(-2, 2)
-ax.set_ylim(-2, 2)
-ax.set_zlim(-2, 2)
-ax.set_xlabel('X-axis')
-ax.set_ylabel('Y-axis')
-ax.set_zlabel('Z-axis')
-# Show legend
-# ax.legend()
-ax.set_box_aspect([1, 1, 1])  # Ensures 1:1:1 aspect ratio
-
-
-
-# ✅ Get the script filename dynamically
 import os
 script_name = os.path.splitext(os.path.basename(__file__))[0]
-filename = f"{script_name}.png"
-plt.savefig(filename, dpi=150)  # Save image with high resolution
+plt.savefig(f"{script_name}.png", dpi=150)
 plt.tight_layout()
 plt.show()

@@ -1,0 +1,235 @@
+--- SST_CANON-v0.8.10.tex
++++ SST_CANON-v0.8.10.tex.patched
+@@ -440,7 +440,7 @@
+     \subsection{Reparametrized Zero-Parameter Corollary}
+         \label{subsec:zero_parameter_corollary}
+ 
+-        Older SST canon layers often used the triplet $(\Gamma_0,\rhoF,\rc)$ as the primitive parameterization. In the present v0.8.1 architecture, Eq.~\eqref{eq:rc_definition} and Eq.~\eqref{eq:gamma0} show that this is a reparameterization of the present primitive set $(\rhoF,\vswirl,\omega_c)$ rather than a distinct axiom.
++        Older SST canon layers often used the triplet $(\Gamma_0,\rhoF,\rc)$ as the primitive parameterization. In the present v0.8.10 architecture, Eq.~\eqref{eq:rc_definition} and Eq.~\eqref{eq:gamma0} show that this is a reparameterization of the present primitive calibration set $(\rhoF,\vchar,\omega_c)$ rather than a distinct axiom.
+ 
+         Explicitly,
+ 
+@@ -450,7 +450,7 @@
+             \label{eq:gamma0_reparam}
+         \end{align}
+ 
+-        Hence any dimensional SST quantity written in terms of $(\Gamma_0,\rhoF,\rc)$ can be rewritten in terms of $(\rhoF,\vswirl,\omega_c)$ with no new input.
++        Hence any dimensional SST quantity written in terms of $(\Gamma_0,\rhoF,\rc)$ can be rewritten in terms of $(\rhoF,\vchar,\omega_c)$ with no new calibration input.
+ 
+         A coarse-grained density law retained from earlier canon layers is
+ 
+@@ -580,7 +580,7 @@
+ 
+         \subsubsection{Definition and canonical form}
+ 
+-        Within the primitive set $\mathcal{P} = \{\rhoF, \vswirl, \omega_c\}$, a characteristic force scale emerges naturally from the Compton energy stored over the canonical circulation cross-section. We define the \emph{maximal swirl tension} as
++        Within the primitive calibration set $\mathcal{P}_{\mathrm{cal}} = \{\rhoF, \vchar, \omega_c\}$, a characteristic force scale emerges naturally from the Compton energy stored over the canonical circulation cross-section. We define the \emph{maximal swirl tension} as
+ 
+         \begin{align}
+             F_{\rm swirl}^{\max}
+@@ -1086,8 +1086,8 @@
+         \emph{no} target injected. For the lepton family $T(2,q)$, $SL_{\rm tor}=2q$.
+ 
+         \textbf{[DEFINITIONAL] Physical-framing winding.}
+-        For any single-valued physical framing $U_{\rm phys}$ of $K$ (the direction of the core
+-        swirl velocity $\vswirl$), the relative winding
++        For any single-valued physical framing $U_{\rm phys}$ of $K$ (the direction of the local core
++        swirl-velocity field $\uswirl$), the relative winding
+         \begin{align}
+             \chi \;:=\; SL(K,U_{\rm phys})-SL(K,U_{\rm tor})
+                   \;=\; \frac{1}{2\pi}\oint_K \mathrm{d}\!\left[\angle_{U_{\rm tor}}(U_{\rm phys})\right]
+@@ -2062,7 +2062,7 @@
+                 \mathcal{H}_W,\,
+                 \SwirlClock_W,\,
+                 \rhoF^{\rm eff},\,
+-                \vswirl^{\rm eff}
++                \uswirl^{\rm eff}
+                 \Bigr),
+             \end{equation}
+             where:
+@@ -2072,7 +2072,7 @@
+                 \item $\mathcal{L}_W$ is an effective geometric length scale,
+                 \item $\mathcal{H}_W$ is a helicity/linkage content,
+                 \item $\SwirlClock_W$ is the local clock factor for the mode,
+-                \item $\rhoF^{\rm eff}$ and $\vswirl^{\rm eff}$ are the coarse-grained medium parameters seen by the excitation.
++                \item $\rhoF^{\rm eff}$ and $\uswirl^{\rm eff}$ are the coarse-grained medium density and effective local swirl-velocity field seen by the excitation.
+             \end{itemize}
+             
+             The experimentally accessible distribution is then not a bare function of $m_W$ alone, but a projected density
+@@ -2483,13 +2483,13 @@
+             =
+             \SwirlClock
+             =
+-            \sqrt{1-\frac{\lVert\mathbf{u}_{\swirlarrow}\rVert^2}{c^2}},
++            \sqrt{1-\frac{\lVert\uswirl\rVert^2}{c^2}},
+             \qquad
+             n_\gamma=\SwirlClock^{-1}.
+             }
+             \label{eq:canonical_emg_clock_optical_closure}
+         \end{align}
+-        Photon phase therefore probes \(n_\gamma\), while bulk matter probes Eq.~\eqref{eq:canonical_sst_grav_force_density}. These are coupled through \(\mathbf{u}_{\swirlarrow}\), but they need not have identical spatial gradients.
++        Photon phase therefore probes \(n_\gamma\), while bulk matter probes Eq.~\eqref{eq:canonical_sst_grav_force_density}. These are coupled through \(\uswirl\), but they need not have identical spatial gradients.
+ 
+         \paragraph{Electron-normalized coupling calibration.}
+         The weak gravitational coupling is written in electron-normalized SST variables as
+@@ -2497,7 +2497,7 @@
+             \boxed{
+             G_{\mathrm{swirl}}
+             =
+-            \frac{\lVert\vswirl\rVert c^3 t_p^2}{\rc M_e}
++            \frac{\vchar c^3 t_p^2}{\rc M_e}
+             =
+             6.6743013\times10^{-11}\,\mathrm{m^3\,kg^{-1}\,s^{-2}}.
+             }
+@@ -2529,7 +2529,7 @@
+         Finally,
+         \begin{align}
+             \left[
+-            \frac{\lVert\vswirl\rVert c^3 t_p^2}{\rc M_e}
++            \frac{\vchar c^3 t_p^2}{\rc M_e}
+             \right]
+             =
+             \frac{(\mathrm{m\,s^{-1}})(\mathrm{m^3\,s^{-3}})(\mathrm{s^2})}
+@@ -2539,9 +2539,9 @@
+         \end{align}
+ 
+         \paragraph{Numerical hierarchy.}
+-        At the canonical speed \(\lVert\vswirl\rVert=1.09384563\times10^6\,\mathrm{m\,s^{-1}}\),
+-        \begin{align}
+-            \frac{1}{2}\rhoF\lVert\vswirl\rVert^2
++        At the canonical speed \(\vchar=1.09384563\times10^6\,\mathrm{m\,s^{-1}}\),
++        \begin{align}
++            \frac{1}{2}\rhoF\vchar^2
+             &=
+             4.1877439\times10^5\,\mathrm{Pa},
+             \\
+--- SST_CANON-v0.8.10-research-track.tex
++++ SST_CANON-v0.8.10-research-track.tex.patched
+@@ -613,7 +613,7 @@
+             \mathcal B_e
+             =
+             \frac{\Fswirlmax \rc^3}
+-            {5\lambda_c\|\vswirl\|}.
++            {5\lambda_c\vchar}.
+         \]
+         Using
+         \[
+@@ -647,7 +647,7 @@
+         
+         The dimensionally meaningful relation is instead
+         \[
+-            5\lambda_c\|\vswirl\|
++            5\lambda_c\vchar
+             =
+             5\alpha\frac{h}{2M_e},
+         \]
+@@ -744,7 +744,7 @@
+         \[
+             \Gamma_0
+             =
+-            2\pi \rc\|\vswirl\|
++            2\pi \rc\vchar
+             =
+             9.68361920\times10^{-9}\,\mathrm{m^2\,s^{-1}}.
+         \]
+@@ -853,13 +853,13 @@
+         
+         At the canonical swirl speed,
+         \[
+-            \frac{1}{2}\rhoF\|\vswirl\|^2
++            \frac{1}{2}\rhoF\vchar^2
+             =
+             4.18774392\times10^5\,\mathrm{Pa}.
+         \]
+         At the core-density stress scale,
+         \[
+-            \rhocore\|\vswirl\|^2
++            \rhocore\vchar^2
+             =
+             4.65848920\times10^{30}\,\mathrm{Pa}.
+         \]
+@@ -867,7 +867,7 @@
+         \[
+             \Fswirlmax
+             =
+-            \rhocore\|\vswirl\|^2\pi\rc^2
++            \rhocore\vchar^2\pi\rc^2
+             =
+             29.053507\,\mathrm{N}.
+         \]
+@@ -1689,7 +1689,7 @@
+ The local Swirl-Clock factor remains the kinematic clock factor
+ \begin{equation}
+     \SwirlClock
+-    =\sqrt{1-\frac{\lVert\vswirl\rVert^2}{c^2}}.
++    =\sqrt{1-\frac{\lVert\uswirl(\mathbf{x},t)\rVert^2}{c^2}}.
+     \label{eq:swirl_clock_factor_appendix}
+ \end{equation}
+ The phase-action field controls wave-like periodicity, while $\SwirlClock$ controls local clock rate. The research-track bridge is that a stable R-phase packet may require simultaneous closure of both:
+@@ -1716,9 +1716,9 @@
+ 
+ The primary invariants are
+ \begin{align}
+-    \Gamma &= \oint_C \vswirl\cdot d\vec\ell,\label{eq:gamma_appendix}\\
+-    \mathcal H &= \int_V \vswirl\cdot\vec\omega\,d^3x,\label{eq:helicity_appendix}\\
+-    \vec\omega &= \nabla\times\vswirl.\label{eq:vorticity_appendix}
++    \Gamma &= \oint_C \uswirl\cdot d\vec\ell,\label{eq:gamma_appendix}\\
++    \mathcal H &= \int_V \uswirl\cdot\vec\omega\,d^3x,\label{eq:helicity_appendix}\\
++    \vec\omega &= \nabla\times\uswirl.\label{eq:vorticity_appendix}
+ \end{align}
+ For linked tubes with circulations $\Gamma_i$, the leading topological helicity decomposition is
+ \begin{equation}
+@@ -2886,6 +2886,9 @@
+ \providecommand{\swirlarrow}{\boldsymbol{\circlearrowleft}}
+ \providecommand{\vswirl}{\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}}
+ \providecommand{\vnorm}{\lVert\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert}
++\providecommand{\vchar}{v_{\!\boldsymbol{\circlearrowleft}}^{\ast}}
++\providecommand{\uswirl}{\mathbf{u}_{\!\boldsymbol{\circlearrowleft}}}
++\providecommand{\omegaswirl}{\boldsymbol{\omega}_{\!\boldsymbol{\circlearrowleft}}}
+ \providecommand{\rhoF}{\rho_{\!f}}
+ \providecommand{\rhoE}{\rho_{\!E}}
+ \providecommand{\rhoM}{\rho_{\!m}}
+@@ -2911,13 +2914,13 @@
+             \mathbf{A}_{\rm SI}
+             =
+             \frac{m_e}{e}\,
+-            \vswirl
++            \uswirl(\mathbf{x},t)
+         } .
+         \label{eq:swirl_vector_potential_bridge}
+     \end{equation}
+     Since \([\mathbf{A}]={\rm kg\,m\,C^{-1}\,s^{-1}}\) and
+-    \([(m_e/e)\vswirl]={\rm kg\,C^{-1}}\cdot{\rm m\,s^{-1}}\), this equation
+-    has the correct SI units.
++    \([(m_e/e)\uswirl]={\rm kg\,C^{-1}}\cdot{\rm m\,s^{-1}}\), this equation
++    has the correct SI units. This use of \(\uswirl(\mathbf{x},t)\) is intentional: the EM bridge is a local-field bridge, not a curl of the calibrated scalar speed \(\vchar\).
+     
+     The associated magnetic field is then
+     \begin{equation}
+@@ -2994,7 +2997,7 @@
+             \nabla\Phi_{\rm SST}
+             =
+             -\frac{m_e}{e}
+-            \frac{\partial\vswirl}{\partial t}
++            \frac{\partial\uswirl(\mathbf{x},t)}{\partial t}
+             -
+             \nabla\Phi_{\rm SST}
+         } .
+@@ -3388,7 +3391,7 @@
+         \mathcal{H}
+         =
+         \int
+-        \vswirl\cdot\boldsymbol{\omega}\,d^3x.
++        \uswirl\cdot\boldsymbol{\omega}\,d^3x.
+         \label{eq:helicity_conservation}
+     \end{equation}
+     In this ideal sector, knot class is preserved.
+@@ -3710,7 +3713,7 @@
+         \hline
+         Result & Status \\
+         \hline
+-        \(\mathbf{A}_{\rm SI}=(m_e/e)\vswirl\) & Research Track, strong candidate \\
++        \(\mathbf{A}_{\rm SI}=(m_e/e)\uswirl(\mathbf{x},t)\) & Research Track, strong candidate \\
+         \(\mathbf{B}_{\rm SST}=(m_e/e)\boldsymbol{\omega}\) & Research Track, strong candidate \\
+         \(B_{\rm core}^{\rm SST}=B_{\rm QED}\) & Numerically verified calibration result \\
+         Direct vorticity source terms in Maxwell equations & Rejected / not canonical \\

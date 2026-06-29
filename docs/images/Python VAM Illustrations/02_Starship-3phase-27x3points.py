@@ -13,18 +13,29 @@ rotation_angle = (2 * np.pi / 27) / 3
 # Define provided base sequence
 base_sequence = [1, 5, 9, 4, 8, 3, 7, 2, 6, 1]
 
-# Create explicit sequences as per user request
-sequence_A_forward = [((num * 3 - 0 - 1) % 27) + 1 for num in base_sequence]
-sequence_A_neutral = [((num * 3 - 0 - 1) % 27) + 1 for num in base_sequence]
-sequence_A_backward = [((num * 3 - 0 - 1) % 27) + 1 for num in base_sequence]
+# 3-phase offsets on the 27-gon: 120° = 9 steps, 240° = 18 steps
+phase_offset_A = 0
+phase_offset_B = 9   # +120°
+phase_offset_C = 18  # +240°
 
-sequence_B_forward = [((num * 3 - 1 - 1) % 27) + 1 for num in base_sequence]
-sequence_B_neutral = [((num * 3 - 1 - 1) % 27) + 1 for num in base_sequence]
-sequence_B_backward = [((num * 3 - 1 - 1) % 27) + 1 for num in base_sequence]
+# Opposite side: ~180° = 13 steps on 27-gon (D/E/F mirror A/B/C)
+phase_offset_180 = 13
+phase_offset_D = (phase_offset_A + phase_offset_180) % 27
+phase_offset_E = (phase_offset_B + phase_offset_180) % 27
+phase_offset_F = (phase_offset_C + phase_offset_180) % 27
 
-sequence_C_forward = [((num * 3 - 2 - 1) % 27) + 1 for num in base_sequence]
-sequence_C_neutral = [((num * 3 - 2 - 1) % 27) + 1 for num in base_sequence]
-sequence_C_backward = [((num * 3 - 2 - 1) % 27) + 1 for num in base_sequence]
+base_sequence_reverse = list(reversed(base_sequence))
+
+def make_phase_sequences(phase_offset, base):
+    seq = [((num * 3 - phase_offset - 1) % 27) + 1 for num in base]
+    return seq, seq, seq
+
+sequence_A_forward, sequence_A_neutral, sequence_A_backward = make_phase_sequences(phase_offset_A, base_sequence)
+sequence_B_forward, sequence_B_neutral, sequence_B_backward = make_phase_sequences(phase_offset_B, base_sequence)
+sequence_C_forward, sequence_C_neutral, sequence_C_backward = make_phase_sequences(phase_offset_C, base_sequence)
+sequence_D_forward, sequence_D_neutral, sequence_D_backward = make_phase_sequences(phase_offset_D, base_sequence_reverse)
+sequence_E_forward, sequence_E_neutral, sequence_E_backward = make_phase_sequences(phase_offset_E, base_sequence_reverse)
+sequence_F_forward, sequence_F_neutral, sequence_F_backward = make_phase_sequences(phase_offset_F, base_sequence_reverse)
 
 # Points setup
 angles = np.linspace(0, 2 * np.pi, 28)[:-1]
@@ -75,6 +86,19 @@ plot_rotated_wire(sequence_C_forward, 1, 'green', '-', 'Phase C Forward', alpha=
 plot_rotated_wire(sequence_C_neutral, 2, 'green', '--', 'Phase C Neutral', alpha=0.1)
 plot_rotated_wire(sequence_C_backward, 3, 'green', '-', 'Phase C Backward', alpha=0.7)
 
+# Phase D/E/F — 180° opposite, reversed direction (segments 1↔3 swapped)
+plot_rotated_wire(sequence_D_forward, 3, 'navy', '-', 'Phase D Forward', alpha=0.9)
+plot_rotated_wire(sequence_D_neutral, 2, 'navy', '--', 'Phase D Neutral', alpha=0.1)
+plot_rotated_wire(sequence_D_backward, 1, 'steelblue', '-', 'Phase D Backward', alpha=0.7)
+
+plot_rotated_wire(sequence_E_forward, 3, 'maroon', '-', 'Phase E Forward', alpha=0.9)
+plot_rotated_wire(sequence_E_neutral, 2, 'maroon', '--', 'Phase E Neutral', alpha=0.1)
+plot_rotated_wire(sequence_E_backward, 1, 'salmon', '-', 'Phase E Backward', alpha=0.7)
+
+plot_rotated_wire(sequence_F_forward, 3, 'darkgreen', '-', 'Phase F Forward', alpha=0.9)
+plot_rotated_wire(sequence_F_neutral, 2, 'darkgreen', '--', 'Phase F Neutral', alpha=0.1)
+plot_rotated_wire(sequence_F_backward, 1, 'yellowgreen', '-', 'Phase F Backward', alpha=0.7)
+
 # Draw clearly numbered main points with rotated positions
 for num, (x, y) in positions_rotated.items():
     plt.plot(x, y, 'ko', markersize=6)
@@ -82,7 +106,7 @@ for num, (x, y) in positions_rotated.items():
 
 # Adjustments and display
 plt.legend()
-plt.title("3-Phase Rodin Coil", fontsize=16)
+plt.title("6-Phase Rodin Coil (ABC + DEF)", fontsize=16)
 plt.grid(True)
 
 

@@ -1,0 +1,221 @@
+--- SST_CANON-v0.8.11.tex
++++ SST_CANON-v0.8.11.tex
+@@ -337,9 +337,9 @@
+             \eta_0 = \frac{\alpha}{2}
+         \end{align}
+         
+-        \textbf{[DERIVED WITHIN CALIBRATION]}: Once the Compton anchoring relation $\rc=\vchar/\omega_c$ is combined with the electron-radius closure $\rc=\alpha\hbar/(2m_ec)$, the identity $\vchar=\alpha c/2$ follows algebraically.
+-
+-        \textbf{[CRITICAL NOTE]} This is not an independent derivation of $\alpha$; $\alpha$ enters through the adopted electron-radius / core-radius calibration. The status is therefore algebraic-within-calibration, not empirical discovery.
++        \textbf{[CALIBRATED ALGEBRAIC IDENTITY]}: Once the Compton anchoring relation $\rc=\vchar/\omega_c$ is combined with the electron-radius closure $\rc=\alpha\hbar/(2m_ec)$, the identity $\vchar=\alpha c/2$ follows by direct substitution.
++
++        \textbf{[CRITICAL NOTE]} This is not an independent fluid-dynamical derivation of $\alpha$ or of the characteristic speed. The fine-structure constant enters through the adopted electron-radius / horn-radius calibration, so the result is a calibrated algebraic identity rather than an emergent theorem.
+     
+     \subsection{Swirl-Clock Definition}
+         
+@@ -462,6 +462,8 @@
+         \end{align}
+ 
+         where $\Omega$ is a coarse-grained local rotation rate and $K$ has dimensions $\mathrm{kg\,m^{-3}\,s}$. This relation records the canonical bridge between a sparse effective bulk density and a high-density horn-envelope normalization; it is not a resolved local-tube density law unless $a_{\rm core}$ is supplied.
++
++        \textbf{[CRITICAL NOTE]} Eq.~\eqref{eq:coarse_grain_density} is not an additional zero-parameter theorem unless the averaging prescription that defines $\Omega$ is fixed independently of the data being fitted. If $\Omega$ is chosen phenomenologically, the relation is a bridge ansatz and $K$ is a calibration transfer coefficient, not a new prediction.
+ 
+         \textbf{[DERIVED COROLLARY]}: the older ``zero-parameter'' language is retained only as a statement of reparameterization discipline: once one primitive triplet is fixed, no additional dimensional constants should be introduced without explicit justification.
+ 
+@@ -589,7 +591,7 @@
+             \label{eq:Fmax_def}
+         \end{align}
+ 
+-        \textbf{[DERIVED] Canonical form}: substituting $\vchar = \omega_c \rc$ into Eq.~\eqref{eq:Fmax_def} gives $F_{\rm swirl}^{\max} = \hbar\omega_c/2\rc$, the Compton energy scale divided by twice the canonical circulation radius. Numerically, $F_{\rm swirl}^{\max} = 29.053507\;\text{N}$.
++        \textbf{[CALIBRATED ALGEBRAIC IDENTITY] Canonical form}: substituting $\vchar = \omega_c \rc$ into Eq.~\eqref{eq:Fmax_def} gives $F_{\rm swirl}^{\max} = \hbar\omega_c/2\rc$, the Compton energy scale divided by twice the canonical circulation radius. Numerically, $F_{\rm swirl}^{\max} = 29.053507\;\text{N}$.
+ 
+         \textbf{[CRITICAL NOTE]} $F_{\rm swirl}^{\max}$ is a mechanical reformulation of the Compton energy scale over the canonical circulation cross-section. It is \emph{not} independent of $\hbar$ and $m_e$; its role in the canon is interpretive and organisational rather than that of an independent primitive.
+ 
+@@ -609,7 +611,7 @@
+ 
+         where $\rho_{\rm calc} = 4F_{\rm swirl}^{\max}/(\pi\alpha^2 c^2 \rc^2)$ is the derived bulk density consistent with the canonical neutral-circulation closure.
+ 
+-        \textbf{[DERIVED] Consistency check}: Eqs.~\eqref{eq:Fmax_em}--\eqref{eq:Fmax_rho} are equivalent given $\vchar = \alpha c/2$ and the standard identity $e^2/(4\pi\varepsilon_0) = \alpha\hbar c$. Their mutual agreement constitutes a non-trivial numerical self-consistency test of the primitive set.
++        \textbf{[CALIBRATED ALGEBRAIC IDENTITY] Consistency check}: Eqs.~\eqref{eq:Fmax_em}--\eqref{eq:Fmax_rho} are equivalent given $\vchar = \alpha c/2$ and the standard identity $e^2/(4\pi\varepsilon_0) = \alpha\hbar c$. Their mutual agreement is an internal algebraic coherence test of the calibrated chain, not an independent dynamical prediction.
+ 
+         \subsubsection{Rydberg consistency identity}
+ 
+@@ -654,7 +656,7 @@
+ 
+         \textbf{[ORTHODOX]} $F_{\rm gr}^{\max}$ is the Planck force, an invariant upper bound in classical general relativity \cite{Gibbons2002}.
+ 
+-        \textbf{[DERIVED]} The ratio of the two tension scales reduces exactly to
++        \textbf{[CALIBRATED ALGEBRAIC IDENTITY]} The ratio of the two tension scales reduces exactly to
+ 
+         \begin{align}
+             \boxed{
+@@ -666,7 +668,7 @@
+ 
+         where $\alpha_g = Gm_e^2/\hbar c$ is the gravitational fine-structure constant of the electron and $\alpha$ is the electromagnetic fine-structure constant. Numerically, $4\alpha_g/\alpha \approx 9.6\times10^{-43}$, in agreement with the directly computed ratio $29.053507\;\text{N}\,/\,3.026\times10^{43}\;\text{N}$.
+ 
+-        \textbf{[SPECULATIVE] Interpretation}: the hierarchy between the electromagnetic and gravitational force scales in SST is not an unexplained numerical coincidence but the ratio of the two fundamental coupling constants of the electron. The structured medium is $\sim\!10^{42}$ times stiffer than the space-time geometry at the canonical circulation scale, and this stiffness ratio equals $\alpha/(4\alpha_g)$ exactly.
++        \textbf{[SPECULATIVE] Interpretation}: the hierarchy between the electromagnetic and gravitational force scales may be organized by the ratio of the two electron coupling constants. This is an interpretive compression of calibrated constants; by itself it does not prove a new medium-dynamical stiffness law.
+ 
+         \paragraph{(ii) Electrostatic interpretation: the Coulomb ceiling at the canonical circulation scale.}
+ 
+@@ -725,7 +727,7 @@
+ 
+         \subsubsection{Unified summary}
+ 
+-        The three interpretations are collected in Table~\ref{tab:Fmax_triple}. Together they identify $F_{\rm swirl}^{\max}$ as the \emph{structural tension threshold of the medium}: the scale at which a physical system --- gravitational, electrostatic, or mechanical --- exhausts its capacity to store energy in the current configuration and must either fail topologically, form a horizon, or release energy as radiation.
++        The three interpretations are collected in Table~\ref{tab:Fmax_triple}. Together they organize $F_{\rm swirl}^{\max}$ as a \emph{calibrated structural tension scale}. The table is useful for cross-sector bookkeeping, but the equalities are algebraic consequences of the same calibrated electron-scale constants unless a separate medium-dynamical derivation is supplied.
+ 
+         \begin{table}[h]
+         \centering
+@@ -737,12 +739,12 @@
+         \hline
+         Gravitational ceiling &
+           $F_{\rm gr}^{\max}/F_{\rm swirl}^{\max} = \alpha/(4\alpha_g)$ &
+-          Medium stiffer than spacetime by $\alpha/4\alpha_g$ &
+-          {[Derived]} \\[6pt]
++          Calibrated electron-coupling ratio $\alpha/4\alpha_g$ &
++          {[Calibrated identity]} \\[6pt]
+         Coulomb ceiling &
+           $F_{pp}(\rc) = 4\,F_{\rm swirl}^{\max}$ &
+           Quarter of max.\ Coulomb force at circulation scale &
+-          {[Derived]} \\[6pt]
++          {[Calibrated identity]} \\[6pt]
+         Vortex spring &
+           $K_e = F_{\rm swirl}^{\max}/2\rc$ &
+           Spring constant of photon--electron interaction &
+@@ -751,7 +753,7 @@
+         \end{tabular}
+         \end{table}
+ 
+-        \textbf{[SPECULATIVE] Canonical interpretation}: $F_{\rm swirl}^{\max}$ is the tension at which the structured \ae ther medium reaches its topological integrity limit. It plays the same organisational role for the electromagnetic and mechanical sectors that $F_{\rm gr}^{\max} = c^4/4G$ plays for the gravitational sector. Their ratio is precisely the ratio of the two fundamental coupling constants of the electron.
++        \textbf{[SPECULATIVE] Canonical interpretation}: $F_{\rm swirl}^{\max}$ is retained as a candidate tension scale for topological integrity of the structured medium. Its comparison with $F_{\rm gr}^{\max}=c^4/4G$ is a calibrated electron-normalized analogy, not a theorem that gravitational and electromagnetic stiffness have already been derived from the substrate.
+ 
+ % ---------- AXIOMS ----------
+ \section{Axiomatic Framework}
+@@ -1780,7 +1782,7 @@
+             \label{eq:sst_correction}
+         \end{align}
+         
+-        \textbf{[DERIVED]}: Interaction depends on circulation amplitude $\gamma(r,t)$.
++        \textbf{[BRIDGE ANSATZ]}: This is an orthodox-operator perturbation template whose coefficient depends on the SST circulation amplitude $\gamma(r,t)$. Because \(\hat L_z\) is imported from the standard quantum Hamiltonian, Eq.~\eqref{eq:sst_correction} is not a first-principles derivation of quantum angular momentum from the substrate.
+ 
+     \subsection{Circulation source chain}
+         The atomic perturbation is not introduced as an arbitrary extra scalar, but is intended to descend from a circulation-bearing source chain,
+@@ -3114,22 +3116,21 @@
+             \label{eq:biot_savart_interaction}
+         \end{align}
+ 
+-        \textbf{[DERIVED]} SST bridge: if two identical electron-candidate loops are forced into the same spatial state,
+-        regularization at the physical tube radius \(a_{\rm core}\) yields the overlap penalty
+-        \begin{align}
+-            V_{\mathrm{Pauli}}(\mathbf{d})
++        \textbf{[ORTHODOX]} Regularized filament-energy template: if two identical electron-candidate loops are forced into the same spatial state, a short-distance cutoff \(a_{\rm cut}\) gives the overlap penalty
++        \begin{align}
++            V_{\mathrm{Pauli}}(\mathbf{d};a_{\rm cut})
+             \approx
+             \frac{\rho_{\!f}\Gamma_0^2}{4\pi}
+             \oint\!\!\oint
+             \frac{d\mathbf{l}_1\cdot d\mathbf{l}_2}
+-            {\sqrt{\lVert \mathbf{r}_1(\theta_1)-\mathbf{r}_2(\theta_2)+\mathbf{d}\rVert^2+a_{\rm core}^2}},
++            {\sqrt{\lVert \mathbf{r}_1(\theta_1)-\mathbf{r}_2(\theta_2)+\mathbf{d}\rVert^2+a_{\rm cut}^2}},
+             \label{eq:pauli_barrier_regularized}
+         \end{align}
+         with maximal-overlap scale
+         \begin{align}
+-            V_{\mathrm{Pauli}}^{\max}
++            V_{\mathrm{Pauli}}^{\max}(a_{\rm cut})
+             \approx
+-            \frac{\rho_{\!f}\Gamma_0^2}{4\pi}\left(\frac{L}{a_{\rm core}}\right)\mathcal{O}(1).
++            \frac{\rho_{\!f}\Gamma_0^2}{4\pi}\left(\frac{L}{a_{\rm cut}}\right)\mathcal{O}(1).
+             \label{eq:pauli_barrier_scale}
+         \end{align}
+ 
+@@ -3137,31 +3138,28 @@
+         \begin{align}
+             \rho_{\!f} &= 7.0 \times 10^{-7}\ \mathrm{kg\,m^{-3}}, \nonumber\\
+             r_c &= 1.40897017 \times 10^{-15}\ \mathrm{m}, \nonumber\\
+-            \Gamma_0 &= 2\pi r_c \lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}} \rVert
++            \Gamma_0 &= 2\pi r_c \vchar
+             \approx 9.6836\times 10^{-9}\ \mathrm{m^2\,s^{-1}},
+         \end{align}
+-        and \(L \sim 2\pi a_0\) at the hydrogenic scale, the legacy
+-        benchmark obtained in the closure limit \(a_{\rm core}=r_c\) is
+-        \begin{align}
+-            V_{\mathrm{Pauli}}^{\max}(a_{\rm core}=r_c)
++        and \(L \sim 2\pi a_0\) at the hydrogenic scale, the legacy benchmark corresponds to the cutoff calibration \(a_{\rm cut}=r_c\):
++        \begin{align}
++            V_{\mathrm{Pauli}}^{\max}(a_{\rm cut}=r_c)
+             \sim 1.23\times 10^{-18}\ \mathrm{J}
+             \sim 7.6\ \mathrm{eV}.
+             \label{eq:pauli_barrier_numeric}
+         \end{align}
+-        Away from this closure limit the scaling is
+-        \begin{align}
+-            V_{\mathrm{Pauli}}^{\max}(a_{\rm core})
++        Away from this cutoff calibration the scaling is
++        \begin{align}
++            V_{\mathrm{Pauli}}^{\max}(a_{\rm cut})
+             \sim
+             V_{\mathrm{Pauli}}^{\max}(r_c)
+-            \left(\frac{r_c}{a_{\rm core}}\right).
+-            \label{eq:pauli_barrier_acore_scaling}
+-        \end{align}
+-
+-        \textbf{[CRITICAL NOTE]} This is retained as a canonical scale benchmark, not yet as a closed theorem. Its role is
+-        to show that the exclusion-energy estimate falls in an atomically relevant window rather than at obviously
+-        pathological scales.
+-
+-        As written, Eq.~\eqref{eq:pauli_barrier_numeric} should be interpreted as an order-of-magnitude benchmark attached to the canonical constants and to the closure-limit choice \(a_{\rm core}=r_c\), not yet as a unique parameter-free prediction.
++            \left(\frac{r_c}{a_{\rm cut}}\right).
++            \label{eq:pauli_barrier_acut_scaling}
++        \end{align}
++
++        \textbf{[CRITICAL NOTE]} The cutoff \(a_{\rm cut}\) is not the resolved physical tube radius \(a_{\rm core}\).  The benchmark choice \(a_{\rm cut}=r_c\) is retained only as a legacy ultraviolet regularization scale.  It must not be read as \(a_{\rm core}=r_c\), and it is not a theorem-level derivation of Pauli exclusion from ideal Euler dynamics.
++
++        As written, Eq.~\eqref{eq:pauli_barrier_numeric} is an order-of-magnitude, cutoff-calibrated benchmark attached to the canonical constants. A physical resolved-core calculation must provide \(a_{\rm core}\), the tube profile, and the relation between that profile and \(a_{\rm cut}\) independently.
+ 
+     \subsection{Numerical Benchmark Layer}
+         \label{subsec:integration_benchmarks}
+@@ -3891,6 +3889,8 @@
+         \textbf{[DERIVED]} SST reinterprets that balance as a candidate large-scale acceleration source.
+         
+         \textbf{[SPECULATIVE]} The explicit galaxy-fit profile below is a phenomenological closure ansatz, not a theorem.
++
++        \textbf{[CRITICAL NOTE]} The canonical \(\rhoF=7.0\times10^{-7}\,\mathrm{kg\,m^{-3}}\) is an effective medium parameter, not an ordinary gravitating baryonic/cosmological rest-mass density. Applying it on galactic scales requires a separate coupling and screening law. Without that law, the galaxy-scale pressure profile is a fit ansatz only and must not be interpreted as a literal dense fluid through which stars experience ordinary hydrodynamic drag.
+     
+     \subsection{Effective dark acceleration law}
+         Starting from the steady radial pressure law of Eq.~\eqref{eq:swirl_pressure_law},
+--- SST_CANON-v0.8.11-research-track.tex
++++ SST_CANON-v0.8.11-research-track.tex
+@@ -988,9 +988,10 @@
+ \providecommand{\rhoE}{\rho_{\!E}}
+ \providecommand{\rhoM}{\rho_{\!m}}
+ \providecommand{\rc}{{r_c}}
+-\providecommand{\vnorm}{\lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}} \rVert}
+-
+-\section{Mode-Locked Swirl-Coil Excitation and \texorpdfstring{$\vnorm=f\Delta x$}{v=f dx} Metrology}
++\providecommand{\vchar}{v_{\!\boldsymbol{\circlearrowleft}}^{\ast}}
++\providecommand{\vnorm}{\vchar}
++
++\section{Mode-Locked Swirl-Coil Excitation and \texorpdfstring{$\vchar=f\Delta x$}{v=f dx} Metrology}
+ \label{sec:appendix_mode_locked_swirl_coil}
+ 
+ \textbf{Status.} \textbf{[RESEARCH TRACK / CANON-CANDIDATE]}.
+@@ -1886,7 +1887,7 @@
+     \begin{equation}
+         \Omega_{\rm SST}
+         =
+-        \frac{\lVert \mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert}{r_c},
++        \frac{\vchar}{r_c},
+     \end{equation}
+     so that internal modes may be parametrized by
+     \begin{equation}
+@@ -2921,6 +2922,8 @@
+     Since \([\mathbf{A}]={\rm kg\,m\,C^{-1}\,s^{-1}}\) and
+     \([(m_e/e)\uswirl]={\rm kg\,C^{-1}}\cdot{\rm m\,s^{-1}}\), this equation
+     has the correct SI units. This use of \(\uswirl(\mathbf{x},t)\) is intentional: the EM bridge is a local-field bridge, not a curl of the calibrated scalar speed \(\vchar\).
++
++    \textbf{[CRITICAL NOTE]} Eq.~\eqref{eq:swirl_vector_potential_bridge} is a constitutive normalization, not a proof that the full nonlinear Euler vorticity dynamics are isomorphic to vacuum Maxwell theory. The bridge is admissible only in a coarse-grained, transverse, weak-response regime where advective and vortex-stretching terms are either projected out, averaged away, or shown to be subleading by an explicit perturbation estimate.
+     
+     The associated magnetic field is then
+     \begin{equation}

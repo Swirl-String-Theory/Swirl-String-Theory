@@ -1,0 +1,273 @@
+
+% ============================================================
+% Research Track: Triadic gravity-response diagnostics
+% Derived from the EM--gravity sector-split conversation track.
+% ============================================================
+
+\section{Research Track: Flame-Lock, Photonless-Caustic, and Elastic-Shell Diagnostics}
+\label{sec:rt_flame_photonless_shell}
+
+\paragraph{Status.}
+\textbf{[RESEARCH TRACK / DIAGNOSTIC ONLY].}
+This section records a three-channel diagnostic motivated by anomalous-field
+witness reports. The reports are not used as evidence. They serve only as a
+catalogue of separable experimental signatures compatible with the canonical
+sector-projection law of Section~\ref{subsec:canonical_em_gravity_closure}.
+
+\subsection{Mode I: flame-lock / plume stabilization}
+
+A flame or thermal plume may be stabilized without significant optical ray
+deflection if the dominant SST response is local impedance or damping rather
+than photon-index curvature. A minimal diagnostic equation is
+\begin{align}
+    \frac{\partial\mathbf{u}_{\mathrm{plume}}}{\partial t}
+    +
+    (\mathbf{u}_{\mathrm{plume}}\cdot\nabla)\mathbf{u}_{\mathrm{plume}}
+    =
+    -\frac{1}{\rho_{\mathrm{plume}}}\nabla p
+    +
+    \nu\nabla^2\mathbf{u}_{\mathrm{plume}}
+    -
+    \Gamma_{\swirlarrow}\mathbf{u}_{\mathrm{plume}}.
+    \label{eq:rt_flame_lock_plume_equation}
+\end{align}
+The diagnostic signature is
+\begin{align}
+    P_{\mathrm{plume}}(f)\downarrow,
+    \qquad
+    \Delta\phi_\gamma\approx0,
+    \qquad
+    \nabla_\perp n_\gamma\approx0.
+    \label{eq:rt_flame_lock_signature}
+\end{align}
+This channel is a boundary/impedance response, not a standalone proof of a
+gravitational bulk force.
+
+\textbf{Primary orthodox confounders:}
+ion wind, acoustic forcing, thermal convection suppression, electric-field
+stabilization of charged flame species, camera exposure artifacts, and ordinary
+airflow.
+
+\subsection{Mode II: photonless sphere / optical caustic}
+
+A dark or photon-depleted region is interpreted, if real, as an optical caustic,
+shadow, or phase-gradient effect, not as a literal astrophysical black hole. The
+minimal ray equation is
+\begin{align}
+    \frac{d}{ds}
+    \left(
+    n_\gamma\frac{d\mathbf{x}}{ds}
+    \right)
+    =
+    \nabla n_\gamma,
+    \qquad
+    n_\gamma=\SwirlClock^{-1}.
+    \label{eq:rt_photonless_caustic_ray}
+\end{align}
+The diagnostic signature is
+\begin{align}
+    \nabla_\perp n_\gamma\neq0,
+    \qquad
+    \Delta\phi_\gamma
+    =
+    \frac{2\pi}{\lambda}
+    \int(n_\gamma-1)\,ds
+    \neq0,
+    \qquad
+    \mathbf{f}_{\mathrm{matter}}\approx0.
+    \label{eq:rt_photonless_caustic_signature}
+\end{align}
+Macroscopic photon depletion or black-ball-like appearance over laboratory path
+lengths requires a resonant enhancement factor:
+\begin{align}
+    n_\gamma-1
+    =
+    Q_\gamma
+    \frac{\lVert\mathbf{u}_{\swirlarrow}\rVert^2}{2c^2},
+    \qquad
+    Q_\gamma\gg1.
+    \label{eq:rt_optical_gain_factor}
+\end{align}
+The gain \(Q_\gamma\) is apparatus-specific and is not a canonical constant.
+
+\textbf{Primary orthodox confounders:}
+thermal lensing, plasma absorption, smoke or aerosol scattering, detector
+saturation, schlieren artifacts, camera auto-exposure, and ordinary optical
+shadowing.
+
+\subsection{Mode III: elastic shell / boundary-stress response}
+
+A localized repulsive shell is represented as a boundary-stress potential,
+\begin{align}
+    U_{\mathrm{shell}}(r)
+    =
+    U_0
+    \exp\left[
+    -\frac{(r-R_s)^2}{2\sigma_s^2}
+    \right],
+    \label{eq:rt_shell_potential}
+\end{align}
+with radial force
+\begin{align}
+    F_r(r)
+    =
+    -\frac{dU_{\mathrm{shell}}}{dr}
+    =
+    \frac{U_0(r-R_s)}{\sigma_s^2}
+    \exp\left[
+    -\frac{(r-R_s)^2}{2\sigma_s^2}
+    \right].
+    \label{eq:rt_shell_force}
+\end{align}
+The diagnostic signature is
+\begin{align}
+    \nabla\cdot\boldsymbol{\sigma}^{\mathrm{swirl}}\neq0,
+    \qquad
+    \Delta\phi_\gamma\approx0
+    \quad
+    \text{or independently measurable}.
+    \label{eq:rt_shell_signature}
+\end{align}
+This mode is a stress/boundary response. It must not be rebranded as gravity
+shielding unless the bulk acceleration sector is independently measured.
+
+\textbf{Primary orthodox confounders:}
+electrostatic repulsion, magnetic force, acoustic radiation pressure, airflow,
+vibration, thermal expansion, hidden mechanical coupling, and contact charging.
+
+\subsection{Required measurement vector}
+
+A valid test must record the full sectoral observable set
+\begin{align}
+    \boxed{
+    \left\{
+    F(t),
+    \Delta\phi_\gamma(t),
+    \frac{\Delta f}{f}(t),
+    P_{\mathrm{plume}}(f,t),
+    \mathbf{E}(t),
+    \mathbf{B}(t),
+    T(t),
+    p_{\mathrm{air}}(t)
+    \right\}.
+    }
+    \label{eq:rt_triadic_measurement_vector}
+\end{align}
+Any reported force must first be decomposed as
+\begin{align}
+    \mathbf{F}_{\mathrm{meas}}
+    =
+    \mathbf{F}_{\mathrm{EM}}
+    +
+    \mathbf{F}_{\mathrm{EHD}}
+    +
+    \mathbf{F}_{\mathrm{thermal}}
+    +
+    \mathbf{F}_{\mathrm{acoustic}}
+    +
+    \mathbf{F}_{\mathrm{mechanical}}
+    +
+    \mathbf{F}_{\omega}
+    +
+    \mathbf{F}_{\mathrm{res}}.
+    \label{eq:rt_triadic_force_decomposition}
+\end{align}
+Only \(\mathbf{F}_{\mathrm{res}}\), after uncertainty propagation and null tests,
+is admissible as an SST research-track candidate.
+
+\subsection{Null hierarchy}
+
+The minimum null hierarchy is:
+\begin{enumerate}
+    \item reproduce the measurement with all high-voltage and high-current channels disabled;
+    \item randomize phase order at fixed RMS power;
+    \item replace the structured geometry with a symmetry-preserving dummy load of matched impedance;
+    \item repeat in still air, shielded enclosure, and reduced pressure where safe;
+    \item compare optical, force, and plume observables under the same drive waveform.
+\end{enumerate}
+A positive SST candidate requires a correlated sectoral signature that survives
+these nulls and scales with the predicted mode-selection or stress-closure
+parameter.
+
+\section{Research Track: Atomic Gravity Closure and Condensate Coherence}
+\label{sec:rt_atomic_gravity_closure_condensate}
+
+\paragraph{Status.}
+\textbf{[CANON-CANDIDATE / RESEARCH BRIDGE].}
+This section records the electron-envelope and condensate-coherence clue for
+future gravity-sector tests. It does not claim gravitational shielding.
+
+\subsection{Electron envelope as atomic closure layer}
+
+In a neutral atom, the electron envelope cancels the far electromagnetic charge
+sector but does not cancel positive swirl-energy density. Therefore the electron
+is not the dominant mass reservoir, but it is the outer phase and linking
+boundary through which the neutral atom closes its electromagnetic projection:
+\begin{align}
+    Q_{\mathrm{atom}}=0,
+    \qquad
+    \rhoM
+    =
+    \frac{\rhoE}{c^2}
+    >0.
+    \label{eq:rt_atomic_charge_mass_split}
+\end{align}
+The canon-safe interpretation is
+\begin{equation}
+\boxed{
+\text{the nucleus supplies most mass-energy, while the electron envelope supplies
+      the neutral phase boundary and long-range matching layer.}
+}
+\label{eq:rt_atomic_electron_envelope_summary}
+\end{equation}
+
+\subsection{Condensate coherence extension}
+
+For coherent electronic or atomic condensates, a macroscopic order parameter
+\begin{align}
+    \Psi_{\mathrm{cond}}(\mathbf{x})
+    =
+    \sqrt{n_s(\mathbf{x})}\,e^{i\theta(\mathbf{x})}
+    \label{eq:rt_condensate_order_parameter}
+\end{align}
+may coherently reweight boundary-stress and optical/clock projections:
+\begin{align}
+    \boldsymbol{\sigma}^{\mathrm{swirl}}
+    &\rightarrow
+    \boldsymbol{\sigma}^{\mathrm{swirl}}_{\mathrm{coh}}[n_s,\theta,\nabla\theta],
+    \\
+    n_\gamma
+    &\rightarrow
+    n_{\gamma,\mathrm{coh}}.
+    \label{eq:rt_condensate_projection_reweighting}
+\end{align}
+The proposed clue from Meissner/BEC physics is therefore not mass cancellation,
+but collective phase closure: many microscopic carriers can impose one
+macroscopic boundary condition.
+
+\textbf{[CRITICAL NOTE].}
+This does not imply gravitational shielding or mass cancellation. The testable
+claim is only a possible phase-dependent change in boundary-stress, optical
+phase, or clock response across a coherence transition such as \(T_c\).
+
+\subsection{Condensate test signature}
+
+A minimally admissible superconducting or BEC test compares the same apparatus
+above and below the coherence transition:
+\begin{align}
+    \Delta\mathcal{O}_{\mathrm{coh}}
+    =
+    \mathcal{O}(T<T_c)-\mathcal{O}(T>T_c),
+    \qquad
+    \mathcal{O}
+    \in
+    \left\{
+    F,
+    \Delta\phi_\gamma,
+    \Delta f/f,
+    \Delta\Phi
+    \right\}.
+    \label{eq:rt_condensate_test_signature}
+\end{align}
+A positive result must track coherence and vanish under matched non-coherent
+thermal, electromagnetic, and mechanical controls.

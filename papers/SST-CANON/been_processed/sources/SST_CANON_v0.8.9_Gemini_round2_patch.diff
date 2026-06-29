@@ -1,0 +1,376 @@
+--- a/SST_CANON-v0.8.9.tex
++++ b/SST_CANON-v0.8.9.tex
+@@ -258,8 +258,8 @@
+         Compton-locked horn/circulation radius:
+         \begin{align}
+             \rc \equiv R_{\mathrm{horn}}
+-            = \frac{\vnorm}{\omega_c}
+-            = \frac{\hbar\vnorm}{m_e c^2}
++            = \frac{\vchar}{\omega_c}
++            = \frac{\hbar\vchar}{m_e c^2}
+             = \frac{\alpha\hbar}{2m_e c}
+             = \frac{r_e}{2}.
+             \label{eq:rc_definition}
+@@ -270,13 +270,13 @@
+             \label{eq:omega_c_compton}
+         \end{align}
+         is the electron Compton angular frequency. Thus $\rc$ is the radius at which the canonical
+-        tangential swirl speed $\vnorm$ is obtained at the Compton angular frequency.
++        tangential swirl speed $\vchar$ is obtained at the Compton angular frequency.
+ 
+         \textbf{[CANON / NOTATION]}: $\omega_c$ denotes the Compton angular frequency. It must not be confused with the local vorticity scale. If $\omega_{\mathrm{vort},c}$ denotes the local vorticity of a rigid local rotation, then
+         \begin{align}
+             \omega_{\mathrm{vort},c}=2\omega_c,
+             \qquad
+-            R_{\mathrm{horn}}=\frac{2\vnorm}{\omega_{\mathrm{vort},c}}.
++            R_{\mathrm{horn}}=\frac{2\vchar}{\omega_{\mathrm{vort},c}}.
+         \end{align}
+ 
+         \textbf{[CANON / SEMANTIC RULE]}: $\rc$ is not the resolved physical vortex-tube radius. The local tube/core thickness is denoted by $a_{\mathrm{core}}$ and remains a separate geometric or variational quantity:
+@@ -297,7 +297,7 @@
+         We introduce the fundamental circulation quantum:
+         
+         \begin{align}
+-            \Gamma_0 = 2\pi \rc \, \vnorm
++            \Gamma_0 = 2\pi \rc \, \vchar
+             \label{eq:gamma0}
+         \end{align}
+         
+@@ -328,25 +328,25 @@
+         We define the dimensionless ratio:
+         
+         \begin{align}
+-            \eta_0 = \frac{\vnorm}{c}
++            \eta_0 = \frac{\vchar}{c}
+         \end{align}
+         
+-        Empirically:
++        Within the present calibrated constant chain:
+         
+         \begin{align}
+-            \eta_0 \approx \frac{\alpha}{2}
++            \eta_0 = \frac{\alpha}{2}
+         \end{align}
+         
+-        \textbf{[CALIBRATED] Empirical closure}: Within the present canonical calibration, this fixes the characteristic swirl velocity \emph{from} the fine-structure constant ($\vnorm=\alpha c/2$); $\alpha$ is an input here, not an output.
++        \textbf{[DERIVED WITHIN CALIBRATION]}: Once the Compton anchoring relation $\rc=\vchar/\omega_c$ is combined with the electron-radius closure $\rc=\alpha\hbar/(2m_ec)$, the identity $\vchar=\alpha c/2$ follows algebraically.
+ 
+-        \textbf{[CRITICAL NOTE]} This relation should be read as a calibrated SST closure unless and until it is re-derived from a deeper dynamical sector.
++        \textbf{[CRITICAL NOTE]} This is not an independent derivation of $\alpha$; $\alpha$ enters through the adopted electron-radius / core-radius calibration. The status is therefore algebraic-within-calibration, not empirical discovery.
+     
+     \subsection{Swirl-Clock Definition}
+         
+         We introduce the Swirl-Clock as a local scalar field encoding relativistic time dilation:
+         
+         \begin{align}
+-            \SwirlClock = \sqrt{1 - \frac{\vnorm^2}{c^2}}
++            \SwirlClock = \sqrt{1 - \frac{\vchar^2}{c^2}}
+             \label{eq:swirl_clock}
+         \end{align}
+         
+@@ -362,7 +362,7 @@
+         
+         \begin{align}
+             \rhoF &\quad \text{(effective background fluid density)}, \\
+-            \rhoE &= \tfrac12 \rhoF \, \vnorm^2 \quad \text{(swirl energy density)}, \\
++            \rhoE &= \tfrac12 \rhoF \, \vchar^2 \quad \text{(swirl energy density)}, \\
+             \rhoM &= \rhoE / c^2 \quad \text{(mass-equivalent density)}, \\
+             \rhocore &\quad \text{(canonical saturated envelope-equivalent density)}.
+         \end{align}
+@@ -380,9 +380,9 @@
+         \begin{align}
+             \rhohorn
+             \equiv
+-            \frac{m_e c^2}{2\pi \vnorm^2 R_{\mathrm{horn}}^3}
++            \frac{m_e c^2}{2\pi \vchar^2 R_{\mathrm{horn}}^3}
+             =
+-            \frac{m_e c^2}{2\pi \vnorm^2 \rc^3}.
++            \frac{m_e c^2}{2\pi \vchar^2 \rc^3}.
+             \label{eq:core_density}
+         \end{align}
+         
+@@ -445,8 +445,8 @@
+         Explicitly,
+ 
+         \begin{align}
+-            \Gamma_0 = 2\pi \rc \, \vnorm
+-            = 2\pi \frac{\vnorm^2}{\omega_c}.
++            \Gamma_0 = 2\pi \rc \, \vchar
++            = 2\pi \frac{\vchar^2}{\omega_c}.
+             \label{eq:gamma0_reparam}
+         \end{align}
+ 
+@@ -457,7 +457,7 @@
+         \begin{align}
+             \rhoF = K\,\Omega,
+             \qquad
+-            K = \frac{\rhocore \, \rc}{\vnorm},
++            K = \frac{\rhocore \, \rc}{\vchar},
+             \label{eq:coarse_grain_density}
+         \end{align}
+ 
+@@ -475,14 +475,14 @@
+         First define the local swirl energy density and its mass-equivalent form:
+ 
+         \begin{align}
+-            \rhoE(x) &= \frac{1}{2}\rhoF(x)\,\norm{\vswirl(x)}^2 \\
+-            \rhoM(x) &= \frac{\rhoE(x)}{c^2}
++            \rhoE(x,t) &= \frac{1}{2}\rhoF(x,t)\,\norm{\uswirl(x,t)}^2 \\
++            \rhoM(x,t) &= \frac{\rhoE(x,t)}{c^2}
+         \end{align}
+ 
+         Using Eq.~\ref{eq:swirl_clock}, the local Swirl-Clock factor is
+ 
+         \begin{align}
+-            \SwirlClock(x) = \sqrt{1 - \frac{\norm{\vswirl(x)}^2}{c^2}}
++            \SwirlClock(x,t) = \sqrt{1 - \frac{\norm{\uswirl(x,t)}^2}{c^2}}
+         \end{align}
+ 
+         We then define a binary geometric exposure gate
+@@ -501,14 +501,14 @@
+ 
+         The canonical SST master equation is therefore
+         \begin{align}
+-            M_K(x)
+-            &= \rhoM(x)\,\rc^3\,\Pi_K\,\Xi_K\,\SwirlClock(x)^{-2} \\
+-            &= \left( \frac{\rhoF(x)\,\norm{\vswirl(x)}^2}{2c^2} \right)
++            M_K(x,t)
++            &= \rhoM(x,t)\,\rc^3\,\Pi_K\,\Xi_K\,\SwirlClock(x,t)^{-2} \\
++            &= \left( \frac{\rhoF(x,t)\,\norm{\uswirl(x,t)}^2}{2c^2} \right)
+                \rc^3
+                \left( \frac{\lambda_c}{\pi \rc} \right)^{G(K)}
+                \left[ \alpha_C\,C(K) + \beta_L\,L(K) + \gamma_H\,\mathcal{H}(K) \right]
+                \varphi^{-2k(K)}
+-               \SwirlClock(x)^{-2}
++               \SwirlClock(x,t)^{-2}
+             \label{eq:sst_master_equation}
+         \end{align}
+ 
+@@ -519,7 +519,7 @@
+ 
+         \textbf{[DERIVED] Dimensional check}:
+         \begin{align}
+-            \left[ \frac{\rhoF\,\norm{\vswirl}^2}{c^2} \rc^3 \right] = \mathrm{kg}
++            \left[ \frac{\rhoF\,\norm{\uswirl}^2}{c^2} \rc^3 \right] = \mathrm{kg}
+         \end{align}
+         and all remaining factors are dimensionless, so Eq.~\ref{eq:sst_master_equation} has the correct mass dimension.
+ 
+@@ -584,12 +584,12 @@
+ 
+         \begin{align}
+             F_{\rm swirl}^{\max}
+-            \;=\; \frac{\vnorm\,\hbar}{2\rc^2}
++            \;=\; \frac{\vchar\,\hbar}{2\rc^2}
+             \;=\; \frac{\hbar\omega_c}{2\rc}.
+             \label{eq:Fmax_def}
+         \end{align}
+ 
+-        \textbf{[DERIVED] Canonical form}: substituting $\vnorm = \omega_c \rc$ into Eq.~\eqref{eq:Fmax_def} gives $F_{\rm swirl}^{\max} = \hbar\omega_c/2\rc$, the Compton energy scale divided by twice the canonical circulation radius. Numerically, $F_{\rm swirl}^{\max} = 29.053507\;\text{N}$.
++        \textbf{[DERIVED] Canonical form}: substituting $\vchar = \omega_c \rc$ into Eq.~\eqref{eq:Fmax_def} gives $F_{\rm swirl}^{\max} = \hbar\omega_c/2\rc$, the Compton energy scale divided by twice the canonical circulation radius. Numerically, $F_{\rm swirl}^{\max} = 29.053507\;\text{N}$.
+ 
+         \textbf{[CRITICAL NOTE]} $F_{\rm swirl}^{\max}$ is a mechanical reformulation of the Compton energy scale over the canonical circulation cross-section. It is \emph{not} independent of $\hbar$ and $m_e$; its role in the canon is interpretive and organisational rather than that of an independent primitive.
+ 
+@@ -603,24 +603,24 @@
+             \label{eq:Fmax_em}\\
+             &= \frac{h\alpha c}{8\pi \rc^2},
+             \label{eq:Fmax_hac}\\
+-            &= \pi \rc^2\,\rho_{\rm calc}\,\vnorm^2,
++            &= \pi \rc^2\,\rho_{\rm calc}\,\vchar^2,
+             \label{eq:Fmax_rho}
+         \end{align}
+ 
+         where $\rho_{\rm calc} = 4F_{\rm swirl}^{\max}/(\pi\alpha^2 c^2 \rc^2)$ is the derived bulk density consistent with the canonical neutral-circulation closure.
+ 
+-        \textbf{[DERIVED] Consistency check}: Eqs.~\eqref{eq:Fmax_em}--\eqref{eq:Fmax_rho} are equivalent given $\vnorm = \alpha c/2$ and the standard identity $e^2/(4\pi\varepsilon_0) = \alpha\hbar c$. Their mutual agreement constitutes a non-trivial numerical self-consistency test of the primitive set.
++        \textbf{[DERIVED] Consistency check}: Eqs.~\eqref{eq:Fmax_em}--\eqref{eq:Fmax_rho} are equivalent given $\vchar = \alpha c/2$ and the standard identity $e^2/(4\pi\varepsilon_0) = \alpha\hbar c$. Their mutual agreement constitutes a non-trivial numerical self-consistency test of the primitive set.
+ 
+         \subsubsection{Rydberg consistency identity}
+ 
+-        \textbf{[CALIBRATED]} The Rydberg constant is recoverable from the three SST primitives without $e$, $\varepsilon_0$, or $m_e$ appearing \emph{explicitly}:
++        \textbf{[CALIBRATED IDENTITY]} The Rydberg constant is recoverable from the three SST calibration variables without $e$, $\varepsilon_0$, or $m_e$ appearing \emph{explicitly}:
+ 
+         \begin{align}
+-            R_\infty \;=\; \frac{\vnorm^3}{\pi\,\rc\,c^3}.
++            R_\infty \;=\; \frac{\vchar^3}{\pi\,\rc\,c^3}.
+             \label{eq:Rydberg_SST}
+         \end{align}
+ 
+-        This is a benchmark for the internal non-redundancy of the primitive set. \textbf{[CRITICAL NOTE]} Substituting the canonical definitions $\vnorm=\alpha c/2$ and $\rc=\vnorm/\omega_c=\alpha\hbar/(2m_ec)$ reduces Eq.~\eqref{eq:Rydberg_SST} \emph{exactly} to the standard $R_\infty=\alpha^2 m_e c/(4\pi\hbar)$ (verified to machine precision): $m_e$ is hidden inside $\rc$ and $\alpha$ inside both $\vnorm$ and $\rc$. The identity is therefore a consistency check, not an independent non-circular derivation of $R_\infty$. Combining Eq.~\eqref{eq:Rydberg_SST} with Eq.~\eqref{eq:Fmax_def} yields the compact relation
++        This is a benchmark for algebraic consistency of the calibration chain, not for independent non-redundancy of the primitive set. \textbf{[CRITICAL NOTE]} Substituting the canonical definitions $\vchar=\alpha c/2$ and $\rc=\vchar/\omega_c=\alpha\hbar/(2m_ec)$ reduces Eq.~\eqref{eq:Rydberg_SST} \emph{exactly} to the standard $R_\infty=\alpha^2 m_e c/(4\pi\hbar)$ (verified to machine precision): $m_e$ is hidden inside $\rc$ and $\alpha$ inside both $\vchar$ and $\rc$. The identity is therefore a consistency check, not an independent non-circular derivation of $R_\infty$. Combining Eq.~\eqref{eq:Rydberg_SST} with Eq.~\eqref{eq:Fmax_def} yields the compact relation
+ 
+         \begin{align}
+             \boxed{
+@@ -679,7 +679,7 @@
+             \label{eq:Coulomb_core}
+         \end{align}
+ 
+-        \textbf{[CALIBRATED]} The maximal Coulomb repulsion at the canonical circulation scale is exactly four times $F_{\rm swirl}^{\max}$. \textbf{[CRITICAL NOTE]} The factor of four is an arithmetic identity once $\vnorm=\alpha c/2$ is adopted (the $4/\alpha$ gate); it is a self-consistency of the calibrated chain, not an independent prediction.
++        \textbf{[CALIBRATED]} The maximal Coulomb repulsion at the canonical circulation scale is exactly four times $F_{\rm swirl}^{\max}$. \textbf{[CRITICAL NOTE]} The factor of four is an arithmetic identity once $\vchar=\alpha c/2$ is adopted (the $4/\alpha$ gate); it is a self-consistency of the calibrated chain, not an independent prediction.
+ 
+         \textbf{[SPECULATIVE] Interpretation}: $F_{\rm swirl}^{\max}$ is the quarter-Coulomb force at the canonical circulation scale. The medium sustains one quarter of the maximum proton--proton Coulomb repulsion before the neutral circulation envelope reaches its structural limit. This provides a physical ceiling on the compression of charged vortex configurations.
+ 
+@@ -812,7 +812,7 @@
+         The Compton phase frequency of the canonical horn/circulation carrier satisfies:
+         
+         \begin{align}
+-            \frac{\vnorm}{\rc} = \omega_c
++            \frac{\vchar}{\rc} = \omega_c
+         \end{align}
+         
+         \textbf{[ORTHODOX]}: $\omega_c$ is the Compton frequency.
+@@ -828,7 +828,7 @@
+         Finite propagation time along closed vortex structures is a fundamental dynamical ingredient.
+         
+         \begin{align}
+-            \tau = \frac{L}{\vnorm}
++            \tau = \frac{L}{\vchar}
+         \end{align}
+         
+         \textbf{[DERIVED]} Kinematic consequence: the delay follows from finite signal speed along a closed carrier.
+@@ -857,7 +857,7 @@
+         Local time is encoded in a scalar field derived from fluid kinematics:
+         
+         \begin{align}
+-            \SwirlClock = \sqrt{1 - \frac{\vnorm^2}{c^2}}
++            \SwirlClock = \sqrt{1 - \frac{\vchar^2}{c^2}}
+         \end{align}
+         
+         \textbf{[ORTHODOX]} Functional form: this matches Lorentz time dilation.
+@@ -1528,7 +1528,7 @@
+ 
+         The Compton anchoring gives the closure energy scale
+         \begin{align}
+-            \omega_c = \frac{\vnorm}{\rc},
++            \omega_c = \frac{\vchar}{\rc},
+             \qquad
+             \hbar\omega_c = m_e c^2.
+             \label{eq:compton_closure_energy_scale}
+@@ -1629,17 +1629,17 @@
+     \subsection{Circulation Delay as a Physical Primitive}
+         
+         We introduce the circulation delay as a constitutive element of the theory.
+-        For a closed vortex filament of effective length $L$ and characteristic propagation speed $\vnorm$, the circulation time is defined as:
++        For a closed vortex filament of effective length $L$ and characteristic propagation speed $\vchar$, the circulation time is defined as:
+         
+         \begin{align}
+-            \tau = \frac{L}{\vnorm}
++            \tau = \frac{L}{\vchar}
+             \label{eq:delay_time}
+         \end{align}
+         
+         In the special case of a minimal closed loop associated with the neutral circulation scale, this reduces to:
+         
+         \begin{align}
+-            \tau_c = \frac{2\pi \rc}{\vnorm} = \frac{2\pi}{\omega_c}
++            \tau_c = \frac{2\pi \rc}{\vchar} = \frac{2\pi}{\omega_c}
+             \label{eq:compton_delay}
+         \end{align}
+         
+@@ -1668,14 +1668,14 @@
+             \phi(t) = \Omega t
+         \end{align}
+         
+-        Substituting into Eq.~\ref{eq:delay_phase} yields:
++        Substituting into Eq.~\ref{eq:delay_phase} yields $\phi(t-\tau)-\phi(t)=-\Omega\tau$, hence:
+         
+         \begin{align}
+-            \Omega = \omega_0 + \kappa \sin(\Omega \tau)
++            \Omega = \omega_0 - \kappa \sin(\Omega \tau)
+             \label{eq:mode_condition}
+         \end{align}
+         
+-        This transcendental equation admits a discrete set of stable solutions $\Omega_n$ determined by the delay parameter $\tau$.
++        This transcendental equation admits a discrete set of stable solutions $\Omega_n$ determined by the delay parameter $\tau$. The sign convention is not physically unique---one may absorb it into $\kappa$ or reverse the delay argument---but the displayed form is the direct consequence of Eq.~\eqref{eq:delay_phase} as written.
+         
+         \textbf{[CONDITIONAL DERIVED]}: Given the effective DDE ansatz of Eq.~\eqref{eq:delay_phase}, the delayed feedback equation admits discrete locked branches. The claim that the SST medium obeys this specific DDE remains a bridge assumption, not a first-principles Euler theorem.
+     
+@@ -1747,7 +1747,7 @@
+ 
+         Define the effective coupling scale
+         \begin{align}
+-            \Lambda_{\mathrm{SST}} = 4\pi \, \rhocore \, \vnorm^{2} \, \rc^{4}
++            \Lambda_{\mathrm{SST}} = 4\pi \, \rhocore \, \vchar^{2} \, \rc^{4}
+             \label{eq:lambda_sst}
+         \end{align}
+         with dimensions
+@@ -2207,7 +2207,7 @@
+     \subsection{Carrier-local clocking and the turnover scale}
+         For localized carriers the natural microscopic rate is the turnover frequency
+         \begin{align}
+-            \Omega_0 = \frac{\vnorm}{\rc} = \omega_c,
++            \Omega_0 = \frac{\vchar}{\rc} = \omega_c,
+         \end{align}
+         which coincides with the Compton anchoring scale. A complete SST clock description therefore involves two linked but distinct levels:
+         \begin{itemize}
+@@ -2680,7 +2680,7 @@
+         From Section~\ref{sec:time} and Section~\ref{sec:foundations}, time is not introduced as an independent primitive but as a relational field read from the local state of the medium. The same kinematic quantity that enters the Swirl-Clock also appears in the organizing equation of the mass sector, so the canon treats proper-time modulation and inertial scaling as two projections of one shared substrate state.
+         
+         \begin{align}
+-            \SwirlClock(x)=\sqrt{1-\frac{\norm{\vswirl(x)}^2}{c^2}}.
++            \SwirlClock(x,t)=\sqrt{1-\frac{\norm{\uswirl(x,t)}^2}{c^2}}.
+         \end{align}
+         
+         \textbf{[SPECULATIVE] Unified interpretation:} time is not fundamental, but emerges from the kinematic state of the medium and is read operationally through clock-bearing processes.
+@@ -2876,7 +2876,7 @@
+         \begin{itemize}
+             \item a continuum substrate with effective density $\rhoF$,
+             \item a core scale $r_c$ fixed by Compton anchoring,
+-            \item circulation quantization through $\Gamma_0 = 2\pi \rc \, \vnorm$,
++            \item circulation quantization through $\Gamma_0 = 2\pi \rc \, \vchar$,
+             \item the interpretation of matter as stable organized structures rather than point primitives.
+         \end{itemize}
+         These elements remain non-negotiable because later sectors depend on them directly.
+@@ -3421,7 +3421,7 @@
+             \begin{align}
+                 \rho_{\mathrm{horn}}^{\mathrm{eff}}
+                 \equiv
+-                \frac{m_e c^2}{2\pi \vnorm^2 R_{\mathrm{horn}}^3}.
++                \frac{m_e c^2}{2\pi \vchar^2 R_{\mathrm{horn}}^3}.
+                 \label{eq:rho_horn_eff}
+             \end{align}
+             This relation is dimensionally exact,
+@@ -3458,7 +3458,7 @@
+             \end{align}
+             one has the Compton turnover time
+             \begin{align}
+-                \tau_c = \frac{2\pi \rc}{\vnorm} = \frac{2\pi}{\omega_c},
++                \tau_c = \frac{2\pi \rc}{\vchar} = \frac{2\pi}{\omega_c},
+             \end{align}
+             and the geometric gate
+             \begin{align}
+@@ -3479,9 +3479,9 @@
+             \end{align}
+             Substitution gives the algebraic mode condition
+             \begin{align}
+-                \Omega = \omega_0 + \kappa \sin(\Omega\tau),
++                \Omega = \omega_0 - \kappa \sin(\Omega\tau),
+             \end{align}
+-            which admits multiple branches labelled by the effective phase winding across the delay interval.
++            where the minus sign follows from $\sin[-\Omega\tau]=-\sin(\Omega\tau)$. This admits multiple branches labelled by the effective phase winding across the delay interval.
+ 
+         \subsection{Linear stability of a locked branch}
+             Let
+@@ -3625,9 +3625,9 @@
+         \subsection{Finite-cell $\alpha$ coincidence and obstruction summary}
+             \label{subsec:finite_cell_alpha_obstruction}
+ 
+-            \textbf{[DERIVED-IN-MODEL / OPEN].}
+-            A parameter-light finite-cell variational construction for an ideal trefoil filament
+-            yields a leading dimensionless scale
++            \textbf{[BRIDGE ANSATZ / SPECULATIVE FIT].}
++            A parameter-light finite-cell variational construction for an ideal trefoil filament,
++            containing partially open modelling choices, yields a leading dimensionless scale
+             \begin{align}
+                 \alpha^{-1}_{\mathrm{lead}}
+                 =
+--- a/SST_CANON-v0.8.9-research-track.tex
++++ b/SST_CANON-v0.8.9-research-track.tex
+@@ -2198,7 +2198,7 @@
+             =
+             \mathrm{kg\,m^{-2}\,s^{-1}},
+         \]
+-        the same units as acoustic impedance. This object measures resistance to velocity-driven pressure excitation.
++        the same units as acoustic impedance. Here $v_K$ denotes the coarse-grained velocity amplitude of the same mode family $K$ used to define $P_K$; it may be instantiated as a phase-transport speed, local carrier-speed amplitude, or resonant surface-speed amplitude, but the choice must be declared in any benchmark. It is not the canonical scalar speed $\vchar$ unless the benchmark explicitly specializes to the canonical carrier limit. This object measures resistance to velocity-driven pressure excitation.
+     
+     \subsection*{Connection to linewidth and quality factor}
+         

@@ -1,60 +1,49 @@
 # SST Canon — been_processed
 
 Copy-only archive: **root `SST_CANON-v0.8.1*.tex` files are never modified.**
-All conversation patches are integrated in incremental copies below.
+Each conversation patch gets its own incremental edition.
 
 ## Layout
 
 | Path | Contents |
 |------|----------|
-| `sources/` | Copies of conversation diffs, patches, blocks, triage (originals remain in parent `SST-CANON/`) |
-| `blocks/` | Reusable LaTeX blocks referenced by v0.8.2–v0.8.4 |
-| `v0.8.2/` | Horn/circulation radius + envelope density semantic correction |
-| `v0.8.3/` | Framed-tube ontology, trefoil closure, particle dictionary, Pauli `a_core` |
-| `v0.8.4/` | EM–gravity bridge, finite-cell α obstruction summary, research-track extensions |
+| `sources/` | Copies of conversation diffs, patches, blocks, triage |
+| `blocks/` | Reusable LaTeX blocks |
+| `v0.8.2/` … `v0.8.8/` | Incremental canon editions |
 
-## Diff audit (what was applied)
+## Edition map (one patch → one version)
 
-### v0.8.2
-- **Source:** `conversation_canon_patch.diff`, `highres_conversation_canon_followup.diff` (terminology + density hunks only)
-- **Main:** Replace `Derived Length Scale` → `Derived Horn/Circulation Radius` (`-` in conversation diff)
-- **Main:** `\rhocore` envelope label + critical note after `\eqref{eq:core_density}` (highres diff)
-- **Main:** F_max / Coulomb / delay terminology pass (highres diff `-`/`+` lines)
-- **Main:** Integration `Core density closure` → `Horn-Envelope Density Normalization` (conversation diff)
-- **Skipped in v0.8.2:** framed-tube, particle table, trefoil topology, EMG, Pauli `a_core`
+| Version | Adds on top of previous |
+|---------|-------------------------|
+| **v0.8.2** | Horn/circulation radius, envelope density, highres terminology |
+| **v0.8.3** | Framed-tube ontology, trefoil closure, particle dictionary, Pauli `a_core` |
+| **v0.8.4** | EM–gravity bridge, finite-cell α obstruction, research-track extensions |
+| **v0.8.5** | Highres conversation audit + CALIBRATED circularity honesty |
+| **v0.8.6** | Framed self-linking / spinorial lepton ladder (`subsec:framed_selflinking_spinorial`) |
+| **v0.8.7** | Z₂ spinstats / CP¹ substrate paragraph + bibliography |
+| **v0.8.8** | Gemini epistemic/notation audit (`\mathcal{P}_{\mathrm{cal}}`, `a_{\rm cut}`, etc.) |
+| **v0.8.9** | Triadic gravity-response corollary + flame/caustic/shell research-track diagnostics |
+| **v0.8.10** | Gemini round-2: `\vchar`/`uswirl` discipline, delay sign, epistemic relabeling |
+| **v0.8.11** | Final hygiene: consistent `\mathcal{P}_{\mathrm{cal}}`, EMG/RT notation cleanup |
+| **v0.8.12** | Gemini round-3: epistemic relabels, Pauli `a_{\rm cut}`, galaxy `\rhoF` caveat |
 
-### v0.8.3
-- **Source:** `conversation_canon_patch.diff`, `trefoil_closure_canon.diff`, remaining `highres` hunks
-- **Main:** Framed-tube + attachment gate; updated particle table (conversation diff)
-- **Main:** Twist-ladder + Euler preservation + Kairos event (trefoil diff `+` only)
-- **Main:** R-to-T bridge + photon torsion bookkeeping (trefoil + highres; merged, not duplicated)
-- **Main:** Electron trefoil persistence; Pauli `a_core`; softcore radius rule (highres diff)
-- **Main:** State-transition taxonomy + trefoil appendix discipline; bibitems Rolfsen, Conway, Kida, Koplik
-- **Skipped insert:** trefoil diff `Core-radius disambiguation` subsection (duplicate of v0.8.2 horn-radius content; no extra deletes)
-
-### v0.8.4
-- **Source:** `em_gravity_canon_block.tex`, condensed `finite_cell_obstruction_canon_block.tex`, `research_track_blocks_from_current_conversation.tex`
-- **Main:** Inlined `em_gravity_canon_block.tex` before Unified Interpretation (`\ref{subsec:canonical_em_gravity_closure}`)
-- **Main:** Finite-cell α obstruction summary in integration appendix
-- **Research track:** Quark twist, gear/Borromean analogues, trefoil–gear kinematics, parked Higgs hypothesis
-
-## Build
-
-From repository root (uses `out/` via `latexmkrc`):
+## Rebuild chain
 
 ```powershell
-cd papers/SST-CANON/been_processed/v0.8.2
-latexmk -pdf -jobname=SST_CANON-v0.8.2 SST_CANON-v0.8.2.tex
-
-cd ../v0.8.3
-latexmk -pdf -jobname=SST_CANON-v0.8.3 SST_CANON-v0.8.3.tex
-
-cd ../v0.8.4
-latexmk -pdf -jobname=SST_CANON-v0.8.4 SST_CANON-v0.8.4.tex
+cd papers/SST-CANON/been_processed
+python apply_v0812.py
 ```
 
-## Scripts
+Individual steps: `apply_v085.py` … `apply_v0812.py`.
 
-- `apply_v082.py`, `apply_v083.py`, `apply_v084.py` — reproducible patch application
+Shared metadata: `canon_edition.py`. Patch blocks: `apply_framed_selflinking.py`, `apply_spinstats_z2.py`, `apply_spinstats_bibliography.py`, `apply_gemini_audit.py`.
 
-PDF output after compile: `out/SST_CANON-v0.8.x.pdf` (repo root) and `v0.8.x/$out/` (local aux from pdflatex).
+## Build PDF
+
+```powershell
+cd papers/SST-CANON/been_processed/v0.8.8
+pdflatex -interaction=nonstopmode SST_CANON-v0.8.8.tex
+pdflatex -interaction=nonstopmode SST_CANON-v0.8.8.tex
+```
+
+Output: `out/SST_CANON-v0.8.x.pdf` at repo root (after copy).
