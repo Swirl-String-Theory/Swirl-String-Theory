@@ -6,6 +6,7 @@ Tests with one paper first, then does bulk processing.
 
 import argparse
 import json
+import re
 import subprocess
 import sys
 import time
@@ -85,6 +86,9 @@ def sync_publication_date_in_config(config_file: Path, pdf_file: Path) -> str | 
 
 def resolve_pdf_path(tex_file: Path, config_data: dict | None = None) -> Path:
     """Resolve PDF output path (supports canon $out subdirectory)."""
+    canonical = expected_canon_pdf_path(tex_file, config_data)
+    if canonical.is_file():
+        return canonical
     if config_data:
         pdf_dir = config_data.get('pdf_output_dir', '')
         if pdf_dir:
@@ -96,7 +100,102 @@ def resolve_pdf_path(tex_file: Path, config_data: dict | None = None) -> Path:
     out_candidate = tex_file.parent / '$out' / f"{tex_file.stem}.pdf"
     if out_candidate.exists():
         return out_candidate
-    return tex_file.with_suffix('.pdf')
+    return canonical if config_data else tex_file.with_suffix('.pdf')
+
+
+ZENODO_DOI_RE = re.compile(r'10\.5281/zenodo\.\d+')
+TITLE_PAGE_DOI_RE = re.compile(r'DOI:\s*(10\.5281/zenodo\.\d+)', re.IGNORECASE)
+
+
+def expected_canon_pdf_path(tex_file: Path, config_data: dict | None = None) -> Path:
+    """Canonical PDF output path for canon editions (always under pdf_output_dir)."""
+    pdf_dir = '$out'
+    if config_data:
+        pdf_dir = config_data.get('pdf_output_dir') or '$out'
+    return tex_file.parent / pdf_dir / f"{tex_file.stem}.pdf"
+
+
+def _compact_text(text: str) -> str:
+    return re.sub(r'\s+', '', text)
+
+
+def _doi_in_text(text: str, doi: str) -> bool:
+    if not text or not doi:
+        return False
+    if doi in text:
+        return True
+    return doi in _compact_text(text)
+
+
+def extract_pdf_text(pdf_path: Path, max_pages: int = 3) -> str:
+    """Extract text from the first N pages of a PDF (title page holds paper DOI)."""
+    if not pdf_path.is_file():
+        return ""
+    last_error: Exception | None = None
+    for attempt in range(3):
+        try:
+            import pypdf
+            with open(pdf_path, 'rb') as f:
+                reader = pypdf.PdfReader(f)
+                parts: list[str] = []
+                for i, page in enumerate(reader.pages):
+                    if i >= max_pages:
+                        break
+                    parts.append(page.extract_text() or "")
+                return "\n".join(parts)
+        except Exception as exc:
+            last_error = exc
+            if attempt < 2:
+                time.sleep(0.3)
+    if last_error:
+        print(f"    [WARN] PDF text extraction failed for {pdf_path.name}: {last_error}")
+    return ""
+
+
+def read_doi_from_pdf(pdf_path: Path, expected_doi: str | None = None) -> str:
+    """
+    Read the canon paper DOI from a PDF.
+
+    When expected_doi is given, returns it only if present on the first pages
+    (avoids bibliography DOIs on later pages).
+    """
+    if not pdf_path.is_file():
+        return ""
+    text = extract_pdf_text(pdf_path, max_pages=3)
+    if not text:
+        return ""
+    if expected_doi and _doi_in_text(text, expected_doi):
+        return expected_doi
+    page1 = extract_pdf_text(pdf_path, max_pages=1)
+    compact1 = _compact_text(page1)
+    m = TITLE_PAGE_DOI_RE.search(page1) or TITLE_PAGE_DOI_RE.search(compact1)
+    if m:
+        return m.group(1)
+    if expected_doi:
+        return ""
+    found = ZENODO_DOI_RE.findall(text) or ZENODO_DOI_RE.findall(_compact_text(text))
+    return found[0] if found else ""
+
+
+def pdf_doi_matches(pdf_path: Path, expected_doi: str) -> tuple[bool, str]:
+    """Return (matches, doi_found_in_pdf)."""
+    if not expected_doi:
+        return False, ""
+    if not pdf_path.is_file():
+        return False, ""
+    text = extract_pdf_text(pdf_path, max_pages=3)
+    if _doi_in_text(text, expected_doi):
+        return True, expected_doi
+    page1 = extract_pdf_text(pdf_path, max_pages=1)
+    compact1 = _compact_text(page1)
+    m = TITLE_PAGE_DOI_RE.search(page1) or TITLE_PAGE_DOI_RE.search(compact1)
+    found = m.group(1) if m else ""
+    if not found:
+        matches = ZENODO_DOI_RE.findall(page1) or ZENODO_DOI_RE.findall(compact1)
+        found = matches[0] if matches else ""
+    if found == expected_doi:
+        return True, found
+    return False, found
 
 
 def compile_latex(
@@ -304,8 +403,25 @@ def process_config_file(config_file: Path, automation: ZenodoAutomation, base_di
                 result['message'] = 'Failed to render PDF'
                 return result
             print(f"    [OK] Using existing PDF: {pdf_file}")
-        
-        result['actions'].append('Rendered PDF')
+        else:
+            result['actions'].append('Rendered PDF')
+
+        expected_doi = config_data.get('doi', '')
+        if expected_doi:
+            matches, found_doi = pdf_doi_matches(pdf_file, expected_doi)
+            if not matches:
+                if found_doi:
+                    msg = (
+                        f'PDF DOI mismatch: PDF has {found_doi}, '
+                        f'config expects {expected_doi} — render opnieuw'
+                    )
+                else:
+                    msg = f'Geen DOI gevonden in PDF (verwacht {expected_doi}) — render opnieuw'
+                result['status'] = 'error'
+                result['message'] = msg
+                print(f"    [ERROR] {msg}")
+                return result
+            print(f"    [OK] PDF DOI verified: {expected_doi}")
         
         # Sync publication_date from PDF (this will update if PDF has a different date)
         pdf_date = sync_publication_date_in_config(config_file, pdf_file)

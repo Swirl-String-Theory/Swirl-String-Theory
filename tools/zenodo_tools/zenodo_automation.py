@@ -180,10 +180,11 @@ class ZenodoAutomation:
                 doi_command = f"\n\\newcommand{{\\paperdoi}}{{{doi}}}\n"
                 content = content[:insert_pos] + doi_command + content[insert_pos:]
             else:
-                # Update existing DOI command
+                # Update existing DOI command (raw replacement — avoid \p escape in \paperdoi)
+                replacement = r'\\newcommand{\\paperdoi}{' + doi + r'}'
                 content = re.sub(
                     r'\\newcommand\{\\paperdoi\}\{[^}]+\}',
-                    f'\\newcommand{{\\paperdoi}}{{{doi}}}',
+                    replacement,
                     content
                 )
             
@@ -326,62 +327,130 @@ class ZenodoAutomation:
         """
         List all versions in a Zenodo record family (published + drafts where visible).
 
+        Uses the records search API with parent.id:{conceptrecid} because
+        GET /api/records/{id}/versions is not available for listing.
+
         Args:
-            concept_doi_or_recid: Concept DOI, version DOI, or numeric record id.
+            concept_doi_or_recid: Any DOI or record id from the version family.
 
         Returns:
-            List of version info dicts sorted by version key (newest first when available).
+            List of version info dicts.
         """
         record_id = self._record_id_from_doi(concept_doi_or_recid)
         record = self.fetch_record_by_doi(concept_doi_or_recid)
         if not record:
             deposit = self.get_deposit_info(record_id)
             if deposit:
-                record = deposit
+                meta = deposit.get('metadata', {})
+                record = {
+                    'id': deposit.get('id'),
+                    'conceptrecid': meta.get('conceptrecid'),
+                    'metadata': meta,
+                    'links': deposit.get('links', {}),
+                }
 
         concept_recid = None
         if record:
-            concept_recid = (
-                record.get('conceptrecid')
-                or record.get('metadata', {}).get('conceptrecid')
-                or record.get('id')
-            )
+            concept_recid = record.get('conceptrecid') or record.get('metadata', {}).get('conceptrecid')
 
         if not concept_recid:
             concept_recid = record_id
 
-        url = f"{self.base_url}/api/records/{concept_recid}/versions"
-        response = requests.get(url, headers=self.headers)
-        if response.status_code != 200:
-            print(f"[ERROR] Failed to list versions: {response.status_code}")
-            print(f"  Error: {response.text}")
-            return []
+        versions: List[Dict] = []
+        seen_ids: set = set()
 
-        payload = response.json()
-        entries = payload.get('hits', {}).get('hits', payload if isinstance(payload, list) else [])
-        if not isinstance(entries, list):
-            entries = []
+        page = 1
+        page_size = 100
+        while True:
+            url = f"{self.base_url}/api/records"
+            params = {
+                'q': f'parent.id:{concept_recid}',
+                'all_versions': 'true',
+                'sort': 'version',
+                'size': page_size,
+                'page': page,
+            }
+            response = requests.get(url, headers=self.headers, params=params)
+            if response.status_code != 200:
+                if page == 1:
+                    # Retry with smaller page size (unauthenticated limit is 25)
+                    if page_size > 25:
+                        page_size = 25
+                        continue
+                    print(f"[ERROR] Failed to list versions: {response.status_code}")
+                    print(f"  Error: {response.text}")
+                break
 
-        versions = []
-        for entry in entries:
-            meta = entry.get('metadata', {})
-            doi = meta.get('doi', '')
-            if not doi:
+            payload = response.json()
+            hits = payload.get('hits', {}).get('hits', [])
+            if not hits:
+                break
+
+            for entry in hits:
+                entry_id = entry.get('id')
+                if entry_id in seen_ids:
+                    continue
+                seen_ids.add(entry_id)
+                meta = entry.get('metadata', {})
+                doi = meta.get('doi', '') or entry.get('doi', '')
+                state = entry.get('status', entry.get('state', 'unknown'))
+                is_published = (
+                    state in ('published', 'done')
+                    or entry.get('state') == 'done'
+                    or bool(meta.get('doi'))
+                )
+                versions.append({
+                    'id': entry_id,
+                    'title': meta.get('title', ''),
+                    'version': meta.get('version', ''),
+                    'doi': doi,
+                    'conceptdoi': meta.get('conceptdoi', entry.get('conceptdoi', '')),
+                    'conceptrecid': entry.get('conceptrecid', concept_recid),
+                    'publication_date': meta.get('publication_date', ''),
+                    'state': state,
+                    'is_published': is_published,
+                    'is_draft': not is_published,
+                    'links': entry.get('links', {}),
+                    'metadata': meta,
+                    'record': entry,
+                })
+
+            total = payload.get('hits', {}).get('total', len(hits))
+            if page * page_size >= total:
+                break
+            page += 1
+
+        # Include unpublished drafts owned by the token holder in the same family
+        for deposit in self.list_deposits(published_only=False, limit=100):
+            if deposit.get('submitted', False):
+                continue
+            meta = deposit.get('metadata', {})
+            dep_concept = str(meta.get('conceptrecid', ''))
+            if dep_concept and dep_concept != str(concept_recid):
+                continue
+            dep_id = deposit.get('id')
+            if dep_id in seen_ids:
+                continue
+            # Only include canon-like drafts when conceptrecid is missing
+            title = meta.get('title', '')
+            if dep_concept or ('canon' in title.lower() or 'swirl-string' in title.lower()):
+                seen_ids.add(dep_id)
                 prereserve = meta.get('prereserve_doi', {}) or {}
-                doi = prereserve.get('doi', '')
-            versions.append({
-                'id': entry.get('id'),
-                'title': meta.get('title', ''),
-                'doi': doi,
-                'conceptdoi': meta.get('conceptdoi', entry.get('conceptdoi', '')),
-                'publication_date': meta.get('publication_date', ''),
-                'state': entry.get('state', 'unknown'),
-                'is_published': entry.get('state') == 'done' or bool(meta.get('doi')),
-                'is_draft': entry.get('state') in ('draft', 'inprogress', 'unsubmitted'),
-                'links': entry.get('links', {}),
-                'metadata': meta,
-                'record': entry,
-            })
+                versions.append({
+                    'id': dep_id,
+                    'title': title,
+                    'version': meta.get('version', ''),
+                    'doi': meta.get('doi', '') or prereserve.get('doi', ''),
+                    'conceptdoi': meta.get('conceptdoi', ''),
+                    'conceptrecid': dep_concept or concept_recid,
+                    'publication_date': meta.get('publication_date', ''),
+                    'state': 'draft',
+                    'is_published': False,
+                    'is_draft': True,
+                    'links': deposit.get('links', {}),
+                    'metadata': meta,
+                    'record': deposit,
+                })
 
         return versions
 
