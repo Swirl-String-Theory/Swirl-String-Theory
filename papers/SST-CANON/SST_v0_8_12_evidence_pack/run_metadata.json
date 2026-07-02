@@ -1,0 +1,375 @@
+{
+  "evidence_pack": "SST Canon v0.8.12",
+  "generated_utc": "2026-06-28T16:46:52.229581+00:00",
+  "environment": {
+    "python": "3.12.3",
+    "numpy": "2.4.4",
+    "platform": "Linux-6.18.5-x86_64-with-glibc2.39"
+  },
+  "constants_release": "CODATA-2018 (alpha=7.2973525693e-3, m_e=9.1093837015e-31, eps0=8.8541878128e-12; hbar/c/e exact post-2019 SI)",
+  "verification_suite": {
+    "file": "scripts/sst_v0_8_12_verification_suite.py",
+    "graded_passed": 46,
+    "graded_total": 46,
+    "all_passed": true,
+    "per_claim": [
+      {
+        "claim": 3,
+        "tag": "[ORTHODOX]",
+        "desc": "omega_c = m_e c^2/hbar",
+        "ok": true,
+        "rel": 0.0
+      },
+      {
+        "claim": 5,
+        "tag": "[CALIBRATED]",
+        "desc": "eta_0 = vchar/c = alpha/2 (alpha injected here)",
+        "ok": true,
+        "rel": 1.1885978233221166e-16
+      },
+      {
+        "claim": 2,
+        "tag": "[DERIVED]",
+        "desc": "r_c = vchar/omega_c",
+        "ok": true,
+        "rel": 0.0
+      },
+      {
+        "claim": 2,
+        "tag": "[CALIBRATED]",
+        "desc": "r_c = alpha hbar/(2 m_e c)  (=> only via vchar=alpha c/2)",
+        "ok": true,
+        "rel": 0.0
+      },
+      {
+        "claim": 2,
+        "tag": "[CALIBRATED]",
+        "desc": "r_c = r_e/2",
+        "ok": true,
+        "rel": 6.097086121785417e-10
+      },
+      {
+        "claim": 4,
+        "tag": "[DERIVED]",
+        "desc": "Gamma_0 = 2 pi r_c vchar = 2 pi vchar^2/omega_c",
+        "ok": true,
+        "rel": 0.0
+      },
+      {
+        "claim": 7,
+        "tag": "[CALIBRATED]",
+        "desc": "rho_E = 1/2 rho_f vchar^2  (rho_f=7.0e-7 free param)",
+        "ok": true,
+        "rel": 7.615713525854547e-09
+      },
+      {
+        "claim": 8,
+        "tag": "[CALIBRATED]",
+        "desc": "rho_horn = m_e c^2/(2 pi vchar^2 r_c^3)",
+        "ok": true,
+        "rel": 0.0
+      },
+      {
+        "claim": 13,
+        "tag": "[CALIBRATED]",
+        "desc": "F_max = hbar omega_c/(2 r_c) = vchar hbar/(2 r_c^2)",
+        "ok": true,
+        "rel": 1.2228173679138177e-16
+      },
+      {
+        "claim": 13,
+        "tag": "[CALIBRATED]",
+        "desc": "F_max numeric",
+        "ok": true,
+        "rel": 1.0779364975867766e-07
+      },
+      {
+        "claim": 14,
+        "tag": "[CALIBRATED]",
+        "desc": "F_max = e^2/(16 pi eps0 r_c^2)",
+        "ok": true,
+        "rel": 6.097088451620271e-10
+      },
+      {
+        "claim": 14,
+        "tag": "[CALIBRATED]",
+        "desc": "F_max = h alpha c/(8 pi r_c^2)",
+        "ok": true,
+        "rel": 0.0
+      },
+      {
+        "claim": 16,
+        "tag": "[CALIBRATED]",
+        "desc": "F_max/F_gr = 4 alpha_g/alpha",
+        "ok": true,
+        "rel": 1.6590494067711784e-16
+      },
+      {
+        "claim": 17,
+        "tag": "[CALIBRATED]",
+        "desc": "F_pp(r_c) = 4 F_max (quarter-Coulomb)",
+        "ok": true,
+        "rel": 6.09708845533772e-10
+      },
+      {
+        "claim": 18,
+        "tag": "[CONDITIONAL]",
+        "desc": "omega_spring = sqrt(K_e/m_e) = omega_c/alpha (n=2 POSIT)",
+        "ok": true,
+        "rel": 1.5769974273010306e-16
+      },
+      {
+        "claim": 18,
+        "tag": "[CONDITIONAL]",
+        "desc": "E_spring = 1/2 K_e r_c^2 = m_e c^2/8 (n=2 POSIT)",
+        "ok": true,
+        "rel": 0.0
+      },
+      {
+        "claim": 15,
+        "tag": "[CALIBRATED]",
+        "desc": "R_inf = vchar^3/(pi r_c c^3) (hidden m_e,alpha)",
+        "ok": true,
+        "rel": 5.092101451153737e-16
+      },
+      {
+        "claim": 32,
+        "tag": "[CALIBRATED]",
+        "desc": "G_swirl = vchar c^3 t_p^2/(r_c m_e) (t_p contains G)",
+        "ok": true,
+        "rel": 0.0
+      },
+      {
+        "claim": 33,
+        "tag": "[DERIVED]",
+        "desc": "Swirl-Clock S_(t)",
+        "ok": true,
+        "rel": 4.1469437475264917e-11
+      },
+      {
+        "claim": 33,
+        "tag": "[DERIVED]",
+        "desc": "optical index n_gamma-1",
+        "ok": true,
+        "rel": 3.351674720960676e-09
+      },
+      {
+        "claim": 12,
+        "tag": "[CALIBRATED]",
+        "desc": "lambda_c/(pi r_c)=4/alpha  REQUIRES lambda_c=h/(m_e c) (non-reduced)",
+        "ok": true,
+        "rel": 0.0
+      },
+      {
+        "claim": 20,
+        "tag": "[DERIVED]",
+        "desc": "SL_tor(T(p,q))=pq target-free",
+        "ok": true,
+        "rel": null
+      },
+      {
+        "claim": 45,
+        "tag": "[DERIVED]",
+        "desc": "A_K trends to 1/(4pi) (LIMIT; coarse run, torch sweep ratio=0.99992)",
+        "ok": true,
+        "rel": 0.12441302137469708
+      },
+      {
+        "claim": "SST-15",
+        "tag": "[DERIVED]",
+        "desc": "T_KT = rho_f Gamma^2/(4 pi k_B)  (closed form, dim-checked)",
+        "ok": true,
+        "rel": 0.0
+      },
+      {
+        "claim": 26,
+        "tag": "[CODE=CANON]",
+        "desc": "Omega = omega0 - kappa sin(Omega tau)",
+        "ok": true,
+        "rel": 5.551115123125783e-17
+      },
+      {
+        "claim": 26,
+        "tag": "[CODE=CANON]",
+        "desc": "f'(Omega) = 1 + kappa tau cos(Omega tau)",
+        "ok": true,
+        "rel": 2.8348007349267247e-11
+      },
+      {
+        "claim": 38,
+        "tag": "[CALIBRATED]",
+        "desc": "rho_f Gamma0^2/(4pi)*(L/a_cut) = 7.69 eV (a_cut=r_c calibrated)",
+        "ok": true,
+        "rel": 8.205874468520242e-08
+      },
+      {
+        "claim": 61,
+        "tag": "[CALIBRATED]",
+        "desc": "(m_e/e)*omega_c == m_e^2 c^2/(e hbar) == B_QED",
+        "ok": true,
+        "rel": 0.0
+      },
+      {
+        "claim": 67,
+        "tag": "[ORTHODOX]",
+        "desc": "B_QED ~ 4.414e9 T (Schwinger critical field)",
+        "ok": true,
+        "rel": 4.848072863818009e-09
+      },
+      {
+        "claim": 61,
+        "tag": "[DERIVED]",
+        "desc": "(e/m_e)*omega_c is NOT tesla (inverted form rejected)",
+        "ok": true,
+        "rel": 0.0
+      },
+      {
+        "claim": 42,
+        "tag": "[RESEARCH-TRACK]",
+        "desc": "chi2/dof <= 1.5 on noisy synthetic demo (fit machinery sanity)",
+        "ok": true,
+        "rel": 0.5429815691520353
+      },
+      {
+        "claim": 3,
+        "tag": "[CODE=CANON]",
+        "desc": "m_e*c*c/hbar == omega_c",
+        "ok": true,
+        "rel": 0.0
+      },
+      {
+        "claim": 2,
+        "tag": "[CODE=CANON]",
+        "desc": "v_swirl/omega_c == r_c",
+        "ok": true,
+        "rel": 0.0
+      },
+      {
+        "claim": 4,
+        "tag": "[CODE=CANON]",
+        "desc": "2pi r_c v == 2pi v^2/omega_c",
+        "ok": true,
+        "rel": 0.0
+      },
+      {
+        "claim": 7,
+        "tag": "[CODE=CANON]",
+        "desc": "0.5*rho_f*v^2 == rho_E",
+        "ok": true,
+        "rel": 1.3899527253845332e-16
+      },
+      {
+        "claim": 8,
+        "tag": "[CODE=CANON]",
+        "desc": "m_e c^2/(2pi v^2 r_c^3) == rho_horn (patch 0002 alias)",
+        "ok": true,
+        "rel": 0.0
+      },
+      {
+        "claim": 12,
+        "tag": "[CODE=CANON]",
+        "desc": "geometric_gate uses full lambda_c -> 4/alpha (resolves audit BG-1)",
+        "ok": true,
+        "rel": 0.0
+      },
+      {
+        "claim": 13,
+        "tag": "[CODE=CANON]",
+        "desc": "hbar*omega_c/(2 r_c) == F_max",
+        "ok": true,
+        "rel": 1.0779364975867766e-07
+      },
+      {
+        "claim": 15,
+        "tag": "[CODE=CANON]",
+        "desc": "v^3/(pi r_c c^3) == R_inf",
+        "ok": true,
+        "rel": 5.092101451153737e-16
+      },
+      {
+        "claim": 16,
+        "tag": "[CODE=CANON]",
+        "desc": "4 alpha_g/alpha == F_max/F_gr",
+        "ok": true,
+        "rel": 1.6590494067711786e-16
+      },
+      {
+        "claim": 17,
+        "tag": "[CODE=CANON]",
+        "desc": "e^2/(4pi eps0 r_c^2) == 4 F_max (quarter-Coulomb)",
+        "ok": true,
+        "rel": 6.09708845533772e-10
+      },
+      {
+        "claim": 18,
+        "tag": "[CODE=CANON]",
+        "desc": "sqrt(K_e/m_e) == omega_c/alpha (n=2)",
+        "ok": true,
+        "rel": 1.5769974273010306e-16
+      },
+      {
+        "claim": 18,
+        "tag": "[CODE=CANON]",
+        "desc": "0.5 K_e r_c^2 == m_e c^2/8 (n=2)",
+        "ok": true,
+        "rel": 0.0
+      },
+      {
+        "claim": 32,
+        "tag": "[CODE=CANON]",
+        "desc": "v c^5 t_p^2/(2 F_max r_c^2) == v c^3 t_p^2/(r_c m_e) == G",
+        "ok": true,
+        "rel": 0.0
+      },
+      {
+        "claim": 9,
+        "tag": "[CONVENTION]",
+        "desc": "code omega = canon vorticity / 2 (angular-frequency convention)",
+        "ok": true,
+        "rel": 0.0
+      },
+      {
+        "claim": 9,
+        "tag": "[CODE=CANON]",
+        "desc": "patched vorticity == canon 2c/r_c sqrt(1-S^2)",
+        "ok": true,
+        "rel": 0.0
+      }
+    ]
+  },
+  "standalone_scripts": {
+    "reproduce_pauli_barrier.py": {
+      "claim": "38",
+      "exit_code": 0,
+      "result": "V_Pauli=7.69365 eV",
+      "label": "[CALIBRATED BENCHMARK]"
+    },
+    "reproduce_em_qed_normalization.py": {
+      "claim": "61/67",
+      "exit_code": 0,
+      "result": "B_core=B_QED=4.4140052e9 T",
+      "label": "A=(m_e/e)u; B_QED [ORTHODOX], identity [CALIBRATED]"
+    },
+    "fit_galactic_swirl_rotation_sparc.py": {
+      "claim": "42",
+      "exit_code": 0,
+      "result": "demo chi2/dof~0.8",
+      "label": "[RESEARCH-TRACK] r_s fitted not derived"
+    }
+  },
+  "patches": {
+    "0001-chronos-kelvin-vorticity.patch": "factor-2 vorticity convention (claim 9)",
+    "0002-rho-horn-alias.patch": "rho_core->rho_horn alias (claim 8)",
+    "0003-codata2018-pin-and-provenance.patch": "CODATA-2018 pin + provenance comment",
+    "0004-spoorAB-main-canon-notes.patch": "critical notes: alpha-spectroscopy, zeta(3), Madelung",
+    "0005-spoorAB-research-track-notes.patch": "critical notes: galactic dp, Meissner imports, horn volume",
+    "sstcore_v0_8_12_alignment_ALL.patch": "combined 0001-0003"
+  },
+  "patch_dryrun_pass": {
+    "0001-chronos-kelvin-vorticity.patch": true,
+    "0002-rho-horn-alias.patch": true,
+    "0003-codata2018-pin-and-provenance.patch": true,
+    "0004-spoorAB-main-canon-notes.patch": true,
+    "0005-spoorAB-research-track-notes.patch": true
+  }
+}

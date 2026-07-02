@@ -1,0 +1,586 @@
+{
+  "passed": 46,
+  "total": 46,
+  "records": [
+    {
+      "claim": 3,
+      "loc": "2.2 eq:omega_c_compton",
+      "tag": "[ORTHODOX]",
+      "desc": "omega_c = m_e c^2/hbar",
+      "got": 7.76344071105011e+20,
+      "expected": 7.76344071105011e+20,
+      "rel": 0.0,
+      "ok": true,
+      "unit": "rad/s"
+    },
+    {
+      "claim": 5,
+      "loc": "2.5 lines 326-342",
+      "tag": "[CALIBRATED]",
+      "desc": "eta_0 = vchar/c = alpha/2 (alpha injected here)",
+      "got": 0.0036486762846500006,
+      "expected": 0.00364867628465,
+      "rel": 1.1885978233221166e-16,
+      "ok": true,
+      "unit": ""
+    },
+    {
+      "claim": 2,
+      "loc": "2.2 eq:rc_definition",
+      "tag": "[DERIVED]",
+      "desc": "r_c = vchar/omega_c",
+      "got": 1.408970162243403e-15,
+      "expected": 1.408970162243403e-15,
+      "rel": 0.0,
+      "ok": true,
+      "unit": "m"
+    },
+    {
+      "claim": 2,
+      "loc": "2.2 eq:rc_definition",
+      "tag": "[CALIBRATED]",
+      "desc": "r_c = alpha hbar/(2 m_e c)  (=> only via vchar=alpha c/2)",
+      "got": 1.408970162243403e-15,
+      "expected": 1.408970162243403e-15,
+      "rel": 0.0,
+      "ok": true,
+      "unit": "m"
+    },
+    {
+      "claim": 2,
+      "loc": "2.2 eq:rc_definition",
+      "tag": "[CALIBRATED]",
+      "desc": "r_c = r_e/2",
+      "got": 1.408970162243403e-15,
+      "expected": 1.4089701631024642e-15,
+      "rel": 6.097086121785417e-10,
+      "ok": true,
+      "unit": "m"
+    },
+    {
+      "claim": 4,
+      "loc": "2.3/2.10 eq:gamma0(_reparam)",
+      "tag": "[DERIVED]",
+      "desc": "Gamma_0 = 2 pi r_c vchar = 2 pi vchar^2/omega_c",
+      "got": 9.683619166304757e-09,
+      "expected": 9.683619166304757e-09,
+      "rel": 0.0,
+      "ok": true,
+      "unit": "m^2/s"
+    },
+    {
+      "claim": 7,
+      "loc": "2.7 / 10.13",
+      "tag": "[CALIBRATED]",
+      "desc": "rho_E = 1/2 rho_f vchar^2  (rho_f=7.0e-7 free param)",
+      "got": 418774.3931892658,
+      "expected": 418774.39,
+      "rel": 7.615713525854547e-09,
+      "ok": true,
+      "unit": "Pa"
+    },
+    {
+      "claim": 8,
+      "loc": "2.8 eq:core_density",
+      "tag": "[CALIBRATED]",
+      "desc": "rho_horn = m_e c^2/(2 pi vchar^2 r_c^3)",
+      "got": 3.89343627628033e+18,
+      "expected": 3.89343627628033e+18,
+      "rel": 0.0,
+      "ok": true,
+      "unit": "kg/m^3"
+    },
+    {
+      "claim": 13,
+      "loc": "2.15 eq:Fmax_def",
+      "tag": "[CALIBRATED]",
+      "desc": "F_max = hbar omega_c/(2 r_c) = vchar hbar/(2 r_c^2)",
+      "got": 29.053510131783558,
+      "expected": 29.05351013178356,
+      "rel": 1.2228173679138177e-16,
+      "ok": true,
+      "unit": "N"
+    },
+    {
+      "claim": 13,
+      "loc": "2.15 eq:Fmax_def",
+      "tag": "[CALIBRATED]",
+      "desc": "F_max numeric",
+      "got": 29.053510131783558,
+      "expected": 29.053507,
+      "rel": 1.0779364975867766e-07,
+      "ok": true,
+      "unit": "N"
+    },
+    {
+      "claim": 14,
+      "loc": "2.15 eq:Fmax_em",
+      "tag": "[CALIBRATED]",
+      "desc": "F_max = e^2/(16 pi eps0 r_c^2)",
+      "got": 29.053510131783558,
+      "expected": 29.05351014949774,
+      "rel": 6.097088451620271e-10,
+      "ok": true,
+      "unit": "N"
+    },
+    {
+      "claim": 14,
+      "loc": "2.15 eq:Fmax_hac",
+      "tag": "[CALIBRATED]",
+      "desc": "F_max = h alpha c/(8 pi r_c^2)",
+      "got": 29.053510131783558,
+      "expected": 29.053510131783558,
+      "rel": 0.0,
+      "ok": true,
+      "unit": "N"
+    },
+    {
+      "claim": 16,
+      "loc": "2.15 eq:Fmax_ratio",
+      "tag": "[CALIBRATED]",
+      "desc": "F_max/F_gr = 4 alpha_g/alpha",
+      "got": 9.602438026441346e-43,
+      "expected": 9.602438026441348e-43,
+      "rel": 1.6590494067711784e-16,
+      "ok": true,
+      "unit": ""
+    },
+    {
+      "claim": 17,
+      "loc": "2.15 eq:Coulomb_core",
+      "tag": "[CALIBRATED]",
+      "desc": "F_pp(r_c) = 4 F_max (quarter-Coulomb)",
+      "got": 116.21404059799096,
+      "expected": 116.21404052713423,
+      "rel": 6.09708845533772e-10,
+      "ok": true,
+      "unit": ""
+    },
+    {
+      "claim": 18,
+      "loc": "2.15 eq:omega_spring",
+      "tag": "[CONDITIONAL]",
+      "desc": "omega_spring = sqrt(K_e/m_e) = omega_c/alpha (n=2 POSIT)",
+      "got": 1.0638708541657894e+23,
+      "expected": 1.0638708541657896e+23,
+      "rel": 1.5769974273010306e-16,
+      "ok": true,
+      "unit": "rad/s"
+    },
+    {
+      "claim": 18,
+      "loc": "2.15 eq:Espring",
+      "tag": "[CONDITIONAL]",
+      "desc": "E_spring = 1/2 K_e r_c^2 = m_e c^2/8 (n=2 POSIT)",
+      "got": 1.0233882221029857e-14,
+      "expected": 1.0233882221029857e-14,
+      "rel": 0.0,
+      "ok": true,
+      "unit": "J"
+    },
+    {
+      "claim": 15,
+      "loc": "2.15 eq:Rydberg_SST",
+      "tag": "[CALIBRATED]",
+      "desc": "R_inf = vchar^3/(pi r_c c^3) (hidden m_e,alpha)",
+      "got": 10973731.574862465,
+      "expected": 10973731.57486246,
+      "rel": 5.092101451153737e-16,
+      "ok": true,
+      "unit": "1/m"
+    },
+    {
+      "claim": 32,
+      "loc": "10.13 eq:canonical_gswirl",
+      "tag": "[CALIBRATED]",
+      "desc": "G_swirl = vchar c^3 t_p^2/(r_c m_e) (t_p contains G)",
+      "got": 6.6743e-11,
+      "expected": 6.6743e-11,
+      "rel": 0.0,
+      "ok": true,
+      "unit": "m^3/kg/s^2"
+    },
+    {
+      "claim": 33,
+      "loc": "10.13 numerical hierarchy",
+      "tag": "[DERIVED]",
+      "desc": "Swirl-Clock S_(t)",
+      "got": 0.9999933435585309,
+      "expected": 0.9999933436,
+      "rel": 4.1469437475264917e-11,
+      "ok": true,
+      "unit": ""
+    },
+    {
+      "claim": 33,
+      "loc": "10.13 numerical hierarchy",
+      "tag": "[DERIVED]",
+      "desc": "optical index n_gamma-1",
+      "got": 6.656485777689625e-06,
+      "expected": 6.6564858e-06,
+      "rel": 3.351674720960676e-09,
+      "ok": true,
+      "unit": ""
+    },
+    {
+      "claim": 12,
+      "loc": "2.11 eq:sst_master_equation",
+      "tag": "[CALIBRATED]",
+      "desc": "lambda_c/(pi r_c)=4/alpha  REQUIRES lambda_c=h/(m_e c) (non-reduced)",
+      "got": 548.1439963347832,
+      "expected": 548.1439963347832,
+      "rel": 0.0,
+      "ok": true,
+      "unit": ""
+    },
+    {
+      "claim": 12,
+      "tag": "[BG-1]",
+      "desc": "reduced-lambda gate = 87.2398 = (4/alpha)/(2pi) = 87.2398  -> canon must fix lambda_c def",
+      "ok": null
+    },
+    {
+      "claim": 20,
+      "loc": "5.3 eq:SL_torus_pq",
+      "tag": "[DERIVED]",
+      "desc": "SL_tor(T(p,q))=pq target-free",
+      "ok": true
+    },
+    {
+      "claim": 45,
+      "loc": "Route-3 Biot-Savart",
+      "tag": "[DERIVED]",
+      "desc": "A_K trends to 1/(4pi) (LIMIT; coarse run, torch sweep ratio=0.99992)",
+      "got": 0.06967699787755734,
+      "expected": 0.07957747154594767,
+      "rel": 0.12441302137469708,
+      "ok": true,
+      "unit": ""
+    },
+    {
+      "claim": 45,
+      "tag": "[LIMIT]",
+      "desc": "A_K = 0.06968, ratio A_K*4pi = 0.876 (target 1.000; coarse single-curve demonstrator)",
+      "ok": null
+    },
+    {
+      "claim": 45,
+      "tag": "[ORTHODOX]",
+      "desc": "ideal trefoil ropelength L_K = 16.372 (tabulated, external input)",
+      "ok": null
+    },
+    {
+      "claim": 46,
+      "tag": "[COINCIDENCE]",
+      "desc": "(8 pi/3) L_K = 137.158  vs alpha^-1 = 137.036",
+      "ok": null
+    },
+    {
+      "claim": "SST-15",
+      "loc": "Onsager 2D point-vortex",
+      "tag": "[DERIVED]",
+      "desc": "T_KT = rho_f Gamma^2/(4 pi k_B)  (closed form, dim-checked)",
+      "got": 0.37833828946370246,
+      "expected": 0.37833828946370246,
+      "rel": 0.0,
+      "ok": true,
+      "unit": "K"
+    },
+    {
+      "claim": "SST-15",
+      "tag": "[INFO]",
+      "desc": "numeric T_KT = 3.7834e-01 K at canonical (rho_f,Gamma)",
+      "ok": null
+    },
+    {
+      "claim": 26,
+      "loc": "Sec 7 eq:mode_condition",
+      "tag": "[CODE=CANON]",
+      "desc": "Omega = omega0 - kappa sin(Omega tau)",
+      "got": -5.551115123125783e-17,
+      "expected": 0.0,
+      "rel": 5.551115123125783e-17,
+      "ok": true,
+      "unit": ""
+    },
+    {
+      "claim": 26,
+      "loc": "delay_mode_selector.cpp:newton_derivative",
+      "tag": "[CODE=CANON]",
+      "desc": "f'(Omega) = 1 + kappa tau cos(Omega tau)",
+      "got": 1.0972829317634574,
+      "expected": 1.0972829317945632,
+      "rel": 2.8348007349267247e-11,
+      "ok": true,
+      "unit": ""
+    },
+    {
+      "claim": 26,
+      "tag": "[STATUS]",
+      "desc": "Current SSTcore v0.8.12 delay residual and Newton derivative are aligned with Canon; old plus-sign mismatch is retained only as historical audit context.",
+      "ok": null
+    },
+    {
+      "claim": 46,
+      "tag": "[COINCIDENCE]",
+      "desc": "leading (8 pi/3) L_K = 137.1577; alpha^-1 = 137.0360; gap = 888 ppm",
+      "ok": null
+    },
+    {
+      "claim": 46,
+      "tag": "[OBSTRUCTION]",
+      "desc": "closure needs w_perp = 1.0675; GP core gives w_perp = 2.076 (wrong side by ~94.5%; ppm closure remains unresolved)",
+      "ok": null
+    },
+    {
+      "claim": 46,
+      "tag": "[STATUS]",
+      "desc": "alpha is NOT derived: N_p=4 derived, but ppm closure non-identifiable (5 interchangeable routes, G1 fails independently). Label [CONDITIONAL]/[OPEN].",
+      "ok": null
+    },
+    {
+      "claim": 38,
+      "loc": "atomic_bridge_model.cpp:pauli_barrier_scale",
+      "tag": "[CALIBRATED]",
+      "desc": "rho_f Gamma0^2/(4pi)*(L/a_cut) = 7.69 eV (a_cut=r_c calibrated)",
+      "got": 7.693649368668739,
+      "expected": 7.69365,
+      "rel": 8.205874468520242e-08,
+      "ok": true,
+      "unit": "eV"
+    },
+    {
+      "claim": 38,
+      "tag": "[BENCHMARK]",
+      "desc": "cutoff-calibrated atomic-window scale; NOT a derivation",
+      "ok": null
+    },
+    {
+      "claim": 61,
+      "loc": "swirl_vector_potential_bridge (m_e/e form)",
+      "tag": "[CALIBRATED]",
+      "desc": "(m_e/e)*omega_c == m_e^2 c^2/(e hbar) == B_QED",
+      "got": 4414005221.399419,
+      "expected": 4414005221.399419,
+      "rel": 0.0,
+      "ok": true,
+      "unit": "T"
+    },
+    {
+      "claim": 67,
+      "loc": "Bcore_equals_Bqed numeric",
+      "tag": "[ORTHODOX]",
+      "desc": "B_QED ~ 4.414e9 T (Schwinger critical field)",
+      "got": 4414005221.399419,
+      "expected": 4414005200.0,
+      "rel": 4.848072863818009e-09,
+      "ok": true,
+      "unit": "T"
+    },
+    {
+      "claim": 61,
+      "loc": "swirl_vector_potential_bridge (e/m_e guard)",
+      "tag": "[DERIVED]",
+      "desc": "(e/m_e)*omega_c is NOT tesla (inverted form rejected)",
+      "got": 1.3654494875038204e+32,
+      "expected": 1e+25,
+      "rel": 0.0,
+      "ok": true,
+      "unit": "(arb.)"
+    },
+    {
+      "claim": 42,
+      "loc": "fit_galactic_swirl_rotation_sparc.py:chi2_red",
+      "tag": "[RESEARCH-TRACK]",
+      "desc": "chi2/dof <= 1.5 on noisy synthetic demo (fit machinery sanity)",
+      "got": 0.814472353728053,
+      "expected": 1.5,
+      "rel": 0.5429815691520353,
+      "ok": true,
+      "unit": ""
+    },
+    {
+      "claim": 42,
+      "tag": "[RESEARCH-TRACK]",
+      "desc": "synthetic fit: Y_disk=0.699 (truth 0.5), Y_bul=0.541 (truth 0.7), C_tail=97.0 km/s (truth 110.0), r_s=3.39 kpc (truth 3.0); RMS=4.12 km/s",
+      "ok": null
+    },
+    {
+      "claim": 42,
+      "tag": "[OPEN]",
+      "desc": "Standalone fit_galactic_swirl_rotation_sparc.py provides SPARC rotmod fitter; no SPARC dataset bundled; r_s is fitted, not derived (coherence-length lemma OPEN).",
+      "ok": null
+    },
+    {
+      "claim": 3,
+      "loc": "canonical_constants.cpp:compton_angular_frequency",
+      "tag": "[CODE=CANON]",
+      "desc": "m_e*c*c/hbar == omega_c",
+      "got": 7.76344071105011e+20,
+      "expected": 7.76344071105011e+20,
+      "rel": 0.0,
+      "ok": true,
+      "unit": "rad/s"
+    },
+    {
+      "claim": 2,
+      "loc": "canonical_constants.cpp:core_radius_from_compton_anchor",
+      "tag": "[CODE=CANON]",
+      "desc": "v_swirl/omega_c == r_c",
+      "got": 1.408970162243403e-15,
+      "expected": 1.408970162243403e-15,
+      "rel": 0.0,
+      "ok": true,
+      "unit": "m"
+    },
+    {
+      "claim": 4,
+      "loc": "canonical_constants.cpp:circulation_quantum(_from_v_omega)",
+      "tag": "[CODE=CANON]",
+      "desc": "2pi r_c v == 2pi v^2/omega_c",
+      "got": 9.683619166304757e-09,
+      "expected": 9.683619166304757e-09,
+      "rel": 0.0,
+      "ok": true,
+      "unit": "m^2/s"
+    },
+    {
+      "claim": 7,
+      "loc": "canonical_constants.cpp:swirl_energy_density",
+      "tag": "[CODE=CANON]",
+      "desc": "0.5*rho_f*v^2 == rho_E",
+      "got": 418774.39318926574,
+      "expected": 418774.3931892658,
+      "rel": 1.3899527253845332e-16,
+      "ok": true,
+      "unit": "Pa"
+    },
+    {
+      "claim": 8,
+      "loc": "canonical_constants.cpp:core_density_closure==horn_envelope_density",
+      "tag": "[CODE=CANON]",
+      "desc": "m_e c^2/(2pi v^2 r_c^3) == rho_horn (patch 0002 alias)",
+      "got": 3.89343627628033e+18,
+      "expected": 3.89343627628033e+18,
+      "rel": 0.0,
+      "ok": true,
+      "unit": "kg/m^3"
+    },
+    {
+      "claim": 12,
+      "loc": "canonical_constants.cpp:geometric_gate (full lambda_c)",
+      "tag": "[CODE=CANON]",
+      "desc": "geometric_gate uses full lambda_c -> 4/alpha (resolves audit BG-1)",
+      "got": 548.1439963347832,
+      "expected": 548.1439963347832,
+      "rel": 0.0,
+      "ok": true,
+      "unit": ""
+    },
+    {
+      "claim": 13,
+      "loc": "canonical_constants.cpp:f_swirl_max",
+      "tag": "[CODE=CANON]",
+      "desc": "hbar*omega_c/(2 r_c) == F_max",
+      "got": 29.053510131783558,
+      "expected": 29.053507,
+      "rel": 1.0779364975867766e-07,
+      "ok": true,
+      "unit": "N"
+    },
+    {
+      "claim": 15,
+      "loc": "canonical_constants.cpp:rydberg_sst",
+      "tag": "[CODE=CANON]",
+      "desc": "v^3/(pi r_c c^3) == R_inf",
+      "got": 10973731.574862465,
+      "expected": 10973731.57486246,
+      "rel": 5.092101451153737e-16,
+      "ok": true,
+      "unit": "1/m"
+    },
+    {
+      "claim": 16,
+      "loc": "sst_tension_scales.cpp:tension_ratio_from_couplings",
+      "tag": "[CODE=CANON]",
+      "desc": "4 alpha_g/alpha == F_max/F_gr",
+      "got": 9.602438026441348e-43,
+      "expected": 9.602438026441346e-43,
+      "rel": 1.6590494067711786e-16,
+      "ok": true,
+      "unit": ""
+    },
+    {
+      "claim": 17,
+      "loc": "sst_tension_scales.cpp:coulomb_force_at_core",
+      "tag": "[CODE=CANON]",
+      "desc": "e^2/(4pi eps0 r_c^2) == 4 F_max (quarter-Coulomb)",
+      "got": 116.21404059799096,
+      "expected": 116.21404052713423,
+      "rel": 6.09708845533772e-10,
+      "ok": true,
+      "unit": "N"
+    },
+    {
+      "claim": 18,
+      "loc": "sst_tension_scales.cpp:electron_spring_frequency",
+      "tag": "[CODE=CANON]",
+      "desc": "sqrt(K_e/m_e) == omega_c/alpha (n=2)",
+      "got": 1.0638708541657894e+23,
+      "expected": 1.0638708541657896e+23,
+      "rel": 1.5769974273010306e-16,
+      "ok": true,
+      "unit": "rad/s"
+    },
+    {
+      "claim": 18,
+      "loc": "sst_tension_scales.cpp:electron_spring_energy",
+      "tag": "[CODE=CANON]",
+      "desc": "0.5 K_e r_c^2 == m_e c^2/8 (n=2)",
+      "got": 1.0233882221029857e-14,
+      "expected": 1.0233882221029857e-14,
+      "rel": 0.0,
+      "ok": true,
+      "unit": "J"
+    },
+    {
+      "claim": 32,
+      "loc": "sst_gravity.h:compute_G_swirl (code-form) vs canon-form",
+      "tag": "[CODE=CANON]",
+      "desc": "v c^5 t_p^2/(2 F_max r_c^2) == v c^3 t_p^2/(r_c m_e) == G",
+      "got": 6.6743e-11,
+      "expected": 6.6743e-11,
+      "rel": 0.0,
+      "ok": true,
+      "unit": "m^3/kg/s^2"
+    },
+    {
+      "claim": 32,
+      "tag": "[CROSS-CHECK]",
+      "desc": "both G_swirl forms = 6.6743000e-11 (target G=6.6743e-11)",
+      "ok": null
+    },
+    {
+      "claim": 9,
+      "loc": "chronos_kelvin_transport.cpp:omega_from_swirl_clock",
+      "tag": "[CONVENTION]",
+      "desc": "code omega = canon vorticity / 2 (angular-frequency convention)",
+      "got": 7.763440711013521e+20,
+      "expected": 7.763440711013521e+20,
+      "rel": 0.0,
+      "ok": true,
+      "unit": "rad/s"
+    },
+    {
+      "claim": 9,
+      "loc": "chronos_kelvin_transport.cpp:vorticity_from_swirl_clock (patch 0001)",
+      "tag": "[CODE=CANON]",
+      "desc": "patched vorticity == canon 2c/r_c sqrt(1-S^2)",
+      "got": 1.5526881422027042e+21,
+      "expected": 1.5526881422027042e+21,
+      "rel": 0.0,
+      "ok": true,
+      "unit": "rad/s"
+    }
+  ]
+}

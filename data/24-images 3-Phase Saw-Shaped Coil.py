@@ -11,7 +11,7 @@ from matplotlib.cm import ScalarMappable
 from skimage import measure
 from scipy.integrate import solve_ivp
 
-from sstbindings import (
+from SSTcore import (
     biot_savart_velocity,
     compute_kinetic_energy,
     VortexKnotSystem

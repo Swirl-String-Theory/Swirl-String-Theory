@@ -300,7 +300,7 @@ ani = animation.FuncAnimation(fig, update_quiver, frames=np.linspace(0, 2*np.pi,
 
 
 # Export the animation as a GIF
-gif_filename = "3phase_field_AC_cycle.gif"
+gif_filename = "./exports/20-3phase_field_AC_cycle.gif"
 ani.save(gif_filename, writer='pillow', fps=10)
 
 
@@ -353,7 +353,7 @@ ax.set_zlim(*z_range)
 plt.tight_layout()
 
 # Save as PNG
-fieldline_filename = "3phase_field_lines.png"
+fieldline_filename = "./exports/20-3phase_field_lines.png"
 plt.savefig(fieldline_filename, dpi=150)
 # plt.show()
 ###########################################################################
@@ -382,7 +382,7 @@ plt.axis('equal')
 plt.tight_layout()
 
 # Save pressure plot
-pressure_filename = "3phase_pressure_drop.png"
+pressure_filename = "./exports/20-3phase_pressure_drop.png"
 plt.savefig(pressure_filename, dpi=150)
 # plt.show()
 ###########################################################################
@@ -400,7 +400,7 @@ plt.ylabel("Y")
 plt.axis('equal')
 plt.tight_layout()
 
-log_pressure_filename = "3phase_Æther LogScale Pressure Drop Induced by 3-Phase VAM Swirl.png"
+log_pressure_filename = "./exports/20-3phase_Æther LogScale Pressure Drop Induced by 3-Phase VAM Swirl.png"
 plt.savefig(log_pressure_filename, dpi=150)
 # plt.show()
 ###########################################################################
@@ -487,7 +487,7 @@ ax.set_ylim(*y_range)
 ax.set_zlim(*z_range)
 fig.colorbar(mesh, ax=ax, shrink=0.6, label="Z (Pressure Drop Depth)")
 
-iso_layers10_filename = "3phase_pressure_isosurface_layers10.png"
+iso_layers10_filename = "./exports/20-3phase_pressure_isosurface_layers10.png"
 plt.tight_layout()
 plt.savefig(iso_layers10_filename, dpi=150)
 # plt.show()
@@ -566,7 +566,7 @@ ax.set_ylim(*y_range)
 ax.set_zlim(*z_range)
 ax.legend()
 
-coil_field_filename = "1phase_coil_biot_savart.png"
+coil_field_filename = "./exports/20-1phase_coil_biot_savart.png"
 plt.tight_layout()
 plt.savefig(coil_field_filename, dpi=150)
 # plt.show()
@@ -623,7 +623,7 @@ ax.set_ylim(*y_range)
 ax.set_zlim(*z_range)
 ax.legend()
 
-coil_dense_filename = "1phase_coil_biot_savart_dense.png"
+coil_dense_filename = "./exports/20-1phase_coil_biot_savart_dense.png"
 plt.tight_layout()
 plt.savefig(coil_dense_filename, dpi=150)
 # plt.show()
@@ -664,7 +664,7 @@ ax.set_ylim(*y_range)
 ax.set_zlim(*z_range)
 ax.legend()
 
-colored_field_filename = "1phase_coil_biot_savart_colordir_alpha.png"
+colored_field_filename = "./exports/20-1phase_coil_biot_savart_colordir_alpha.png"
 plt.tight_layout()
 plt.savefig(colored_field_filename, dpi=150)
 plt.show()
@@ -702,7 +702,7 @@ ax.set_ylim(*y_range)
 ax.set_zlim(*z_range)
 ax.legend()
 
-corrected_alpha_filename = "1phase_coil_biot_savart_colordir_alpha_corrected.png"
+corrected_alpha_filename = "./exports/20-1phase_coil_biot_savart_colordir_alpha_corrected.png"
 plt.tight_layout()
 plt.savefig(corrected_alpha_filename, dpi=150)
 # plt.show()
@@ -747,7 +747,7 @@ ax.set_ylim(*y_range)
 ax.set_zlim(*z_range)
 ax.legend()
 
-final_quiver_filename = "1phase_coil_biot_savart_colordir_alpha_final.png"
+final_quiver_filename = "./exports/20-1phase_coil_biot_savart_colordir_alpha_final.png"
 plt.tight_layout()
 plt.savefig(final_quiver_filename, dpi=150)
 # plt.show()
@@ -784,7 +784,7 @@ ax.set_ylim(*y_range)
 ax.set_zlim(*z_range)
 ax.legend()
 
-linear_quiver_filename = "1phase_coil_biot_savart_colordir_alpha_linear.png"
+linear_quiver_filename = "./exports/20-1phase_coil_biot_savart_colordir_alpha_linear.png"
 plt.tight_layout()
 plt.savefig(linear_quiver_filename, dpi=150)
 # plt.show()
@@ -808,7 +808,7 @@ ax.set_xlim(*x_range)
 ax.set_ylim(*y_range)
 ax.set_zlim(*z_range)
 
-field_only_filename = "1phase_biot_savart_quiver_only.png"
+field_only_filename = "./exports/20-1phase_biot_savart_quiver_only.png"
 plt.tight_layout()
 plt.savefig(field_only_filename, dpi=150)
 # plt.show()
@@ -856,7 +856,7 @@ ax.set_xlim(*x_range)
 ax.set_ylim(*y_range)
 ax.set_zlim(*z_range)
 
-cwccw_filename = "1phase_biot_savart_quiver_cwccw_xy_opacity_z.png"
+cwccw_filename = "./exports/20-1phase_biot_savart_quiver_cwccw_xy_opacity_z.png"
 plt.tight_layout()
 plt.savefig(cwccw_filename, dpi=150)
 # plt.show()
@@ -891,7 +891,7 @@ for i, (title, view) in enumerate(corrected_views, 1):
 fig.suptitle("1-Phase Biot–Savart Field\nCW/CCW Hue (XY) + Z Opacity\nTop | Bottom | Side | Isometric", fontsize=14)
 plt.tight_layout(rect=[0, 0, 1, 0.96])
 
-corrected_multiview_filename = "1phase_biot_savart_multiview_corrected.png"
+corrected_multiview_filename = "./exports/20-1phase_biot_savart_multiview_corrected.png"
 plt.savefig(corrected_multiview_filename, dpi=150)
 # plt.show()
 ###########################################################################
@@ -935,7 +935,7 @@ for i, (title, view) in enumerate(corrected_views, 1):
 fig.suptitle("Centered Coil | Biot–Savart Field\nCW/CCW Hue (XY) + Z Opacity\nTop | Bottom | Side | Isometric", fontsize=14)
 plt.tight_layout(rect=[0, 0, 1, 0.96])
 
-centered_multiview_filename = "1phase_biot_savart_multiview_centered.png"
+centered_multiview_filename = "./exports/20-1phase_biot_savart_multiview_centered.png"
 plt.savefig(centered_multiview_filename, dpi=150)
 # plt.show()
 ###########################################################################
@@ -967,7 +967,7 @@ for i, (title, view) in enumerate(corrected_views, 1):
 fig.suptitle("Biot–Savart Field\nCW/CCW Hue (XY) + Z Opacity\nTop | Bottom | Side | Isometric", fontsize=14)
 plt.tight_layout(rect=[0, 0, 1, 0.96])
 
-raised_multiview_filename = "1phase_biot_savart_multiview_centered_fixedshift.png"
+raised_multiview_filename = "./exports/20-1phase_biot_savart_multiview_centered_fixedshift.png"
 plt.savefig(raised_multiview_filename, dpi=150)
 # plt.show()
 ###########################################################################
@@ -1107,7 +1107,7 @@ for i, (title, view) in enumerate(corrected_views, 1):
 fig.suptitle("3-Phase Coil | Biot–Savart Field\nCW/CCW Hue (XY) + Z Opacity\nTop | Bottom | Side | Isometric", fontsize=14)
 plt.tight_layout(rect=[0, 0, 1, 0.96])
 
-three_phase_multiview_filename = "3phase_biot_savart_multiview_centered_fixedshift.png"
+three_phase_multiview_filename = "./exports/20-3phase_biot_savart_multiview_centered_fixedshift.png"
 plt.savefig(three_phase_multiview_filename, dpi=150)
 # plt.show()
 ###########################################################################
@@ -1185,7 +1185,7 @@ ax.set_ylim(*y_range)
 ax.set_zlim(*z_range)
 ax.set_axis_off()
 
-gravity_field_filename = "vam_swirl_gravitational_field_3d.png"
+gravity_field_filename = "./exports/20-vam_swirl_gravitational_field_3d.png"
 plt.savefig(gravity_field_filename, dpi=150)
 # plt.show()
 ###########################################################################
@@ -1297,6 +1297,6 @@ ax.set_ylim(*y_range)
 ax.set_zlim(*z_range)
 ax.set_axis_off()
 
-net_rotating_swirl_filename = "net_rotating_swirl_gravity_field.png"
+net_rotating_swirl_filename = "./exports/20-net_rotating_swirl_gravity_field.png"
 plt.savefig(net_rotating_swirl_filename, dpi=150)
 plt.show()

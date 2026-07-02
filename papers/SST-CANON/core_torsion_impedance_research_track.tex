@@ -1,0 +1,601 @@
+%======================================================================
+% Research Track Module for SST Canon / Research Track
+% Title: Core--Torsion Impedance Matching for NLSE Inertia Closure
+% Author: Omar Iskandarani / Swirl-String Theory research notes
+% Status: Research-track, not hard canon
+%======================================================================
+
+% Compile-safe minimal macro prelude. These commands are intentionally guarded
+% so the block can be pasted into a larger Canon file that already defines them.
+\providecommand{\vswirl}{\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}}
+\providecommand{\rc}{r_c}
+\providecommand{\rhoF}{\rho_{\!f}}
+\providecommand{\rhoE}{\rho_{\!E}}
+\providecommand{\rhoM}{\rho_{\!m}}
+\providecommand{\rhocore}{\rho_{\mathrm{core}}}
+\providecommand{\GammaSST}{\Gamma_0}
+\providecommand{\ct}{c_{\mathrm{T}}}
+\providecommand{\clight}{c_{\mathrm{light}}}
+\providecommand{\cs}{c_s}
+\providecommand{\xih}{\xi}
+\providecommand{\NLS}{\mathrm{NLS}}
+\providecommand{\eff}{\mathrm{eff}}
+\providecommand{\core}{\mathrm{core}}
+\providecommand{\torsion}{\mathrm{torsion}}
+\providecommand{\add}{\mathrm{add}}
+\providecommand{\diag}{\mathrm{diag}}
+\providecommand{\status}[1]{\textbf{[#1]}}
+
+\section{Research Track: Core--Torsion Impedance Matching for NLSE Inertia Closure}
+\label{sec:research-core-torsion-impedance}
+
+\subsection{Purpose and epistemic status}
+\label{subsec:ctim-purpose-status}
+
+This research track records the current state of the SST inertia-closure problem after replacing the purely incompressible Euler/Biot--Savart route by a two-layer field description:
+\begin{enumerate}
+    \item an internal nonlinear Schrödinger/Gross--Pitaevskii-like vortex-core sector, responsible for smooth-core regularization, circulation quantization, delay-induced mode selection, and core-scale inertial response;
+    \item a transverse torsion/shear radiation sector, responsible for the causal propagation speed identified with the observed light speed.
+\end{enumerate}
+The central point is that these two speeds should not be conflated.  The internal core sector naturally produces a characteristic acoustic speed of order the canonical swirl speed \(\lVert\vswirl\rVert\), while the transverse torsion/shear sector carries its own wave speed \(\ct\), determined by an elastic stiffness-to-density ratio.  The Lorentz-compatible clock factor can only become a derived result if the inertial response of a localized vortex core is impedance-matched to this transverse torsion sector.
+
+\paragraph{Status declaration.}
+The material in this section is \status{RESEARCH-TRACK}.  The algebraic closure
+\begin{equation}
+    \frac{\Delta E}{E_0}=\frac{u^2}{c_*^2}
+\end{equation}
+follows immediately if the same effective mass appears in both the rest-energy and translational-excitation terms.  The unresolved theorem is whether the effective mass felt by the transverse torsion sector equals
+\begin{equation}
+    M_{\torsion}[K] \stackrel{?}{=} \frac{2E_0[K]}{\ct^2}.
+\end{equation}
+Until that identity is derived from a controlled field calculation, the Lorentz clock factor remains \status{DERIVED-CONDITIONAL}, not hard canon.
+
+\subsection{Canonical anchors and speed hierarchy}
+\label{subsec:ctim-anchors}
+
+The retained SST constants for this track are
+\begin{align}
+    \rc &\approx 1.40897017\times10^{-15}\ \mathrm{m},\\
+    \lVert\vswirl\rVert &\approx 1.09384563\times10^{6}\ \mathrm{m\,s^{-1}},\\
+    \GammaSST &= 2\pi \rc\lVert\vswirl\rVert
+    \approx 9.68361920\times10^{-9}\ \mathrm{m^2\,s^{-1}},\\
+    \Omega_0 &= \frac{\lVert\vswirl\rVert}{\rc}
+    \approx 7.76344066\times10^{20}\ \mathrm{s^{-1}}.
+\end{align}
+The numerical value of \(\Omega_0\) coincides with the electron Compton angular scale in the present parameter set.  The important hierarchy is
+\begin{equation}
+    \lVert\vswirl\rVert \ll \clight,
+    \qquad
+    \frac{\lVert\vswirl\rVert}{\clight}\approx 3.64867628\times10^{-3}.
+\end{equation}
+Therefore any derivation that produces \(u^2/\lVert\vswirl\rVert^2\) is not yet a derivation of the Lorentz-compatible factor \(u^2/\clight^2\).  This distinction is mandatory.
+
+\subsection{Layer I: the NLSE/Gross--Pitaevskii core sector}
+\label{subsec:ctim-nlse-core}
+
+We model the local vortex core, at research-track level, by a defocusing nonlinear Schrödinger/Gross--Pitaevskii field
+\begin{equation}
+    i\hbar_*\partial_t\Psi
+    =
+    \left[-\frac{\hbar_*^2}{2m_*}\nabla^2
+    +g\left(|\Psi|^2-n_0\right)\right]\Psi,
+    \label{eq:ctim-nlse}
+\end{equation}
+where \(m_*\) is the NLSE phase-mass parameter, \(g>0\) is the repulsive nonlinearity, and \(n_0\) is the asymptotic condensate density in the chosen normalization.  Under the Madelung representation
+\begin{equation}
+    \Psi=\sqrt{n}\,e^{iS},
+\end{equation}
+the velocity field is
+\begin{equation}
+    \mathbf u_{\NLS}=\frac{\hbar_*}{m_*}\nabla S,
+    \label{eq:ctim-madelung-velocity}
+\end{equation}
+and the circulation quantum is
+\begin{equation}
+    \Gamma_q
+    =
+    \oint \mathbf u_{\NLS}\cdot d\boldsymbol\ell
+    =
+    \frac{h_*}{m_*}N_\Gamma,
+    \qquad N_\Gamma\in\mathbb Z.
+    \label{eq:ctim-circ-quantum}
+\end{equation}
+The associated internal sound speed and healing length are
+\begin{equation}
+    \cs^2=\frac{g n_0}{m_*},
+    \qquad
+    \xih=\frac{\hbar_*}{\sqrt{2}\,m_*\cs}.
+    \label{eq:ctim-sound-healing}
+\end{equation}
+
+\paragraph{Core-speed consequence.}
+If one simultaneously imposes
+\begin{equation}
+    \Gamma_q=\GammaSST,
+    \qquad
+    \xih=\rc,
+\end{equation}
+then Eq.~\eqref{eq:ctim-sound-healing} gives, for the standard \(h_*/m_*\) circulation normalization,
+\begin{equation}
+    \cs
+    =
+    \frac{\GammaSST}{2\sqrt{2}\pi\rc}
+    =
+    \frac{\lVert\vswirl\rVert}{\sqrt{2}}.
+    \label{eq:ctim-cs-vswirl}
+\end{equation}
+Thus the NLSE core sector naturally closes on an internal acoustic speed of order \(\lVert\vswirl\rVert\), not on \(\clight\).
+
+\paragraph{Interpretation.}
+Equation~\eqref{eq:ctim-cs-vswirl} is not a defect of the model.  It says that the core healing dynamics and the electromagnetic/radiative causal dynamics are different layers.  Forcing \(\cs=\clight\) while also retaining \(\GammaSST\) and \(\xih=\rc\) overconstrains the NLSE core and breaks one of the existing SST anchors.
+
+\subsection{Core boost inertia and the acoustic closure}
+\label{subsec:ctim-core-boost}
+
+The NLSE sector has Galilean boost covariance.  For a localized defect or vortex object \(K\), the low-velocity energy expansion may be written as
+\begin{equation}
+    E_{\core}[K;\mathbf u]
+    =
+    E_0[K]
+    +
+    \frac12\mathbf u^{\mathsf T}
+    \mathsf M_{\core}[K]
+    \mathbf u
+    +
+    O(\lVert\mathbf u\rVert^4),
+    \label{eq:ctim-core-boost-expansion}
+\end{equation}
+where \(\mathsf M_{\core}[K]\) is the internal NLSE inertial tensor of the defect.  If the orientation-averaged or symmetry-reduced defect has isotropic inertial response,
+\begin{equation}
+    \mathsf M_{\core}[K]\to M_{\core}[K]\mathsf I,
+\end{equation}
+and if the rest-swirl energy satisfies the acoustic half-energy closure
+\begin{equation}
+    E_0[K]
+    =
+    \frac12M_{\core}[K]\cs^2,
+    \label{eq:ctim-acoustic-half-closure}
+\end{equation}
+then
+\begin{equation}
+    \boxed{
+    \frac{\Delta E_{\core}[K;u]}{E_0[K]}
+    =
+    \frac{u^2}{\cs^2}
+    +O(u^4).
+    }
+    \label{eq:ctim-core-ratio}
+\end{equation}
+This is the correct NLSE result.  Its status is
+\begin{equation}
+    \boxed{\text{NLSE acoustic inertia closure: }\status{DERIVED-CONDITIONAL}.}
+\end{equation}
+It is not yet the Lorentz-compatible closure unless \(\cs\) is shown to equal the transverse causal speed, which current SST anchors do not support.
+
+\subsection{Golden-NLS smooth-core branch}
+\label{subsec:ctim-golden-core}
+
+The Golden-NLS branch supplies a useful smooth-core energy regularization.  In a vortex-ring reference model one writes
+\begin{align}
+    E(R)
+    &=
+    \frac12\rho\GammaSST^2R
+    \left(\ln\frac{8R}{\rc}-A\right),\\
+    U(R)
+    &=
+    \frac{\GammaSST}{4\pi R}
+    \left(\ln\frac{8R}{\rc}-B\right),
+\end{align}
+with core-model constants \(A\) and \(B\).  The Golden branch imposes
+\begin{equation}
+    B=A-1,
+    \qquad
+    A=\varphi,
+    \qquad
+    B=\varphi^{-1},
+    \label{eq:ctim-golden-branch}
+\end{equation}
+so that
+\begin{equation}
+    E_{\varphi}(R)
+    =
+    \frac12\rho\GammaSST^2R
+    \left(\ln\frac{8R}{\rc}-\varphi\right).
+    \label{eq:ctim-golden-energy}
+\end{equation}
+This branch is useful as a reference-model bridge for \(E_0[K]\), but it should remain \status{RESEARCH-TRACK}.  It is not by itself a derivation of the transverse Lorentz speed.  Its role is to regularize the core energy and provide a controlled candidate functional for numerical comparison.
+
+\subsection{Layer II: transverse torsion/shear causal sector}
+\label{subsec:ctim-torsion-layer}
+
+The radiative/causal layer is modeled by a transverse director or torsion/shear displacement field \(\mathbf A\) with
+\begin{equation}
+    \nabla\cdot\mathbf A=0.
+\end{equation}
+The minimal quadratic Lagrangian is
+\begin{equation}
+    \mathcal L_{\torsion}
+    =
+    \frac12\rhoF\lVert\partial_t\mathbf A\rVert^2
+    -
+    \frac12K\lVert\nabla\times\mathbf A\rVert^2.
+    \label{eq:ctim-torsion-lagrangian}
+\end{equation}
+Variation gives
+\begin{equation}
+    \rhoF\left(\partial_t^2\mathbf A+
+    \ct^2\nabla\times\nabla\times\mathbf A\right)=0,
+    \qquad
+    \ct^2\equiv\frac{K}{\rhoF},
+    \label{eq:ctim-torsion-wave-pre}
+\end{equation}
+and, under \(\nabla\cdot\mathbf A=0\),
+\begin{equation}
+    \boxed{
+    \left(\frac{1}{\ct^2}\partial_t^2-\nabla^2\right)\mathbf A=0.
+    }
+    \label{eq:ctim-torsion-wave}
+\end{equation}
+The empirical light-speed identification belongs here:
+\begin{equation}
+    \boxed{\ct\equiv\clight\quad\text{in the transverse radiation sector}.}
+    \label{eq:ctim-c-identification}
+\end{equation}
+This avoids the earlier error of trying to force \(\clight\) into the core healing dynamics.
+
+\paragraph{Torsion impedance.}
+The transverse wave impedance of this sector is
+\begin{equation}
+    Z_{\torsion}=\rhoF\ct=\sqrt{\rhoF K}.
+    \label{eq:ctim-ztorsion}
+\end{equation}
+The bridge problem is therefore naturally an impedance-matching problem between a localized NLSE core and the surrounding transverse torsion field.
+
+\subsection{The Core--Torsion Impedance Matching Lemma}
+\label{subsec:ctim-main-lemma}
+
+\paragraph{Definition.}
+Let \(K\) be a closed localized swirl-string configuration with internal rest-swirl energy \(E_0[K]\), internal NLSE inertial tensor \(\mathsf M_{\core}[K]\), and transverse torsion-dressed inertial tensor \(\mathsf M_{\torsion}[K]\).  The latter is defined by the quadratic low-velocity energy stored in the coupled transverse torsion field:
+\begin{equation}
+    \Delta E_{\torsion}[K;\mathbf u]
+    =
+    \frac12\mathbf u^{\mathsf T}
+    \mathsf M_{\torsion}[K]
+    \mathbf u
+    +O(\lVert\mathbf u\rVert^4).
+    \label{eq:ctim-torsion-inertia-definition}
+\end{equation}
+
+\paragraph{Research target.}
+The required Lorentz-compatible closure is
+\begin{equation}
+    \boxed{
+    \mathsf M_{\torsion}[K]
+    \stackrel{?}{=}
+    \frac{2E_0[K]}{\ct^2}\,\mathsf I.
+    }
+    \label{eq:ctim-impedance-lemma}
+\end{equation}
+Equivalently,
+\begin{equation}
+    \boxed{
+    \Delta E_{\torsion}[K;u]
+    \stackrel{?}{=}
+    E_0[K]\frac{u^2}{\ct^2}
+    +O(u^4).
+    }
+    \label{eq:ctim-torsion-ratio}
+\end{equation}
+If \(\ct=\clight\), Eq.~\eqref{eq:ctim-torsion-ratio} is the desired Lorentz-compatible energy ratio.
+
+\paragraph{Diagnostic residual.}
+Define the dimensionless closure residual
+\begin{equation}
+    \chi_K^{(\torsion)}
+    \equiv
+    \frac{\ct^2}{2E_0[K]}
+    \lambda_{\iso}\!\left(\mathsf M_{\torsion}[K]\right),
+    \label{eq:ctim-chi}
+\end{equation}
+where \(\lambda_{\iso}\) denotes the isotropic or orientation-averaged eigenvalue of the torsion-dressed inertia tensor.  The bridge closes only if
+\begin{equation}
+    \boxed{\chi_K^{(\torsion)}=1}
+    \label{eq:ctim-chi-one}
+\end{equation}
+within numerical and topological tolerance.  If \(\chi_K^{(\torsion)}\neq1\) generically, then the Lorentz clock factor must remain a constitutive postulate rather than a derived theorem.
+
+\subsection{Clock factor as a conditional consequence}
+\label{subsec:ctim-clock-consequence}
+
+If Eq.~\eqref{eq:ctim-impedance-lemma} holds, then the small-velocity energy bookkeeping becomes
+\begin{equation}
+    E_{\mathrm{total}}[K;u]
+    =
+    E_0[K]
+    \left(1+\frac{u^2}{\ct^2}+O(u^4)\right)
+\end{equation}
+in the torsion-dressed sector.  The corresponding Lorentz-compatible clock factor may then be treated as the resummed kinetic clock relation
+\begin{equation}
+    \boxed{
+    \frac{d\tau}{dt}
+    =
+    \sqrt{1-\frac{u^2}{\ct^2}}
+    }
+    \label{eq:ctim-clock-factor}
+\end{equation}
+with \(\ct=\clight\) for the transverse radiation layer.
+
+\paragraph{Status.}
+Equation~\eqref{eq:ctim-clock-factor} is not derived from the NLSE core alone.  It is \status{DERIVED-CONDITIONAL} on the impedance lemma Eq.~\eqref{eq:ctim-impedance-lemma}.  The research track therefore prevents the following incorrect inference:
+\begin{equation}
+    \cs=\clight.
+\end{equation}
+The correct statement is
+\begin{equation}
+    \cs\sim\lVert\vswirl\rVert
+    \quad\text{for the internal core layer},
+    \qquad
+    \ct=\clight
+    \quad\text{for the transverse torsion layer}.
+\end{equation}
+
+\subsection{Delay-induced trefoil mode selection}
+\label{subsec:ctim-delay-trefoil}
+
+The inertia-closure problem should not be separated from the topological mode-selection problem.  A closed circulation carrier has delay
+\begin{equation}
+    \tau_c=\frac{L}{\lVert\vswirl\rVert},
+\end{equation}
+and a torsion/Kelvin-like mode on the ring may be written as
+\begin{equation}
+    \Phi(\theta,t)=q\theta-\omega_\tau t+\phi_0.
+\end{equation}
+A torus-knot closure requires coprime integer windings
+\begin{equation}
+    p,q\in\mathbb Z,
+    \qquad
+    \gcd(p,q)=1.
+\end{equation}
+The trefoil sector is selected by
+\begin{equation}
+    \frac{\Omega_{\mathrm{pol}}}{\Omega_{\mathrm{tor}}}
+    =
+    \frac{3}{2}
+    \quad\text{or}\quad
+    \frac{2}{3}.
+\end{equation}
+This mode-locking condition constrains which circulation fields may enter the torsion bridge.  In particular, the branch label \(\sigma=\pm1\) should be interpreted as the two opposite handed circulation--torsion realizations of the same closure class, not as a literal classical spin vector.
+
+\paragraph{Bridge implication.}
+For the electron candidate \(K=T_{2,3}\), the impedance residual should be evaluated not on a generic helical packet but on the mode-locked trefoil-compatible field
+\begin{equation}
+    \gamma_{2{:}3}(\mathbf r,t)
+    =
+    \gamma(\mathbf r,t)\Big|_{q/p=3/2\ \mathrm{or}\ 2/3}.
+\end{equation}
+Thus the definitive numerical target is
+\begin{equation}
+    \chi_{T_{2,3}}^{(\torsion)}
+    =
+    \frac{\clight^2}{2E_0[T_{2,3}]}
+    \lambda_{\iso}\!\left(\mathsf M_{\torsion}[T_{2,3};\gamma_{2{:}3}]\right)
+    \stackrel{?}{=}1.
+    \label{eq:ctim-trefoil-target}
+\end{equation}
+
+\subsection{Normalization issue: the \texorpdfstring{\(2\pi\)}{2pi} ambiguity}
+\label{subsec:ctim-2pi}
+
+The NLSE circulation normalization must be fixed before numerical closure tests.  Three possible mass parameters appear in the current draft ecosystem:
+\begin{align}
+    m_*^{(h)} &= \frac{h}{\GammaSST},\\
+    m_*^{(\hbar)} &= \frac{\hbar}{\GammaSST},\\
+    m_*^{(\rho V)} &= \rhocore V_{\mathrm{torus}}.
+\end{align}
+Only one can be the phase-mass parameter in Eq.~\eqref{eq:ctim-nlse}.  Because circulation quantization in the standard Madelung/NLSE map gives
+\begin{equation}
+    \Gamma_q=\frac{h}{m_*}N_\Gamma,
+\end{equation}
+the choice \(m_*=h/\GammaSST\) gives \(\Gamma_q=\GammaSST\) for \(N_\Gamma=1\).  If a formulation instead uses \(\hbar\), then the \(2\pi\) phase winding must be carried elsewhere.  A canon-safe implementation should declare explicitly whether the \(2\pi\) lives in the action unit, the winding number, or the definition of \(\GammaSST\).
+
+\paragraph{Required check.}
+Every numerical script in this track must report
+\begin{equation}
+    \mathcal R_\Gamma
+    \equiv
+    \frac{h/m_*}{\GammaSST}.
+\end{equation}
+The canonical NLSE normalization requires
+\begin{equation}
+    \mathcal R_\Gamma=1.
+\end{equation}
+If \(\mathcal R_\Gamma=2\pi\) or \(1/(2\pi)\), the calculation has not failed, but its convention must be renamed and not mixed with the canonical circulation unit.
+
+\subsection{Minimal numerical programme}
+\label{subsec:ctim-numerical-programme}
+
+The complete research programme consists of five tests.
+
+\paragraph{Test 1: NLSE core boost test.}
+Compute a stationary vortex solution \(\Psi_K\).  Apply a small Galilean phase imprint
+\begin{equation}
+    \Psi_K(\mathbf r)\mapsto e^{i m_*\mathbf u\cdot\mathbf r/\hbar_*}\Psi_K(\mathbf r)
+\end{equation}
+and measure
+\begin{equation}
+    \Delta E_{\core}(u)=E_{\core}(u)-E_{\core}(0).
+\end{equation}
+Fit
+\begin{equation}
+    \Delta E_{\core}(u)=A_K^{\core}u^2+B_K^{\core}u^4+O(u^6).
+\end{equation}
+Then
+\begin{equation}
+    M_{\core}[K]=2A_K^{\core}.
+\end{equation}
+Compare \(M_{\core}\) to \(2E_0/\cs^2\), not to \(2E_0/\clight^2\).
+
+\paragraph{Test 2: torsion static-dressing test.}
+Treat the moving core boundary as a source for \(\mathbf A\).  Solve the transverse field equation with source
+\begin{equation}
+    \rhoF\left(\partial_t^2\mathbf A-\ct^2\nabla^2\mathbf A\right)
+    =
+    \mathbf J_K^\perp,
+    \qquad
+    \nabla\cdot\mathbf A=0,
+\end{equation}
+where \(\mathbf J_K^\perp\) is the projected current generated by the translated circulation carrier.  Compute the stored field energy
+\begin{equation}
+    E_{\torsion}
+    =
+    \frac12\rhoF\int\lVert\partial_t\mathbf A\rVert^2d^3x
+    +
+    \frac12K\int\lVert\nabla\times\mathbf A\rVert^2d^3x.
+\end{equation}
+Fit \(E_{\torsion}(u)-E_{\torsion}(0)\) to extract \(\mathsf M_{\torsion}\).
+
+\paragraph{Test 3: impedance sweep.}
+Sweep the torsion stiffness \(K\) while keeping \(\rhoF\) fixed, so that
+\begin{equation}
+    \ct=\sqrt{K/\rhoF}.
+\end{equation}
+Determine whether \(\chi_K^{(\torsion)}\) tends to unity only for \(\ct=\clight\), or whether unity requires non-canonical retuning.  A retuned-only closure is not canon.
+
+\paragraph{Test 4: trefoil-locked versus generic-helical source.}
+Repeat Test 2 for a generic helical source and for the trefoil-locked source \(\gamma_{2{:}3}\).  The bridge is topology-sensitive only if
+\begin{equation}
+    \chi_{T_{2,3}}^{(\torsion)}
+
+eq
+    \chi_{\mathrm{generic}}^{(\torsion)}
+\end{equation}
+in a stable, discretization-independent way.
+
+\paragraph{Test 5: hierarchy consistency.}
+Verify simultaneously that
+\begin{equation}
+    \cs\approx\frac{\lVert\vswirl\rVert}{\sqrt2},
+    \qquad
+    \ct=\clight,
+    \qquad
+    \Gamma_q=\GammaSST.
+\end{equation}
+If a calculation requires \(\cs=\ct\), it belongs to a different model and cannot be used as an SST canon closure.
+
+\subsection{Falsifiers}
+\label{subsec:ctim-falsifiers}
+
+The research track fails as a derivation of Lorentz-compatible inertia if any of the following are true:
+\begin{enumerate}
+    \item \textbf{Non-unity torsion residual.}  The computed \(\chi_K^{(\torsion)}\) is stably different from unity for trefoil/electron-like configurations.
+    \item \textbf{Non-universal topology dependence.}  The residual depends strongly on arbitrary discretization, embedding gauge, or non-topological shape choices.
+    \item \textbf{Forced speed collapse.}  The calculation requires \(\cs=\ct\), contradicting the separate core and torsion speed hierarchy.
+    \item \textbf{Unresolved \(2\pi\) normalization.}  The phase-mass parameter \(m_*\) fails the circulation normalization test \(h/m_* = \GammaSST\) without an explicit convention repair.
+    \item \textbf{No torsion dressing.}  Integrating out the transverse torsion field contributes no quadratic inertial term tied to \(E_0/\ct^2\).
+    \item \textbf{Wrong low-velocity scaling.}  The first nonzero torsion-dressed correction scales as \(u\), \(u^3\), or depends on acceleration history rather than the stored quadratic field energy.
+\end{enumerate}
+
+\subsection{Canon insertion summary}
+\label{subsec:ctim-status-summary}
+
+\begin{center}
+\begin{tabular}{p{0.42\linewidth}p{0.18\linewidth}p{0.32\linewidth}}
+\hline
+Statement & Status & Canon interpretation \\
+\hline
+NLSE/GPE core sector as smooth-core reference model & \status{RESEARCH-TRACK} & Useful regularization bridge \\
+\(\Gamma_q=\GammaSST,\ \xi=\rc\Rightarrow\cs=\lVert\vswirl\rVert/\sqrt2\) & \status{DERIVED-CONDITIONAL} & Internal acoustic core speed \\
+\(\Delta E_{\core}/E_0=u^2/\cs^2\) & \status{DERIVED-CONDITIONAL} & Core boost closure only \\
+Transverse torsion Lagrangian with \(\ct^2=K/\rhoF\) & \status{BRIDGE-LAYER} & Candidate photon/radiation sector \\
+\(\ct=\clight\) & \status{CANON-CANDIDATE} & Only in transverse torsion sector \\
+\(\mathsf M_{\torsion}=2E_0\ct^{-2}\mathsf I\) & \status{OPEN LEMMA} & Main research target \\
+\(d\tau/dt=\sqrt{1-u^2/\clight^2}\) from this route & \status{NOT YET HARD-CANON} & Conditional on impedance lemma \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Recommended wording for the research track}
+\label{subsec:ctim-recommended-wording}
+
+The strongest defensible statement is:
+\begin{quote}
+SST contains two distinct continuum layers relevant to inertia closure.  The NLSE/Gross--Pitaevskii core layer supplies quantized circulation, smooth-core regularization, and an internal acoustic inertia law with speed \(\cs\sim\lVert\vswirl\rVert\).  The transverse torsion/shear layer supplies the causal radiation speed \(\ct=\clight\).  The Lorentz-compatible inertia law follows only if the localized vortex core is impedance-matched to the torsion sector such that \(\mathsf M_{\torsion}[K]=2E_0[K]\ct^{-2}\mathsf I\).  This Core--Torsion Impedance Matching Lemma is presently open and defines a falsifiable research target.
+\end{quote}
+
+\subsection{Bibliography for this research-track module}
+\label{subsec:ctim-bibliography}
+
+\begin{thebibliography}{99}
+
+\bibitem{Helmholtz1858CTIM}
+H.~von Helmholtz,
+``Über Integrale der hydrodynamischen Gleichungen, welche den Wirbelbewegungen entsprechen,''
+\emph{Journal für die reine und angewandte Mathematik} \textbf{55}, 25--55 (1858).
+
+\bibitem{Kelvin1869CTIM}
+W.~Thomson (Lord Kelvin),
+``On Vortex Motion,''
+\emph{Transactions of the Royal Society of Edinburgh} \textbf{25}, 217--260 (1869).
+
+\bibitem{Madelung1927CTIM}
+E.~Madelung,
+``Quantentheorie in hydrodynamischer Form,''
+\emph{Zeitschrift für Physik} \textbf{40}, 322--326 (1927).
+DOI: 10.1007/BF01400372.
+
+\bibitem{Pitaevskii1961CTIM}
+L.~P. Pitaevskii,
+``Vortex Lines in an Imperfect Bose Gas,''
+\emph{Soviet Physics JETP} \textbf{13}, 451--454 (1961).
+
+\bibitem{Gross1961CTIM}
+E.~P. Gross,
+``Structure of a Quantized Vortex in Boson Systems,''
+\emph{Il Nuovo Cimento} \textbf{20}, 454--477 (1961).
+DOI: 10.1007/BF02731494.
+
+\bibitem{PitaevskiiStringari2003CTIM}
+L.~Pitaevskii and S.~Stringari,
+\emph{Bose-Einstein Condensation},
+Oxford University Press, 2003.
+
+\bibitem{Moffatt1969CTIM}
+H.~K. Moffatt,
+``The degree of knottedness of tangled vortex lines,''
+\emph{Journal of Fluid Mechanics} \textbf{35}, 117--129 (1969).
+DOI: 10.1017/S0022112069000991.
+
+\bibitem{Batchelor1967CTIM}
+G.~K. Batchelor,
+\emph{An Introduction to Fluid Dynamics},
+Cambridge University Press, 1967.
+
+\bibitem{Saffman1992CTIM}
+P.~G. Saffman,
+\emph{Vortex Dynamics},
+Cambridge University Press, 1992.
+
+\bibitem{BerryDennis2001CTIM}
+M.~V. Berry and M.~R. Dennis,
+``Knotted and linked phase singularities in monochromatic waves,''
+\emph{Proceedings of the Royal Society A} \textbf{457}, 2251--2263 (2001).
+DOI: 10.1098/rspa.2001.0826.
+
+\bibitem{Kedia2013CTIM}
+H.~Kedia, I.~Bialynicki-Birula, D.~Peralta-Salas, and W.~T.~M. Irvine,
+``Tying knots in light fields,''
+\emph{Physical Review Letters} \textbf{111}, 150404 (2013).
+DOI: 10.1103/PhysRevLett.111.150404.
+
+\bibitem{BarceloLiberatiVisser2011CTIM}
+C.~Barceló, S.~Liberati, and M.~Visser,
+``Analogue Gravity,''
+\emph{Living Reviews in Relativity} \textbf{14}, 3 (2011).
+DOI: 10.12942/lrr-2011-3.
+
+\bibitem{Volovik2003CTIM}
+G.~E. Volovik,
+\emph{The Universe in a Helium Droplet},
+Oxford University Press, 2003.
+
+\end{thebibliography}

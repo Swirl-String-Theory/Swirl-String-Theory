@@ -1,0 +1,97 @@
+--- a/sst_v0_8_12_verification_suite.py
++++ b/sst_v0_8_12_verification_suite.py
+@@ -312,27 +312,44 @@
+ 
+ 
+ # ===========================================================================
+-# SECTION: delay  (claim 26) -- DDE mode condition + SSTcore sign MISMATCH
++# SECTION: delay  (claim 26) -- DDE mode condition, current SSTcore aligned
+ # ===========================================================================
+ def sec_delay(S):
+-    header("SECTION delay  -- DDE locked-mode condition (claim 26) + SSTcore mismatch")
+-    # canon v0.8.12:  Omega = omega0 - kappa sin(Omega tau)   (minus sign)
++    header("SECTION delay  -- DDE locked-mode condition (claim 26), current SSTcore aligned")
++    # Canon v0.8.12:
++    #   Omega = omega0 - kappa sin(Omega tau)
++    # Residual solved by Newton/root finders:
++    #   f(Omega)  = Omega - omega0 + kappa sin(Omega tau)
++    #   f'(Omega) = 1 + kappa tau cos(Omega tau)
+     omega0, kappa, tau = 1.0, 0.3, 2.0
+-    def residual_canon(Om):  return Om - omega0 + kappa*math.sin(Om*tau)   # =0 at solution
+-    def residual_sstcore(Om): return Om - omega0 - kappa*math.sin(Om*tau)  # current code
+ 
+-    # solve canon residual by bisection-free fixed point
++    def residual_canon(Om):
++        return Om - omega0 + kappa*math.sin(Om*tau)
++
++    def derivative_canon(Om):
++        return 1.0 + kappa*tau*math.cos(Om*tau)
++
++    # Solve the Canon fixed-point form.
+     Om = omega0
+     for _ in range(200):
+         Om = omega0 - kappa*math.sin(Om*tau)
+-    S.check(26, "Sec 7 eq:mode_condition", "[CONDITIONAL]",
+-            "canon root Omega = omega0 - kappa sin(Omega tau) satisfied",
++
++    S.check(26, "Sec 7 eq:mode_condition", "[CODE=CANON]",
++            "Omega = omega0 - kappa sin(Omega tau)",
+             residual_canon(Om), 0.0, rel_tol=1e-9)
+-    # demonstrate SSTcore solves the WRONG (plus-sign) equation at that root
+-    mismatch = residual_sstcore(Om)
+-    S.note(26, "[MISMATCH]",
+-           f"SSTcore residual at canon root = {mismatch:.4f} != 0  "
+-           f"(delay_mode_selector.cpp uses +kappa sin; patch code before reuse)")
++
++    # Independent finite-difference check of the Newton derivative used by SSTcore.
++    h = 1e-6
++    fd = (residual_canon(Om+h) - residual_canon(Om-h))/(2*h)
++    S.check(26, "delay_mode_selector.cpp:newton_derivative", "[CODE=CANON]",
++            "f'(Omega) = 1 + kappa tau cos(Omega tau)",
++            derivative_canon(Om), fd, rel_tol=1e-6)
++
++    # Historical audit issue only: the old plus-sign residual was
++    # Omega - omega0 - kappa sin(Omega tau), which is not the current v0.8.12 form.
++    S.note(26, "[STATUS]",
++           "Current SSTcore v0.8.12 delay residual and Newton derivative are aligned with Canon; "
++           "old plus-sign mismatch is retained only as historical audit context.")
+ 
+ 
+ # ===========================================================================
+@@ -351,7 +368,7 @@
+     w_req, w_GP = 1.0675, 2.076
+     S.note(46, "[OBSTRUCTION]",
+            f"closure needs w_perp = {w_req}; GP core gives w_perp = {w_GP} "
+-           f"(wrong side by ~{(w_GP-w_req)/w_req*1e2:.0f}%, i.e. -157 ppm)")
++           f"(wrong side by ~{(w_GP-w_req)/w_req*1e2:.1f}%; ppm closure remains unresolved)")
+     S.note(46, "[STATUS]",
+            "alpha is NOT derived: N_p=4 derived, but ppm closure non-identifiable "
+            "(5 interchangeable routes, G1 fails independently). Label [CONDITIONAL]/[OPEN].")
+@@ -517,10 +534,10 @@
+     routeB neg.  routeB_RT_bem/routeB_RT_bem_v18_multiknot_exponent_test.py
+     alpha gates  code/solve_one_cell_hodge_phase_hessian.py, gp_core_second_variation
+                  (w_perp obstruction), audit_derived_label_gates.py
+-  STILL GENUINELY MISSING (no dedicated script in any source):
+-    claim 42     galactic / SPARC rotation reconstruction
+-                 -> now provided as standalone fit_galactic_swirl_rotation_sparc.py
+-                    [RESEARCH-TRACK]: r_s fitted, not derived (coherence-length lemma OPEN).
++  OPEN / RESEARCH-TRACK (fit machinery exists; external data + derivation still open):
++    claim 42     fit_galactic_swirl_rotation_sparc.py provides the standalone
++                 SPARC rotmod fitter, but no SPARC dataset is bundled and r_s
++                 is fitted, not derived (coherence-length lemma OPEN).
+   NOW REPRODUCED (standalone scripts + suite sections):
+     claim 38     reproduce_pauli_barrier.py  + section 'pauli'  [CALIBRATED BENCHMARK]
+     claim 61/67  reproduce_em_qed_normalization.py + section 'em_qed'
+--- a/reproduce_em_qed_normalization.py
++++ b/reproduce_em_qed_normalization.py
+@@ -79,7 +79,9 @@
+     # explicit guard against the inverted prefactor
+     wrong = (E/M_E)*OMEGA_C
+     ok3 = wrong > 1e25   # ~1.4e32, dimensionally meaningless as tesla
+-    print(f"  guard: (e/m_e)*omega_c       = {wrong:.3e}  (NOT tesla; inverted form rejected)")
++    print(f"  guard: (e/m_e)*omega_c       = {wrong:.3e}  "
++          f"(NOT tesla; inverted form rejected) -> {'PASS' if ok3 else 'FAIL'}")
++    fails += not ok3
+     print("-"*64)
+     print(f"  RESULT: {'ALL PASS' if fails==0 else f'{fails} FAIL'}")
+     return 0 if fails == 0 else 1

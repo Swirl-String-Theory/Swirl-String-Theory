@@ -97,12 +97,132 @@ def build_curved_phase(seq, Rb, Rt, n_pairs, angle_offset=0.0, profile='Exponent
         zs.append(z_line)
     return np.concatenate(xs), np.concatenate(ys), np.concatenate(zs)
 
+# ---------- Starship 6-phase — same SawShape engine, S=9, steps +4/+4 ----------
+STARSHIP_S = 9
+STARSHIP_STEP_FWD = 4
+STARSHIP_STEP_BWD = 4
+STARSHIP_ROT_ANGLE = (2 * np.pi / 27) / 3
+STARSHIP_COIL_ANGLES = (
+    np.linspace(0, 2 * np.pi, 28)[:-1] - np.pi * 1.5 + (2 * np.pi / 27)
+)[::-1] + STARSHIP_ROT_ANGLE
+STARSHIP_SEGMENT_SHIFT = (2 * np.pi / 27) / 3
+
+_STARSHIP_ABC_COLORS = [
+    ('tab:blue', '-', 0.9), ('tab:blue', '--', 0.35), ('tab:cyan', '-', 0.85),
+    ('tab:red', '-', 0.9), ('tab:red', '--', 0.35), ('tab:orange', '-', 0.85),
+    ('tab:green', '-', 0.9), ('tab:green', '--', 0.35), ('tab:purple', '-', 0.85),
+]
+# phase_offset_27, xy_rotation, reverse saw path, segment triple, colors, tag
+STARSHIP_PHASE_SPEC = [
+    (0,  0.0,    False, (1, 2, 3), _STARSHIP_ABC_COLORS[0:3], 'A'),
+    (9,  0.0,    False, (1, 2, 3), _STARSHIP_ABC_COLORS[3:6], 'B'),
+    (18, 0.0,    False, (1, 2, 3), _STARSHIP_ABC_COLORS[6:9], 'C'),
+    (0,  np.pi,  True,  (1, 2, 3), [
+        ('navy', '-', 0.9), ('navy', '--', 0.35), ('steelblue', '-', 0.85)], 'a'),
+    (9,  np.pi,  True,  (1, 2, 3), [
+        ('maroon', '-', 0.9), ('maroon', '--', 0.35), ('salmon', '-', 0.85)], 'b'),
+    (18, np.pi,  True,  (1, 2, 3), [
+        ('darkgreen', '-', 0.9), ('darkgreen', '--', 0.35), ('yellowgreen', '-', 0.85)], 'c'),
+]
+STARSHIP_CHECK_MAP = [(0, 3), (1, 4), (2, 5)]
+
+
+def starship_saw_to_27(saw_seq, phase_offset_27):
+    """Map 9-gon saw indices (1..9) to 27-gon wire points."""
+    return np.array([
+        ((int(s) * 3 - phase_offset_27 - 1) % 27) + 1 for s in saw_seq
+    ], dtype=int)
+
+
+def build_starship_straight(seq_27, phase_angle, segment, Rb, Rt, profile):
+    N = len(seq_27) - 1
+    s_nodes = np.linspace(0, 1, N + 1)
+    r_nodes = r_profile(s_nodes, Rb, Rt, profile, power)
+    z_nodes = s_nodes
+    x = np.zeros(N + 1)
+    y = np.zeros(N + 1)
+    z = z_nodes.copy()
+    seg = STARSHIP_SEGMENT_SHIFT * (segment - 1)
+    for k in range(N + 1):
+        a = STARSHIP_COIL_ANGLES[int(seq_27[k]) - 1] + seg + phase_angle
+        x[k] = r_nodes[k] * np.cos(a)
+        y[k] = r_nodes[k] * np.sin(a)
+    return x, y, z
+
+
+def build_starship_curved(seq_27, phase_angle, segment, Rb, Rt, profile):
+    N = len(seq_27) - 1
+    s_nodes = np.linspace(0, 1, N + 1)
+    r_nodes = r_profile(s_nodes, Rb, Rt, profile, power)
+    z_nodes = s_nodes
+    seg = STARSHIP_SEGMENT_SHIFT * (segment - 1)
+    xs, ys, zs = [], [], []
+    for k in range(N):
+        i0, i1 = int(seq_27[k]) - 1, int(seq_27[k + 1]) - 1
+        a0 = STARSHIP_COIL_ANGLES[i0] + seg + phase_angle
+        a1 = STARSHIP_COIL_ANGLES[i1] + seg + phase_angle
+        da = (a1 - a0 + np.pi) % (2 * np.pi) - np.pi
+        a_line = a0 + np.linspace(0, 1, samples_per_seg, endpoint=False) * da
+        r_line = np.linspace(r_nodes[k], r_nodes[k + 1], samples_per_seg, endpoint=False)
+        z_line = np.linspace(z_nodes[k], z_nodes[k + 1], samples_per_seg, endpoint=False)
+        xs.append(r_line * np.cos(a_line))
+        ys.append(r_line * np.sin(a_line))
+        zs.append(z_line)
+    return np.concatenate(xs), np.concatenate(ys), np.concatenate(zs)
+
+
+def redraw_starship(ax, elev, azim, curved=True):
+    n_pairs = int(L_slider.val)
+    Hc = H_slider.val
+    Rb = Rb_slider.val
+    Rt = Rt_slider.val
+    profile = profile_radio.value_selected
+    phase_active = phase_checks.get_status()
+
+    saw_seq = alternating_skip_indices(
+        STARSHIP_S, STARSHIP_STEP_FWD, STARSHIP_STEP_BWD, n_pairs, start=1
+    )
+    build_fn = build_starship_curved if curved else build_starship_straight
+    path_kind = 'Curved' if curved else 'Straight'
+
+    ax.cla()
+    ax.set_title(
+        f"Starship 6‑Phase ({path_kind}) — Saw S={STARSHIP_S}, "
+        f"steps (+{STARSHIP_STEP_FWD},+{STARSHIP_STEP_BWD})\n"
+        f"pairs={n_pairs}, spacing={Hc:.2f}; ABC + anti @ 180°"
+    )
+    ax.set_xlabel("x"); ax.set_ylabel("y"); ax.set_zlabel("z (normalized × spacing)")
+
+    for ci, (abc_i, def_i) in enumerate(STARSHIP_CHECK_MAP):
+        if not phase_active[ci]:
+            continue
+        for idx in (abc_i, def_i):
+            off27, phase_angle, reverse, segs, styles, tag = STARSHIP_PHASE_SPEC[idx]
+            path = saw_seq[::-1] if reverse else saw_seq
+            seq_27 = starship_saw_to_27(path, off27)
+            s_fwd, s_neu, s_bwd = segs
+            for segment, style_tuple, strand in (
+                (s_fwd, styles[0], 'fwd'),
+                (s_neu, styles[1], 'neu'),
+                (s_bwd, styles[2], 'bwd'),
+            ):
+                x, y, z = build_fn(seq_27, phase_angle, segment, Rb, Rt, profile)
+                color, ls, alpha = style_tuple
+                ax.plot(x, y, z * Hc, lw=1.8, color=color, linestyle=ls, alpha=alpha,
+                        label=f'{tag} {strand}')
+
+    Rmax = max(Rb, Rt) * 1.1
+    ax.set_xlim(-Rmax, Rmax); ax.set_ylim(-Rmax, Rmax); ax.set_zlim(0, 1.0)
+    ax.view_init(elev=24, azim=45)
+    ax.legend(loc='upper left', fontsize=7, ncol=2)
+    ax.view_init(elev=elev, azim=azim)
+
 # ---------- Figure & controls ----------
 fig = plt.figure(figsize=(11.5, 8.2))
 ax = fig.add_subplot(111, projection='3d')
 plt.subplots_adjust(left=0.05, right=0.80, bottom=0.20)
 #               axes([left, bottom, width, height])
-rax_mode  = plt.axes([0.81, 0.72, 0.18, 0.20])  # Straight/Curved
+rax_mode  = plt.axes([0.81, 0.68, 0.18, 0.26])  # Straight/Curved × SawShape/Starship
 rax_chk   = plt.axes([0.81, 0.50, 0.18, 0.20])  # Phase toggles
 rax_prof  = plt.axes([0.81, 0.28, 0.18, 0.20])  # Bowl profile (1 of 3)
 rax_Rb    = plt.axes([0.12, 0.07, 0.30, 0.03])  # R bottom
@@ -110,18 +230,33 @@ rax_Rt    = plt.axes([0.56, 0.07, 0.30, 0.03])  # R top
 rax_L     = plt.axes([0.12, 0.03, 0.74, 0.03])  # Layers
 rax_S     = plt.axes([0.12, 0.05, 0.74, 0.03])  # spacing
 
-mode_radio = RadioButtons(rax_mode, labels=['Straight SawShape', 'Curved SawShape'], active=1)
+mode_radio = RadioButtons(
+    rax_mode,
+    labels=[
+        'Straight SawShape',
+        'Curved SawShape',
+        'Straight Starship',
+        'Curved Starship',
+    ],
+    active=1,
+)
 phase_checks = CheckButtons(rax_chk, labels=phase_labels, actives=[True, True, True])
 profile_radio = RadioButtons(rax_prof, labels=['Exponential', 'Linear', 'Inverse Exp'], active=0)
 
 Rb_slider = Slider(rax_Rb, 'R bottom', rVal[0], rVal[1], valinit=rVal[2], valstep=0.01)
 Rt_slider = Slider(rax_Rt, 'R top',    RVal[0], RVal[1], valinit=RVal[2], valstep=0.01)
-L_slider  = Slider(rax_L,  'Layers (pairs: 1 = +11/−9 once)', 1, 160, valinit=20, valstep=1)
+L_slider  = Slider(rax_L,  'Layers (pairs: Saw +11/−9, Star +4/+4)', 1, 160, valinit=20, valstep=1)
 H_slider  = Slider(rax_S,  'Spacing', 0.1, 1, valinit=0.1, valstep=0.01)
 
 def redraw(event=None):
     # save current camera
     elev, azim = ax.elev, ax.azim
+    mode = mode_radio.value_selected
+
+    if 'Starship' in mode:
+        redraw_starship(ax, elev, azim, curved=mode.startswith('Curved'))
+        fig.canvas.draw_idle()
+        return
 
     ax.cla()
     ax.set_title("SawShape — 3‑Phase, interactive\nS=40, steps (+11,−9); selectable bowl profile")
@@ -131,7 +266,7 @@ def redraw(event=None):
     Rt = Rt_slider.val
     n_pairs = int(L_slider.val)
     Hc = H_slider.val
-    curved = (mode_radio.value_selected == 'Curved SawShape')
+    curved = mode.startswith('Curved')
     profile = profile_radio.value_selected
 
     seq = alternating_skip_indices(S, step_fwd, step_bwd, n_pairs, start=1)
