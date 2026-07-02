@@ -270,6 +270,136 @@ class ZenodoAutomation:
             print(f"  Error: {response.text}")
             return False
     
+    def _record_id_from_doi(self, doi: str) -> str:
+        """Extract numeric record/deposit id from a Zenodo DOI."""
+        return doi.strip().split('.')[-1]
+
+    def fetch_record_by_doi(self, doi: str) -> Optional[Dict]:
+        """Fetch a published Zenodo record by DOI."""
+        record_id = self._record_id_from_doi(doi)
+        url = f"{self.base_url}/api/records/{record_id}"
+        response = requests.get(url, headers=self.headers)
+        if response.status_code == 200:
+            return response.json()
+        return None
+
+    def fetch_deposit_by_id(self, deposit_id: str) -> Optional[Dict]:
+        """Fetch a deposit (draft or published) by id."""
+        return self.get_deposit_info(deposit_id)
+
+    def create_new_version(self, record_id: str) -> Optional[Dict]:
+        """
+        Create a new version draft from an existing published record.
+
+        Returns dict with keys: deposit_id, doi, html_url, deposit (full response).
+        """
+        url = f"{self.base_url}/api/records/{record_id}/versions"
+        response = requests.post(url, headers=self.headers)
+        if response.status_code not in (200, 201):
+            print(f"[ERROR] Failed to create new version: {response.status_code}")
+            print(f"  Error: {response.text}")
+            return None
+
+        data = response.json()
+        deposit_id = str(data.get('id', ''))
+        metadata = data.get('metadata', {})
+        prereserve = metadata.get('prereserve_doi', {}) or {}
+        doi = (
+            metadata.get('doi')
+            or prereserve.get('doi')
+            or metadata.get('conceptdoi')
+            or ''
+        )
+        html_url = data.get('links', {}).get('html', f"{self.base_url}/deposit/{deposit_id}")
+        print(f"[OK] Created new version draft: {deposit_id}")
+        if doi:
+            print(f"  DOI: {doi}")
+        print(f"  URL: {html_url}")
+        return {
+            'deposit_id': deposit_id,
+            'doi': doi,
+            'html_url': html_url,
+            'deposit': data,
+        }
+
+    def list_record_versions(self, concept_doi_or_recid: str) -> List[Dict]:
+        """
+        List all versions in a Zenodo record family (published + drafts where visible).
+
+        Args:
+            concept_doi_or_recid: Concept DOI, version DOI, or numeric record id.
+
+        Returns:
+            List of version info dicts sorted by version key (newest first when available).
+        """
+        record_id = self._record_id_from_doi(concept_doi_or_recid)
+        record = self.fetch_record_by_doi(concept_doi_or_recid)
+        if not record:
+            deposit = self.get_deposit_info(record_id)
+            if deposit:
+                record = deposit
+
+        concept_recid = None
+        if record:
+            concept_recid = (
+                record.get('conceptrecid')
+                or record.get('metadata', {}).get('conceptrecid')
+                or record.get('id')
+            )
+
+        if not concept_recid:
+            concept_recid = record_id
+
+        url = f"{self.base_url}/api/records/{concept_recid}/versions"
+        response = requests.get(url, headers=self.headers)
+        if response.status_code != 200:
+            print(f"[ERROR] Failed to list versions: {response.status_code}")
+            print(f"  Error: {response.text}")
+            return []
+
+        payload = response.json()
+        entries = payload.get('hits', {}).get('hits', payload if isinstance(payload, list) else [])
+        if not isinstance(entries, list):
+            entries = []
+
+        versions = []
+        for entry in entries:
+            meta = entry.get('metadata', {})
+            doi = meta.get('doi', '')
+            if not doi:
+                prereserve = meta.get('prereserve_doi', {}) or {}
+                doi = prereserve.get('doi', '')
+            versions.append({
+                'id': entry.get('id'),
+                'title': meta.get('title', ''),
+                'doi': doi,
+                'conceptdoi': meta.get('conceptdoi', entry.get('conceptdoi', '')),
+                'publication_date': meta.get('publication_date', ''),
+                'state': entry.get('state', 'unknown'),
+                'is_published': entry.get('state') == 'done' or bool(meta.get('doi')),
+                'is_draft': entry.get('state') in ('draft', 'inprogress', 'unsubmitted'),
+                'links': entry.get('links', {}),
+                'metadata': meta,
+                'record': entry,
+            })
+
+        return versions
+
+    def get_prereserved_doi(self, deposit_id: str, retries: int = 3) -> Optional[str]:
+        """Get prereserved DOI for a draft deposit."""
+        for attempt in range(retries):
+            deposit = self.get_deposit_info(deposit_id)
+            if not deposit:
+                time.sleep(1)
+                continue
+            metadata = deposit.get('metadata', {})
+            prereserve = metadata.get('prereserve_doi', {}) or {}
+            doi = metadata.get('doi') or prereserve.get('doi') or metadata.get('conceptdoi')
+            if doi:
+                return doi
+            time.sleep(1)
+        return None
+
     def update_deposit_metadata(self, deposit_id: str, metadata: Dict) -> bool:
         """Update metadata for a deposit."""
         url = f"{self.base_url}/api/deposit/depositions/{deposit_id}"
@@ -291,6 +421,12 @@ class ZenodoAutomation:
         # Add language if present
         if metadata.get('language'):
             zenodo_metadata['metadata']['language'] = metadata['language']
+
+        if metadata.get('related_identifiers'):
+            zenodo_metadata['metadata']['related_identifiers'] = metadata['related_identifiers']
+
+        if metadata.get('communities'):
+            zenodo_metadata['metadata']['communities'] = metadata['communities']
         
         response = requests.put(url, json=zenodo_metadata, headers=self.headers)
         
@@ -495,6 +631,16 @@ class ZenodoAutomation:
             if paper['keywords']:
                 print(f"   Keywords: {', '.join(paper['keywords'])}")
             print()
+
+
+def get_repo_root() -> Path:
+    """Repository root (Swirl-String-Theory)."""
+    return Path(__file__).resolve().parent.parent.parent
+
+
+def get_papers_dir() -> Path:
+    """Papers directory under repo root."""
+    return get_repo_root() / "papers"
 
 
 def read_token_from_zenodo_py() -> Optional[str]:

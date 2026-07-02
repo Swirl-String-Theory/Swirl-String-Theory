@@ -12,7 +12,7 @@ import time
 import requests
 from datetime import datetime
 from pathlib import Path
-from zenodo_automation import ZenodoAutomation, read_token_from_zenodo_py
+from zenodo_automation import ZenodoAutomation, read_token_from_zenodo_py, get_papers_dir
 
 # Handle encoding
 if sys.platform == 'win32':
@@ -83,21 +83,45 @@ def sync_publication_date_in_config(config_file: Path, pdf_file: Path) -> str | 
     except Exception as e:
         return None
 
-def compile_latex(tex_file: Path, num_passes: int = 2) -> tuple[bool, Path | None]:
+def resolve_pdf_path(tex_file: Path, config_data: dict | None = None) -> Path:
+    """Resolve PDF output path (supports canon $out subdirectory)."""
+    if config_data:
+        pdf_dir = config_data.get('pdf_output_dir', '')
+        if pdf_dir:
+            out_dir = tex_file.parent / pdf_dir
+            candidate = out_dir / f"{tex_file.stem}.pdf"
+            if candidate.exists():
+                return candidate
+    # Canon default: $out folder next to tex
+    out_candidate = tex_file.parent / '$out' / f"{tex_file.stem}.pdf"
+    if out_candidate.exists():
+        return out_candidate
+    return tex_file.with_suffix('.pdf')
+
+
+def compile_latex(
+    tex_file: Path,
+    num_passes: int = 2,
+    output_dir: Path | None = None,
+    timeout: int = 120,
+) -> tuple[bool, Path | None]:
     """Compile LaTeX file to PDF. Returns (success, pdf_path)."""
     tex_dir = tex_file.parent
     tex_name = tex_file.name
-    pdf_file = tex_file.with_suffix('.pdf')
+    if output_dir is None:
+        output_dir = tex_dir / '$out'
+    output_dir.mkdir(parents=True, exist_ok=True)
+    pdf_file = output_dir / f"{tex_file.stem}.pdf"
     
-    print(f"    Compiling LaTeX ({num_passes} passes)...")
+    print(f"    Compiling LaTeX ({num_passes} passes) -> {output_dir.name}/...")
     
     for pass_num in range(1, num_passes + 1):
         try:
             result = subprocess.run(
-                ['pdflatex', '-interaction=nonstopmode', '-output-directory', str(tex_dir), tex_name],
+                ['pdflatex', '-interaction=nonstopmode', '-output-directory', str(output_dir), tex_name],
                 cwd=tex_dir,
                 capture_output=True,
-                timeout=120,
+                timeout=timeout,
                 encoding='utf-8',
                 errors='replace'
             )
@@ -113,9 +137,13 @@ def compile_latex(tex_file: Path, num_passes: int = 2) -> tuple[bool, Path | Non
     if pdf_file.exists():
         print(f"    [OK] PDF created: {pdf_file.name}")
         return True, pdf_file
-    else:
-        print(f"    [ERROR] PDF not found after compilation")
-        return False, None
+    # Fallback: PDF in same dir as tex (legacy SST papers)
+    legacy_pdf = tex_file.with_suffix('.pdf')
+    if legacy_pdf.exists():
+        print(f"    [OK] PDF created: {legacy_pdf.name}")
+        return True, legacy_pdf
+    print(f"    [ERROR] PDF not found after compilation")
+    return False, None
 
 def delete_existing_files(automation: ZenodoAutomation, deposit_id: str) -> bool:
     """Delete existing files from deposit before uploading new one."""
@@ -194,6 +222,9 @@ def update_zenodo_metadata(automation: ZenodoAutomation, deposit_id: str, config
     # Add communities if present
     if 'communities' in config_data:
         zenodo_metadata['metadata']['communities'] = config_data['communities']
+
+    if config_data.get('related_identifiers'):
+        zenodo_metadata['metadata']['related_identifiers'] = config_data['related_identifiers']
     
     url = f"{automation.base_url}/api/deposit/depositions/{deposit_id}"
     response = requests.put(url, json=zenodo_metadata, headers=automation.headers)
@@ -254,11 +285,25 @@ def process_config_file(config_file: Path, automation: ZenodoAutomation, base_di
                 config_data = json.load(f)
         
         # Render PDF
-        success, pdf_file = compile_latex(tex_file, num_passes=2)
+        pdf_output_dir = config_data.get('pdf_output_dir', '')
+        out_dir = None
+        if pdf_output_dir:
+            out_dir = tex_file.parent / pdf_output_dir
+        compile_timeout = int(config_data.get('compile_timeout', 120))
+        success, pdf_file = compile_latex(
+            tex_file,
+            num_passes=2,
+            output_dir=out_dir,
+            timeout=compile_timeout,
+        )
         if not success or not pdf_file:
-            result['status'] = 'error'
-            result['message'] = 'Failed to render PDF'
-            return result
+            # Try existing PDF without recompile
+            pdf_file = resolve_pdf_path(tex_file, config_data)
+            if not pdf_file.exists():
+                result['status'] = 'error'
+                result['message'] = 'Failed to render PDF'
+                return result
+            print(f"    [OK] Using existing PDF: {pdf_file}")
         
         result['actions'].append('Rendered PDF')
         
@@ -302,7 +347,7 @@ def main():
     parser.add_argument('--yes', action='store_true', help='Skip confirmation and process all files automatically')
     args = parser.parse_args()
     
-    base_dir = Path(__file__).parent.parent
+    base_dir = get_papers_dir()
     
     print("=" * 80)
     print("Render PDFs and Update Zenodo Entries")
