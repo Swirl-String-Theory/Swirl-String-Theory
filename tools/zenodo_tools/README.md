@@ -17,7 +17,8 @@ All scripts use relative paths based on their location:
 
 ### Core Workflow
 - **`smart_zenodo_workflow.py`** - Intelligent workflow that checks for existing DOIs, avoids duplicates, updates metadata, and renders/uploads PDFs
-- **`zenodo_gui.py`** - Graphical interface to view all SST papers, their DOIs, and status
+- **`GUI_zenodo.py`** - Graphical interface to view all SST papers, their DOIs, and status
+- **`GUI_canon_zenodo.py`** - Graphical interface for SST Canon Zenodo version management
 
 ### Automation
 - **`zenodo_automation.py`** - Core module for Zenodo API interactions

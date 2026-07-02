@@ -16,7 +16,7 @@ All Zenodo-related scripts have been moved to the `zenodo_tools/` directory and 
 
 ## Scripts Moved
 
-- Core: `zenodo_automation.py`, `create_zenodo_configs.py`, `smart_zenodo_workflow.py`, `zenodo_gui.py`
+- Core: `zenodo_automation.py`, `create_zenodo_configs.py`, `smart_zenodo_workflow.py`, `GUI_zenodo.py`, `GUI_canon_zenodo.py`
 - Comparison: `compare_local_zenodo.py`
 - Cleanup: `cleanup_duplicate_deposits.py`, `fix_duplicate_dois.py`
 - Analysis: `quick_review.py`, `list_today_deposits.py`, `check_recent_deposits.py`, `analyze_zenodo_status.py`

@@ -120,6 +120,8 @@ class ZenodoAutomation:
             zenodo_metadata['metadata']['doi'] = metadata['doi']
         if 'related_identifiers' in metadata:
             zenodo_metadata['metadata']['related_identifiers'] = metadata['related_identifiers']
+        if metadata.get('version'):
+            zenodo_metadata['metadata']['version'] = metadata['version']
         
         response = requests.post(url, json=zenodo_metadata, headers=self.headers)
         
@@ -397,7 +399,6 @@ class ZenodoAutomation:
                 is_published = (
                     state in ('published', 'done')
                     or entry.get('state') == 'done'
-                    or bool(meta.get('doi'))
                 )
                 versions.append({
                     'id': entry_id,
@@ -496,6 +497,9 @@ class ZenodoAutomation:
 
         if metadata.get('communities'):
             zenodo_metadata['metadata']['communities'] = metadata['communities']
+
+        if metadata.get('version'):
+            zenodo_metadata['metadata']['version'] = metadata['version']
         
         response = requests.put(url, json=zenodo_metadata, headers=self.headers)
         
@@ -507,6 +511,19 @@ class ZenodoAutomation:
             print(f"  Error: {response.text}")
             return False
     
+    def edit_deposit(self, deposit_id: str) -> bool:
+        """Open a published deposit for metadata editing."""
+        url = f"{self.base_url}/api/deposit/depositions/{deposit_id}/actions/edit"
+        response = requests.post(url, headers=self.headers)
+
+        if response.status_code in (200, 201):
+            print(f"[OK] Deposit {deposit_id} opened for edit")
+            return True
+
+        print(f"[ERROR] Failed to open deposit for edit: {response.status_code}")
+        print(f"  Error: {response.text}")
+        return False
+
     def publish_deposit(self, deposit_id: str) -> bool:
         """Publish a draft deposit (makes it public and assigns final DOI)."""
         url = f"{self.base_url}/api/deposit/depositions/{deposit_id}/actions/publish"

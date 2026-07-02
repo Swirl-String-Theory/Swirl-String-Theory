@@ -8,6 +8,8 @@ import json
 import sys
 from pathlib import Path
 
+from zenodo_automation import get_papers_dir
+
 # Handle encoding
 if sys.platform == 'win32':
     try:
@@ -65,7 +67,7 @@ def update_config_file(config_path: Path) -> bool:
         return False
 
 def main():
-    base_dir = Path(__file__).parent.parent
+    base_dir = get_papers_dir()
     
     print("=" * 80)
     print("Updating Zenodo Config Files with Standard Creator Information")

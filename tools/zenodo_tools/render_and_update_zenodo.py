@@ -104,7 +104,11 @@ def resolve_pdf_path(tex_file: Path, config_data: dict | None = None) -> Path:
 
 
 ZENODO_DOI_RE = re.compile(r'10\.5281/zenodo\.\d+')
+ZENODO_DOI_BYTES_RE = re.compile(rb'10\.5281/zenodo\.\d+')
 TITLE_PAGE_DOI_RE = re.compile(r'DOI:\s*(10\.5281/zenodo\.\d+)', re.IGNORECASE)
+
+# Title page + early pages only (avoids bibliography DOIs deeper in the file).
+PDF_DOI_SCAN_BYTES = 300_000
 
 
 def expected_canon_pdf_path(tex_file: Path, config_data: dict | None = None) -> Path:
@@ -127,9 +131,40 @@ def _doi_in_text(text: str, doi: str) -> bool:
     return doi in _compact_text(text)
 
 
+def _read_pdf_prefix(pdf_path: Path, max_bytes: int = PDF_DOI_SCAN_BYTES) -> bytes:
+    with open(pdf_path, 'rb') as f:
+        return f.read(max_bytes)
+
+
+def _find_dois_in_pdf_bytes(pdf_path: Path, max_bytes: int = PDF_DOI_SCAN_BYTES) -> list[str]:
+    if not pdf_path.is_file():
+        return []
+    chunk = _read_pdf_prefix(pdf_path, max_bytes)
+    return [match.decode('ascii') for match in ZENODO_DOI_BYTES_RE.findall(chunk)]
+
+
+def _doi_in_pdf_bytes(pdf_path: Path, doi: str, max_bytes: int = PDF_DOI_SCAN_BYTES) -> bool:
+    if not doi or not pdf_path.is_file():
+        return False
+    try:
+        return doi.encode('ascii') in _read_pdf_prefix(pdf_path, max_bytes)
+    except OSError:
+        return False
+
+
+def _pypdf_available() -> bool:
+    try:
+        import pypdf  # noqa: F401
+        return True
+    except ImportError:
+        return False
+
+
 def extract_pdf_text(pdf_path: Path, max_pages: int = 3) -> str:
     """Extract text from the first N pages of a PDF (title page holds paper DOI)."""
     if not pdf_path.is_file():
+        return ""
+    if not _pypdf_available():
         return ""
     last_error: Exception | None = None
     for attempt in range(3):
@@ -152,15 +187,7 @@ def extract_pdf_text(pdf_path: Path, max_pages: int = 3) -> str:
     return ""
 
 
-def read_doi_from_pdf(pdf_path: Path, expected_doi: str | None = None) -> str:
-    """
-    Read the canon paper DOI from a PDF.
-
-    When expected_doi is given, returns it only if present on the first pages
-    (avoids bibliography DOIs on later pages).
-    """
-    if not pdf_path.is_file():
-        return ""
+def _read_doi_from_pdf_text(pdf_path: Path, expected_doi: str | None = None) -> str:
     text = extract_pdf_text(pdf_path, max_pages=3)
     if not text:
         return ""
@@ -177,12 +204,37 @@ def read_doi_from_pdf(pdf_path: Path, expected_doi: str | None = None) -> str:
     return found[0] if found else ""
 
 
+def _read_doi_from_pdf_bytes(pdf_path: Path, expected_doi: str | None = None) -> str:
+    if expected_doi and _doi_in_pdf_bytes(pdf_path, expected_doi):
+        return expected_doi
+    dois = _find_dois_in_pdf_bytes(pdf_path)
+    if expected_doi:
+        return expected_doi if expected_doi in dois else ""
+    return dois[0] if dois else ""
+
+
+def read_doi_from_pdf(pdf_path: Path, expected_doi: str | None = None) -> str:
+    """
+    Read the canon paper DOI from a PDF.
+
+    When expected_doi is given, returns it only if present on the first pages
+    (avoids bibliography DOIs on later pages).
+    """
+    if not pdf_path.is_file():
+        return ""
+    found = _read_doi_from_pdf_text(pdf_path, expected_doi)
+    if found:
+        return found
+    return _read_doi_from_pdf_bytes(pdf_path, expected_doi)
+
+
 def pdf_doi_matches(pdf_path: Path, expected_doi: str) -> tuple[bool, str]:
     """Return (matches, doi_found_in_pdf)."""
     if not expected_doi:
         return False, ""
     if not pdf_path.is_file():
         return False, ""
+
     text = extract_pdf_text(pdf_path, max_pages=3)
     if _doi_in_text(text, expected_doi):
         return True, expected_doi
@@ -195,7 +247,70 @@ def pdf_doi_matches(pdf_path: Path, expected_doi: str) -> tuple[bool, str]:
         found = matches[0] if matches else ""
     if found == expected_doi:
         return True, found
+
+    if _doi_in_pdf_bytes(pdf_path, expected_doi):
+        return True, expected_doi
+    byte_dois = _find_dois_in_pdf_bytes(pdf_path)
+    found = byte_dois[0] if byte_dois else ""
+    if found == expected_doi:
+        return True, found
     return False, found
+
+
+def format_pdf_doi_diagnostics(
+    pdf_path: Path,
+    expected_doi: str,
+    tex_file: Path | None = None,
+    config_data: dict | None = None,
+) -> list[str]:
+    """Return human-readable diagnostic lines for PDF DOI validation failures."""
+    lines: list[str] = []
+    if tex_file is not None:
+        lines.append(f"tex: {tex_file}")
+        lines.append(f"expected PDF path: {expected_canon_pdf_path(tex_file, config_data)}")
+        lines.append(f"resolve_pdf_path: {resolve_pdf_path(tex_file, config_data)}")
+    lines.append(f"checked PDF: {pdf_path}")
+
+    if not pdf_path.is_file():
+        lines.append("file exists: no")
+        return lines
+
+    stat = pdf_path.stat()
+    mtime = datetime.fromtimestamp(stat.st_mtime).isoformat(sep=' ', timespec='seconds')
+    lines.append(f"file exists: yes, size={stat.st_size} bytes, mtime={mtime}")
+
+    matches, found_doi = pdf_doi_matches(pdf_path, expected_doi)
+    doi_with_expected = read_doi_from_pdf(pdf_path, expected_doi=expected_doi)
+    doi_without_expected = read_doi_from_pdf(pdf_path)
+
+    lines.append(f"expected DOI: {expected_doi or '(none)'}")
+    lines.append(f"pdf_doi_matches: match={matches}, found_doi={found_doi or '(none)'}")
+    lines.append(f"read_doi_from_pdf(expected): {doi_with_expected or '(none)'}")
+    lines.append(f"read_doi_from_pdf(any): {doi_without_expected or '(none)'}")
+
+    page1 = extract_pdf_text(pdf_path, max_pages=1)
+    text3 = extract_pdf_text(pdf_path, max_pages=3)
+    byte_dois = _find_dois_in_pdf_bytes(pdf_path)
+    lines.append(f"pypdf available: {'yes' if _pypdf_available() else 'no (install: pip install pypdf)'}")
+    if not page1 and not text3:
+        if byte_dois:
+            lines.append("text extraction: pypdf empty/unavailable; used raw PDF byte scan")
+        else:
+            lines.append("text extraction: pypdf empty/unavailable and no DOI in first PDF bytes")
+    else:
+        lines.append(f"page-1 text length: {len(page1)} chars")
+        preview = re.sub(r'\s+', ' ', page1.strip())[:400]
+        lines.append(f"page-1 preview: {preview or '(empty)'}")
+
+    all_dois = ZENODO_DOI_RE.findall(text3) if text3 else []
+    compact_dois = ZENODO_DOI_RE.findall(_compact_text(text3)) if text3 else []
+    unique_dois = list(dict.fromkeys(all_dois + compact_dois + byte_dois))
+    if unique_dois:
+        lines.append(f"DOIs on pages 1-3 / early bytes: {', '.join(unique_dois)}")
+    else:
+        lines.append("DOIs on pages 1-3 / early bytes: (none)")
+
+    return lines
 
 
 def compile_latex(
@@ -324,6 +439,9 @@ def update_zenodo_metadata(automation: ZenodoAutomation, deposit_id: str, config
 
     if config_data.get('related_identifiers'):
         zenodo_metadata['metadata']['related_identifiers'] = config_data['related_identifiers']
+
+    if config_data.get('version'):
+        zenodo_metadata['metadata']['version'] = config_data['version']
     
     url = f"{automation.base_url}/api/deposit/depositions/{deposit_id}"
     response = requests.put(url, json=zenodo_metadata, headers=automation.headers)

@@ -19,10 +19,12 @@ from create_zenodo_configs import extract_metadata_from_latex
 from render_and_update_zenodo import (
     compile_latex,
     expected_canon_pdf_path,
+    format_pdf_doi_diagnostics,
     pdf_doi_matches,
     process_config_file,
     read_doi_from_pdf,
     resolve_pdf_path,
+    update_zenodo_metadata,
 )
 from zenodo_automation import ZenodoAutomation, get_papers_dir, read_token_from_zenodo_py
 
@@ -93,6 +95,7 @@ class VersionStatus:
     message: str = ""
     errors: list[str] = field(default_factory=list)
     can_push: bool = False
+    can_push_metadata: bool = False
     can_mint_doi: bool = False
     can_render: bool = False
 
@@ -146,6 +149,10 @@ def parse_version_from_entry(entry: dict) -> Optional[str]:
 
 def canon_title(version: str) -> str:
     return f"Swirl-String-Theory Canon v{version} — {CANON_SUBTITLE}"
+
+
+def zenodo_version_label(version: str) -> str:
+    return f"v{version.lstrip('v')}"
 
 
 def edition_dir(version: str) -> Path:
@@ -292,7 +299,12 @@ def validate_version_for_push(
     cfg_data = read_config_data(version) if loc.has_config else {}
     expected_doi = (cfg_data.get('doi') or doi).strip()
 
-    if loc.has_config and expected_doi and loc.has_tex:
+    owner = online_map.get(version)
+    is_published_online = bool(
+        owner and owner.state == 'published' and owner.doi and doi and owner.doi == doi
+    )
+
+    if not is_published_online and loc.has_config and expected_doi and loc.has_tex:
         tex = loc.tex_path or main_tex(version)
         cfg_for_pdf = cfg_data if cfg_data else {'pdf_output_dir': '$out'}
         pdf = expected_canon_pdf_path(tex, cfg_for_pdf)
@@ -318,6 +330,10 @@ def validate_version_for_push(
         cfg = read_config_data(version)
         can_push = bool(cfg.get('deposit_id')) and cfg.get('doi') == doi
 
+    if is_published_online:
+        can_push = False
+        can_mint_doi = False
+
     return can_push, can_mint_doi and not can_push, errors
 
 
@@ -326,22 +342,126 @@ def build_changelog_html(up_to_version: str) -> str:
     for ver, desc in sorted(EDITION_CHANGELOG.items(), key=lambda x: version_sort_key(x[0])):
         if version_sort_key(ver) > version_sort_key(up_to_version):
             break
-        lines.append(f'<li><strong>v{ver}</strong> — {desc}</li>')
+        lines.append(f'<li><strong>v{ver}</strong> &mdash; {desc}</li>')
     lines.append('</ul>')
     return '\n'.join(lines)
 
 
-def build_description(version: str, abstract: str, base_description: str = "") -> str:
-    intro = base_description.strip() if base_description else ""
+def canon_base_description_html(version: str) -> str:
+    """Version-aware Zenodo description body (avoids stale v0.8.1 text from parent deposits)."""
+    patch = EDITION_CHANGELOG.get(version, "")
+    patch_p = (
+        f"<p><strong>This edition (v{version})</strong> adds on top of the prior canon line: {patch}.</p>"
+        if patch
+        else ""
+    )
+    return (
+        f"<p>Swirl-String-Theory Canon v{version} is the formal reference document for "
+        f"Swirl-String Theory (SST), a continuum-based hydrodynamic and topological framework in which "
+        f"physical structure is modeled as arising from stable circulation-bearing configurations in an "
+        f"incompressible, inviscid medium. This edition consolidates the core axiomatic layer of the theory, "
+        f"defines a minimal primitive structure, and organizes the framework through an explicit epistemic "
+        f"classification that distinguishes orthodox input, internally derived consequences, and speculative "
+        f"extensions.</p>\n"
+        f"<p>The document is designed as a logically stratified canon rather than as a single-claim research "
+        f"article. Its primary purpose is to provide a stable source of definitions, canonical constants, "
+        f"dependency structure, master relations, and theory-internal consistency rules for subsequent SST "
+        f"papers, notes, simulations, and benchmarks. Version {version} places particular emphasis on "
+        f"non-circular closure, traceability of assumptions, and compatibility checks against established "
+        f"physics in appropriate limits.</p>\n"
+        f"<p>The canon includes: (i) formal foundations based on a minimal primitive set; (ii) an axiomatic "
+        f"framework for circulation, topology, delay dynamics, and relational time; (iii) a consistency and "
+        f"classification layer for epistemic status tracking; (iv) a geometric and topological sector; "
+        f"(v) delay-induced mode-selection theory as a route to spectral discreteness; (vi) a conservative "
+        f"atomic bridge model and spectroscopic constraints; (vii) a relational time framework with Swirl-Clock, "
+        f"foliation, and effective-field-theory bridge structures; and (viii) an integration layer that "
+        f"selectively recovers transferable material from earlier SST canon versions without treating those "
+        f"versions as external authorities.</p>\n"
+        f"<p>Compared with earlier canon releases, v{version} strengthens the formal architecture of SST by "
+        f"separating canonical definitions from phenomenological bridge models and by explicitly labeling which "
+        f"statements are orthodox, derived within the present framework, or still speculative. It also preserves "
+        f"selected higher-level sectors&mdash;such as particle-candidate topology, hydrodynamic exchange barriers, "
+        f"benchmark structure, gauge-roadmap elements, and clock/gravity bridge constructions&mdash;while recasting "
+        f"them in a stricter and more transparent format.</p>\n"
+        f"{patch_p}"
+        f"<p>This deposit is intended as a citable canonical reference for the SST framework in its v{version} "
+        f"state. It is suitable for use as the primary background document for related technical notes, "
+        f"mass-functional derivations, atomic bridge analyses, topological classification work, and future "
+        f"computational or phenomenological developments.</p>"
+    )
+
+
+def build_description(version: str, abstract: str = "", base_description: str = "") -> str:
+    intro = canon_base_description_html(version)
     if abstract and abstract not in intro:
-        if intro:
-            intro += f"\n<p>{abstract}</p>"
-        else:
-            intro = f"<p>{abstract}</p>"
+        intro += f"\n<p>{abstract}</p>"
     changelog = build_changelog_html(version)
-    if intro:
-        return intro + "\n" + changelog
-    return changelog
+    return intro + "\n" + changelog
+
+
+def refresh_zenodo_config_description(version: str, create_if_missing: bool = True) -> Path | None:
+    """Update title/description (and create skeleton config) for a canon edition."""
+    if version not in EDITION_CHANGELOG:
+        return None
+    tex = main_tex(version)
+    if not tex.is_file():
+        return None
+
+    cfg = config_path(version)
+    description = build_description(version)
+    title = canon_title(version)
+    papers_dir = get_papers_dir()
+    tex_rel = str(tex.relative_to(papers_dir)).replace('\\', '/')
+
+    if cfg.is_file():
+        data = read_config_data(version)
+    elif create_if_missing:
+        data = {
+            "creators": DEFAULT_CREATORS,
+            "keywords": [
+                "Swirl String Theory",
+                "Canon",
+                "Theoretical Physics",
+                "Formal Systems",
+            ],
+            "upload_type": "publication",
+            "publication_type": "preprint",
+            "publication_date": datetime.now().strftime('%Y-%m-%d'),
+            "language": "eng",
+            "access_right": "open",
+            "license": "cc-by-4.0",
+            "communities": [{"identifier": "sst"}],
+            "tex_file": tex_rel,
+            "pdf_output_dir": "$out",
+            "compile_timeout": 300,
+            "related_identifiers": [
+                {"identifier": CONCEPT_DOI, "relation": "isVersionOf"},
+            ],
+        }
+    else:
+        return None
+
+    data["title"] = title
+    data["description"] = description
+    data["version"] = zenodo_version_label(version)
+    if not data.get("tex_file"):
+        data["tex_file"] = tex_rel
+    cfg.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding='utf-8')
+    return cfg
+
+
+def refresh_all_canon_zenodo_descriptions(create_if_missing: bool = True) -> list[str]:
+    updated: list[str] = []
+    root = been_processed_root()
+    if not root.is_dir():
+        return updated
+    for folder in sorted(root.iterdir(), key=lambda p: version_sort_key(p.name.lstrip('v'))):
+        if not folder.is_dir() or not is_canon_version_dir(folder.name):
+            continue
+        version = folder.name.lstrip('v')
+        if refresh_zenodo_config_description(version, create_if_missing=create_if_missing):
+            updated.append(version)
+    return updated
 
 
 def scan_local_canon_versions() -> list[CanonVersionInfo]:
@@ -481,6 +601,7 @@ def compare_versions(
         loc = local_map.get(ver)
         on = online_map.get(ver)
         can_push, can_mint, errors = (False, False, [])
+        can_push_metadata = False
         can_render = False
         if loc:
             can_push, can_mint, errors = validate_version_for_push(ver, local, online)
@@ -500,18 +621,29 @@ def compare_versions(
         )
 
         if loc and on:
-            if stale_pdf:
+            if (
+                on.state == 'published'
+                and loc.has_config
+                and loc.doi
+                and on.doi
+                and loc.doi == on.doi
+            ):
+                can_push_metadata = True
+                can_render = False
+                status = 'published'
+                msg = f"v{ver} gepubliceerd — metadata kan worden bijgewerkt"
+            elif stale_pdf and on.state != 'published':
                 status = 'stale_pdf'
                 msg = "PDF-DOI wijkt af van tex — render eerst opnieuw"
             elif on.state == 'draft':
                 status = 'draft_online'
                 msg = f"v{ver} heeft draft op Zenodo"
-            elif can_push:
-                status = 'ready_to_push'
-                msg = f"v{ver} klaar om te pushen (unieke DOI + config)"
             elif loc.doi and on.doi and loc.doi == on.doi:
                 status = 'synced'
                 msg = f"v{ver} gesynchroniseerd (DOI match)"
+            elif can_push:
+                status = 'ready_to_push'
+                msg = f"v{ver} klaar om te pushen (unieke DOI + config)"
             else:
                 status = 'synced'
                 msg = f"v{ver} lokaal en online aanwezig"
@@ -541,7 +673,7 @@ def compare_versions(
             status = 'local_only'
             msg = f"v{ver} onbekend"
 
-        if errors and status not in ('duplicate_doi', 'missing_config', 'stale_pdf'):
+        if errors and status not in ('duplicate_doi', 'missing_config', 'stale_pdf', 'published'):
             msg = errors[0]
 
         statuses.append(VersionStatus(
@@ -552,6 +684,7 @@ def compare_versions(
             message=msg,
             errors=errors,
             can_push=can_push,
+            can_push_metadata=can_push_metadata,
             can_mint_doi=can_mint,
             can_render=can_render,
         ))
@@ -618,6 +751,7 @@ def write_zenodo_config(
     cfg = config_path(version)
     data = {
         "title": canon_title(version),
+        "version": zenodo_version_label(version),
         "creators": DEFAULT_CREATORS,
         "description": description,
         "keywords": [
@@ -694,12 +828,7 @@ def mint_version_doi(
 
     meta = extract_metadata_from_latex(tex)
     abstract = meta.get('description', '')
-    base_desc = ""
-    if automation:
-        parent_record = automation.fetch_record_by_doi(LATEST_ONLINE_DOI)
-        if parent_record:
-            base_desc = parent_record.get('metadata', {}).get('description', '')
-    description = build_description(version, abstract, base_desc)
+    description = build_description(version, abstract)
     papers_dir = get_papers_dir()
     tex_rel = str(tex.relative_to(papers_dir))
 
@@ -751,6 +880,17 @@ def mint_version_doi(
     cfg = write_zenodo_config(version, deposit_id, doi, description, tex_rel)
     result.actions.append(f'Wrote config {cfg.name}')
 
+    cfg_data = read_config_data(version)
+    if update_zenodo_metadata(automation, deposit_id, cfg_data):
+        result.actions.append('Synced version metadata to Zenodo')
+        log(f"Zenodo version set to {cfg_data.get('version')}")
+    else:
+        result.message = "Config written but failed to sync version metadata to Zenodo"
+        result.deposit_id = deposit_id
+        result.doi = doi
+        result.html_url = html_url or f"https://zenodo.org/deposit/{deposit_id}"
+        return result
+
     result.success = True
     result.message = f"Unieke DOI en config aangemaakt voor v{version}"
     result.deposit_id = deposit_id
@@ -762,6 +902,7 @@ def mint_version_doi(
 def render_version_pdf(
     version: str,
     dry_run: bool = False,
+    verbose: bool = False,
     on_log: Optional[Callable[[str], None]] = None,
 ) -> PushResult:
     """Compile LaTeX to PDF locally and verify DOI matches tex/config (no Zenodo upload)."""
@@ -770,6 +911,18 @@ def render_version_pdf(
             on_log(msg)
         else:
             print(msg)
+
+    def log_diagnostics(pdf_file: Path) -> None:
+        if not verbose:
+            return
+        log(f"--- PDF-DOI diagnostiek v{version} ---")
+        for line in format_pdf_doi_diagnostics(
+            pdf_file,
+            expected_doi,
+            tex_file=tex,
+            config_data=cfg_data,
+        ):
+            log(f"  {line}")
 
     result = PushResult(version=version, success=False)
 
@@ -805,6 +958,8 @@ def render_version_pdf(
     )
     if not success or not pdf_file:
         result.message = "LaTeX compile mislukt"
+        if verbose:
+            log_diagnostics(out_dir / f"{tex.stem}.pdf")
         return result
 
     result.actions.append(f"Compiled {pdf_file.name}")
@@ -816,6 +971,7 @@ def render_version_pdf(
             )
         else:
             result.message = f"Geen DOI gevonden in PDF (verwacht {expected_doi})"
+        log_diagnostics(pdf_file)
         return result
 
     result.success = True
@@ -823,6 +979,8 @@ def render_version_pdf(
     result.doi = expected_doi
     result.actions.append(f"PDF DOI verified: {expected_doi}")
     log(result.message)
+    if verbose:
+        log(f"  verified PDF: {pdf_file}")
     return result
 
 
@@ -862,6 +1020,12 @@ def push_version_as_draft(
     if automation:
         online_versions = fetch_online_canon_versions(automation, local_versions)
 
+    online_entry = next((v for v in online_versions if v.version == version), None)
+    if online_entry and online_entry.state == 'published':
+        result.message = f"v{version} is gepubliceerd — gebruik metadata-push (geen PDF)"
+        log(f"✗ {result.message}")
+        return result
+
     can_push, _, errors = validate_version_for_push(version, local_versions, online_versions)
     if not can_push:
         result.message = "Push geblokkeerd — los eerst deze punten op:"
@@ -877,12 +1041,7 @@ def push_version_as_draft(
 
     meta = extract_metadata_from_latex(tex)
     abstract = meta.get('description', '')
-    base_desc = ""
-    if automation:
-        parent_record = automation.fetch_record_by_doi(LATEST_ONLINE_DOI)
-        if parent_record:
-            base_desc = parent_record.get('metadata', {}).get('description', '')
-    description = build_description(version, abstract, base_desc)
+    description = build_description(version, abstract)
     papers_dir = get_papers_dir()
 
     if dry_run:
@@ -932,6 +1091,120 @@ def push_version_as_draft(
     return result
 
 
+def push_published_metadata(
+    version: str,
+    automation: Optional[ZenodoAutomation] = None,
+    dry_run: bool = False,
+    publish: bool = True,
+    on_log: Optional[Callable[[str], None]] = None,
+) -> PushResult:
+    """Update metadata on a published Zenodo record (no PDF compile/upload)."""
+    def log(msg: str) -> None:
+        if on_log:
+            on_log(msg)
+        else:
+            print(msg)
+
+    result = PushResult(version=version, success=False)
+
+    if version not in EDITION_CHANGELOG:
+        result.message = f"Unknown version {version}"
+        return result
+
+    if automation is None:
+        token = read_token_from_zenodo_py()
+        if not token:
+            if dry_run:
+                result.message = "No Zenodo token found (needed to verify published status)"
+            else:
+                result.message = "No Zenodo token found"
+            return result
+        automation = ZenodoAutomation(token, sandbox=False)
+
+    local_versions = scan_local_canon_versions()
+    online_versions: list[CanonVersionInfo] = []
+    if automation:
+        online_versions = fetch_online_canon_versions(automation, local_versions)
+
+    online_entry = next((v for v in online_versions if v.version == version), None)
+    if not online_entry or online_entry.state != 'published':
+        result.message = f"v{version} is niet gepubliceerd op Zenodo — gebruik draft-push"
+        return result
+
+    cfg_file = config_path(version)
+    if not cfg_file.is_file():
+        result.message = "Geen .zenodo.json config"
+        return result
+
+    loc = next((v for v in local_versions if v.version == version), None)
+    cfg_data = read_config_data(version)
+    deposit_id = str(cfg_data.get('deposit_id', '') or online_entry.deposit_id)
+    doi = cfg_data.get('doi', '') or online_entry.doi
+
+    if not deposit_id:
+        result.message = "Config mist deposit_id"
+        return result
+    if loc and loc.doi and online_entry.doi and loc.doi != online_entry.doi:
+        result.message = f"DOI mismatch: lokaal {loc.doi} vs online {online_entry.doi}"
+        return result
+
+    if dry_run:
+        result.success = True
+        result.message = "Dry run OK (metadata push)"
+        result.doi = doi
+        result.deposit_id = deposit_id
+        result.actions = [
+            f"Would refresh local {cfg_file.name}",
+            f"Would edit deposit {deposit_id}",
+            "Would update metadata (no PDF)",
+            "Would publish" if publish else "Would leave as draft after edit",
+        ]
+        log(f"[DRY RUN metadata] v{version}: " + "; ".join(result.actions))
+        return result
+
+    log(f"Refreshing local config for v{version}...")
+    refreshed = refresh_zenodo_config_description(version, create_if_missing=False)
+    if not refreshed:
+        result.message = f"Kon config niet verversen voor v{version}"
+        return result
+    result.actions.append(f'Refreshed local {cfg_file.name}')
+
+    with open(cfg_file, encoding='utf-8') as f:
+        cfg_data = json.load(f)
+
+    log(f"Opening deposit {deposit_id} for edit...")
+    if not automation.edit_deposit(deposit_id):
+        result.message = "Kon gepubliceerd record niet openen voor bewerking"
+        return result
+    result.actions.append('Opened deposit for edit')
+
+    log("Updating Zenodo metadata (no PDF)...")
+    if not update_zenodo_metadata(automation, deposit_id, cfg_data):
+        result.message = "Metadata-update mislukt"
+        return result
+    result.actions.append('Updated metadata on Zenodo')
+
+    if publish:
+        log("Publishing metadata update...")
+        if automation.publish_deposit(deposit_id):
+            result.actions.append('Published metadata update')
+        else:
+            result.message = "Metadata bijgewerkt maar publiceren mislukt"
+            result.deposit_id = deposit_id
+            result.doi = doi
+            result.html_url = online_entry.html_url or f"https://zenodo.org/records/{deposit_id}"
+            return result
+    else:
+        result.actions.append('Left as draft after metadata edit')
+
+    result.success = True
+    result.message = "Metadata gepubliceerd op Zenodo" if publish else "Metadata bijgewerkt (draft)"
+    result.deposit_id = deposit_id
+    result.doi = doi
+    result.html_url = online_entry.html_url or f"https://zenodo.org/records/{deposit_id}"
+    return result
+
+
 def push_versions_range(
     from_version: str,
     to_version: str,
@@ -973,10 +1246,32 @@ def main() -> None:
     parser.add_argument('--compare', action='store_true', help='Compare local vs online')
     parser.add_argument('--mint-doi', action='store_true', help='Mint unique DOI + create config (no PDF upload)')
     parser.add_argument('--render-only', action='store_true', help='Render PDF locally (no Zenodo upload)')
+    parser.add_argument(
+        '--refresh-descriptions',
+        action='store_true',
+        help='Refresh title/description in local .zenodo.json files (create skeleton if missing)',
+    )
+    parser.add_argument(
+        '--push-metadata',
+        action='store_true',
+        help='Push metadata only to a published record (no PDF); use with --version',
+    )
+    parser.add_argument(
+        '--no-publish',
+        action='store_true',
+        help='With --push-metadata: update metadata but do not publish',
+    )
     args = parser.parse_args()
 
     token = read_token_from_zenodo_py()
     automation = ZenodoAutomation(token, sandbox=False) if token else None
+
+    if args.refresh_descriptions:
+        versions = refresh_all_canon_zenodo_descriptions(create_if_missing=True)
+        for ver in versions:
+            print(f"Updated v{ver}: {config_path(ver)}")
+        print(f"Refreshed {len(versions)} config(s)")
+        return
 
     if args.list_local:
         for v in scan_local_canon_versions():
@@ -1008,6 +1303,12 @@ def main() -> None:
         r = render_version_pdf(args.version, dry_run=args.dry_run)
     elif args.version and args.mint_doi:
         r = mint_version_doi(args.version, dry_run=args.dry_run)
+    elif args.version and args.push_metadata:
+        r = push_published_metadata(
+            args.version,
+            dry_run=args.dry_run,
+            publish=not args.no_publish,
+        )
     elif args.version:
         r = push_version_as_draft(args.version, dry_run=args.dry_run, publish=args.publish)
     else:

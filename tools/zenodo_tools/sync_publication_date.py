@@ -9,6 +9,8 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+from zenodo_automation import get_papers_dir
+
 # Handle encoding
 if sys.platform == 'win32':
     try:
@@ -124,7 +126,7 @@ def main():
     parser.add_argument('--update-zenodo', action='store_true', help='Also update Zenodo metadata')
     args = parser.parse_args()
     
-    base_dir = Path(__file__).parent.parent
+    base_dir = get_papers_dir()
     
     print("=" * 80)
     print("Sync Publication Date with PDF Creation Date")

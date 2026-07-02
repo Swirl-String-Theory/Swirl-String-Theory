@@ -39,7 +39,7 @@ The script will:
 4. **No config DOI + Title exists on Zenodo**: Uses existing deposit, creates config, adds DOI to LaTeX
 5. **No config DOI + Title doesn't exist**: Creates new deposit, gets DOI, creates config, adds DOI to LaTeX
 
-### 2. `zenodo_gui.py`
+### 2. `GUI_zenodo.py`
 
 A graphical user interface that displays:
 
@@ -52,11 +52,11 @@ A graphical user interface that displays:
 
 ```bash
 # From SwirlStringTheory root
-python zenodo_tools/zenodo_gui.py
+python tools/zenodo_tools/GUI_zenodo.py
 
 # Or from zenodo_tools directory
 cd zenodo_tools
-python zenodo_gui.py
+python GUI_zenodo.py
 ```
 
 #### Features
@@ -92,7 +92,7 @@ python zenodo_gui.py
    - This will create configs, get DOIs, and sync everything
 
 2. **Regular Updates**:
-   - Use `zenodo_gui.py` to view status of all papers
+   - Use `GUI_zenodo.py` to view status of all papers
    - Run `smart_zenodo_workflow.py` periodically to:
      - Update metadata if changed locally
      - Render and upload new PDFs

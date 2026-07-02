@@ -9,7 +9,7 @@ import sys
 import requests
 from datetime import datetime
 from pathlib import Path
-from zenodo_automation import ZenodoAutomation, read_token_from_zenodo_py
+from zenodo_automation import ZenodoAutomation, get_papers_dir, read_token_from_zenodo_py
 
 # Handle encoding
 if sys.platform == 'win32':
@@ -137,7 +137,7 @@ def main():
     parser.add_argument('--pdf', type=str, help='Path to PDF file (optional, will try to find automatically)')
     args = parser.parse_args()
     
-    base_dir = Path(__file__).parent.parent
+    base_dir = get_papers_dir()
     
     # Get token
     token = read_token_from_zenodo_py()
