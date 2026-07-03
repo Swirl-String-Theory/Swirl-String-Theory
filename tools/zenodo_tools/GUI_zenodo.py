@@ -10,9 +10,19 @@ import subprocess
 import threading
 import tkinter as tk
 import requests
+import webbrowser
 from pathlib import Path
 from tkinter import ttk, messagebox, scrolledtext, simpledialog
 from zenodo_automation import get_papers_dir, read_token_from_zenodo_py, ZenodoAutomation
+from publish_paper_zenodo import (
+    PaperWorkflowStatus,
+    assess_paper,
+    mint_paper_doi,
+    publish_paper_draft,
+    push_paper_as_draft,
+    push_published_metadata,
+    render_paper_pdf,
+)
 
 # Handle encoding
 if sys.platform == 'win32':
@@ -24,6 +34,43 @@ if sys.platform == 'win32':
             sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
     except:
         pass
+
+
+def is_zenodo_config(path: Path) -> bool:
+    return path.name.endswith('.zenodo.json') and '.online.json' not in path.name
+
+
+def is_zenodo_online_config(path: Path) -> bool:
+    return path.name.endswith('.zenodo.online.json')
+
+
+def list_local_zenodo_configs(folder: Path) -> list[Path]:
+    """All local configs under folder (excl. .online.json, cover letters)."""
+    configs = []
+    for p in folder.rglob('*.zenodo.json'):
+        if p.is_file() and is_zenodo_config(p):
+            if 'coverletter' in p.name.lower() or 'cover_letter' in p.name.lower():
+                continue
+            configs.append(p)
+    return sorted(configs)
+
+
+def pick_folder_config(folder: Path) -> Path | None:
+    """Primary config for folder status: prefer {folder.name}.zenodo.json, else first with DOI, else first."""
+    preferred = folder / f"{folder.name}.zenodo.json"
+    if preferred.is_file():
+        return preferred
+    configs = list_local_zenodo_configs(folder)
+    if not configs:
+        return None
+    for cfg in configs:
+        try:
+            if json.loads(cfg.read_text(encoding='utf-8')).get('doi'):
+                return cfg
+        except Exception:
+            pass
+    return configs[0]
+
 
 class ZenodoFileViewer:
     def __init__(self, root):
@@ -94,6 +141,13 @@ class ZenodoFileViewer:
         self.context_menu.add_command(label="Edit JSON", command=self.edit_json_selected)
         self.context_menu.add_command(label="Fetch from Zenodo", command=self.fetch_from_zenodo_selected)
         self.context_menu.add_command(label="Merge Configs", command=self.merge_configs_selected)
+        self.context_menu.add_separator()
+        self.context_menu.add_command(label="Mint DOI + Config", command=self.mint_doi_selected)
+        self.context_menu.add_command(label="Render PDF (local)", command=self.render_pdf_selected)
+        self.context_menu.add_command(label="Push as Draft", command=self.push_draft_selected)
+        self.context_menu.add_command(label="Push Metadata", command=self.push_metadata_selected)
+        self.context_menu.add_command(label="Publish Draft", command=self.publish_selected)
+        self.context_menu.add_command(label="Open Zenodo", command=self.open_zenodo_selected)
         
         # Right panel: Details and Log
         right_frame = ttk.Frame(main_paned)
@@ -159,6 +213,31 @@ class ZenodoFileViewer:
         ttk.Button(bulk_frame, text="Render All & Update", command=self.render_all_and_update).pack(side=tk.LEFT, padx=2, pady=2)
         ttk.Button(bulk_frame, text="Sync All Dates", command=self.sync_all_dates).pack(side=tk.LEFT, padx=2, pady=2)
         ttk.Button(bulk_frame, text="Update All Creators", command=self.update_all_creators).pack(side=tk.LEFT, padx=2, pady=2)
+
+        # Zenodo workflow (canon-parity) toolbar
+        workflow_frame = ttk.LabelFrame(left_frame, text="Zenodo Workflow")
+        workflow_frame.pack(fill=tk.X, padx=5, pady=5)
+
+        self.mint_doi_btn = ttk.Button(workflow_frame, text="Mint DOI + Config", command=self.mint_doi_selected, state=tk.DISABLED)
+        self.mint_doi_btn.pack(side=tk.LEFT, padx=2, pady=2)
+
+        self.render_pdf_btn = ttk.Button(workflow_frame, text="Render PDF", command=self.render_pdf_selected, state=tk.DISABLED)
+        self.render_pdf_btn.pack(side=tk.LEFT, padx=2, pady=2)
+
+        self.push_draft_btn = ttk.Button(workflow_frame, text="Push as Draft", command=self.push_draft_selected, state=tk.DISABLED)
+        self.push_draft_btn.pack(side=tk.LEFT, padx=2, pady=2)
+
+        self.push_metadata_btn = ttk.Button(workflow_frame, text="Push Metadata", command=self.push_metadata_selected, state=tk.DISABLED)
+        self.push_metadata_btn.pack(side=tk.LEFT, padx=2, pady=2)
+
+        self.publish_btn = ttk.Button(workflow_frame, text="Publish", command=self.publish_selected, state=tk.DISABLED)
+        self.publish_btn.pack(side=tk.LEFT, padx=2, pady=2)
+
+        self.open_zenodo_btn = ttk.Button(workflow_frame, text="Open Zenodo", command=self.open_zenodo_selected, state=tk.DISABLED)
+        self.open_zenodo_btn.pack(side=tk.LEFT, padx=2, pady=2)
+
+        self.workflow_status_label = ttk.Label(workflow_frame, text="")
+        self.workflow_status_label.pack(side=tk.LEFT, padx=8, pady=2)
         
         # Output log frame
         log_frame = ttk.LabelFrame(right_frame, text="Action Log")
@@ -170,6 +249,10 @@ class ZenodoFileViewer:
         # Store selected file
         self.selected_file = None
         self.selected_file_type = None
+        self.automation: ZenodoAutomation | None = None
+        self._busy = False
+        self._workflow_status: PaperWorkflowStatus | None = None
+        self._assess_generation = 0
         
         # Status bar
         self.status_bar = ttk.Label(root, text="Ready", relief=tk.SUNKEN, anchor=tk.W)
@@ -219,7 +302,19 @@ class ZenodoFileViewer:
             if tex_file.exists():
                 info['details']['tex_file'] = str(tex_file.name)
         
-        elif file_path.suffix == '.zenodo.json':
+        elif is_zenodo_online_config(file_path):
+            info['type'] = 'Config (Online)'
+            try:
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    config_data = json.load(f)
+                info['doi'] = config_data.get('doi', '')
+                info['status'] = 'Has DOI' if info['doi'] else 'No DOI'
+                info['details'] = config_data
+            except Exception as e:
+                info['status'] = f'Error reading config: {e}'
+                info['details'] = {}
+
+        elif is_zenodo_config(file_path):
             info['type'] = 'Config'
             try:
                 with open(file_path, 'r', encoding='utf-8') as f:
@@ -252,8 +347,8 @@ class ZenodoFileViewer:
         if self.sort_errors_first.get():
             def folder_sort_key(folder):
                 # Check for errors
-                main_config = folder / f"{folder.name}.zenodo.json"
-                has_config = main_config.exists()
+                main_config = pick_folder_config(folder)
+                has_config = main_config is not None
                 has_doi = False
                 if has_config:
                     try:
@@ -285,9 +380,9 @@ class ZenodoFileViewer:
             has_config = False
             has_doi = False
             
-            # Find main config file (SST-xx.zenodo.json)
-            main_config = folder / f"{folder.name}.zenodo.json"
-            if main_config.exists():
+            # Primary config (any *.zenodo.json, not only {folder.name}.zenodo.json)
+            main_config = pick_folder_config(folder)
+            if main_config is not None:
                 has_config = True
                 try:
                     with open(main_config, 'r', encoding='utf-8') as f:
@@ -305,6 +400,8 @@ class ZenodoFileViewer:
             
             # Create folder node with status
             folder_text = folder.name
+            if main_config is not None and main_config.name != f"{folder.name}.zenodo.json":
+                folder_text += f" [config: {main_config.name}]"
             if folder_doi:
                 folder_text += f" [{folder_doi}]"
             
@@ -337,7 +434,7 @@ class ZenodoFileViewer:
             def file_sort_key(fp):
                 # Check for errors in config files
                 error_priority = 2  # Default: no error
-                if fp.suffix == '.zenodo.json':
+                if is_zenodo_config(fp) or is_zenodo_online_config(fp):
                     try:
                         with open(fp, 'r', encoding='utf-8') as f:
                             config_data = json.load(f)
@@ -348,17 +445,24 @@ class ZenodoFileViewer:
                         error_priority = 0  # Error reading config
                 
                 # Extract base name for grouping
-                base_name = fp.stem
-                # Remove .zenodo from config files for better grouping
-                if fp.suffix == '.zenodo.json':
-                    base_name = base_name.replace('.zenodo', '')
+                if is_zenodo_online_config(fp):
+                    base_name = fp.name[:-len('.zenodo.online.json')]
+                elif is_zenodo_config(fp):
+                    base_name = fp.name[:-len('.zenodo.json')]
+                else:
+                    base_name = fp.stem
                 
                 # Extension priority
-                ext_priority = {
-                    '.zenodo.json': 0 if '.online.json' in fp.name else 1,
-                    '.tex': 2,
-                    '.pdf': 3
-                }.get(fp.suffix, 4)
+                if is_zenodo_online_config(fp):
+                    ext_priority = 0
+                elif is_zenodo_config(fp):
+                    ext_priority = 1
+                elif fp.suffix == '.tex':
+                    ext_priority = 2
+                elif fp.suffix == '.pdf':
+                    ext_priority = 3
+                else:
+                    ext_priority = 4
                 
                 if self.sort_errors_first.get():
                     # Sort by error priority first, then by name
@@ -374,11 +478,10 @@ class ZenodoFileViewer:
                 info = self.get_file_info(file_path)
                 
                 # Determine file type display
-                if file_path.suffix == '.zenodo.json':
-                    if '.online.json' in file_path.name:
-                        file_type = 'Config (Online)'
-                    else:
-                        file_type = 'Config'
+                if is_zenodo_online_config(file_path):
+                    file_type = 'Config (Online)'
+                elif is_zenodo_config(file_path):
+                    file_type = 'Config'
                 elif file_path.suffix == '.tex':
                     file_type = 'LaTeX'
                 elif file_path.suffix == '.pdf':
@@ -392,7 +495,7 @@ class ZenodoFileViewer:
                                            tags=(str(file_path),))
                 
                 # If it's a config file, make it expandable
-                if file_path.suffix == '.zenodo.json':
+                if is_zenodo_config(file_path) or is_zenodo_online_config(file_path):
                     self.tree.insert(file_node, 'end', text="(Expand to view JSON data)",
                                    values=('', '', ''))
                 
@@ -431,7 +534,7 @@ class ZenodoFileViewer:
             return
         
         file_path = Path(tags[0])
-        if file_path.exists() and file_path.suffix == '.zenodo.json':
+        if file_path.exists() and (is_zenodo_config(file_path) or is_zenodo_online_config(file_path)):
             # Check if we already loaded the JSON data
             children = self.tree.get_children(item)
             if children and self.tree.item(children[0], 'text') == "(Click to load JSON data)":
@@ -501,6 +604,8 @@ class ZenodoFileViewer:
         if not selection:
             self.selected_file = None
             self.selected_file_type = None
+            self._workflow_status = None
+            self.workflow_status_label.config(text="")
             self.update_button_states()
             return
         
@@ -515,6 +620,7 @@ class ZenodoFileViewer:
                 self.selected_file_type = values[0] if values else 'Unknown'
                 self.show_file_details(file_path)
                 self.update_button_states()
+                self._assess_workflow_async()
     
     def update_button_states(self):
         """Update button states based on selected file."""
@@ -529,7 +635,7 @@ class ZenodoFileViewer:
             return
         
         # Enable buttons based on file type
-        if self.selected_file.suffix == '.zenodo.json':
+        if is_zenodo_config(self.selected_file) or is_zenodo_online_config(self.selected_file):
             # Config file - can upload PDF, sync date, update metadata, edit config, edit JSON
             self.upload_pdf_btn.config(state=tk.NORMAL)
             self.render_upload_btn.config(state=tk.NORMAL)
@@ -568,6 +674,274 @@ class ZenodoFileViewer:
             self.edit_config_btn.config(state=tk.DISABLED)
             self.edit_json_btn.config(state=tk.DISABLED)
             self.fetch_zenodo_btn.config(state=tk.DISABLED)
+        self.update_workflow_buttons()
+
+    def _get_automation(self) -> ZenodoAutomation | None:
+        if self.automation:
+            return self.automation
+        token = read_token_from_zenodo_py()
+        if not token:
+            return None
+        self.automation = ZenodoAutomation(token, sandbox=False)
+        return self.automation
+
+    def _set_busy(self, busy: bool) -> None:
+        self._busy = busy
+        self.update_workflow_buttons()
+
+    def _workflow_config_file(self) -> Path | None:
+        if not self.selected_file:
+            return None
+        if is_zenodo_config(self.selected_file):
+            return self.selected_file
+        cfg = self.find_config_file(self.selected_file)
+        if cfg and is_zenodo_config(cfg):
+            return cfg
+        return None
+
+    def _assess_workflow_async(self) -> None:
+        config_file = self._workflow_config_file()
+        self._assess_generation += 1
+        generation = self._assess_generation
+
+        if not config_file:
+            self._workflow_status = None
+            self.workflow_status_label.config(text="")
+            self.update_workflow_buttons()
+            return
+
+        def worker() -> None:
+            automation = self._get_automation()
+            try:
+                status = assess_paper(config_file, self.papers_dir, automation)
+            except Exception as e:
+                status = PaperWorkflowStatus(
+                    config_file=config_file,
+                    message=f"Assess failed: {e}",
+                    errors=[str(e)],
+                )
+
+            def apply() -> None:
+                if generation != self._assess_generation:
+                    return
+                self._workflow_status = status
+                short = f"{status.zenodo_state}: {status.message}"[:80]
+                self.workflow_status_label.config(text=short)
+                self.update_workflow_buttons()
+                if self.selected_file and self.selected_file == config_file or self._workflow_config_file() == config_file:
+                    self.show_file_details(self.selected_file or config_file)
+
+            self.root.after(0, apply)
+
+        threading.Thread(target=worker, daemon=True).start()
+
+    def update_workflow_buttons(self) -> None:
+        wf = self._workflow_status
+        config_file = self._workflow_config_file()
+        disabled = tk.DISABLED
+        normal = tk.NORMAL
+
+        if self._busy or not config_file:
+            for btn in (
+                self.mint_doi_btn, self.render_pdf_btn, self.push_draft_btn,
+                self.push_metadata_btn, self.publish_btn, self.open_zenodo_btn,
+            ):
+                btn.config(state=disabled)
+            if self._busy:
+                self.push_draft_btn.config(text="Push as Draft")
+                self.push_metadata_btn.config(text="Push Metadata")
+            return
+
+        if not wf or wf.config_file.resolve() != config_file.resolve():
+            for btn in (
+                self.mint_doi_btn, self.render_pdf_btn, self.push_draft_btn,
+                self.push_metadata_btn, self.publish_btn,
+            ):
+                btn.config(state=disabled)
+            self.open_zenodo_btn.config(state=disabled)
+            return
+
+        self.mint_doi_btn.config(state=normal if wf.can_mint_doi else disabled)
+        self.render_pdf_btn.config(state=normal if wf.can_render else disabled)
+        self.push_draft_btn.config(
+            state=normal if wf.can_push else disabled,
+            text="Push as Draft",
+        )
+        self.push_metadata_btn.config(
+            state=normal if wf.can_push_metadata else disabled,
+            text="Push Metadata",
+        )
+        self.publish_btn.config(state=normal if wf.can_publish else disabled)
+        has_url = bool(wf.deposit_id or wf.html_url)
+        self.open_zenodo_btn.config(state=normal if has_url else disabled)
+
+    def _finish_workflow_worker(self, on_done) -> None:
+        def finish() -> None:
+            on_done()
+            self._set_busy(False)
+            self._assess_workflow_async()
+            self.refresh_tree()
+
+        self.root.after(0, finish)
+
+    def _run_workflow_action(self, label: str, action_fn) -> None:
+        if self._busy:
+            return
+        config_file = self._workflow_config_file()
+        if not config_file:
+            messagebox.showwarning("No Config", "Selecteer een paper met .zenodo.json config")
+            return
+
+        def worker() -> None:
+            self._set_busy(True)
+            self.root.after(0, lambda: self.status_bar.config(text=f"{label}..."))
+
+            def on_log(msg: str) -> None:
+                self.root.after(0, lambda m=msg: self.log(m))
+
+            try:
+                automation = self._get_automation()
+                if not automation:
+                    def no_token() -> None:
+                        messagebox.showerror("No Token", "Zenodo API token not found")
+                        self._set_busy(False)
+                    self.root.after(0, no_token)
+                    return
+
+                result = action_fn(config_file, automation, on_log)
+
+                def show_result() -> None:
+                    if result.success:
+                        messagebox.showinfo("Success", f"{label}: {result.message}")
+                        self.log(f"✓ {label} — {result.message}")
+                    else:
+                        messagebox.showerror("Failed", result.message)
+                        self.log(f"✗ {label}: {result.message}")
+
+                self._finish_workflow_worker(show_result)
+            except Exception as e:
+                self.root.after(0, lambda: messagebox.showerror("Error", str(e)))
+                self.root.after(0, lambda: self._set_busy(False))
+
+        threading.Thread(target=worker, daemon=True).start()
+
+    def mint_doi_selected(self) -> None:
+        if self._busy:
+            return
+        config_file = self._workflow_config_file()
+        if not config_file:
+            messagebox.showwarning("No Config", "Selecteer een paper (.tex of .zenodo.json)")
+            return
+        preview = f"Mint DOI + config voor {config_file.name}?\n\nGeen PDF-upload."
+        if not messagebox.askyesno("Confirm Mint DOI", preview):
+            return
+
+        def action(cfg, automation, on_log):
+            return mint_paper_doi(cfg, self.papers_dir, automation=automation, on_log=on_log)
+
+        self._run_workflow_action("Mint DOI", action)
+
+    def render_pdf_selected(self) -> None:
+        if self._busy:
+            return
+        config_file = self._workflow_config_file()
+        if not config_file:
+            return
+        wf = self._workflow_status
+        if wf and not wf.can_render:
+            messagebox.showerror("Render geblokkeerd", "\n".join(wf.errors or ["Kan niet renderen"]))
+            return
+        if not messagebox.askyesno("Confirm Render PDF", "Alleen lokaal compileren (geen Zenodo-upload)."):
+            return
+
+        def worker() -> None:
+            self._set_busy(True)
+            self.root.after(0, lambda: self.status_bar.config(text="Rendering PDF..."))
+
+            def on_log(msg: str) -> None:
+                self.root.after(0, lambda m=msg: self.log(m))
+
+            try:
+                result = render_paper_pdf(config_file, self.papers_dir, on_log=on_log)
+
+                def show_result() -> None:
+                    if result.success:
+                        messagebox.showinfo("Success", result.message)
+                        self.log(f"✓ {result.message}")
+                    else:
+                        messagebox.showerror("Failed", result.message)
+                        self.log(f"✗ {result.message}")
+
+                self._finish_workflow_worker(show_result)
+            except Exception as e:
+                self.root.after(0, lambda: messagebox.showerror("Error", str(e)))
+                self.root.after(0, lambda: self._set_busy(False))
+
+        threading.Thread(target=worker, daemon=True).start()
+
+    def push_draft_selected(self) -> None:
+        wf = self._workflow_status
+        if wf and not wf.can_push:
+            messagebox.showerror("Push geblokkeerd", "\n".join(wf.errors or ["Niet klaar voor push"]))
+            return
+        preview = "Push naar Zenodo als draft?\n\nPDF renderen + uploaden. Blijft draft."
+        if not messagebox.askyesno("Confirm Push as Draft", preview):
+            return
+
+        def action(cfg, automation, on_log):
+            return push_paper_as_draft(cfg, self.papers_dir, automation=automation, on_log=on_log)
+
+        self._run_workflow_action("Push as Draft", action)
+
+    def push_metadata_selected(self) -> None:
+        wf = self._workflow_status
+        if wf and not wf.can_push_metadata:
+            messagebox.showerror("Push geblokkeerd", "\n".join(wf.errors or ["Metadata-push niet mogelijk"]))
+            return
+        preview = (
+            "Metadata pushen naar Zenodo?\n\n"
+            "Alleen title/description/keywords worden bijgewerkt.\n"
+            "Geen PDF. Wijzigingen worden gepubliceerd."
+        )
+        if not messagebox.askyesno("Confirm Push Metadata", preview):
+            return
+
+        def action(cfg, automation, on_log):
+            return push_published_metadata(
+                cfg, self.papers_dir, automation=automation, publish=True, on_log=on_log,
+            )
+
+        self._run_workflow_action("Push Metadata", action)
+
+    def publish_selected(self) -> None:
+        wf = self._workflow_status
+        if wf and not wf.can_publish:
+            messagebox.showerror("Publish geblokkeerd", "\n".join(wf.errors or ["Kan niet publiceren"]))
+            return
+        if not messagebox.askyesno("Confirm Publish", "Draft publiceren op Zenodo?"):
+            return
+
+        def action(cfg, automation, on_log):
+            return publish_paper_draft(cfg, self.papers_dir, automation=automation, on_log=on_log)
+
+        self._run_workflow_action("Publish", action)
+
+    def open_zenodo_selected(self) -> None:
+        wf = self._workflow_status
+        url = ""
+        if wf and wf.html_url:
+            url = wf.html_url
+        elif wf and wf.deposit_id:
+            base = "https://zenodo.org"
+            if wf.zenodo_state == "published":
+                url = f"{base}/records/{wf.deposit_id}"
+            else:
+                url = f"{base}/deposit/{wf.deposit_id}"
+        if url:
+            webbrowser.open(url)
+            self.log(f"Opened: {url}")
+        else:
+            messagebox.showinfo("No URL", "Geen Zenodo URL voor deze selectie")
     
     def show_context_menu(self, event):
         """Show context menu on right-click."""
@@ -589,7 +963,10 @@ class ZenodoFileViewer:
     
     def find_config_file(self, file_path: Path) -> Path | None:
         """Find corresponding config file for a given file."""
-        if file_path.suffix == '.zenodo.json':
+        if is_zenodo_online_config(file_path):
+            local = file_path.parent / file_path.name.replace('.zenodo.online.json', '.zenodo.json')
+            return local if local.is_file() else None
+        if is_zenodo_config(file_path):
             return file_path
         
         # Try to find config file
@@ -603,6 +980,12 @@ class ZenodoFileViewer:
         config_file = file_path.parent / f"{parent_name}.zenodo.json"
         if config_file.exists():
             return config_file
+
+        # Fallback: exactly one local config in the paper folder
+        if re.match(r'^SST-\d+', file_path.parent.name):
+            configs = list_local_zenodo_configs(file_path.parent)
+            if len(configs) == 1:
+                return configs[0]
         
         return None
     
@@ -613,7 +996,7 @@ class ZenodoFileViewer:
             return
         
         config_file = self.find_config_file(self.selected_file)
-        if not config_file or config_file.suffix != '.zenodo.json':
+        if not config_file or not is_zenodo_config(config_file):
             messagebox.showwarning("Invalid Selection", "Please select a .zenodo.json config file")
             return
         
@@ -740,7 +1123,7 @@ class ZenodoFileViewer:
             return
         
         config_file = self.find_config_file(self.selected_file)
-        if not config_file or config_file.suffix != '.zenodo.json':
+        if not config_file or not is_zenodo_config(config_file):
             messagebox.showwarning("Invalid Selection", "Please select a .zenodo.json config file")
             return
         
@@ -788,8 +1171,11 @@ class ZenodoFileViewer:
             return
         
         # Find config file
-        if self.selected_file.suffix == '.zenodo.json':
-            config_file = self.selected_file
+        if is_zenodo_config(self.selected_file) or is_zenodo_online_config(self.selected_file):
+            config_file = self.selected_file if is_zenodo_config(self.selected_file) else self.find_config_file(self.selected_file)
+            if not config_file:
+                messagebox.showwarning("No Config", "No config file found. Use 'Create/Edit Config' to create one.")
+                return
         else:
             config_file = self.find_config_file(self.selected_file)
             if not config_file:
@@ -884,14 +1270,15 @@ class ZenodoFileViewer:
         doi = None
         config_file = None
         
-        if self.selected_file.suffix == '.zenodo.json':
-            config_file = self.selected_file
-            try:
-                with open(config_file, 'r', encoding='utf-8') as f:
-                    config_data = json.load(f)
-                doi = config_data.get('doi', '')
-            except:
-                pass
+        if is_zenodo_config(self.selected_file) or is_zenodo_online_config(self.selected_file):
+            config_file = self.selected_file if is_zenodo_config(self.selected_file) else self.find_config_file(self.selected_file)
+            if config_file:
+                try:
+                    with open(config_file, 'r', encoding='utf-8') as f:
+                        config_data = json.load(f)
+                    doi = config_data.get('doi', '')
+                except:
+                    pass
         else:
             # Try to find config file
             config_file = self.find_config_file(self.selected_file)
@@ -992,19 +1379,15 @@ class ZenodoFileViewer:
                 # Find local config file if not provided
                 local_config = config_file
                 if not local_config:
-                    if target_file.suffix == '.zenodo.json':
+                    if is_zenodo_config(target_file):
                         local_config = target_file
+                    elif is_zenodo_online_config(target_file):
+                        local_config = self.find_config_file(target_file)
                     else:
-                        # Try to find config file
-                        base_name = target_file.stem
-                        potential_config = target_file.parent / f"{base_name}.zenodo.json"
-                        if not potential_config.exists() and re.match(r'^SST-\d+', target_file.parent.name):
-                            potential_config = target_file.parent / f"{target_file.parent.name}.zenodo.json"
-                        if potential_config.exists():
-                            local_config = potential_config
+                        local_config = self.find_config_file(target_file)
                 
                 # Determine where to save
-                if local_config and local_config.exists() and local_config.suffix == '.zenodo.json':
+                if local_config and local_config.exists() and is_zenodo_config(local_config):
                     # Local config exists - save as .zenodo.online.json for comparison
                     online_file = local_config.parent / local_config.name.replace('.zenodo.json', '.zenodo.online.json')
                     with open(online_file, 'w', encoding='utf-8') as f:
@@ -1035,7 +1418,7 @@ class ZenodoFileViewer:
                     # Update tex_file path in config
                     if target_file.suffix == '.tex':
                         online_config['tex_file'] = str(target_file.relative_to(self.papers_dir))
-                    elif local_config and local_config.exists() and local_config.suffix == '.zenodo.json':
+                    elif local_config and local_config.exists() and is_zenodo_config(local_config):
                         # Keep existing tex_file if available
                         try:
                             with open(local_config, 'r', encoding='utf-8') as f:
@@ -1068,7 +1451,13 @@ class ZenodoFileViewer:
             return
         
         # Find local config
-        if self.selected_file.suffix == '.zenodo.json':
+        if is_zenodo_online_config(self.selected_file):
+            online_config = self.selected_file
+            local_config = self.find_config_file(self.selected_file)
+            if not local_config:
+                messagebox.showwarning("No Local Config", "No local config file found for this online config")
+                return
+        elif is_zenodo_config(self.selected_file):
             local_config = self.selected_file
         else:
             local_config = self.find_config_file(self.selected_file)
@@ -1077,11 +1466,12 @@ class ZenodoFileViewer:
                 return
         
         # Find online config
-        if local_config.name.endswith('.zenodo.online.json'):
-            online_config = local_config
-            local_config = local_config.parent / local_config.name.replace('.zenodo.online.json', '.zenodo.json')
-        else:
-            online_config = local_config.parent / local_config.name.replace('.zenodo.json', '.zenodo.online.json')
+        if not is_zenodo_online_config(self.selected_file):
+            if local_config.name.endswith('.zenodo.online.json'):
+                online_config = local_config
+                local_config = local_config.parent / local_config.name.replace('.zenodo.online.json', '.zenodo.json')
+            else:
+                online_config = local_config.parent / local_config.name.replace('.zenodo.json', '.zenodo.online.json')
         
         if not online_config.exists():
             messagebox.showwarning("No Online Config", f"Online config not found: {online_config.name}\n\nUse 'Fetch from Zenodo' first.")
@@ -1320,8 +1710,13 @@ class ZenodoFileViewer:
             return
         
         # Determine target config file
-        if self.selected_file.suffix == '.zenodo.json':
+        if is_zenodo_config(self.selected_file):
             config_file = self.selected_file
+        elif is_zenodo_online_config(self.selected_file):
+            config_file = self.find_config_file(self.selected_file)
+            if not config_file:
+                messagebox.showwarning("No Local Config", "No local config file found for this online config")
+                return
         else:
             # Find or create config file for this file
             base_name = self.selected_file.stem
@@ -1467,20 +1862,35 @@ class ZenodoFileViewer:
         details = f"File: {file_path.name}\n"
         details += f"Path: {file_path}\n"
         # Ensure type is correctly displayed
-        if file_path.suffix == '.zenodo.json':
-            if '.online.json' in file_path.name:
-                details += f"Type: Config (Online)\n"
-            else:
-                details += f"Type: Config\n"
+        if is_zenodo_online_config(file_path):
+            details += f"Type: Config (Online)\n"
+        elif is_zenodo_config(file_path):
+            details += f"Type: Config\n"
         else:
             details += f"Type: {info['type']}\n"
         details += f"Status: {info['status']}\n"
+
+        if self._workflow_status and self._workflow_config_file():
+            wf = self._workflow_status
+            cfg = self._workflow_config_file()
+            if cfg and wf.config_file.resolve() == cfg.resolve():
+                details += f"\n=== Zenodo Workflow ===\n"
+                details += f"Zenodo state: {wf.zenodo_state}\n"
+                details += f"Workflow: {wf.message}\n"
+                if wf.can_push:
+                    details += "Actions: Push as Draft, Publish\n"
+                elif wf.can_push_metadata:
+                    details += "Actions: Push Metadata\n"
+                elif wf.can_mint_doi:
+                    details += "Actions: Mint DOI + Config\n"
+                for err in wf.errors:
+                    details += f"  ! {err}\n"
         
         if info['doi']:
             details += f"DOI: {info['doi']}\n"
         
         # If this is a config file, show its JSON directly
-        if file_path.suffix == '.zenodo.json':
+        if is_zenodo_config(file_path) or is_zenodo_online_config(file_path):
             try:
                 with open(file_path, 'r', encoding='utf-8') as f:
                     config_data = json.load(f)
