@@ -7,10 +7,11 @@ packs live here. Nothing patch-related remains in `papers/SST-CANON/` root
 - **Integration map:** `INTEGRATION_INDEX.md` (source → edition)
 - **Latest bundle index:** `PATCH_MANIFEST.md` (v0.8.16 merge order)
 - **Evidence pack:** `SST_v0_8_12_evidence_pack/` (patches, scripts, results)
+- **v0.8.19 canonization queue:** `v0.8.19_01_*.patch` … `v0.8.19_06_*.patch`, `v0.8.19_canonization_README.md`
 
 Rebuild latest edition:
 
 ```powershell
 cd papers/SST-CANON/been_processed
-python apply_v0816.py
+python apply_v0819.py
 ```

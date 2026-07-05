@@ -150,6 +150,24 @@ EDITION_CONFIG = {
             r"and the contact-stress geometry research appendix on top of v0.8.17."
         ),
     },
+    "0.8.19": {
+        "prev": "0.8.18",
+        "header": "%! v0.8.19 edition: ropelength foundation + screening scalarization + thin-filament energy + mass audit + impedance bridge + audit bundle + Foucault RT + projected vorticity + dark taxonomy operator clock + claude audit cleanup (been_processed).",
+        "note": (
+            r"\textbf{v0.8.19} adds an orthodox radius-convention ropelength/thickness foundation, "
+            r"a main-text guard that knot type alone does not determine a unique physical representative, "
+            r"a scalarized research-track screening functional \(E_{\rm screen}\) with \(Q_G\) retained only "
+            r"as a sector label unless mapped to \(I_G\), a derived leading thin-filament length/log energy anchor, "
+            r"a density and dimensional audit for geometric mass branches, a geometric impedance bridge demoted "
+            r"to research-track pointer form with an explicit \(T_{\rm core}\) free-symbol guard, stricter "
+            r"reintegration rules for derived Hamiltonian terms versus screening surrogates, a consolidated "
+            r"audit bundle (unified \(\SwirlClock\) discipline, F\_max hygiene, Poisson--clock bridge, EMG guards, "
+            r"trefoil precision, pure-geometric mass collapse), a Foucault-pendulum rotation-to-clock inference "
+            r"protocol in the research track, projected swirl-vorticity frequency diagnostics, "
+            r"symmetry-metadata guards for dark-knot taxonomy, benchmark CSV schema hardening, and "
+            r"operator-valued Swirl-Clock visibility diagnostics on top of v0.8.18."
+        ),
+    },
 }
 
 CANON_BASE_KEYWORDS: list[str] = [
@@ -193,6 +211,21 @@ EDITION_KEYWORDS: dict[str, list[str]] = {
         "contact-stress geometry",
         "compton horn balance angle",
         "hybrid density source swirl clock",
+    ],
+    "0.8.19": [
+        "orthodox ropelength foundation",
+        "screening functional scalarization",
+        "thin-filament energy scale",
+        "geometric mass audit",
+        "geometric impedance bridge",
+        "reintegration rules",
+        "audit bundle swirl clock",
+        "Poisson clock bridge",
+        "Foucault pendulum inference",
+        "projected swirl vorticity frequency",
+        "dark knot taxonomy metadata",
+        "operator swirl clock",
+        "claude audit cleanup",
     ],
 }
 

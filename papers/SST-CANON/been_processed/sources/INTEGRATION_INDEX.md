@@ -34,7 +34,20 @@
 | `0001-v0818-compton-horn-gswirl-balance-angle.patch` | **v0.8.18** (in-place) | `eq:Fmax_planck_suppressed`; `eq:canonical_gswirl_compton_reduction`; `sec:rt_compton_horn_balance_angle` |
 | `hybrid_density_source_swirl_clock.patch` | **v0.8.18** RT (in-place) | `app:research_hybrid_density_source_swirl_clock`; hybrid $\mu/G/M$ interpolation |
 | *(in-place)* | **v0.8.18** | Canonical time ontology (`subsec:canonical_time_ontology`); $\tau_{\rm circ}$ / $\tau_A$ policy |
-| `apply_v085.py` … `apply_v0818.py` | **v0.8.5–v0.8.18** | Reproducible incremental build |
+| `v0.8.19_01_orthodox_ropelength_foundation.patch` | **v0.8.19** | `subsec:orthodox_ropelength_thickness_convention`; `eq:canon_ropelength_rad` |
+| `v0.8.19_02_screening_functional_scalarization.patch` | **v0.8.19** | $E_{\rm screen}$; `eq:research_track_IG_scalarization`; `eq:sst_screen_energy_research_track` |
+| `v0.8.19_03_thin_filament_energy_scale.patch` | **v0.8.19** | `subsec:derived_thin_filament_energy_scale`; `eq:canon_thin_filament_energy_scale` |
+| `v0.8.19_04_geometric_mass_functional_audit.patch` | **v0.8.19** | Mass density audit; `eq:geometric_alpha_gate_guard`; `eq:mass_benchmark_tuple` |
+| `v0.8.19_05_geometric_impedance_bridge.patch` | **v0.8.19** | `sec:appendix_geometric_impedance_bridge`; `eq:geometric_impedance_phi` |
+| `v0.8.19_06_release_status_summary.patch` | **v0.8.19** | Stricter reintegration rules; edition note |
+| `v0.8.19_audit_patch_all.diff` | **v0.8.19** (in-place) | Reading guide; `eq:swirl_clock`/Axiom 7; F_max hygiene; Poisson--clock bridge; EMG guards; trefoil precision; `eq:pure_geometric_mass_baseline_collapse` |
+| `v0.8.19_auditfix_F1_M1_M2_M3_M5_minors.patch` | **v0.8.19** (delta only) | CANON STRUCTURE comment; clock-radius transport guard; consistency statement; trefoil radial precision |
+| `v0.8.19_foucault_sst_research_track_cleaned.patch` | **v0.8.19** RT (in-place) | `subsec:rt_foucault_swirl_clock_probe`; Foucault1851, Coriolis1835, Ashby2003 bib |
+| `v0.8.19_projected_swirl_vorticity_frequency.patch` | **v0.8.19** RT (in-place) | `eq:rt_projected_swirl_vorticity_frequency`; RMS diagnostic; `eq:rt_projected_frequency_swirl_clock_estimate`; Foucault guardrail item 4 |
+| `v0.8.19_dark_taxonomy_operator_clock_benchmark.patch` | **v0.8.19** (in-place) | Benchmark CSV schema; `eq:rt_dark_symmetry_metadata_vector`; main symmetry-metadata guard; `subsec:rt_operator_swirl_clock_visibility` |
+| `v0.8.19_claude_audit_cleanup.patch` | **v0.8.19** (in-place) | Geometric impedance bridge demoted to RT (`sec:rt_geometric_impedance_bridge`); main pointer guard; $T_{\rm core}$ free-symbol guard; `eq:nonabelian_extended_energy` $E_{\rm screen}$ alignment |
+| `v0.8.19_canonization_README.md` | **v0.8.19** | Patch queue order and scope |
+| `apply_v085.py` … `apply_v0819.py` | **v0.8.5–v0.8.19** | Reproducible incremental build |
 
 ## SST v0.8.12 evidence-pack patch status
 
