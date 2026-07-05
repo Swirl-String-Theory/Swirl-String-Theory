@@ -1,0 +1,112 @@
+--- a/generate_knot_fseries.py	2026-07-03 11:58:25.165279502 +0000
++++ b/generate_knot_fseries.py	2026-07-03 11:59:04.020589975 +0000
+@@ -1,35 +1,25 @@
+-import requests
+-import gzip
+-import shutil
+ import numpy as np
+ import re
+ import os
+ from pathlib import Path
++from ideal_source import resolve_ideal_txt
+ from sst_exports import get_exports_dir
+ 
+-def prepare_database(url="https://katlas.org/images/d/d2/Ideal.txt.gz", gz_name="Ideal.txt.gz", txt_name="Ideal.txt"):
+-    """Autonome acquisitie en extractie van de topologische referentiedatabase."""
+-    gz_path = Path(gz_name)
+-    txt_path = Path(txt_name)
+-
+-    if not txt_path.exists():
+-        if not gz_path.exists():
+-            print(f"[*] Acquireren van referentiedatabase via {url}...")
+-            r = requests.get(url, timeout=60)
+-            r.raise_for_status()
+-            gz_path.write_bytes(r.content)
+-
+-        print(f"[*] Decomprimeren van database archief...")
+-        with gzip.open(gz_path, "rb") as f_in, open(txt_path, "wb") as f_out:
+-            shutil.copyfileobj(f_in, f_out)
++def prepare_database(url=None, gz_name=None, txt_name=None):
++    """Resolve ideal.txt via the unified ideal_source resolver.
+ 
+-    return str(txt_path)
++    Resolution order: SSTcore-bundled -> $SST_IDEAL_TXT -> local -> GitHub(master)
++    -> katlas.org (cached to ~/.cache/sst, never CWD). Legacy args are ignored,
++    kept only for backward compatibility."""
++    return str(resolve_ideal_txt())
+ 
+ def extract_ab_block(text: str, ab_id: str) -> str:
+     m = re.search(rf'<AB\s+Id="{re.escape(ab_id)}"[^>]*>', text)
+     if not m:
+         raise ValueError(f"AB Id '{ab_id}' niet gevonden in de database.")
+     end = text.find("</AB>", m.end())
++    if end == -1:
++        raise ValueError(f"AB Id '{ab_id}' block is not closed (no </AB>) in the database.")
+     return text[m.start(): end + len("</AB>")]
+ 
+ def parse_coeffs(ab_block: str):
+@@ -41,8 +31,14 @@
+         coeffs[i] = (A, B)
+     return coeffs
+ 
+-def generate_sst_pipeline(ab_id, knot_name, max_j_out=50, iterations=1500, num_points=300, out_dir=None):
+-    """out_dir: map voor .fseries; default = get_exports_dir()."""
++def generate_sst_pipeline(ab_id, knot_name, max_j_out=50, iterations=1500, num_points=300, out_dir=None, relax=False):
++    """out_dir: map voor .fseries; default = get_exports_dir().
++
++    relax=False (default): keep the Fremlin ideal configuration and only
++    Fourier-project it. relax=True runs the legacy spring+repulsion descent,
++    a NON-canonical toy functional with no scale anchor (it inflates the curve)
++    and no thickness constraint; the output is then NOT the ideal knot.
++    """
+     if out_dir is None:
+         out_dir = get_exports_dir()
+     else:
+@@ -89,13 +85,18 @@
+ 
+     pts = normalize_arclength(pts, num_points)
+ 
+-    # Hamiltoniaanse Gradient Afstroming
+-    print(f"[*] Minimaliseren van interactie-energie ({iterations} iteraties)...")
++    # Hamiltoniaanse Gradient Afstroming (legacy toy functional; OFF unless relax=True)
++    if relax:
++        print(f"[*] [relax=True] Minimaliseren van interactie-energie ({iterations} iteraties)...")
++        print("[!] WAARSCHUWING: dit is GEEN ropelength/SST-energie en heeft geen schaal-anker; "
++              "de output is dan NIET de ideale knoop.")
++    else:
++        print("[*] relax=False: ideale Fremlin-configuratie behouden (geen her-relaxatie).")
+     k_spring = 5.0
+     q_repulse = 0.05
+     alpha = 0.005
+ 
+-    for step in range(iterations):
++    for step in range(iterations if relax else 0):
+         lengths = np.linalg.norm(np.diff(np.vstack((pts, [pts[0]])), axis=0), axis=1)
+         l0 = np.mean(lengths)
+ 
+@@ -153,7 +154,8 @@
+ 
+     out_path = out_dir / f"{knot_name}_sst.fseries"
+     with open(out_path, 'w') as f:
+-        f.write(f"% (Fourier projection from Ideal database for SST Canon: {knot_name} | AB Id: {ab_id})\n")
++        _prov = "re-relaxed (NON-canonical toy functional)" if relax else "unrelaxed Fremlin ideal"
++        f.write(f"% (Fourier projection of {_prov} curve for SST Canon: {knot_name} | AB Id: {ab_id})\n")
+         f.write("% row index = j (row0 j=0, row1 j=1, ...). a_x(j) b_x(j) a_y(j) b_y(j) a_z(j) b_z(j)\n")
+         # j=0 row (6 zeros) before harmonics so .fseries has explicit j=0..J convention
+         f.write(" 0.000000  0.000000  0.000000  0.000000  0.000000  0.000000\n")
+@@ -181,13 +183,13 @@
+ }
+ 
+ 
+-def run_batch_from_catalog(max_j_out=50, iterations=1500, num_points=300, out_dir=None):
++def run_batch_from_catalog(max_j_out=50, iterations=1500, num_points=300, out_dir=None, relax=False):
+     """Genereer .fseries voor alle knopen in knopen_catalogus. out_dir default = get_exports_dir()."""
+     for naam, ab_id in knopen_catalogus.items():
+         try:
+             generate_sst_pipeline(ab_id=ab_id, knot_name=f"knot_{naam}",
+                                   max_j_out=max_j_out, iterations=iterations, num_points=num_points,
+-                                  out_dir=out_dir)
++                                  out_dir=out_dir, relax=relax)
+         except Exception as e:
+             print(f"[!] Fout bij het verwerken van {naam} ({ab_id}): {e}")
+ 

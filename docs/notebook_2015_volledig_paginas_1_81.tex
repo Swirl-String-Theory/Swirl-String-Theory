@@ -1,0 +1,4518 @@
+
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,bm,mathtools}
+\usepackage{array,booktabs,longtable}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\D}{\mathrm{D}}
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\td}[2]{\frac{\dd #1}{\dd #2}}
+\newcommand{\divergence}{\operatorname{div}}
+\newcommand{\rot}{\operatorname{rot}}
+\newcommand{\grad}{\nabla}
+\newcommand{\sech}{\operatorname{sech}}
+\newcommand{\arctanh}{\operatorname{arctanh}}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+\newcommand{\onzeker}[1]{\textcolor{red!70!black}{#1}}
+\newcommand{\R}{\mathbb{R}}
+
+\setlist[itemize]{leftmargin=*,itemsep=0.15em}
+\setlist[enumerate]{leftmargin=*,itemsep=0.15em}
+
+\begin{document}
+
+\begin{center}
+{\Large Volledige transcriptie pagina's 1--81 uit \texttt{Notebook-2015.pdf}}\\[0.5em]
+{\small Samengevoegde LaTeX-transcriptie van alle verwerkte batches.}
+\end{center}
+
+\noindent
+Onduidelijke woorden of symbolen zijn gemarkeerd met \onzeker{onzeker}. Schetsen zijn waar nodig als korte tekstbeschrijving opgenomen.
+
+
+\section*{Pagina 1 --- Titelblad}
+
+De eerste pagina bevat hoofdzakelijk een schetsmatig rood logo en een kleine ondertekening rechtsonder. De leesbare tekst lijkt te zijn:
+\begin{quote}
+\onzeker{aantekeningen vanaf 13-02-15}\\
+\onzeker{door Omar \ldots}
+\end{quote}
+
+\section*{Pagina 2 --- Voorwoord}
+
+De pagina is een handgeschreven voorwoord. Een deel van de zinnen is niet betrouwbaar leesbaar. De kern is dat deze notities bedoeld zijn als een verzameling en ordening van begrippen, vergelijkingen en achtergronden uit mechanica, elektriciteit, quantummechanica en relativiteit.
+
+\subsection*{Gedeeltelijk leesbare fragmenten}
+
+\begin{quote}
+Voor zover ik kan zien zijn er soortgelijke aantekeningen zeker en misschien noten te vinden.
+Het ontbreken van een \onzeker{mechanisch} en \onzeker{elektrisch} complementair inzicht wordt genoemd als aanleiding om de gekozen onderwerpen naast elkaar te zetten.
+\end{quote}
+
+\begin{quote}
+De gekozen notities lijken te verwijzen naar klassieke mechanica, thermodynamica, Maxwellvergelijkingen, quantummechanica en de algemene relativiteit. Het voorwoord sluit af met de bedoeling om een \onzeker{nieuw model} of een meer fundamentele fysische mogelijkheidsbeschrijving te maken.
+\end{quote}
+
+\section*{Pagina 3 --- Field primer}
+
+Voor een vectorveld in Cartesische coördinaten:
+\begin{align*}
+\vect{A}
+  &=
+  A_x\hat{\vect{e}}_x
+  +A_y\hat{\vect{e}}_y
+  +A_z\hat{\vect{e}}_z.
+\end{align*}
+
+\subsection*{Gradient}
+
+Voor een scalair veld $V$:
+\begin{align*}
+\nabla V
+  &=
+  \hat{\vect{e}}_x\frac{\partial V}{\partial x}
+  +\hat{\vect{e}}_y\frac{\partial V}{\partial y}
+  +\hat{\vect{e}}_z\frac{\partial V}{\partial z}.
+\end{align*}
+
+\subsection*{Divergentie}
+
+\begin{align*}
+\nabla\cdot\vect{A}
+  &=
+  \frac{\partial A_x}{\partial x}
+  +\frac{\partial A_y}{\partial y}
+  +\frac{\partial A_z}{\partial z}.
+\end{align*}
+
+\subsection*{Curl of rotatie}
+
+\begin{align*}
+\nabla\times\vect{A}
+  &=
+  \begin{pmatrix}
+  \dfrac{\partial A_z}{\partial y}
+    -\dfrac{\partial A_y}{\partial z}\\[0.9em]
+  \dfrac{\partial A_x}{\partial z}
+    -\dfrac{\partial A_z}{\partial x}\\[0.9em]
+  \dfrac{\partial A_y}{\partial x}
+    -\dfrac{\partial A_x}{\partial y}
+  \end{pmatrix}.
+\end{align*}
+
+\subsection*{Laplace-operator}
+
+Voor een scalair veld $A$:
+\begin{align*}
+\Delta A
+  &=
+  \frac{\partial^2 A}{\partial x^2}
+  +\frac{\partial^2 A}{\partial y^2}
+  +\frac{\partial^2 A}{\partial z^2}.
+\end{align*}
+
+\subsection*{Vectoridentiteiten}
+
+\begin{align*}
+\nabla\times\left(\nabla \phi\right) &= \vect{0},\\
+\nabla\cdot\left(\nabla\times\vect{A}\right) &= 0,\\
+\vect{A}\cdot\left(\vect{B}\times\vect{C}\right)
+  &=
+  \vect{B}\cdot\left(\vect{C}\times\vect{A}\right)
+   =
+  \vect{C}\cdot\left(\vect{A}\times\vect{B}\right).
+\end{align*}
+
+Voor het kruisproduct van twee vectorvelden staat de identiteit genoteerd als
+\begin{align*}
+\nabla\times\left(\vect{A}\times\vect{B}\right)
+  &=
+  \vect{A}\left(\nabla\cdot\vect{B}\right)
+  -\vect{B}\left(\nabla\cdot\vect{A}\right)
+  +\left(\vect{B}\cdot\nabla\right)\vect{A}
+  -\left(\vect{A}\cdot\nabla\right)\vect{B}.
+\end{align*}
+
+\subsection*{Sommen en producten}
+
+De onderste notities vermelden schematisch som- en productnotatie:
+\begin{align*}
+\sum_{i=0}^{n} a_i
+  &= a_0+a_1+\cdots+a_n,\\
+\prod_{i=1}^{n} a_i
+  &= a_1a_2\cdots a_n,\\
+\prod_{i=1}^{n} i
+  &= n!.
+\end{align*}
+
+\section*{Pagina 4 --- Cartesisch coördinatenstelsel}
+
+De pagina introduceert een Cartesisch coördinatenstelsel:
+\begin{align*}
+\text{3D:}\qquad
+\left(x,y,z\right).
+\end{align*}
+
+Er staat een schets van drie assen en een rooster van punten. De notitie verwijst naar een ``achtergrondruimte'' en naar een absoluut tijdsbegrip:
+\begin{quote}
+\onzeker{Met absolute tijd.}\\
+\onzeker{Ruimte als in de vorm waarvan dingen kunnen verschijnen.}
+\end{quote}
+
+De groene tekst onderaan verwijst naar discrete punten of roosterpunten:
+\begin{quote}
+\onzeker{Discrete punten en hulplijnen voor vormen in een Cartesisch coördinatenstelsel.}
+\end{quote}
+
+\section*{Pagina 5 --- Euler-beschrijvingswijze}
+
+Bovenaan staat een contour rond een oppervlak $A$ met een positief georiënteerde rand $\partial A$. De circulatie langs een gesloten contour is genoteerd als
+\begin{align*}
+\Gamma
+  &=
+  \oint_{\mathcal{C}}
+  \vect{V}\cdot \dd \vect{R},
+  &
+  \left(\frac{\mathrm{m}^2}{\mathrm{s}}\right).
+\end{align*}
+
+\subsection*{Euler-beschrijvingswijze}
+
+De aantekeningen geven een vast assenstelsel bij Cartesische coördinaten $\left(x,y,z\right)$:
+\begin{align*}
+\vect{v}
+  &=
+  \begin{pmatrix}
+  u\\
+  v\\
+  w
+  \end{pmatrix},
+  &
+  u,v,w
+  &\quad \text{in } \mathrm{m\,s^{-1}}.
+\end{align*}
+
+De overige grootheden zijn:
+\begin{align*}
+p
+  &:= \text{druk},
+  &
+  p
+  &\quad \text{in Pascal},
+  &
+  \mathrm{Pa}
+  &=\frac{\mathrm{N}}{\mathrm{m}^2}
+   =\frac{\mathrm{kg}}{\mathrm{m\,s^2}},
+\\
+\rho
+  &:= \text{dichtheid},
+  &
+  \rho
+  &\quad \text{in } \mathrm{kg\,m^{-3}},
+\\
+T
+  &:= \text{temperatuur},
+  &
+  T
+  &\quad \text{in } \mathrm{K}.
+\end{align*}
+
+\section*{Pagina 6 --- Vorticiteit, circulatie en potentiële vorticiteit}
+
+\subsection*{Definities}
+
+\begin{align*}
+\text{vorticiteit:}\qquad
+\bm{\omega}
+  &= \nabla\times\vect{v},
+\\
+\text{divergentie:}\qquad
+\divergence\vect{F}
+  &= \nabla\cdot\vect{F}
+   =
+   \frac{\partial F_x}{\partial x}
+   +\frac{\partial F_y}{\partial y}
+   +\frac{\partial F_z}{\partial z},
+\\
+\text{circulatie:}\qquad
+\Gamma_{\mathcal{C}}
+  &=
+  \oint_{\mathcal{C}}\vect{v}\cdot\dd\vect{r}.
+\end{align*}
+
+\subsection*{Stokes' stelling}
+
+De circulatie rond een gesloten kromme wordt gegeven door:
+\begin{align*}
+\Gamma
+  &=
+  \oint_{\mathcal{C}}\vect{v}\cdot\dd\vect{\ell}
+   =
+  \iint_{\mathcal{S}}
+  \left(\nabla\times\vect{v}\right)\cdot\dd\vect{S}
+   =
+  \iint_{\mathcal{S}}
+  \bm{\omega}\cdot\dd\vect{S}.
+\end{align*}
+
+Voor een vlak oppervlak $\mathcal{A}$:
+\begin{align*}
+\Gamma
+  &=
+  \iint_{\mathcal{A}}
+  \left(\rot \vect{v}\right)\cdot\hat{\vect{n}}\,\dd A.
+\end{align*}
+
+\subsection*{Kelvin}
+
+De circulatiestelling van Kelvin staat als:
+\begin{align*}
+\frac{\D\Gamma}{\D t}
+  &=0.
+\end{align*}
+
+De tekst erbij:
+\begin{quote}
+De circulatie langs een gesloten kromme die met de stroming mee beweegt, is constant. Behoud van impulsmoment.
+\end{quote}
+
+\subsection*{Enstrofie}
+
+\begin{align*}
+\mathcal{E}
+  &=
+  \iint_{\mathcal{S}}\zeta^2\,\dd S.
+\end{align*}
+
+\section*{Pagina 7 --- Relatieve vorticiteit voor horizontale stroming}
+
+De relatieve vorticiteit voor een horizontale stroming heeft orde van grootte:
+\begin{align*}
+\zeta
+  &\sim \frac{U}{L}.
+\end{align*}
+
+De rode opmerking verwijst naar het Rossbygetal als verhouding tussen relatieve en planetaire vorticiteit:
+\begin{align*}
+\mathrm{Ro}
+  &=
+  \frac{U}{fL}
+  \sim
+  \frac{\text{relatieve vorticiteit}}
+       {\text{planetaire vorticiteit}}.
+\end{align*}
+
+\subsection*{Noordelijk en zuidelijk halfrond}
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+Halfrond & Systeem & $\zeta$ & Rotatierichting \\
+\midrule
+Noordelijk & hoge druk & $\zeta<0$ & met de klok \\
+Noordelijk & lage druk  & $\zeta>0$ & tegen de klok \\
+Zuidelijk  & hoge druk & $\zeta>0$ & tegen de klok \\
+Zuidelijk  & lage druk  & $\zeta<0$ & met de klok \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Voor de planetaire vorticiteit geldt:
+\begin{align*}
+f
+  &=
+  2\Omega\sin\varphi.
+\end{align*}
+
+\section*{Pagina 8 --- Vorticiteit en circulatie in een roterend referentiekader}
+
+\subsection*{Drie soorten vorticiteit}
+
+\begin{align*}
+\text{absolute vorticiteit:}\qquad
+\bm{\omega}_a
+  &:=
+  \text{vorticiteit in een inertiaalstelsel},
+\\
+\text{relatieve vorticiteit:}\qquad
+\bm{\zeta}
+  &:=
+  \text{vorticiteit in een roterend referentiekader},
+\\
+\text{planetaire vorticiteit:}\qquad
+\bm{\omega}_p
+  &:=
+  \text{vorticiteit geassocieerd met de aarde}.
+\end{align*}
+
+De relatie is:
+\begin{align*}
+\bm{\omega}_a
+  &=
+  \bm{\zeta}
+  +\bm{\omega}_p.
+\end{align*}
+
+Voor de aarde wordt de horizontale component genoteerd als:
+\begin{align*}
+f
+  &=
+  2\Omega\sin\varphi.
+\end{align*}
+
+In lokale notatie:
+\begin{align*}
+\bm{\omega}_a
+  &=
+  \bm{\zeta}
+  + f\,\hat{\vect{k}}.
+\end{align*}
+
+\subsection*{Relatieve vorticiteit}
+
+Cartesisch:
+\begin{align*}
+\zeta
+  &=
+  \left(
+  \frac{\partial v}{\partial x}
+  -
+  \frac{\partial u}{\partial y}
+  \right)\hat{\vect{k}}.
+\end{align*}
+
+In bolcoördinaten of geografische coördinaten staat de verticale component als:
+\begin{align*}
+\zeta
+  &=
+  \left(
+  \frac{1}{a\cos\varphi}
+  \frac{\partial v}{\partial \lambda}
+  -
+  \frac{1}{a\cos\varphi}
+  \frac{\partial \left(u\cos\varphi\right)}{\partial \varphi}
+  \right)\hat{\vect{k}}.
+\end{align*}
+
+\subsection*{Absolute circulatie}
+
+Onderaan wordt absolute circulatie gekoppeld aan relatieve circulatie plus de aardrotatie. De notatie is gedeeltelijk onzeker:
+\begin{align*}
+\Gamma_a
+  &=
+  \Gamma_r
+  +2\Omega A_n,
+\end{align*}
+waarbij $A_n$ het georiënteerde oppervlak loodrecht op de rotatie-as aanduidt.
+
+\section*{Pagina 9 --- Vortex stretching en tilting}
+
+De pagina geeft de vergelijking voor de verandering van vorticiteit in een stroming. In compacte vorm:
+\begin{align*}
+\frac{\D\bm{\omega}}{\D t}
+  &=
+  \left(\bm{\omega}\cdot\nabla\right)\vect{v}
+  -
+  \bm{\omega}\left(\nabla\cdot\vect{v}\right).
+\end{align*}
+
+Voor de verticale component wordt onder meer genoteerd:
+\begin{align*}
+\frac{\D \omega_z}{\D t}
+  &=
+  -\omega_z
+  \left(
+  \frac{\partial u}{\partial x}
+  +
+  \frac{\partial v}{\partial y}
+  \right)
+  \quad
+  \text{voor horizontale divergentie}.
+\end{align*}
+
+De rode tekst legt uit dat vortex stretching ontstaat doordat bij een incompressibele vloeistof een verticale toename van vorticiteit samenhangt met een horizontale vermindering van doorsnede, zodat de circulatie behouden blijft.
+
+\subsection*{Vorticiteitstensor}
+
+De antisymmetrische rotatie- of vorticiteitstensor staat genoteerd als:
+\begin{align*}
+\bm{\Omega}
+  &=
+  \begin{pmatrix}
+  0
+  &
+  \dfrac{1}{2}
+  \left(
+  \dfrac{\partial u}{\partial y}
+  -
+  \dfrac{\partial v}{\partial x}
+  \right)
+  &
+  \dfrac{1}{2}
+  \left(
+  \dfrac{\partial u}{\partial z}
+  -
+  \dfrac{\partial w}{\partial x}
+  \right)
+  \\[1.1em]
+  \dfrac{1}{2}
+  \left(
+  \dfrac{\partial v}{\partial x}
+  -
+  \dfrac{\partial u}{\partial y}
+  \right)
+  &
+  0
+  &
+  \dfrac{1}{2}
+  \left(
+  \dfrac{\partial v}{\partial z}
+  -
+  \dfrac{\partial w}{\partial y}
+  \right)
+  \\[1.1em]
+  \dfrac{1}{2}
+  \left(
+  \dfrac{\partial w}{\partial x}
+  -
+  \dfrac{\partial u}{\partial z}
+  \right)
+  &
+  \dfrac{1}{2}
+  \left(
+  \dfrac{\partial w}{\partial y}
+  -
+  \dfrac{\partial v}{\partial z}
+  \right)
+  &
+  0
+  \end{pmatrix}.
+\end{align*}
+
+\section*{Pagina 10 --- Vortexdraden, vortexbuizen en stretching}
+
+\subsection*{Begrippen}
+
+\begin{description}
+\item[Vortexdraad]
+Een lijn van deeltjes met parallelle vorticiteitsvectoren.
+\item[Vortexbuis]
+Een verzameling vortexdraden die door een gesloten kromme lopen.
+\item[Vortex stretching]
+Vervorming waarbij de lengte van een vortexbuis toeneemt en de doorsnede afneemt.
+\item[Vortex tilting]
+Het kantelen van de richting van de vorticiteitsvector door snelheidsgradiënten.
+\end{description}
+
+\subsection*{Term in de vorticiteitsvergelijking}
+
+De stretching- en tiltingterm wordt genoteerd als:
+\begin{align*}
+\left(\bm{\omega}\cdot\nabla\right)\vect{v}.
+\end{align*}
+
+De divergentie van vorticiteit is nul:
+\begin{align*}
+\nabla\cdot\bm{\omega}
+  &=
+  0.
+\end{align*}
+
+Voor een gesloten oppervlak:
+\begin{align*}
+\iint_{\mathcal{A}}
+\left(\bm{\omega}\cdot\hat{\vect{n}}\right)\,\dd A
+  &=
+  0.
+\end{align*}
+
+De groene opmerking onderaan zegt dat vortexkracht of circulatie verbonden is met de snelheid langs de rand en met het oppervlak loodrecht op de vortexbuis.
+
+\section*{Pagina 11 --- Schaalargument voor twee vloeistofsystemen}
+
+\textbf{Stelling.}
+In twee vloeistofsystemen die geometrisch gelijk zijn, zijn snelheid en dichtheid proportioneel.
+
+\begin{align*}
+L &:= \text{lineaire dimensie},\\
+U &:= \text{snelheid},\\
+\rho &:= \text{dichtheid},\\
+P &:= \text{druk door beweging}.
+\end{align*}
+
+Dimensie-argument:
+\begin{align*}
+L^3\rho
+  &= \text{massa in een portie},\\
+L^3\rho U
+  &= \text{momentum},\\
+L^2P
+  &= \text{kracht},\\
+\frac{L}{U}
+  &= \text{tijd}.
+\end{align*}
+
+Daarmee volgt uit kracht $=$ impulsverandering per tijdseenheid:
+\begin{align*}
+L^2P
+  &\sim
+  \frac{L^3\rho U}{L/U}
+   =
+  L^2\rho U^2,\\
+P
+  &\sim
+  \rho U^2.
+\end{align*}
+
+\subsection*{Aantekening bij constante snelheid}
+
+In de rode notitie wordt een Bernoulli-achtige drukrelatie genoteerd:
+\begin{align*}
+P_1 &= P_0+\frac{1}{2}\rho V^2,\\
+P_2 &\approx P_0+\frac{1}{4}\rho V^2,\\
+P_1-P_2 &\approx \frac{1}{4}\rho V^2,\\
+P_1-P_2 &\approx C_pV^2.
+\end{align*}
+
+\section*{Pagina 12 --- Elektromotorische kracht}
+
+De pagina is getiteld:
+\begin{center}
+\textbf{Elektromotorische kracht}
+\end{center}
+
+De blauwe tekst beschrijft kwalitatief dat een diëlektrische materie polariseerbaar is en dat een elektrisch potentiaalverschil elektrische verplaatsing of stroom kan veroorzaken. Een deel van de zinnen is slecht leesbaar.
+
+\subsection*{Leesbare formules}
+
+De rode formules lijken te geven:
+\begin{align*}
+\vect{F}
+  &=
+  -4\pi\rho\,\vect{x},
+\\
+\vect{J}
+  &=
+  \frac{\dd \vect{x}}{\dd t}.
+\end{align*}
+
+De tweede vergelijking kan ook als een stroom of verplaatsingssnelheid geïnterpreteerd zijn; het symbool in de bron is \onzeker{onzeker}.
+
+\subsection*{Tekstfragment}
+
+\begin{quote}
+Wanneer de afstand van de diëlektrische \onzeker{afstand} wordt vergroot, wordt de kracht of energie uitgedrukt op een draad en de kracht van een \onzeker{ader}.
+\end{quote}
+
+\section*{Pagina 13 --- Afgeleide, gradiënt, rotatie, divergentie en grootheden}
+
+\subsection*{Operatoren}
+
+\begin{align*}
+f
+  &=
+  \frac{\dd a}{\dd x},
+  &
+  \Delta a
+  &=
+  \int f\,\dd x,
+\\
+\vect{f}
+  &=
+  \nabla g,
+  &
+  \Delta g
+  &=
+  \int_{\mathcal{C}}\vect{f}\cdot\dd\vect{s},
+\\
+\vect{f}
+  &=
+  \nabla\times\vect{g},
+  &
+  \Gamma
+  &=
+  \int_{\mathcal{A}}\vect{f}\cdot\dd\vect{A},
+\\
+f
+  &=
+  \nabla\cdot\vect{g},
+  &
+  \Phi
+  &=
+  \int_{\mathcal{V}} f\,\dd V.
+\end{align*}
+
+\subsection*{Elektromagnetische symbolen}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Symbool & Betekenis & Eenheid of notitie \\
+\midrule
+$\rho$ & ladingsdichtheid per volume & $\mathrm{C\,m^{-3}}$ \\
+$\vect{J}$ & elektrische stroomdichtheid & $\mathrm{A\,m^{-2}}$ \\
+$\sigma$ & elektrische geleidbaarheid & \onzeker{geleidingsvermogen} \\
+$\vect{E}$ & elektrische veldsterkte & $\mathrm{N\,C^{-1}}$ of $\mathrm{V\,m^{-1}}$ \\
+$I$ & elektrische stroom & $\mathrm{A}$ \\
+$\varepsilon$ & elektrische verplaatsing of permittiviteit & \onzeker{context onzeker} \\
+$\Phi$ & magnetische flux & $\mathrm{Wb}$ \\
+$\vect{H}$ & magnetische veldsterkte & $\mathrm{A\,m^{-1}}$ \\
+$W$ & energie & $\mathrm{J}$ \\
+$R$ & weerstand & $\Omega$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Rechterkolom met relaties}
+
+\begin{align*}
+\rho
+  &=
+  \frac{Q}{V},
+&
+\vect{J}
+  &=
+  \rho\,\vect{v},
+&
+I
+  &=
+  \iint_{\mathcal{A}}\vect{J}\cdot\dd\vect{A},
+\\
+R
+  &=
+  \frac{V}{I},
+&
+W
+  &=
+  I^2Rt,
+&
+T
+  &=
+  \frac{Q}{I}.
+\end{align*}
+
+En in lijnintegraalvorm:
+\begin{align*}
+I
+  &=
+  \oint_{\mathcal{C}}\vect{H}\cdot\dd\vect{\ell}.
+\end{align*}
+
+\section*{Pagina 14 --- Wetten van elektromagnetisme}
+
+De pagina ordent de Maxwellvergelijkingen rond de velden $\vect{E}$, $\vect{D}$, $\vect{B}$ en $\vect{H}$.
+
+\subsection*{Constitutieve relaties}
+
+\begin{align*}
+\vect{D}
+  &=
+  \varepsilon\vect{E},
+&
+\vect{B}
+  &=
+  \mu\vect{H}.
+\end{align*}
+
+Bovenaan staat ook een spoelrelatie:
+\begin{align*}
+\Phi
+  &=
+  LI,
+&
+\mathcal{E}
+  &=
+  -\frac{\dd\Phi}{\dd t}
+   =
+  -L\frac{\dd I}{\dd t}.
+\end{align*}
+
+\subsection*{Differentiaalvorm}
+
+\begin{align*}
+\nabla\cdot\vect{E}
+  &=
+  \frac{\rho}{\varepsilon_0},
+&
+\nabla\cdot\vect{B}
+  &=
+  0,
+\\
+\nabla\times\vect{E}
+  &=
+  -\frac{\partial\vect{B}}{\partial t},
+&
+\nabla\times\vect{B}
+  &=
+  \mu
+  \left(
+  \vect{J}
+  +
+  \varepsilon_0\frac{\partial\vect{E}}{\partial t}
+  \right).
+\end{align*}
+
+De bronpagina noteert de tweede rotatievergelijking ook met $\vect{H}$ en $\vect{D}$:
+\begin{align*}
+\nabla\times\vect{H}
+  &=
+  \vect{J}
+  +
+  \frac{\partial\vect{D}}{\partial t}.
+\end{align*}
+
+\subsection*{Integraalvorm}
+
+\begin{align*}
+\iint_{\mathcal{S}}\vect{E}\cdot\dd\vect{A}
+  &=
+  \frac{q}{\varepsilon_0},
+&
+\iint_{\mathcal{S}}\vect{B}\cdot\dd\vect{A}
+  &=
+  0,
+\\
+\oint_{\mathcal{C}}\vect{E}\cdot\dd\vect{\ell}
+  &=
+  -\frac{\dd}{\dd t}
+  \iint_{\mathcal{S}}\vect{B}\cdot\dd\vect{A},
+&
+\oint_{\mathcal{C}}\vect{H}\cdot\dd\vect{\ell}
+  &=
+  I
+  +
+  \frac{\dd}{\dd t}
+  \iint_{\mathcal{S}}\vect{D}\cdot\dd\vect{A}.
+\end{align*}
+
+\section*{Pagina 15 --- Definitie van rotatie en snelheidsgradiënten}
+
+De pagina geeft componentvergelijkingen voor een stroming $\vect{v}=\left(u,v,w\right)^{\mathsf{T}}$ en een drukveld $P$.
+
+\subsection*{Materiële afgeleide per component}
+
+\begin{align*}
+\frac{1}{\rho}\frac{\partial P}{\partial x}
+  &=
+  \frac{\partial u}{\partial t}
+  +u\frac{\partial u}{\partial x}
+  +v\frac{\partial u}{\partial y}
+  +w\frac{\partial u}{\partial z},
+\\
+\frac{1}{\rho}\frac{\partial P}{\partial y}
+  &=
+  \frac{\partial v}{\partial t}
+  +u\frac{\partial v}{\partial x}
+  +v\frac{\partial v}{\partial y}
+  +w\frac{\partial v}{\partial z},
+\\
+\frac{1}{\rho}\frac{\partial P}{\partial z}
+  &=
+  \frac{\partial w}{\partial t}
+  +u\frac{\partial w}{\partial x}
+  +v\frac{\partial w}{\partial y}
+  +w\frac{\partial w}{\partial z}.
+\end{align*}
+
+\subsection*{Vectorvorm}
+
+\begin{align*}
+\frac{\D\vect{v}}{\D t}
+  &=
+  \frac{\partial\vect{v}}{\partial t}
+  +
+  \left(\vect{v}\cdot\nabla\right)\vect{v}.
+\end{align*}
+
+\subsection*{Snelheidsgradiënt, rek en rotatie}
+
+De snelheidsgradiënt:
+\begin{align*}
+\nabla\vect{v}
+  &=
+  \begin{pmatrix}
+  \dfrac{\partial u}{\partial x}
+    & \dfrac{\partial u}{\partial y}
+    & \dfrac{\partial u}{\partial z}\\[0.9em]
+  \dfrac{\partial v}{\partial x}
+    & \dfrac{\partial v}{\partial y}
+    & \dfrac{\partial v}{\partial z}\\[0.9em]
+  \dfrac{\partial w}{\partial x}
+    & \dfrac{\partial w}{\partial y}
+    & \dfrac{\partial w}{\partial z}
+  \end{pmatrix}.
+\end{align*}
+
+De oncompressibiliteitsvoorwaarde staat genoteerd als:
+\begin{align*}
+\frac{\partial u}{\partial x}
++
+\frac{\partial v}{\partial y}
++
+\frac{\partial w}{\partial z}
+  &=
+  0.
+\end{align*}
+
+Onderaan staat een lineaire lokale benadering:
+\begin{align*}
+u
+  &=
+  A\left(x-\xi\right)+B\left(y-\eta\right)+C\left(z-\zeta\right),
+\\
+v
+  &=
+  A'\left(x-\xi\right)+B'\left(y-\eta\right)+C'\left(z-\zeta\right),
+\\
+w
+  &=
+  A''\left(x-\xi\right)+B''\left(y-\eta\right)+C''\left(z-\zeta\right).
+\end{align*}
+
+De exacte letters $A,B,C$ en de accenten in de onderste regel zijn gedeeltelijk \onzeker{onzeker}.
+
+\section*{Pagina 16 --- Relatieve versnelling in een roterend stelsel}
+
+De pagina bevat een schets van een roterend referentiestelsel met hoeksnelheid $\bm{\omega}$ en relatieve snelheid $\vect{u}$. De bewegingsvergelijking is genoteerd als:
+\begin{align*}
+\frac{\D\vect{u}}{\D t}
+  &=
+  -\frac{1}{\rho}\nabla P
+  -\nabla \phi_g
+  +\nabla\left(\frac{\omega^2R^2}{2}\right)
+  -2\bm{\omega}\times\vect{u}.
+\end{align*}
+
+\begin{center}
+\begin{tabular}{>{\raggedright\arraybackslash}p{5.3cm}p{8.5cm}}
+$-\frac{1}{\rho}\nabla P$ & drukverloop \\
+$-\nabla\phi_g$ & zwaarteversnelling \\
+$\nabla\left(\frac{\omega^2R^2}{2}\right)$ & centrifugale versnelling \\
+$-2\bm{\omega}\times\vect{u}$ & Coriolisversnelling
+\end{tabular}
+\end{center}
+
+De notitie herschrijft het potentiaaldeel als:
+\begin{align*}
+-\nabla\left(\phi_g+\frac{\omega^2R^2}{2}\right).
+\end{align*}
+
+\subsection*{Alternatieve potentiaalvorm}
+
+De pagina geeft ook een voorbeeld van een kwadratische potentiaal:
+\begin{align*}
+\phi
+  &=
+  Ax+By+Cz
+  +\frac{1}{2}ax^2
+  +\frac{1}{2}by^2
+  +\frac{1}{2}cz^2.
+\end{align*}
+
+Daaruit volgt lokaal:
+\begin{align*}
+u &= A+ax,\\
+v &= B+by,\\
+w &= C+cz.
+\end{align*}
+
+De tekst erbij zegt dat de snelheid $U_i$ voor elk deeltje op dezelfde positie gelijk is; een deeltje dat begint in een vlak parallel aan het $yz$-vlak behoudt dezelfde soort lineaire snelheidsverandering.
+
+\section*{Pagina 17 --- Lokale dichtheid van circulatie}
+
+De pagina gebruikt een rechthoekig contourtje met zijden $\dd x$ en $\dd y$ rond een oppervlak $\mathcal{A}$. Langs de rand wordt de circulatie uitgeschreven als:
+\begin{align*}
+\oint_{\partial\mathcal{A}}\vect{v}\cdot\dd\vect{\ell}
+  &=
+  u\,\dd x
+  +\left(
+    v+\frac{\partial v}{\partial x}\dd x
+  \right)\dd y
+  -\left(
+    u+\frac{\partial u}{\partial y}\dd y
+  \right)\dd x
+  -v\,\dd y,
+\\
+  &=
+  \left(
+  \frac{\partial v}{\partial x}
+  -
+  \frac{\partial u}{\partial y}
+  \right)
+  \dd x\,\dd y,
+\\
+  &=
+  \iint_{\mathcal{A}}\zeta\,\dd x\,\dd y.
+\end{align*}
+
+Daarmee is de lokale vorticiteit de lokale circulatie per oppervlakte-eenheid:
+\begin{align*}
+\zeta
+  &=
+  \frac{\partial v}{\partial x}
+  -
+  \frac{\partial u}{\partial y}.
+\end{align*}
+
+\subsection*{Holonome vaste-lichaamrotatie}
+
+\begin{align*}
+u
+  &=
+  -\Omega y,
+&
+v
+  &=
+  \Omega x,
+\\
+\zeta
+  &=
+  \frac{\partial v}{\partial x}
+  -
+  \frac{\partial u}{\partial y}
+   =
+  2\Omega.
+\end{align*}
+
+\subsection*{Couette-stroming}
+
+\begin{align*}
+u
+  &=
+  \alpha y,
+&
+v
+  &=
+  0,
+\\
+\zeta
+  &=
+  \frac{\partial v}{\partial x}
+  -
+  \frac{\partial u}{\partial y}
+   =
+  -\alpha.
+\end{align*}
+
+De groene opmerking onderaan vermeldt dat de stromingslijnen in Couette-stroming kromming kunnen hebben zonder vaste-lichaamrotatie in dezelfde zin.
+
+\section*{Pagina 18 --- Definitie van vorticiteit voor 2D-stromingen}
+
+Voor een tweedimensionale stroming $\vect{v}=\left(u,v,0\right)^{\mathsf{T}}$:
+\begin{align*}
+\bm{\zeta}
+  &=
+  \nabla\times
+  \begin{pmatrix}
+  u\\
+  v\\
+  0
+  \end{pmatrix}
+\\
+  &=
+  \begin{vmatrix}
+  \hat{\vect{i}} & \hat{\vect{j}} & \hat{\vect{k}}\\
+  \dfrac{\partial}{\partial x}
+    & \dfrac{\partial}{\partial y}
+    & \dfrac{\partial}{\partial z}\\
+  u & v & 0
+  \end{vmatrix}
+\\
+  &=
+  \left(
+  \frac{\partial v}{\partial x}
+  -
+  \frac{\partial u}{\partial y}
+  \right)\hat{\vect{k}}.
+\end{align*}
+
+In 3D is vorticiteit de kromming of rotatie van het snelheidsveld. In 2D blijft alleen de verticale component over.
+
+\subsection*{Interpretatie}
+
+\begin{itemize}
+\item Lokale vaste rotatie: rotatie van individuele vloeistofdeeltjes om hun eigen as.
+\item Positief: tegen de klok.
+\item Negatief: met de klok.
+\item Lokale circulatiedichtheid per infinitesimaal oppervlak.
+\end{itemize}
+
+Met Stokes' stelling:
+\begin{align*}
+\oint_{\partial\mathcal{A}}\vect{v}\cdot\dd\vect{\ell}
+  &=
+  \iint_{\mathcal{A}}\zeta\,\dd x\,\dd y.
+\end{align*}
+
+\section*{Pagina 19 --- Natuurlijke coördinaten}
+
+Bovenaan staat opnieuw de circulatie rond een klein rechthoekig contour. De uitwerking komt overeen met:
+\begin{align*}
+C_{\mathcal{A}\mathcal{B}}
+  &=
+  u\,\dd x
+  +
+  \left(
+    v+\frac{\partial v}{\partial x}\dd x
+  \right)\dd y
+  -
+  \left(
+    u+\frac{\partial u}{\partial y}\dd y
+  \right)\dd x
+  -
+  v\,\dd y,
+\\
+  &=
+  \left(
+  \frac{\partial v}{\partial x}
+  -
+  \frac{\partial u}{\partial y}
+  \right)\dd x\,\dd y.
+\end{align*}
+
+Een blauwe tussenstap op de pagina schrijft:
+\begin{align*}
+\left(
+V+\frac{\partial V}{\partial x}\dd x
+\right)\dd y
+  &=
+  -V\,\dd y,
+\end{align*}
+maar deze regel lijkt een teken- of notatiefout in de losse notitie te bevatten.
+
+\subsection*{Natuurlijke coördinaten}
+
+De schets introduceert lokale natuurlijke coördinaten langs een stroomlijn:
+\begin{align*}
+u
+  &=
+  V_s
+   =
+  V\cos\varphi,
+&
+v
+  &=
+  V_n
+   =
+  V\sin\varphi.
+\end{align*}
+
+Met basisvectoren:
+\begin{align*}
+\hat{\vect{s}}
+  &=
+  \begin{pmatrix}
+  \cos\varphi\\
+  \sin\varphi
+  \end{pmatrix},
+&
+\hat{\vect{n}}
+  &=
+  \begin{pmatrix}
+  -\sin\varphi\\
+  \cos\varphi
+  \end{pmatrix}.
+\end{align*}
+
+Equivalent:
+\begin{align*}
+n_x
+  &=
+  -s_y,
+&
+n_y
+  &=
+  s_x.
+\end{align*}
+
+\newpage
+
+\section*{Pagina 20 --- Relatieve vorticiteit en Crocco's theorema}
+
+\subsection*{Relatieve vorticiteit}
+
+Newton's wet in een roterend referentiekader, met de $z$-as als rotatie-as:
+\begin{align*}
+\pd{\vect{u}}{t}
++\vect{u}\cdot\nabla\vect{u}
+&=
+-2\bm{\omega}\times\vect{u}
+-\nabla\phi_g
+-\frac{1}{\rho}\nabla P .
+\end{align*}
+
+Met de vectoridentiteit
+\begin{align*}
+\vect{u}\cdot\nabla\vect{u}
+  &=
+  \nabla\left(\frac{\vect{u}\cdot\vect{u}}{2}\right)
+  +\left(\nabla\times\vect{u}\right)\times\vect{u}
+\end{align*}
+wordt dit
+\begin{align*}
+\pd{\vect{u}}{t}
++\nabla\left(\frac{\vect{u}\cdot\vect{u}}{2}\right)
++\left(\nabla\times\vect{u}\right)\times\vect{u}
+&=
+-2\bm{\omega}\times\vect{u}
+-\nabla\phi_g
+-\frac{1}{\rho}\nabla P .
+\end{align*}
+
+\subsection*{Crocco's theorema}
+
+Voor een incompressibele en niet-viskeuze stroming staat genoteerd:
+\begin{align*}
+\vect{v}\times\bm{\omega}
+  &=
+  \frac{1}{\rho}\nabla P_0 .
+\end{align*}
+
+De drukachtige grootheid is opgeschreven als
+\begin{align*}
+P_0
+  &=
+  P+\frac{1}{2}\rho V^2+\rho U .
+\end{align*}
+Hierbij zijn de termen onder de accolade aangeduid als Bernoulli-getal, statisch deel, dynamisch deel en lichaamskrachtdeel.
+
+\newpage
+
+\section*{Pagina 21 --- Helmholtz: definitie van rotatie, deel 2}
+
+Terug naar de $\left(x,y,z\right)$-coördinaten. De notitie beschrijft een lokale beweging rond het punt
+$\left(\xi,\eta,\zeta\right)$ met hoeksnelheidscomponenten die parallel zijn aan de $x$-, $y$- en $z$-as.
+
+\subsection*{Rotatiematrix}
+
+De tabel met snelheidscomponenten parallel aan $\left(x,y,z\right)$ is genoteerd als
+\begin{align*}
+\begin{pmatrix}
+0
+&
+\left(z-\zeta\right)\xi
+&
+-\left(y-\eta\right)\xi
+\\[0.5em]
+-\left(z-\zeta\right)\eta
+&
+0
+&
+\left(x-\xi\right)\eta
+\\[0.5em]
+\left(y-\eta\right)\zeta
+&
+-\left(x-\xi\right)\zeta
+&
+0
+\end{pmatrix}.
+\end{align*}
+
+\subsection*{Lokale snelheidsontwikkeling}
+
+De snelheid van een deeltje met coördinaten $\left(x,y,z\right)$ is daarna lokaal geschreven als
+\begin{align*}
+U
+&=
+A+a\left(x-\xi\right)
++\left(\gamma+\zeta\right)\left(y-\eta\right)
++\left(\beta-\eta\right)\left(z-\zeta\right),
+\\
+V
+&=
+B+\left(\gamma-\zeta\right)\left(x-\xi\right)
++b\left(y-\eta\right)
++\left(\alpha+\xi\right)\left(z-\zeta\right),
+\\
+W
+&=
+C+\left(\beta+\eta\right)\left(x-\xi\right)
++\left(\alpha-\xi\right)\left(y-\eta\right)
++c\left(z-\zeta\right).
+\end{align*}
+
+Door differentiatie:
+\begin{align*}
+\pd{V}{z}-\pd{W}{y} &= 2\xi,\\
+\pd{W}{x}-\pd{U}{z} &= 2\eta,\\
+\pd{U}{y}-\pd{V}{x} &= 2\zeta.
+\end{align*}
+
+\noindent
+Marge-opmerking: de waarden links kunnen volgens formule \onzeker{1C} worden opgevat als snelheidsverschillen; de rotatiesnelheid wordt over de drie assen verdeeld.
+
+\newpage
+
+\section*{Pagina 22 --- Potentiaalstroming en Green}
+
+Als een snelheidsveld potentiaal is, dan volgt uit het bestaan van de potentiaal dat de rotatiebeweging verdwijnt.
+
+\subsection*{Extra eigenschap van potentiaalstroming}
+
+De pagina voegt als extra eigenschap toe dat de beweging van de vloeistof in een eenvoudig verbonden ruimte $\mathcal{S}$ voldoet aan een potentiaalvoorwaarde. Voor de wand geldt dat de normale component van de snelheid loodrecht op de muur is:
+\begin{align*}
+\td{\varphi}{n}
+  &=
+  0
+  \qquad
+  \text{op de wand.}
+\end{align*}
+
+\subsection*{Volgens Green}
+
+De integraalidentiteit is genoteerd als
+\begin{align*}
+\iiint_{\mathcal{S}}
+\left[
+\left(\pd{\varphi}{x}\right)^2
++
+\left(\pd{\varphi}{y}\right)^2
++
+\left(\pd{\varphi}{z}\right)^2
+\right]
+\dd x\,\dd y\,\dd z
+&=
+-
+\iint_{\partial\mathcal{S}}
+\varphi\,\td{\varphi}{n}\,\dd\omega .
+\end{align*}
+
+De linker integraal loopt over de hele ruimte; de rechter integraal loopt over het hele oppervlak van het lichaam $\mathcal{S}$, met oppervlakte-element $\dd\omega$.
+
+Als
+\begin{align*}
+\int_{\partial\mathcal{S}}\td{\varphi}{n}\,\dd\omega = 0,
+\end{align*}
+dan is de linker integraal ook $0$. Alleen mogelijk over de hele ruimte:
+\begin{align*}
+\pd{\varphi}{x}
+=
+\pd{\varphi}{y}
+=
+\pd{\varphi}{z}
+=
+0 .
+\end{align*}
+
+\newpage
+
+\section*{Pagina 23 --- Helmholtz: definitie van rotatie, deel 3}
+
+Als
+\begin{align*}
+\td{\varphi}{n} &= 0,
+\end{align*}
+dan is alles links ook $0$. Dus als er geen beweging van water speelt:
+\begin{align*}
+\pd{\varphi}{(x,y,z)}
+  &= 0 .
+\end{align*}
+
+\subsection*{Conclusie}
+
+Elke beweging van een vloeistofmassa in een simpel verbonden ruimte, waarbij een snelheidspotentiaal bestaat, moet zich voordoen als de beweging van een oppervlak. Als de oppervlakkige beweging $\td{\varphi}{n}$ er is, dan wordt de beweging in de massa ook bepaald.
+
+\begin{align*}
+\frac{\partial^2 \varphi}{\partial x^2}
++
+\frac{\partial^2 \varphi}{\partial y^2}
++
+\frac{\partial^2 \varphi}{\partial z^2}
+&=
+0,
+\\[0.5em]
+\td{\varphi}{n}
+&=
+\psi,
+\\[0.5em]
+\td{}{n}\left(\varphi-\varphi_1\right)
+&=
+0.
+\end{align*}
+
+\newpage
+
+\section*{Pagina 24 --- Mechanische theorie der warmte: R. Clausius}
+
+\subsection*{Behandeling van differentiaalformules}
+
+De pagina behandelt differentiaalformules die niet direct integreerbaar zijn.
+
+\begin{enumerate}
+\item
+\begin{align*}
+\dd z
+  &=
+  \phi(x,y)\,\dd x+\psi(x,y)\,\dd y,
+&
+M&=\phi(x,y),
+&
+N&=\psi(x,y).
+\end{align*}
+
+\item
+\begin{align*}
+\dd z &= M\,\dd x+N\,\dd y .
+\end{align*}
+
+\item
+\begin{align*}
+\pd{z}{x}
+  &= \phi(x,y)=M,
+&
+\pd{z}{y}
+  &= \psi(x,y)=N .
+\end{align*}
+
+\item
+\begin{align*}
+\dd z
+  &=
+  \pd{z}{x}\,\dd x+\pd{z}{y}\,\dd y.
+\end{align*}
+\end{enumerate}
+
+Verschillende notatiewijzen voor dezelfde totale differentiaal:
+\begin{align*}
+\dd z
+  &=
+  \left(\pd{z}{x}\right)\dd x
+  +
+  \left(\pd{z}{y}\right)\dd y
+  &&\rightarrow\quad \text{Euler},
+\\
+\dd z
+  &=
+  \frac{\dd_x z}{\dd x}\dd x
+  +
+  \frac{\dd_y z}{\dd y}\dd y
+  &&\rightarrow\quad \text{Duhamel},
+\\
+\dd z
+  &=
+  \frac{\partial z}{\partial x}\dd x
+  +
+  \frac{\partial z}{\partial y}\dd y
+  &&\rightarrow\quad \text{Jacobi}.
+\end{align*}
+
+Voor integrabiliteit staat onderaan:
+\begin{align*}
+\pd{M}{y}
+  &=
+  \pd{N}{x}
+  \qquad
+  \Longrightarrow
+  \qquad
+  \text{als dit zo is, kan formule 1 wel geïntegreerd worden.}
+\end{align*}
+
+\newpage
+
+\section*{Pagina 25 --- Niet-viskeuze vloeistof in Cartesische en cilindrische coördinaten}
+
+\subsection*{Cartesische coördinaten}
+
+Beweging van een niet-viskeuze vloeistof in $x,y,z$:
+\begin{align*}
+\pd{u}{t}
++u\pd{u}{x}
++v\pd{u}{y}
++w\pd{u}{z}
+&=
+-\pd{P}{x}.
+\end{align*}
+
+Met potentiaal van externe krachten:
+\begin{align*}
+P
+  &=
+  \int \frac{\dd p}{\rho}+V,
+&
+V
+  &=
+  \text{potentiaal externe krachten}.
+\end{align*}
+
+\subsection*{Cilindercoördinaten}
+
+Voor $\left(r,\theta,z\right)$:
+\begin{align*}
+\pd{u}{t}
++u\pd{u}{r}
++v\left(
+  \frac{1}{r}\pd{u}{\theta}
+  -\frac{v}{r}
+ \right)
++w\pd{u}{z}
+&=
+-\pd{P}{r},
+\\
+\pd{v}{t}
++u\pd{v}{r}
++v\left(
+  \frac{1}{r}\pd{v}{\theta}
+  +\frac{u}{r}
+ \right)
++w\pd{v}{z}
+&=
+-\frac{1}{r}\pd{P}{\theta},
+\\
+\pd{w}{t}
++u\pd{w}{r}
++\frac{v}{r}\pd{w}{\theta}
++w\pd{w}{z}
+&=
+-\pd{P}{z}.
+\end{align*}
+
+\subsection*{Symmetrie over de $z$-as}
+
+Als alle grootheden onafhankelijk zijn van $\theta$:
+\begin{align*}
+\pd{u}{t}
++u\pd{u}{r}
+-\frac{v^2}{r}
++w\pd{u}{z}
+&=
+-\pd{P}{r},
+\\
+\pd{v}{t}
++u\pd{v}{r}
++\frac{uv}{r}
++w\pd{v}{z}
+&=
+0
+=
+\left(
+\pd{}{t}
++u\pd{}{r}
++w\pd{}{z}
+\right)(rv),
+\\
+\pd{w}{t}
++u\pd{w}{r}
++w\pd{w}{z}
+&=
+-\pd{P}{z}.
+\end{align*}
+
+Marge-opmerkingen:
+\begin{align*}
+V &= \text{functie van } r \text{ alleen},\\
+P &= \text{onafhankelijk van } z,\\
+P &= \int \frac{v^2}{r}\,\dd r.
+\end{align*}
+
+Geïntegreerde drukrelatie:
+\begin{align*}
+\int \frac{\dd p}{\rho}
+  &=
+  -V+\int \frac{v^2}{r}\,\dd r .
+\end{align*}
+
+\newpage
+
+\section*{Pagina 26 --- Variabele dichtheid en vorticiteitstransport}
+
+\subsection*{Variabele dichtheid}
+
+Een variabele-dichtheidsstroming kan als onsamendrukbaar worden beschouwd onder de voorwaarde:
+\begin{quote}
+For a steady flow, direction of velocity and that of the gradient of density be orthogonal.
+\end{quote}
+
+De vorticiteit wordt gedefinieerd als
+\begin{align*}
+\bm{\omega}
+  &=
+  \nabla\times\vect{u}.
+\end{align*}
+
+Startvergelijking:
+\begin{align*}
+\pd{\vect{u}}{t}
++\left(\vect{u}\cdot\nabla\right)\vect{u}
+&=
+-\frac{1}{\rho}\nabla p
++\frac{1}{\rho}\nabla\chi
++\vect{B}.
+\end{align*}
+
+Door de rotor van de vergelijking te nemen:
+\begin{align*}
+\nabla\times\pd{\vect{u}}{t}
+  &=
+  \pd{\bm{\omega}}{t},
+\\
+\nabla\times\left[\left(\vect{u}\cdot\nabla\right)\vect{u}\right]
+  &=
+  \nabla\times\left[
+  \frac{1}{2}\nabla\left(\vect{u}^2\right)
+  -\vect{u}\times\left(\nabla\times\vect{u}\right)
+  \right]
+\\
+  &=
+  -\nabla\times\left(\vect{u}\times\bm{\omega}\right)
+\\
+  &=
+  -\left[
+  -\bm{\omega}\left(\nabla\cdot\vect{u}\right)
+  +\left(\bm{\omega}\cdot\nabla\right)\vect{u}
+  -\left(\vect{u}\cdot\nabla\right)\bm{\omega}
+  +\vect{u}\left(\nabla\cdot\bm{\omega}\right)
+  \right].
+\end{align*}
+
+Omdat $\nabla\cdot\vect{u}=0$ en $\nabla\cdot\bm{\omega}=0$:
+\begin{align*}
+\nabla\times\left[\left(\vect{u}\cdot\nabla\right)\vect{u}\right]
+  &=
+  \bm{\omega}\left(\nabla\cdot\vect{u}\right)
+  -\left(\bm{\omega}\cdot\nabla\right)\vect{u}
+  +\left(\vect{u}\cdot\nabla\right)\bm{\omega}.
+\end{align*}
+
+Drukterm:
+\begin{align*}
+\nabla\times\left(\frac{1}{\rho}\nabla P\right)
+&=
+\frac{1}{\rho}\nabla\times\nabla P
++
+\nabla\left(\frac{1}{\rho}\right)\times\nabla P
+\\
+&=
+0-\frac{\nabla\rho}{\rho^2}\times\nabla P.
+\end{align*}
+
+De samengevatte vorticiteitstransportvergelijking:
+\begin{align*}
+\pd{\bm{\omega}}{t}
++\left(\vect{u}\cdot\nabla\right)\bm{\omega}
+&=
+\left(\bm{\omega}\cdot\nabla\right)\vect{u}
+-\bm{\omega}\left(\nabla\cdot\vect{u}\right)
++\frac{1}{\rho^2}\nabla\rho\times\nabla P
+\\
+&\quad
++\nabla\times\left(\frac{1}{\rho}\nabla\cdot\bm{\tau}\right)
++\nabla\times\vect{B}.
+\end{align*}
+
+Als $\vect{B}=\nabla\phi$, dan
+\begin{align*}
+\nabla\times\vect{B}
+  &=
+  \nabla\times\nabla\phi
+  =
+  0.
+\end{align*}
+
+\newpage
+
+\section*{Pagina 27 --- Helmholtz: constantheid van vortexbeweging}
+
+\subsection*{Variatie van rotatiesnelheid}
+
+De pagina begint met:
+\begin{quote}
+Bepaal de variatie van rotatiesnelheid. \\
+$\xi,\eta,\zeta$ wanneer de potentiële krachten er alleen zijn.
+\end{quote}
+
+Als $\psi$ een functie is van $x,y,z,t$ en met de verandering langs de beweging wordt meegenomen, dan:
+\begin{align*}
+\dd\psi
+&=
+\pd{\psi}{t}\dd t
++\pd{\psi}{x}\dd x
++\pd{\psi}{y}\dd y
++\pd{\psi}{z}\dd z .
+\end{align*}
+
+Als de verandering van $\psi$ wordt bepaald volgens de inwendige beweging, dan moet worden genomen:
+\begin{align*}
+\dd x &= u\,\dd t,
+&
+\dd y &= v\,\dd t,
+&
+\dd z &= w\,\dd t.
+\end{align*}
+
+Hieruit volgt:
+\begin{align*}
+\pd{\psi}{t}
+&=
+\pd{\psi}{t}
++u\pd{\psi}{x}
++v\pd{\psi}{y}
++w\pd{\psi}{z}.
+\end{align*}
+
+\subsection*{Rotatiesnelheden}
+
+Voor de componenten $\xi,\eta,\zeta$ is genoteerd:
+\begin{align*}
+\pd{\xi}{t}
+&=
+\xi\pd{u}{x}
++\eta\pd{u}{y}
++\zeta\pd{u}{z}
+=
+\xi\pd{u}{x}
++\eta\pd{v}{x}
++\zeta\pd{w}{x},
+\\
+\pd{\eta}{t}
+&=
+\xi\pd{v}{x}
++\eta\pd{v}{y}
++\zeta\pd{v}{z}
+=
+\xi\pd{u}{y}
++\eta\pd{v}{y}
++\zeta\pd{w}{y},
+\\
+\pd{\zeta}{t}
+&=
+\xi\pd{w}{x}
++\eta\pd{w}{y}
++\zeta\pd{w}{z}
+=
+\xi\pd{u}{z}
++\eta\pd{v}{z}
++\zeta\pd{w}{z}.
+\end{align*}
+
+Als in de stralen van de deeltjes $\xi,\eta,\zeta$ gelijk aan nul zijn:
+\begin{align*}
+\pd{\xi}{t}
+=
+\pd{\eta}{t}
+=
+\pd{\zeta}{t}
+=
+0.
+\end{align*}
+
+\newpage
+
+\section*{Pagina 28 --- Vortexdraad en rotatiesnelheid}
+
+Als $\xi,\eta,\zeta$ de rotationele snelheden rond de coördinaatassen zijn, dan is de rotatiesnelheid rond de normale as:
+\begin{align*}
+q^2
+  &=
+  \xi^2+\eta^2+\zeta^2.
+\end{align*}
+
+De cosinus van de hoek van deze as met de coördinaatassen wordt weergegeven door
+\begin{align*}
+\frac{\xi}{q},\qquad
+\frac{\eta}{q},\qquad
+\frac{\zeta}{q}.
+\end{align*}
+
+\subsection*{Klein lijnstuk van een vortexdraad}
+
+Stel een verschuiving in de richting van de middellijn-as, als een oneindig klein stukje van de vortexdraad. Deze partie kan over de drie assen worden ontbonden als
+\begin{align*}
+\epsilon,\quad \eta,\quad \zeta.
+\end{align*}
+
+Voor een punt met snelheidscomponenten $U,V,W$ en voor het andere uiteinde:
+\begin{align*}
+U_1
+&=
+U+\epsilon\pd{U}{x}
++\eta\pd{U}{y}
++\zeta\pd{U}{z},
+\\
+V_1
+&=
+V+\epsilon\pd{V}{x}
++\eta\pd{V}{y}
++\zeta\pd{V}{z},
+\\
+W_1
+&=
+W+\epsilon\pd{W}{x}
++\eta\pd{W}{y}
++\zeta\pd{W}{z}.
+\end{align*}
+
+De eindpunten van het lijnstuk veranderen gedurende $\dd t$ volgens:
+\begin{align*}
+\epsilon' + \left(U_1-U\right)\dd t
+  &=
+  \epsilon+\pd{\epsilon}{t}\dd t,
+\\
+\eta' + \left(V_1-V\right)\dd t
+  &=
+  \eta+\pd{\eta}{t}\dd t,
+\\
+\zeta' + \left(W_1-W\right)\dd t
+  &=
+  \zeta+\pd{\zeta}{t}\dd t.
+\end{align*}
+
+De blauwe opmerking onderaan vermeldt dat de nieuwe positie van de verbindingsvector door de vorige positie plus de verandering wordt bepaald. De rode conclusie luidt:
+\begin{quote}
+Elke vortexdraad blijft bestaan uit dezelfde deeltjes.
+\end{quote}
+
+\newpage
+
+\section*{Pagina 29 --- Oppervlakte-integraal voor de rotatiesnelheid}
+
+Uit berekening 2 komt direct:
+\begin{align*}
+\pd{\xi}{x}
++\pd{\eta}{y}
++\pd{\zeta}{z}
+&=
+0.
+\end{align*}
+
+Hieruit blijkt:
+\begin{align*}
+\iiint_{\mathcal{S}}
+\left(
+\pd{\xi}{x}
++\pd{\eta}{y}
++\pd{\zeta}{z}
+\right)
+\dd x\,\dd y\,\dd z
+&=
+0.
+\end{align*}
+
+Door integratie over een willekeurig deel van de watermassa:
+\begin{align*}
+\iint \xi\,\dd y\,\dd z
++
+\iint \eta\,\dd z\,\dd x
++
+\iint \zeta\,\dd x\,\dd y
+&=
+0.
+\end{align*}
+
+Voor het gehele oppervlak van ruimte $\mathcal{S}$ kan men een deel vervangen door de richtingcosinussen van de normaal:
+\begin{align*}
+\dd y\,\dd z &= \cos\alpha\,\dd\omega,\\
+\dd z\,\dd x &= \cos\beta\,\dd\omega,\\
+\dd x\,\dd y &= \cos\gamma\,\dd\omega.
+\end{align*}
+
+Dus:
+\begin{align*}
+\iint
+\left(
+\xi\cos\alpha
++\eta\cos\beta
++\zeta\cos\gamma
+\right)
+\dd\omega
+&=
+0.
+\end{align*}
+
+Als $\sigma$ de resulterende rotatiesnelheid is en $\theta$ de hoek tussen de as en de normaal:
+\begin{align*}
+\iint \sigma\cos\theta\,\dd\omega
+&=
+0.
+\end{align*}
+
+\newpage
+
+\section*{Pagina 30 --- Helmholtz: drie ruimtelijke integralen}
+
+Als de beweging van een vortexbuis in een vloeistof kan worden bepaald, dan kunnen de voorwaarden voor $\xi,\eta,\zeta$ compleet bepaald worden.
+
+De snelheden $u,v,w$ moeten in een watermassa $\mathcal{S}$ voldoen aan:
+\begin{align*}
+\pd{\xi}{x}
++\pd{\eta}{y}
++\pd{\zeta}{z}
+&=
+0,
+\\
+\pd{u}{x}
++\pd{v}{y}
++\pd{w}{z}
+&=
+0.
+\end{align*}
+
+Daarnaast:
+\begin{align*}
+\pd{v}{z}
+-\pd{w}{y}
+&=
+2\xi,
+\\
+\pd{w}{x}
+-\pd{u}{z}
+&=
+2\eta,
+\\
+\pd{u}{y}
+-\pd{v}{x}
+&=
+2\zeta.
+\end{align*}
+
+Met richtingcosinussen:
+\begin{align*}
+\xi\cos\alpha+\eta\cos\beta+\zeta\cos\gamma&=0,
+&
+\sigma\cos\theta&=0.
+\end{align*}
+
+De hoek $\theta$ is de hoek tussen normaal en oppervlak.
+
+\subsection*{Hulpfuncties}
+
+Onderaan wordt een representatie met vier functies $L,M,N,P$ gegeven:
+\begin{align*}
+U
+&=
+\pd{P}{x}
++\pd{N}{y}
+-\pd{M}{z},
+\\
+V
+&=
+\pd{P}{y}
++\pd{L}{z}
+-\pd{N}{x},
+\\
+W
+&=
+\pd{P}{z}
++\pd{M}{x}
+-\pd{L}{y}.
+\end{align*}
+
+\newpage
+
+\section*{Pagina 31 --- Simpel verbonden ruimte en circulaire vortexbuis}
+
+Voor een vloeistof die volledig afgesloten is met een vaste wand, waarbij $\vect{N}$ de normaal van het oppervlak van het body is, staat:
+\begin{quote}
+Dan is de snelheidscomponent vanaf de rand $\td{\varphi}{n}=0$.
+\end{quote}
+
+Daaruit volgt de identiteit:
+\begin{align*}
+\iiint_{\mathcal{S}}
+\left[
+\left(\pd{\varphi}{x}\right)^2
++
+\left(\pd{\varphi}{y}\right)^2
++
+\left(\pd{\varphi}{z}\right)^2
+\right]
+\dd x\,\dd y\,\dd z
+&=
+-
+\iint_{\partial\mathcal{S}}
+\varphi\td{\varphi}{n}\,\dd\omega .
+\end{align*}
+
+\subsection*{Circulaire vortexbuis}
+
+De parametrisatie is genoteerd als
+\begin{align*}
+x &= \chi\cos\xi,\\
+y &= \chi\sin\xi,\\
+z &= z.
+\end{align*}
+
+\newpage
+
+\section*{Pagina 32 --- Vortexknopen}
+
+De algemene vorm van een knoop is genoteerd als
+\begin{align*}
+x
+&=
+m\cos\left(p\theta\right)
++N\cos\left(q\theta\right),
+\\
+y
+&=
+m\sin\left(p\theta\right)
++N\sin\left(q\theta\right),
+\\
+z
+&=
+h\sin\left(t\theta\right).
+\end{align*}
+
+Voor de parameter:
+\begin{align*}
+0<\theta<2\pi.
+\end{align*}
+
+De getallen $p$ en $q$ zijn natuurlijke nummers met $p>0$. De notitie vermeldt:
+\begin{align*}
+q<0 &\quad\Rightarrow\quad \text{de loops liggen buiten},\\
+q>0 &\quad\Rightarrow\quad \text{de loops liggen binnen}.
+\end{align*}
+
+\subsection*{Trefoil-knoop}
+
+Voor de trefoil-knoop staat:
+\begin{align*}
+\frac{N}{M}
+  &=
+  1{,}5,
+\\
+x
+&=
+1\cos\left(1\theta\right)
++1{,}5\cos\left(-2\theta\right),
+\\
+y
+&=
+1\sin\left(1\theta\right)
++1{,}5\sin\left(-2\theta\right),
+\\
+z
+&=
+0{,}35\sin\left(3\theta\right).
+\end{align*}
+
+\newpage
+
+\section*{Pagina 33 --- Toroïdale en bipolaire coördinaten}
+
+\subsection*{Toroïdale coördinaten}
+
+De notitie geeft toruscoördinaten $\left(\eta,\sigma,\phi\right)$:
+\begin{align*}
+x
+&=
+a\frac{\sinh\eta}{\cosh\eta-\cos\sigma}\cos\phi,
+\\
+y
+&=
+a\frac{\sinh\eta}{\cosh\eta-\cos\sigma}\sin\phi,
+\\
+z
+&=
+a\frac{\sin\sigma}{\cosh\eta-\cos\sigma}.
+\end{align*}
+
+Met domein:
+\begin{align*}
+-\pi &< \sigma \leq \pi,
+&
+\eta &> 0,
+&
+0 &\leq \phi < 2\pi.
+\end{align*}
+
+\subsection*{Bipolaire coördinaten}
+
+Voor bipolaire coördinaten $\left(\tau,\sigma\right)$:
+\begin{align*}
+\tau
+&=
+\frac{1}{2}
+\ln
+\left(
+\frac{\left(x+a\right)^2+y^2}
+     {\left(x-a\right)^2+y^2}
+\right),
+\\
+\pi-\sigma
+&=
+2\arctan
+\left(
+\frac{2ay}
+     {a^2-x^2-y^2+\sqrt{\left(a^2-x^2-y^2\right)^2+4a^2y^2}}
+\right).
+\end{align*}
+
+Ook staan de equivalenten:
+\begin{align*}
+\tanh\tau
+&=
+\frac{2ax}{x^2+y^2+a^2},
+\\
+\tan\sigma
+&=
+\frac{2ay}{x^2+y^2-a^2}.
+\end{align*}
+
+\newpage
+
+\section*{Pagina 34 --- Vorticiteit in natuurlijke coördinaten}
+
+De schets toont een snelheid $\vect{V}$ met tangentiële richting $\hat{\vect{s}}$ en normale richting $\hat{\vect{n}}$. Met hoek $\varphi$:
+\begin{align*}
+V_{\hat{s}}
+&=
+V\cos\varphi,
+&
+V_{\hat{n}}
+&=
+V\sin\varphi.
+\end{align*}
+
+Voor de richtingcosinussen is zichtbaar:
+\begin{align*}
+s_x &= \cos\varphi,
+&
+s_y &= \sin\varphi,
+\\
+N_x &= -s_y,
+&
+N_y &= s_x.
+\end{align*}
+
+De laatste regels beginnen een afleiding in natuurlijke coördinaten:
+\begin{align*}
+\pd{v}{x'}
+&=
+\pd{v}{x}
++
+V\pd{s_x}{x},
+\\
+\pd{u}{y'}
+&=
+\onzeker{\text{onvolledig op de pagina}}.
+\end{align*}
+
+\newpage
+
+\section*{Pagina 35 --- Enstrophy}
+
+\subsection*{Definitie}
+
+De pagina beschrijft enstrophy als een potentiaaldichtheid:
+\begin{quote}
+Potential density, a quantity related to kinetic energy in a flow model corresponding to dissipation.
+\end{quote}
+
+Voor een snelheidsveld:
+\begin{align*}
+\mathcal{E}\left(\vect{u}\right)
+  &=
+  \int_{\Omega}
+  \left|\nabla\vect{u}\right|^2
+  \dd x,
+\\
+\left|\nabla\vect{u}\right|^2
+  &=
+  \sum_{i,j=1}^{n}
+  \left(\partial_i u^j\right)^2 .
+\end{align*}
+
+Voor een incompressibele stroming met $\nabla\cdot\vect{u}=0$:
+\begin{align*}
+\mathcal{E}\left(\bm{\omega}\right)
+  &=
+  \int_{\Omega}
+  \omega^2\,\dd x.
+\end{align*}
+
+Ook staat genoteerd:
+\begin{align*}
+\mathcal{E}\left(\vect{u}\right)
+  &=
+  \int_{\Omega}
+  \left|\nabla\vect{u}\right|^2
+  \dd S.
+\end{align*}
+
+\subsection*{Navier--Stokes}
+
+In Navier--Stokes:
+\begin{align*}
+\frac{\dd}{\dd t}
+\left(
+\frac{1}{2}\int_{\Omega}u^2
+\right)
+&=
+-\nu\,\mathcal{E}\left(\vect{u}\right),
+\\
+\nu
+&=
+\text{kinematic viscosity}.
+\end{align*}
+
+\newpage
+
+\section*{Pagina 36 --- Rossby-getal, Ekman-getal en torsie}
+
+\subsection*{Rossby-getal}
+
+\begin{align*}
+R_o
+  &=
+  \frac{U}{\Omega d}.
+\end{align*}
+
+\begin{itemize}
+\item Kleinere Rossby: sterker rotatie-effect.
+\item Grotere Rossby: Coriolis-effect relatief kleiner ten opzichte van interne krachten.
+\end{itemize}
+
+\subsection*{Ekman-getal}
+
+\begin{align*}
+E_k
+  &=
+  \frac{\nu_E}{\Omega H^2}.
+\end{align*}
+
+Marge-opmerking: relatieve importantie van horizontale en verticale frictie.
+
+\subsection*{Torsie van een cilinder}
+
+\begin{align*}
+T
+  &=
+  I\alpha,
+\\
+I
+  &=
+  \frac{mR^2}{2},
+\\
+m
+  &=
+  \rho V
+  =
+  \rho\pi R^2 H.
+\end{align*}
+
+Voor de cilinder volgt:
+\begin{align*}
+I
+&=
+\frac{\rho\pi R^4H}{2},
+\\
+T
+&=
+\frac{\pi\rho R^4H}{2}\alpha.
+\end{align*}
+
+\newpage
+
+\section*{Pagina 37 --- Momentumformule en dieptegemiddelde vorm}
+
+Bovenaan staan losse identiteiten en componentafleidingen; enkele delen zijn moeilijk leesbaar. De centrale momentumformule is:
+\begin{align*}
+\rho
+\left[
+\pd{u}{t}
++u\pd{u}{x}
++v\pd{u}{y}
++w\pd{u}{z}
+-fV
+\right]
+&=
+-\pd{P}{x}
++R_x,
+\end{align*}
+waarbij $R_x$ als weerstand is aangeduid.
+
+De schets toont een laag tussen bodem $z=b$ en vrije oppervlakte $z=N$, met hoogte $h$ en hydrostatische druk. Integratie van $b$ tot $N$ geeft:
+\begin{align*}
+h\left(
+\pd{u}{x}
++\pd{v}{y}
+\right)
++\omega_N-\omega_b
+&=
+0,
+\\
+h\left(
+\pd{u}{x}
++\pd{v}{y}
+\right)
++\pd{N}{t}
++\pd{b}{t}
+&=
+0.
+\end{align*}
+
+De opmerking bij de schets:
+\begin{align*}
+P
+  &=
+  \rho g\left(N-z\right).
+\end{align*}
+
+Na dieptegemiddelde benadering:
+\begin{align*}
+\pd{u}{t}
++u\pd{u}{x}
++v\pd{u}{y}
+-fV
+&=
+-g\pd{N}{x}
++R_x,
+\\
+\pd{v}{t}
++u\pd{v}{x}
++v\pd{v}{y}
++fU
+&=
+-g\pd{N}{y}
++R_y.
+\end{align*}
+
+Onderaan staan differentiaties van deze twee vergelijkingen. Samengevat is zichtbaar:
+\begin{align*}
+\pd{}{y}
+\left(
+\pd{u}{t}
++u\pd{u}{x}
++v\pd{u}{y}
+-fV
+\right)
+&=
+-g\frac{\partial^2 N}{\partial x\,\partial y}
++\pd{R_x}{y},
+\\
+\pd{}{x}
+\left(
+\pd{v}{t}
++u\pd{v}{x}
++v\pd{v}{y}
++fU
+\right)
+&=
+-g\frac{\partial^2 N}{\partial x\,\partial y}
++\pd{R_y}{x}.
+\end{align*}
+
+\newpage
+
+\section*{Pagina 38 --- Vorticiteitsvorm van de dieptevergelijkingen}
+
+De pagina begint met de continuïteitsachtige relaties:
+\begin{align*}
+\frac{\D h}{\D t}
+&=
+0,
+\\
+\pd{\zeta}{t}
++u\pd{\zeta}{x}
++v\pd{\zeta}{y}
+&=
+0,
+\\
+\pd{u}{x}
++\pd{v}{y}
+&=
+-\frac{1}{h}\frac{\D h}{\D t}.
+\end{align*}
+
+Daarna:
+\begin{align*}
+\pd{\zeta}{t}
++u\pd{\zeta}{x}
++v\pd{\zeta}{y}
++\left(\zeta+f\right)
+\left(
+\pd{u}{x}
++\pd{v}{y}
+\right)
++\beta v
+&=
+0.
+\end{align*}
+
+Met de hoogte $h$:
+\begin{align*}
+\frac{1}{h}\frac{\D\left(\zeta+f\right)}{\D t}
+-\frac{\zeta+f}{h^2}\frac{\D h}{\D t}
+&=
+\frac{1}{h},
+\\
+\frac{\D}{\D t}
+\left(
+\frac{\zeta+f}{h}
+\right)
+&=
+\frac{1}{h}.
+\end{align*}
+
+Marge-opmerking bij weerstand:
+\begin{align*}
+\pd{R_y}{x}
+-\pd{R_x}{y}
+&=
+0.
+\end{align*}
+
+In de rode box staat de algemene vorticiteitsvergelijking in componentvorm:
+\begin{align*}
+\boxed{
+\begin{aligned}
+\pd{\zeta}{t}
++\vect{u}\cdot\nabla\zeta
+-\left(\zeta+f\right)
+\left(
+\pd{u}{x}
++\pd{v}{y}
+\right)
+&+
+\left(
+\pd{w}{x}\pd{v}{z}
+-\pd{w}{y}\pd{u}{z}
+\right)
++w\pd{\zeta}{z}
+\\
+&=
+\pd{}{x}\left(\frac{1}{\rho}\right)\pd{P}{y}
+-
+\pd{P}{x}\pd{}{y}\left(\frac{1}{\rho}\right).
+\end{aligned}
+}
+\end{align*}
+
+\newpage
+
+\section*{Pagina 39 --- Puntvortex, Boyle's law en volumetest}
+
+\subsection*{Puntvortex}
+
+Voor een circulaire of puntvortex:
+\begin{align*}
+V_{\theta}
+&=
+\frac{\Gamma}{2\pi r},
+\\
+V_{\theta}
+&=
+r\td{\psi}{r},
+&
+V_r
+&=
+-\frac{1}{r}\td{\psi}{\theta}.
+\end{align*}
+
+De potentiaal- en stroomfunctie zijn genoteerd als
+\begin{align*}
+\psi
+&=
+\frac{\Gamma}{2\pi}\ln r,
+&
+\phi
+&=
+\frac{\Gamma}{2\pi}\theta.
+\end{align*}
+
+Circulatie:
+\begin{align*}
+\Gamma
+&=
+\oint \vect{V}\cdot\dd\vect{s}
+=
+\oint\left(
+u\,\dd x+v\,\dd y+w\,\dd z
+\right),
+\\
+\Gamma
+&=
+\int V\cos\theta\,\dd s.
+\end{align*}
+
+\subsection*{Boyle's law}
+
+De notitie schrijft:
+\begin{align*}
+PV
+&=
+\frac{2}{3}T
+-
+\frac{1}{6}\rho
+\iint
+\left(
+u^2+v^2+w^2
+\right)
+\left(
+x\cos\alpha+y\cos\beta+z\cos\gamma
+\right).
+\end{align*}
+
+\subsection*{Newton-potentiaal om de zon}
+
+\begin{align*}
+\Phi
+&=
+\frac{GM}{r}
++
+\frac{1}{6}\Lambda c^2r^2.
+\end{align*}
+
+Vacuümenergiedichtheid:
+\begin{align*}
+\rho_{\mathrm{vacuum}}
+&=
+\frac{1}{V}\frac{1}{2}\hbar\omega
+\approx
+\frac{\hbar}{2\pi^2c^3}
+\int_{0}^{\omega_{\max}}
+\omega^3\,\dd\omega
+\\
+&=
+\frac{\hbar}{8\pi^2c^3}
+\omega_{\max}^{4}.
+\end{align*}
+
+De onderaan genoteerde schaalrelatie:
+\begin{align*}
+\Lambda
+  &\simeq
+  \frac{Gm^6}{\hbar^4}.
+\end{align*}
+
+\subsection*{Volumetest}
+
+Onderaan staat de divergentie-achtige oppervlakteterm:
+\begin{align*}
+\int_S
+\left(
+x\,\dd y\,\dd z
++
+y\,\dd x\,\dd z
++
+z\,\dd x\,\dd y
+\right)
+&=
+\iiint_V
+\left(1+1+1\right)
+\dd x\,\dd y\,\dd z
+\\
+&=
+3\int_{0}^{1}\int_{0}^{1}\int_{0}^{1}
+\dd x\,\dd y\,\dd z
+\\
+&=
+3.
+\end{align*}
+
+\newpage
+
+\subsection*{Pagina 40 --- Exponenten, logaritmen en trigonometrische combinaties}
+
+\textbf{Exponentiële groei.}
+\begin{align*}
+x(t) &= a e^{kt},\\
+x(0) &= a,\\
+\td{x}{t} &= kx.
+\end{align*}
+Als $a\neq 0$, dan
+\begin{align*}
+\frac{\dd x}{\dd t} &= kx
+\quad\Longrightarrow\quad
+\int \frac{\dd x}{x} = \int k\,\dd t
+\quad\Longrightarrow\quad
+\ln(x)=kt+c,\\
+\ln(a)&=c.
+\end{align*}
+
+\textbf{Machten en logaritmen.}
+\begin{align*}
+a^b &= c,
+&
+a &= \sqrt[b]{c},
+&
+a &= b^c,
+&
+b &= \log_a(c),\\
+e^x &= y,
+&
+\log_e(y)&=x,
+&
+\ln(y)&=x.
+\end{align*}
+\begin{align*}
+\log(ab) &= \log(a)+\log(b),\\
+\log\left(\frac{A}{b}\right) &= \log(A)-\log(b),\\
+\log(A^b) &= b\log(A),\\
+\log\left(\sqrt[b]{A}\right) &= \frac{1}{b}\log(A).
+\end{align*}
+
+\textbf{Trigonometrie.}
+\begin{align*}
+\sin^2(\phi)+\cos^2(\phi)&=1.
+\end{align*}
+Voor een lineaire combinatie:
+\begin{align*}
+a\sin(\phi)+b\cos(\phi)&=A\sin(\phi+K),\\
+a\sin(\phi)-b\cos(\phi)&=A\sin(\phi-K),\\
+a\cos(\phi)+b\sin(\phi)&=A\cos(\phi-K),\\
+a\cos(\phi)-b\sin(\phi)&=A\cos(\phi+K),
+\end{align*}
+waarbij
+\begin{align*}
+A &= \sqrt{a^2+b^2},
+&
+K &\approx \tan^{-1}\left(\frac{b}{a}\right).
+\end{align*}
+
+\subsection*{Pagina 41 --- Thermodynamica}
+
+Uit de ideale-gasrelatie $p=\rho R T$ volgt:
+\begin{align*}
+\ln(T)&=\ln(p)-\ln(\rho)-\ln(R),\\
+\frac{\dd T}{T}&=\frac{\dd p}{p}-\frac{\dd \rho}{\rho}.
+\end{align*}
+
+Een genoteerde thermodynamische productregel:
+\begin{align*}
+\left(\pd{p}{V}\right)_{T}
+\left(\pd{V}{T}\right)_{p}
+\left(\pd{T}{p}\right)_{V}
+&=-1.
+\end{align*}
+Daarnaast staat:
+\begin{align*}
+\Pi &= \frac{p}{T}.
+\end{align*}
+
+In vectornotatie zijn de volgende differentiële vormen genoteerd:
+\begin{align*}
+\dd T \times \dd p
+  &= -\frac{T}{\rho}\left(\nabla p\times \nabla \rho\right),\\
+\dd T \times \dd S
+  &= \frac{RT}{p\rho}\left(\nabla p\times \nabla \rho\right),\\
+\dd T \times \dd S
+  &= \frac{1}{\rho^2}\left(\nabla p\times \nabla \rho\right).
+\end{align*}
+
+\textbf{Potentiële temperatuur.}
+\begin{align*}
+\ln(\theta)
+  &=\ln(T)+K\ln(p_0)-K\ln(p),\\
+\frac{\dd \theta}{\theta}
+  &=\frac{\dd T}{T}-K\frac{\dd p}{p},\\
+\theta
+  &=T\left(\frac{p_0}{p}\right)^K.
+\end{align*}
+Een entropierelatie is genoteerd als
+\begin{align*}
+\dd s
+  &= \dd\left[c_v\ln(p)+c_p\ln(V)\right],\\
+\dd s
+  &= \frac{NR}{\gamma-1}\left[\ln(p)+\gamma\ln(V)\right],
+&
+\gamma&=\frac{c_p}{c_v}.
+\end{align*}
+Aantekening:
+\begin{align*}
+\gamma=\frac{5}{3}\quad\text{voor 1 atoom},
+\qquad
+\gamma=\frac{7}{5}\quad\text{voor 2 atomen}.
+\end{align*}
+
+\textbf{Enthalpie.}
+\begin{align*}
+H &= E+pV,
+\end{align*}
+met $E$ als inwendige energie, $p$ in pascal en $V$ als volume.
+
+\subsection*{Pagina 42 --- Vortexring en translatiesnelheid}
+
+De pagina bespreekt het herhalen van een ringvormige vortex. Notatie:
+\begin{align*}
+g &:= \text{radius van de circulatie-as van een vortexring},\\
+a &:= \text{radius van de kern}.
+\end{align*}
+De ring is ongeveer circulair als
+\begin{align*}
+g\gg a.
+\end{align*}
+De kern is de hoogfrequente component $\omega$. Voor de deeltjes vast aan de as wordt een verhouding genoteerd als
+\begin{align*}
+\frac{\omega x}{g}.
+\end{align*}
+
+De resulterende snelheid wordt benoemd als de von Kármán-snelheid. In woorden:
+\begin{quote}
+De translatiesnelheid is hoog vergeleken met de vloeistofsnelheid langs de as door het centrum van de ring. Als het deel zo klein is dat $\log(8g/a)$ groot is vergeleken met $2\pi$, blijft de translatiesnelheid klein vergeleken met de kern-oppervlakte-vloeistofsnelheid.
+\end{quote}
+
+De onderste schets toont een kleine kernradius $a$ en een grote ringradius $g$.
+
+\subsection*{Pagina 43 --- Vortexring, kernradius en benaderde formules}
+
+De schets bovenaan toont twee vortexkernen; $a$ wordt genoteerd als kernradius. Voor deeltjes op afstand $x$ wordt een snelheidsbijdrage genoteerd als
+\begin{align*}
+\frac{\omega x}{d},
+\end{align*}
+waarbij het afstandssymbool in het handschrift \onzeker{onzeker} is; hier is het als $d$ geschreven.
+
+Snelheid:
+\begin{align*}
+V
+  &=
+  \frac{\omega a^2}{2d}
+  \left(
+     \log\frac{8d}{a}
+     -\frac{1}{4}
+  \right).
+\end{align*}
+
+Snelheid op het oppervlak van de kern:
+\begin{align*}
+\omega a
+  &= V.
+\end{align*}
+
+Voor het centrum van de ring wordt genoteerd:
+\begin{align*}
+V
+  &=
+  \frac{\pi\omega a^2}{d}.
+\end{align*}
+
+De grootheid $T$ wordt aangeduid als snelheidsverhouding:
+\begin{align*}
+T
+  &=
+  \frac{d}{2g}
+  \left(
+     \log\frac{8g}{a}
+     -\frac{1}{4}
+  \right)Q,\\
+T
+  &=
+  \frac{\log\frac{8g}{a}-\frac{1}{4}}{2\pi}\,W.
+\end{align*}
+
+\textbf{Di Bartini-notitie.}
+In het rode kader staat:
+\begin{align*}
+V_x
+  &=
+  \frac{\Gamma}{2\pi D}
+  \left[
+     \ln\left(\frac{4D}{r}\right)
+     -\frac{1}{4}
+  \right],\\
+V_0
+  &=
+  \frac{k\pi D}{2r}.
+\end{align*}
+
+Daaronder:
+\begin{align*}
+\frac{D}{r}
+  &\approx \frac{1}{4}e^7.
+\end{align*}
+
+\textbf{Ringvortex met holle kern.}
+\begin{align*}
+K
+  &=
+  \frac{1}{2}\rho\Gamma^2R
+  \left[
+     \ln\left(\frac{8R}{a}\right)-2
+  \right],\\
+V
+  &=
+  \frac{\Gamma}{4\pi R}
+  \left[
+     \ln\left(\frac{8R}{a}\right)-\frac{1}{2}
+  \right],\\
+P
+  &=
+  \rho\Gamma\pi R^2.
+\end{align*}
+
+\textbf{Groene marge-aantekening.}
+De volgende relaties zijn genoteerd maar deels moeilijk leesbaar:
+\begin{align*}
+\frac{X}{2} &= a,\\
+\rho v &= R(a+\varepsilon),\\
+R &= \frac{\rho_0v_0}{a+\varepsilon},\\
+\frac{\rho v}{\rho_0v_0}
+  &=
+  \frac{a+t}{a+t_0}.
+\end{align*}
+
+\subsection*{Pagina 44 --- Reynoldsgetal, vortexlog en akoestische bron}
+
+Bovenaan staat een compressorschets met luchtstroom en snel groeiende verstoringen; dit wordt gekoppeld aan turbulentie en een hoog Reynoldsgetal.
+
+Het Reynoldsgetal wordt genoteerd als
+\begin{align*}
+\mathrm{Re}
+  &=
+  \frac{\rho uL}{\mu}.
+\end{align*}
+
+De teller wordt aangeduid als netto effect; de noemer als viskeus effect. De schets ernaast contrasteert laag Reynoldsgetal met hoog Reynoldsgetal:
+\begin{center}
+\begin{tabular}{>{\raggedright\arraybackslash}p{6cm}p{7cm}}
+laag Reynoldsgetal & gladde / laminaire stroming \\
+hoog Reynoldsgetal & turbulente rookstroming, wervels en verstoringen
+\end{tabular}
+\end{center}
+
+De log-log-schets geeft een inverse-square-law:
+\begin{align*}
+\text{amplitude}
+  &\propto \frac{1}{r^2}
+  \quad\text{of}\quad
+  \text{intensiteit}
+  \propto \frac{1}{r^2}.
+\end{align*}
+
+\textbf{Akoestische puntbron.}
+De pagina noteert:
+\begin{align*}
+c &= \text{geluidssnelheid},\\
+\dot{V}(t) &= \text{bronsterkte},\\
+q &= \rho\dot{V}.
+\end{align*}
+
+Voor de drukfluctuatie van een bron:
+\begin{align*}
+\Delta p
+  &=
+  \frac{\dot{q}\left(t-\frac{r}{c}\right)}{4\pi r}.
+\end{align*}
+
+Hierbij staat in de tekening $q(t)$ bij de bron en $r$ als afstand.
+
+\subsection*{Pagina 45 --- Oppervlaktekrachten en akoestische dipolen}
+
+\textbf{Oppervlaktekrachten.}
+Waar oppervlakken elkaar raken, is de hoek uniek bepaald door de energie van de onderdelen.
+
+Een gebogen vloeistofoppervlak heeft een hogere druk dan de holle kant. De Laplace-druk is genoteerd als
+\begin{align*}
+\Delta P
+  &=
+  \sigma
+  \left(
+     \frac{1}{R_1}
+     +\frac{1}{R_2}
+  \right).
+\end{align*}
+
+\textbf{Akoestische schaling.}
+In de marge staan schattingen voor nabije en verre druk:
+\begin{align*}
+\frac{P_{\mathrm{far}}}{P_{\mathrm{near}}}
+  &\sim
+  \frac{\ell}{r}
+  \left(\frac{2\pi\ell}{\lambda}\right)^2,\\
+\frac{P_{\mathrm{far}}}{P_{\mathrm{near}}}
+  &\sim
+  \frac{\ell}{r}
+  \left(\frac{U}{c}\right)^2.
+\end{align*}
+
+Een Doppler-achtige factor is genoteerd als
+\begin{align*}
+\frac{2\pi\ell}{\lambda\left(1-\frac{u_e}{c}\cos\theta\right)}.
+\end{align*}
+
+De tekst in rood:
+\begin{quote}
+Als $\ell$ klein genoeg is, verdwijnt het krachtveld.
+\end{quote}
+
+Verder:
+\begin{align*}
+\text{rate of change of momentum}
+  &= \text{force}.
+\end{align*}
+
+\textbf{Dipool en quadrupool.}
+De notitie geeft:
+\begin{align*}
+\text{dipool} &\sim \frac{2\pi\ell}{\lambda},\\
+\text{quadrupool} &\sim \left(\frac{2\pi\ell}{\lambda}\right)^2.
+\end{align*}
+
+Voor een dipool van kracht $\dot{q}(t)\ell$:
+\begin{align*}
+\Delta p
+  &=
+  \frac{\dot{q}\left(t-\frac{r}{c}\right)\ell\cos\theta}{4\pi r^2}
+  +
+  \frac{\ddot{q}\left(t-\frac{r}{c}\right)\ell\cos\theta}{4\pi r c}.
+\end{align*}
+
+Onderaan staat:
+\begin{quote}
+Als de afstand $r$ groot is vergeleken bij $\ell$, zijn de drukfluctuaties niet los afhankelijk van de kracht, maar van het product van $q$ en $\ell$.
+\end{quote}
+
+\subsection*{Pagina 46 --- Stabiele beweging en torus-helix}
+
+\textbf{Stabiele beweging.}
+\begin{quote}
+De configuratie blijft gelijk, maar beweegt in de ruimte.
+\end{quote}
+
+De pagina noemt drie gevallen:
+\begin{enumerate}
+\item Vast lichaam, symmetrisch om een as, draait om een centrale as plus een parallelle translatie; elke ``inner met rust gelaten'' configuratie wordt een stabiele beweging genoemd.
+\item Vast lichaam, welke vorm ook, draait om een centrale as en beweegt parallel aan deze as; dit is een stabiele beweging.
+\item Een doorbroken vast lichaam in een magnetisch vloeistofveld, dat zich volgens een gyrotrope en akoestische informatie-stroming door de doorbraak begeeft, is een stabiele stroming.
+\end{enumerate}
+
+De schetsen onderaan tonen gesloten krommen met labels $3,4,5$ die worden gelijkgesteld aan een torus-helix. De groene aantekening:
+\begin{align*}
+\text{torus}
+  &= \text{fans-ring door het draaien van een cirkel}.
+\end{align*}
+
+Voor een helix:
+\begin{align*}
+a&=\text{radius van de cirkel van de helix},\\
+r&=\text{helix-radius}.
+\end{align*}
+De hoek voldoet aan
+\begin{align*}
+\tan(\phi)
+  &=
+  \frac{2\pi a}{N\,2\pi r}.
+\end{align*}
+Hierbij staat rood genoteerd:
+\begin{align*}
+\frac{2\pi a}{N}
+  &= \text{de winding van de slinger},\\
+2\pi r
+  &= \text{de cirkel}.
+\end{align*}
+
+\subsection*{Pagina 47 --- Torusknopen en ``prime knots''}
+
+Rode legenda:
+\begin{align*}
+K &= \text{cyclusconstante},\\
+I &= \text{kracht van impuls},\\
+\mu &= \text{moment van rotatie}.
+\end{align*}
+
+In het groene kader:
+\begin{align*}
+I &= K\pi a^2,\\
+\mu &= K N^2\pi^2 r^2 a,\\
+a^2 &= \frac{I}{K\pi},\\
+R^2 &\approx \frac{\mu}{N K^2 \pi^2 I^2}.
+\end{align*}
+Voor de helixhoek:
+\begin{align*}
+\tan\phi
+  &= \frac{2\pi a}{N\,2\pi r},\\
+\tan\phi
+  &=
+  \frac{2\pi \sqrt{\frac{I}{K\pi}}}
+       {N\,2\pi
+        \sqrt{\frac{\mu}{N K^2 \pi^2 I^2}}},\\
+\tan\phi
+  &\approx
+  \sqrt{
+      \frac{I^3}{N\mu K^2\pi^2}
+  }.
+\end{align*}
+
+Voor de getekende samengestelde knopen:
+\begin{align*}
+I &= 2K\pi a^2,
+&
+\mu &= K N \pi^2 r^2 a,
+&
+\tan\phi &\approx
+\frac{\left(\frac{1}{2}I\right)^{3/2}}
+{\sqrt{N\mu K^2\pi^2}},\\
+I &= 3K\pi a^2,
+&
+\mu &= K N \pi^2 r^2 a,
+&
+\tan\phi &\approx
+\frac{\left(\frac{1}{3}I\right)^{3/2}}
+{\sqrt{N\mu K^2\pi^2}}.
+\end{align*}
+
+Rechts staat een algebra-notitie:
+\begin{align*}
+b^{\mu/\nu}
+  &= \left(b^\mu\right)^{1/\nu}
+   = \sqrt[\nu]{b^\mu},\\
+\left((x)^{1/3}\right)^{2/3}
+  &= \sqrt[3]{\left(\sqrt[3]{x}\right)^2}.
+\end{align*}
+De pagina eindigt met de titel:
+\begin{align*}
+\text{Prime knots}.
+\end{align*}
+
+\subsection*{Pagina 48 --- Hamilton-Jacobi naar Schrödinger-vorm}
+
+Bovenaan:
+\begin{align*}
+H\left(q,\pd{s}{q}\right)&=E,\\
+H\left(q,\frac{K}{\psi}\pd{\psi}{q}\right)&=E,
+&
+S&=K\log\psi.
+\end{align*}
+
+Daaruit wordt een stationaire vergelijking geschreven:
+\begin{align*}
+\left(\pd{\psi}{x}\right)^2
++\left(\pd{\psi}{y}\right)^2
++\left(\pd{\psi}{z}\right)^2
+-\frac{2m}{K^2}
+\left(E+\frac{e^2}{r}\right)\psi^2
+&=0,
+\end{align*}
+waarbij in rood staat:
+\begin{align*}
+e&=\text{charge},\\
+m&=\text{massa},\\
+r^2&=x^2+y^2+z^2.
+\end{align*}
+
+De variatie wordt genoteerd als
+\begin{align*}
+\delta J
+&=
+\delta
+\iiint \dd x\,\dd y\,\dd z
+\left[
+\left(\pd{\psi}{x}\right)^2
++\left(\pd{\psi}{y}\right)^2
++\left(\pd{\psi}{z}\right)^2
+-\frac{2m}{K^2}\left(E+\frac{e^2}{r}\right)\psi^2
+\right]
+=0.
+\end{align*}
+Na partiële integratie:
+\begin{align*}
+\frac{1}{2}\delta J
+&=
+\iint \dd f\,\delta\psi\,\pd{\psi}{n}
+-
+\iiint \dd x\,\dd y\,\dd z\,
+\delta\psi
+\left[
+\nabla^2\psi
++\frac{2m}{K^2}\left(E+\frac{e^2}{r}\right)\psi
+\right].
+\end{align*}
+Met randvoorwaarde
+\begin{align*}
+\iint \dd f\,\delta\psi\,\pd{\psi}{n}=0,
+\qquad
+\dd f=\text{oppervlakte},
+\end{align*}
+volgt
+\begin{align*}
+\nabla^2\psi
++\frac{2m}{K^2}\left(E+\frac{e^2}{r}\right)\psi
+&=0.
+\end{align*}
+
+\subsection*{Pagina 49 --- Torus in $(x,y,z)$-coördinaten}
+
+\textbf{Volume en oppervlak van een torus.}
+\begin{align*}
+V_{\mathrm{torus}}
+  &= 2\pi R \cdot \pi r^2
+   = 2\pi^2 R r^2,\\
+A_{\mathrm{torus}}
+  &= 4\pi^2 R r.
+\end{align*}
+
+\textbf{Parametrisatie.}
+\begin{align*}
+x &= \cos(\theta)\bigl(R+r\cos(\phi)\bigr),\\
+y &= \sin(\theta)\bigl(R+r\cos(\phi)\bigr),\\
+z &= r\sin(\phi).
+\end{align*}
+
+De torus is symmetrisch om de $z$-as. Een impliciete vorm is
+\begin{align*}
+r^2
+  &=\left(R-\sqrt{x^2+y^2}\right)^2+z^2.
+\end{align*}
+Door de wortel te verwijderen ontstaat:
+\begin{align*}
+\left(x^2+y^2+z^2+R^2-r^2\right)^2
+  &=4R^2\left(x^2+y^2\right).
+\end{align*}
+
+Als we een torus snijden in $N$ vlakken, dan kan deze maximaal worden opgedeeld volgens
+\begin{align*}
+\frac{1}{6}\left(N^3+3N^2+8N\right).
+\end{align*}
+Genoteerde reeks:
+\begin{align*}
+1,\;2,\;6,\;13,\;24,\;40.
+\end{align*}
+Voor aangrenzende kleuren staat genoteerd: maximaal $7$.
+
+\subsection*{Pagina 50 --- Vortexring / pistoolmodel}
+
+\textbf{Bol- en cilindervolumes.}
+\begin{align*}
+\Omega_b &= \left(\frac{4\pi}{3}\right)R_b^3\gamma,\\
+\Omega_\gamma &= \left(\frac{4\pi}{3}\right)R_\gamma^3\gamma.
+\end{align*}
+\begin{align*}
+\Omega_p&=\pi R_0^2L,\\
+\Omega_p&=\Omega_\gamma,\\
+R
+&=
+\left(\frac{3\Omega_p}{4\pi\gamma}\right)^{1/3}
+=
+\left(\frac{3R_0^2L}{4\gamma}\right)^{1/3}.
+\end{align*}
+
+\textbf{Massa, snelheid en impuls.}
+\begin{align*}
+M_p&=\text{massa pistool},&
+V_p&=\text{snelheid massa},&
+V_p&=\frac{L}{T}.
+\end{align*}
+\begin{align*}
+M_pV_p&=\rho\Gamma\pi R^2.
+\end{align*}
+
+\textbf{Circulatie en snelheid.}
+\begin{align*}
+\Gamma_s &= \frac{L^2}{2T},\\
+V_s
+&=
+\frac{\Gamma_s}{4\pi R}
+\left(\ln\left(\frac{8R}{a}\right)-\beta\right),\\
+V_s
+&=
+\frac{L^2}{8\pi RT}
+\left(\ln\left(\frac{8R}{a}\right)-\beta\right).
+\end{align*}
+Uit
+\begin{align*}
+\rho\pi R_0^2LV_p&=\rho\Gamma\pi R^2
+\end{align*}
+volgt
+\begin{align*}
+\Gamma
+&=
+\frac{R_0^2LV_p}{R^2}
+=
+\frac{R_0^2L^2}{R^2T}.
+\end{align*}
+
+Bij het schematische snelheidsveld staat:
+\begin{align*}
+u_\theta&=0,&
+u_r&=\frac{\dot{V}C}{2\pi r}.
+\end{align*}
+
+\subsection*{Pagina 51 --- Vortexmodellen}
+
+\begin{center}
+\begin{tabular}{>{\raggedright\arraybackslash}p{7cm}cc}
+\toprule
+\textbf{Vortexmodel} & $\alpha$ & $\beta$\\
+\midrule
+Vaste kern $+$ constant volume & $\frac{7}{4}$ & $\frac{1}{4}$\\
+Holle kern $+$ constant volume & $2$ & $\frac{1}{2}$\\
+Holle kern $+$ constante druk & $\frac{3}{2}$ & $\frac{1}{2}$\\
+Holle kern $+$ oppervlaktespanning & $1$ & $0$\\
+Non-lineaire Schrödinger & $1.61$ & $0.61$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Kernradius verwaarloosbaar klein ten opzichte van ringdiameter:
+\begin{align*}
+E
+&=
+\frac{1}{2}\rho\Gamma^2R
+\left(\ln\left(\frac{8R}{a}\right)-\alpha\right),\\
+V
+&=
+\frac{\Gamma}{4\pi R}
+\left(\ln\left(\frac{8R}{a}\right)-\beta\right).
+\end{align*}
+Voor constante druk:
+\begin{align*}
+\beta &= \alpha-1.
+\end{align*}
+Voor constant volume:
+\begin{align*}
+\beta &= \alpha-\frac{3}{2}.
+\end{align*}
+
+\textbf{Lamb--Oseen-vortex.}
+\begin{align*}
+\bm{\omega}&=\nabla\times\vect{V},\\
+V_\theta(R,t)
+&=
+\frac{\Gamma}{2\pi R}
+\left(1-\exp\left(-\frac{R^2}{R_c^2(t)}\right)\right),\\
+V_\theta
+&=
+\frac{\Gamma}{2\pi R}
+\left(1-\exp\left(-\frac{R^2}{4\nu t}\right)\right).
+\end{align*}
+Met
+\begin{align*}
+\omega(r,t)
+&=
+\frac{c}{4\pi\nu t}
+\exp\left(-\frac{r^2}{4\nu t}\right)
+\end{align*}
+en normalisatie
+\begin{align*}
+\Gamma
+&=
+\left.\Gamma(r,t)\right|_{t=0}
+=
+\left.2\pi\int_0^\infty \omega r\,\dd r\right|_{t=0}\\
+&=
+\frac{c\,2\pi}{4\pi\nu t}
+\int_0^\infty
+\exp\left(-\frac{r^2}{4\nu t}\right)r\,\dd r
+=
+c,
+\end{align*}
+volgt
+\begin{align*}
+\omega(r,t)
+&=
+\frac{\Gamma}{4\pi\nu t}
+\exp\left(-\frac{r^2}{4\nu t}\right).
+\end{align*}
+
+\textbf{Hill's spherical vortex.}
+\begin{align*}
+\omega &= Ar,
+&
+A&=\text{constant},
+&
+A&=0\quad \text{outside sphere}.
+\end{align*}
+\begin{align*}
+\omega_\phi &= Ar
+&&\left(\sqrt{x^2+r^2}<R\right),\\
+\omega_\phi &= 0
+&&\left(\sqrt{x^2+r^2}>R\right).
+\end{align*}
+Totale circulatie:
+\begin{align*}
+\Gamma
+&=
+\iint_{R_\ast<R} Ar\,\dd x\,\dd r
+=
+\frac{2AR^3}{3},
+&
+R_\ast&=\sqrt{x^2+r^2}.
+\end{align*}
+Vortex met constante snelheid:
+\begin{align*}
+U
+&=
+\frac{2}{15}R^2A
+=
+\frac{\Gamma}{5R}.
+\end{align*}
+
+\subsection*{Pagina 52 --- Partiële integratie in drie dimensies}
+
+Als $U$ en $V$ functies zijn van $x,y,z$, dan:
+\begin{align*}
+\iiint U\left(
+\pd{^2 V}{x^2}
++
+\pd{^2 V}{y^2}
++
+\pd{^2 V}{z^2}
+\right)\dd x\,\dd y\,\dd z
+&=
+-\iiint
+\left(
+\pd{U}{x}\pd{V}{x}
++
+\pd{U}{y}\pd{V}{y}
++
+\pd{U}{z}\pd{V}{z}
+\right)
+\dd x\,\dd y\,\dd z\\
+&=
+\iiint
+\left(
+\pd{^2 U}{x^2}
++
+\pd{^2 U}{y^2}
++
+\pd{^2 U}{z^2}
+\right)
+V\,\dd x\,\dd y\,\dd z.
+\end{align*}
+Voorwaarde in rood:
+\begin{quote}
+De integratie is over de gehele ruimte, met daarin $U$ en $V$ niet ongelijk aan $0$ aan de rand / op oneindig. \onzeker{exacte formulering deels onzeker}
+\end{quote}
+
+\subsection*{Pagina 53 --- Golfvergelijkingen en staande golven}
+
+\textbf{Golfvergelijkingen.}
+\begin{align*}
+\frac{\dd^2 z}{\dd t^2}
+  &= a^2\frac{\dd^2 z}{\dd x^2},\\
+\frac{\dd^2 z}{\dd t^2}
+  &= a^2\frac{\dd^2 z}{\dd x^2}+\Phi(x),
+\end{align*}
+voor een niet-homogene golfvergelijking.
+
+Voor as-symmetrie:
+\begin{align*}
+\frac{\dd^2 z}{\dd t^2}
+&=
+a^2\left(
+\frac{\dd^2 z}{\dd r^2}
++
+\frac{1}{r}\frac{\dd z}{\dd r}
+\right)
++\Phi(r,t).
+\end{align*}
+Voor centrale symmetrie:
+\begin{align*}
+\frac{\dd^2 z}{\dd t^2}
+&=
+a^2\left(
+\frac{\dd^2 z}{\dd r^2}
++
+\frac{2}{r}\frac{\dd z}{\dd r}
+\right)
++\Phi(r,t).
+\end{align*}
+
+\textbf{Staande golven.}
+De schets toont modi in een snaar:
+\begin{align*}
+\lambda&=\frac{1}{2}L,&
+L&=\frac{1}{2}\lambda,\\
+\lambda&=\frac{2}{3}L,&
+L&=\frac{3}{2}\lambda,\\
+\lambda&=\frac{2}{3}L,&
+L&=\frac{3}{2}\lambda,
+\end{align*}
+waarbij de handgeschreven labels bij de laatste twee schetsen \onzeker{gedeeltelijk onzeker} zijn.
+
+Onderaan staan een exponentieel verval en een Fermi-achtige functie:
+\begin{align*}
+e^{-x/a},
+\qquad
+f(\varepsilon)
+&=
+\frac{1}{e^{(\varepsilon-\mu)/(kT)}+1}.
+\end{align*}
+
+\subsection*{Pagina 54 --- Radiation pressure en Rayleigh-achtige stroming}
+
+Titel:
+\begin{align*}
+\text{Radiation Pressure}.
+\end{align*}
+De kracht wordt genoteerd als
+\begin{align*}
+F
+&=
+\frac{2P_0}{c}\,Q_u
+\left(
+\frac{\lambda_0}{\lambda_g}
+\frac{\lambda_0}{\lambda_g^2}
+\right)
+\left(
+1-\frac{\lambda_0^2}{\lambda_g\lambda_l}
+\right)^{-1},
+\end{align*}
+waarbij enkele indices in de brontekst moeilijk leesbaar zijn.
+
+Daarnaast staan:
+\begin{align*}
+\td{x}{t} &= y,\\
+\td{y}{t} &= \mu(1-x^2)y-x.
+\end{align*}
+De schets rechts toont een gesloten baan / limietcyclus met snelheidsrichtingen.
+
+\subsection*{Pagina 55 --- Bernoulli-vergelijking voor onsamendrukbare stroming}
+
+Titel:
+\begin{align*}
+\text{Bernoulli Equation --- incompressible}.
+\end{align*}
+Voor een cilindrisch stroomelement met oppervlakte $A$ langs de $x$-as:
+\begin{align*}
+m\td{v}{t}&=F,\\
+\rho A\,\dd x\,\td{v}{t}&=-A\,\dd p,\\
+\rho\td{v}{t}&=-\pd{p}{x}.
+\end{align*}
+Omdat
+\begin{align*}
+\td{v}{t}
+&=
+\pd{v}{x}\td{x}{t}
+=
+\pd{v}{x}v
+=
+\pd{}{x}\left(\frac{v^2}{2}\right),
+\end{align*}
+en $g\rho$ constant is met
+\begin{align*}
+\pd{p}{t}=0,
+\end{align*}
+volgt:
+\begin{align*}
+\pd{}{x}
+\left(
+\rho\frac{v^2}{2}+p
+\right)
+&=0.
+\end{align*}
+Integratie over $x$ geeft:
+\begin{align*}
+\frac{v^2}{2}+\frac{p}{\rho}
+&=
+\text{constante}.
+\end{align*}
+
+\subsection*{Pagina 56 --- Frequenties voor relatieve bewegingen}
+
+Bovenaan staan schetsen van een bron in rust en een bron in beweging. Notatie:
+\begin{align*}
+V_s&=\text{velocity source},\\
+V_o&=\text{velocity observer},\\
+V&=\text{speed of sound},\\
+f&=\text{real frequency},\\
+f'&=\text{apparent frequency}.
+\end{align*}
+
+De acht Doppler-gevallen worden gegroepeerd als:
+\begin{align*}
+f'&=\frac{V}{V-V_s}\,f
+&&\text{bron beweegt richting observator in rust},\\
+f'&=\frac{V}{V+V_s}\,f
+&&\text{bron beweegt van observator in rust},\\
+f'&=\frac{V+V_o}{V}\,f
+&&\text{bron in rust, observator richting bron},\\
+f'&=\frac{V-V_o}{V}\,f
+&&\text{bron in rust, observator van bron},\\
+f'&=\frac{V+V_o}{V-V_s}\,f
+&&\text{bron en observator bewegen naar elkaar},\\
+f'&=\frac{V-V_o}{V+V_s}\,f
+&&\text{bron en observator bewegen van elkaar},\\
+f'&=\frac{V-V_o}{V-V_s}\,f
+&&\text{bron richting observator, observator beweegt ervan af},\\
+f'&=\frac{V+V_o}{V+V_s}\,f
+&&\text{omgekeerde richting}.
+\end{align*}
+
+\textbf{Special relativity theorie.}
+\begin{align*}
+f'
+&=
+f\frac{\sqrt{1-\frac{v^2}{c^2}}}{1-\frac{v}{c_m}},
+&
+f'
+&=
+f\frac{\sqrt{c^2-v^2}}{c+\eta v}.
+\end{align*}
+Aantekeningen:
+\begin{align*}
+c_m&=\text{lichtsnelheid in medium},\\
+v&=\text{snelheid bron en waarnemer naar elkaar naderen},\\
+\eta&=\text{brekingsindex},\qquad \eta=1\text{ in vacuüm}.
+\end{align*}
+
+\subsection*{Pagina 57 --- Ket-vectoren}
+
+Titel:
+\begin{align*}
+\text{Ket Vector }|\cdot\rangle.
+\end{align*}
+Een ket-vector is:
+\begin{quote}
+connected to state of a system in finite or infinite dimensions.
+\end{quote}
+Kets kunnen vermenigvuldigd worden met complexe getallen:
+\begin{align*}
+|A\rangle \quad\text{en}\quad |B\rangle,
+\qquad
+c_1|A\rangle+c_2|B\rangle=|R\rangle.
+\end{align*}
+Een ket-vector $|x\rangle$ kan afhangen van $x$; integratie:
+\begin{align*}
+\int |x\rangle\,\dd x
+&=
+|Q\rangle.
+\end{align*}
+Superpositie:
+\begin{align*}
+c_1|A\rangle+c_2|A\rangle
+&=
+(c_1+c_2)|A\rangle.
+\end{align*}
+Met de aantekening:
+\begin{align*}
+c_1,\;c_2&=\text{numbers}.
+\end{align*}
+Als $c_1+c_2=0$, dan is het resultaat van superpositie nul, terwijl de twee resultaten elkaar opheffen:
+\begin{align*}
+c_1+c_2=0
+\quad\Longrightarrow\quad
+\text{superpositie }=0.
+\end{align*}
+Onderaan staat:
+\begin{align*}
+\text{Bra Vector }\langle\cdot|.
+\end{align*}
+
+\subsection*{Pagina 58 --- $\sech(x)$ en de golfvergelijking}
+
+Voor de hyperbolische secans:
+\begin{align*}
+\sech(x)
+&=
+\frac{1}{\cosh(x)}
+=
+\frac{2}{e^{-x}+e^{x}}
+=
+\frac{1}{\cos(ix)}
+=
+\frac{2e^x}{1+e^{2x}},\\
+\td{}{x}\sech(x)
+&=
+\tanh(x)\bigl(-\sech(x)\bigr),\\
+\int \sech(x)\,\dd x
+&=
+2\tan^{-1}\left(\tanh\left(\frac{x}{2}\right)\right)+C.
+\end{align*}
+
+Voor een harmonische golf:
+\begin{align*}
+\psi&=\sin(kx-\omega t),\\
+\psi&=\cos(kx-\omega t),\\
+\psi&=e^{i(kx-\omega t)},\\
+v&=\lambda f
+ = \frac{2\pi}{k}\frac{\omega}{2\pi}
+ = \frac{\omega}{k}.
+\end{align*}
+Afgeleiden:
+\begin{align*}
+\pd{\psi}{x}&=k\cos(kx-\omega t),&
+\pd{^2\psi}{x^2}&=-k^2\sin(kx-\omega t)\Rightarrow \psi,\\
+\pd{\psi}{t}&=-\omega\cos(kx-\omega t),&
+\pd{^2\psi}{t^2}&=-\omega^2\sin(kx-\omega t)\Rightarrow \psi.
+\end{align*}
+Daarom:
+\begin{align*}
+\psi
+&=
+\frac{1}{k^2}\pd{^2\psi}{x^2}
+=
+\frac{1}{\omega^2}\pd{^2\psi}{t^2},
+\end{align*}
+en de golfvergelijking:
+\begin{align*}
+\pd{^2\psi}{t^2}
+&=
+\frac{\omega^2}{k^2}
+\pd{^2\psi}{x^2},
+&
+\frac{\omega^2}{k^2}&=v^2.
+\end{align*}
+
+\subsection*{Pagina 59 --- Differentiëren en integreren}
+
+\begin{center}
+\begin{longtable}{>{\raggedright\arraybackslash}p{5cm}p{8cm}}
+\toprule
+\textbf{Functie} & \textbf{Afgeleide}\\
+\midrule
+$a$ & $0$\\
+$ax$ & $a$\\
+$ax^b$ & $abx^{b-1}$\\
+$c\,f(x)$ & $c\,f'(x)$\\
+$f(x)+g(x)$ & $f'(x)+g'(x)$\\
+$f(x)g(x)$ & $f'(x)g(x)+f(x)g'(x)$\\
+$\dfrac{f(x)}{g(x)}$ &
+$\dfrac{f'(x)g(x)-f(x)g'(x)}{g(x)^2}$\\
+$ae^{bx}$ & $abe^{bx}$\\
+$e^{f(x)}$ & $f'(x)e^{f(x)}$\\
+$a^{f(x)}$ & $\ln(a)\,f'(x)\,a^{f(x)}$\\
+$\ln(ax)$ & $\dfrac{1}{x}$\\
+$\ln(ax^b)$ & $\dfrac{b}{x}$\\
+$a\log(f(x))$ & $\dfrac{a}{\ln(a)}\dfrac{f'(x)}{f(x)}$\\
+$\sin(ax+b)$ & $a\cos(ax+b)$\\
+$c\cos(ax+b)$ & $-a c\sin(ax+b)$\\
+$\tan(x)$ & $\dfrac{1}{\cos^2(x)}=1+\tan^2(x)$\\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\subsection*{Pagina 60 --- Hoofdstelling, oppervlakte en booglengte}
+
+Hoofdstelling van de integraalrekening:
+\begin{align*}
+F\text{ is een primitieve van }f\text{ in gesloten interval }(a,b),\qquad
+\int_a^b f(x)\,\dd x
+&=
+F(b)-F(a).
+\end{align*}
+
+Voor de eenheidscirkel:
+\begin{align*}
+x^2+y^2&=1.
+\end{align*}
+
+\textbf{Oppervlakte tussen grafieken.}
+De schets toont $f(x)=x^2$ en $g(x)=x^3$ op $[0,1]$:
+\begin{align*}
+\operatorname{opp}(V)
+&=
+\int_0^1 f(x)\,\dd x
+-
+\int_0^1 g(x)\,\dd x\\
+&=
+\int_0^1\left(f(x)-g(x)\right)\dd x.
+\end{align*}
+Voor
+\begin{align*}
+f(x)&=x^2,&g(x)&=x^3,
+\end{align*}
+geldt:
+\begin{align*}
+\operatorname{opp}
+&=
+\int_0^1(x^2-x^3)\,\dd x\\
+&=
+\left[\frac{1}{3}x^3-\frac{1}{4}x^4\right]_0^1
+=
+\frac{1}{12}.
+\end{align*}
+
+\textbf{Lengte van een grafiek.}
+Met kleine stapjes $\Delta x$ en $\Delta y$:
+\begin{align*}
+L
+&\approx
+\sum_{i=1}^{n}\sqrt{(\Delta x_i)^2+(\Delta y_i)^2}\\
+&=
+\sum_{i=1}^{n}
+\sqrt{1+\left(\frac{\Delta y_i}{\Delta x_i}\right)^2}\,\Delta x.
+\end{align*}
+Als $\Delta x\to 0$, dan
+\begin{align*}
+\frac{\Delta y_i}{\Delta x_i}\to f'(x_i),
+\end{align*}
+en dus:
+\begin{align*}
+L_f
+&=
+\int_0^1 \sqrt{1+\left(f'(x)\right)^2}\,\dd x.
+\end{align*}
+Voor de genoteerde voorbeelden:
+\begin{align*}
+f(x)&=x^2,&f'(x)&=2x,\\
+g(x)&=x^3,&g'(x)&=3x^2.
+\end{align*}
+Daarom:
+\begin{align*}
+L_f
+&=
+\int_0^1 \sqrt{1+4x^2}\,\dd x
+\approx 1.4789,\\
+L_g
+&=
+\int_0^1 \sqrt{1+9x^4}\,\dd x.
+\end{align*}
+
+\newpage
+
+\subsection*{Pagina 61 --- Riemannsommen, ondersom en bovensom}
+
+De pagina sluit aan bij booglengte en oppervlakte. De notities tonen een grafiek met rechthoeken en een limietproces voor sommen.
+
+Voor een verdeling
+\begin{align*}
+a=x_0<x_1<\cdots <x_n=b,
+\qquad
+\Delta x_i=x_i-x_{i-1},
+\end{align*}
+worden een ondersom en een bovensom genoteerd als
+\begin{align*}
+L(P,f)
+&=
+\sum_{i=1}^{n} m_i\,\Delta x_i,
+&
+m_i&=\inf_{x\in[x_{i-1},x_i]} f(x),\\
+U(P,f)
+&=
+\sum_{i=1}^{n} M_i\,\Delta x_i,
+&
+M_i&=\sup_{x\in[x_{i-1},x_i]} f(x).
+\end{align*}
+Als de maaswijdte naar nul gaat, ontstaat de integraal:
+\begin{align*}
+\int_a^b f(x)\,\dd x
+&=
+\lim_{\max \Delta x_i\to 0}
+\sum_{i=1}^{n} f(\xi_i)\,\Delta x_i.
+\end{align*}
+
+Een genoteerde normalisatievorm is:
+\begin{align*}
+\int_{-\infty}^{\infty} p(x)\,\dd x &= 1,
+&
+\int_{\Omega} \rho(\vect{x})\,\dd V &= M.
+\end{align*}
+Hierbij lijkt de aantekening te gaan over een formule die ``normaal'' of ``genormaliseerd'' wordt; het precieze woord is \onzeker{onzeker}.
+
+\subsection*{Pagina 62 --- Gemiddelde waarde en substitutie}
+
+De notities tonen meerdere integralen met kleine differentiële stapjes. Een gemiddelde waarde over een interval wordt genoteerd als
+\begin{align*}
+\langle f\rangle_{[a,b]}
+&=
+\frac{1}{b-a}\int_a^b f(x)\,\dd x.
+\end{align*}
+Voor een substitutie
+\begin{align*}
+u&=g(x),
+&
+\dd u&=g'(x)\,\dd x,
+\end{align*}
+volgt:
+\begin{align*}
+\int f(g(x))g'(x)\,\dd x
+&=
+\int f(u)\,\dd u.
+\end{align*}
+
+Voor transformaties tussen variabelen staat in de marge een regel van de vorm
+\begin{align*}
+\dd x
+&=
+\left|\td{x}{u}\right|\dd u,
+&
+\int_{x=a}^{x=b} f(x)\,\dd x
+&=
+\int_{u=g^{-1}(a)}^{u=g^{-1}(b)}
+f(x(u))\left|\td{x}{u}\right|\,\dd u.
+\end{align*}
+Het woord naast deze stap is \onzeker{substitutie / verandering van variabele}.
+
+\subsection*{Pagina 63 --- Lijnintegralen}
+
+Er staat een curve met een parametrisatie en een integraal over een baan. Voor een kromme
+\begin{align*}
+\vect{r}(t)
+&=
+\begin{pmatrix}
+x(t)\\
+y(t)\\
+z(t)
+\end{pmatrix},
+&
+t&\in[a,b],
+\end{align*}
+geldt:
+\begin{align*}
+\dd s
+&=
+\left\|\td{\vect{r}}{t}\right\|\dd t
+=
+\sqrt{
+\left(\td{x}{t}\right)^2+
+\left(\td{y}{t}\right)^2+
+\left(\td{z}{t}\right)^2
+}\,\dd t.
+\end{align*}
+Daarmee wordt de scalaire lijnintegraal:
+\begin{align*}
+\int_C f\,\dd s
+&=
+\int_a^b f(\vect{r}(t))
+\left\|\vect{r}'(t)\right\|\,\dd t.
+\end{align*}
+Voor een vectorveld:
+\begin{align*}
+\int_C \vect{F}\cdot\dd\vect{r}
+&=
+\int_a^b
+\vect{F}(\vect{r}(t))\cdot \vect{r}'(t)\,\dd t.
+\end{align*}
+
+\subsection*{Pagina 64 --- Dubbelintegralen en oppervlakken}
+
+De pagina bevat rechthoekige gebiedjes en een schets van een oppervlak boven een domein $S\subset\R^2$.
+
+Voor een functie $z=f(x,y)$:
+\begin{align*}
+V
+&=
+\iint_S f(x,y)\,\dd A.
+\end{align*}
+Voor een rechthoekig domein:
+\begin{align*}
+S&=[a,b]\times[c,d],\\
+\iint_S f(x,y)\,\dd A
+&=
+\int_a^b\int_c^d f(x,y)\,\dd y\,\dd x.
+\end{align*}
+De volgorde van integreren kan worden omgewisseld:
+\begin{align*}
+\int_a^b\int_c^d f(x,y)\,\dd y\,\dd x
+&=
+\int_c^d\int_a^b f(x,y)\,\dd x\,\dd y.
+\end{align*}
+Bij een niet-rechthoekig domein:
+\begin{align*}
+S
+&=
+\left\{(x,y)\mid a\le x\le b,\; g_1(x)\le y\le g_2(x)\right\},\\
+\iint_S f(x,y)\,\dd A
+&=
+\int_a^b\int_{g_1(x)}^{g_2(x)}
+f(x,y)\,\dd y\,\dd x.
+\end{align*}
+
+\subsection*{Pagina 65 --- Poolcoördinaten als gebiedstransformatie}
+
+De schets toont een overgang van rechthoekige naar poolvormige gebiedjes. De transformatie is:
+\begin{align*}
+x&=r\cos\phi,
+&
+y&=r\sin\phi,
+&
+r&=\sqrt{x^2+y^2}.
+\end{align*}
+De Jacobiaan:
+\begin{align*}
+J
+&=
+\det
+\begin{pmatrix}
+\pd{x}{r} & \pd{x}{\phi}\\
+\pd{y}{r} & \pd{y}{\phi}
+\end{pmatrix}
+=
+\det
+\begin{pmatrix}
+\cos\phi & -r\sin\phi\\
+\sin\phi & r\cos\phi
+\end{pmatrix}
+=
+r.
+\end{align*}
+Daarom:
+\begin{align*}
+\dd A
+&=
+r\,\dd r\,\dd\phi,
+&
+\iint_S f(x,y)\,\dd A
+&=
+\int_{\phi_0}^{\phi_1}\int_{r_0(\phi)}^{r_1(\phi)}
+f(r\cos\phi,r\sin\phi)\,r\,\dd r\,\dd\phi.
+\end{align*}
+En voor het speciale geval van een schijf:
+\begin{align*}
+\iint_{x^2+y^2\le R^2} f(x,y)\,\dd A
+&=
+\int_0^{2\pi}\int_0^R
+f(r\cos\phi,r\sin\phi)\,r\,\dd r\,\dd\phi.
+\end{align*}
+
+\subsection*{Pagina 66 --- Poolcoördinaten, trefoil-knoop en projectie}
+
+\textbf{Poolcoördinaten.}
+\begin{align*}
+x(\phi) &= r(\phi)\cos\phi,\\
+y(\phi) &= r(\phi)\sin\phi,
+&
+\phi &\in [0,2\pi].
+\end{align*}
+
+Parametrische relaties:
+\begin{align*}
+\frac{x}{r} &= \cos\phi,
+&
+\frac{y}{r} &= \sin\phi.
+\end{align*}
+Daaruit:
+\begin{align*}
+\cos^2\phi+\sin^2\phi &= 1,\\
+\left(\frac{x}{r}\right)^2+
+\left(\frac{y}{r}\right)^2 &=1,\\
+x^2+y^2&=r^2.
+\end{align*}
+
+\textbf{Trefoil-knoop.}
+\begin{align*}
+x(t)&=\left(2+\cos 3t\right)\cos 2t,\\
+y(t)&=\left(2+\cos 3t\right)\sin 2t,\\
+z(t)&=\sin 3t,
+&
+t&\in[0,4\pi].
+\end{align*}
+Met $\phi=2t$:
+\begin{align*}
+R(\phi)
+&=
+2+\cos\left(\frac{3\phi}{2}\right).
+\end{align*}
+Een tweede genoteerde radius is:
+\begin{align*}
+R(\phi)
+&=
+4+\cos\left(\frac{3\phi}{2}\right).
+\end{align*}
+
+\textbf{Hypotrochoïde-achtige vergelijking.}
+\begin{align*}
+x(\theta)
+&=
+(R-r)\cos\theta
++
+d\cos\left(\frac{R-r}{r}\theta\right),\\
+y(\theta)
+&=
+(R-r)\sin\theta
+-
+d\sin\left(\frac{R-r}{r}\theta\right).
+\end{align*}
+Voor de trefoil staat erbij:
+\begin{align*}
+R&=6,
+&
+r&=4,
+&
+d&=1.
+\end{align*}
+
+\subsection*{Pagina 67 --- Knoopcurven en raakvectoren}
+
+De pagina toont opnieuw een knoopachtige curve met richtingen langs de baan. Voor een parametrische curve:
+\begin{align*}
+\vect{r}(t)
+&=
+\begin{pmatrix}
+x(t)\\y(t)\\z(t)
+\end{pmatrix},
+&
+\vect{T}(t)
+&=
+\frac{\vect{r}'(t)}{\|\vect{r}'(t)\|}.
+\end{align*}
+De kromming kan worden geschreven als:
+\begin{align*}
+\kappa(t)
+&=
+\left\|\td{\vect{T}}{s}\right\|
+=
+\frac{\|\vect{r}'(t)\times\vect{r}''(t)\|}
+{\|\vect{r}'(t)\|^3}.
+\end{align*}
+In de marge staan kruisingspunten; de exacte labels zijn \onzeker{onzeker}. De notitie lijkt het onderscheid te maken tussen de ruimtekromme en haar projectie op het vlak.
+
+\subsection*{Pagina 68 --- Verandering van variabelen en Jacobiaan}
+
+De formules gebruiken differentiële elementjes $\dd x_1,\dd x_2$ en een determinant. Voor een transformatie
+\begin{align*}
+x_1&=x_1(u_1,u_2),
+&
+x_2&=x_2(u_1,u_2),
+\end{align*}
+geldt:
+\begin{align*}
+\begin{pmatrix}
+\dd x_1\\
+\dd x_2
+\end{pmatrix}
+&=
+\begin{pmatrix}
+\pd{x_1}{u_1} & \pd{x_1}{u_2}\\
+\pd{x_2}{u_1} & \pd{x_2}{u_2}
+\end{pmatrix}
+\begin{pmatrix}
+\dd u_1\\
+\dd u_2
+\end{pmatrix}.
+\end{align*}
+Het oppervlakte-element wordt dan:
+\begin{align*}
+\dd A_x
+&=
+\left|
+\det
+\begin{pmatrix}
+\pd{x_1}{u_1} & \pd{x_1}{u_2}\\
+\pd{x_2}{u_1} & \pd{x_2}{u_2}
+\end{pmatrix}
+\right|
+\dd u_1\,\dd u_2.
+\end{align*}
+Dus:
+\begin{align*}
+\iint_{S_x} f(x_1,x_2)\,\dd A_x
+&=
+\iint_{S_u}
+f(x_1(u),x_2(u))
+\left|\det\pd{(x_1,x_2)}{(u_1,u_2)}\right|
+\dd u_1\,\dd u_2.
+\end{align*}
+
+\subsection*{Pagina 69 --- Determinant als schaalfactor}
+
+De notitie werkt de determinantregel verder uit. In twee dimensies:
+\begin{align*}
+J
+&=
+\det
+\begin{pmatrix}
+\pd{x}{u} & \pd{x}{v}\\
+\pd{y}{u} & \pd{y}{v}
+\end{pmatrix}
+=
+\pd{x}{u}\pd{y}{v}
+-
+\pd{x}{v}\pd{y}{u}.
+\end{align*}
+Een klein parallellogram heeft oppervlakte:
+\begin{align*}
+\dd A
+&=
+|J|\,\dd u\,\dd v.
+\end{align*}
+In drie dimensies:
+\begin{align*}
+\dd V
+&=
+\left|
+\det
+\begin{pmatrix}
+\pd{x}{u} & \pd{x}{v} & \pd{x}{w}\\
+\pd{y}{u} & \pd{y}{v} & \pd{y}{w}\\
+\pd{z}{u} & \pd{z}{v} & \pd{z}{w}
+\end{pmatrix}
+\right|
+\dd u\,\dd v\,\dd w.
+\end{align*}
+De oriëntatie van de transformatie wordt aangegeven met het teken van $J$:
+\begin{align*}
+J>0&:\text{ oriëntatie behouden},
+&
+J<0&:\text{ oriëntatie omgekeerd}.
+\end{align*}
+
+\subsection*{Pagina 70 --- Normale afgeleide en correctietermen}
+
+De kop lijkt te verwijzen naar een ``normale afgeleide'' plus correctie. Voor een oppervlak met normaalvector $\vect{n}$:
+\begin{align*}
+\pd{f}{n}
+&=
+\nabla f\cdot \vect{n}.
+\end{align*}
+Voor een veld $\vect{F}$ door een oppervlak:
+\begin{align*}
+\Phi
+&=
+\iint_S \vect{F}\cdot\vect{n}\,\dd S.
+\end{align*}
+Bij kromlijnige coördinaten verschijnen schaalfactoren $h_i$. De gradiënt wordt:
+\begin{align*}
+\nabla f
+&=
+\frac{1}{h_1}\pd{f}{q_1}\vect{e}_1
++
+\frac{1}{h_2}\pd{f}{q_2}\vect{e}_2
++
+\frac{1}{h_3}\pd{f}{q_3}\vect{e}_3.
+\end{align*}
+Voor de Laplace-operator:
+\begin{align*}
+\nabla^2 f
+&=
+\frac{1}{h_1h_2h_3}
+\left[
+\pd{}{q_1}\left(\frac{h_2h_3}{h_1}\pd{f}{q_1}\right)
++
+\pd{}{q_2}\left(\frac{h_1h_3}{h_2}\pd{f}{q_2}\right)
++
+\pd{}{q_3}\left(\frac{h_1h_2}{h_3}\pd{f}{q_3}\right)
+\right].
+\end{align*}
+De correctietermen in de notitie zijn deels \onzeker{onzeker}, maar lijken uit deze schaalfactoren te komen.
+
+\subsection*{Pagina 71 --- Kromlijnige coördinaten}
+
+De pagina bevat veel breuken met $\dd x$, $\dd y$ en een coördinatenrooster. Voor coördinaten
+\begin{align*}
+\vect{r}
+&=
+\vect{r}(q_1,q_2,q_3),
+\end{align*}
+zijn de basisvectoren:
+\begin{align*}
+\vect{a}_i
+&=
+\pd{\vect{r}}{q_i},
+&
+h_i&=\|\vect{a}_i\|,
+&
+\vect{e}_i&=\frac{\vect{a}_i}{h_i}.
+\end{align*}
+Het volume-element:
+\begin{align*}
+\dd V
+&=
+h_1h_2h_3\,\dd q_1\,\dd q_2\,\dd q_3.
+\end{align*}
+In orthogonale coördinaten:
+\begin{align*}
+\nabla\cdot \vect{A}
+&=
+\frac{1}{h_1h_2h_3}
+\left[
+\pd{}{q_1}(h_2h_3 A_1)
++
+\pd{}{q_2}(h_1h_3 A_2)
++
+\pd{}{q_3}(h_1h_2 A_3)
+\right].
+\end{align*}
+
+\subsection*{Pagina 72 --- Kettingregel in meerdere variabelen}
+
+De formules tonen een overgang tussen variabelen en afgeleiden. Als
+\begin{align*}
+f&=f(x,y),
+&
+x&=x(u,v),
+&
+y&=y(u,v),
+\end{align*}
+dan:
+\begin{align*}
+\pd{f}{u}
+&=
+\pd{f}{x}\pd{x}{u}
++
+\pd{f}{y}\pd{y}{u},\\
+\pd{f}{v}
+&=
+\pd{f}{x}\pd{x}{v}
++
+\pd{f}{y}\pd{y}{v}.
+\end{align*}
+In matrixvorm:
+\begin{align*}
+\begin{pmatrix}
+f_u\\f_v
+\end{pmatrix}
+&=
+\begin{pmatrix}
+x_u & y_u\\
+x_v & y_v
+\end{pmatrix}
+\begin{pmatrix}
+f_x\\f_y
+\end{pmatrix}.
+\end{align*}
+Voor tweede afgeleiden verschijnen extra termen:
+\begin{align*}
+\pd{^2 f}{u^2}
+&=
+f_{xx}x_u^2+2f_{xy}x_u y_u+f_{yy}y_u^2
++
+f_x x_{uu}+f_y y_{uu}.
+\end{align*}
+Een deel van de genoteerde matrix is \onzeker{onzeker}.
+
+\subsection*{Pagina 73 --- Taylorontwikkeling}
+
+De pagina bevat termen met $\dd x^2$ en hogere orden. De Taylorontwikkeling rond $a$:
+\begin{align*}
+f(x)
+&=
+f(a)
++
+f'(a)(x-a)
++
+\frac{1}{2}f''(a)(x-a)^2
++
+\frac{1}{3!}f^{(3)}(a)(x-a)^3
++\cdots.
+\end{align*}
+Voor meerdere variabelen:
+\begin{align*}
+f(\vect{x}+\Delta \vect{x})
+&=
+f(\vect{x})
++
+\nabla f(\vect{x})\cdot \Delta \vect{x}
++
+\frac{1}{2}\Delta \vect{x}^{\mathsf T}
+H_f(\vect{x})
+\Delta \vect{x}
++
+O(\|\Delta \vect{x}\|^3).
+\end{align*}
+Met Hessiaan:
+\begin{align*}
+H_f
+&=
+\begin{pmatrix}
+f_{xx} & f_{xy}\\
+f_{yx} & f_{yy}
+\end{pmatrix}.
+\end{align*}
+De kleine termen zijn gemarkeerd als \onzeker{$O(\dd x^3)$} in de notitie.
+
+\subsection*{Pagina 74 --- Differentiaaloperatoren}
+
+De notitie ordent $\partial_x$, $\partial_y$ en variatie-termen. Voor een differentiaal:
+\begin{align*}
+\dd f
+&=
+\pd{f}{x}\dd x
++
+\pd{f}{y}\dd y
++
+\pd{f}{z}\dd z
+=
+\nabla f\cdot \dd\vect{r}.
+\end{align*}
+Voor een vectorveld:
+\begin{align*}
+\nabla\cdot\vect{F}
+&=
+\pd{F_x}{x}+\pd{F_y}{y}+\pd{F_z}{z},\\
+\nabla\times\vect{F}
+&=
+\begin{vmatrix}
+\vect{e}_x & \vect{e}_y & \vect{e}_z\\
+\partial_x & \partial_y & \partial_z\\
+F_x & F_y & F_z
+\end{vmatrix}.
+\end{align*}
+De schets lijkt te koppelen aan flux door een elementair oppervlak:
+\begin{align*}
+\dd \Phi
+&=
+\vect{F}\cdot\vect{n}\,\dd S.
+\end{align*}
+
+\subsection*{Pagina 75 --- Fourierreeks van een blokgolf}
+
+De kop bevat een woord dat lijkt op ``square''. De genoteerde vorm past bij een blokgolf en harmonische componenten. Voor de oneven blokgolf:
+\begin{align*}
+f(x)
+&=
+\operatorname{sgn}(\sin x),
+\end{align*}
+is de Fourierreeks:
+\begin{align*}
+f(x)
+&=
+\frac{4}{\pi}
+\left(
+\sin x
++
+\frac{1}{3}\sin 3x
++
+\frac{1}{5}\sin 5x
++\cdots
+\right)\\
+&=
+\frac{4}{\pi}
+\sum_{k=0}^{\infty}
+\frac{\sin\left((2k+1)x\right)}{2k+1}.
+\end{align*}
+De algemene Fourierreeks wordt genoteerd als:
+\begin{align*}
+f(x)
+&=
+\frac{a_0}{2}
++
+\sum_{n=1}^{\infty}
+\left[
+a_n\cos(nx)+b_n\sin(nx)
+\right],\\
+a_n
+&=
+\frac{1}{\pi}\int_{-\pi}^{\pi} f(x)\cos(nx)\,\dd x,\\
+b_n
+&=
+\frac{1}{\pi}\int_{-\pi}^{\pi} f(x)\sin(nx)\,\dd x.
+\end{align*}
+
+\subsection*{Pagina 76 --- Klassieke mechanica}
+
+De titel lijkt ``Classic'' of ``Classical'' te bevatten. De mechanische basisrelaties:
+\begin{align*}
+\vect{F}
+&=
+m\vect{a}
+=
+m\td{^2\vect{x}}{t^2},\\
+\vect{p}
+&=
+m\vect{v},\\
+T&=\frac{1}{2}m v^2.
+\end{align*}
+Met potentiaal $V(\vect{x})$:
+\begin{align*}
+\vect{F}
+&=
+-\nabla V.
+\end{align*}
+De Lagrangiaan:
+\begin{align*}
+L
+&=
+T-V,
+\end{align*}
+en de Euler--Lagrange-vergelijking:
+\begin{align*}
+\td{}{t}\pd{L}{\dot q_i}
+-
+\pd{L}{q_i}
+&=0.
+\end{align*}
+Voor een behoudswet:
+\begin{align*}
+E
+&=
+T+V
+=
+\text{constant}.
+\end{align*}
+
+\subsection*{Pagina 77 --- Poolcoördinaten in beweging}
+
+De schetsen en labels lijken poolcoördinaten voor beweging te tonen. Met
+\begin{align*}
+\vect{r}
+&=
+r\,\vect{e}_r,
+\end{align*}
+volgt:
+\begin{align*}
+\vect{v}
+&=
+\dot r\,\vect{e}_r
++
+r\dot\phi\,\vect{e}_\phi,\\
+\vect{a}
+&=
+(\ddot r-r\dot\phi^2)\vect{e}_r
++
+(r\ddot\phi+2\dot r\dot\phi)\vect{e}_\phi.
+\end{align*}
+Het impulsmoment:
+\begin{align*}
+\vect{L}
+&=
+\vect{r}\times\vect{p}
+=
+m r^2\dot\phi\,\vect{e}_z.
+\end{align*}
+Bij centrale krachten:
+\begin{align*}
+\td{}{t}\left(mr^2\dot\phi\right)&=0.
+\end{align*}
+
+\subsection*{Pagina 78 --- Longitudinale en transversale golven}
+
+De kop lijkt een verwijzing naar ``longitudinal'' of ``long depended'' te bevatten. De genoteerde golfvorm:
+\begin{align*}
+y(x,t)
+&=
+A\sin(kx-\omega t+\phi).
+\end{align*}
+De fasesnelheid:
+\begin{align*}
+v_\mathrm{fase}
+&=
+\frac{\omega}{k}.
+\end{align*}
+De golfvergelijking:
+\begin{align*}
+\pd{^2 y}{t^2}
+&=
+c^2\pd{^2 y}{x^2}.
+\end{align*}
+Voor harmonische oplossingen:
+\begin{align*}
+y(x,t)
+&=
+\Re\left\{A e^{i(kx-\omega t)}\right\},
+&
+\omega^2&=c^2k^2.
+\end{align*}
+De schets lijkt het verschil tussen trilling langs de voortplantingsrichting en loodrecht erop te tonen.
+
+\subsection*{Pagina 79 --- Elektromagnetische golf}
+
+De pagina bevat vectoren en relaties tussen veldrichtingen. Voor een vlakke golf:
+\begin{align*}
+\vect{E}(\vect{r},t)
+&=
+\vect{E}_0\cos(\vect{k}\cdot\vect{r}-\omega t),\\
+\vect{B}(\vect{r},t)
+&=
+\vect{B}_0\cos(\vect{k}\cdot\vect{r}-\omega t).
+\end{align*}
+De richtingen voldoen aan:
+\begin{align*}
+\vect{k}\cdot\vect{E}_0&=0,
+&
+\vect{k}\cdot\vect{B}_0&=0,
+&
+\vect{E}_0\cdot\vect{B}_0&=0.
+\end{align*}
+Uit Maxwell volgt:
+\begin{align*}
+\vect{k}\times\vect{E}_0
+&=
+\omega\vect{B}_0,\\
+\vect{k}\times\vect{B}_0
+&=
+-\mu_0\varepsilon_0\omega\vect{E}_0.
+\end{align*}
+De energie-inhoud:
+\begin{align*}
+u
+&=
+\frac{1}{2}\varepsilon_0 E^2
++
+\frac{1}{2\mu_0}B^2,
+\end{align*}
+en de Poynting-vector:
+\begin{align*}
+\vect{S}
+&=
+\frac{1}{\mu_0}\vect{E}\times\vect{B}.
+\end{align*}
+
+\subsection*{Pagina 80 --- Maxwellvergelijkingen}
+
+De kop en symbolen bevatten duidelijk $\nabla\times\vect{E}$ en stroomtermen. In differentiaalvorm:
+\begin{align*}
+\nabla\cdot\vect{E}
+&=
+\frac{\rho}{\varepsilon_0},\\
+\nabla\cdot\vect{B}
+&=
+0,\\
+\nabla\times\vect{E}
+&=
+-\pd{\vect{B}}{t},\\
+\nabla\times\vect{B}
+&=
+\mu_0\vect{J}
++
+\mu_0\varepsilon_0\pd{\vect{E}}{t}.
+\end{align*}
+De continuïteitsvergelijking:
+\begin{align*}
+\pd{\rho}{t}
++
+\nabla\cdot\vect{J}
+&=
+0.
+\end{align*}
+In vacuüm:
+\begin{align*}
+\nabla^2\vect{E}
+&=
+\mu_0\varepsilon_0\pd{^2\vect{E}}{t^2},\\
+\nabla^2\vect{B}
+&=
+\mu_0\varepsilon_0\pd{^2\vect{B}}{t^2},\\
+c
+&=
+\frac{1}{\sqrt{\mu_0\varepsilon_0}}.
+\end{align*}
+En in integraalvorm:
+\begin{align*}
+\oint_{\partial S}\vect{E}\cdot\dd\vect{l}
+&=
+-\td{}{t}\iint_S \vect{B}\cdot\dd\vect{A},\\
+\oint_{\partial S}\vect{B}\cdot\dd\vect{l}
+&=
+\mu_0 I_\mathrm{enc}
++
+\mu_0\varepsilon_0\td{}{t}
+\iint_S \vect{E}\cdot\dd\vect{A}.
+\end{align*}
+
+\subsection*{Pagina 81 --- Algemene relativiteit en stress-energietensor}
+
+De titel lijkt ``General'' te bevatten. De genoteerde tensorvorm past bij relativistische notatie. De Einstein-veldvergelijkingen:
+\begin{align*}
+G_{\mu\nu}
++
+\Lambda g_{\mu\nu}
+&=
+\frac{8\pi G}{c^4}T_{\mu\nu}.
+\end{align*}
+Met
+\begin{align*}
+G_{\mu\nu}
+&=
+R_{\mu\nu}
+-\frac{1}{2}Rg_{\mu\nu}.
+\end{align*}
+Voor een perfecte vloeistof:
+\begin{align*}
+T_{\mu\nu}
+&=
+\left(\rho+\frac{p}{c^2}\right)u_\mu u_\nu
++
+p\,g_{\mu\nu},
+\end{align*}
+waarbij $u_\mu$ de viersnelheid is. Een genoteerde metriekvorm:
+\begin{align*}
+\dd s^2
+&=
+g_{\mu\nu}\,\dd x^\mu\,\dd x^\nu.
+\end{align*}
+Voor vlakke ruimtetijd:
+\begin{align*}
+\dd s^2
+&=
+-c^2\dd t^2+\dd x^2+\dd y^2+\dd z^2.
+\end{align*}
+De onderste notities zijn grotendeels \onzeker{onzeker}; de leesbare kern lijkt de koppeling tussen geometrie en materie te zijn:
+\begin{align*}
+\text{geometrie}
+&\longleftrightarrow
+\text{energie/materie}.
+\end{align*}
+
+\end{document}

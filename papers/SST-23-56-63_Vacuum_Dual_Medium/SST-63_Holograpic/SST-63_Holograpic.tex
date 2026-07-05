@@ -607,6 +607,145 @@
         holography is not a uniquely quantum phenomenon but a general consequence of
         constraint-dominated dynamics.
 
+%==============================================================================
+    \section{Integration with Dual-Vacuum and Topological-Superfluid Sectors}
+%==============================================================================
+
+    \subsection{Purpose and status}
+
+        This section records the correct placement of the dual-vacuum Unruh-echo
+        sector (SST-23) and the topological-superfluid Hall/lifetime sector
+        (SST-56) inside the Swirl Holographic Principle.  The result is a
+        research-track integration, not a new canon axiom.
+
+        The role of SST-63 is boundary and constraint reconstruction.  The role
+        of SST-23 is the hyperbolic torsion/Unruh-response channel that can
+        supply a temperature-like excitation law.  The role of SST-56 is the
+        superfluid topology channel that supplies experimentally anchored
+        relaxation, transverse response, and stability diagnostics for knotted
+        or tangled filaments.
+
+    \subsection{Three-layer decomposition}
+
+        The combined structure is:
+        \begin{align}
+            \boxed{
+            \text{SST-63: boundary data + sector labels}
+            \;\longrightarrow\;
+            \text{bulk constraint reconstruction}
+            }
+            \label{eq:sst63_constraint_layer}
+        \end{align}
+        \begin{align}
+            \boxed{
+            \text{SST-23: accelerated torsion sector}
+            \;\longrightarrow\;
+            \text{Unruh-like excitation / photon transduction}
+            }
+            \label{eq:sst23_unruh_layer}
+        \end{align}
+        \begin{align}
+            \boxed{
+            \text{SST-56: topological superfluid sector}
+            \;\longrightarrow\;
+            \text{Hall angle, writhe barrier, lifetime hierarchy}
+            }
+            \label{eq:sst56_superfluid_layer}
+        \end{align}
+        These are complementary layers.  Boundary reconstruction alone does not
+        derive a thermodynamic temperature.  The Unruh/torsion sector supplies
+        the candidate temperature-response channel, while the superfluid
+        topological sector supplies the experimentally testable stability and
+        relaxation diagnostics.
+
+    \subsection{Connection to the gravity-derivation ladder}
+
+        In the thermodynamic route toward Einstein dynamics, the required chain
+        is
+        \begin{align}
+            S=\eta A,
+            \qquad
+            T=\frac{\hbar a}{2\pi c k_B},
+            \qquad
+            \delta Q=T\,dS .
+            \label{eq:sst63_jacobson_requirements}
+        \end{align}
+        SST-63 contributes the boundary/area side of the problem.  SST-23 is the
+        natural place to attack the Unruh-response lemma.  SST-56 supplies the
+        topological-superfluid evidence that line tangles, writhe, and internal
+        filament geometry control relaxation and protected response.
+
+        A possible area-counting bridge is a statistically isotropic line tangle
+        with line density \(\Lambda_L\) (length per volume).  Stereology gives
+        the expected number of piercings of a surface \(A\):
+        \begin{align}
+            N_{\mathrm{pierce}}
+            =
+            \frac{1}{2}\Lambda_L A .
+            \label{eq:sst63_piercing_count}
+        \end{align}
+        If each piercing carries \(q\) internal states, then
+        \begin{align}
+            S_{\mathrm{pierce}}
+            =
+            \frac{1}{2}k_B\ln q\,\Lambda_L A .
+            \label{eq:sst63_piercing_entropy}
+        \end{align}
+        Matching the Bekenstein--Hawking coefficient would require
+        \begin{align}
+            \Lambda_L
+            =
+            \frac{c^3}{2G\hbar\ln q}.
+            \label{eq:sst63_linelength_density}
+        \end{align}
+        For \(q=2\),
+        \begin{align}
+            \Lambda_L
+            \approx
+            2.76\times10^{69}\,\mathrm{m^{-2}},
+            \qquad
+            \ell_L=\Lambda_L^{-1/2}
+            \approx
+            1.90\times10^{-35}\,\mathrm{m}.
+            \label{eq:sst63_planckian_tangle_spacing}
+        \end{align}
+        This is a calibrated reparametrization of \(G\), not an independent
+        derivation.  Its value is that it separates the particle-knot scale
+        \(r_c\) from the possible gravitational fabric scale \(\ell_L\).
+
+    \subsection{Critical limitations}
+
+        \begin{enumerate}
+            \item The line-tangle entropy law derives the area scaling only
+            after assuming an isotropic line process and a finite state count per
+            piercing.
+            \item The coefficient remains calibrated by \(G\) until
+            \(\Lambda_L\) is independently derived from SST vacuum statistics.
+            \item The Unruh temperature must be derived using the causal speed
+            \(c\) of the hyperbolic excitation sector, not the circulation speed
+            \(\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\), if it is to feed
+            the orthodox Jacobson route.
+            \item SST-56 lifetime and Hall-angle relations are diagnostics of
+            topological relaxation.  They do not by themselves derive gravity,
+            but they supply measurable constraints on any line-tangle or
+            fabric-sector model.
+        \end{enumerate}
+
+    \subsection{Falsifier map}
+
+        The integrated SST-63/23/56 program has three direct falsifiers:
+        \begin{enumerate}
+            \item \textbf{Boundary reconstruction failure:} fixed boundary swirl
+            data and fixed sector labels fail to reproduce the same bulk
+            response in the ideal regime.
+            \item \textbf{Unruh-response failure:} accelerated torsion systems
+            show no temperature-like or photon-transduction channel after
+            ordinary EM, thermal, and mechanical backgrounds are controlled.
+            \item \textbf{Topology-response failure:} filament topology, writhe,
+            or linking class produces no systematic Hall-angle or lifetime
+            hierarchy under matched superfluid conditions.
+        \end{enumerate}
+
         %==============================================================================
     \section{Clock Holography, Falsifiers, and Minimal Experiments}
 %==============================================================================
@@ -799,6 +938,26 @@
         ``Quantized circular photogalvanic effect in Weyl semimetals,''
         \emph{Nature Communications} \textbf{8}, 15995 (2017).
         doi:10.1038/ncomms15995
+
+
+    \bibitem{Unruh1976}
+    W.~G.~Unruh (1976),
+    ``Notes on black-hole evaporation,''
+    \emph{Physical Review D} \textbf{14}, 870--892.
+    doi: \href{https://doi.org/10.1103/PhysRevD.14.870}{10.1103/PhysRevD.14.870}.
+
+    \bibitem{Fetter2009}
+    A.~L.~Fetter (2009),
+    ``Rotating trapped Bose--Einstein condensates,''
+    \emph{Reviews of Modern Physics} \textbf{81}, 647--691.
+    doi: \href{https://doi.org/10.1103/RevModPhys.81.647}{10.1103/RevModPhys.81.647}.
+
+    \bibitem{RiccaMoffatt1992}
+    R.~L.~Ricca and H.~K.~Moffatt (1992),
+    ``The helicity of a knotted vortex filament,''
+    \emph{Topological Aspects of the Dynamics of Fluids and Plasmas},
+    NATO ASI Series, Springer.
+    doi/permalink: \href{https://doi.org/10.1007/978-94-017-3550-6_15}{10.1007/978-94-017-3550-6_15}.
 
     \end{thebibliography}
 

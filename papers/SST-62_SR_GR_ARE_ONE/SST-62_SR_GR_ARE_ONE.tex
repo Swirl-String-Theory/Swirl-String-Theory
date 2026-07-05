@@ -18,6 +18,26 @@
 \usepackage[a4paper,margin=1in]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% == Historical / superseded note environment ================================
+\definecolor{histbg}{RGB}{251,240,232}
+\definecolor{histborder}{RGB}{182,96,46}
+\definecolor{histtext}{RGB}{121,60,31}
+\newmdenv[
+  backgroundcolor=histbg,
+  linecolor=histborder,
+  linewidth=1.2pt,
+  innerleftmargin=10pt, innerrightmargin=10pt,
+  innertopmargin=6pt,   innerbottommargin=6pt,
+  skipabove=8pt, skipbelow=8pt,
+  roundcorner=3pt
+]{histbox}
+\newcommand{\histnote}[1]{%
+  \begin{histbox}
+    {\small\color{histtext}\textbf{HISTORICAL NOTE\,---\,}#1}
+  \end{histbox}}
 
 
 \newcommand{\titlepageOpen}{
@@ -81,6 +101,26 @@
         \end{abstract}
     \titlepageClose
 
+    \histnote{\textbf{Status: historical / superseded.}
+    This manuscript is retained for its rhetorical and historical value. Its
+    central claim that special relativity, general relativity, and the weak
+    equivalence principle ``are one'' / ``are not logically independent'' is
+    \emph{circular} as a foundational statement: the Einstein--Hilbert term is an
+    explicit ingredient of the action, and the assumed Lorentzian metric
+    signature already encodes local Minkowski structure. The paper therefore
+    demonstrates that these principles emerge \emph{structurally within an assumed
+    covariant vector--tensor framework}; it does not derive them from a more
+    primitive substrate. The corrected and canonical statement of this result is
+    \emph{SST-64 (Covariant Emergence, Revised)}, which explicitly separates what
+    is \emph{assumed} (Lorentzian metric, Einstein--Hilbert action, unit timelike
+    field, minimal coupling) from what is \emph{derived} (local SR kinematics, the
+    Einstein field equations by variation, and the WEP from the Bianchi identity).
+    In the SST canon the derivability of relativistic \emph{kinematics} is treated
+    as conditional (see the Relativity Emergence Ladder), while the full Einstein
+    \emph{dynamics} from substrate primitives remain an open research target. The
+    word ``unification'' below should be read in that qualified, effective-structure
+    sense rather than as a derivation from something more fundamental.}
+
 
 
     \section{Introduction}
@@ -127,6 +167,18 @@
             invariance and minimal coupling, implying that structureless matter follows
             metric geodesics.}
         \end{enumerate}
+
+        \histnote{\textbf{Assumed vs.\ derived.}
+        The theorem is a statement \emph{within} the assumed covariant vector--tensor
+        framework. The Lorentzian signature and the Einstein--Hilbert action are
+        \emph{inputs}, not outputs. What is genuinely derived is: (i) local
+        special-relativistic kinematics as a consequence of the assumed metric
+        structure; (ii) the Einstein-form field equations by metric variation; and
+        (iii) the weak equivalence principle from the Bianchi identity plus minimal
+        coupling. It is \emph{not} a derivation of the Einstein field equations from
+        substrate primitives; that remains an open target (cf.\ the thermodynamic,
+        induced-gravity, and infrared-EFT routes discussed in SST-64 and the SST
+        canon Relativity Emergence Ladder).}
 
         The derivation relies only on diffeomorphism invariance, the existence of a
         Lorentzian metric, the unit-timelike constraint, and minimal coupling of matter.

@@ -6,6 +6,7 @@ SST Canon Zenodo publishing: scan local/online versions, push as draft.
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import json
 import re
 import sys
@@ -50,11 +51,17 @@ EDITION_CHANGELOG: dict[str, str] = {
     "0.8.5": "Highres conversation audit + CALIBRATED circularity honesty",
     "0.8.6": "Framed self-linking / spinorial lepton ladder (subsec:framed_selflinking_spinorial)",
     "0.8.7": "Z₂ spinstats / CP¹ substrate paragraph + bibliography",
-    "0.8.8": "Gemini epistemic/notation audit (P_cal, a_cut, etc.)",
+    "0.8.8": "Epistemic/notation audit (P_cal, a_cut, etc.)",
     "0.8.9": "Triadic gravity-response corollary + flame/caustic/shell research-track diagnostics",
-    "0.8.10": "Gemini round-2: vchar/uswirl discipline, delay sign, epistemic relabeling",
+    "0.8.10": "vchar/uswirl discipline, delay sign, epistemic relabeling",
     "0.8.11": "Final hygiene: consistent P_cal, EMG/RT notation cleanup",
-    "0.8.12": "Gemini round-3: epistemic relabels, Pauli a_cut, galaxy rhoF caveat",
+    "0.8.12": "epistemic relabels, Pauli a_cut, galaxy rhoF caveat",
+    "0.8.13": "Relativity emergence ladder, tensor-speed naturalness (c13=0), SR/GR audit research-track",
+    "0.8.14": "Two-speed clock discipline, alpha-gate guard, core-torsion impedance-matching lemma",
+    "0.8.15": "Lorentz-type swirl-stress (canon) + EM-to-swirl correspondence / SST-44 stress (research track)",
+    "0.8.16": "Pressure–optical locking + no-monopole audit + relativity falsifier ladder (+ SST-73 notes)",
+    "0.8.17": "T-foliation remark + ropelength/trefoil-α convention + Route-I SST-63/23/56 integration (+ SST-73/63/64/34 bundle); RC2 PDF polish",
+    "0.8.18": "Calibration guardrails v2 + resolved-tube v3 (reach/thickness, contact-stress appendix, GW170817/pulsar falsifier bounds)",
 }
 
 DEFAULT_CREATORS = [
@@ -113,6 +120,23 @@ class PushResult:
 
 def been_processed_root() -> Path:
     return get_papers_dir() / "SST-CANON" / "been_processed"
+
+
+_canon_keywords_loader: Callable[[str], list[str]] | None = None
+
+
+def get_canon_keywords(version: str) -> list[str]:
+    """Load edition keywords from been_processed/canon_edition.py."""
+    global _canon_keywords_loader
+    if _canon_keywords_loader is None:
+        path = been_processed_root() / "canon_edition.py"
+        spec = importlib.util.spec_from_file_location("canon_edition", path)
+        if spec is None or spec.loader is None:
+            raise ImportError(f"Cannot load canon_edition from {path}")
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        _canon_keywords_loader = mod.canon_keywords
+    return _canon_keywords_loader(version)
 
 
 def version_sort_key(version: str) -> tuple[int, ...]:
@@ -418,12 +442,7 @@ def refresh_zenodo_config_description(version: str, create_if_missing: bool = Tr
     elif create_if_missing:
         data = {
             "creators": DEFAULT_CREATORS,
-            "keywords": [
-                "Swirl String Theory",
-                "Canon",
-                "Theoretical Physics",
-                "Formal Systems",
-            ],
+            "keywords": get_canon_keywords(version),
             "upload_type": "publication",
             "publication_type": "preprint",
             "publication_date": datetime.now().strftime('%Y-%m-%d'),
@@ -444,6 +463,7 @@ def refresh_zenodo_config_description(version: str, create_if_missing: bool = Tr
     data["title"] = title
     data["description"] = description
     data["version"] = zenodo_version_label(version)
+    data["keywords"] = get_canon_keywords(version)
     if not data.get("tex_file"):
         data["tex_file"] = tex_rel
     cfg.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding='utf-8')
@@ -754,12 +774,7 @@ def write_zenodo_config(
         "version": zenodo_version_label(version),
         "creators": DEFAULT_CREATORS,
         "description": description,
-        "keywords": [
-            "Swirl String Theory",
-            "Canon",
-            "Theoretical Physics",
-            "Formal Systems",
-        ],
+        "keywords": get_canon_keywords(version),
         "upload_type": "publication",
         "publication_type": "preprint",
         "publication_date": datetime.now().strftime('%Y-%m-%d'),
@@ -1238,7 +1253,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description='Push SST Canon versions to Zenodo')
     parser.add_argument('--version', help='Single version e.g. 0.8.5')
     parser.add_argument('--from', dest='from_version', default='0.8.2', help='Start version')
-    parser.add_argument('--to', dest='to_version', default='0.8.12', help='End version')
+    parser.add_argument('--to', dest='to_version', default='0.8.18', help='End version')
     parser.add_argument('--dry-run', action='store_true', help='Show actions without API calls')
     parser.add_argument('--publish', action='store_true', help='Publish after upload (default: draft)')
     parser.add_argument('--list-local', action='store_true', help='List local canon versions')
