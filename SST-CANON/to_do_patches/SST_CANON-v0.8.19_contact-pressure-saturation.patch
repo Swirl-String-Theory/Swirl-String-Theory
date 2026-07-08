@@ -1,0 +1,204 @@
+--- SST_CANON-v0.8.19-research-track.tex
++++ SST_CANON-v0.8.19-research-track.tex.patched
+@@ -1966,6 +1966,201 @@
+ for a discrete swirl-stress/contact-force map, not yet canonical physical
+ forces.
+ 
++\subsubsection{Contact-pressure saturation and Swirl-Clock shielding}
++\label{subsec:rt_contact_pressure_saturation_swirl_clock}
++
++\paragraph{Status.}
++\textbf{[ORTHODOX INPUT / CANON SEMANTIC GUARD / CONDITIONAL DERIVED / RESEARCH-TRACK CONTACT PHYSICS].}
++The orthodox input is the finite-thickness constraint structure of ropelength
++criticality: active self-distance constraints are struts, active curvature
++constraints are kinks, and their critical balance is expressed by non-negative
++KKT multipliers.  The canon semantic guard is that the Swirl-Clock is a
++kinematic factor determined by the resolved local swirl speed, not by an
++unrestricted contact multiplier.  The algebraic saturation result below is
++\textbf{[CONDITIONAL DERIVED]} once the declared Bernoulli/Biot--Savart pressure
++closure and speed cap are imposed.  The interpretation of the remaining hard
++multiplier as a physical contact-stress pressure is \textbf{[RESEARCH TRACK]}.
++
++\paragraph{Pressure split.}
++At an active self-contact patch, decompose the normal contact pressure into a
++kinematic Bernoulli/Biot--Savart part and a hard geometric constraint part:
++\begin{align}
++    \Pi_c
++    &=
++    \Pi_{\rm BS}
++    +
++    \Pi_{\rm hard},
++    \label{eq:rt_contact_pressure_split}
++    \\
++    \Pi_{\rm BS}
++    &=
++    \frac12\rho_\star u_\theta^2 .
++    \label{eq:rt_contact_pi_bs}
++\end{align}
++Here \(\rho_\star\) is the declared load-bearing density of the modeled layer.
++The term \(\Pi_{\rm hard}\) is the continuum counterpart of the active
++strut/kink multiplier sector enforcing the finite-thickness exclusion
++\begin{equation}
++    d(s,t)\ge 2a_{\rm core}.
++    \label{eq:rt_contact_distance_exclusion}
++\end{equation}
++Thus \(\Pi_{\rm BS}\) carries the kinematic swirl load, while
++\(\Pi_{\rm hard}\) carries any additional geometric incompressibility required
++by contact.
++
++\paragraph{Swirl-Clock coupling.}
++The local Swirl-Clock remains the Lorentz-compatible kinematic factor
++\begin{equation}
++    \SwirlClock(\mathbf x,t)
++    =
++    \sqrt{
++        1-
++        \frac{\lVert\uswirl(\mathbf x,t)\rVert^2}{c^2}
++    } .
++    \label{eq:rt_contact_swirl_clock_kinematic}
++\end{equation}
++For a local azimuthal contact model with speed \(u_\theta\),
++Eq.~\eqref{eq:rt_contact_pi_bs} gives
++\begin{equation}
++    \SwirlClock(\Pi_{\rm BS})
++    =
++    \sqrt{
++        1-
++        \frac{2\Pi_{\rm BS}}{\rho_\star c^2}
++    } .
++    \label{eq:rt_contact_swirl_clock_pressure}
++\end{equation}
++Consequently,
++\begin{equation}
++    \nabla\SwirlClock
++    =
++    -\frac{1}{\rho_\star c^2\SwirlClock}\,
++    \nabla\Pi_{\rm BS}
++    \label{eq:rt_contact_swirl_clock_gradient_pressure}
++\end{equation}
++inside the declared Bernoulli/Biot--Savart layer.  No corresponding rule is
++assigned to \(\Pi_{\rm hard}\); a hard-contact multiplier may diverge without
++forcing \(\SwirlClock\to0\).
++
++\paragraph{Canonical speed cap.}
++For one canonical circulation unit,
++\begin{equation}
++    \Gamma_0=2\pi\rc\vchar .
++    \label{eq:rt_contact_gamma0_cap}
++\end{equation}
++The canonical contact-saturation discipline imposes
++\begin{align}
++    u_\theta &\le \vchar,
++    \label{eq:rt_contact_speed_cap}
++    \\
++    \Pi_{\rm BS}
++    &\le
++    \Pi_{\rm cap}
++    =
++    \frac12\rho_\star\vchar{}^2 .
++    \label{eq:rt_contact_pressure_cap}
++\end{align}
++The Swirl-Clock therefore has the finite lower bound
++\begin{equation}
++    \boxed{
++    \SwirlClock
++    \ge
++    \SwirlClock_{\min}^{(c)}
++    =
++    \sqrt{1-\frac{\vchar{}^2}{c^2}}
++    }
++    \label{eq:rt_contact_swirl_clock_min}
++\end{equation}
++rather than collapsing to zero at contact.  With
++\(\vchar=1.09384563\times10^6\,{\rm m\,s^{-1}}\),
++\begin{align}
++    \SwirlClock_{\min}^{(c)}
++    &=
++    0.999993343558553,
++    \label{eq:rt_contact_swirl_clock_min_numeric}
++    \\
++    1-\SwirlClock_{\min}^{(c)}
++    &=
++    6.65644145\times10^{-6} .
++    \label{eq:rt_contact_swirl_clock_deficit_numeric}
++\end{align}
++If the core-density layer is used, the corresponding kinematic pressure cap is
++\begin{equation}
++    \Pi_{\rm cap}(\rhocore)
++    =
++    \frac12\rhocore\vchar{}^2
++    =
++    2.32924460\times10^{30}\,{\rm Pa} .
++    \label{eq:rt_contact_core_pressure_cap_numeric}
++\end{equation}
++
++\paragraph{Clock-shear shell.}
++An active strut can still generate a steep transition layer in the clock field.
++For a characteristic transition thickness \(\ell\),
++\begin{equation}
++    \lVert\nabla\SwirlClock\rVert
++    \sim
++    \frac{1-\SwirlClock_{\min}^{(c)}}{\ell} .
++    \label{eq:rt_contact_clock_shear_shell}
++\end{equation}
++At the limiting microscopic scale \(\ell\sim\rc\),
++\begin{equation}
++    \lVert\nabla\SwirlClock\rVert
++    \sim
++    4.724\times10^9\,{\rm m^{-1}} .
++    \label{eq:rt_contact_clock_gradient_numeric}
++\end{equation}
++This large gradient is a finite clock-shear shell, not an infinite
++time-dilation singularity.  Its integrated clock deficit across the shell is
++only of order \(6.66\times10^{-6}\).
++
++\paragraph{Contact-Constraint Theorem.}
++In any profile-resolved SST tube model that obeys the canonical speed cap,
++\begin{equation}
++    \boxed{
++    \Pi_c\to\infty
++    \quad\Longrightarrow\quad
++    \SwirlClock
++    \to
++    \SwirlClock_{\min}^{(c)}
++    =
++    \sqrt{1-\vchar{}^2/c^2}
++    }
++    \label{eq:rt_contact_constraint_theorem}
++\end{equation}
++provided the divergent part of \(\Pi_c\) is assigned to \(\Pi_{\rm hard}\).
++Equivalently, the singularity is carried by the contact-stress sector
++\begin{equation}
++    \nabla\cdot\mathbf T_{\rm contact},
++    \label{eq:rt_contact_stress_divergence_guard}
++\end{equation}
++not by an unbounded collapse of the Swirl-Clock.  The tube becomes
++geometrically hard before the local clock becomes infinitely slow.
++
++\paragraph{Guard against denominator drift.}
++A factor of the form \(\sqrt{1-u_\theta^2/\vchar{}^2}\) may be used as a
++local topological saturation or transport-efficiency factor inside a declared
++model, but it is not the Lorentz-compatible Swirl-Clock.  The operational
++clock factor in this canon retains the denominator \(c^2\), as in
++Eq.~\eqref{eq:rt_contact_swirl_clock_kinematic}.
++
++\paragraph{Falsification protocol.}
++A coupled knot-tightening/Biot--Savart audit must report, for each active strut,
++\begin{equation}
++    \Pi_{\rm BS},\qquad
++    \Pi_{\rm hard},\qquad
++    \lambda_{pq},\qquad
++    \SwirlClock .
++    \label{eq:rt_contact_saturation_audit_tuple}
++\end{equation}
++The saturation guard fails if \(\Pi_{\rm BS}\) reproducibly exceeds
++\(\Pi_{\rm cap}=\tfrac12\rho_\star\vchar{}^2\) without activating a compensating
++contact-stress multiplier or without reducing the local speed field back below
++\(\vchar\).  A standalone ropelength minimizer does not compute
++\(\Pi_{\rm BS}\) by itself; it supplies the contact skeleton that must be coupled
++to a Biot--Savart pressure postprocessor.
++
++
+ \subsubsection{Contact-map refinement of the topological kernel}
+ A scalar ropelength is not enough to determine all shape-sensitive SST
+ observables.  A resolved ideal tube carries a contact skeleton

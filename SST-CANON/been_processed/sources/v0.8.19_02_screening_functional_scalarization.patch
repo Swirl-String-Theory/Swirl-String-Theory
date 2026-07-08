@@ -1,0 +1,109 @@
+--- a/SST_CANON-v0.8.18.tex	2026-07-05 19:40:42.857542733 +0000
++++ b/SST_CANON-v0.8.18.tex	2026-07-05 19:40:42.858650083 +0000
+@@ -3571,27 +3571,46 @@
+     \subsection{Research-track companion}
+         The sectors that are useful for continuity but too long or too speculative for a minimal main-canon reading are also collected in the companion file \texttt{canon-0.8.1-research-track.tex}. That excerpt includes the thermodynamic-radiation interface, the minimal-coupling QED analogy, the ribbon-invariant chirality refinement, the particle-candidate mapping layer, the hydrodynamic exchange / Pauli-barrier estimate, the numerical-benchmark policy block, the gauge-sector roadmap, the four topology/stability appendices on non-Abelian protection, reconnection decay, fractional torus-phase winding, and topological-fluid mechanics, and the \emph{dark-sector and galactic canonization execution package} (frozen topology toolkit, benchmark protocol template, Euler-pressure anchor details, galactic branch gate, and probe--equation map). The integration subsections below retain the full in-context treatments with labels and cross-references; the companion file provides a portable standalone copy. Editorial separation does not reject these sectors; it prevents the core narrative from over-claiming closure.
+ 
+-    \subsection{Research-track knot-energy normal form}
++    \subsection{Research-track screening functional}
+         \label{sec:research_track_knot_energy_normal_form}
+ 
+         \paragraph{Status.}
+         \textbf{[RESEARCH TRACK / NON-DERIVED SCREENING FUNCTIONAL].}
+-        The main canon does not assume a closed universal knot-energy functional beyond the calibrated constant chain and the explicitly derived hydrodynamic energy scales.  For classification and numerical screening, the research track uses the dimensionless normal form
++        The main canon does not assume a closed universal knot-energy functional
++        beyond the calibrated constant chain and the explicitly derived
++        hydrodynamic energy scales.  For classification and numerical screening,
++        SST may use the dimensionless surrogate
+         \begin{equation}
+-            \frac{E_{\rm eff}[K]}{E_0}
++            \frac{E_{\rm screen}[K]}{E_0}
+             =
+-            \alpha_C C(K)
+-            +\alpha_L L(K)
+-            +\alpha_H\widehat{\mathcal H}(K)
+-            +\alpha_G I_G(K)
+-            +\cdots,
++            a_R\,\operatorname{Rop}_{\rm rad}(\gamma_K)
++            +a_C\,c_{\min}(K)
++            +a_H\,\widehat{\mathcal H}(K)
++            +a_G\,I_G(K)
++            +\cdots ,
+             \label{eq:research_track_energy_normal_form}
+         \end{equation}
+-        where $C(K)$ denotes a crossing/contact-complexity proxy, $L(K)$ a ropelength or relaxed-length invariant, $\widehat{\mathcal H}(K)$ a nondimensional helicity measure, and $I_G(K)$ a scalar index extracted from a possible non-Abelian topological charge sector $Q_G(K)$.  The map
++        where $\operatorname{Rop}_{\rm rad}$ is the orthodox radius-convention
++        ropelength of the chosen relaxed representative, $c_{\min}$ is the
++        minimal crossing/contact-complexity proxy used in the benchmark, and
++        $\widehat{\mathcal H}$ is a nondimensional helicity or framed-linking
++        measure.
++
++        The non-Abelian quantity $Q_G(K)$ is a sector label, not an energy.  It
++        may enter Eq.~\eqref{eq:research_track_energy_normal_form} only after a
++        scalarization map has been chosen,
+         \begin{equation}
+-            I_G:Q_G(K)\longrightarrow \mathbb R_{\ge 0}
++            I_G:Q_G(K)\longrightarrow \mathbb R_{\ge 0}.
++            \label{eq:research_track_IG_scalarization}
+         \end{equation}
+-        is required because $Q_G(K)$ is generally a sector label, not a real-valued energy contribution.  Equation~\eqref{eq:research_track_energy_normal_form} is therefore a research-track screening functional, not a derived SST Hamiltonian or mass theorem.
++        Therefore expressions of the form $\delta Q(K)$ are not canon-admissible
++        unless $Q$ has first been replaced by a real-valued index.
++
++        \textbf{[CANON GUARD].}
++        Equation~\eqref{eq:research_track_energy_normal_form} is a screening and
++        ranking functional for candidate representatives.  It is not a derived
++        SST Hamiltonian, not a mass theorem, and not a substitute for the
++        hydrodynamic energy functional.
+ 
+     \subsection{Dark-sector and galactic canonization status (v0.8.x)}
+         \label{sec:dark-canonicalization-status}
+--- a/SST_CANON-v0.8.18-research-track.tex	2026-07-05 19:40:42.873435750 +0000
++++ b/SST_CANON-v0.8.18-research-track.tex	2026-07-05 19:40:42.874358473 +0000
+@@ -1545,11 +1545,21 @@
+ \subsubsection{Motivation}
+ The current SST knot sector uses geometric and topological descriptors such as crossing number, ropelength, helicity, chirality, and hyperbolic-volume proxies. A minimal research-track screening form is
+ \begin{equation}
+-    \frac{E_{\rm eff}[K]}{E_0}
+-    =\alpha_C C(K)+\alpha_L L(K)+\alpha_H\widehat{\mathcal H}(K)+\cdots,
+-    \label{eq:sst_eff_energy_old}
+-\end{equation}
+-where $C(K)$ is a crossing-complexity proxy, $L(K)$ is a ropelength or length proxy, and $\widehat{\mathcal H}(K)$ denotes nondimensional helicity or helicity-derived topological data.  This is a scoring functional, not a derived Hamiltonian.
++    \frac{E_{\rm screen}[K]}{E_0}
++    =
++    a_R\,\operatorname{Rop}_{\rm rad}(\gamma_K)
++    +a_C\,c_{\min}(K)
++    +a_H\,\widehat{\mathcal H}(K)
++    +a_G\,I_G(K)
++    +\cdots,
++    \label{eq:sst_screen_energy_research_track}
++\end{equation}
++where $\operatorname{Rop}_{\rm rad}$ is the orthodox radius-convention ropelength,
++$c_{\min}$ is a crossing/contact-complexity proxy, and $\widehat{\mathcal H}$
++denotes nondimensional helicity or helicity-derived topological data.  The term
++$I_G(K)$ may appear only after a non-Abelian sector label $Q_G(K)$ has been
++mapped to a real-valued index $I_G:Q_G(K)\to\mathbb R_{\ge0}$.  This is a
++scoring functional, not a derived Hamiltonian.
+ 
+ Recent work on non-Abelian topological defects shows that some linked structures cannot be removed by local reconnections and strand crossings because the strands carry non-commuting elements of an order-parameter fundamental group \cite{Annala2022ProtectedVortexKnots}. This suggests that SST should distinguish two layers:
+ \begin{enumerate}
+@@ -1860,12 +1870,16 @@
+ \subsubsection{Reduction to the SST normal form}
+ After nondimensionalization by a reference energy $E_0$, Eq.~\eqref{eq:geometric_energy_functional} reduces to the canon-style scoring form
+ \begin{equation}
+-    \frac{E_{\rm geom}[K]}{E_0}
++    \frac{E_{\rm screen}[K]}{E_0}
+     \leadsto
+-    \alpha_C C(K)+\alpha_L L(K)+\alpha_H\widehat{\mathcal H}(K)+\alpha_G I_G(K)+\cdots.
++    a_R\,\operatorname{Rop}_{\rm rad}(\gamma_K)
++    +a_C\,c_{\min}(K)
++    +a_H\,\widehat{\mathcal H}(K)
++    +a_G\,I_G(K)
++    +\cdots .
+     \label{eq:tfm_to_sst_eff}
+ \end{equation}
+-Here $I_G(K)$ is included only when a non-Abelian coloring sector $Q_G(K)$ has been specified and scalarized by a map $I_G:Q_G\to\mathbb R_{\ge0}$. This justifies the SST normal form as a coarse-grained energy-ordering tool, not as a finished mass theorem.
++Here $I_G(K)$ is included only when a non-Abelian coloring sector $Q_G(K)$ has been specified and scalarized by a map $I_G:Q_G\to\mathbb R_{\ge0}$. This justifies the SST normal form as a coarse-grained energy-ordering tool, not as a finished mass theorem.  The unscalarized object $Q_G(K)$ is not an additive energy term.
+ 
+ \subsubsection{Canon discipline}
+ The functional in Eq.~\eqref{eq:tfm_to_sst_eff} should be used as follows:

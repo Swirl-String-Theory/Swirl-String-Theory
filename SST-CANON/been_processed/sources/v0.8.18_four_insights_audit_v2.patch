@@ -1,0 +1,311 @@
+--- SST_CANON-v0.8.18.tex
++++ SST_CANON-v0.8.18.tex
+@@ -3351,7 +3351,30 @@
+         The purpose of v0.8.1 is therefore not to maximize novelty per page, but to minimize duplication and to expose the dependency graph of the theory. Whenever two earlier canon fragments make the same structural claim in different language, the present version keeps one canonical form and demotes the others to historical context.
+ 
+     \subsection{Research-track companion}
+-        The sectors that are useful for continuity but too long or too speculative for a minimal main-canon reading are also collected in the companion file \texttt{canon-0.8.1-research-track.tex}. That excerpt includes the thermodynamic-radiation interface, the minimal-coupling QED analogy, the ribbon-invariant chirality refinement, the particle-candidate mapping layer, the hydrodynamic exchange / Pauli-barrier estimate, the numerical-benchmark policy block, the gauge-sector roadmap, and the \emph{dark-sector and galactic canonization execution package} (frozen topology toolkit, benchmark protocol template, Euler-pressure anchor details, galactic branch gate, and probe--equation map). The integration subsections below retain the full in-context treatments with labels and cross-references; the companion file provides a portable standalone copy. Editorial separation does not reject these sectors; it prevents the core narrative from over-claiming closure.
++        The sectors that are useful for continuity but too long or too speculative for a minimal main-canon reading are also collected in the companion file \texttt{canon-0.8.1-research-track.tex}. That excerpt includes the thermodynamic-radiation interface, the minimal-coupling QED analogy, the ribbon-invariant chirality refinement, the particle-candidate mapping layer, the hydrodynamic exchange / Pauli-barrier estimate, the numerical-benchmark policy block, the gauge-sector roadmap, the four topology/stability appendices on non-Abelian protection, reconnection decay, fractional torus-phase winding, and topological-fluid mechanics, and the \emph{dark-sector and galactic canonization execution package} (frozen topology toolkit, benchmark protocol template, Euler-pressure anchor details, galactic branch gate, and probe--equation map). The integration subsections below retain the full in-context treatments with labels and cross-references; the companion file provides a portable standalone copy. Editorial separation does not reject these sectors; it prevents the core narrative from over-claiming closure.
++
++
++    \subsection{Research-track knot-energy normal form}
++        \label{sec:research_track_knot_energy_normal_form}
++
++        \paragraph{Status.}
++        \textbf{[RESEARCH TRACK / NON-DERIVED SCREENING FUNCTIONAL].}
++        The main canon does not assume a closed universal knot-energy functional beyond the calibrated constant chain and the explicitly derived hydrodynamic energy scales.  For classification and numerical screening, the research track uses the dimensionless normal form
++        \begin{equation}
++            \frac{E_{\rm eff}[K]}{E_0}
++            =
++            \alpha_C C(K)
++            +\alpha_L L(K)
++            +\alpha_H\widehat{\mathcal H}(K)
++            +\alpha_G I_G(K)
++            +\cdots,
++            \label{eq:research_track_energy_normal_form}
++        \end{equation}
++        where $C(K)$ denotes a crossing/contact-complexity proxy, $L(K)$ a ropelength or relaxed-length invariant, $\widehat{\mathcal H}(K)$ a nondimensional helicity measure, and $I_G(K)$ a scalar index extracted from a possible non-Abelian topological charge sector $Q_G(K)$.  The map
++        \begin{equation}
++            I_G:Q_G(K)\longrightarrow \mathbb R_{\ge 0}
++        \end{equation}
++        is required because $Q_G(K)$ is generally a sector label, not a real-valued energy contribution.  Equation~\eqref{eq:research_track_energy_normal_form} is therefore a research-track screening functional, not a derived SST Hamiltonian or mass theorem.
+ 
+     \subsection{Dark-sector and galactic canonization status (v0.8.x)}
+         \label{sec:dark-canonicalization-status}
+@@ -3983,7 +4006,7 @@
+         \subsection{Canon edition notes}
+ 
+         \subsubsection{v0.8.18}
+-            \textbf{v0.8.18} adds calibration-chain guardrails (rc/$\alpha$ gates, kernel normalization, EM prefactor, $\rhohorn$ baseline fix), research-track observational falsifier bounds (GW170817, pulsar preferred-frame limits), orthodox resolved-tube reach/thickness definitions, and the contact-stress geometry research appendix on top of v0.8.17.
++            \textbf{v0.8.18} adds calibration-chain guardrails (rc/$\alpha$ gates, kernel normalization, EM prefactor, $\rhohorn$ baseline fix), research-track observational falsifier bounds (GW170817, pulsar preferred-frame limits), orthodox resolved-tube reach/thickness definitions, the four topology/stability research appendices (non-Abelian protection, reconnection decay, fractional torus-phase winding, and topological-fluid mechanics), and the contact-stress geometry research appendix on top of v0.8.17.
+ 
+         \subsubsection{v0.8.17}
+             \textbf{v0.8.17} adds the T-foliation versus local Swirl-Clock remark (Eq.~\ref{eq:absolute_T_local_tau_layers}), the ropelength/trefoil-$\alpha$ convention guard, Route-I SST-63/23/56 integration in the research track, and aligned updates in SST-73, SST-63, SST-64 v2, and SST-34 on top of v0.8.16. RC2 release-clean polish: p.119 summary quote, `\AE{}`-modes fix, `tabularx` particle-candidate tables, and targeted version-phrase cleanup.
+@@ -4843,6 +4866,31 @@
+             \newblock \emph{Classical and Quantum Gravity} \textbf{38}, 195003 (2021),
+             \newblock DOI: \href{https://doi.org/10.1088/1361-6382/ac1a69}{10.1088/1361-6382/ac1a69}.
+ 
++
++            \bibitem{Annala2022ProtectedVortexKnots}
++            T.~Annala, R.~Zamora-Zamora, and M.~M{\"o}tt{\"o}nen,
++            \newblock Topologically protected vortex knots and links,
++            \newblock \emph{Communications Physics} \textbf{5} (2022), 309,
++            \newblock DOI: \href{https://doi.org/10.1038/s42005-022-01071-2}{10.1038/s42005-022-01071-2}.
++
++            \bibitem{Kleckner2016SuperfluidKnotsUntie}
++            D.~Kleckner, L.~H.~Kauffman, and W.~T.~M.~Irvine,
++            \newblock How superfluid vortex knots untie,
++            \newblock \emph{Nature Physics} \textbf{12} (2016), 650--655,
++            \newblock DOI: \href{https://doi.org/10.1038/nphys3679}{10.1038/nphys3679}.
++
++            \bibitem{Pisanty2018FractionalKnotsLight}
++            E.~Pisanty, G.~Jim{\'e}nez, V.~Vicu{\~n}a-Hern{\'a}ndez, A.~Pic{\'o}n, A.~Celi, J.~P.~Torres, and M.~Lewenstein,
++            \newblock Knotting fractional-order knots with the polarization state of light,
++            \newblock \emph{arXiv:1808.05193} (2018),
++            \newblock arXiv: \href{https://arxiv.org/abs/1808.05193}{1808.05193}.
++
++            \bibitem{Ricca1998KnotFluidMechanics}
++            R.~L.~Ricca,
++            \newblock Applications of knot theory in fluid mechanics,
++            \newblock \emph{Banach Center Publications} \textbf{42} (1998), 321--346,
++            \newblock Permalink: \href{https://eudml.org/doc/252224}{EuDML:252224}.
++
+         \end{thebibliography}
+ 
+-\end{document}
+\ No newline at end of file
++\end{document}
+--- SST_CANON-v0.8.18-research-track.tex
++++ SST_CANON-v0.8.18-research-track.tex
+@@ -1527,10 +1527,10 @@
+ 
+ % ==========================================================
+ % legacy insertion block, retained in v0.8.17 research track:
+-% SST CANON v0.8.1 -- Research Track Appendices
+-% Four appendices extracted from knot/vorticity literature review
+-% Insert after \appendix in SST_CANON-v0.8.1.tex.
+-% Assumes the v0.8.1 macro prelude is already loaded.
++% SST CANON v0.8.18 -- Research Track Appendices
++% Four topology/stability appendices extracted from knot/vorticity literature review.
++% Integrated as a research-track section in SST_CANON-v0.8.18-research-track.tex.
++% Assumes the v0.8.18 macro prelude is already loaded.
+ % ==========================================================
+ 
+ \section{Research Appendices: Topology, Stability, and Fluid Mechanics}
+@@ -1542,22 +1542,30 @@
+ \textbf{[SPECULATIVE] Research Track.}
+ This appendix does not promote a new particle assignment to canon. It records a canon-compatible extension of the SST topology sector: knot type and helicity may be insufficient to determine dynamical stability when reconnection and strand-crossing moves are allowed. A non-Abelian coloring invariant may supply an additional obstruction to decay.
+ 
+-\subsection{Motivation}
+-The current SST knot sector uses geometric and topological descriptors such as crossing number, ropelength, helicity, chirality, and hyperbolic-volume proxies. A minimal effective form is
++\subsubsection{Motivation}
++The current SST knot sector uses geometric and topological descriptors such as crossing number, ropelength, helicity, chirality, and hyperbolic-volume proxies. A minimal research-track screening form is
+ \begin{equation}
+-    E_{\rm eff}[K]
+-    = \alpha C(K)+\beta L(K)+\gamma \mathcal H(K),
++    \frac{E_{\rm eff}[K]}{E_0}
++    =\alpha_C C(K)+\alpha_L L(K)+\alpha_H\widehat{\mathcal H}(K)+\cdots,
+     \label{eq:sst_eff_energy_old}
+ \end{equation}
+-where $C(K)$ is a crossing-complexity proxy, $L(K)$ is a ropelength or length proxy, and $\mathcal H(K)$ denotes helicity or helicity-derived topological data.
++where $C(K)$ is a crossing-complexity proxy, $L(K)$ is a ropelength or length proxy, and $\widehat{\mathcal H}(K)$ denotes nondimensional helicity or helicity-derived topological data.  This is a scoring functional, not a derived Hamiltonian.
+ 
+-Recent work on non-Abelian topological defects shows that some linked structures cannot be removed by local reconnections and strand crossings because the strands carry non-commuting elements of an order-parameter fundamental group. This suggests that SST should distinguish two layers:
++Recent work on non-Abelian topological defects shows that some linked structures cannot be removed by local reconnections and strand crossings because the strands carry non-commuting elements of an order-parameter fundamental group \cite{Annala2022ProtectedVortexKnots}. This suggests that SST should distinguish two layers:
+ \begin{enumerate}
+     \item the geometric knot type $K$ of the swirl string centerline;
+     \item an internal topological coloring $q$ valued in a discrete or continuous group $G$.
+ \end{enumerate}
+ 
+-\subsection{Group-colored swirl-string sector}
++A concrete benchmark choice is the quaternion group
++\begin{equation}
++    Q_8=\{\pm 1,\pm i,\pm j,\pm k\},
++    \qquad ij=k,
++    \qquad ji=-k,
++\end{equation}
++so that $ij\neq ji$.  The general symbol $G$ below is retained because SST does not yet select a unique internal order-parameter group.
++
++\subsubsection{Group-colored swirl-string sector}
+ Let a colored swirl-string configuration be denoted
+ \begin{equation}
+     \mathcal K_G=(K,q),
+@@ -1574,14 +1582,14 @@
+ \begin{equation}
+     [q(a_i),q(a_j)]
+     = q(a_i)q(a_j)q(a_i)^{-1}q(a_j)^{-1}
+-eq e_G.
++    \neq e_G.
+     \label{eq:noncommuting_obstruction}
+ \end{equation}
+ 
+ \textbf{[SPECULATIVE] SST interpretation.}
+ Equation~\eqref{eq:noncommuting_obstruction} is interpreted as a local reconnection barrier in the swirl medium. If two strands belong to non-commuting internal sectors, a direct crossing or reconnection requires an additional defect cord or phase bridge. In SST terms this is a candidate mechanism for topological protection beyond ordinary helicity conservation.
+ 
+-\subsection{Protected-sector invariant}
++\subsubsection{Protected-sector invariant}
+ Define a protection marker
+ \begin{equation}
+     \mathcal P_G(\mathcal K_G)=
+@@ -1602,19 +1610,23 @@
+ \end{equation}
+ where $Q_G$ is a conserved coloring invariant under the permitted move set.
+ 
+-A useful research-track extension of Eq.~\eqref{eq:sst_eff_energy_old} is therefore
++A useful research-track extension of Eq.~\eqref{eq:sst_eff_energy_old} is therefore the scalarized screening form
+ \begin{equation}
+-    E_{\rm eff}^{(G)}[\mathcal K_G]
+-    = \alpha C(K)+\beta L(K)+\gamma \mathcal H(K)
+-    + \Delta_G\,\mathcal P_G(\mathcal K_G),
++    \frac{E_{\rm eff}^{(G)}[\mathcal K_G]}{E_0}
++    =\alpha_C C(K)+\alpha_L L(K)+\alpha_H\widehat{\mathcal H}(K)
++    +\alpha_G I_G(\mathcal K_G),
+     \label{eq:nonabelian_extended_energy}
+ \end{equation}
+-where $\Delta_G$ is not a fitted mass term but a symbolic protection scale measuring the minimum energy required to violate or bypass the coloring constraint.
++where
++\begin{equation}
++    I_G:Q_G(\mathcal K_G)\longrightarrow \mathbb R_{\ge 0}
++\end{equation}
++extracts a real-valued index from the conserved coloring sector.  The barrier scale $\Delta_G$ belongs to reconnection dynamics through Eq.~\eqref{eq:nonabelian_barrier_rule}; it is not promoted to a fitted mass term.
+ 
+-\subsection{Dimensional check}
+-The quantities $C(K)$, $\mathcal H(K)$ after normalization, $Q_G$, and $\mathcal P_G$ are dimensionless. Therefore $\alpha$, $\gamma$, and $\Delta_G$ must carry units of energy if Eq.~\eqref{eq:nonabelian_extended_energy} is used as an energy functional. If instead $E_{\rm eff}$ is a dimensionless scoring functional, all coefficients are dimensionless and must later be multiplied by an SST energy scale such as $\rhoE V_K$.
++\subsubsection{Dimensional check}
++The quantities $C(K)$, $L(K)$ after ropelength normalization, $\widehat{\mathcal H}(K)$, and $I_G$ are dimensionless.  Therefore the coefficients in Eq.~\eqref{eq:nonabelian_extended_energy} are dimensionless if the left-hand side is $E_{\rm eff}/E_0$.  A dimensional energy is recovered only after selecting an SST energy scale $E_0$, for example a calibrated tube energy, a core line-tension scale, or a controlled numerical relaxation scale.  The group object $Q_G$ itself is not added to the energy; only a scalar index extracted from it may enter a screening functional.
+ 
+-\subsection{Minimal falsifier}
++\subsubsection{Minimal falsifier}
+ If two SST candidate particles have the same $(C,L,\mathcal H)$ but different observed stability, the model predicts that a missing internal sector label exists:
+ \begin{equation}
+     (C_1,L_1,\mathcal H_1)=(C_2,L_2,\mathcal H_2),
+@@ -1630,9 +1642,9 @@
+ 
+ \paragraph{Canon status.}
+ \textbf{[ORTHODOX] Constraint + [SPECULATIVE] SST interpretation.}
+-This appendix records a negative constraint on SST. A single-component Gross--Pitaevskii-like medium with permitted reconnections does not automatically protect knotted filaments. Therefore, SST particle stability requires additional structure beyond generic phase-defect topology.
++This appendix records a negative constraint on SST. A single-component Gross--Pitaevskii-like medium with permitted reconnections does not automatically protect knotted filaments \cite{Kleckner2016SuperfluidKnotsUntie}. Therefore, SST particle stability requires additional structure beyond generic phase-defect topology.
+ 
+-\subsection{Baseline statement}
++\subsubsection{Baseline statement}
+ In a dissipative or reconnection-permitting medium, knotted filament topology can decay. The relevant orthodox lesson is not that SST is false, but that topology alone is insufficient unless the move set is restricted by the dynamics.
+ 
+ Let $K(t)$ denote the topology of a swirl-string centerline. A reconnection path is a sequence
+@@ -1642,7 +1654,7 @@
+ \end{equation}
+ where each arrow is a local reconnection or strand-crossing event. If $K_N$ is an unlink or collection of unknotted loops, then $K_0$ is dynamically unprotected under that move set.
+ 
+-\subsection{SST stability criterion}
++\subsubsection{SST stability criterion}
+ SST should not claim that every closed filament is stable. A canon-compatible stability criterion is
+ \begin{equation}
+     \tau_{\rm life}(K)
+@@ -1663,7 +1675,7 @@
+     \label{eq:sst_stability_condition}
+ \end{equation}
+ 
+-\subsection{Relation to Chronos--Kelvin transport}
++\subsubsection{Relation to Chronos--Kelvin transport}
+ For ideal SST evolution without reconnection or external source, the Chronos--Kelvin invariant remains
+ \begin{equation}
+     \frac{D}{Dt}\left(R^2\omega\right)=0.
+@@ -1680,7 +1692,7 @@
+     \mathcal H(K_i)\neq \mathcal H(K_{i+1}).
+ \end{equation}
+ 
+-\subsection{Dimensionless diagnostic}
++\subsubsection{Dimensionless diagnostic}
+ Define the stability ratio
+ \begin{equation}
+     \Xi_{\rm rec}(K)
+@@ -1708,7 +1720,7 @@
+     \Xi_{\rm rec}(K)\gg 1 \Rightarrow \text{candidate stable T-phase state}.
+ \end{equation}
+ 
+-\subsection{Minimal simulation protocol}
++\subsubsection{Minimal simulation protocol}
+ A candidate SST knot assignment should be tested under three levels of dynamics:
+ \begin{enumerate}
+     \item single-component phase-defect evolution;
+@@ -1722,9 +1734,9 @@
+ 
+ \paragraph{Canon status.}
+ \textbf{[SPECULATIVE] Research Track.}
+-This appendix records a bridge between coordinated rotational phase mechanics and SST R-phase torsional packets. It does not assert that optical polarization knots are literal SST particles. It supplies a useful mathematical template for phase winding, internal rotation, and torus-knot closure.
++This appendix records a bridge between coordinated rotational phase mechanics and SST R-phase torsional packets, using fractional-order optical torus knots as the mathematical template \cite{Pisanty2018FractionalKnotsLight}. It does not assert that optical polarization knots are literal SST particles. It supplies a useful mathematical template for phase winding, internal rotation, and torus-knot closure.
+ 
+-\subsection{Coordinated phase generator}
++\subsubsection{Coordinated phase generator}
+ Let $\theta$ be an external azimuthal coordinate and let $\phi$ be an internal director angle. A coordinated rotation acts as
+ \begin{equation}
+     \theta\mapsto \theta+\alpha,
+@@ -1751,7 +1763,7 @@
+ \end{equation}
+ If $\gcd(m,n)=1$, the internal lobe trajectory is a single $(m,n)$ torus knot. If $d=\gcd(m,n)>1$, the trajectory splits into $d$ linked components.
+ 
+-\subsection{SST phase-action translation}
++\subsubsection{SST phase-action translation}
+ To avoid notation conflict with the Swirl-Clock factor $\SwirlClock$, define a phase-action field $\mathscr S(\vec x,t)$. In an R-phase torsional packet, write the reduced phase on a toroidal carrier as
+ \begin{equation}
+     \Theta(\theta,\phi,t)
+@@ -1776,7 +1788,7 @@
+     \label{eq:phase_action_quantization}
+ \end{equation}
+ 
+-\subsection{Connection to Swirl-Clock modulation}
++\subsubsection{Connection to Swirl-Clock modulation}
+ The local Swirl-Clock factor remains the kinematic clock factor
+ \begin{equation}
+     \SwirlClock
+@@ -1792,7 +1804,7 @@
+ \textbf{[SPECULATIVE] Interpretation.}
+ Equation~\eqref{eq:gamma_fractional_winding} suggests a route to fractional internal winding without fractional circulation. The circulation quantum remains integer-valued, but the internal phase orientation can return only after multiple external turns. This may be useful for modeling R-phase torsional photons, spin-orbit-like packet structure, or generation-family phase layering.
+ 
+-\subsection{Dimensional check}
++\subsubsection{Dimensional check}
+ The variables $m,n,p,q,N$ and $\gamma$ are dimensionless. The phase $\Theta$ is dimensionless. Therefore $\mathscr S=\hbar_{\rm SST}\Theta$ has units of action, and Eq.~\eqref{eq:phase_action_quantization} has units of action because $\nabla\mathscr S\cdot d\vec\ell$ has units $({\rm J\,s\,m^{-1}}){\rm m}={\rm J\,s}$.
+ 
+ \subsection{Research Appendix: Topological Fluid Mechanics and the SST Energy Functional}
+@@ -1800,9 +1812,9 @@
+ 
+ \paragraph{Canon status.}
+ \textbf{[ORTHODOX] Mathematical background + [SPECULATIVE] SST synthesis.}
+-This appendix records the topological-fluid mechanics background behind the SST knot-energy program. The orthodox part is that ideal incompressible flow preserves topology and helicity under the usual assumptions. The speculative part is the identification of selected relaxed knot classes with particle sectors.
++This appendix records the topological-fluid mechanics background behind the SST knot-energy program \cite{Moffatt1969,Ricca1998KnotFluidMechanics}. The orthodox part is that ideal incompressible flow preserves topology and helicity under the usual assumptions. The speculative part is the identification of selected relaxed knot classes with particle sectors.
+ 
+-\subsection{Frozen-field topology}
++\subsubsection{Frozen-field topology}
+ In an ideal incompressible medium, topology is transported by the flow map. For SST this supports the use of closed swirl strings as dynamically persistent structures under non-reconnecting evolution.
+ 
+ The primary invariants are
+@@ -1821,7 +1833,7 @@
+ \end{equation}
+ where $SL_i$ is self-linking and $Lk_{ij}$ is Gauss linking number.
+ 
+-\subsection{Energy relaxation under topological constraints}
++\subsubsection{Energy relaxation under topological constraints}
+ For a slender swirl tube, the leading hydrodynamic energy scale is
+ \begin{equation}
+     E_{\rm env}
+@@ -1845,17 +1857,17 @@
+ \end{equation}
+ Here $\kappa_s$ is centerline curvature and $C_{\rm near}$ is a near-contact or crossing-complexity proxy.
+ 
+-\subsection{Reduction to the SST normal form}
++\subsubsection{Reduction to the SST normal form}
+ After nondimensionalization by a reference energy $E_0$, Eq.~\eqref{eq:geometric_energy_functional} reduces to the canon-style scoring form
+ \begin{equation}
+     \frac{E_{\rm geom}[K]}{E_0}
+     \leadsto
+-    \alpha C(K)+\beta L(K)+\gamma\mathcal H(K)+\cdots.
++    \alpha_C C(K)+\alpha_L L(K)+\alpha_H\widehat{\mathcal H}(K)+\alpha_G I_G(K)+\cdots.
+     \label{eq:tfm_to_sst_eff}
+ \end{equation}
+-This justifies the SST normal form as a coarse-grained energy-ordering tool, not as a finished mass theorem.
++Here $I_G(K)$ is included only when a non-Abelian coloring sector $Q_G(K)$ has been specified and scalarized by a map $I_G:Q_G\to\mathbb R_{\ge0}$. This justifies the SST normal form as a coarse-grained energy-ordering tool, not as a finished mass theorem.
+ 
+-\subsection{Canon discipline}
++\subsubsection{Canon discipline}
+ The functional in Eq.~\eqref{eq:tfm_to_sst_eff} should be used as follows:
+ \begin{enumerate}
+     \item \textbf{[ORTHODOX]} Use $\Gamma$, $\mathcal H$, $Lk$, writhe, twist, and ropelength as established geometric/topological descriptors.

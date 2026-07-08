@@ -1,0 +1,268 @@
+--- a/SST_CANON-v0.8.19-research-track.tex	2026-07-08 03:33:55.001875122 +0000
++++ b/SST_CANON-v0.8.19-research-track.tex	2026-07-08 03:33:55.036871100 +0000
+@@ -1692,6 +1692,239 @@
+     \mathcal H(K_i)\neq \mathcal H(K_{i+1}).
+ \end{equation}
+ 
++\subsubsection{Topological Hitting Conditions and Chronos--Kelvin Phase Slips}
++\label{subsubsec:chronos_kelvin_hitting_conditions}
++
++\paragraph{Canon status ledger.}
++\begin{center}
++\small
++\begin{tabular}{p{0.18\linewidth}p{0.24\linewidth}p{0.48\linewidth}}
++\textbf{[ORTHODOX]} & Geometric thickness & Curvature radius and doubly-critical self-distance control finite tube contact.\\
++\textbf{[ORTHODOX]} & Phase-slip/reconnection layer & He-II/GP-like media permit non-ideal reconnection events.\\
++\textbf{[CANON-COMPATIBLE]} & Ideal SST transport & Without reconnection/source, Chronos--Kelvin transport remains conserved.\\
++\textbf{[RESEARCH TRACK]} & First-hitting boundary & A Kairos event is modeled as a distributional boundary condition, not a smooth correction.\\
++\textbf{[SPECULATIVE]} & SST core scale & The identification $a_{\rm rec}=\rc$ requires a resolved-core SST move-set proof.\\
++\textbf{[FALSIFIER]} & Two-scale test & He-II coherence length and SST core radius define distinct reconnection thresholds.
++\end{tabular}
++\end{center}
++
++This block is Research Track. It does not modify the ideal SST evolution law. It defines the non-ideal boundary surface at which the ideal Chronos--Kelvin branch ceases to be a valid smooth continuation and the state must be represented in the Kairos event layer. Orthodox superfluid reconnections and phase-slip phenomenology provide the analogue event class, not the SST core proof \cite{KoplikLevine1993,BewleyPaolettiSreenivasanLathrop2008,Varoquaux2015AndersonPhaseSlippage,Kleckner2016SuperfluidKnotsUntie}.
++
++\paragraph{Orthodox geometric premise.}
++In the orthodox ropelength setting, finite tube contact is controlled by curvature and doubly-critical self-distance \cite{CantarellaKusnerSullivan2002,AshtonCantarellaPiatekRawdon2011}. Let $\gamma_K:S^1\times\mathbb R\to\mathbb R^3$ denote the centerline of a finite-thickness vortex tube in knot class $K$, with curvature $\kappa(s,t)$. Its geometric thickness is
++\begin{equation}
++    \tau_K(t)
++    =
++    \min\!\left[
++        \frac{1}{\kappa_{\max}(t)},
++        \frac{1}{2}d_{\rm dcsd}(t)
++    \right],
++    \label{eq:sst_thickness_dcsd_split}
++\end{equation}
++where
++\begin{equation}
++    d_{\rm dcsd}(t)
++    =
++    \min_{(s_1,s_2)\in {\rm dcsd}}
++    \|\gamma_K(s_1,t)-\gamma_K(s_2,t)\|.
++    \label{eq:sst_dcsd_definition}
++\end{equation}
++The min-structure in Eq.~\eqref{eq:sst_thickness_dcsd_split} is the key point: a loss of thickness may occur either by excessive curvature or by self-contact. These are physically distinct events.
++
++\paragraph{Derived split: kink versus reconnection.}
++Define $\inf\emptyset:=+\infty$. The first curvature-contact event is
++\begin{equation}
++    t_{\rm kink}
++    =
++    \inf\left\{
++    t:
++    \frac{1}{\kappa_{\max}(t)}\le a_{\rm rec},
++    \quad
++    D_t^+\!\left(\frac{1}{\kappa_{\max}}\right)<0
++    \right\}.
++    \label{eq:sst_t_kink}
++\end{equation}
++The first topological reconnection event is instead
++\begin{equation}
++    t_{\rm rec}
++    =
++    \inf\left\{
++    t:
++    d_{\rm dcsd}(t)\le 2a_{\rm rec},
++    \quad
++    D_t^+d_{\rm dcsd}(t)<0,
++    \quad
++    E_{\rm avail}(t)\ge E_{\rm b},
++    \quad
++    \Delta w\in\mathbb Z\setminus\{0\}
++    \right\}.
++    \label{eq:sst_t_rec}
++\end{equation}
++Here $D_t^+$ denotes the right-sided time derivative, and $\Delta w$ denotes the integer winding or phase-slip jump across the local core-contact surface. The first breakdown of ideal smooth evolution is
++\begin{equation}
++    \boxed{
++    t_\ast=\min(t_{\rm kink},t_{\rm rec}).
++    }
++    \label{eq:sst_first_hitting_time}
++\end{equation}
++Only $t_{\rm rec}$ is a topology-changing reconnection event. A curvature event $t_{\rm kink}$ is a local core-compression or kink-barrier event and must not be automatically labeled as a topological defect.
++
++\paragraph{Reconnection scale.}
++The reconnection radius is medium-dependent:
++\begin{equation}
++    a_{\rm rec}
++    =
++    \begin{cases}
++        \rc, & \text{SST resolved-core hypothesis},\\
++        \xi, & \text{orthodox He-II coherence-length falsifier layer}.
++    \end{cases}
++    \label{eq:sst_reconnection_scale}
++\end{equation}
++With $\rc=1.40897017\times10^{-15}\,{\rm m}$ and a representative He-II coherence length $\xi\sim10^{-10}\,{\rm m}$,
++\begin{equation}
++    \frac{\xi}{\rc}
++    \simeq
++    7.09738\times10^4,
++    \qquad
++    d_{\rm rec}^{\rm SST}=2\rc=2.81794034\times10^{-15}\,{\rm m},
++    \qquad
++    d_{\rm rec}^{\rm He-II}\sim2\times10^{-10}\,{\rm m}.
++    \label{eq:sst_heii_core_scale_mismatch}
++\end{equation}
++Thus He-II reconnection experiments primarily test the allowed topological move-set of a superfluid medium; they do not directly probe the SST core radius unless an additional scale-bridge is derived.
++
++\paragraph{Chronos--Kelvin branch and distributional failure.}
++On the ideal branch $t<t_\ast$, define the scalar Chronos--Kelvin quantity
++\begin{equation}
++    \Lambda_{\rm CK}
++    =
++    \frac{\vnorm}{r_s}R^2
++    \sqrt{1-\left(S_t^{\boldsymbol{\circlearrowleft}}\right)^2}.
++    \label{eq:sst_lambda_ck_hitting}
++\end{equation}
++Then
++\begin{equation}
++    \frac{D\Lambda_{\rm CK}}{Dt_{ae}}=0,
++    \qquad t<t_\ast.
++    \label{eq:sst_lambda_ck_conserved_before_hit}
++\end{equation}
++At a Kairos event the same quantity is not smoothly corrected. It acquires a distributional jump:
++\begin{equation}
++    \frac{D\Lambda_{\rm CK}}{Dt_{ae}}
++    =
++    \sum_j \Delta\Lambda_j\,\delta(t-t_j),
++    \qquad t_j=t_{{\rm rec},j}.
++    \label{eq:sst_lambda_ck_distributional_jump}
++\end{equation}
++Consequently, the Swirl--Clock branch
++\begin{equation}
++    S_t^{\boldsymbol{\circlearrowleft}}(R)
++    =
++    \sqrt{1-
++    \left(
++        \frac{\Lambda_{\rm CK}r_s}{\vnorm R^2}
++    \right)^2}
++    \label{eq:sst_swirl_clock_branch_hitting}
++\end{equation}
++exists only while
++\begin{equation}
++    R\ge R_{\rm CK}
++    =
++    \left(\frac{\Lambda_{\rm CK}r_s}{\vnorm}\right)^{1/2}.
++    \label{eq:sst_ck_radius_bound}
++\end{equation}
++The operative transition radius is therefore
++\begin{equation}
++    \boxed{
++    R_{\rm trans}=\max(a_{\rm rec},R_{\rm CK}).
++    }
++    \label{eq:sst_transition_radius_max}
++\end{equation}
++Inside $R_{\rm trans}$, the ideal smooth Swirl--Clock continuation is no longer defined; the state must be represented in the non-ideal radiative defect sector.
++
++\paragraph{Energetic jump condition.}
++The available reconnection energy must be non-negative. For a proposed move $K_i\to K_{i+1}$ define
++\begin{equation}
++    E_{\rm avail}^{ij}
++    =
++    W_{\rm ext}
++    +
++    \left[ E_{\rm tube}(K_i)-E_{\rm tube}(K_{i+1})\right]_+,
++    \qquad
++    [x]_+:=\max(x,0).
++    \label{eq:sst_positive_part_available_energy}
++\end{equation}
++The reconnection gate opens only if
++\begin{equation}
++    \boxed{
++    E_{\rm avail}^{ij}\ge E_{\rm b}^{ij},
++    }
++    \label{eq:sst_reconnection_energy_gate}
++\end{equation}
++where $E_{\rm b}^{ij}$ is the local core-contact or phase-slip barrier. A useful leading slender-tube scale is
++\begin{equation}
++    E_{\rm tube}(K)
++    \simeq
++    \frac{\rhoF\Gamma_0^2}{4\pi}\,
++    \ell_K
++    \ln\!\left(\frac{R_{\rm out}}{a_{\rm rec}}\right).
++    \label{eq:sst_slender_tube_energy_hitting}
++\end{equation}
++The units are
++\begin{equation}
++    [\rhoF\Gamma_0^2\ell_K]
++    =
++    \left(\frac{\rm kg}{{\rm m}^3}\right)
++    \left(\frac{{\rm m}^4}{{\rm s}^2}\right)
++    ({\rm m})
++    =
++    {\rm J}.
++    \label{eq:sst_hitting_energy_units}
++\end{equation}
++
++\paragraph{Canonical transition matrix.}
++Let
++\begin{equation}
++    N_{\rm slip}(t)
++    =
++    \sum_j n_jH(t-t_j),
++    \qquad
++    \dot N_{\rm slip}(t)
++    =
++    \sum_j n_j\delta(t-t_j).
++    \label{eq:sst_phase_slip_counter}
++\end{equation}
++Then the state split is
++\begin{equation}
++\boxed{
++\begin{aligned}
++\text{Stable T-phase / no-slip state:}\quad
++& \tau_K>a_{\rm rec},
++\quad N_{\rm slip}={\rm const.},
++\quad E_{\rm avail}<E_{\rm b},
++\quad \frac{D\Lambda_{\rm CK}}{Dt_{ae}}=0;\\[0.4em]
++\text{Dissipative Kairos event:}\quad
++& d_{\rm dcsd}\le2a_{\rm rec},
++\quad D_t^+d_{\rm dcsd}<0,
++\quad \Delta w\in\mathbb Z\setminus\{0\},
++\quad E_{\rm avail}\ge E_{\rm b},\\
++& \frac{D\Lambda_{\rm CK}}{Dt_{ae}}
++=\sum_j\Delta\Lambda_j\delta(t-t_j)\ne0.
++\end{aligned}}
++\label{eq:sst_canonical_transition_matrix_hitting}
++\end{equation}
++
++\paragraph{Falsification rule.}
++A simulation or experiment which labels a curvature-only event $t_{\rm kink}$ as a topological reconnection violates the status separation in Eq.~\eqref{eq:sst_first_hitting_time}. Conversely, a claimed reconnection without $d_{\rm dcsd}\le2a_{\rm rec}$, nonzero phase-slip index, and a positive energy gate violates Eq.~\eqref{eq:sst_t_rec}. This makes the conclusion operational:
++\begin{equation}
++    \boxed{
++    \text{ideal SST conserves }\Lambda_{\rm CK};
++    \quad
++    \text{Kairos events inject distributional jumps.}
++    }
++    \label{eq:sst_ck_kairos_conclusion}
++\end{equation}
++
+ \subsubsection{Dimensionless diagnostic}
+ Define the stability ratio
+ \begin{equation}
+@@ -2229,6 +2462,25 @@
+ arXiv: \href{https://arxiv.org/abs/1002.1723}{1002.1723}.
+ 
+ 
++\bibitem{KoplikLevine1993}
++J.~Koplik and H.~Levine,
++``Vortex Reconnection in Superfluid Helium,''
++\emph{Physical Review Letters} \textbf{71}, 1375--1378 (1993).
++DOI: \href{https://doi.org/10.1103/PhysRevLett.71.1375}{10.1103/PhysRevLett.71.1375}.
++
++\bibitem{BewleyPaolettiSreenivasanLathrop2008}
++G.~P. Bewley, M.~S. Paoletti, K.~R. Sreenivasan, and D.~P. Lathrop,
++``Characterization of reconnecting vortices in superfluid helium,''
++\emph{Proceedings of the National Academy of Sciences} \textbf{105}, 13707--13710 (2008).
++DOI: \href{https://doi.org/10.1073/pnas.0806002105}{10.1073/pnas.0806002105}.
++
++\bibitem{Varoquaux2015AndersonPhaseSlippage}
++E.~Varoquaux,
++``Anderson's considerations on the flow of superfluid helium: Some offshoots,''
++\emph{Reviews of Modern Physics} \textbf{87}, 803--854 (2015).
++DOI: \href{https://doi.org/10.1103/RevModPhys.87.803}{10.1103/RevModPhys.87.803}.
++
++
+ \bibitem{Ricca1998KnotFluidMechanics}
+ R.~L.~Ricca,
+ ``Applications of knot theory in fluid mechanics,''

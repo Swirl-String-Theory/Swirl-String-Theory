@@ -1,0 +1,40 @@
+--- a/SST_CANON-v0.8.18.tex	2026-07-05 19:40:42.888431823 +0000
++++ b/SST_CANON-v0.8.18.tex	2026-07-05 19:40:42.889215658 +0000
+@@ -1191,6 +1191,37 @@
+         with $a_{\rm core}(K)=\operatorname{Thi}_{\rm rad}(\gamma_K)$ unless a
+         separately derived resolved-tube radius is specified.
+ 
++    \subsection{Derived thin-filament energy scale}
++        \label{subsec:derived_thin_filament_energy_scale}
++
++        \textbf{[DERIVED / LEADING-ORDER FILAMENT LIMIT].}
++        The canon may use a hydrodynamic thin-filament energy scale before any
++        empirical topological screening functional is introduced.  For a slender
++        closed swirl tube with circulation $\Gamma$, physical centerline length
++        $L_{\rm phys}(K)$, core cutoff $\rc$, and outer matching scale
++        $\ell_{\rm out}$, the leading envelope contribution is
++        \begin{align}
++            E_{\rm fil}^{(0)}[K]
++            \simeq
++            \frac{\rhoF\Gamma^2}{4\pi}\,
++            L_{\rm phys}(K)\,
++            \ln\!\left(\frac{\ell_{\rm out}}{\rc}\right)
++            +
++            T_{\rm core}\,L_{\rm phys}(K)
++            +\cdots .
++            \label{eq:canon_thin_filament_energy_scale}
++        \end{align}
++        The first term is the usual slender-vortex logarithmic energy scale,
++        while $T_{\rm core}$ records the resolved line-tension contribution of
++        the core model.
++
++        \textbf{[CANON GUARD].}
++        Equation~\eqref{eq:canon_thin_filament_energy_scale} is the derived
++        length/logarithm anchor for later knot screening.  The surrogate terms
++        in Eq.~\eqref{eq:research_track_energy_normal_form} may be calibrated
++        against this energy scale, but they are not themselves derived by merely
++        being listed as topological descriptors.
++
+     \subsection{Euler topological preservation and closure discipline}
+         \label{subsec:euler_topological_preservation_closure}
+ 

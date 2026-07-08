@@ -9,7 +9,7 @@ import sys
 import requests
 from datetime import datetime
 from pathlib import Path
-from zenodo_automation import ZenodoAutomation, get_papers_dir, read_token_from_zenodo_py
+from zenodo_automation import ZenodoAutomation, get_papers_dir, read_token_from_zenodo_py, resolve_tex_file_path
 
 # Handle encoding
 if sys.platform == 'win32':
@@ -173,7 +173,7 @@ def main():
         # Try to find PDF based on tex_file or config file name
         tex_file_path = config_data.get('tex_file', '')
         if tex_file_path:
-            tex_file = base_dir / tex_file_path
+            tex_file = resolve_tex_file_path(tex_file_path, base_dir)
             pdf_file = tex_file.with_suffix('.pdf')
         else:
             pdf_file = config_file.with_suffix('.pdf')

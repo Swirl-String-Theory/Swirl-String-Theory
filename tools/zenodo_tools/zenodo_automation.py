@@ -729,6 +729,41 @@ def get_papers_dir() -> Path:
     return get_repo_root() / "papers"
 
 
+def get_canon_dir() -> Path:
+    """SST-CANON directory at repository root."""
+    return get_repo_root() / "SST-CANON"
+
+
+def get_been_processed_dir() -> Path:
+    """Active canon edition pipeline directory."""
+    return get_canon_dir() / "been_processed"
+
+
+def resolve_tex_file_path(tex_rel: str, papers_dir: Path | None = None) -> Path:
+    """Resolve tex_file from .zenodo.json (papers-relative or canon-at-root)."""
+    papers_dir = papers_dir or get_papers_dir()
+    rel = tex_rel.replace("\\", "/")
+    if rel.startswith("SST-CANON/"):
+        root_path = get_repo_root() / rel
+        if root_path.is_file():
+            return root_path
+        legacy = papers_dir / rel
+        if legacy.is_file():
+            return legacy
+        return root_path
+    return papers_dir / rel
+
+
+def tex_file_relative_path(tex_path: Path) -> str:
+    """Write path for new/refreshed Zenodo configs."""
+    repo = get_repo_root()
+    papers = get_papers_dir()
+    try:
+        return str(tex_path.relative_to(repo)).replace("\\", "/")
+    except ValueError:
+        return str(tex_path.relative_to(papers)).replace("\\", "/")
+
+
 def read_token_from_zenodo_py() -> Optional[str]:
     """Read Zenodo API token from zenodo.py file in parent directory of SwirlStringTheory."""
     # Scripts are in zenodo_tools/, so go up two levels to get to parent of SwirlStringTheory

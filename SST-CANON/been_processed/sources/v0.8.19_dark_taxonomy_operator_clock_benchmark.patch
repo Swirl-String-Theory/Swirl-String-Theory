@@ -1,0 +1,158 @@
+diff -ruN a/SST_CANON-v0.8.19-research-track.tex b/SST_CANON-v0.8.19-research-track.tex
+--- a/SST_CANON-v0.8.19-research-track.tex	2026-07-05 20:58:39.936628604 +0000
++++ b/SST_CANON-v0.8.19-research-track.tex	2026-07-05 20:59:22.261601499 +0000
+@@ -444,6 +444,19 @@
+ 
+ \textbf{[CANON WORKFLOW NOTE]}: every promoted quantitative claim in this package is invalid without an explicit input-to-CSV trace.
+ 
++\textbf{[CANON WORKFLOW NOTE] Benchmark schema hardening (v0.8.19+):}
++Every dark-sector or galactic benchmark table must include, at minimum, the following machine-readable columns:
++\[
++\begin{array}{llll}
++\texttt{run\_id}, & \texttt{canon\_version}, & \texttt{script\_path}, & \texttt{commit\_hash},\\
++\texttt{knot\_id}, & \texttt{symmetry\_metadata\_id}, & \texttt{branch\_id}, & \texttt{dataset\_id},\\
++\texttt{input\_constants\_id}, & \texttt{profile\_parameters}, & \texttt{observable\_name}, & \texttt{observable\_value},\\
++\texttt{observable\_unit}, & \texttt{uncertainty\_model}, & \texttt{tolerance\_rule}, & \texttt{pass\_fail}.
++\end{array}
++\]
++The corresponding metadata note must state whether each quantity is \textbf{[ORTHODOX INPUT]}, \textbf{[DERIVED]}, \textbf{[CALIBRATED]}, \textbf{[CONDITIONAL]}, or \textbf{[SPECULATIVE]}.
++A benchmark cannot promote a dark-sector rule unless the CSV row identifies both the topology metadata and the dynamical branch used to compute the observable.
++
+ \subsection{Stage-1 freeze: dark-sector Euler pressure anchor}
+ \textbf{[ORTHODOX] Euler radial balance (steady, axisymmetric, azimuthal-dominant):}
+ \begin{align}
+@@ -491,6 +504,35 @@
+ \textbf{[SPECULATIVE] Classifier variables:}
+ symmetry class (including amphichirality status), chirality sign/state, helicity-balance indicator $\Delta_H(K)$, and low-order instability count $N_u^{(1)}(K)$.
+ 
++\textbf{[SPECULATIVE / TAXONOMY METADATA] Symmetry refinement fields:}
++For v0.8.19+ benchmarks, the symmetry gate is not a single Boolean.  The taxonomy row for a candidate knot state must record
++\begin{align}
++    \mathfrak{s}(K)
++    =
++    \big(
++    A_{\pm}(K),\ D_{2}(r;K),\ I_{\rm strong}(K),\ \chi(K),
++    \Delta_H(K),\ N_u^{(1)}(K)
++    \big),
++    \label{eq:rt_dark_symmetry_metadata_vector}
++\end{align}
++where $A_{\pm}$ distinguishes none/positive/negative/full amphichirality status, $D_2(r;K)$ records declared dihedral rotational symmetry metadata when available, and $I_{\rm strong}$ records whether the knot-table entry is strongly invertible.  Unknown entries are reported as \texttt{unknown}; they must not be silently treated as false.
++
++\begin{center}
++\begin{tabularx}{\linewidth}{p{0.16\linewidth}p{0.23\linewidth}p{0.22\linewidth}X}
++\hline
++Candidate & Symmetry role & Required extra metadata & Allowed taxonomy use \\
++\hline
++$3_1$ & chiral visible baseline & chirality sign, helicity sign, $N_u^{(1)}$ & visible calibration / control row \\
++$4_1$ & amphichiral baseline candidate & $A_{\pm}$, strong-inversion flag, $\Delta_H$, $N_u^{(1)}$ & dark candidate only after stability gate \\
++$8_{17}$ & high-symmetry candidate row & verified amphichirality type, $D_2(r)$ flag, $\Delta_H$, $N_u^{(1)}$ & candidate benchmark row; not canon by name alone \\
++$15_{331}$ & deep-table candidate row & external knot-table verification, $D_2(r)$ flag, $\Delta_H$, $N_u^{(1)}$ & archive/audit row until metadata is complete \\
++Borromean-type link & quasi-dark control & link invariants, weak-coupling branch, $N_u^{(1)}$ & quasi-dark or neutral-control benchmark \\
++\hline
++\end{tabularx}
++\end{center}
++
++\textbf{[CRITICAL NOTE]}: naming a knot in this table is not a promotion to the dark sector.  The table only fixes the minimum metadata needed to test the classifier without collapsing amphichirality, strong invertibility, and dynamical stability into one label.
++
+ \textbf{[SPECULATIVE] Decision rules (symmetry-first, then stability-filtered):}
+ \begin{align}
+     \text{Dark}
+@@ -3583,6 +3625,64 @@
+ field recovery $\SwirlClock_{\rm hyb}\to\sqrt{1-2G_NM_{\rm bulk}/(r c^2)}$ for
+ $\mu(r)\to0$, or if any contribution is dimensionally non-scalar.
+ 
++\subsection{Research Track: Operator-Valued Swirl-Clock and Visibility Diagnostics}
++\label{subsec:rt_operator_swirl_clock_visibility}
++
++\textbf{[RESEARCH TRACK / CONDITIONAL DIAGNOSTIC].}
++The core canon uses the Swirl-Clock as a scalar field.  For interferometric or quantum-probe language, one may introduce an operator-valued clock readout only as a diagnostic layer.  It is not a replacement for the scalar canonical law and it does not promote a full quantum-gravity operator algebra.
++
++Let $\widehat{\mathcal U}_{\swirlarrow}(x)$ be a positive self-adjoint operator representing the local squared swirl-speed diagnostic for a declared probe state, with spectrum restricted to $0\le \widehat{\mathcal U}_{\swirlarrow}<c^2$ on the domain of the experiment.  Define
++\begin{align}
++    \boxed{
++    \widehat{S}_{(t)}^{\swirlarrow}(x)
++    :=
++    \left(
++    1-\frac{\widehat{\mathcal U}_{\swirlarrow}(x)}{c^2}
++    \right)^{1/2}
++    }
++    \label{eq:rt_operator_swirl_clock}
++\end{align}
++by functional calculus on that domain.  In the weak-swirl limit,
++\begin{align}
++    \widehat{S}_{(t)}^{\swirlarrow}
++    =
++    1-\frac{\widehat{\mathcal U}_{\swirlarrow}}{2c^2}
++    +O\!\left(\frac{\widehat{\mathcal U}_{\swirlarrow}^{2}}{c^4}\right).
++    \label{eq:rt_operator_swirl_clock_weak}
++\end{align}
++
++For a prepared probe state $|\psi\rangle$, the mean clock shift and the clock-noise diagnostic are
++\begin{align}
++    \left(\frac{\Delta\nu}{\nu}\right)_{\psi}
++    &:=
++    \langle\psi|\widehat{S}_{(t)}^{\swirlarrow}|\psi\rangle-1,
++    \label{eq:rt_operator_clock_mean_shift}
++    \\
++    \sigma_{S}^{2}(\psi)
++    &:={}
++    \langle\psi|\big(\widehat{S}_{(t)}^{\swirlarrow}\big)^2|\psi\rangle
++    -
++    \langle\psi|\widehat{S}_{(t)}^{\swirlarrow}|\psi\rangle^2 .
++    \label{eq:rt_operator_clock_variance}
++\end{align}
++Thus frequency shifts probe the expectation value of the clock operator, while visibility or coherence loss can probe its variance.
++
++A minimal Gaussian dephasing diagnostic may be written as
++\begin{align}
++    \frac{\mathcal V(T)}{\mathcal V(0)}
++    \simeq
++    \exp\!\left[-\frac12\,\operatorname{Var}_{\psi}\!\left(\widehat{\Phi}_{S}(T)\right)\right],
++    \qquad
++    \widehat{\Phi}_{S}(T)
++    :=
++    \int_{0}^{T}\delta\widehat{\Omega}_{S}(N)\,dN,
++    \label{eq:rt_clock_visibility_variance}
++\end{align}
++where $\delta\widehat{\Omega}_{S}$ is the declared clock-induced phase-rate fluctuation for the experimental model.  Equation~\eqref{eq:rt_clock_visibility_variance} is a visibility ansatz, not a universal law.
++
++\textbf{[STATUS GUARD].}
++Equations~\eqref{eq:rt_operator_swirl_clock}--\eqref{eq:rt_clock_visibility_variance} may be used only for research-track probe design.  Promotion requires a declared Hilbert space, operator domain, preparation protocol, and a benchmark separating mean clock shifts from variance-driven decoherence.
++
+ \subsection{Research Track: Swirl--Electromagnetic Normalization by Vorticity}
+ \label{app:research_swirl_em_vorticity}
+ 
+diff -ruN a/SST_CANON-v0.8.19.tex b/SST_CANON-v0.8.19.tex
+--- a/SST_CANON-v0.8.19.tex	2026-07-05 20:58:39.934945231 +0000
++++ b/SST_CANON-v0.8.19.tex	2026-07-05 20:59:22.246382665 +0000
+@@ -1622,6 +1622,21 @@
+         Amphichiral knot types furnish the preferred \emph{candidate} pool for the dark bin in symmetry-first tables; assigning ``dark'' still requires the conjunction of near-zero chirality indicators, helicity balance in the sense of Eq.~\eqref{eq:dark_knot_taxonomy}, and vanishing low-order instability count.
+         The implication ``amphichiral $\Rightarrow$ dark'' is a classifier proposal tested against observables and archive diagnostics, not a closed theorem.
+ 
++    \paragraph{Symmetry-metadata guard (v0.8.19+).}
++        For canon workflows, the word \emph{amphichiral} is not sufficiently granular by itself.
++        Candidate dark-sector rows must record the symmetry metadata used to make the assignment:
++        \[
++            \mathfrak{s}(K)
++            =
++            \big(
++            A_{\pm}(K),\ D_{2}(r;K),\ I_{\rm strong}(K),\ \chi(K),
++            \Delta_H(K),\ N_u^{(1)}(K)
++            \big),
++        \]
++        where $A_{\pm}$ records positive/negative/full amphichirality status, $D_2(r;K)$ records the presence or absence of a declared dihedral rotational symmetry at scale $r$, and $I_{\rm strong}$ records whether a strong inversion is part of the adopted knot-table metadata.
++        These entries are \textbf{metadata fields}, not new dynamics.
++        The canonical classifier remains Eq.~\eqref{eq:dark_knot_taxonomy}; symmetry metadata only prevents the dark bin from collapsing into the oversimplified rule ``amphichiral equals dark.''
++
+     \paragraph{Ambiguity tie-break.}
+         If rule conjunctions overlap, precedence is
+         \[
+@@ -4302,7 +4317,7 @@
+         \subsection{Canon edition notes}
+ 
+         \subsubsection{v0.8.19}
+-            \textbf{v0.8.19} adds an orthodox radius-convention ropelength/thickness foundation, a main-text guard that knot type alone does not determine a unique physical representative, a scalarized research-track screening functional \(E_{\rm screen}\) with \(Q_G\) retained only as a sector label unless mapped to \(I_G\), a derived leading thin-filament length/log energy anchor, a density and dimensional audit for geometric mass branches, a geometric impedance bridge marked explicitly as a reparameterization rather than a derivation of Einstein dynamics, and stricter reintegration rules for derived Hamiltonian terms versus screening surrogates on top of v0.8.18.
++            \textbf{v0.8.19} adds an orthodox radius-convention ropelength/thickness foundation, a main-text guard that knot type alone does not determine a unique physical representative, a scalarized research-track screening functional \(E_{\rm screen}\) with \(Q_G\) retained only as a sector label unless mapped to \(I_G\), a derived leading thin-filament length/log energy anchor, a density and dimensional audit for geometric mass branches, a geometric impedance bridge marked explicitly as a reparameterization rather than a derivation of Einstein dynamics, symmetry-metadata guards for dark-knot taxonomy, research-track operator-valued Swirl-Clock diagnostics, and stricter reintegration rules for derived Hamiltonian terms versus screening surrogates on top of v0.8.18.
+             \textbf{Audit bundle (in-place):} \([\)CALIBRATED\(]\)/\([\)CONDITIONAL\(]\) reading-guide rows; unified \(\SwirlClock(x,t)=\sqrt{1-\norm{\uswirl}^2/c^2}\) in Eq.~\ref{eq:swirl_clock} and Axiom~7; \(\rhohorn\) and \(16\pi^2\) F\_max hygiene; Poisson--clock bridge (Eqs.~\ref{eq:clock_potential_normalization}, \ref{eq:poisson_clock_emg_identification}); EMG sector guards; trefoil ropelength precision; Eq.~\ref{eq:pure_geometric_mass_baseline_collapse}.
+             \textbf{Foucault RT:} rotation-to-clock inference protocol (\S\ref{subsec:rt_foucault_swirl_clock_probe}; Eqs.~\ref{eq:rt_foucault_rate}--\ref{eq:rt_foucault_total_clock_inference}).
+             \textbf{Projected swirl-vorticity frequency:} research-track diagnostics (Eqs.~\ref{eq:rt_projected_swirl_vorticity_frequency}, \ref{eq:rt_rms_projected_swirl_vorticity_frequency}, \ref{eq:rt_projected_frequency_swirl_clock_estimate}); Foucault guardrail item~4 tightened against $\rhoF=K\Omega$ identifications.

@@ -24,7 +24,12 @@ from render_and_update_zenodo import (
     resolve_pdf_path,
     update_zenodo_metadata,
 )
-from zenodo_automation import ZenodoAutomation, get_papers_dir, read_token_from_zenodo_py
+from zenodo_automation import (
+    ZenodoAutomation,
+    get_papers_dir,
+    read_token_from_zenodo_py,
+    resolve_tex_file_path,
+)
 
 if sys.platform == 'win32':
     try:
@@ -89,7 +94,7 @@ def resolve_tex_file(config_file: Path, papers_dir: Path) -> Optional[Path]:
     cfg = read_config_data(config_file)
     tex_rel = cfg.get('tex_file', '')
     if tex_rel:
-        tex = papers_dir / tex_rel
+        tex = resolve_tex_file_path(tex_rel, papers_dir)
         if tex.is_file():
             return tex
     tex = config_file.with_suffix('.tex')

@@ -1,0 +1,290 @@
+--- orig/SST_CANON-v0.8.18-research-track.tex	2026-07-05 20:15:04.629943015 +0000
++++ patched/SST_CANON-v0.8.18-research-track.tex	2026-07-05 20:15:06.578561117 +0000
+@@ -5694,6 +5694,233 @@
+ are derived or experimentally fixed.
+ 
+ 
++
++\subsection{Foucault Pendulum as a Macroscopic Rotation-to-Clock Inference Probe}
++\label{subsec:rt_foucault_swirl_clock_probe}
++
++\textbf{[RESEARCH TRACK / ORTHODOX INPUT / SST INFERENCE PROTOCOL].}
++A Foucault pendulum is not a direct clock-comparison experiment, and its ordinary swing period is not itself a direct measurement of relativistic or SST time dilation.  Its useful role in SST is narrower: it provides a mechanical readout of the local vertical projection of Earth's rotation vector.  That measured precession may then be used as an input to the already-canonical Swirl-Clock law.  This subsection is therefore a Rosetta-level inference protocol, not a new axiom and not a replacement for precision clock transport.
++
++\paragraph{Orthodox precession input.}
++For a pendulum at geodetic latitude $\phi$, the standard Foucault precession rate is
++\begin{align}
++    \Omega_F(\phi)
++    =
++    \Omega_\oplus\sin\phi,
++    \label{eq:rt_foucault_rate}
++\end{align}
++where $\Omega_\oplus$ is the sidereal angular velocity of Earth \cite{Foucault1851,Coriolis1835}.  Equation~\eqref{eq:rt_foucault_rate} is an orthodox rotating-frame result; in SST it is used only as an operational inference channel for the coarse-grained terrestrial rotation rate.
++
++Solving Eq.~\eqref{eq:rt_foucault_rate} gives
++\begin{align}
++    \Omega_\oplus
++    =
++    \frac{\Omega_F}{\sin\phi}.
++\end{align}
++The tangential speed of a surface clock relative to the non-rotating foliation frame is
++\begin{align}
++    v_{\rm rot}(\phi,h)
++    =
++    \Omega_\oplus R_\perp(\phi,h),
++    \label{eq:rt_foucault_inferred_vrot_general}
++\end{align}
++where $R_\perp(\phi,h)$ is the distance from the clock to Earth's rotation axis.  In the spherical-Earth approximation used for the numerical benchmark below,
++\begin{align}
++    R_\perp(\phi,0)
++    \simeq
++    R_\oplus\cos\phi,
++    \qquad
++    v_{\rm rot}(\phi)
++    \simeq
++    R_\oplus\Omega_F\cot\phi .
++    \label{eq:rt_foucault_inferred_vrot}
++\end{align}
++This step is the inference bridge: the pendulum measures $\Omega_F$, and Eq.~\eqref{eq:rt_foucault_inferred_vrot} converts that measurement into the rotational speed entering the local clock law.
++
++\paragraph{Swirl-Clock mapping.}
++Using the canonical SST clock factor
++\begin{align}
++    \SwirlClock(x,t)
++    =
++    \sqrt{1-\frac{\lVert \uswirl(x,t)\rVert^2}{c^2}},
++\end{align}
++with the local coarse-grained rotational speed substituted as the kinematic input, the Earth-rotation contribution inferred from a measured Foucault rate is
++\begin{align}
++    \boxed{
++    \SwirlClock_{\rm rot}(\phi)
++    =
++    \sqrt{
++        1-\frac{R_\oplus^2\Omega_F^2\cot^2\phi}{c^2}
++    }
++    }
++    \label{eq:rt_foucault_swirl_clock_exact}
++\end{align}
++and, for $R_\oplus\Omega_F\cot\phi\ll c$,
++\begin{align}
++    \boxed{
++    1-\SwirlClock_{\rm rot}
++    \simeq
++    \frac{R_\oplus^2\Omega_F^2\cot^2\phi}{2c^2}
++    } .
++    \label{eq:rt_foucault_swirl_clock_weak}
++\end{align}
++Equivalently, using the SST calibration identity $\alpha=2\vchar/c$,
++\begin{align}
++    \boxed{
++    1-\SwirlClock_{\rm rot}
++    \simeq
++    \frac{\alpha^2 R_\oplus^2\Omega_F^2\cot^2\phi}
++         {8\vchar{}^2}
++    } .
++    \label{eq:rt_foucault_swirl_clock_sst_constants}
++\end{align}
++This expression uses the measured Foucault precession only as a macroscopic rotation readout.  It does not claim that the pendulum bob internally samples the microscopic core swirl speed $\vchar$.
++
++\paragraph{Height correction.}
++A height displacement $h$ above the local geoid adds the standard weak-field redshift term used in precision clock and GPS modelling \cite{Ashby2003},
++\begin{align}
++    \Delta\SwirlClock_h
++    \simeq
++    +\frac{gh}{c^2}
++    =
++    +\frac{\alpha^2gh}{4\vchar{}^2} .
++    \label{eq:rt_foucault_height_term}
++\end{align}
++This is an orthodox weak-field benchmark term imported into the inference protocol; this subsection does not derive the gravitational redshift from Foucault dynamics.
++
++Thus the combined first-order inference formula relative to the non-rotating foliation time $N$ is
++\begin{align}
++    \boxed{
++    \frac{d\tau_{\rm loc}}{dN}
++    \simeq
++    1
++    -
++    \frac{\alpha^2 R_\oplus^2\Omega_F^2\cot^2\phi}
++         {8\vchar{}^2}
++    +
++    \frac{\alpha^2gh}{4\vchar{}^2}
++    } .
++    \label{eq:rt_foucault_total_clock_inference}
++\end{align}
++Equation~\eqref{eq:rt_foucault_total_clock_inference} is an inference protocol, not a new axiom.
++
++\paragraph{Energy-density form.}
++The same rotational contribution may be written as a coarse-grained swirl-energy density,
++\begin{align}
++    \rhoE^{(\oplus)}(\phi)
++    =
++    \frac12\rhoF v_{\rm rot}^2(\phi),
++    \qquad
++    1-\SwirlClock_{\rm rot}
++    \simeq
++    \frac{\rhoE^{(\oplus)}}{\rhoF c^2}.
++    \label{eq:rt_foucault_energy_density_form}
++\end{align}
++This is the safest SST interpretation: the pendulum reads a macroscopic rotation state, and the clock offset follows from the energy-density version of the Swirl-Clock law.
++
++\paragraph{Groningen benchmark.}
++Using
++\begin{align}
++    \phi &= 53.219^\circ,
++    &\Omega_\oplus &= 7.2921150\times10^{-5}\ {\rm s^{-1}},
++    &R_\oplus &= 6.378137\times10^6\ {\rm m},
++\end{align}
++one obtains
++\begin{align}
++    \Omega_F
++    &=
++    5.84047\times10^{-5}\ {\rm s^{-1}},
++    &
++    T_F
++    &=
++    \frac{2\pi}{\Omega_F}
++    =
++    29.883\ {\rm h},
++    \\
++    v_{\rm rot}
++    &=
++    278.48\ {\rm m\,s^{-1}},
++    &
++    1-\SwirlClock_{\rm rot}
++    &=
++    4.31446\times10^{-13}.
++\end{align}
++The corresponding accumulated rotational offset per day is
++\begin{align}
++    \Delta\tau_{\rm rot}
++    =
++    86400\left(4.31446\times10^{-13}\right)\ {\rm s}
++    =
++    37.28\ {\rm ns/day},
++\end{align}
++with the clock slower relative to the non-rotating foliation frame.  For $h=100\,{\rm m}$,
++\begin{align}
++    \frac{gh}{c^2}
++    &=
++    1.09114\times10^{-14},
++    &
++    \Delta\tau_h
++    &=
++    0.943\ {\rm ns/day},
++\end{align}
++so the net first-order Groningen offset at $100\,{\rm m}$ above the geoid is approximately
++\begin{align}
++    \Delta\tau_{\rm net}
++    \simeq
++    -37.28\ {\rm ns/day}+0.94\ {\rm ns/day}
++    =
++    -36.34\ {\rm ns/day}.
++\end{align}
++
++The macroscopic rotational energy density at Groningen is
++\begin{align}
++    \rhoE^{(\oplus)}
++    =
++    \frac12(7.0\times10^{-7})(278.48)^2
++    =
++    2.714\times10^{-2}\ {\rm J\,m^{-3}}.
++\end{align}
++Compared with the canonical core-scale reference
++\begin{align}
++    \rhoE^{\ast}
++    =
++    \frac12\rhoF\vchar{}^2
++    =
++    4.18774\times10^5\ {\rm J\,m^{-3}},
++\end{align}
++the ratio is
++\begin{align}
++    \frac{\rhoE^{(\oplus)}}{\rhoE^{\ast}}
++    =
++    6.48\times10^{-8}.
++\end{align}
++This explains why the effect is measurable by precision clock comparison but remains weak relative to microscopic core-swirl scales.
++
++\paragraph{Guardrails.}
++The following claims are explicitly not canonized here.
++\begin{enumerate}
++    \item The pendulum swing period $T_{\rm pend}=2\pi\sqrt{L/g_{\rm eff}}$ is not a direct time-dilation measurement.  It mainly probes the local effective gravity gradient, while clock rate probes potential and kinematic factors.
++    \item A laboratory-size term $v_{\rm lab}=\Omega_F R_{\rm eff}$ must not be promoted to canon.  Foucault precession is not automatically a solid-body swirl around an arbitrary lab radius.
++    \item Engineered-swirl claims require a constitutive probe model
++    \begin{align}
++        \delta\Omega_F
++        =
++        \mathcal{C}_{\rm probe}
++        \!\big[
++        \delta\uswirl,
++        \delta p_{\!\boldsymbol{\circlearrowleft}},
++        \delta\boldsymbol{\sigma}^{\rm swirl}
++        \big]
++    \end{align}
++    before any local rotor, coil, or superfluid-ring perturbation can be interpreted as a clock-rate perturbation.
++    \item No relation between Foucault precession and any candidate coarse-grained ``leaf rate'' is asserted in this patch.  Such a relation would require a separate Rosetta derivation and an independently specified averaging map.
++\end{enumerate}
++
++\paragraph{Research-track conclusion.}
++A Foucault pendulum is therefore a macroscopic phase-precession probe of the same coarse-grained rotational state that enters the SST Swirl-Clock inference chain.  It supports a clean falsifiable protocol: measure $\Omega_F$, infer $v_{\rm rot}$, compute the expected clock offset from Eq.~\eqref{eq:rt_foucault_total_clock_inference}, and compare against precision clock transport or co-located clock-comparison data.
++
++
++
+ % ----------------------------------------------------------
+ % Bibliography entries for the Relativity Emergence Ladder
+ % ----------------------------------------------------------
+@@ -5730,5 +5957,24 @@
+ \emph{Classical and Quantum Gravity} \textbf{38}, 195003 (2021).
+ DOI: \href{https://doi.org/10.1088/1361-6382/ac1a69}{10.1088/1361-6382/ac1a69}.
+ 
++
++\bibitem{Foucault1851}
++L.~Foucault,
++``D\'emonstration physique du mouvement de rotation de la Terre au moyen du pendule,''
++\emph{Comptes Rendus de l'Acad\'emie des Sciences} \textbf{32} (1851), 135--138,
++permalink: \href{https://gallica.bnf.fr/ark:/12148/bpt6k2992r}{Gallica BnF}.
++
++\bibitem{Coriolis1835}
++G.-G.~Coriolis,
++``Sur les \'equations du mouvement relatif des syst\`emes de corps,''
++\emph{Journal de l'\'Ecole Polytechnique} \textbf{15} (1835), 142--154,
++permalink: \href{https://gallica.bnf.fr/ark:/12148/bpt6k4336791}{Gallica BnF}.
++
++\bibitem{Ashby2003}
++N.~Ashby,
++``Relativity in the Global Positioning System,''
++\emph{Living Reviews in Relativity} \textbf{6} (2003), 1,
++DOI: \href{https://doi.org/10.12942/lrr-2003-1}{10.12942/lrr-2003-1}.
++
+ \end{thebibliography}
+ \fi
+--- orig/SST_CANON-v0.8.18.tex	2026-07-05 20:15:04.628370775 +0000
++++ patched/SST_CANON-v0.8.18.tex	2026-07-05 20:15:06.581359817 +0000
+@@ -5055,6 +5055,25 @@
+             \newblock \emph{Banach Center Publications} \textbf{42} (1998), 321--346,
+             \newblock Permalink: \href{https://eudml.org/doc/252224}{EuDML:252224}.
+ 
++
++            \bibitem{Foucault1851}
++            L.~Foucault,
++            \newblock D\'emonstration physique du mouvement de rotation de la Terre au moyen du pendule,
++            \newblock \emph{Comptes Rendus de l'Acad\'emie des Sciences} \textbf{32} (1851), 135--138,
++            \newblock permalink: \href{https://gallica.bnf.fr/ark:/12148/bpt6k2992r}{Gallica BnF}.
++
++            \bibitem{Coriolis1835}
++            G.-G.~Coriolis,
++            \newblock Sur les \'equations du mouvement relatif des syst\`emes de corps,
++            \newblock \emph{Journal de l'\'Ecole Polytechnique} \textbf{15} (1835), 142--154,
++            \newblock permalink: \href{https://gallica.bnf.fr/ark:/12148/bpt6k4336791}{Gallica BnF}.
++
++            \bibitem{Ashby2003}
++            N.~Ashby,
++            \newblock Relativity in the Global Positioning System,
++            \newblock \emph{Living Reviews in Relativity} \textbf{6} (2003), 1,
++            \newblock DOI: \href{https://doi.org/10.12942/lrr-2003-1}{10.12942/lrr-2003-1}.
++
+         \end{thebibliography}
+ 
+ \end{document}
+\ No newline at end of file

@@ -1,0 +1,195 @@
+diff -ruN base/SST_CANON-v0.8.19-research-track.tex patched/SST_CANON-v0.8.19-research-track.tex
+--- base/SST_CANON-v0.8.19-research-track.tex	2026-07-05 21:06:31.770349943 +0000
++++ patched/SST_CANON-v0.8.19-research-track.tex	2026-07-05 21:06:33.554680328 +0000
+@@ -622,6 +622,57 @@
+ 
+ %===========================================================
+ 
++\section{Research Track: Geometric Impedance Bridge}
++\label{sec:rt_geometric_impedance_bridge}
++
++    \subsection{Purpose and status}
++        \textbf{[RESEARCH TRACK / BRIDGE LEMMA / REPARAMETERIZATION].}
++        This research-track appendix records the conservative geometric bridge
++        between an SST topological mass ratio and the Schwarzschild source
++        term.  It does not derive Einstein dynamics and does not replace the
++        gravitational sector of the main canon.
++
++    \subsection{Electron-normalized source term}
++        Using the electron Compton wavelength $\lambda_c$ and the Planck length
++        $L_{\rm P}$, the electron Schwarzschild radius can be rewritten as
++        \begin{align}
++            r_s(e)
++            =
++            \frac{2GM_e}{c^2}
++            =
++            4\pi\,\frac{L_{\rm P}^2}{\lambda_c}.
++            \label{eq:electron_schwarzschild_geometric_bridge}
++        \end{align}
++        For a topological state $T$ with mass ratio
++        \begin{align}
++            \widetilde M(T)=\frac{M(T)}{M_e},
++        \end{align}
++        the dimensionless potential factor becomes
++        \begin{align}
++            \Phi(T;r)
++            =
++            \frac{2GM(T)}{rc^2}
++            =
++            \frac{4\pi L_{\rm P}^2}{r\lambda_c}\,
++            \widetilde M(T).
++            \label{eq:geometric_impedance_phi}
++        \end{align}
++
++    \subsection{Use policy}
++        Substituting a geometric SST mass branch into
++        Eq.~\eqref{eq:geometric_impedance_phi} yields a geometric impedance
++        representation of the source term.  The content is the factorization
++        of an already-assumed mass ratio into length ratios and topological
++        gates.  It is not a proof that the Einstein equation follows from the
++        swirl medium.
++
++        \textbf{[RESEARCH-TRACK GUARD].}
++        The bridge may be used for comparison, normalization, and falsifier
++        design.  It must not be used to claim a completed derivation of general
++        relativity or a replacement of the retained Poisson/clock-field bridge.
++
++
++
+ \section{Candidate CANON-v0.8.x Modules from Swirl-Flux, Envelope, and Reconnection Analysis}
+     \label{app:sst_v08_candidate_modules}
+ 
+@@ -1664,19 +1715,23 @@
+ 
+ A useful research-track extension of Eq.~\eqref{eq:sst_screen_energy_research_track} is therefore the scalarized screening form
+ \begin{equation}
+-    \frac{E_{\rm eff}^{(G)}[\mathcal K_G]}{E_0}
+-    =\alpha_C C(K)+\alpha_L L(K)+\alpha_H\widehat{\mathcal H}(K)
+-    +\alpha_G I_G(\mathcal K_G),
++    \frac{E_{\rm screen}^{(G)}[\mathcal K_G]}{E_0}
++    =
++    a_R\,\operatorname{Rop}_{\rm rad}(\gamma_K)
++    +a_C\,c_{\min}(K)
++    +a_H\,\widehat{\mathcal H}(K)
++    +a_G\,I_G(\mathcal K_G)
++    +\cdots,
+     \label{eq:nonabelian_extended_energy}
+ \end{equation}
+ where
+ \begin{equation}
+     I_G:Q_G(\mathcal K_G)\longrightarrow \mathbb R_{\ge 0}
+ \end{equation}
+-extracts a real-valued index from the conserved coloring sector.  The barrier scale $\Delta_G$ belongs to reconnection dynamics through Eq.~\eqref{eq:nonabelian_barrier_rule}; it is not promoted to a fitted mass term.
++extracts a real-valued index from the conserved coloring sector.  The barrier scale $\Delta_G$ belongs to reconnection dynamics through Eq.~\eqref{eq:nonabelian_barrier_rule}; it is not promoted to a fitted mass term.  The notation $E_{\rm screen}$ is used deliberately: this is a scalarized screening/ordering functional, not a derived Hamiltonian and not a replacement for the thin-filament energy scale.
+ 
+ \subsubsection{Dimensional check}
+-The quantities $C(K)$, $L(K)$ after ropelength normalization, $\widehat{\mathcal H}(K)$, and $I_G$ are dimensionless.  Therefore the coefficients in Eq.~\eqref{eq:nonabelian_extended_energy} are dimensionless if the left-hand side is $E_{\rm screen}/E_0$.  A dimensional energy is recovered only after selecting an SST energy scale $E_0$, for example a calibrated tube energy, a core line-tension scale, or a controlled numerical relaxation scale.  The group object $Q_G$ itself is not added to the energy; only a scalar index extracted from it may enter a screening functional.
++The quantities $\operatorname{Rop}_{\rm rad}(\gamma_K)$, $c_{\min}(K)$, $\widehat{\mathcal H}(K)$, and $I_G$ are dimensionless.  Therefore the coefficients in Eq.~\eqref{eq:nonabelian_extended_energy} are dimensionless if the left-hand side is $E_{\rm screen}/E_0$.  A dimensional energy is recovered only after selecting an SST energy scale $E_0$, for example a calibrated tube energy, a core line-tension scale, or a controlled numerical relaxation scale.  The group object $Q_G$ itself is not added to the energy; only a scalar index extracted from it may enter a screening functional.
+ 
+ \subsubsection{Minimal falsifier}
+ If two SST candidate particles have the same $(C,L,\mathcal H)$ but different observed stability, the model predicts that a missing internal sector label exists:
+@@ -1898,6 +1953,12 @@
+     E_{\rm core}\simeq T_{\rm core}\ell_K.
+     \label{eq:core_line_tension}
+ \end{equation}
++Here $T_{\rm core}$ has units ${\rm J\,m^{-1}}={\rm N}$ and is a
++model-supplied line tension, not an additional canon primitive.  A research
++calculation that uses it must state whether it comes from a resolved core
++profile, a numerical relaxation scale, or a calibration.  Otherwise it remains
++symbolic and cannot be independently tuned alongside the scalarized screening
++coefficients.
+ Near contacts and curvature corrections may be encoded by
+ \begin{equation}
+     E_{\rm geom}[K]
+diff -ruN base/SST_CANON-v0.8.19.tex patched/SST_CANON-v0.8.19.tex
+--- base/SST_CANON-v0.8.19.tex	2026-07-05 21:06:31.755275223 +0000
++++ patched/SST_CANON-v0.8.19.tex	2026-07-05 21:07:07.783164068 +0000
+@@ -1221,6 +1221,16 @@
+         while $T_{\rm core}$ records the resolved line-tension contribution of
+         the core model.
+ 
++        \textbf{[CANON / FREE-SYMBOL GUARD].}
++        The line tension $T_{\rm core}$ has units
++        $[T_{\rm core}]={\rm J\,m^{-1}}={\rm N}$ and is not fixed by
++        Eq.~\eqref{eq:canon_thin_filament_energy_scale}.  Any use of this
++        symbol must identify its source: a resolved core variational model, a
++        numerical relaxation scale, or an explicitly stated calibration.  In the
++        absence of such a source, $T_{\rm core}$ remains a symbolic line-tension
++        placeholder and must not be fitted independently from the screening
++        coefficients of Eq.~\eqref{eq:research_track_energy_normal_form}.
++
+         \textbf{[CANON GUARD].}
+         Equation~\eqref{eq:canon_thin_filament_energy_scale} is the derived
+         length/logarithm anchor for later knot screening.  The surrogate terms
+@@ -4317,7 +4327,7 @@
+         \subsection{Canon edition notes}
+ 
+         \subsubsection{v0.8.19}
+-            \textbf{v0.8.19} adds an orthodox radius-convention ropelength/thickness foundation, a main-text guard that knot type alone does not determine a unique physical representative, a scalarized research-track screening functional \(E_{\rm screen}\) with \(Q_G\) retained only as a sector label unless mapped to \(I_G\), a derived leading thin-filament length/log energy anchor, a density and dimensional audit for geometric mass branches, a geometric impedance bridge marked explicitly as a reparameterization rather than a derivation of Einstein dynamics, symmetry-metadata guards for dark-knot taxonomy, research-track operator-valued Swirl-Clock diagnostics, and stricter reintegration rules for derived Hamiltonian terms versus screening surrogates on top of v0.8.18.
++            \textbf{v0.8.19} adds an orthodox radius-convention ropelength/thickness foundation, a main-text guard that knot type alone does not determine a unique physical representative, a scalarized research-track screening functional \(E_{\rm screen}\) with \(Q_G\) retained only as a sector label unless mapped to \(I_G\), a derived leading thin-filament length/log energy anchor, a density and dimensional audit for geometric mass branches, a geometric impedance bridge demoted to research-track pointer form, an explicit $T_{\rm core}$ free-symbol guard, symmetry-metadata guards for dark-knot taxonomy, research-track operator-valued Swirl-Clock diagnostics, and stricter reintegration rules for derived Hamiltonian terms versus screening surrogates on top of v0.8.18.
+             \textbf{Audit bundle (in-place):} \([\)CALIBRATED\(]\)/\([\)CONDITIONAL\(]\) reading-guide rows; unified \(\SwirlClock(x,t)=\sqrt{1-\norm{\uswirl}^2/c^2}\) in Eq.~\ref{eq:swirl_clock} and Axiom~7; \(\rhohorn\) and \(16\pi^2\) F\_max hygiene; Poisson--clock bridge (Eqs.~\ref{eq:clock_potential_normalization}, \ref{eq:poisson_clock_emg_identification}); EMG sector guards; trefoil ropelength precision; Eq.~\ref{eq:pure_geometric_mass_baseline_collapse}.
+             \textbf{Foucault RT:} rotation-to-clock inference protocol (\S\ref{subsec:rt_foucault_swirl_clock_probe}; Eqs.~\ref{eq:rt_foucault_rate}--\ref{eq:rt_foucault_total_clock_inference}).
+             \textbf{Projected swirl-vorticity frequency:} research-track diagnostics (Eqs.~\ref{eq:rt_projected_swirl_vorticity_frequency}, \ref{eq:rt_rms_projected_swirl_vorticity_frequency}, \ref{eq:rt_projected_frequency_swirl_clock_estimate}); Foucault guardrail item~4 tightened against $\rhoF=K\Omega$ identifications.
+@@ -4881,54 +4891,16 @@
+     \subsection{Topological reading of the bridge}
+         The most conservative topology statement retained at appendix level is that nontrivial phase maps may encode nontrivial carrier organization. In particular, the effective phase field may carry nontrivial winding or linking data even when the coarse-grained description is written in wave language. This is the appendix-level reason why the canon treats topology and wave structure as compatible rather than as competing descriptions.
+     
+-    \section{Geometric Impedance Bridge}
++    \section{Geometric Impedance Bridge Status Guard}
+     \label{sec:appendix_geometric_impedance_bridge}
+ 
+-    \subsection{Purpose and status}
+-        \textbf{[BRIDGE LEMMA / REPARAMETERIZATION].}
+-        This appendix records the conservative geometric bridge between an
+-        SST topological mass ratio and the Schwarzschild source term.  It does
+-        not derive Einstein dynamics and does not replace the gravitational
+-        sector of the main canon.
+-
+-    \subsection{Electron-normalized source term}
+-        Using the electron Compton wavelength $\lambda_c$ and the Planck length
+-        $L_{\rm P}$, the electron Schwarzschild radius can be rewritten as
+-        \begin{align}
+-            r_s(e)
+-            =
+-            \frac{2GM_e}{c^2}
+-            =
+-            4\pi\,\frac{L_{\rm P}^2}{\lambda_c}.
+-            \label{eq:electron_schwarzschild_geometric_bridge}
+-        \end{align}
+-        For a topological state $T$ with mass ratio
+-        \begin{align}
+-            \widetilde M(T)=\frac{M(T)}{M_e},
+-        \end{align}
+-        the dimensionless potential factor becomes
+-        \begin{align}
+-            \Phi(T;r)
+-            =
+-            \frac{2GM(T)}{rc^2}
+-            =
+-            \frac{4\pi L_{\rm P}^2}{r\lambda_c}\,
+-            \widetilde M(T).
+-            \label{eq:geometric_impedance_phi}
+-        \end{align}
+-
+-    \subsection{Use policy}
+-        Substituting a geometric SST mass branch into
+-        Eq.~\eqref{eq:geometric_impedance_phi} yields a geometric impedance
+-        representation of the source term.  The content is the factorization
+-        of an already-assumed mass ratio into length ratios and topological
+-        gates.  It is not a proof that the Einstein equation follows from the
+-        swirl medium.
+-
+-        \textbf{[CANON GUARD].}
+-        The bridge may be used for comparison, normalization, and falsifier
+-        design.  It must not be used to claim a completed derivation of general
+-        relativity or a replacement of the retained Poisson/clock-field bridge.
++        \textbf{[RESEARCH-TRACK POINTER / MAIN-CANON GUARD].}
++        The geometric impedance bridge is not part of the closed main-canon
++        derivation chain.  It is retained as a research-track reparameterization
++        lemma in the companion file, Sec.~\ref{sec:rt_geometric_impedance_bridge}.
++        It may be used for comparison, normalization, and falsifier design, but
++        it must not be used as a derivation of Einstein dynamics or as a
++        replacement for the retained Poisson/clock-field bridge.
+ 
+     \section{Dark-Sector and Galactic Continuum Law}
+     \label{sec:appendix_dark_galactic}

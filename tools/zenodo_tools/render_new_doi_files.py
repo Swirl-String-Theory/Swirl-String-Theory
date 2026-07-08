@@ -12,6 +12,8 @@ import sys
 from pathlib import Path
 from collections import defaultdict
 
+from zenodo_automation import get_papers_dir, resolve_tex_file_path
+
 # Handle encoding on Windows
 if sys.platform == 'win32':
     import io
@@ -106,7 +108,7 @@ def main():
             
             # Construct full path to tex file
             if tex_file_path:
-                tex_file = base_dir / tex_file_path
+                tex_file = resolve_tex_file_path(tex_file_path, get_papers_dir())
             else:
                 # Try to find tex file in same directory
                 tex_file = config_file.with_suffix('.tex')

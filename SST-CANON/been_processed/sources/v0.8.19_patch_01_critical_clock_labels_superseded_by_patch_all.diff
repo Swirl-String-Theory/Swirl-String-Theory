@@ -1,0 +1,51 @@
+--- SST_CANON-v0.8.18.tex
++++ SST_CANON-v0.8.18.tex
+@@ -150,6 +150,8 @@
+         \begin{tabular}{@{}>{\raggedleft\arraybackslash}p{0.21\textwidth}@{\hspace{0.32em}}>{\raggedright\arraybackslash}p{0.75\textwidth}@{}}
+             \textbf{[ORTHODOX]} & established physics or mathematics. \\[0.25em]
+             \textbf{[DERIVED]} & consequences obtained from definitions and assumptions of this SST layer. \\[0.25em]
++            \textbf{[CALIBRATED]} & fixed by, or algebraically equivalent to, measured constants in the primitive calibration chain; exact as accounting, not independent prediction. \\[0.25em]
++            \textbf{[CONDITIONAL]} & dependent on an explicitly stated premise, closure, or benchmark assumption. \\[0.25em]
+             \textbf{[SPECULATIVE]} & conjectural extensions or identifications not yet closed as theorems. \\
+         \end{tabular}
+         
+@@ -348,12 +350,14 @@
+         We introduce the Swirl-Clock as a local scalar field encoding relativistic time dilation:
+         
+         \begin{align}
+-            \SwirlClock = \sqrt{1 - \frac{\vchar{}^2}{c^2}}
++            \SwirlClock(x,t) = \sqrt{1 - \frac{\norm{\uswirl(x,t)}^2}{c^2}}
+             \label{eq:swirl_clock}
+         \end{align}
+         
+         \textbf{[ORTHODOX] Functional form}: This matches the standard Lorentz time-dilation factor.
+ 
++        \textbf{[CANON / SYMBOL DISCIPLINE]} The argument-free constant \(\vchar\) denotes the calibrated horn/circulation speed. It must not be used as the unrestricted local velocity field in clock bridge equations. The canonical benchmark value is recovered from Eq.~\eqref{eq:swirl_clock} only at points or coarse-grained states where \(\norm{\uswirl(x,t)}=\vchar\).
++
+         \textbf{[SPECULATIVE] Identification}: In SST, the relevant velocity is interpreted as a local medium-kinematic state rather than only a standard worldline speed.
+ 
+         \textbf{[DERIVED] Consequence}: Once this identification is adopted, the Swirl-Clock provides a local scalar measure of kinematic time modulation within the medium description.
+@@ -720,7 +724,7 @@
+         \begin{align}
+             \boxed{
+             F_{\rm swirl}^{\max}
+-            \;=\; \frac{32\pi^2\hbar R_\infty^2 c}{\alpha^5},
++            \;=\; \frac{16\pi^2\hbar R_\infty^2 c}{\alpha^5},
+             }
+             \label{eq:Fmax_Rydberg}
+         \end{align}
+@@ -952,11 +956,13 @@
+         Local time is encoded in a scalar field derived from fluid kinematics:
+         
+         \begin{align}
+-            \SwirlClock = \sqrt{1 - \frac{\vchar{}^2}{c^2}}
++            \SwirlClock(x,t) = \sqrt{1 - \frac{\norm{\uswirl(x,t)}^2}{c^2}}
+         \end{align}
+         
+         \textbf{[ORTHODOX]} Functional form: this matches Lorentz time dilation.
+ 
++        \textbf{[CANON / SYMBOL DISCIPLINE]} The calibrated value \(\vchar\) is obtained only when the local field is evaluated at \(\norm{\uswirl(x,t)}=\vchar\); it is not a spatially constant clock field.
++
+         \textbf{[SPECULATIVE]} Identification: the relevant velocity is taken to be the local medium kinematic state.
+ 
+         \textbf{[DERIVED]} Consequence: within SST this yields a relational clock field tied to local motion.

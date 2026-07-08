@@ -27,7 +27,13 @@ from render_and_update_zenodo import (
     resolve_pdf_path,
     update_zenodo_metadata,
 )
-from zenodo_automation import ZenodoAutomation, get_papers_dir, read_token_from_zenodo_py
+from zenodo_automation import (
+    ZenodoAutomation,
+    get_been_processed_dir,
+    get_repo_root,
+    read_token_from_zenodo_py,
+    tex_file_relative_path,
+)
 
 if sys.platform == 'win32':
     try:
@@ -40,11 +46,12 @@ if sys.platform == 'win32':
         pass
 
 ROOT_DOI = "10.5281/zenodo.19655881"  # v0.8.0 in the canon family
-LATEST_ONLINE_DOI = "10.5281/zenodo.19682949"  # current head (v0.8.1) on Zenodo
+LATEST_ONLINE_DOI_FALLBACK = "10.5281/zenodo.19682949"  # legacy chain head if no local config
 CONCEPT_DOI = "10.5281/zenodo.16934535"  # version-family concept DOI
 CANON_SUBTITLE = "Canonical Reference and Research Framework"
 
-EDITION_CHANGELOG: dict[str, str] = {
+# Pre-v0.8.5 editions (not in canon_edition.py EDITION_CONFIG).
+LEGACY_EDITION_CHANGELOG: dict[str, str] = {
     "0.8.2": "Horn/circulation radius, envelope density, highres terminology",
     "0.8.3": "Framed-tube ontology, trefoil closure, particle dictionary, Pauli a_core",
     "0.8.4": "EM–gravity bridge, finite-cell α obstruction, research-track extensions",
@@ -63,6 +70,10 @@ EDITION_CHANGELOG: dict[str, str] = {
     "0.8.17": "T-foliation remark + ropelength/trefoil-α convention + Route-I SST-63/23/56 integration (+ SST-73/63/64/34 bundle); RC2 PDF polish",
     "0.8.18": "Calibration guardrails v2 + resolved-tube v3 (reach/thickness, contact-stress appendix, GW170817/pulsar falsifier bounds)",
 }
+
+_HEADER_EDITION_RE = re.compile(r"edition:\s*(.+?)\s*\(been_processed\)", re.IGNORECASE)
+
+_edition_changelog_cache: dict[str, str] | None = None
 
 DEFAULT_CREATORS = [
     {
@@ -119,10 +130,96 @@ class PushResult:
 
 
 def been_processed_root() -> Path:
-    return get_papers_dir() / "SST-CANON" / "been_processed"
+    return get_been_processed_dir()
 
 
 _canon_keywords_loader: Callable[[str], list[str]] | None = None
+
+
+def strip_latex_to_plain(text: str) -> str:
+    """Best-effort plain text from canon_edition.py LaTeX notes."""
+    plain = re.sub(r"\\textbf\{([^}]*)\}", r"\1", text)
+    plain = re.sub(r"\\(?:ref|eqref|S)\{[^}]*\}", "", plain)
+    plain = re.sub(r"\\[a-zA-Z]+(\{[^}]*\})?", " ", plain)
+    plain = re.sub(r"\$[^$]*\$", "", plain)
+    plain = re.sub(r"\s+", " ", plain).strip()
+    plain = re.sub(r"^v?\d+\.\d+\.\d+\s+adds\s+", "", plain, flags=re.IGNORECASE)
+    return plain
+
+
+def changelog_from_edition_config(cfg: dict) -> str:
+    header = cfg.get("header", "")
+    match = _HEADER_EDITION_RE.search(header)
+    if match:
+        return match.group(1).strip()
+    note = cfg.get("note", "")
+    if note:
+        return strip_latex_to_plain(note)[:240]
+    return ""
+
+
+def get_edition_changelog(refresh: bool = False) -> dict[str, str]:
+    """
+    Edition blurbs for Zenodo descriptions.
+
+    Merges LEGACY_EDITION_CHANGELOG with canon_edition.py EDITION_CONFIG so new
+    been_processed folders (e.g. v0.8.19+) work without editing this file.
+    """
+    global _edition_changelog_cache
+    if _edition_changelog_cache is not None and not refresh:
+        return _edition_changelog_cache
+
+    changelog = dict(LEGACY_EDITION_CHANGELOG)
+    path = been_processed_root() / "canon_edition.py"
+    if path.is_file():
+        spec = importlib.util.spec_from_file_location("canon_edition", path)
+        if spec is not None and spec.loader is not None:
+            mod = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(mod)
+            edition_config = getattr(mod, "EDITION_CONFIG", {})
+            for version, cfg in edition_config.items():
+                blurb = changelog_from_edition_config(cfg)
+                if blurb:
+                    changelog[str(version)] = blurb
+
+    _edition_changelog_cache = changelog
+    return changelog
+
+
+def is_known_canon_version(version: str) -> bool:
+    """True if version has changelog metadata or a local main tex file."""
+    if version in get_edition_changelog():
+        return True
+    tex = main_tex(version)
+    return tex.is_file()
+
+
+def latest_canon_version(local: Optional[list[CanonVersionInfo]] = None) -> str:
+    """Highest version string from changelog + local been_processed scan."""
+    versions = set(get_edition_changelog())
+    if local is None:
+        local = scan_local_canon_versions()
+    versions.update(v.version for v in local if v.has_tex)
+    if not versions:
+        return "0.8.18"
+    return max(versions, key=version_sort_key)
+
+
+def resolve_latest_head_doi(local: Optional[list[CanonVersionInfo]] = None) -> str:
+    """DOI of the newest local edition with config — used to walk Zenodo version chain."""
+    if local is None:
+        local = scan_local_canon_versions()
+    best_key: tuple[int, ...] | None = None
+    best_doi = ""
+    for entry in local:
+        doi = (entry.doi or "").strip()
+        if not doi or not entry.has_config:
+            continue
+        key = version_sort_key(entry.version)
+        if best_key is None or key > best_key:
+            best_key = key
+            best_doi = doi
+    return best_doi or LATEST_ONLINE_DOI_FALLBACK
 
 
 def get_canon_keywords(version: str) -> list[str]:
@@ -363,7 +460,7 @@ def validate_version_for_push(
 
 def build_changelog_html(up_to_version: str) -> str:
     lines = ['<hr>', '<h3>Version changelog</h3>', '<ul>']
-    for ver, desc in sorted(EDITION_CHANGELOG.items(), key=lambda x: version_sort_key(x[0])):
+    for ver, desc in sorted(get_edition_changelog().items(), key=lambda x: version_sort_key(x[0])):
         if version_sort_key(ver) > version_sort_key(up_to_version):
             break
         lines.append(f'<li><strong>v{ver}</strong> &mdash; {desc}</li>')
@@ -373,7 +470,7 @@ def build_changelog_html(up_to_version: str) -> str:
 
 def canon_base_description_html(version: str) -> str:
     """Version-aware Zenodo description body (avoids stale v0.8.1 text from parent deposits)."""
-    patch = EDITION_CHANGELOG.get(version, "")
+    patch = get_edition_changelog().get(version, "")
     patch_p = (
         f"<p><strong>This edition (v{version})</strong> adds on top of the prior canon line: {patch}.</p>"
         if patch
@@ -425,7 +522,7 @@ def build_description(version: str, abstract: str = "", base_description: str = 
 
 def refresh_zenodo_config_description(version: str, create_if_missing: bool = True) -> Path | None:
     """Update title/description (and create skeleton config) for a canon edition."""
-    if version not in EDITION_CHANGELOG:
+    if not is_known_canon_version(version):
         return None
     tex = main_tex(version)
     if not tex.is_file():
@@ -434,8 +531,7 @@ def refresh_zenodo_config_description(version: str, create_if_missing: bool = Tr
     cfg = config_path(version)
     description = build_description(version)
     title = canon_title(version)
-    papers_dir = get_papers_dir()
-    tex_rel = str(tex.relative_to(papers_dir)).replace('\\', '/')
+    tex_rel = tex_file_relative_path(tex)
 
     if cfg.is_file():
         data = read_config_data(version)
@@ -565,7 +661,8 @@ def fetch_online_canon_versions(
     local: Optional[list[CanonVersionInfo]] = None,
 ) -> list[CanonVersionInfo]:
     versions: list[CanonVersionInfo] = []
-    raw = automation.list_record_versions(LATEST_ONLINE_DOI)
+    head_doi = resolve_latest_head_doi(local)
+    raw = automation.list_record_versions(head_doi)
     for entry in raw:
         title = entry.get('title', '')
         if 'canon' not in title.lower() and 'swirl-string' not in title.lower():
@@ -739,13 +836,14 @@ def find_parent_record_id(
         published = [c for c in candidates if c[2]]
         pool = published if published else candidates
         return pool[-1][1]
-    latest = automation.fetch_record_by_doi(LATEST_ONLINE_DOI)
+    head_doi = resolve_latest_head_doi(local)
+    latest = automation.fetch_record_by_doi(head_doi)
     if latest:
         return str(latest.get('id', ''))
     root = automation.fetch_record_by_doi(ROOT_DOI)
     if root:
         return str(root.get('id', ''))
-    return automation._record_id_from_doi(LATEST_ONLINE_DOI)
+    return automation._record_id_from_doi(head_doi)
 
 
 def find_existing_online_draft(version: str, online: list[CanonVersionInfo]) -> Optional[CanonVersionInfo]:
@@ -810,8 +908,11 @@ def mint_version_doi(
 
     result = PushResult(version=version, success=False)
 
-    if version not in EDITION_CHANGELOG:
-        result.message = f"Unknown version {version}"
+    if not is_known_canon_version(version):
+        result.message = (
+            f"Unknown version {version} — geen been_processed/SST_CANON-v{version}.tex "
+            f"en geen entry in canon_edition.py"
+        )
         return result
 
     tex = main_tex(version)
@@ -844,13 +945,12 @@ def mint_version_doi(
     meta = extract_metadata_from_latex(tex)
     abstract = meta.get('description', '')
     description = build_description(version, abstract)
-    papers_dir = get_papers_dir()
-    tex_rel = str(tex.relative_to(papers_dir))
+    tex_rel = tex_file_relative_path(tex)
 
     if dry_run:
         parent_id = (
             find_parent_record_id(version, online_versions, automation, local_versions)
-            if automation else LATEST_ONLINE_DOI.split('.')[-1]
+            if automation else resolve_latest_head_doi(local_versions).split('.')[-1]
         )
         result.success = True
         result.message = "Dry run OK (mint DOI)"
@@ -1014,8 +1114,11 @@ def push_version_as_draft(
 
     result = PushResult(version=version, success=False)
 
-    if version not in EDITION_CHANGELOG:
-        result.message = f"Unknown version {version}"
+    if not is_known_canon_version(version):
+        result.message = (
+            f"Unknown version {version} — geen been_processed/SST_CANON-v{version}.tex "
+            f"en geen entry in canon_edition.py"
+        )
         return result
 
     tex = main_tex(version)
@@ -1057,7 +1160,6 @@ def push_version_as_draft(
     meta = extract_metadata_from_latex(tex)
     abstract = meta.get('description', '')
     description = build_description(version, abstract)
-    papers_dir = get_papers_dir()
 
     if dry_run:
         result.success = True
@@ -1071,12 +1173,12 @@ def push_version_as_draft(
         return result
 
     # Refresh description in config before upload
-    tex_rel = str(tex.relative_to(papers_dir))
+    tex_rel = tex_file_relative_path(tex)
     write_zenodo_config(version, deposit_id, doi, description, tex_rel)
     result.actions.append(f'Updated config {cfg_file.name}')
 
     log("Rendering PDF and uploading to Zenodo...")
-    proc = process_config_file(cfg_file, automation, papers_dir)
+    proc = process_config_file(cfg_file, automation, get_repo_root())
     if proc['status'] != 'success':
         result.message = proc.get('message', 'Render/upload failed')
         result.actions.extend(proc.get('actions', []))
@@ -1122,8 +1224,11 @@ def push_published_metadata(
 
     result = PushResult(version=version, success=False)
 
-    if version not in EDITION_CHANGELOG:
-        result.message = f"Unknown version {version}"
+    if not is_known_canon_version(version):
+        result.message = (
+            f"Unknown version {version} — geen been_processed/SST_CANON-v{version}.tex "
+            f"en geen entry in canon_edition.py"
+        )
         return result
 
     if automation is None:
@@ -1235,7 +1340,7 @@ def push_versions_range(
             return [PushResult(version=from_version, success=False, message="No Zenodo token found")]
         automation = ZenodoAutomation(token, sandbox=False)
 
-    for ver in sorted(EDITION_CHANGELOG.keys(), key=version_sort_key):
+    for ver in sorted(get_edition_changelog().keys(), key=version_sort_key):
         if version_sort_key(ver) < version_sort_key(from_version):
             continue
         if version_sort_key(ver) > version_sort_key(to_version):
@@ -1253,7 +1358,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description='Push SST Canon versions to Zenodo')
     parser.add_argument('--version', help='Single version e.g. 0.8.5')
     parser.add_argument('--from', dest='from_version', default='0.8.2', help='Start version')
-    parser.add_argument('--to', dest='to_version', default='0.8.18', help='End version')
+    parser.add_argument('--to', dest='to_version', default=None, help='End version (default: latest local/canon)')
     parser.add_argument('--dry-run', action='store_true', help='Show actions without API calls')
     parser.add_argument('--publish', action='store_true', help='Publish after upload (default: draft)')
     parser.add_argument('--list-local', action='store_true', help='List local canon versions')
@@ -1327,7 +1432,8 @@ def main() -> None:
     elif args.version:
         r = push_version_as_draft(args.version, dry_run=args.dry_run, publish=args.publish)
     else:
-        results = push_versions_range(args.from_version, args.to_version, args.dry_run, args.publish)
+        to_version = args.to_version or latest_canon_version()
+        results = push_versions_range(args.from_version, to_version, args.dry_run, args.publish)
         for r in results:
             print(f"v{r.version}: {'OK' if r.success else 'FAIL'} — {r.message}")
         return

@@ -7,6 +7,8 @@ import re
 from pathlib import Path
 from collections import defaultdict
 
+from zenodo_automation import get_papers_dir, resolve_tex_file_path
+
 def check_doi_in_latex(tex_file: Path) -> bool:
     """Check if file has a valid DOI."""
     try:
@@ -70,7 +72,7 @@ def main():
             
             # Construct full path to tex file
             if tex_file_path:
-                tex_file = base_dir / tex_file_path
+                tex_file = resolve_tex_file_path(tex_file_path, get_papers_dir())
             else:
                 tex_file = config_file.with_suffix('.tex')
             

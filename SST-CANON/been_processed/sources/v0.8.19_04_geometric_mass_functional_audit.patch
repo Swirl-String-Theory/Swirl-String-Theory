@@ -1,0 +1,127 @@
+--- a/SST_CANON-v0.8.18.tex	2026-07-05 19:40:42.906051774 +0000
++++ b/SST_CANON-v0.8.18.tex	2026-07-05 19:40:42.907182248 +0000
+@@ -4547,10 +4547,41 @@
+     \subsection{Purpose and status}
+         This appendix supplies an explicit closure layer for the mass program without replacing the canonical master equation of Eq.~\eqref{eq:sst_master_equation}. Its role is to make concrete those invariant choices that were historically used in pre-v0.8 layers whenever actual particle-mass calculations were attempted.
+         
+-        \textbf{[DERIVED]} Canon rule: the abstract kernel \(\Xi_K\) of the main text may be specialized to more explicit invariant combinations provided the resulting branch remains dimensionless, benchmarkable, and subordinate to the topology-first hierarchy.
++        \textbf{[DERIVED-CONDITIONAL / BENCHMARK TARGET]} Canon rule: the abstract kernel \(\Xi_K\) of the main text may be specialized to more explicit invariant combinations provided the resulting branch remains dimensionless, benchmarkable, and subordinate to the topology-first hierarchy.
+         
+         \textbf{[CRITICAL NOTE]} Nothing in this appendix upgrades the explicit kernel to a theorem of first-principles filament dynamics. The present role is closure discipline and reproducible benchmarking.
+ 
++    \subsection{Density and dimensional audit}
++        \label{subsec:explicit_mass_density_dimensional_audit}
++
++        \textbf{[CANON GUARD].}
++        The mass program must keep energy density and mass-equivalent density
++        separate.  If $\rho_E$ denotes an energy density in $\mathrm{J\,m^{-3}}$,
++        then its mass-equivalent density is
++        \begin{align}
++            \rho_m^{(E)}
++            =
++            \frac{\rho_E}{c^2}
++            \qquad
++            [\rho_m^{(E)}]=\mathrm{kg\,m^{-3}}.
++            \label{eq:mass_equivalent_density_guard}
++        \end{align}
++        A baseline mass expression may use either a mass density directly, or an
++        energy density divided by $c^2$, but it must not multiply an already
++        energy-normalized density by an additional hidden $c^2$.
++
++        For the geometric baseline branch below, dimensional closure requires
++        \begin{align}
++            \left[
++            \rhohorn\,\frac{\rc^5}{\lambda_c^2}
++            \right]
++            =
++            \mathrm{kg}.
++            \label{eq:geometric_mass_dimension_check}
++        \end{align}
++        This is the audit that distinguishes a mass closure from an energy
++        closure.
++
+     \subsection{Pure geometric baseline branch}
+         \textbf{[DERIVED-CONDITIONAL / NORMALIZATION BRANCH].}
+         A pure geometric baseline mass scale for topology class $T$ is
+@@ -4562,6 +4593,39 @@
+         \end{align}
+         This branch is subordinate to Eq.~\eqref{eq:sst_master_equation}. It records a normalization-level geometric closure used in historical mass-program benchmarks; it does not replace the canonical master functional or the explicit kernel branch below. The density in Eq.~\eqref{eq:pure_geometric_mass_baseline} is the horn-envelope normalization density of Eq.~\eqref{eq:core_density}; using the background mass-equivalent density $\rhoM$ here would move the benchmark down by the factor $\rhoM/\rhohorn\simeq1.20\times10^{-30}$ and is therefore a symbol-collision error, not a physical branch.
+ 
++    \subsection{Geometric shielding gate and exposure branch}
++        \label{subsec:geometric_shielding_gate_exposure_branch}
++
++        \textbf{[CALIBRATED CLOSURE / NOT AN INDEPENDENT \(\alpha\)-DERIVATION].}
++        The geometric gate may be written as
++        \begin{align}
++            \mathcal G_{\alpha}
++            :=
++            \frac{\lambda_c}{\pi\rc}
++            =
++            \frac{4}{\alpha}
++            =
++            \frac{2c}{\vchar},
++            \label{eq:geometric_alpha_gate_guard}
++        \end{align}
++        inside the calibrated SST constant chain.  Equation~\eqref{eq:geometric_alpha_gate_guard}
++        is a closure identity and normalization guard.  It must not be cited as
++        an independent derivation of the electromagnetic fine-structure constant.
++
++        With an exposure flag $g_{\rm exp}(T)\in\{0,1\}$ and a dimensionless
++        topology kernel $K_{\rm top}(T)$, the geometric benchmark branch is
++        \begin{align}
++            M_{\rm geom}(T)
++            =
++            \mathcal G_{\alpha}^{\,g_{\rm exp}(T)}
++            K_{\rm top}(T)
++            M_0(T).
++            \label{eq:geometric_mass_exposure_branch}
++        \end{align}
++        This is a benchmark branch of the mass program.  It becomes canonically
++        stronger only after a fixed particle table, fixed representatives
++        $\gamma_K$, and fixed residual tolerances are supplied.
++
+     \subsection{Explicit invariant branch of the canonical kernel}
+         A conservative explicit specialization is obtained by resolving the topological kernel into ropelength, braid complexity, and Seifert-genus data:
+         \begin{align}
+@@ -4627,6 +4691,27 @@
+         
+         \textbf{[SPECULATIVE]} Equations~\eqref{eq:proton_phi_benchmark}--\eqref{eq:neutron_phi_benchmark} are retained as baryon-sector closure benchmarks only. They are not promoted to universal mass laws.
+     
++    \subsection{Benchmark promotion requirement}
++        \label{subsec:mass_benchmark_promotion_requirement}
++
++        A geometric mass branch is promotable only after the following fields are
++        fixed for every benchmark state:
++        \begin{align}
++            \left\{
++            K,\,
++            \gamma_K,\,
++            \operatorname{Rop}_{\rm rad}(\gamma_K),\,
++            g_{\rm exp}(T),\,
++            K_{\rm top}(T),\,
++            M_{\rm pred},\,
++            M_{\rm obs},\,
++            \epsilon_M
++            \right\}.
++            \label{eq:mass_benchmark_tuple}
++        \end{align}
++        Until this table is reproducible, Eq.~\eqref{eq:geometric_mass_exposure_branch}
++        remains a geometric benchmark branch rather than a universal mass theorem.
++
+     \subsection{Canonical use policy}
+         The explicit closures above are intended for:
+         \begin{enumerate}
+@@ -5176,6 +5261,12 @@
+             \newblock \emph{Experimental Mathematics} \textbf{20} (2011), 57--90,
+             \newblock preprint arXiv: \href{https://arxiv.org/abs/1002.1723}{1002.1723}.
+ 
++
++            \bibitem{Iskandarani2026GeometricLimitMassFunctional}
++            O.~Iskandarani,
++            \newblock The Geometric Limit of the Swirl-String Mass Functional: Bridging Topological Impedance and Gravitational Time Dilation,
++            \newblock Independent research note (2026).
++
+         \end{thebibliography}
+ 
+ \end{document}
+\ No newline at end of file

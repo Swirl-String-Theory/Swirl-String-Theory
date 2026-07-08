@@ -1,0 +1,116 @@
+--- a/SST_CANON-v0.8.18.tex
++++ b/SST_CANON-v0.8.18.tex
+@@ -555,6 +555,27 @@
+         \begin{align}
+             \Xi_K = \left[ \alpha_C\,C(K) + \beta_L\,L(K) + \gamma_H\,\mathcal{H}(K) \right] \varphi^{-2k(K)} .
+         \end{align}
++
++        \textbf{[CANON / GOLDEN-LAYER GUARD].}
++        The golden-layer factor has an exact hyperbolic reparametrization,
++        \begin{align}
++            \eta_\varphi
++            &\equiv
++            \operatorname{asinh}\!\left(\frac12\right)
++            =\ln\varphi,
++            \label{eq:golden_layer_rapidity_def}\\
++            \varphi^{-2k(K)}
++            &=
++            \exp\!\left[-2k(K)\eta_\varphi\right].
++            \label{eq:golden_layer_rapidity_guard}
++        \end{align}
++        This is a parametrization guard for the existing layer factor, not a
++        derivation of the golden factor from Euler dynamics, ropelength
++        criticality, or knot stability.  It also does not assert that the
++        electron trefoil is a hyperbolic knot; the trefoil remains a torus knot
++        in the topology dictionary.  Any future promotion of this notation must
++        identify \(k(K)\) with a mechanically defined discrete transfer,
++        impedance, or relaxation step.
+ 
+         The canonical SST master equation is therefore
+         \begin{align}
+--- a/SST_CANON-v0.8.18-research-track.tex
++++ b/SST_CANON-v0.8.18-research-track.tex
+@@ -1983,6 +1983,83 @@
+ curvature, and helicity contributions, the mass kernel becomes mechanically
+ inspectable rather than a single opaque coefficient.
+ 
++\subsubsection{Golden-layer factor as hyperbolic transfer parametrization}
++\paragraph{Status.}
++\textbf{[RESEARCH-TRACK / PARAMETRIC REWRITE].}
++This subsection records an exact algebraic reparametrization of the
++existing golden-layer factor in the SST kernel.  It does not derive the
++factor from Euler dynamics, ropelength criticality, or knot stability.
++
++The identity
++\begin{align}
++    \operatorname{asinh}\!\left(\frac12\right)
++    &=
++    \ln\!\left(\frac12+\sqrt{1+\frac14}\right)
++     =
++    \ln\!\left(\frac{1+\sqrt5}{2}\right)
++     =
++    \ln\varphi
++\end{align}
++allows the layer term to be written as
++\begin{align}
++    \eta_\varphi
++    &\equiv
++    \operatorname{asinh}\!\left(\frac12\right)
++    =
++    \ln\varphi
++    \simeq
++    0.4812118251,
++    \label{eq:rt_golden_layer_eta_def}\\
++    \varphi^{-2k(K)}
++    &=
++    \exp\!\left[-2k(K)\eta_\varphi\right].
++    \label{eq:rt_golden_layer_exp_rewrite}
++\end{align}
++Equivalently,
++\begin{align}
++    \sinh\eta_\varphi=\frac12,
++    \qquad
++    \cosh\eta_\varphi=\frac{\sqrt5}{2},
++    \qquad
++    \tanh\eta_\varphi=\frac{1}{\sqrt5}.
++    \label{eq:rt_golden_hyperbolic_components}
++\end{align}
++The associated symmetric transfer matrix
++\begin{align}
++    B_\varphi
++    =
++    \begin{pmatrix}
++        \sqrt5/2 & 1/2\\
++        1/2 & \sqrt5/2
++    \end{pmatrix},
++    \qquad
++    \operatorname{spec}(B_\varphi)=\{\varphi,\varphi^{-1}\},
++    \label{eq:rt_golden_transfer_matrix}
++\end{align}
++therefore supplies a compact notation for one elementary layer-transfer
++step.  Iteration gives attenuation eigenvalue
++\begin{align}
++    \lambda_-^{2k(K)}=\varphi^{-2k(K)}.
++\end{align}
++
++\paragraph{Canon discipline.}
++This is not a hyperbolic-knot claim.  In particular, the electron-sector
++assignment to the trefoil is not made hyperbolic by
++Eq.~\eqref{eq:rt_golden_layer_exp_rewrite}; the trefoil remains a torus
++knot.  The useful content is only that the existing golden dressing factor
++can be written as a discrete exponential attenuation.  To promote this from
++notation to a derived SST mechanism, a future calculation must identify
++\(k(K)\) with a definite filament-transfer, impedance, phase-locking, or
++relaxation step and derive the elementary rapidity
++\(\eta_\varphi=\operatorname{asinh}(1/2)\) from that model.
++
++\paragraph{Dimensional check.}
++The quantities \(\varphi\), \(k(K)\), \(\eta_\varphi\), and all entries of
++\(B_\varphi\) are dimensionless.  Therefore
++Eq.~\eqref{eq:rt_golden_layer_exp_rewrite} can modify only a dimensionless
++kernel or impedance factor; it cannot by itself introduce a mass, length,
++energy, or force scale.
++
+ \subsubsection{Geometric lower-bound gates for SSTcore}
+ For any nontrivial knot in the radius-thickness convention, orthodox
+ ropelength bounds give

@@ -1,0 +1,88 @@
+--- a/SST_CANON-v0.8.18.tex	2026-07-05 19:40:42.836147784 +0000
++++ b/SST_CANON-v0.8.18.tex	2026-07-05 19:40:42.837469024 +0000
+@@ -1133,6 +1133,64 @@
+ 
+         This is also why layer or dressing indices are not treated as primary identity labels: they may modify a state, but they do not replace the topology-first classification of the carrier itself.
+ 
++    \subsection{Orthodox ropelength and thickness convention}
++        \label{subsec:orthodox_ropelength_thickness_convention}
++
++        \textbf{[ORTHODOX / CANON CONVENTION].}
++        For any tame closed centerline representative $\gamma_K$ of a swirl-string
++        topology class $K$, the radius-convention thickness is the reach of the
++        embedded curve,
++        \begin{align}
++            \operatorname{Thi}_{\rm rad}(\gamma_K)
++            =
++            \operatorname{reach}(\gamma_K)
++            =
++            \operatorname{NIR}(\gamma_K),
++            \label{eq:canon_thickness_reach}
++        \end{align}
++        where $\operatorname{NIR}$ denotes the normal injectivity radius.  The
++        radius-convention ropelength is
++        \begin{align}
++            \operatorname{Rop}_{\rm rad}(\gamma_K)
++            =
++            \frac{\operatorname{Len}(\gamma_K)}
++                 {\operatorname{Thi}_{\rm rad}(\gamma_K)}.
++            \label{eq:canon_ropelength_rad}
++        \end{align}
++        Some knot-theory literature uses a diameter convention.  SST fixes the
++        radius convention in Eq.~\eqref{eq:canon_ropelength_rad}; if a diameter
++        convention is imported, it must be converted by
++        \begin{align}
++            \operatorname{Rop}_{\rm diam}
++            =
++            \frac12\,\operatorname{Rop}_{\rm rad}.
++            \label{eq:ropelength_diameter_conversion}
++        \end{align}
++
++        \textbf{[ORTHODOX].}
++        Ropelength minimizers exist for tame knot and link types.  Such tight
++        representatives are $C^{1,1}$ and have bounded curvature, but they need
++        not be globally $C^2$ and need not be unique
++        \cite{CantarellaKusnerSullivan2002Ropelength}.  Polygonal constrained
++        tightening represents the same finite-thickness problem by active
++        struts, kinks, and a projected constrained gradient
++        \cite{AshtonCantarellaPiatekRawdon2010Ridgerunner}.
++
++        \textbf{[CANON RULE].}
++        The bare topological class $K$ does not by itself determine a unique
++        physical particle representative.  Any mass, screening, or stability
++        calculation that uses ropelength must state which representative
++        $\gamma_K$, which radius convention, and which relaxation protocol are
++        being used.  The physical centerline length is written
++        \begin{align}
++            L_{\rm phys}(K)
++            =
++            a_{\rm core}(K)\,\operatorname{Rop}_{\rm rad}(\gamma_K),
++            \label{eq:lphys_from_ropelength}
++        \end{align}
++        with $a_{\rm core}(K)=\operatorname{Thi}_{\rm rad}(\gamma_K)$ unless a
++        separately derived resolved-tube radius is specified.
++
+     \subsection{Euler topological preservation and closure discipline}
+         \label{subsec:euler_topological_preservation_closure}
+ 
+@@ -5055,6 +5113,19 @@
+             \newblock \emph{Banach Center Publications} \textbf{42} (1998), 321--346,
+             \newblock Permalink: \href{https://eudml.org/doc/252224}{EuDML:252224}.
+ 
++
++            \bibitem{CantarellaKusnerSullivan2002Ropelength}
++            J.~Cantarella, R.~B.~Kusner, and J.~M.~Sullivan,
++            \newblock On the minimum ropelength of knots and links,
++            \newblock \emph{Inventiones Mathematicae} \textbf{150} (2002), 257--286,
++            \newblock arXiv: \href{https://arxiv.org/abs/math/0103224}{math/0103224}.
++
++            \bibitem{AshtonCantarellaPiatekRawdon2010Ridgerunner}
++            T.~Ashton, J.~Cantarella, M.~Piatek, and E.~Rawdon,
++            \newblock Knot tightening by constrained gradient descent,
++            \newblock \emph{Experimental Mathematics} \textbf{20} (2011), 57--90,
++            \newblock preprint arXiv: \href{https://arxiv.org/abs/1002.1723}{1002.1723}.
++
+         \end{thebibliography}
+ 
+ \end{document}
+\ No newline at end of file

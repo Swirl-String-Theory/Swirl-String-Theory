@@ -1,0 +1,292 @@
+--- SST_CANON-v0.8.17.guardrails_v2.tex
++++ SST_CANON-v0.8.17.guardrails_v2.tex
+@@ -4077,6 +4077,31 @@
+         \end{align}
+         and the minimizer is \(C^{1,1}\), with bounded curvature, but need not be
+         \(C^2\) \cite{CantarellaKusnerSullivan2002}.
++
++        \textbf{[ORTHODOX GEOMETRY / RESOLVED-TUBE DEFINITION].}
++        For a \(C^1\) embedded centerline, orthodox ropelength theory identifies
++        thickness with both reach and normal injectivity radius
++        \cite{CantarellaKusnerSullivan2002}.  Therefore the SST resolved-tube
++        radius is, when an ideal-tube representative is being used,
++        \begin{align}
++            a_{\rm core}(K)
++            &\equiv
++            \operatorname{Thi}_{\rm rad}(\gamma_K)
++            =
++            \operatorname{reach}(\gamma_K)
++            =
++            \operatorname{NIR}(\gamma_K),
++            \label{eq:a_core_reach_thickness}\\
++            \operatorname{Thi}_{\rm rad}(\gamma_K)
++            &=
++            \min\!\left(\inf_s\frac{1}{\kappa(s)},\,
++            \frac12 d_{\rm dcsd}(\gamma_K)\right),
++            \label{eq:thickness_curvature_dcsd_guard}
++        \end{align}
++        where \(d_{\rm dcsd}\) is the doubly-critical self-distance.  Equations
++        \eqref{eq:a_core_reach_thickness}--\eqref{eq:thickness_curvature_dcsd_guard}
++        are geometric definitions of the resolved tube; they do not license the
++        identification \(a_{\rm core}=\rc\).
+         In an SST sector where the resolved vortex-string energy is
+         tension dominated, with an orthodox knotted flux-tube analogue in the
+         glueball literature \cite{BuniyKephart2003},
+--- SST_CANON-v0.8.17-research-track.guardrails_v2.tex
++++ SST_CANON-v0.8.17-research-track.guardrails_v2.tex
+@@ -1863,6 +1863,233 @@
+     \item \textbf{[SPECULATIVE]} Only after this, map a relaxed topological class to an SST particle sector.
+ \end{enumerate}
+ 
++\subsection{Research Appendix: Resolved-Tube Criticality and Contact-Stress Geometry}
++\label{app:resolved_tube_contact_stress_geometry}
++
++\paragraph{Canon status.}
++\textbf{[ORTHODOX GEOMETRIC BACKGROUND / RESEARCH-TRACK SST INTERPRETATION].}
++The orthodox input is the ropelength theory of finite-thickness embedded
++curves and the constrained-gradient formulation of polygonal knot tightening.
++The SST interpretation is that the active finite-thickness constraints of an
++ideal swirl-string may be read as a discrete contact-stress skeleton for the
++resolved tube.  This appendix does not canonize a new mass formula; it
++canonizes a validation discipline for any future profile-resolved tube model.
++
++\subsubsection{Resolved tube radius as reach}
++For a resolved centerline $\gamma_K$, the physical tube radius is not the horn
++radius $\rc$.  The resolved geometric radius is the reach/thickness of the
++centerline,
++\begin{align}
++    a_{\rm core}(K)
++    \equiv
++    \operatorname{Thi}_{\rm rad}(\gamma_K)
++    =
++    \operatorname{reach}(\gamma_K)
++    =
++    \operatorname{NIR}(\gamma_K),
++    \label{eq:rt_a_core_reach}
++\end{align}
++with radius-convention ropelength
++\begin{align}
++    \operatorname{Rop}_{\rm rad}(K)
++    =
++    \frac{\operatorname{Len}(\gamma_K)}{a_{\rm core}(K)}.
++    \label{eq:rt_rop_radius_convention}
++\end{align}
++For smooth centerlines the controlling geometric obstructions are curvature
++and doubly-critical self-distance,
++\begin{align}
++    a_{\rm core}(K)
++    =
++    \min\!\left(
++        \inf_s\frac{1}{\kappa(s)},\,
++        \frac12 d_{\rm dcsd}(\gamma_K)
++    \right).
++    \label{eq:rt_thickness_curvature_dcsd}
++\end{align}
++Equations~\eqref{eq:rt_a_core_reach}--\eqref{eq:rt_thickness_curvature_dcsd}
++are \textbf{[ORTHODOX]} geometric definitions.  They preserve the canon rule
++$a_{\rm core}\neq\rc$ unless a separate profile calculation proves otherwise.
++
++\subsubsection{Struts, kinks, and contact-stress balance}
++In a polygonal approximation $V$ of the centerline, finite thickness is
++controlled by two active constraint classes:
++\begin{align}
++    \operatorname{MinRad}(v_i)&\ge a_{\rm core},
++    \label{eq:rt_kink_constraint}\\
++    \frac12 d(p,q)&\ge a_{\rm core}.
++    \label{eq:rt_strut_constraint}
++\end{align}
++Vertices saturating Eq.~\eqref{eq:rt_kink_constraint} form the kink set
++$\operatorname{Kink}(V)$; pairs saturating Eq.~\eqref{eq:rt_strut_constraint}
++form the strut set $\operatorname{Strut}(V)$.  The constrained-gradient
++criterion for a thickness-critical state has the schematic KKT form
++\begin{align}
++    -\nabla E[V]
++    +
++    \sum_{(p,q)\in\operatorname{Strut}(V)}
++        \lambda_{pq}\,
++        \nabla\!\left(\frac{d(p,q)}{2}\right)
++    +
++    \sum_{i\in\operatorname{Kink}(V)}
++        \mu_i\,\nabla\operatorname{MinRad}(v_i)
++    =0,
++    \qquad
++    \lambda_{pq},\mu_i\ge0 .
++    \label{eq:rt_contact_kkt_balance}
++\end{align}
++For the mathematical ropelength problem, $E[V]=\operatorname{Len}(V)$.  For a
++profile-resolved SST tube one should instead test a functional of the form
++\begin{align}
++    E_{\rm SST}[\gamma]
++    =
++    T_{\rm eff}\operatorname{Len}(\gamma)
++    +E_{\rm bend}[\gamma]
++    +E_{\rm twist}[\gamma]
++    +E_{\rm swirl}[\gamma]
++    +E_{\rm core}[\gamma] .
++    \label{eq:rt_resolved_tube_energy}
++\end{align}
++The multipliers $\lambda_{pq}$ and $\mu_i$ are then research-track candidates
++for a discrete swirl-stress/contact-force map, not yet canonical physical
++forces.
++
++\subsubsection{Contact-map refinement of the topological kernel}
++A scalar ropelength is not enough to determine all shape-sensitive SST
++observables.  A resolved ideal tube carries a contact skeleton
++\begin{align}
++    \mathcal C_K
++    =
++    \bigl\{(p,q,\lambda_{pq})\bigr\}_{\operatorname{Strut}}
++    \cup
++    \bigl\{(i,\mu_i)\bigr\}_{\operatorname{Kink}} .
++    \label{eq:rt_contact_skeleton}
++\end{align}
++A future profile-resolved version of the dimensionless topology kernel may
++therefore have the schematic expansion
++\begin{align}
++    \Xi_K
++    =
++    \Xi_K^{(0)}
++    +\epsilon_s\sum_{(p,q)}\lambda_{pq}
++    +\epsilon_k\sum_i\mu_i
++    +\epsilon_H\mathcal H_K
++    +\cdots .
++    \label{eq:rt_kernel_contact_refinement}
++\end{align}
++Equation~\eqref{eq:rt_kernel_contact_refinement} is a
++\textbf{[MATCHING ANSATZ]}.  Its value is diagnostic: if the large calibrated
++normalization hidden in $\Xi_K$ can be decomposed into reproducible contact,
++curvature, and helicity contributions, the mass kernel becomes mechanically
++inspectable rather than a single opaque coefficient.
++
++\subsubsection{Geometric lower-bound gates for SSTcore}
++For any nontrivial knot in the radius-thickness convention, orthodox
++ropelength bounds give
++\begin{align}
++    \operatorname{Rop}_{\rm rad}(K_{\rm nontrivial})
++    \ge
++    4\pi+2\pi\sqrt2
++    \simeq 21.45213649 .
++    \label{eq:rt_nontrivial_rop_lower_bound}
++\end{align}
++Equivalently,
++\begin{align}
++    \operatorname{Rop}_{\rm diam}(K_{\rm nontrivial})
++    \ge
++    2\pi+\pi\sqrt2
++    \simeq 10.72606825 .
++    \label{eq:rt_nontrivial_rop_diam_bound}
++\end{align}
++Using the canonical radius $\rc=1.40897017\times10^{-15}\,\mathrm{m}$, the
++radius-convention bound corresponds to
++\begin{align}
++    L_{\min}
++    =
++    \rc\left(4\pi+2\pi\sqrt2\right)
++    \simeq
++    3.02254\times10^{-14}\,\mathrm{m} .
++    \label{eq:rt_nontrivial_physical_length_bound}
++\end{align}
++For the trefoil benchmark used elsewhere in the canon,
++\begin{align}
++    \operatorname{Rop}_{\rm rad}(3_1)
++    &\approx 2\times16.371637=32.743274,\\
++    L_{3_1}
++    &\approx
++    32.743274\,\rc
++    \simeq
++    4.61343\times10^{-14}\,\mathrm{m} .
++    \label{eq:rt_trefoil_physical_length_benchmark}
++\end{align}
++An SSTcore ideal-knot routine that reports a nontrivial knot below
++Eq.~\eqref{eq:rt_nontrivial_rop_lower_bound}, or mixes the radius and diameter
++conventions without an explicit factor of two, fails the geometry gate.
++
++\subsubsection{Composite-link non-additivity warning}
++For composite links and connect-sum-like configurations, ideal ropelength is
++not generally additive.  The ropelength literature reports a typical deficit
++of order
++\begin{align}
++    \Delta\mathcal L_{\rm comp}
++    \sim
++    4\pi-4
++    \simeq 8.56637 .
++    \label{eq:rt_composite_link_deficit}
++\end{align}
++Therefore any SST baryon or multi-component particle branch using an additive
++length proxy must expose a correction term,
++\begin{align}
++    \mathcal L_{\rm comp}
++    =
++    \sum_i\mathcal L_{K_i}
++    -\Delta_{\rm link}
++    +\delta_{\rm stress},
++    \label{eq:rt_composite_nonadditive_length}
++\end{align}
++rather than assuming $\mathcal L_{\rm comp}=\sum_i\mathcal L_{K_i}$.  This is a
++research-track guard, not a universal law for all SST composites.
++
++\subsubsection{Operational SSTcore diagnostics}
++A profile-resolved SSTcore tightening or imported ideal-knot pipeline should
++report at least
++\begin{align}
++    \mathcal D_K
++    =
++    \left(
++        \operatorname{Rop}_{\rm rad},\,
++        a_{\rm core},\,
++        \operatorname{Strut},\,
++        \operatorname{Kink},\,
++        \Lambda,\,
++        \chi_{\rm contact}
++    \right),
++    \label{eq:rt_sstcore_contact_diagnostics}
++\end{align}
++where
++\begin{align}
++    \chi_{\rm contact}
++    =
++    \frac{\left\|-
++        \nabla E_{\rm SST}+A\Lambda\right\|}
++         {\left\|\nabla E_{\rm SST}\right\|},
++    \qquad
++    \Lambda\ge0 .
++    \label{eq:rt_contact_residual}
++\end{align}
++Here $A$ is the rigidity/contact matrix built from strut and kink gradients.
++Small $\chi_{\rm contact}$ means that the candidate state is not merely short;
++it is approximately contact-critical under the declared energy model.
++
++\paragraph{Minimal falsifier for this appendix.}
++If two independent high-resolution implementations, using the same thickness
++convention and topology, converge to incompatible contact skeletons
++$\mathcal C_K$ or incompatible $\chi_{\rm contact}$ under the same declared
++$E_{\rm SST}$, the proposed contact-kernel refinement
++Eq.~\eqref{eq:rt_kernel_contact_refinement} must be demoted from
++Research Track to numerical diagnostic only.
++
++
+ \subsection{Minimal falsifier}
+ If two distinct knots have the same SST particle assignment but relax to incompatible energy minima or different protected sectors under the same admissible dynamics, the assignment must be split or rejected:
+ \begin{equation}
+@@ -1898,6 +2125,21 @@
+ \emph{arXiv:1808.05193} (2018).
+ Permalink: \href{https://arxiv.org/abs/1808.05193}{arXiv:1808.05193}.
+ 
++\bibitem{CantarellaKusnerSullivan2002}
++J.~Cantarella, R.~B. Kusner, and J.~M. Sullivan,
++``On the Minimum Ropelength of Knots and Links,''
++\emph{Inventiones Mathematicae} \textbf{150}, 257--286 (2002).
++DOI: \href{https://doi.org/10.1007/s00222-002-0234-y}{10.1007/s00222-002-0234-y};
++arXiv: \href{https://arxiv.org/abs/math/0103224}{math/0103224}.
++
++\bibitem{AshtonCantarellaPiatekRawdon2011}
++T.~Ashton, J.~Cantarella, M.~Piatek, and E.~J. Rawdon,
++``Knot Tightening by Constrained Gradient Descent,''
++\emph{Experimental Mathematics} \textbf{20}(1), 57--90 (2011).
++DOI: \href{https://doi.org/10.1080/10586458.2011.544581}{10.1080/10586458.2011.544581};
++arXiv: \href{https://arxiv.org/abs/1002.1723}{1002.1723}.
++
++
+ \bibitem{Ricca1998KnotFluidMechanics}
+ R.~L.~Ricca,
+ ``Applications of knot theory in fluid mechanics,''

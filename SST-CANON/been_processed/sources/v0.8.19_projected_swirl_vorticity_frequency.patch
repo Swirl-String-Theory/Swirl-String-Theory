@@ -1,0 +1,109 @@
+--- a/SST_CANON-v0.8.18-research-track.tex	2026-07-05 20:37:56.940860231 +0000
++++ b/SST_CANON-v0.8.18-research-track.tex	2026-07-05 20:38:21.347703537 +0000
+@@ -5818,6 +5818,97 @@
+ \end{align}
+ This is the safest SST interpretation: the pendulum reads a macroscopic rotation state, and the clock offset follows from the energy-density version of the Swirl-Clock law.
+ 
++
++\paragraph{Projected swirl-vorticity frequency.}
++The preceding Foucault construction is the terrestrial special case of a more general SST diagnostic.  For any SST velocity field \(\uswirl(x,t)\) and any declared unit projection direction \(\hat{\mathbf a}(x,t)\), define the projected swirl-vorticity frequency
++\begin{align}
++    \boxed{
++    f_{\circlearrowleft}(x,t;\hat{\mathbf a})
++    :=
++    \hat{\mathbf a}(x,t)\cdot
++    \left(\nabla\times\uswirl(x,t)\right)
++    }
++    \label{eq:rt_projected_swirl_vorticity_frequency}
++\end{align}
++with units \({\rm s^{-1}}\).  This quantity is the SST analogue of the orthodox Coriolis parameter
++\begin{align}
++    f_{\rm Cor}
++    =
++    2\boldsymbol{\Omega}\cdot\hat{\mathbf n}
++    =
++    \hat{\mathbf n}\cdot(\nabla\times\mathbf u),
++    \label{eq:rt_coriolis_parameter_vorticity_form}
++\end{align}
++not a new force law.  It is a projected-vorticity readout.  In a terrestrial laboratory, taking \(\uswirl\) to be the coarse-grained laboratory congruence velocity and \(\hat{\mathbf a}=\hat{\mathbf n}\) gives \(f_{\rm Cor}=2\Omega_F\).  Thus Foucault precession measures half the vertical projected vorticity of the macroscopic rotating frame.
++
++For an atomic or knot-scale SST state \(K\), Eq.~\eqref{eq:rt_projected_swirl_vorticity_frequency} becomes a local diagnostic
++\begin{align}
++    f_K(x;\hat{\mathbf a})
++    :=
++    \hat{\mathbf a}(x)\cdot\boldsymbol{\omega}_K(x),
++    \qquad
++    \boldsymbol{\omega}_K:=\nabla\times\mathbf u_K .
++    \label{eq:rt_knot_projected_vorticity_frequency}
++\end{align}
++The projection direction must be declared.  Natural choices include the local core tangent \(\hat{\mathbf t}(s)\), a Frenet normal \(\hat{\mathbf n}_F(s)\), a radial direction \(\hat{\mathbf r}\), or an external quantization axis.  The parallel strand diagnostic is
++\begin{align}
++    f_{\parallel}(s)
++    :=
++    \hat{\mathbf t}(s)\cdot\boldsymbol{\omega}_K(s),
++    \label{eq:rt_parallel_strand_vorticity_frequency}
++\end{align}
++while a radial pressure-envelope diagnostic is
++\begin{align}
++    f_r(r,\theta,\varphi)
++    :=
++    \hat{\mathbf r}\cdot\boldsymbol{\omega}_K(r,\theta,\varphi).
++    \label{eq:rt_radial_projected_vorticity_frequency}
++\end{align}
++
++For a closed knot or approximately spherical envelope, the signed surface average of Eq.~\eqref{eq:rt_radial_projected_vorticity_frequency} may vanish by symmetry even when the local vorticity is dynamically important.  The research-track scalar for spherical pressure support is therefore the RMS projected swirl-vorticity frequency
++\begin{align}
++    \boxed{
++    f_{\rm rms}^{(K)}(r)
++    :=
++    \left[
++    \frac{1}{4\pi}
++    \int_{S^2}
++    \left(
++        \hat{\mathbf r}\cdot\boldsymbol{\omega}_K(r,\theta,\varphi)
++    \right)^2
++    d\Omega
++    \right]^{1/2}
++    }
++    \label{eq:rt_rms_projected_swirl_vorticity_frequency}
++\end{align}
++which is non-negative and remains meaningful under sign cancellations.  It may be used as a rotational-frequency diagnostic for spherically averaged pressure support, while the pressure balance itself remains governed by the Euler--vorticity channel
++\begin{align}
++    \nabla\left(
++        p+\frac12\rhoF\lVert\uswirl\rVert^2
++    \right)
++    =
++    \rhoF\,\uswirl\times(\nabla\times\uswirl)
++    \label{eq:rt_projected_frequency_euler_vorticity_guard}
++\end{align}
++within the usual inviscid, incompressible SST approximation.
++
++A local solid-body approximation gives \(\lVert\uswirl\rVert\simeq \frac12 |f_{\circlearrowleft}| r_\perp\).  Substitution into the canonical Swirl-Clock factor gives the diagnostic estimate
++\begin{align}
++    \boxed{
++    \SwirlClock
++    \simeq
++    \sqrt{
++        1-
++        \frac{f_{\circlearrowleft}^{\,2} r_\perp^{2}}{4c^2}
++    }
++    }
++    \label{eq:rt_projected_frequency_swirl_clock_estimate}
++\end{align}
++valid only where the declared projection direction and local solid-body approximation are justified.
++
++\textbf{[STATUS].}
++Equations~\eqref{eq:rt_projected_swirl_vorticity_frequency}--\eqref{eq:rt_coriolis_parameter_vorticity_form} are research-track definitions/orthodox Rosetta bridges.  Equations~\eqref{eq:rt_knot_projected_vorticity_frequency}--\eqref{eq:rt_projected_frequency_swirl_clock_estimate} are conditional diagnostics for atomic, knot-core, or pressure-envelope modelling.  They do not identify the projected frequency with \(\rhoF\), \(\rho_{\rm core}\), or \(\vchar\), and they do not add a direct vorticity source term to Maxwell or gravity equations.
++
+ \paragraph{Groningen benchmark.}
+ Using
+ \begin{align}
+@@ -5913,7 +6004,7 @@
+         \big]
+     \end{align}
+     before any local rotor, coil, or superfluid-ring perturbation can be interpreted as a clock-rate perturbation.
+-    \item No relation between Foucault precession and any candidate coarse-grained ``leaf rate'' is asserted in this patch.  Such a relation would require a separate Rosetta derivation and an independently specified averaging map.
++    \item No density law of the form \(\rhoF=K\Omega\), nor any identification of projected vorticity with \(\rhoF\), \(\rho_{\rm core}\), or \(\vchar\), is asserted in this patch.  Such a relation would require a separate micro-to-macro averaging theorem and independent calibration.
+ \end{enumerate}
+ 
+ \paragraph{Research-track conclusion.}

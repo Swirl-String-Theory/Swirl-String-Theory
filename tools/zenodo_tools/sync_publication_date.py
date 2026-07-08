@@ -9,7 +9,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-from zenodo_automation import get_papers_dir
+from zenodo_automation import get_papers_dir, resolve_tex_file_path
 
 # Handle encoding
 if sys.platform == 'win32':
@@ -62,7 +62,7 @@ def sync_publication_date(config_file: Path, base_dir: Path, update_zenodo: bool
         # Find PDF file
         tex_file_path = config_data.get('tex_file', '')
         if tex_file_path:
-            tex_file = base_dir / tex_file_path
+            tex_file = resolve_tex_file_path(tex_file_path, base_dir)
             pdf_file = tex_file.with_suffix('.pdf')
         else:
             pdf_file = config_file.with_suffix('.pdf')

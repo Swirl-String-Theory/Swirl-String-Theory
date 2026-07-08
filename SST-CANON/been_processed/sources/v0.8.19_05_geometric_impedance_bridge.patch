@@ -1,0 +1,58 @@
+--- a/SST_CANON-v0.8.18.tex	2026-07-05 19:40:42.922370094 +0000
++++ b/SST_CANON-v0.8.18.tex	2026-07-05 19:40:42.924651824 +0000
+@@ -4822,6 +4822,55 @@
+     \subsection{Topological reading of the bridge}
+         The most conservative topology statement retained at appendix level is that nontrivial phase maps may encode nontrivial carrier organization. In particular, the effective phase field may carry nontrivial winding or linking data even when the coarse-grained description is written in wave language. This is the appendix-level reason why the canon treats topology and wave structure as compatible rather than as competing descriptions.
+     
++    \section{Geometric Impedance Bridge}
++    \label{sec:appendix_geometric_impedance_bridge}
++
++    \subsection{Purpose and status}
++        \textbf{[BRIDGE LEMMA / REPARAMETERIZATION].}
++        This appendix records the conservative geometric bridge between an
++        SST topological mass ratio and the Schwarzschild source term.  It does
++        not derive Einstein dynamics and does not replace the gravitational
++        sector of the main canon.
++
++    \subsection{Electron-normalized source term}
++        Using the electron Compton wavelength $\lambda_c$ and the Planck length
++        $L_{\rm P}$, the electron Schwarzschild radius can be rewritten as
++        \begin{align}
++            r_s(e)
++            =
++            \frac{2GM_e}{c^2}
++            =
++            4\pi\,\frac{L_{\rm P}^2}{\lambda_c}.
++            \label{eq:electron_schwarzschild_geometric_bridge}
++        \end{align}
++        For a topological state $T$ with mass ratio
++        \begin{align}
++            \widetilde M(T)=\frac{M(T)}{M_e},
++        \end{align}
++        the dimensionless potential factor becomes
++        \begin{align}
++            \Phi(T;r)
++            =
++            \frac{2GM(T)}{rc^2}
++            =
++            \frac{4\pi L_{\rm P}^2}{r\lambda_c}\,
++            \widetilde M(T).
++            \label{eq:geometric_impedance_phi}
++        \end{align}
++
++    \subsection{Use policy}
++        Substituting a geometric SST mass branch into
++        Eq.~\eqref{eq:geometric_impedance_phi} yields a geometric impedance
++        representation of the source term.  The content is the factorization
++        of an already-assumed mass ratio into length ratios and topological
++        gates.  It is not a proof that the Einstein equation follows from the
++        swirl medium.
++
++        \textbf{[CANON GUARD].}
++        The bridge may be used for comparison, normalization, and falsifier
++        design.  It must not be used to claim a completed derivation of general
++        relativity or a replacement of the retained Poisson/clock-field bridge.
++
+     \section{Dark-Sector and Galactic Continuum Law}
+     \label{sec:appendix_dark_galactic}
+     

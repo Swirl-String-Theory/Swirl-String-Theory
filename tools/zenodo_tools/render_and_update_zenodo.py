@@ -13,7 +13,7 @@ import time
 import requests
 from datetime import datetime
 from pathlib import Path
-from zenodo_automation import ZenodoAutomation, read_token_from_zenodo_py, get_papers_dir
+from zenodo_automation import ZenodoAutomation, read_token_from_zenodo_py, get_papers_dir, resolve_tex_file_path
 
 # Handle encoding
 if sys.platform == 'win32':
@@ -477,7 +477,7 @@ def process_config_file(config_file: Path, automation: ZenodoAutomation, base_di
         # Find corresponding .tex file
         tex_file_path = config_data.get('tex_file', '')
         if tex_file_path:
-            tex_file = base_dir / tex_file_path
+            tex_file = resolve_tex_file_path(tex_file_path, base_dir)
         else:
             tex_file = config_file.with_suffix('.tex')
         

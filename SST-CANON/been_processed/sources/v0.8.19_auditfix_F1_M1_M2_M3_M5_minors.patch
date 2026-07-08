@@ -1,0 +1,200 @@
+--- a/SST_CANON-v0.8.18.tex
++++ b/SST_CANON-v0.8.18.tex
+@@ -150,6 +150,8 @@
+         \begin{tabular}{@{}>{\raggedleft\arraybackslash}p{0.21\textwidth}@{\hspace{0.32em}}>{\raggedright\arraybackslash}p{0.75\textwidth}@{}}
+             \textbf{[ORTHODOX]} & established physics or mathematics. \\[0.25em]
+             \textbf{[DERIVED]} & consequences obtained from definitions and assumptions of this SST layer. \\[0.25em]
++            \textbf{[CALIBRATED]} & algebraically fixed by measured constants in the primitive calibration chain; exact within the chain, not an independent prediction. \\[0.25em]
++            \textbf{[CONDITIONAL]} & valid only under an explicitly stated auxiliary premise, closure, or bridge assumption. \\[0.25em]
+             \textbf{[SPECULATIVE]} & conjectural extensions or identifications not yet closed as theorems. \\
+         \end{tabular}
+         
+@@ -174,7 +176,7 @@
+ 
+ 
+ % ===========================
+-% CANON STRUCTURE (v0.8.1)
++% CANON STRUCTURE (v0.8.18)
+ % ===========================
+ 
+ % ---------- PRELUDE ----------
+@@ -348,9 +350,12 @@
+         We introduce the Swirl-Clock as a local scalar field encoding relativistic time dilation:
+         
+         \begin{align}
+-            \SwirlClock = \sqrt{1 - \frac{\vchar{}^2}{c^2}}
++            \SwirlClock(x,t) = \sqrt{1 - \frac{\lVert\uswirl(x,t)\rVert^2}{c^2}}
+             \label{eq:swirl_clock}
+         \end{align}
++        
++        The calibrated numerical clock value is the horn-evaluation value obtained by setting
++        \(\lVert\uswirl(x,t)\rVert=\vchar\); the symbol \(\vchar\) is not the unrestricted local velocity field.
+         
+         \textbf{[ORTHODOX] Functional form}: This matches the standard Lorentz time-dilation factor.
+ 
+@@ -478,12 +483,12 @@
+             \label{eq:clock_radius_transport}
+         \end{align}
+ 
+-        \textbf{[CONDITIONAL DERIVED]}: within the horn-anchored approximation, contraction of a material loop drives stronger clock suppression, while expansion relaxes it.
++        \textbf{[CONDITIONAL DERIVED]}: within the horn-anchored approximation, contraction of a material loop drives stronger clock suppression, while expansion relaxes it. The identity deliberately mixes a variable loop radius \(R(t)\) with the fixed horn-evaluation radius \(\rc\); it should not be read as an unconstrained resolved-tube transport law.
+ 
+     \subsection{Reparametrized Zero-Parameter Corollary}
+         \label{subsec:zero_parameter_corollary}
+ 
+-        Older SST canon layers often used the triplet $(\Gamma_0,\rhoF,\rc)$ as the primitive parameterization. In the present v0.8.10 architecture, Eq.~\eqref{eq:rc_definition} and Eq.~\eqref{eq:gamma0} show that this is a reparameterization of the present primitive calibration set $(\rhoF,\vchar,\omega_c)$ rather than a distinct axiom.
++        Older SST canon layers often used the triplet $(\Gamma_0,\rhoF,\rc)$ as the primitive parameterization. In the present v0.8.18 architecture, Eq.~\eqref{eq:rc_definition} and Eq.~\eqref{eq:gamma0} show that this is a reparameterization of the present primitive calibration set $(\rhoF,\vchar,\omega_c)$ rather than a distinct axiom.
+ 
+         Explicitly,
+ 
+@@ -645,7 +650,7 @@
+         \end{align}
+         
+         \textbf{[DERIVED] Consistency statement}:
+-        No quantity is defined circularly. The canonical closure is summarized by Eq.~\ref{eq:sst_master_equation}.
++        No quantity is defined circularly within the stated calibration chain. The \(\alpha\)-dependent identities remain calibrated algebraic identities rather than independent derivations, and the canonical closure is summarized by Eq.~\ref{eq:sst_master_equation}.
+     
+     \subsection{Consistency Statement}
+         
+@@ -693,14 +698,14 @@
+             \label{eq:Fmax_em}\\
+             &= \frac{h\alpha c}{8\pi \rc^2},
+             \label{eq:Fmax_hac}\\
+-            &= \pi \rc^2\,\rho_{\rm calc}\,\vchar{}^2,
++            &= \pi \rc^2\,\rhohorn\,\vchar{}^2,
+             \label{eq:Fmax_rho}\\
+             &= \frac{c^4}{4G}\,\alpha
+             \left(\frac{\rc}{\ell_P}\right)^{-2}.
+             \label{eq:Fmax_planck_suppressed}
+         \end{align}
+ 
+-        where $\rho_{\rm calc} = 4F_{\rm swirl}^{\max}/(\pi\alpha^2 c^2 \rc^2)$ is the derived bulk density consistent with the canonical neutral-circulation closure.
++        where Eq.~\eqref{eq:Fmax_rho} is the horn-density form of Eq.~\eqref{eq:core_density}; no separate \(\rho_{\rm calc}\) symbol is introduced.
+ 
+         \textbf{[CALIBRATED ALGEBRAIC IDENTITY] Consistency check}: Eqs.~\eqref{eq:Fmax_em}--\eqref{eq:Fmax_planck_suppressed} are equivalent given $\vchar = \alpha c/2$, the standard identity $e^2/(4\pi\varepsilon_0) = \alpha\hbar c$, $\rc=\alpha\hbar/(2m_ec)$, and $\ell_P^2=\hbar G/c^3$. The Planck-force form in Eq.~\eqref{eq:Fmax_planck_suppressed} is a hierarchy reparameterization of the same calibrated tension scale, not an independent derivation from Planck physics. Their mutual agreement is an internal algebraic coherence test of the calibrated chain, not an independent dynamical prediction.
+ 
+@@ -720,7 +725,7 @@
+         \begin{align}
+             \boxed{
+             F_{\rm swirl}^{\max}
+-            \;=\; \frac{32\pi^2\hbar R_\infty^2 c}{\alpha^5},
++            \;=\; \frac{16\pi^2\hbar R_\infty^2 c}{\alpha^5},
+             }
+             \label{eq:Fmax_Rydberg}
+         \end{align}
+@@ -952,8 +957,10 @@
+         Local time is encoded in a scalar field derived from fluid kinematics:
+         
+         \begin{align}
+-            \SwirlClock = \sqrt{1 - \frac{\vchar{}^2}{c^2}}
+-        \end{align}
++            \SwirlClock(x,t) = \sqrt{1 - \frac{\lVert\uswirl(x,t)\rVert^2}{c^2}}
++        \end{align}
++        
++        The canonical constant value follows only after evaluating the local field at \(\lVert\uswirl(x,t)\rVert=\vchar\).
+         
+         \textbf{[ORTHODOX]} Functional form: this matches Lorentz time dilation.
+ 
+@@ -2714,26 +2721,24 @@
+ 
+     \subsection{Poisson Limit and Effective Gravity Bridge}
+ 
+-        \textbf{[DERIVED]} Bridge statement: in the weak-field, slowly varying limit, the scalar clock field is taken to obey
+-        a Poisson-type closure
+-        \begin{align}
+-            \nabla^2 \chi(x)
+-            =
+-            4\pi G_{\mathrm{eff}} \,\rho_{\mathrm{matter}}(x),
++        \textbf{[CANON / NORMALIZATION GUARD]} Bridge statement: in the weak-field, slowly varying limit, the Newtonian-normalized clock potential \(\chi_{\rm N}\) is taken to obey the same coarse-grained scalar closure as the canonical weak-gravity potential,
++        \begin{align}
++            \nabla^2 \chi_{\rm N}(x)
++            =
++            4\pi G_{\mathrm{swirl}} \,\rhoM(x),
+             \label{eq:poisson_clock}
+         \end{align}
+-        so that outside localized sources
+-        \begin{align}
+-            \chi(r) \propto \frac{1}{r},
+-            \qquad
+-            \mathbf{g}_{\mathrm{eff}} = - \nabla \chi.
++        so that outside localized sources \(\chi_{\rm N}\) has the usual \(1/r\) falloff and
++        \begin{align}
++            \mathbf{g}_{\mathrm{eff}} = - \nabla \chi_{\rm N}.
+             \label{eq:effective_gravity_clock}
+         \end{align}
++        Here \(\chi_{\rm N}\) is not the raw foliation/khronon variable of Eq.~\eqref{eq:clock_foliation_vector}; it is the scalar potential normalized with dimensions \(\mathrm{m^2\,s^{-2}}\). With the identification \(\chi_{\rm N}\equiv\Phi_{\swirlarrow}\), Eq.~\eqref{eq:poisson_clock} is the scalar form of Eq.~\eqref{eq:canonical_weak_gravity_closure} rather than a second independent Poisson law.
+ 
+         \textbf{[ORTHODOX]} The \(1/r\) scalar potential and \(1/r^2\) force law are standard consequences of
+         Eq.~\eqref{eq:poisson_clock}.
+ 
+-        \textbf{[SPECULATIVE]} The identification of \(\chi\) with the Swirl-Clock and the interpretation of
++        \textbf{[SPECULATIVE]} The identification of the Newtonian-normalized \(\chi_{\rm N}\) with the Swirl-Clock perturbation and the interpretation of
+         Eq.~\eqref{eq:poisson_clock} as an emergent gravity law are SST-specific.
+ 
+     \subsection{Observational Constraint from Tensor-Mode Speed}
+@@ -2839,7 +2844,7 @@
+             }
+             \label{eq:emg_source_state}
+         \end{align}
+-        The topological piercing density \(\varrho_{\swirlarrow}\) belongs to the electromagnetic impulse channel, while \(p_{\swirlarrow}\), \(\rhoM\), and \(\boldsymbol{\sigma}^{\mathrm{swirl}}\) belong to the force and gravity channel.
++        The topological piercing density \(\varrho_{\swirlarrow}\) belongs to the electromagnetic impulse channel, while \(p_{\swirlarrow}\), \(\rhoM\), and \(\boldsymbol{\sigma}^{\mathrm{swirl}}\) belong to the force and gravity channel. It is a surface piercing density with SI dimension \([\varrho_{\swirlarrow}]=\mathrm{m^{-2}}\), so that the Faraday projection in Eq.~\eqref{eq:canonical_effective_faraday_emg} is dimensionally fixed.
+ 
+         \textbf{[CANON / PREFACTOR GUARD]} The SI-normalized electromagnetic bridge, when invoked, uses the electron mass-to-charge factor
+         \begin{align}
+@@ -2881,6 +2886,7 @@
+             }
+             \label{eq:canonical_em_flux_impulse_closure}
+         \end{align}
++        The choice \(\Phi_0=h/2e\) is the paired/half-circulation Route-B assignment. A single-carrier \(h/e\) closure is a different bridge convention and is not silently substituted here.
+         In local differential notation, the canonical part of the effective Faraday projection is
+         \begin{align}
+             \boxed{
+@@ -2934,7 +2940,7 @@
+             }
+             \label{eq:canonical_gravito_swirl_fields}
+         \end{align}
+-        In the weak, stationary, coarse-grained limit the scalar sector obeys the Poisson-type closure
++        In the weak, stationary, coarse-grained limit the scalar sector obeys the Poisson-type closure. This reduction uses the stationary transverse gauge \(\partial_t\mathbf{A}_{\swirlarrow}=0\), \(\nabla\cdot\mathbf{A}_{\swirlarrow}=0\), so that \(\mathbf{g}_{\swirlarrow}=-\nabla\Phi_{\swirlarrow}\) and \(\nabla\cdot\mathbf{g}_{\swirlarrow}=-\nabla^2\Phi_{\swirlarrow}\).
+         \begin{align}
+             \boxed{
+             \nabla\cdot\mathbf{g}_{\swirlarrow}
+@@ -4343,9 +4349,9 @@
+         For the trefoil, using certified ideal-knot data
+         \cite{AshtonCantarellaPiatekRawdon2011},
+         \begin{align}
+-            \operatorname{Rop}_{\rm rad}(3_1)\approx32.7436,
++            \operatorname{Rop}_{\rm rad}(3_1)\approx32.743274,
+             \qquad
+-            \operatorname{Rop}_{\rm diam}(3_1)\approx16.3718 .
++            \operatorname{Rop}_{\rm diam}(3_1)=\mathcal{L}_{3_1}\approx16.371637 .
+         \end{align}
+         The leading coincidence
+         \begin{align}
+@@ -4353,7 +4359,7 @@
+             =
+             \frac{8\pi}{3}\operatorname{Rop}_{\rm diam}(3_1)
+             \approx
+-            137.1561
++            137.15471
+         \end{align}
+         is therefore a robust sub-promille numerical coincidence, not an exact
+         or ppm-certified derivation of the fine-structure constant.
+@@ -4453,6 +4459,13 @@
+             \label{eq:pure_geometric_mass_baseline}
+         \end{align}
+         This branch is subordinate to Eq.~\eqref{eq:sst_master_equation}. It records a normalization-level geometric closure used in historical mass-program benchmarks; it does not replace the canonical master functional or the explicit kernel branch below. The density in Eq.~\eqref{eq:pure_geometric_mass_baseline} is the horn-envelope normalization density of Eq.~\eqref{eq:core_density}; using the background mass-equivalent density $\rhoM$ here would move the benchmark down by the factor $\rhoM/\rhohorn\simeq1.20\times10^{-30}$ and is therefore a symbol-collision error, not a physical branch.
++
++        \textbf{[CRITICAL NOTE / CALIBRATION COLLAP]} Under the canonical closures \(\rhohorn\rc^3=m_ec^2/(2\pi\vchar{}^2)\) and \(\rc/\lambda_c=\alpha/(4\pi)\), Eq.~\eqref{eq:pure_geometric_mass_baseline} reduces identically to
++        \begin{align}
++            M_0(T) \equiv \frac{m_e}{4}\,\mathcal{L}_{\mathrm{tot}}(T).
++            \label{eq:pure_geometric_mass_baseline_collapse}
++        \end{align}
++        Hence this branch is a calibrated electron-mass rescaling of ropelength, not an independent medium-derived mass scale. It is retained only as a benchmark normalization branch.
+ 
+     \subsection{Explicit invariant branch of the canonical kernel}
+         A conservative explicit specialization is obtained by resolving the topological kernel into ropelength, braid complexity, and Seifert-genus data:
+@@ -5057,4 +5070,4 @@
+ 
+         \end{thebibliography}
+ 
+-\end{document}+\end{document}

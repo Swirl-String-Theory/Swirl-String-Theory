@@ -1,0 +1,29 @@
+Rydberg--Fmax check
+  16*pi^2 route: 29.0535101958 N
+  old 32*pi^2 route: 58.1070203917 N  (factor 2.000000)
+  h*alpha*c/(8*pi*r_c^2): 29.053509792 N
+  relative 16-route vs h-alpha-c route: 1.390e-08
+
+Geometric baseline dimension check
+  rho_horn*r_c^5/lambda_c^2 has SI units kg/m^3*m^5/m^2 = kg
+  numerical scale: 3.672394698988e-33 kg
+
+Foucault/Groningen benchmark, phi = 53.219 deg
+  WGS84 equatorial radius R=6.37814e+06 m
+    Omega_F_s^-1: 5.84047345304e-05
+    T_F_hours: 29.8833521978
+    v_rot_m_s: 278.483010742
+    one_minus_S_rot: 4.31432667369e-13
+    dt_rot_ns_per_day: 37.2757824607
+    dt_height_100m_ns_per_day: 0.942742339678
+  mean spherical radius R=6.371e+06 m
+    Omega_F_s^-1: 5.84047345304e-05
+    T_F_hours: 29.8833521978
+    v_rot_m_s: 278.171394161
+    one_minus_S_rot: 4.3054448895e-13
+    dt_rot_ns_per_day: 37.1990438452
+    dt_height_100m_ns_per_day: 0.942742339678
+
+Notes
+  The 37.28 ns/day rotational value corresponds to the WGS84/equatorial-radius benchmark.
+  The spherical-mean radius gives about 37.20 ns/day; this is a radius-convention difference, not an algebraic discrepancy.

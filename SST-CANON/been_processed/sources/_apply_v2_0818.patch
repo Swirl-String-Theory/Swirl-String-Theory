@@ -1,0 +1,210 @@
+--- SST_CANON-v0.8.18.tex
++++ SST_CANON-v0.8.18.tex
+@@ -284,6 +284,8 @@
+         \end{align}
+ 
+         \textbf{[DERIVED] Consequence}: Eq.~\eqref{eq:rc_definition} removes $\rc$ as an independent parameter while avoiding the earlier ambiguity between horn-envelope scale, tube radius, and vorticity.
++
++        \textbf{[CALIBRATED CHAIN GUARD]}: Eq.~\eqref{eq:rc_definition} is a Compton--electron-radius closure inside the primitive calibration chain. It must not be cited as an independent hydrodynamic derivation of either $\alpha$, $\vchar$, or $\rc$. A future fluid-dynamical derivation would have to obtain the same radius from a resolved vortex-tube variational problem using $a_{\mathrm{core}}$ or an explicit profile, without inserting the electron-radius identity.
+     
+     \subsection{Circulation Quantization}
+         
+@@ -538,6 +540,16 @@
+ 
+         \textbf{[CANON / ALPHA-GATE GUARD]} The equality \(\lambda_c/(\pi\rc)=4/\alpha\) is a calibrated geometric rewriting inside the present constant chain. It must not be cited as an independent derivation of the fine-structure constant. The finite-cell trefoil result is retained separately as an \(\alpha\)-free sub-per-mille coincidence plus obstruction result in Subsection~\ref{subsec:finite_cell_alpha_obstruction}.
+ 
++        Numerically,
++        \begin{align}
++            \frac{\lambda_c}{\pi\rc}
++            =
++            \frac{4}{\alpha}
++            \simeq 5.48144\times10^{2}.
++            \label{eq:alpha_gate_numeric_guard}
++        \end{align}
++        This number is therefore an exposure or shielding gate inside the calibrated mass functional, not a new measurement or theorem for \(\alpha\).
++
+ 
+         The canonical topological kernel is taken to be
+         \begin{align}
+@@ -574,6 +586,17 @@
+ 
+         \textbf{[CRITICAL NOTE]} Equation~\eqref{eq:sst_master_equation} is presently a canonical synthesis formula, not yet a theorem derived from first-principles filament dynamics alone.
+ 
++        \textbf{[NORMALIZATION TRANSPARENCY]} With the canonical background-energy reading, $\rhoM=\rhoE/c^2=4.65949\times10^{-12}\,\mathrm{kg\,m^{-3}}$ and $\rhoM\rc^3=1.30330\times10^{-56}\,\mathrm{kg}=1.43072\times10^{-26}m_e$. Therefore an exposed electron-scale benchmark with $\Pi_K=4/\alpha$ requires a dimensionless kernel of order
++        \begin{align}
++            \Xi_{3_1}^{(e)}
++            \sim
++            \frac{m_e}{\rhoM\rc^3(4/\alpha)}
++            =
++            1.28\times10^{23}.
++            \label{eq:kernel_normalization_scale_guard}
++        \end{align}
++        Unless a branch explicitly re-anchors the medium scale to $\rhohorn$, the coefficients inside $\Xi_K$ are therefore calibrated matching coefficients carrying the medium-to-particle hierarchy, not order-unity topological invariants. This note is a scale-accounting guard; it does not alter the dimensional validity of Eq.~\eqref{eq:sst_master_equation}.
++
+         In the stationary weak-swirl limit $\SwirlClock \to 1$, it reduces to the static mass-functional form; in the local-kinematic limit at fixed $K$, it reduces to a pure clock-impedance correction. The hierarchy is therefore carried predominantly by the geometric and topological factors, while the Swirl-Clock supplies a coherent local correction rather than the primary source of mass separation.
+ 
+     \subsection{Geometric Representation}
+@@ -665,6 +688,8 @@
+             \label{eq:Rydberg_SST}
+         \end{align}
+ 
++        \textbf{[DIMENSIONAL GUARD]} The direction of Eq.~\eqref{eq:Rydberg_SST} is fixed: the numerator is $\vchar{}^3$ and the denominator is $\pi\rc c^3$. Its units are $\mathrm{m^{-1}}$. The reciprocal expression $\pi\rc c^3/\vchar{}^3$ has units of length and is not a Rydberg constant.
++
+         This is a benchmark for algebraic consistency of the calibration chain, not for independent non-redundancy of the primitive set. \textbf{[CRITICAL NOTE]} Substituting the canonical definitions $\vchar=\alpha c/2$ and $\rc=\vchar/\omega_c=\alpha\hbar/(2m_ec)$ reduces Eq.~\eqref{eq:Rydberg_SST} \emph{exactly} to the standard $R_\infty=\alpha^2 m_e c/(4\pi\hbar)$ (verified to machine precision): $m_e$ is hidden inside $\rc$ and $\alpha$ inside both $\vchar$ and $\rc$. The identity is therefore a consistency check, not an independent non-circular derivation of $R_\infty$. Combining Eq.~\eqref{eq:Rydberg_SST} with Eq.~\eqref{eq:Fmax_def} yields the compact relation
+ 
+         \begin{align}
+@@ -2674,6 +2699,32 @@
+         \end{align}
+         The topological piercing density \(\varrho_{\swirlarrow}\) belongs to the electromagnetic impulse channel, while \(p_{\swirlarrow}\), \(\rhoM\), and \(\boldsymbol{\sigma}^{\mathrm{swirl}}\) belong to the force and gravity channel.
+ 
++        \textbf{[CANON / PREFACTOR GUARD]} The SI-normalized electromagnetic bridge, when invoked, uses the electron mass-to-charge factor
++        \begin{align}
++            \mathbf{A}_{\rm SI}
++            =
++            \frac{m_e}{e}\,\uswirl(\mathbf{x},t),
++            \qquad
++            \mathbf{B}_{\rm SST}
++            =
++            \nabla\times\mathbf{A}_{\rm SI}
++            =
++            \frac{m_e}{e}\,\boldsymbol{\omega}.
++            \label{eq:canonical_em_prefactor_guard}
++        \end{align}
++        The inverse factor \(e/m_e\) is rejected in this bridge because it has the wrong SI dimensions for mapping vorticity to magnetic flux density. At the Compton angular frequency this calibrated bridge gives
++        \begin{align}
++            B_{\rm core}^{\rm SST}
++            =
++            \frac{m_e}{e}\omega_c
++            =
++            \frac{m_e^2c^2}{e\hbar}
++            =
++            B_{\rm QED},
++            \label{eq:canonical_qed_field_guard}
++        \end{align}
++        while preserving the epistemic status of the result as a normalization bridge, not a derivation of QED from Euler dynamics.
++
+         \paragraph{Electromagnetic projection.}
+         The canonical topological electromagnetic impulse is
+         \begin{align}
+@@ -4188,10 +4239,10 @@
+         \begin{align}
+             M_0(T)
+             =
+-            2\pi^3\,\rhoM\,\frac{\rc^5}{\lambda_c^2}\,\mathcal{L}_{\mathrm{tot}}(T).
++            2\pi^3\,\rhohorn\,\frac{\rc^5}{\lambda_c^2}\,\mathcal{L}_{\mathrm{tot}}(T).
+             \label{eq:pure_geometric_mass_baseline}
+         \end{align}
+-        This branch is subordinate to Eq.~\eqref{eq:sst_master_equation}. It records a normalization-level geometric closure used in historical mass-program benchmarks; it does not replace the canonical master functional or the explicit kernel branch below.
++        This branch is subordinate to Eq.~\eqref{eq:sst_master_equation}. It records a normalization-level geometric closure used in historical mass-program benchmarks; it does not replace the canonical master functional or the explicit kernel branch below. The density in Eq.~\eqref{eq:pure_geometric_mass_baseline} is the horn-envelope normalization density of Eq.~\eqref{eq:core_density}; using the background mass-equivalent density $\rhoM$ here would move the benchmark down by the factor $\rhoM/\rhohorn\simeq1.20\times10^{-30}$ and is therefore a symbol-collision error, not a physical branch.
+ 
+     \subsection{Explicit invariant branch of the canonical kernel}
+         A conservative explicit specialization is obtained by resolving the topological kernel into ropelength, braid complexity, and Seifert-genus data:
+@@ -4219,7 +4270,7 @@
+         
+         \textbf{[ORTHODOX]} The invariants \(\mathcal{L}_{\mathrm{tot}}(K)\), \(b(K)\), and \(g(K)\) are standard topological or geometric knot descriptors.
+         
+-        \textbf{[DERIVED]} Equation~\eqref{eq:explicit_kernel} is dimensionless and therefore admissible as a branch of the canonical kernel.
++        \textbf{[DERIVED / MATCHING-ANSATZ GUARD]} The dimensional admissibility of Eq.~\eqref{eq:explicit_kernel} is derived. The displayed three-coefficient form and the $\varphi^{-2k(K)}$ dressing are a benchmark matching ansatz; the coefficients $\alpha_{\mathcal{L}}$, $\alpha_b$, and $\alpha_g$ remain calibrated unless a separate variational or statistical-mechanical calculation derives them.
+         
+         Substituting Eq.~\eqref{eq:explicit_kernel} into Eq.~\eqref{eq:sst_master_equation} yields the explicit benchmark mass branch
+         \begin{align}
+--- SST_CANON-v0.8.18-research-track.tex
++++ SST_CANON-v0.8.18-research-track.tex
+@@ -4594,18 +4594,52 @@
+ \begin{enumerate}
+     \item \textbf{Tensor-speed gate.} Multimessenger propagation requires
+     \(c_T=c\), equivalently \(c_{13}=0\) in the Einstein--\AE ther comparison
+-    layer. This is the spin-2 version of the transverse-mode identification.
++    layer. Quantitatively, GW170817/GRB170817A gives
++    \begin{align}
++        -3\times10^{-15}
++        <
++        \frac{c_T}{c}-1
++        <
++        7\times10^{-16},
++        \qquad
++        |c_{13}|\lesssim10^{-15}
++        \label{eq:rt_tensor_speed_observational_gate}
++    \end{align}
++    in the Einstein--\AE ther comparison convention \cite{LIGOVirgoFermiINTEGRAL2017,OostMukohyamaWang2018}.
++    This is the spin-2 version of the transverse-mode identification.
+     \item \textbf{Preferred-frame gate.} Any residual preferred-foliation
+     coupling must satisfy the post-Newtonian preferred-frame constraints of
+     the comparison theory. In practice this means that the effective
+     \(\alpha_1\) and \(\alpha_2\) parameters cannot be freely chosen; they must
+     be derived from the same substrate couplings that set the clock sector.
++    Strong-field pulsar timing gives representative bounds
++    \begin{align}
++        \hat\alpha_1
++        &=
++        (-0.4^{+3.7}_{-3.1})\times10^{-5}
++        \quad(95\%\ \mathrm{CL};\ \mathrm{PSR}\ J1738+0333),
++        \\
++        |\hat\alpha_2|
++        &<
++        1.6\times10^{-9}
++        \quad(95\%\ \mathrm{CL};\ \mathrm{PSR}\ B1937+21,J1744-1134).
++        \label{eq:rt_preferred_frame_observational_gate}
++    \end{align}
++    Binary-pulsar damping and PSR~J0337+1715 further reduce the post-GW170817
++    viable Einstein--\AE ther parameter region by about one order of magnitude
++    \cite{ShaoWex2012,ShaoCaballeroKramerWexChampionJessner2013,GuptaHerreroValeaBlasBarausseCornishYagiYunes2021}.
+     \item \textbf{Species-cone gate.} Matter knots, gauge/torsion pulses, and
+     clock excitations must share the same infrared characteristic cone. Failure
+     of this gate predicts species-dependent Lorentz violation and directly
+     falsifies exact monometricity.
+ \end{enumerate}
+ 
++\textbf{[CRITICAL NOTE]} In the orthodox Einstein--\AE ther comparison theory,
++matter is usually coupled only to the metric, not directly to the \AE ther field.
++SST cannot inherit this protection automatically, because matter is modeled as a
++substrate excitation. The species-cone gate is therefore stricter for SST than
++for a purely metric matter-coupled Einstein--\AE ther EFT.
++
+ \textbf{[STATUS]} This is not an additional derivation. It is the observational
+ test hierarchy attached to the monometricity and tensor-speed theorem targets.
+ 
+@@ -4978,3 +5012,43 @@
+ the field-level dictionary, and
+ \(U_{\mathrm{link}}\)
+ are derived or experimentally fixed.
++
++
++% ----------------------------------------------------------
++% Bibliography entries for the Relativity Emergence Ladder
++% ----------------------------------------------------------
++\ifresearchtrackincluded\else
++\begin{thebibliography}{99}
++
++\bibitem{LIGOVirgoFermiINTEGRAL2017}
++B.~P. Abbott et al. (LIGO Scientific Collaboration, Virgo Collaboration, Fermi Gamma-ray Burst Monitor, and INTEGRAL),
++``Gravitational Waves and Gamma-rays from a Binary Neutron Star Merger: GW170817 and GRB 170817A,''
++\emph{Astrophysical Journal Letters} \textbf{848}, L13 (2017).
++DOI: \href{https://doi.org/10.3847/2041-8213/aa920c}{10.3847/2041-8213/aa920c}.
++
++\bibitem{OostMukohyamaWang2018}
++J.~Oost, S.~Mukohyama, and A.~Wang,
++``Constraints on Einstein-aether theory after GW170817,''
++\emph{Physical Review D} \textbf{97}, 124023 (2018).
++DOI: \href{https://doi.org/10.1103/PhysRevD.97.124023}{10.1103/PhysRevD.97.124023}.
++
++\bibitem{ShaoWex2012}
++L.~Shao and N.~Wex,
++``New tests of local Lorentz invariance of gravity with small-eccentricity binary pulsars,''
++\emph{Classical and Quantum Gravity} \textbf{29}, 215018 (2012).
++DOI: \href{https://doi.org/10.1088/0264-9381/29/21/215018}{10.1088/0264-9381/29/21/215018}.
++
++\bibitem{ShaoCaballeroKramerWexChampionJessner2013}
++L.~Shao, R.~N. Caballero, M.~Kramer, N.~Wex, D.~J. Champion, and A.~Jessner,
++``A new limit on local Lorentz invariance violation of gravity from solitary pulsars,''
++\emph{Classical and Quantum Gravity} \textbf{30}, 165019 (2013).
++DOI: \href{https://doi.org/10.1088/0264-9381/30/16/165019}{10.1088/0264-9381/30/16/165019}.
++
++\bibitem{GuptaHerreroValeaBlasBarausseCornishYagiYunes2021}
++T.~Gupta, M.~Herrero-Valea, D.~Blas, E.~Barausse, N.~Cornish, K.~Yagi, and N.~Yunes,
++``New binary pulsar constraints on Einstein-\ae ther theory after GW170817,''
++\emph{Classical and Quantum Gravity} \textbf{38}, 195003 (2021).
++DOI: \href{https://doi.org/10.1088/1361-6382/ac1a69}{10.1088/1361-6382/ac1a69}.
++
++\end{thebibliography}
++\fi

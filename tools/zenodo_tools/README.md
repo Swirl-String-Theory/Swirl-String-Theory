@@ -19,6 +19,7 @@ All scripts use relative paths based on their location:
 - **`smart_zenodo_workflow.py`** - Intelligent workflow that checks for existing DOIs, avoids duplicates, updates metadata, and renders/uploads PDFs
 - **`GUI_zenodo.py`** - Graphical interface to view all SST papers, their DOIs, and status
 - **`GUI_canon_zenodo.py`** - Graphical interface for SST Canon Zenodo version management
+- **`publish_canon_zenodo.py`** - Canon edition scan/push; edition blurbs auto-loaded from `SST-CANON/been_processed/canon_edition.py` (new folders like v0.8.19+ work without editing the script)
 
 ### Automation
 - **`zenodo_automation.py`** - Core module for Zenodo API interactions

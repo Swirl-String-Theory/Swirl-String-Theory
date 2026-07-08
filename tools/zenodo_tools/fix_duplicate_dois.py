@@ -10,6 +10,8 @@ import json
 import re
 from pathlib import Path
 
+from zenodo_automation import get_papers_dir, resolve_tex_file_path
+
 def find_duplicate_dois(tex_file: Path) -> list:
     """Find all \paperdoi commands in a file."""
     try:
@@ -123,7 +125,7 @@ def main():
             
             # Construct full path to tex file
             if tex_file_path:
-                tex_file = base_dir / tex_file_path
+                tex_file = resolve_tex_file_path(tex_file_path, get_papers_dir())
             else:
                 # Try to find tex file in same directory
                 tex_file = config_file.with_suffix('.tex')

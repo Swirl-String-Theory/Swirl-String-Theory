@@ -1,0 +1,137 @@
+--- a/SST_CANON-v0.8.18.tex
++++ b/SST_CANON-v0.8.18.tex
+@@ -4661,6 +4661,12 @@
+             \newblock \emph{Vortex Dynamics},
+             \newblock Cambridge University Press (1992).
+ 
++            \bibitem{Zhang2005TransverseForce}
++            P.-M.~Zhang, L.-M.~Cao, Y.-S.~Duan, and C.-K.~Zhong,
++            \newblock Transverse force on a moving vortex with the acoustic geometry,
++            \newblock arXiv:hep-th/0501073 (2005).
++            \newblock Permalink: \url{https://arxiv.org/abs/hep-th/0501073}.
++
+ 
+             \bibitem{KidaTakaoka1994}
+             S.~Kida and M.~Takaoka,
+--- a/SST_CANON-v0.8.18-research-track.tex
++++ b/SST_CANON-v0.8.18-research-track.tex
+@@ -3170,13 +3170,22 @@
+     This appendix separates the canonical scalar pressure acceleration from
+     orientation-dependent transverse transport effects. The pressure law is retained
+     as the canon-level bridge, while Magnus-type terms are treated as probe-level
+-    corrections.
++    corrections. The motivation is the orthodox transverse-force/Magnus result for
++    moving vortices in acoustic-geometry and superfluid settings
++    \cite{Zhang2005TransverseForce,Saffman1992}.
++
++    \textbf{[GUARDRAIL]} The transverse term is not promoted here to the primary
++    cause of universal free fall. In the present canon, universal fall and the
++    Newtonian limit remain attached to the scalar pressure/clock sector. Magnus-type
++    contributions are orientation-, circulation-, and chirality-sensitive probe
++    transport corrections until a universal macroscopic coupling law is derived.
+ 
+ \subsection{Canonical pressure acceleration}
+     \begin{align}
+         \mathbf{a}_{P}
+         =
+         -\frac{1}{\rho_{\!f}}\nabla p_{\mathrm{swirl}}.
++        \label{eq:rt_scalar_pressure_acceleration}
+     \end{align}
+ 
+ \subsection{Euler decomposition}
+@@ -3189,6 +3198,7 @@
+         \nabla\left(\frac{u^2}{2}\right)
+         =
+         -\frac{1}{\rho_{\!f}}\nabla p_{\mathrm{swirl}}.
++        \label{eq:rt_euler_decomposed_swirl_balance}
+     \end{align}
+ 
+ \subsection{Filament Magnus transport}
+@@ -3202,6 +3212,7 @@
+         \left[
+             \mathbf{U}_K(s)-\mathbf{u}(\mathbf{X}(s))
+         \right]ds.
++        \label{eq:rt_filament_magnus_transport}
+     \end{align}
+ 
+ \subsection{Curvature self-transport}
+@@ -3211,12 +3222,78 @@
+         \simeq
+         -\frac{\rho_{\!f}\Gamma_K^2}{4\pi}
+         \Lambda_K\kappa\,\mathbf{N}.
++        \label{eq:rt_curvature_self_transport}
++    \end{align}
++
++\subsection{Dimensional and density check}
++    Equation~\eqref{eq:rt_filament_magnus_transport} is a force on a closed
++    filament. The corresponding local density
++    \begin{align}
++        \mathbf{f}_{\mathrm{M}}
++        =
++        \rho_{\!f}\Gamma_K\,
++        \mathbf{T}\times(\mathbf{U}_K-\mathbf{u})
++    \end{align}
++    has units
++    \begin{align}
++        [\rho_{\!f}\Gamma_K\Delta U]
++        =
++        \mathrm{kg\,m^{-3}}\,\mathrm{m^2\,s^{-1}}\,\mathrm{m\,s^{-1}}
++        =
++        \mathrm{N\,m^{-1}}.
++    \end{align}
++    With the canonical values
++    \begin{align}
++        \Gamma_0
++        &=
++        2\pi \rc\vchar
++        =
++        9.6836192\times10^{-9}\ \mathrm{m^2\,s^{-1}},\\
++        \rho_{\!f}\Gamma_0
++        &=
++        6.7785334\times10^{-15}
++        \frac{\mathrm{N\,m^{-1}}}{\mathrm{m\,s^{-1}}},\\
++        \rho_{\!f}\Gamma_0\vchar
++        &=
++        7.4146692\times10^{-9}\ \mathrm{N\,m^{-1}}.
++    \end{align}
++    Thus, with \(\rho_{\!f}\), the Magnus layer is a weak background-transport
++    term rather than a replacement for the saturated core force scale
++    \(F_{\mathrm{swirl}}^{\max}=29.053507\ \mathrm{N}\). Replacing
++    \(\rho_{\!f}\) by \(\rho_{\mathrm{core}}\) would change the physical sector and
++    is not allowed in this transport estimate.
++
++\subsection{Axis/off-axis swirl interpretation}
++    For an axisymmetric galactic swirl field
++    \begin{align}
++        \mathbf{u}=u_\theta(r)\mathbf{e}_\theta,
++        \qquad
++        \boldsymbol{\omega}=\omega_z(r)\mathbf{e}_z,
++    \end{align}
++    an exactly axial probe suppresses the transverse Magnus correction by symmetry.
++    Off-axis motion samples the azimuthal flow. For a flat-tail branch
++    \(u_\theta(r)\to v_0\),
++    \begin{align}
++        \omega_z
++        =
++        \frac{1}{r}\frac{d}{dr}\left(r v_0\right)
++        =
++        \frac{v_0}{r},
++        \qquad
++        \boldsymbol{\omega}\times\mathbf{u}
++        =
++        -\frac{v_0^2}{r}\mathbf{e}_r.
+     \end{align}
++    The inward sign is therefore already contained in the Euler decomposition of
++    the background swirl. This observation should be used as an interpretation of
++    probe drift and centripetal balance, not as an independent gravity postulate.
+ 
+ \subsection{Status}
+     The scalar pressure term is canon-level. The Magnus and curvature terms are
+     research-track transport corrections until a universal coupling law for
+-    macroscopic matter is derived.
++    macroscopic matter is derived. Their role is to describe path curvature,
++    chiral drift, and frame-dragging-like probe effects on top of the scalar
++    pressure/clock bridge.
+     
+     % ============================================================
+ % Research Track Appendix: Swirl--Electromagnetic Normalization

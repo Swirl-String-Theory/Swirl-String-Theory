@@ -1,0 +1,274 @@
+--- SST_CANON-v0.8.19.tex
++++ SST_CANON-v0.8.19.rank9patched.tex
+@@ -3823,6 +3823,10 @@
+         \textbf{[CRITICAL NOTE]} The gauge layer is retained in v0.8.1 only as a roadmap statement. Running couplings,
+         anomaly cancellation, and realistic mixing matrices remain open work.
+ 
++
++        \paragraph{Research-track contact-channel guard.}
++        Any QCD-like factor-nine or confinement-sheet tension claim must be routed through the resolved colored contact-channel rank test in Sec.~\ref{sec:rt_colored_contact_rank_nine}.  In the core canon this remains \textbf{[RESEARCH TRACK / MATCHING DIAGNOSTIC]}: the number is not inferred from \(\dim SU(3)=8\), nor from a fitted hadronic scale, but only from a future positive-rank condition on the finite-thickness contact-stress matrix.
++
+     \section{Discussion and Limits}
+         \label{sec:discussion}
+ 
+--- SST_CANON-v0.8.19-research-track.tex
++++ SST_CANON-v0.8.19-research-track.rank9patched.tex
+@@ -2170,6 +2170,258 @@
+ Small $\chi_{\rm contact}$ means that the candidate state is not merely short;
+ it is approximately contact-critical under the declared energy model.
+ 
++
++\subsubsection{Colored contact-channel rank test for the factor nine}
++\label{sec:rt_colored_contact_rank_nine}
++
++\paragraph{Status.}
++\textbf{[ORTHODOX OPTIMIZATION BACKGROUND / RESEARCH-TRACK SST--QCD ROSETTA / NOT CANONICAL QCD].}
++The orthodox input is the finite-thickness ropelength/KKT framework summarized in
++Eqs.~\eqref{eq:rt_thickness_curvature_dcsd}--\eqref{eq:rt_contact_kkt_balance}: active
++struts and kinks define a contact/rigidity matrix with nonnegative multipliers.
++The SST interpretation below is a confinement-sheet diagnostic for a
++\(\mathbb Z_3\)-locked colored trefoil triad.  It is not a derivation of the QCD
++beta function, the full \(SU(3)\) Yang--Mills action, running couplings, anomaly
++cancellation, or the observed hadron spectrum.
++
++\paragraph{Claim discipline.}
++A QCD-like numerical factor of nine must not be introduced as a fitted prefactor
++or as the statement ``eight gluons plus one''.  In this research-track bridge it
++is instead the target positive rank of a resolved colored contact-stress matrix,
++\begin{align}
++    9
++    &=
++    3_{\rm color}\times 3_{\rm mech},
++    \label{eq:rt_rank9_factorization}\\
++    3_{\rm color}
++    &:=
++    \#\{RG,GB,BR\},\\
++    3_{\rm mech}
++    &:=
++    \#\{A,S,T\}.
++\end{align}
++Here \(RG,GB,BR\) denote the three \(\mathbb Z_3\) color root-planes of the
++ideal triad.  The mechanical labels denote, respectively,
++\begin{align}
++    A&: \text{antisymmetric-vector / torsional contact mode},\\
++    S&: \text{symmetric-traceless in-sheet shear mode},\\
++    T&: \text{transverse director-compression mode}.
++\end{align}
++Only the color triad is a discrete sector label.  The three mechanical modes are
++finite-thickness contact modes and must be verified by the solver.
++
++\paragraph{Resolved contact decomposition.}
++Let \(\Sigma_Y\) be the putative confinement sheet joining a separated trefoil
++sector to the Steiner node of a \(\mathbb Z_3\)-locked triad.  The active strut set
++is decomposed as
++\begin{align}
++    \mathcal S_{\Sigma}
++    =
++    \bigcup_{c\in\{RG,GB,BR\}}
++    \left(
++        \mathcal S_{c}^{(A)}
++        \cup
++        \mathcal S_{c}^{(S)}
++        \cup
++        \mathcal S_{c}^{(T)}
++    \right),
++    \label{eq:rt_colored_strut_decomposition}
++\end{align}
++where a strut is active only when the resolved finite-thickness condition is
++saturated,
++\begin{align}
++    d_s=2a_{\rm core},
++    \qquad
++    \lambda_s\ge0.
++    \label{eq:rt_rank9_active_strut_condition}
++\end{align}
++The radius entering this condition is the resolved tube radius
++\(a_{\rm core}\), not automatically the canonical horn radius \(\rc\).
++
++For each channel \(I=(c,m)\), with
++\(c\in\{RG,GB,BR\}\) and \(m\in\{A,S,T\}\), define the corresponding block of the
++rigidity/contact matrix by the gradients of its active constraints,
++\begin{align}
++    \mathcal R_I
++    :=
++    \left[
++        \nabla\!\left(\frac{d_s}{2}\right),
++        \nabla\operatorname{MinRad}(v_k)
++    \right]_{s,k\in I}.
++    \label{eq:rt_rank9_channel_block}
++\end{align}
++The full reduced matrix is
++\begin{align}
++    \mathcal R_{\Sigma}^{\rm reduced}
++    :=
++    \left[\mathcal R_{RG}^{(A)},\mathcal R_{RG}^{(S)},\mathcal R_{RG}^{(T)},
++    \mathcal R_{GB}^{(A)},\ldots,
++    \mathcal R_{BR}^{(T)}\right]_{\rm reduced}.
++    \label{eq:rt_rank9_reduced_matrix}
++\end{align}
++Reduction removes rigid translations, rotations, reparametrization modes, and
++numerically duplicate constraints before the rank is computed.
++
++\paragraph{Positive-rank criterion.}
++Define \(\operatorname{rank}_{+}\) as the number of independent contact channels
++that survive the KKT balance with nonnegative strut/kink multipliers.  The
++factor nine is promoted from a matching diagnostic to a derived contact-channel
++count only if
++\begin{align}
++    \boxed{
++    N_{+}
++    :=
++    \operatorname{rank}_{+}
++    \mathcal R_{\Sigma}^{\rm reduced}
++    =9 .
++    }
++    \label{eq:rt_rank9_positive_rank_condition}
++\end{align}
++This is a rank-stability condition, not exact numerical orthogonality.
++
++The ideal symmetry limit is block diagonal,
++\begin{align}
++    \mathcal R_{\Sigma}
++    =
++    \bigoplus_{c\in\{RG,GB,BR\}}
++    \left(
++        \mathcal R_c^{(A)}
++        \oplus
++        \mathcal R_c^{(S)}
++        \oplus
++        \mathcal R_c^{(T)}
++    \right).
++    \label{eq:rt_rank9_block_diagonal_limit}
++\end{align}
++A physical finite-thickness relaxation is expected to have controlled mixing,
++\begin{align}
++    \mathcal R_{\Sigma}
++    =
++    \mathcal R_0+\delta\mathcal R,
++    \label{eq:rt_rank9_perturbed_rigidity_matrix}
++\end{align}
++where the leading cross-talk is expected between the \(S\) and \(T\) modes within
++the same color root-plane.  The integer plateau survives if
++\begin{align}
++    \sigma_{\min}^{+}(\mathcal R_0)
++    >
++    \|\delta\mathcal R\|,
++    \label{eq:rt_rank9_rank_stability_bound}
++\end{align}
++where \(\sigma_{\min}^{+}\) denotes the smallest nonzero positive-channel
++singular scale after reduction.  Thus the claim is not that cross-talk vanishes;
++the claim is that cross-talk does not collapse the positive rank.
++
++A useful orthogonality diagnostic is the normalized channel Gram matrix
++\begin{align}
++    G_{IJ}
++    =
++    \frac{\langle\mathcal R_I,\mathcal R_J\rangle}
++         {\|\mathcal R_I\|\,\|\mathcal R_J\|}
++    =
++    \delta_{IJ}+\varepsilon_{IJ},
++    \label{eq:rt_rank9_channel_gram_matrix}
++\end{align}
++with reported mixing score
++\begin{align}
++    \eta_{\rm orth}
++    :=
++    \frac{\sum_{I\ne J}|G_{IJ}|}{\sum_I |G_{II}|}.
++    \label{eq:rt_rank9_orthogonality_score}
++\end{align}
++A small \(\eta_{\rm orth}\) is supporting evidence, but Eq.~\eqref{eq:rt_rank9_positive_rank_condition}
++is the decisive test.
++
++\paragraph{Energetic decoupling diagnostic.}
++For each channel \(I\), define the channel tension proxy
++\begin{align}
++    \sigma_I
++    =
++    \frac{1}{\ell_Y}
++    \sum_{s\in\mathcal S_I}\lambda_s d_s,
++    \label{eq:rt_rank9_channel_tension}
++\end{align}
++and the full numerical sheet tension
++\begin{align}
++    \sigma_{\rm num}
++    =
++    \frac{1}{\ell_Y}
++    \sum_{s\in\mathcal S_{\Sigma}}\lambda_s d_s .
++    \label{eq:rt_rank9_numerical_sheet_tension}
++\end{align}
++In the additive limit,
++\begin{align}
++    \sigma_{\rm num}
++    =
++    \sum_{I=1}^{9}\sigma_I .
++    \label{eq:rt_rank9_additive_tension_limit}
++\end{align}
++A finite-thickness sheet may instead produce
++\begin{align}
++    \sigma_{\rm num}
++    =
++    \sum_{I=1}^{9}\sigma_I
++    +
++    \Delta\sigma_{\rm mix},
++    \qquad
++    \left|
++    \frac{\Delta\sigma_{\rm mix}}{\sum_I\sigma_I}
++    \right|
++    \ll1 .
++    \label{eq:rt_rank9_mixed_tension}
++\end{align}
++The factor-nine interpretation survives only if \(N_+=9\) and the mixing fraction
++is stable or decreases under mesh refinement.
++
++\paragraph{Connection to the geometric shielding gate.}
++If the rank test succeeds, the candidate confinement-sheet scale may be compared
++with the canon-level geometric shielding gate,
++\begin{align}
++    \frac{\lambda_c}{\pi\rc}
++    =
++    \frac{4}{\alpha},
++    \label{eq:rt_rank9_shielding_gate_reference}
++\end{align}
++through the diagnostic estimate
++\begin{align}
++    \sigma_{\rm rank9}
++    :=
++    9
++    \left(\frac{\lambda_c}{\pi\rc}\right)
++    F_{\rm swirl}^{\max}
++    =
++    9\left(\frac{4}{\alpha}\right)F_{\rm swirl}^{\max}.
++    \label{eq:rt_rank9_tension_diagnostic}
++\end{align}
++Equation~\eqref{eq:rt_rank9_shielding_gate_reference} is not derived by this
++contact-rank lemma; it is imported from the calibrated geometric impedance chain.
++The lemma tests whether there are nine independent positive contact channels to
++which that gate could be applied.
++
++\paragraph{Falsifiers.}
++This research-track bridge fails, or remains a matching diagnostic only, if any
++of the following occurs:
++\begin{enumerate}
++    \item the reduced positive rank satisfies \(N_+\ne9\);
++    \item the KKT balance requires any negative strut or kink multiplier;
++    \item the \(S\)--\(T\) cross-talk collapses two channels into one under refinement;
++    \item the reported \(\sigma_{\rm num}\) is not stable under mesh refinement,
++          symmetry-preserving perturbation, and independent initialization;
++    \item the color root-plane assignment cannot be maintained as a
++          \(\mathbb Z_3\)-locked triad around the central unknot.
++\end{enumerate}
++
++\paragraph{Canon-safe summary.}
++\begin{align}
++    \boxed{
++    \text{The integer }9\text{ is not postulated; it is the target positive rank of the resolved colored contact-stress matrix.}
++    }
++    \label{eq:rt_rank9_canon_safe_summary}
++\end{align}
++Until Eq.~\eqref{eq:rt_rank9_positive_rank_condition} is numerically and
++geometrically verified, Eq.~\eqref{eq:rt_rank9_tension_diagnostic} remains
++\textbf{[MATCHING DIAGNOSTIC, NOT DERIVED]}.
++
+ \paragraph{Minimal falsifier for this appendix.}
+ If two independent high-resolution implementations, using the same thickness
+ convention and topology, converge to incompatible contact skeletons

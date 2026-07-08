@@ -1,0 +1,200 @@
+--- /mnt/data/SST_CANON-v0.8.19-research-track.tex	2026-07-08 03:19:02.077697008 +0000
++++ /mnt/data/SST_CANON-v0.8.19-research-track-ssdl-patched.tex	2026-07-08 03:26:40.404045729 +0000
+@@ -5403,6 +5403,197 @@
+     6.6\times10^{44}.
+ \end{align}
+ 
++
++\subsection{Separatrix Surface-Density Lift via the Spherical Monopole DtN Sector}
++\label{subsec:ssdl_monopole_dtn}
++
++\paragraph{Status.}
++\textbf{[RESEARCH TRACK / SPHERICAL MONOPOLE DtN NORMALIZATION PROVEN / SOURCE COUPLING OPEN]}.
++This subsection records a candidate boundary-response route for the
++Separatrix Surface-Density Lift (SSDL).  It proves only the geometric
++\(R_\partial\)-normalization of the spherical exterior monopole
++Dirichlet-to-Neumann (DtN) sector.  It does not prove the constitutive
++coupling of the cosmological vacuum density \(\rho_\Lambda\) to an SST
++separatrix source, and it does not replace the calibrated status of
++\(\rho_{\!f}\).
++
++\paragraph{Exterior boundary problem.}
++Let \(\partial\mathcal B\) be a spherical externally resolved separatrix
++of radius \(R_\partial\).  In the exterior region \(r\ge R_\partial\), let
++an isotropic response potential satisfy
++\begin{align}
++    \nabla^2\Phi=0,
++    \qquad
++    \Phi(R_\partial)=\Phi_0,
++    \qquad
++    \Phi(\infty)=0 .
++\end{align}
++The unique spherical solution is
++\begin{align}
++    \Phi(r)=\Phi_0\frac{R_\partial}{r} .
++\end{align}
++With the normal convention
++\begin{align}
++    \Lambda_\partial[\Phi_0]
++    :=
++    -\partial_r\Phi\big|_{r=R_\partial},
++\end{align}
++the spherical monopole DtN eigenvalue is
++\begin{align}
++    \Lambda_{\partial,0}
++    =
++    \frac{1}{R_\partial},
++    \qquad
++    \Lambda_{\partial,0}^{-1}
++    =
++    R_\partial .
++\end{align}
++For a spherical exterior harmonic mode one has more generally
++\begin{align}
++    \Lambda_{\partial,\ell}
++    =
++    \frac{\ell+1}{R_\partial},
++    \qquad
++    \ell=0,1,2,\ldots .
++\end{align}
++Thus the \(R_\partial\) lift belongs specifically to the isotropic
++monopole sector, not to arbitrary tangential boundary data.
++
++\paragraph{Monopole projection.}
++Let \(\Pi_0\) denote projection onto the spherical monopole sector,
++\begin{align}
++    \Pi_0 f
++    =
++    \frac{1}{4\pi}
++    \int_{S^2} f(\theta,\varphi)\,d\Omega .
++\end{align}
++Then
++\begin{align}
++    \Pi_0\Lambda_\partial^{-1}\Pi_0[1]
++    =
++    R_\partial .
++\end{align}
++If the cosmological vacuum density enters the SST boundary-response
++problem as an isotropic normal source, the proposed surface-density
++projection is
++\begin{align}
++    \sigma_{\Lambda,\partial}
++    :=
++    \Pi_0\Lambda_\partial^{-1}\Pi_0[\rho_\Lambda]
++    =
++    \rho_\Lambda R_\partial .
++\end{align}
++Resolving this surface density across a Planck-normal boundary thickness
++\(L_p\) gives
++\begin{align}
++    \rho_{\rm eff}
++    =
++    \frac{\sigma_{\Lambda,\partial}}{L_p}
++    =
++    \left(\frac{R_\partial}{L_p}\right)\rho_\Lambda .
++\end{align}
++Including a present-epoch vacuum projection factor gives the compact
++SSDL candidate
++\begin{align}
++    \rho_{\!f}^{\rm SSDL}
++    =
++    \frac{\Omega_{\Lambda,0}}{L_p}
++    \Pi_0\Lambda_\partial^{-1}\Pi_0[\rho_\Lambda] .
++    \label{eq:rt_ssdl_operator_form}
++\end{align}
++
++\paragraph{Electron separatrix candidate.}
++For the charged electron separatrix, take the external response radius to
++be the classical electron radius
++\begin{align}
++    R_\partial=R_e=2r_c
++    =
++    \frac{e^2}{4\pi\varepsilon_0m_ec^2} .
++\end{align}
++The spherical-monopole reduction of Eq.~\eqref{eq:rt_ssdl_operator_form}
++then becomes
++\begin{align}
++    \rho_{\!f}^{\rm SSDL}
++    =
++    \Omega_{\Lambda,0}
++    \left(\frac{R_e}{L_p}\right)
++    \rho_\Lambda .
++    \label{eq:rt_ssdl_electron_candidate}
++\end{align}
++Using the audit constants
++\begin{align}
++    R_e&=2.8179403262\times10^{-15}\,\mathrm{m},
++    &L_p&=1.6162550\times10^{-35}\,\mathrm{m},
++    \\
++    \rho_\Lambda&=5.8450\times10^{-27}\,\mathrm{kg\,m^{-3}},
++    &\Omega_{\Lambda,0}&=0.685,
++\end{align}
++one obtains
++\begin{align}
++    \rho_{\!f}^{\rm SSDL}
++    =
++    6.9806682\times10^{-7}\,\mathrm{kg\,m^{-3}},
++\end{align}
++which differs from the calibrated canon value
++\(\rho_{\!f}=7.0\times10^{-7}\,\mathrm{kg\,m^{-3}}\) by
++\(-0.2762\%\).  This numerical agreement is not a derivation of
++\(\rho_{\!f}\); it is a falsifiable research-track target.
++
++\paragraph{Planck-normal mode-count equivalent.}
++The discrete normal-stack version of the same route is obtained by
++restricting the active response space to the isotropic sector,
++\begin{align}
++    \mathcal H_{\rm active}
++    =
++    \Pi_0\Big(L^2([0,R_\partial])\otimes L^2(S^2)\Big)
++    =
++    L^2([0,R_\partial]) .
++\end{align}
++Tangential modes are not claimed to be absent; they are projected out of
++the isotropic density response by \(\Pi_0\).  If \(L_p\) is the minimal
++resolved normal thickness, the active normal cell count is
++\begin{align}
++    N_\perp^{\rm cell}
++    =
++    \frac{R_\partial}{L_p}+O(1).
++\end{align}
++Equivalently, a one-dimensional spectral convention with half-wavelength
++resolution uses
++\begin{align}
++    k_{\max}=\frac{\pi}{L_p},
++\end{align}
++so that Weyl counting gives
++\begin{align}
++    N_\perp^{\rm spec}
++    =
++    \operatorname{Tr}_\perp
++    \Theta\!\left[
++        \left(\frac{\pi}{L_p}\right)^2+\partial_n^2
++    \right]
++    =
++    \frac{R_\partial}{L_p}+O(1).
++\end{align}
++Using \(k_{\max}=L_p^{-1}\) instead would introduce an unwanted factor
++\(1/\pi\); the cutoff convention is therefore part of the research-track
++claim.
++
++\paragraph{Audit status and open lemmas.}
++A v0.2 audit harness supports the operator and counting consistency of
++this route: the BEM cross-check recovers \(R_e\) through
++\(\Pi_0\Lambda_\partial^{-1}\Pi_0\) with relative error
++\(2.68\times10^{-4}\), and the analytic Planck-normal count gives
++\(N_\perp=R_e/L_p=1.743499835236\times10^{20}\) up to integer
++boundary convention.  These checks are numerical and algebraic consistency
++tests, not constitutive proofs.  Promotion to \textbf{[DERIVED]} requires:
++\begin{enumerate}
++    \item proof that \(\rho_\Lambda\) couples to the SST separatrix as an
++    isotropic normal source;
++    \item derivation of \(\Omega_{\Lambda,0}\), or its replacement by an
++    epoch-invariant SST projection functional;
++    \item derivation of \(L_p\) as the correct normal resolution thickness
++    for the separatrix boundary layer.
++\end{enumerate}
++
+ \subsection{Tensor-speed naturalness}
+ 
+ In the Einstein--\AE ther comparison layer,

@@ -1,0 +1,146 @@
+--- a/SST_CANON-v0.8.18.tex
++++ b/SST_CANON-v0.8.18.tex
+@@ -693,12 +693,15 @@
+             &= \frac{h\alpha c}{8\pi \rc^2},
+             \label{eq:Fmax_hac}\\
+             &= \pi \rc^2\,\rho_{\rm calc}\,\vchar{}^2,
+-            \label{eq:Fmax_rho}
++            \label{eq:Fmax_rho}\\
++            &= \frac{c^4}{4G}\,\alpha
++            \left(\frac{\rc}{\ell_P}\right)^{-2}.
++            \label{eq:Fmax_planck_suppressed}
+         \end{align}
+ 
+         where $\rho_{\rm calc} = 4F_{\rm swirl}^{\max}/(\pi\alpha^2 c^2 \rc^2)$ is the derived bulk density consistent with the canonical neutral-circulation closure.
+ 
+-        \textbf{[CALIBRATED ALGEBRAIC IDENTITY] Consistency check}: Eqs.~\eqref{eq:Fmax_em}--\eqref{eq:Fmax_rho} are equivalent given $\vchar = \alpha c/2$ and the standard identity $e^2/(4\pi\varepsilon_0) = \alpha\hbar c$. Their mutual agreement is an internal algebraic coherence test of the calibrated chain, not an independent dynamical prediction.
++        \textbf{[CALIBRATED ALGEBRAIC IDENTITY] Consistency check}: Eqs.~\eqref{eq:Fmax_em}--\eqref{eq:Fmax_planck_suppressed} are equivalent given $\vchar = \alpha c/2$, the standard identity $e^2/(4\pi\varepsilon_0) = \alpha\hbar c$, $\rc=\alpha\hbar/(2m_ec)$, and $\ell_P^2=\hbar G/c^3$. The Planck-force form in Eq.~\eqref{eq:Fmax_planck_suppressed} is a hierarchy reparameterization of the same calibrated tension scale, not an independent derivation from Planck physics. Their mutual agreement is an internal algebraic coherence test of the calibrated chain, not an independent dynamical prediction.
+ 
+         \subsubsection{Rydberg consistency identity}
+ 
+@@ -2869,6 +2872,24 @@
+         \end{align}
+         Thus the EM--gravity bridge is not an unlabeled free-parameter assertion. However, because \(t_p\) already contains \(G\) in orthodox units, Eq.~\eqref{eq:canonical_gswirl_emg_closure} is a \textbf{[CALIBRATED]} electron-normalized consistency identity unless a future SST sector derives \(t_p\) or \(G_{\mathrm{swirl}}\) independently from medium dynamics.
+ 
++        \paragraph{Compton--horn reduction guard.}
++        Substituting the calibrated horn closure \(\rc=\vchar/\omega_c\) into Eq.~\eqref{eq:canonical_gswirl_emg_closure} gives
++        \begin{align}
++            G_{\mathrm{swirl}}
++            =
++            \frac{\omega_c c^3 t_p^2}{M_e}.
++            \label{eq:canonical_gswirl_compton_reduction}
++        \end{align}
++        With the orthodox definitions
++        \begin{align}
++            \omega_c=\frac{M_ec^2}{\hbar},
++            \qquad
++            t_p^2=\frac{\hbar G}{c^5},
++        \end{align}
++        Eq.~\eqref{eq:canonical_gswirl_compton_reduction} reduces identically to \(G\). This confirms that the electron-normalized bridge is algebraically closed under the v0.8.18 calibration chain, but it also fixes the epistemic status: the identity must not be cited as an independent derivation of Newton's constant unless \(t_p\), \(G_{\mathrm{swirl}}\), or the Compton--horn closure is derived without importing \(G\) through orthodox Planck units.
++
++        \textbf{[CANON / STATUS GUARD]} A dimensionless balance angle \(\phi_G\) may be introduced only as a research-track diagnostic of Eq.~\eqref{eq:canonical_gswirl_emg_closure}. Since the calibrated chain gives \(\tan^2\phi_G=1\), the associated \(45^\circ\) angle is a visualization of equal radial-confinement and tangential-swirl weighting, not a physical direction of gravitational force and not an additional gravitational law. See Sec.~\ref{sec:rt_compton_horn_balance_angle}.
++
+         \textbf{[ORTHODOX GR REPARAMETERIZATION].}
+         In orthodox units the electron Schwarzschild radius may be written as
+         \begin{align}
+--- a/SST_CANON-v0.8.18-research-track.tex
++++ b/SST_CANON-v0.8.18-research-track.tex
+@@ -4777,6 +4777,98 @@
+ \textbf{[OPEN CANON GAP]} Derive Eq.~\eqref{eq:rt_poisson_relativity} directly from the
+ statistical mechanics or coarse-grained pressure response of many swirl strings.
+ 
++\subsection{Research Track: Compton--Horn Balance Angle}
++\label{sec:rt_compton_horn_balance_angle}
++
++\textbf{[RESEARCH-TRACK GEOMETRIC DIAGNOSTIC].}
++This subsection records a dimensionless visualization of the calibrated
++Compton--horn closure used in the core canon.  It does not introduce a new
++gravity law and it must not be used as an independent derivation of
++Newton's constant.
++
++Define \(\phi_G\) by
++\begin{align}
++    G
++    =
++    \frac{\vchar c^3t_p^2}{M_e\rc}\,\tan^2\phi_G .
++    \label{eq:rt_balance_angle_definition}
++\end{align}
++Equivalently,
++\begin{align}
++    \tan^2\phi_G
++    =
++    \frac{GM_e\rc}{\vchar c^3t_p^2}.
++    \label{eq:rt_balance_angle_value}
++\end{align}
++Using the v0.8.18 calibration chain
++\begin{align}
++    \rc=\frac{\vchar}{\omega_c},
++    \qquad
++    \omega_c=\frac{M_ec^2}{\hbar},
++    \qquad
++    t_p^2=\frac{\hbar G}{c^5},
++\end{align}
++one obtains
++\begin{align}
++    \tan^2\phi_G
++    =
++    \frac{M_ec^2}{\hbar\omega_c}
++    =1,
++    \qquad
++    \phi_G=\frac{\pi}{4}.
++    \label{eq:rt_balance_angle_pi_over_four}
++\end{align}
++Thus the \(45^\circ\) value means that the calibrated electron benchmark
++weights radial horn confinement and tangential swirl transport equally in this
++particular dimensionless projection.  It does \emph{not} mean that gravity acts
++at a spatial angle of \(45^\circ\), and it does \emph{not} add a new coupling
++constant.
++
++\textbf{[CRITICAL NOTE]} Because \(t_p^2=\hbar G/c^5\) already contains \(G\),
++Eq.~\eqref{eq:rt_balance_angle_pi_over_four} is a closure diagnostic, not a
++prediction of \(G\) from non-gravitational inputs.  A future promotion would
++require deriving the effective long-range coupling or the Planck-time scale
++from SST medium dynamics without importing orthodox \(G\).
++
++\subsubsection{Rejected microscopic Kelvin-angle ansatz}
++The dimensional ansatz
++\begin{align}
++    \tan\phi
++    =
++    \sqrt{
++    \frac{I^{3/2}}{N\mu K^{1/2}\sqrt{\pi}}
++    }
++    \label{eq:rt_rejected_kelvin_angle_ansatz}
++\end{align}
++is not canon-ready.  In SI units \([I]=\mathrm{kg\,m^2}\), while the present
++canon uses \([K]=\mathrm{kg\,m^{-3}\,s}\) for the density--rotation bridge.
++Unless \(\mu\) and \(K\) are replaced by explicitly normalized quantities,
++Eq.~\eqref{eq:rt_rejected_kelvin_angle_ansatz} is not dimensionless, whereas
++\(\tan\phi\) must be dimensionless.
++
++A permissible research-track replacement must use only dimensionless knot
++functionals:
++\begin{align}
++    \tan^2\phi_K
++    =
++    \frac{\mathcal{I}_K^{3/2}}
++    {N_K\mathcal{M}_K\mathcal{K}_K^{1/2}\sqrt{\pi}},
++    \label{eq:rt_dimensionless_kelvin_angle}
++\end{align}
++with, for example,
++\begin{align}
++    \mathcal{I}_K=\frac{I_K}{M_K\rc^2},
++    \qquad
++    \mathcal{K}_K=\frac{K_K}{K_0},
++    \qquad
++    \mathcal{M}_K=\frac{\mu_K}{\mu_0^\ast}.
++\end{align}
++For the electron/trefoil benchmark the admissible normalization condition is
++\begin{align}
++    \tan^2\phi_{3_1}=1,
++\end{align}
++but this is a benchmark closure condition, not yet a microscopic theorem.
++
+ \subsection{Einstein dynamics: three candidate routes}
+ 
+ \paragraph{Route I: thermodynamic gravity.}
