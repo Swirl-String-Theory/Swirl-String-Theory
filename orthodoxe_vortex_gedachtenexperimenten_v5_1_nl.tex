@@ -1,0 +1,848 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[dutch]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{microtype}
+
+\geometry{margin=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue}
+
+\title{Orthodoxe gedachtenexperimenten over vortexpatches, superfluïde roosters en geknoopte vortexstructuren}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Orthodoxe gedachtenexperimenten over vortexpatches, superfluïde roosters en geknoopte vortexstructuren}
+
+\subsection{Modelbasis en statuslabels}
+
+Analyseer de volgende gedachtenexperimenten uitsluitend binnen orthodoxe vloeistofdynamica en superfluïde fysica:
+klassieke incompressibele Euler-dynamica, roterende-vloeistofdynamica, Taylor--Proudman-theorie,
+Taylor-kolommen, Rankine-vortexpatches, vortex-filament theory, Gross--Pitaevskii/NLSE-dynamica,
+Feynman-vortexroosters, heliciteit, writhe, twist en linking.
+
+Gebruik de volgende statuslabels:
+\[
+\text{ORTHODOX CORRECT},
+\qquad
+\text{ORTHODOX ALS COARSE-GRAINED MODEL},
+\qquad
+\text{ALLEEN KLASSIEKE EULER-LIMIET},
+\]
+\[
+\text{NIET REALISEERBAAR IN SUPERFLUÏDE},
+\qquad
+\text{DIMENSIONEEL / CATEGORISCH FOUT}.
+\]
+
+De hoofdgrootheden zijn:
+\[
+\boldsymbol{\omega}=\nabla\times\mathbf{u},
+\]
+\[
+\boldsymbol{\omega}_{\mathrm{abs}}
+=
+\boldsymbol{\omega}_{\mathrm{rel}}
++
+2\boldsymbol{\Omega},
+\]
+\[
+H=\int_V \mathbf{u}\cdot\boldsymbol{\omega}\,dV.
+\]
+
+Voor vaste-kernrotatie geldt:
+\[
+\mathbf{u}
+=
+\boldsymbol{\Omega}\times\mathbf{r},
+\]
+dus:
+\[
+\boldsymbol{\omega}
+=
+2\boldsymbol{\Omega}.
+\]
+
+Als ergens ``vorticiteit \(=2v\)'' wordt gezegd, corrigeer dit naar:
+\[
+\omega_z=2\Omega,
+\]
+waarbij \(\Omega\) een hoeksnelheid is met dimensie \(\mathrm{s^{-1}}\).
+Als \(v\) een tangentiële snelheid is, gebruik dan:
+\[
+v_{\theta}=\Omega r,
+\qquad
+\Omega=\frac{v_{\theta}}{r},
+\qquad
+\omega_z=2\frac{v_{\theta}}{r}.
+\]
+
+Gebruik vorticiteit als primair veld. Leg niet per vortexcel onafhankelijk een snelheidsveld op alsof aangrenzende cellen automatisch glad aansluiten. Het snelheidsveld moet worden afgeleid uit het totale vorticiteitsveld, bijvoorbeeld via Biot--Savart, Stokes' stelling of de relevante Euler-oplossing.
+
+Start met een lokaal modelvolume: een ideale, incompressibele, inviscide supervloeistof in een cilinder met hoogte \(2\), diameter \(1\), straal \(R=0.5\), centrum \((0,0,0)\), lopend van
+\[
+(0,0,-1)
+\quad\text{tot}\quad
+(0,0,1).
+\]
+Gebruik dit eerst als lokaal modelvolume. Neem daarna de limiet waarin de cilinderwand ver weg staat en niet de primaire rotatiebron is.
+    
+    \subsection*{Kerninterpretatie: depleted superfluïde kern versus gevuld substraat}
+        
+        Wanneer in orthodoxe superfluïde fysica wordt gesproken over een vortexkern, betekent dit gewoonlijk een kern waarin de ordeparameter of de effectieve superfluïde dichtheid onderdrukt is. In een Gross--Pitaevskii- of BEC-beschrijving verschijnt de vortexlijn daarom als een dichtheidsdepletie of ``hollow core'' op de schaal van de healing length \(\xi\).
+        
+        Deze terminologie mag echter niet worden verward met een absoluut lege kern. In een dieper substraatbeeld, waarin de dragende mediumlaag zelf onsamendrukbaar en ruimtevullend is, kan de vortexkern niet letterlijk hol zijn. De vloeistofdeeltjes of substraatelementen kunnen nergens heen om een vacuümholte te vormen. De kern is dan beter te modelleren als een gevulde Rankine-, Hill- of vortexpatch-achtige kern waarin het onderliggende substraat aanwezig blijft en de vorticiteit intern wordt gedragen.
+        
+        Daarom worden in deze vragenlijst twee niveaus onderscheiden:
+        \[
+            \text{orthodoxe superfluïde laag: gedepleteerde ordeparameterkern,}
+        \]
+        \[
+            \text{diepere incompressibele substraatlaag: gevulde vortexkern.}
+        \]
+        
+        In de orthodoxe controlelaag blijft de gebruikelijke superfluïde terminologie bruikbaar. Voor het diepere substraatmodel moet echter worden gelezen:
+        \[
+            \boxed{
+                \text{``hollow core'' betekent alleen een effectieve depletie van de superfluïde ordeparameter, niet een lege kern van het onderliggende medium.}
+            }
+        \]
+        
+        Voor Rankine- en Hill-achtige vortexkernen geldt in het substraatbeeld:
+        \[
+            \boxed{
+                \text{de kern is fluid-filled, niet hol.}
+            }
+        \]
+        
+\subsection{Coarse-grained vortexcelmodel}
+
+Onderzoek het beeld waarin veel lokale vortexcellen, elk met dezelfde vorticiteitsdichtheid \(2\Omega_{\mu}\), samen een grotere effectieve vaste-kernvorticiteit vormen.
+
+Voor één lokale vortexcel:
+\[
+\omega_{\mu,z}=2\Omega_{\mu}.
+\]
+
+Voor één cel met doorsnede \(A_{\mu}\):
+\[
+\Gamma_{\mu}
+=
+\int_{A_{\mu}}\omega_z\,dA
+=
+2\Omega_{\mu}A_{\mu}.
+\]
+
+Voor \(N\) identieke of dichtgepakte cellen:
+\[
+\Gamma_{\mathrm{tot}}
+=
+\sum_i\Gamma_i
+=
+2\Omega_{\mu}\sum_i A_i.
+\]
+
+Als de cellen een gebied vullen met vulfactor \(f\), dan:
+\[
+\bar{\omega}_z
+=
+f\,2\Omega_{\mu},
+\qquad
+0<f\leq1.
+\]
+
+In de ruimte-vullende limiet:
+\[
+f\rightarrow1,
+\qquad
+\bar{\omega}_z\rightarrow2\Omega_{\mu}.
+\]
+
+Stokes' stelling blijft gelden. Als de coarse-grained vorticiteit uniform is over een schijf met straal \(r\), dan volgt:
+\[
+\left\langle u_{\phi}\right\rangle(r)
+=
+\frac{\Gamma(r)}{2\pi r}
+=
+\Omega_{\mathrm{eff}}r.
+\]
+Dit is geen aanname van een star lichaam en vereist geen aandrijvende wand. Het is het resulterende gemiddelde snelheidsveld van de uniforme vorticiteit.
+
+\subsection{1. Basismodel: continue vaste-kernvorticiteit versus gequantiseerde vortexlijnen}
+
+Analyseer het verschil tussen:
+\[
+\text{klassieke vaste-kernrotatie,}
+\]
+\[
+\text{een Rankine-vortexpatch,}
+\]
+\[
+\text{een Feynman-rooster van gequantiseerde vortexlijnen,}
+\]
+\[
+\text{een coarse-grained veld van dichtgepakte vortexcellen of vortexpatches.}
+\]
+
+Beantwoord:
+\[
+\bar{\omega}_z
+=
+n_v\kappa
+=
+2\Omega_{\mathrm{eff}}?
+\]
+Wat is microscopisch waar, en wat is alleen coarse-grained waar?
+
+\subsection{2. Twee vortexringkanonnen langs de \(z\)-as}
+
+Wat gebeurt er als boven en beneden, op
+\[
+(0,0,1)
+\quad\text{en}\quad
+(0,0,-1),
+\]
+twee gekleurde vortexringen precies langs de \(z\)-as op elkaar af worden geschoten, zeer langzaam translerend, met exact dezelfde circulatiesterkte \(|\Gamma|\)?
+
+Analyseer:
+\[
+\text{klassieke Euler-limiet,}
+\]
+\[
+\text{superfluïde limiet met gequantiseerde circulatie,}
+\]
+\[
+\text{interactie met een achtergrondrooster van parallelle vortexlijnen,}
+\]
+\[
+\boldsymbol{\omega}_{\mathrm{rel}},
+\qquad
+\boldsymbol{\omega}_{\mathrm{abs}},
+\qquad
+H,
+\]
+en mogelijke reconnectie met elkaar en met het achtergrondrooster.
+
+\subsection{3. Vortexcirkels en een glazen bol}
+
+Vervang de vortexringkanonnen door gekleurde vortexcirkels aan de boven- en onderkant met straal:
+\[
+r=\frac{1}{4}R=0.125.
+\]
+
+Plaats daarnaast een dunne glazen bol met straal \(0.125\), gevuld met dezelfde supervloeistof, op de \(z\)-as. Laat deze langzaam bewegen:
+\[
+(0,0,0.5)
+\rightarrow
+(0,0,0.75)
+\rightarrow
+(0,0,0.25).
+\]
+
+Onderzoek of de bol een Taylor-kolom afdwingt via de no-penetration-randvoorwaarde.
+
+Maak onderscheid tussen:
+\[
+\text{een echte materiële bol,}
+\]
+\[
+\text{een vortexstructuur,}
+\]
+\[
+\text{een separatrix,}
+\]
+\[
+\text{een coarse-grained bundel van vortexlijnen die door of rond de bol moet bewegen.}
+\]
+
+Vraag ook of de supervloeistof binnen de glazen bol mechanisch gekoppeld is aan de buitenvloeistof, of alleen via normaaldruk en niet via tangentiële spanning.
+
+\subsection{4. Vortexringdipool of Hill-vortex als bolanalogie}
+
+Kunnen we een vortexringdipool in de oorsprong ook als een bol modelleren, omdat de stromingslijnen geometrisch bolachtig lijken?
+
+Analyseer dit in termen van Hill's spherical vortex.
+
+Maak onderscheid tussen:
+\[
+\text{geometrisch gelijke buitenstroming,}
+\]
+\[
+\text{dynamische equivalentie,}
+\]
+\[
+\text{added mass,}
+\]
+\[
+\text{hydrodynamische impuls,}
+\]
+\[
+\text{vorticiteit, stabiliteit, en reactie op achtergrondrotatie of achtergrond-vortexlijnen.}
+\]
+
+Vraag expliciet wanneer een Hill-vortex alleen geometrisch bolachtig is, en wanneer hij dynamisch niet equivalent is aan een vaste bol.
+
+\subsection{5. Separatrix als vervanger van de bol}
+
+Stel dat de glazen bol wordt vervangen door een vortexstructuur waarvan de separatrix ongeveer bolvormig is met straal \(0.125\). Deze vortexstructuur beweegt langzaam omhoog en omlaag langs de \(z\)-as.
+
+Analyseer of dit hetzelfde resultaat geeft als de glazen bol.
+
+Gebruik strikt:
+\[
+\text{een separatrix is geen fysiek object, maar een kinematisch grensoppervlak dat volgt uit de stroming.}
+\]
+
+Onderzoek:
+\[
+\text{of een separatrix no-penetration kan vervangen,}
+\]
+\[
+\text{of een separatrix massa, impuls of vorticiteit draagt,}
+\]
+\[
+\text{of een bewegende separatrix een Taylor-kolom kan afdwingen,}
+\]
+\[
+\text{of de onderliggende vortexstructuur vervormt onder druk- en rotatie-effecten.}
+\]
+
+\subsection{6. Trefoil-vortexknoop zoals in waterexperimenten}
+
+Gebruik een trefoil-vortexknoop zoals in waterexperimenten met geknoopte vortexlijnen.
+
+Plaats de trefoil in het centrum:
+\[
+(0,0,0),
+\]
+met het gat door de knoop op de \(z\)-as.
+
+Analyseer de trefoil als:
+\[
+\text{geknoopte vortexlijn,}
+\]
+\[
+\text{geknoopte vortexbuis in klassieke vloeistof,}
+\]
+\[
+\text{gequantiseerde vortexlijn in een supervloeistof,}
+\]
+\[
+\text{heliciteitsdrager,}
+\]
+\[
+\text{lokale verstoring in een achtergrondrooster van parallelle vortexlijnen.}
+\]
+
+Gebruik:
+\[
+Wr,
+\qquad
+Tw,
+\qquad
+Lk,
+\qquad
+H.
+\]
+
+Bespreek of de trefoil topologisch stabiel is in ideale Euler-dynamica, en wat er verandert in een supervloeistof waar reconnecties via Gross--Pitaevskii/NLSE-dynamica mogelijk zijn.
+
+\subsection{7. Trefoil op de plaats van bol, dipool of separatrix}
+
+Plaats op de locatie van de bol, vortexringdipool of separatrix nu een trefoil-vortexknoop. De trefoil draait dezelfde kant op als de lokale achtergrondrotatie. Het gat door de knoop blijft op de \(z\)-as.
+
+Vraag:
+\[
+\text{Kan een trefoil een Taylor-kolom vervangen?}
+\]
+Of is een Taylor-kolom uitsluitend een stromingsrespons op een echte randvoorwaarde of effectieve constraint?
+
+Analyseer:
+\[
+\text{of de trefoil no-penetration kan afdwingen,}
+\]
+\[
+\text{of de trefoil alleen vorticiteit en heliciteit toevoegt,}
+\]
+\[
+\text{of de trefoil een separatrix heeft,}
+\]
+\[
+\text{of die separatrix fysisch robuust is,}
+\]
+\[
+\text{of de trefoil in een achtergrondrooster stabiel blijft of reconnecteert.}
+\]
+
+\subsection{8. Trefoil-circulatie versus achtergrondrotatie}
+
+Onderzoek drie gevallen:
+\[
+\Gamma_{\mathrm{trefoil}}\sim\Gamma_{\mathrm{bg}},
+\qquad
+\Gamma_{\mathrm{trefoil}}\gg\Gamma_{\mathrm{bg}},
+\qquad
+\Gamma_{\mathrm{trefoil}}\ \text{tegengesteld georiënteerd aan de achtergrondrotatie}.
+\]
+
+Vergelijk circulatie met circulatie:
+\[
+\Gamma_{\mathrm{trefoil}}
+\quad\text{versus}\quad
+\Gamma_{\mathrm{bg}}=2\Omega_{\mathrm{eff}}A.
+\]
+
+Vergelijk hoeksnelheid met hoeksnelheid:
+\[
+\Omega_{\mathrm{trefoil}}
+\quad\text{versus}\quad
+\Omega_{\mathrm{eff}}.
+\]
+
+Vergelijk vorticiteit met vorticiteit:
+\[
+\omega_{\mathrm{trefoil}}
+\quad\text{versus}\quad
+\bar{\omega}_{\mathrm{bg}}.
+\]
+
+Corrigeer elke formulering waarin circulatie, tangentiële snelheid, hoeksnelheid en vorticiteit door elkaar worden gehaald.
+
+\subsection{9. Trefoil-kern met hogere interne hoeksnelheid}
+
+Stel dat de buis of kernstructuur van de trefoil een interne rotatie heeft met hoeksnelheid:
+\[
+\Omega_C,
+\]
+terwijl de lokale achtergrond-vortexcel of achtergrondpatch roteert met effectieve hoeksnelheid:
+\[
+\Omega_{\mu}.
+\]
+
+Onderzoek:
+\[
+\Omega_C>\Omega_{\mu}.
+\]
+
+Als tangentiële snelheden worden gebruikt, definieer ze via hun eigen straal:
+\[
+C=\Omega_C r_C,
+\qquad
+v_{\tan,\mu}=\Omega_{\mu}r_{\mu}.
+\]
+
+Vergelijk \(C\) en \(v_{\tan,\mu}\) alleen direct als:
+\[
+r_C=r_{\mu}.
+\]
+
+Vraag:
+\[
+\text{Kan de trefoil een hogere interne hoeksnelheid dragen terwijl de omliggende coarse-grained achtergrondvorticiteit gelijk blijft aan}
+\]
+\[
+\bar{\omega}_{\mathrm{bg}}=2\Omega_{\mu}?
+\]
+
+Maak onderscheid tussen:
+\[
+\Omega_C,
+\quad
+\Omega_{\mu},
+\quad
+\text{tangentiële snelheid},
+\quad
+\Gamma,
+\quad
+\text{puntvorticiteit},
+\quad
+\text{contourgemiddelde vorticiteit},
+\quad
+\text{coarse-grained vorticiteit}.
+\]
+
+\subsection{10. Zeven dichtgepakte vortexcellen als grotere vortexkern}
+
+Onderzoek één vaste-kern vortexcel in het centrum en zes identieke vaste-kern vortexcellen eromheen. Alle zeven hebben dezelfde vorticiteitsdichtheid:
+\[
+\omega_{\mu,z}=2\Omega_{\mu}.
+\]
+
+Ze worden zo dicht tegen elkaar geplaatst dat hun randen elkaar raken, of dat zij zich vervormen tot een samengesmolten grotere vortexpatch.
+
+Vraag:
+\[
+\text{Gedraagt dit cluster zich coarse-grained als één grotere vortexkern met dezelfde effectieve vorticiteitsdichtheid }2\Omega_{\mu},
+\]
+maar met grotere totale circulatie?
+
+Bereken:
+\[
+\Gamma_1=2\Omega_{\mu}A_{\mu},
+\]
+\[
+\Gamma_7=7\Gamma_1,
+\]
+en:
+\[
+\bar{\omega}_7
+=
+\frac{\Gamma_7}{7A_{\mu}}
+=
+2\Omega_{\mu}.
+\]
+
+Onderzoek het verschil tussen middelen over:
+\[
+\text{alleen de gevulde vortexoppervlakte}
+\]
+en
+\[
+\text{een grotere omhullende cirkel met lege ruimte ertussen.}
+\]
+
+Gebruik:
+\[
+\bar{\omega}_z=f\,2\Omega_{\mu}.
+\]
+
+Maak onderscheid tussen:
+\[
+\text{zeven losse aangrenzende vortexpatches,}
+\]
+\[
+\text{zeven patches die actief mergen via 2D-Euler patch-dynamica,}
+\]
+\[
+\text{het eindproduct: één grotere uniforme vortexpatch,}
+\]
+\[
+\text{de superfluïde analogie: een bundel gequantiseerde vortexlijnen.}
+\]
+
+\subsection{11. Uitbreiding naar een lateraal grote of oneindige cilinderdoorsnede}
+
+Breid het lokale zeven-cellen-principe uit naar een volledige cilinderdoorsnede die bestaat uit een groot aantal identieke vortexcellen, lateraal gepakt in een hexagonale of honingraatachtige structuur. Beschouw het patroon als topaanzicht van deze laterale pakking.
+
+Gebruik de cellen niet primair als afzonderlijk opgelegde snelheidsvelden, maar als gebieden met uniforme vorticiteit:
+\[
+\omega_z = 2\Omega_{\mu}
+\quad \text{binnen elke cel,}
+\]
+en eventueel:
+\[
+\omega_z = 0
+\quad \text{buiten de gevulde regio.}
+\]
+
+Onderzoek:
+\[
+\text{(a) een eindig aantal dichtgepakte cellen,}
+\]
+\[
+\text{(b) een grote maar eindige gevulde cilinderdoorsnede,}
+\]
+\[
+\text{(c) een lateraal oneindig uitgebreid celrooster.}
+\]
+
+Voor \(N\) gevulde cellen:
+\[
+\Gamma_{\mathrm{tot}}=N\Gamma_{\mu}.
+\]
+
+Gemiddeld over de gevulde oppervlakte:
+\[
+\bar{\omega}_z
+=
+\frac{\Gamma_{\mathrm{tot}}}{A_{\mathrm{filled}}}
+=
+2\Omega_{\mu}.
+\]
+
+Gemiddeld over een omhullende doorsnede:
+\[
+\bar{\omega}_z=f\,2\Omega_{\mu},
+\qquad
+0<f\leq1.
+\]
+
+Voor hexagonale dichtste pakking van cirkelvormige cellen:
+\[
+f=\frac{\pi}{\sqrt{12}}\approx0.907.
+\]
+
+In de limiet van ruimte-vullende polygonale of hexagonale cellen:
+\[
+f\rightarrow1,
+\qquad
+\bar{\omega}_z\rightarrow2\Omega_{\mu}.
+\]
+
+Door Stokes' stelling:
+\[
+\left\langle u_{\phi}\right\rangle(r)
+=
+\frac{\Gamma(r)}{2\pi r}
+=
+\Omega_{\mathrm{eff}}r.
+\]
+
+Maak expliciet onderscheid tussen een grote maar eindige Rankine-patch en de lateraal oneindige limiet. Een Rankine-patch is eindig: binnen de patch is de vorticiteit uniform, buiten de patch is de stroming irrotationeel. In de oneindige limiet verdwijnt de buitenregio. Dan blijft alleen een lokaal uniforme vorticiteit over.
+
+In die oneindige limiet bepaalt \(\boldsymbol{\omega}\) het snelheidsveld niet meer uniek. Voor elke keuze van oorsprong \(\mathbf{r}_0\):
+\[
+\mathbf{u}
+=
+\boldsymbol{\Omega}_{\mu}
+\times
+(\mathbf{r}-\mathbf{r}_0)
+\]
+heeft dezelfde vorticiteit:
+\[
+\nabla\times\mathbf{u}
+=
+2\boldsymbol{\Omega}_{\mu}.
+\]
+
+Het verschil tussen twee keuzes van \(\mathbf{r}_0\) is een uniforme potentiaalstroming. De oneindige vulling selecteert dus geen uniek rotatiecentrum. Alleen een eindige rand, een gekozen oorsprong, of een randvoorwaarde op oneindig selecteert een as.
+
+Daarom:
+\[
+\boxed{
+\text{lateraal oneindige limiet}
+=
+\text{lokaal coarse-grained model, niet globale Rankine-patch.}
+}
+\]
+
+Gebruik deze limiet niet voor globale uitspraken over totale kinetische energie of totaal impulsmoment, want bij:
+\[
+u_{\phi}\sim\Omega_{\mu}r
+\]
+divergeren energie en impulsmoment per hoogte-eenheid wanneer \(r\rightarrow\infty\).
+
+Bespreek ook de eigen dynamica van het superfluïde vortexrooster. In een gequantiseerde supervloeistof is het coarse-grained veld niet alleen een statische achtergrond. Het vortexrooster heeft elastische eigenmodi, zoals Tkachenko-golven. Daardoor kan een verstoring door een vortexring, bol, trefoil of vortexdipool niet alleen reconnecties veroorzaken, maar ook roosterelasticiteit en transversale roosteroscillaties opwekken.
+
+\subsection{12. Virtuele cilinder gevuld met parallelle vortexdraden}
+
+Schaal het model op naar een virtuele cilinder met grote hoogte:
+\[
+z=-D
+\quad\text{tot}\quad
+z=+D.
+\]
+
+Op de onderste en bovenste grensoppervlakken bevinden zich veel vortexankers of vortexstructuren. Elke vortexlijn loopt ongeveer parallel aan de \(z\)-as van het ene grensoppervlak naar het andere.
+
+Vraag:
+\[
+\bar{\omega}_z
+=
+n_v\Gamma_v
+=
+2\Omega_{\mathrm{eff}}?
+\]
+
+Maak duidelijk dat dit niet betekent dat een verre buitenwand met tangentiële snelheid \(\Omega_{\mathrm{eff}}R\) fysiek hoeft te bestaan. De rotatie wordt lokaal gedragen door vortexlijnen of vortexpatches, en alleen coarse-grained als vaste-kernrotatie beschreven.
+
+Controleer:
+\[
+\text{of vortexlijnen mogen eindigen op echte grensvlakken,}
+\]
+\[
+\text{of ze in het volume mogen eindigen,}
+\]
+\[
+\text{of de configuratie ook met gesloten lussen in plaats van ankers kan worden geformuleerd,}
+\]
+\[
+\text{of de wandloze Rankine-patch-beschrijving de juiste klassieke analogie is.}
+\]
+
+\subsection{13. Vortexlijndichtheidsgradiënt en lift}
+
+Wat gebeurt er als het aantal vortexlijnen per oppervlak aan de onderkant groter is dan aan de bovenkant?
+
+Kan dit een bron van lift langs de \(z\)-as zijn?
+
+Controleer strikt:
+\[
+\nabla\cdot\boldsymbol{\omega}=0,
+\]
+impulsbehoud, impulsmomentbehoud, drukgradiënten, meridionale circulatie en Taylor--Proudman-beperkingen.
+
+Als een stationaire verticale dichtheidsgradiënt van exact parallelle vortexlijnen verboden is, geef aan waarom.
+
+Als lift in een gesloten ideaal systeem verboden is, geef aan welke extra fysische voorwaarde nodig zou zijn:
+\[
+\text{open grens, impulsflux, externe forcing, bewegende/asymmetrische wand,}
+\]
+\[
+\text{vortexring-emissie, mutual friction, dissipatie, pinning of boundary interaction.}
+\]
+
+\subsection{14. Perfecte supervloeistof-limiet}
+
+Kan dit alles ook in een supervloeistof onder de meest perfecte omstandigheden?
+
+Analyseer apart:
+\[
+\text{klassieke ideale Euler-limiet,}
+\]
+\[
+\text{superfluïde }T\rightarrow0,
+\]
+\[
+\text{Gross--Pitaevskii/NLSE-limiet,}
+\]
+\[
+\text{vortex-filament-limiet,}
+\]
+\[
+\text{coarse-grained HVBK-limiet.}
+\]
+
+Vraag:
+\[
+\text{Welke claims blijven waar zonder viscositeit?}
+\]
+\[
+\text{Welke claims falen omdat reconnectie, pinning, normal-fluid component, mutual friction, boundary forcing of quantisatie nodig is?}
+\]
+
+\subsection{15. Unknot door meerdere trefoils}
+
+Omdat vortexlijnen niet zomaar in het volume mogen eindigen, stel een gesloten vortexlijn voor: een unknot die door de centra of gaten van meerdere trefoils loopt.
+
+Stel een grote bundel trefoils voor, dicht bij elkaar geplaatst ten opzichte van de totale lengte van de unknot.
+
+Vraag:
+\[
+\text{Kan de gesloten lijn zelf ongeknoopt blijven, maar toch niet-triviaal gelinkt zijn met veel trefoils?}
+\]
+
+Analyseer met linking number en heliciteit:
+\[
+H
+\sim
+\Gamma^2
+\left(
+\sum_i Wr_i
++
+2\sum_{i<j}Lk_{ij}
+\right).
+\]
+
+Voor een superfluïde met gequantiseerde circulatie:
+\[
+\Gamma=n\kappa.
+\]
+
+Maak onderscheid tussen:
+\[
+\text{knooptype, linking, writhe, twist, totale heliciteit, dynamische stabiliteit.}
+\]
+
+\subsection{16. Gespiegelde gigantische donutstructuur}
+
+Zou er op afstand een gespiegelde gigantische donutstructuur kunnen bestaan die samen met de eerste structuur een netto balans oplevert?
+
+Maak expliciet onderscheid tussen:
+\[
+\text{kinetische energie, heliciteit, impuls, impulsmoment, circulatie, chirale/topologische lading.}
+\]
+
+Gebruik:
+\[
+E
+=
+\frac{1}{2}\rho\int |\mathbf{u}|^2\,dV
+\geq0.
+\]
+
+Controleer:
+\[
+\text{Kan spiegeling energie annuleren?}
+\]
+Of kan spiegeling alleen pseudoscalaren zoals heliciteit en chirale/topologische grootheden van teken laten wisselen?
+
+\subsection{17. Eindproduct}
+
+Geef aan het einde een compacte tabel per scenario met:
+
+\[
+\text{orthodoxe status,}
+\]
+\[
+\text{klassieke Euler-status,}
+\]
+\[
+\text{superfluïde-status,}
+\]
+\[
+\text{coarse-grained-status,}
+\]
+\[
+\text{vorticiteit,}
+\]
+\[
+\text{heliciteit/linking,}
+\]
+\[
+\text{stabiliteit,}
+\]
+\[
+\text{reconnectie-risico,}
+\]
+\[
+\text{Taylor-kolom/separatrix-status,}
+\]
+\[
+\text{liftstatus,}
+\]
+\[
+\text{energie-annuleringsstatus,}
+\]
+\[
+\text{minimale numerieke simulatie.}
+\]
+
+Gebruik als mogelijke simulaties:
+\[
+\text{vortex-filament simulation},
+\qquad
+\text{Gross--Pitaevskii/NLSE},
+\]
+\[
+\text{HVBK/coarse-grained superfluid model},
+\qquad
+\text{Euler vortex-patch simulation}.
+\]
+
+Eindig met een kort slotoordeel:
+\[
+\text{Welke scenario's zijn orthodox correct?}
+\]
+\[
+\text{Welke scenario's zijn alleen coarse-grained correct?}
+\]
+\[
+\text{Welke scenario's zijn alleen klassieke Euler-limiet?}
+\]
+\[
+\text{Welke scenario's zijn niet realiseerbaar in een superfluïde?}
+\]
+\[
+\text{Welke scenario's zijn dimensioneel of categorisch fout?}
+\]
+
+\end{document}

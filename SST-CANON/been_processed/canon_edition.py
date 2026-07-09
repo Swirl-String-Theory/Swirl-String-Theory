@@ -172,6 +172,21 @@ EDITION_CONFIG = {
             r"\(\ref{sec:rotating_fluid_swirl_clock_parity}\)) on top of v0.8.18."
         ),
     },
+    "0.8.20": {
+        "prev": "0.8.19",
+        "header": "%! v0.8.20 edition: chronos kelvin hitting conditions + contact pressure saturation + rank9 contact channels + SSDL monopole DtN (been_processed).",
+        "note": (
+            r"\textbf{v0.8.20} adds Chronos--Kelvin topological hitting conditions with a first-hitting "
+            r"kink-versus-reconnection split and Kairos boundary ledger "
+            r"(\(\ref{subsubsec:chronos_kelvin_hitting_conditions}\), \(\ref{eq:sst_first_hitting_time}\)), "
+            r"a contact-pressure saturation and Swirl-Clock kinematic shielding block "
+            r"(\(\ref{subsec:rt_contact_pressure_saturation_swirl_clock}\), \(\ref{eq:rt_contact_pressure_split}\)), "
+            r"a main-text research-track guard and colored rank-nine contact-channel diagnostic "
+            r"(\(\ref{sec:rt_colored_contact_rank_nine}\), \(\ref{eq:rt_rank9_factorization}\)), "
+            r"and a Separatrix Surface-Density Lift monopole DtN research-track route "
+            r"(\(\ref{subsec:ssdl_monopole_dtn}\)) with audit v0.2 numeric support on top of v0.8.19."
+        ),
+    },
 }
 
 CANON_BASE_KEYWORDS: list[str] = [
@@ -232,6 +247,12 @@ EDITION_KEYWORDS: dict[str, list[str]] = {
         "claude audit cleanup",
         "rhoF cosmological impedance",
         "Taylor column swirl clock parity",
+    ],
+    "0.8.20": [
+        "chronos kelvin hitting conditions",
+        "contact pressure saturation",
+        "rank nine contact channels",
+        "SSDL monopole DtN",
     ],
 }
 

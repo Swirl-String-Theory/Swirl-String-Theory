@@ -51,7 +51,16 @@
 | `v0.8.19_taylor_column_swirl_clock_parity.patch` | **v0.8.19** RT + main bib (in-place) | `sec:taylor_column_finite_thickness_swirl_strings`; `sec:rotating_fluid_swirl_clock_parity`; Taylor1922, Proudman1916, Hill1894, Greenspan1968 bib |
 | `v0.8.19_rhoF_cosmological_impedance_candidates.csv` | **v0.8.19** (archive) | Candidate closure table for $\rho_f$ cosmological-impedance route |
 | `v0.8.19_canonization_README.md` | **v0.8.19** | Patch queue order and scope |
-| `apply_v085.py` … `apply_v0819.py` | **v0.8.5–v0.8.19** | Reproducible incremental build |
+| `v0.8.20_chronos_kelvin_hitting_conditions.patch` | **v0.8.20** RT | `subsubsec:chronos_kelvin_hitting_conditions`; `eq:sst_first_hitting_time`; Bewley/Varoquaux bib |
+| `v0.8.20_contact_pressure_saturation.patch` | **v0.8.20** RT | `subsec:rt_contact_pressure_saturation_swirl_clock`; `eq:rt_contact_pressure_split` |
+| `v0.8.20_rank9_contact_channels.patch` | **v0.8.20** main + RT | Main guard; `sec:rt_colored_contact_rank_nine`; `eq:rt_rank9_factorization` |
+| `v0.8.20_ssdl_research_track.patch` | **v0.8.20** RT | `subsec:ssdl_monopole_dtn` |
+| `v0.8.20_ssdl_research_track_block.tex` | **v0.8.20** RT (reference) | Insert body for SSDL subsection |
+| `v0.8.20_research_track_ssdl_patched_preview.tex` | **v0.8.20** (preview) | Full RT preview for hunk verification only |
+| `v0.8.20_ssdl_audit_result_v0_2.json` | **v0.8.20** (archive) | SSDL audit JSON + console output |
+| `v0.8.20_ssdl_audit_result_v0_2.pure.json` | **v0.8.20** (archive) | SSDL audit pure JSON |
+| `v0.8.20_to_do_patches_README.md` | **v0.8.20** | Original to_do_patches package README |
+| `scripts/apply_v085.py` … `scripts/apply_v0820.py` | **v0.8.5–v0.8.20** | Reproducible incremental build |
 
 ## SST v0.8.12 evidence-pack patch status
 

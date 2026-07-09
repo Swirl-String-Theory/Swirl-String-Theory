@@ -13,5 +13,5 @@ Rebuild latest edition:
 
 ```powershell
 cd SST-CANON/been_processed
-python apply_v0819.py
+python scripts/apply_v0819.py
 ```

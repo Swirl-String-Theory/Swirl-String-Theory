@@ -1,0 +1,820 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{microtype}
+
+\geometry{margin=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue}
+
+\title{Orthodox Thought Experiments on Vortex Patches, Superfluid Lattices, and Knotted Vortex Structures}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Orthodox thought experiments on vortex patches, superfluid lattices, and knotted vortex structures}
+
+\subsection{Model basis and status labels}
+
+Analyze the following thought experiments strictly within orthodox fluid dynamics and superfluid physics:
+classical incompressible Euler dynamics, rotating-fluid dynamics, Taylor--Proudman theory,
+Taylor columns, Rankine vortex patches, vortex-filament theory, Gross--Pitaevskii/NLSE dynamics,
+Feynman vortex lattices, helicity, writhe, twist, and linking.
+
+Use the following status labels:
+\[
+\text{ORTHODOX CORRECT},
+\qquad
+\text{ORTHODOX AS A COARSE-GRAINED MODEL},
+\qquad
+\text{CLASSICAL EULER LIMIT ONLY},
+\]
+\[
+\text{NOT REALIZABLE IN A SUPERFLUID},
+\qquad
+\text{DIMENSIONALLY / CATEGORICALLY WRONG}.
+\]
+
+The main quantities are:
+\[
+\boldsymbol{\omega}=\nabla\times\mathbf{u},
+\]
+\[
+\boldsymbol{\omega}_{\mathrm{abs}}
+=
+\boldsymbol{\omega}_{\mathrm{rel}}
++
+2\boldsymbol{\Omega},
+\]
+\[
+H=\int_V \mathbf{u}\cdot\boldsymbol{\omega}\,dV.
+\]
+
+For solid-body-core rotation,
+\[
+\mathbf{u}
+=
+\boldsymbol{\Omega}\times\mathbf{r},
+\]
+so that
+\[
+\boldsymbol{\omega}
+=
+2\boldsymbol{\Omega}.
+\]
+
+If the phrase ``vorticity \(=2v\)'' appears anywhere, correct it to:
+\[
+\omega_z=2\Omega,
+\]
+where \(\Omega\) is an angular velocity with dimension \(\mathrm{s^{-1}}\).
+If \(v\) is a tangential velocity, use:
+\[
+v_{\theta}=\Omega r,
+\qquad
+\Omega=\frac{v_{\theta}}{r},
+\qquad
+\omega_z=2\frac{v_{\theta}}{r}.
+\]
+
+Use vorticity as the primary field. Do not impose independent velocity fields cell by cell as if neighboring cells automatically match smoothly. The velocity field must be derived from the total vorticity field, for example through Biot--Savart, Stokes' theorem, or the relevant Euler solution.
+
+Begin with a local model volume: an ideal, incompressible, inviscid superfluid in a cylinder of height \(2\), diameter \(1\), radius \(R=0.5\), center \((0,0,0)\), running from
+\[
+(0,0,-1)
+\quad\text{to}\quad
+(0,0,1).
+\]
+Use this first as a local model volume. Then take the limit in which the cylinder wall is far away and is not the primary source of rotation.
+
+\subsection{Coarse-grained vortex-cell model}
+
+Investigate the picture in which many local vortex cells, each with the same vorticity density \(2\Omega_{\mu}\), jointly form a larger effective solid-core vorticity.
+
+For one local vortex cell:
+\[
+\omega_{\mu,z}=2\Omega_{\mu}.
+\]
+
+For one cell of cross-sectional area \(A_{\mu}\):
+\[
+\Gamma_{\mu}
+=
+\int_{A_{\mu}}\omega_z\,dA
+=
+2\Omega_{\mu}A_{\mu}.
+\]
+
+For \(N\) identical or densely packed cells:
+\[
+\Gamma_{\mathrm{tot}}
+=
+\sum_i\Gamma_i
+=
+2\Omega_{\mu}\sum_i A_i.
+\]
+
+If the cells fill a region with filling factor \(f\), then:
+\[
+\bar{\omega}_z
+=
+f\,2\Omega_{\mu},
+\qquad
+0<f\leq1.
+\]
+
+In the space-filling limit:
+\[
+f\rightarrow1,
+\qquad
+\bar{\omega}_z\rightarrow2\Omega_{\mu}.
+\]
+
+Stokes' theorem still applies. If the coarse-grained vorticity is uniform over a disk of radius \(r\), then:
+\[
+\left\langle u_{\phi}\right\rangle(r)
+=
+\frac{\Gamma(r)}{2\pi r}
+=
+\Omega_{\mathrm{eff}}r.
+\]
+This is not an assumption of rigid matter and does not require a driving wall. It is the resulting mean velocity field of the uniform vorticity.
+
+\subsection{1. Base model: continuous solid-core vorticity versus quantized vortex lines}
+
+Analyze the difference between:
+\[
+\text{classical solid-core rotation,}
+\]
+\[
+\text{a Rankine vortex patch,}
+\]
+\[
+\text{a Feynman lattice of quantized vortex lines,}
+\]
+\[
+\text{a coarse-grained field of densely packed vortex cells or vortex patches.}
+\]
+
+Answer:
+\[
+\bar{\omega}_z
+=
+n_v\kappa
+=
+2\Omega_{\mathrm{eff}}?
+\]
+What is microscopically true, and what is true only after coarse-graining?
+
+\subsection{2. Two vortex-ring guns along the \(z\)-axis}
+
+What happens if two colored vortex rings are fired at each other exactly along the \(z\)-axis from
+\[
+(0,0,1)
+\quad\text{and}\quad
+(0,0,-1),
+\]
+translating very slowly, with exactly the same circulation magnitude \(|\Gamma|\)?
+
+Analyze:
+\[
+\text{the classical Euler limit,}
+\]
+\[
+\text{the superfluid limit with quantized circulation,}
+\]
+\[
+\text{interaction with a background lattice of parallel vortex lines,}
+\]
+\[
+\boldsymbol{\omega}_{\mathrm{rel}},
+\qquad
+\boldsymbol{\omega}_{\mathrm{abs}},
+\qquad
+H,
+\]
+and possible reconnection with each other and with the background lattice.
+
+\subsection{3. Vortex circles and a glass sphere}
+
+Replace the vortex-ring guns by colored vortex circles at the top and bottom with radius:
+\[
+r=\frac{1}{4}R=0.125.
+\]
+
+Also place a thin glass sphere of radius \(0.125\), filled with the same superfluid, on the \(z\)-axis. Move it slowly:
+\[
+(0,0,0.5)
+\rightarrow
+(0,0,0.75)
+\rightarrow
+(0,0,0.25).
+\]
+
+Investigate whether the sphere enforces a Taylor column through the no-penetration boundary condition.
+
+Distinguish between:
+\[
+\text{a true material sphere,}
+\]
+\[
+\text{a vortex structure,}
+\]
+\[
+\text{a separatrix,}
+\]
+\[
+\text{a coarse-grained bundle of vortex lines that must move through or around the sphere.}
+\]
+
+Also ask whether the superfluid inside the glass sphere is mechanically coupled to the exterior fluid, or only through normal pressure and not through tangential stress.
+
+\subsection{4. Vortex-ring dipole or Hill vortex as a sphere analogy}
+
+Can a vortex-ring dipole at the origin also be modeled as a sphere, because the streamlines look geometrically spherical?
+
+Analyze this in terms of Hill's spherical vortex.
+
+Distinguish between:
+\[
+\text{geometrically identical exterior flow,}
+\]
+\[
+\text{dynamical equivalence,}
+\]
+\[
+\text{added mass,}
+\]
+\[
+\text{hydrodynamic impulse,}
+\]
+\[
+\text{vorticity, stability, and response to background rotation or background vortex lines.}
+\]
+
+Ask explicitly when a Hill vortex is only geometrically sphere-like, and when it is dynamically not equivalent to a solid sphere.
+
+\subsection{5. Separatrix as a replacement for the sphere}
+
+Suppose the glass sphere is replaced by a vortex structure whose separatrix is approximately spherical with radius \(0.125\). This vortex structure also moves slowly up and down along the \(z\)-axis.
+
+Analyze whether this gives the same result as the glass sphere.
+
+Use strictly:
+\[
+\text{a separatrix is not a physical object, but a kinematic boundary surface generated by the flow.}
+\]
+
+Investigate:
+\[
+\text{whether a separatrix can replace no-penetration,}
+\]
+\[
+\text{whether a separatrix carries mass, impulse, or vorticity,}
+\]
+\[
+\text{whether a moving separatrix can enforce a Taylor column,}
+\]
+\[
+\text{whether the underlying vortex structure deforms under pressure and rotation effects.}
+\]
+
+\subsection{6. Trefoil vortex knot as in water experiments}
+
+Use a trefoil vortex knot as in water experiments with knotted vortex lines.
+
+Place the trefoil at the center:
+\[
+(0,0,0),
+\]
+with the hole through the knot on the \(z\)-axis.
+
+Analyze the trefoil as:
+\[
+\text{a knotted vortex line,}
+\]
+\[
+\text{a knotted vortex tube in a classical fluid,}
+\]
+\[
+\text{a quantized vortex line in a superfluid,}
+\]
+\[
+\text{a helicity carrier,}
+\]
+\[
+\text{a local perturbation in a background lattice of parallel vortex lines.}
+\]
+
+Use:
+\[
+Wr,
+\qquad
+Tw,
+\qquad
+Lk,
+\qquad
+H.
+\]
+
+Discuss whether the trefoil is topologically stable in ideal Euler dynamics, and what changes in a superfluid where reconnections can occur through Gross--Pitaevskii/NLSE dynamics.
+
+\subsection{7. Trefoil at the position of the sphere, dipole, or separatrix}
+
+Place a trefoil vortex knot at the location of the sphere, vortex-ring dipole, or separatrix. The trefoil rotates in the same sense as the local background rotation. The hole through the knot remains on the \(z\)-axis.
+
+Ask:
+\[
+\text{Can a trefoil replace a Taylor column?}
+\]
+Or is a Taylor column only a flow response to a true boundary condition or effective constraint?
+
+Analyze:
+\[
+\text{whether the trefoil can impose no-penetration,}
+\]
+\[
+\text{whether the trefoil only adds vorticity and helicity,}
+\]
+\[
+\text{whether the trefoil has a separatrix,}
+\]
+\[
+\text{whether that separatrix is physically robust,}
+\]
+\[
+\text{whether the trefoil remains stable in a background lattice or reconnects.}
+\]
+
+\subsection{8. Trefoil circulation versus background rotation}
+
+Analyze three cases:
+\[
+\Gamma_{\mathrm{trefoil}}\sim\Gamma_{\mathrm{bg}},
+\qquad
+\Gamma_{\mathrm{trefoil}}\gg\Gamma_{\mathrm{bg}},
+\qquad
+\Gamma_{\mathrm{trefoil}}\ \text{oppositely oriented to the background rotation}.
+\]
+
+Compare circulation with circulation:
+\[
+\Gamma_{\mathrm{trefoil}}
+\quad\text{versus}\quad
+\Gamma_{\mathrm{bg}}=2\Omega_{\mathrm{eff}}A.
+\]
+
+Compare angular velocity with angular velocity:
+\[
+\Omega_{\mathrm{trefoil}}
+\quad\text{versus}\quad
+\Omega_{\mathrm{eff}}.
+\]
+
+Compare vorticity with vorticity:
+\[
+\omega_{\mathrm{trefoil}}
+\quad\text{versus}\quad
+\bar{\omega}_{\mathrm{bg}}.
+\]
+
+Correct every formulation in which circulation, tangential velocity, angular velocity, and vorticity are mixed.
+
+\subsection{9. Trefoil core with higher internal angular velocity}
+
+Suppose the tube or core structure of the trefoil has internal rotation with angular velocity:
+\[
+\Omega_C,
+\]
+while the local background vortex cell or background patch rotates with effective angular velocity:
+\[
+\Omega_{\mu}.
+\]
+
+Analyze:
+\[
+\Omega_C>\Omega_{\mu}.
+\]
+
+If tangential velocities are used, define them through their own radii:
+\[
+C=\Omega_C r_C,
+\qquad
+v_{\tan,\mu}=\Omega_{\mu}r_{\mu}.
+\]
+
+Compare \(C\) and \(v_{\tan,\mu}\) directly only if:
+\[
+r_C=r_{\mu}.
+\]
+
+Ask:
+\[
+\text{Can the trefoil carry a higher internal angular velocity while the surrounding coarse-grained background vorticity remains}
+\]
+\[
+\bar{\omega}_{\mathrm{bg}}=2\Omega_{\mu}?
+\]
+
+Distinguish between:
+\[
+\Omega_C,
+\quad
+\Omega_{\mu},
+\quad
+\text{tangential velocity},
+\quad
+\Gamma,
+\quad
+\text{pointwise vorticity},
+\quad
+\text{contour-averaged vorticity},
+\quad
+\text{coarse-grained vorticity}.
+\]
+
+\subsection{10. Seven densely packed vortex cells as a larger vortex core}
+
+Consider one solid-core vortex cell in the center and six identical solid-core vortex cells around it. All seven have the same vorticity density:
+\[
+\omega_{\mu,z}=2\Omega_{\mu}.
+\]
+
+They are placed so densely that their boundaries touch, or they deform into a merged larger vortex patch.
+
+Ask:
+\[
+\text{Does this cluster behave, after coarse-graining, as one larger vortex core with the same effective vorticity density }2\Omega_{\mu},
+\]
+but with larger total circulation?
+
+Compute:
+\[
+\Gamma_1=2\Omega_{\mu}A_{\mu},
+\]
+\[
+\Gamma_7=7\Gamma_1,
+\]
+and:
+\[
+\bar{\omega}_7
+=
+\frac{\Gamma_7}{7A_{\mu}}
+=
+2\Omega_{\mu}.
+\]
+
+Investigate the difference between averaging over:
+\[
+\text{only the filled vortex area}
+\]
+and
+\[
+\text{a larger enclosing circle with empty gaps between cells.}
+\]
+
+Use:
+\[
+\bar{\omega}_z=f\,2\Omega_{\mu}.
+\]
+
+Distinguish between:
+\[
+\text{seven separate adjacent vortex patches,}
+\]
+\[
+\text{seven patches actively merging through 2D Euler patch dynamics,}
+\]
+\[
+\text{the final product: one larger uniform vortex patch,}
+\]
+\[
+\text{the superfluid analogue: a bundle of quantized vortex lines.}
+\]
+
+\subsection{11. Extension to a laterally large or infinite cylindrical cross-section}
+
+Extend the local seven-cell principle to a full cylindrical cross-section consisting of a large number of identical vortex cells, laterally packed in a hexagonal or honeycomb-like structure. Treat the pattern as a top view of this lateral packing.
+
+Do not define the cells primarily as independently imposed velocity fields, but as regions of uniform vorticity:
+\[
+\omega_z = 2\Omega_{\mu}
+\quad \text{inside each cell,}
+\]
+and, if applicable:
+\[
+\omega_z = 0
+\quad \text{outside the filled region.}
+\]
+
+Analyze:
+\[
+\text{(a) a finite number of densely packed cells,}
+\]
+\[
+\text{(b) a large but finite filled cylindrical cross-section,}
+\]
+\[
+\text{(c) a laterally infinite cell lattice.}
+\]
+
+For \(N\) filled cells:
+\[
+\Gamma_{\mathrm{tot}}=N\Gamma_{\mu}.
+\]
+
+Averaged over the filled area:
+\[
+\bar{\omega}_z
+=
+\frac{\Gamma_{\mathrm{tot}}}{A_{\mathrm{filled}}}
+=
+2\Omega_{\mu}.
+\]
+
+Averaged over an enclosing cross-section:
+\[
+\bar{\omega}_z=f\,2\Omega_{\mu},
+\qquad
+0<f\leq1.
+\]
+
+For hexagonal close packing of circular cells:
+\[
+f=\frac{\pi}{\sqrt{12}}\approx0.907.
+\]
+
+In the limit of space-filling polygonal or hexagonal cells:
+\[
+f\rightarrow1,
+\qquad
+\bar{\omega}_z\rightarrow2\Omega_{\mu}.
+\]
+
+By Stokes' theorem:
+\[
+\left\langle u_{\phi}\right\rangle(r)
+=
+\frac{\Gamma(r)}{2\pi r}
+=
+\Omega_{\mathrm{eff}}r.
+\]
+
+Explicitly distinguish between a large but finite Rankine patch and the laterally infinite limit. A Rankine patch is finite: inside the patch the vorticity is uniform, outside the patch the flow is irrotational. In the infinite limit, the exterior region disappears. What remains is only locally uniform vorticity.
+
+In that infinite limit, \(\boldsymbol{\omega}\) no longer determines the velocity field uniquely. For any chosen origin \(\mathbf{r}_0\):
+\[
+\mathbf{u}
+=
+\boldsymbol{\Omega}_{\mu}
+\times
+(\mathbf{r}-\mathbf{r}_0)
+\]
+has the same vorticity:
+\[
+\nabla\times\mathbf{u}
+=
+2\boldsymbol{\Omega}_{\mu}.
+\]
+
+The difference between two choices of \(\mathbf{r}_0\) is a uniform potential flow. The infinite filling therefore selects no unique center of rotation. Only a finite boundary, a chosen origin, or a boundary condition at infinity selects an axis.
+
+Therefore:
+\[
+\boxed{
+\text{laterally infinite limit}
+=
+\text{local coarse-grained model, not a global Rankine patch.}
+}
+\]
+
+Do not use this limit for global claims about total kinetic energy or total angular momentum, because for:
+\[
+u_{\phi}\sim\Omega_{\mu}r
+\]
+energy and angular momentum per unit height diverge as \(r\rightarrow\infty\).
+
+Also discuss the intrinsic dynamics of the superfluid vortex lattice. In a quantized superfluid, the coarse-grained field is not merely a static background. The vortex lattice has elastic eigenmodes, such as Tkachenko waves. Therefore, a perturbation by a vortex ring, sphere, trefoil, or vortex dipole can excite not only reconnections but also lattice elasticity and transverse lattice oscillations.
+
+\subsection{12. Virtual cylinder filled with parallel vortex threads}
+
+Scale the model up to a virtual cylinder of large height:
+\[
+z=-D
+\quad\text{to}\quad
+z=+D.
+\]
+
+On the lower and upper boundary surfaces there are many vortex anchors or vortex structures. Each vortex line runs approximately parallel to the \(z\)-axis from one boundary surface to the other.
+
+Ask:
+\[
+\bar{\omega}_z
+=
+n_v\Gamma_v
+=
+2\Omega_{\mathrm{eff}}?
+\]
+
+Make clear that this does not mean that a distant outer wall with tangential velocity \(\Omega_{\mathrm{eff}}R\) must physically exist. Rotation is locally carried by vortex lines or vortex patches, and only described as solid-core rotation after coarse-graining.
+
+Check:
+\[
+\text{whether vortex lines may end on true boundary surfaces,}
+\]
+\[
+\text{whether they may end inside the volume,}
+\]
+\[
+\text{whether the configuration can be formulated using closed loops instead of anchors,}
+\]
+\[
+\text{whether the wall-free Rankine-patch description is the correct classical analogy.}
+\]
+
+\subsection{13. Vortex-line density gradient and lift}
+
+What happens if the number of vortex lines per surface area is larger at the bottom than at the top?
+
+Can this be a source of lift along the \(z\)-axis?
+
+Check strictly:
+\[
+\nabla\cdot\boldsymbol{\omega}=0,
+\]
+conservation of momentum, conservation of angular momentum, pressure gradients, meridional circulation, and Taylor--Proudman constraints.
+
+If a stationary vertical density gradient of exactly parallel vortex lines is forbidden, explain why.
+
+If lift in a closed ideal system is forbidden, state which extra physical condition would be required:
+\[
+\text{open boundary, momentum flux, external forcing, moving/asymmetric wall,}
+\]
+\[
+\text{vortex-ring emission, mutual friction, dissipation, pinning or boundary interaction.}
+\]
+
+\subsection{14. Perfect superfluid limit}
+
+Can all of this also occur in a superfluid under the most perfect conditions?
+
+Analyze separately:
+\[
+\text{classical ideal Euler limit,}
+\]
+\[
+\text{superfluid }T\rightarrow0,
+\]
+\[
+\text{Gross--Pitaevskii/NLSE limit,}
+\]
+\[
+\text{vortex-filament limit,}
+\]
+\[
+\text{coarse-grained HVBK limit.}
+\]
+
+Ask:
+\[
+\text{Which claims remain true without viscosity?}
+\]
+\[
+\text{Which claims fail because reconnection, pinning, normal-fluid component, mutual friction, boundary forcing, or quantization is required?}
+\]
+
+\subsection{15. Unknot through multiple trefoils}
+
+Because vortex lines cannot simply end in the volume, suppose there is a closed vortex line: an unknot passing through the centers or holes of several trefoils.
+
+Consider a large bundle of trefoils placed close together relative to the total length of the unknot.
+
+Ask:
+\[
+\text{Can the closed line remain unknotted while being nontrivially linked with many trefoils?}
+\]
+
+Analyze using linking number and helicity:
+\[
+H
+\sim
+\Gamma^2
+\left(
+\sum_i Wr_i
++
+2\sum_{i<j}Lk_{ij}
+\right).
+\]
+
+For a superfluid with quantized circulation:
+\[
+\Gamma=n\kappa.
+\]
+
+Distinguish between:
+\[
+\text{knot type, linking, writhe, twist, total helicity, dynamical stability.}
+\]
+
+\subsection{16. Mirrored giant donut structure}
+
+Could there exist, at a distance, a mirrored giant donut structure that balances the first structure?
+
+Explicitly distinguish between:
+\[
+\text{kinetic energy, helicity, impulse, angular momentum, circulation, chiral/topological charge.}
+\]
+
+Use:
+\[
+E
+=
+\frac{1}{2}\rho\int |\mathbf{u}|^2\,dV
+\geq0.
+\]
+
+Check:
+\[
+\text{Can mirroring cancel energy?}
+\]
+Or can mirroring only reverse pseudoscalars such as helicity and chiral/topological quantities?
+
+\subsection{17. Final output}
+
+End with a compact table for each scenario containing:
+
+\[
+\text{orthodox status,}
+\]
+\[
+\text{classical Euler status,}
+\]
+\[
+\text{superfluid status,}
+\]
+\[
+\text{coarse-grained status,}
+\]
+\[
+\text{vorticity,}
+\]
+\[
+\text{helicity/linking,}
+\]
+\[
+\text{stability,}
+\]
+\[
+\text{reconnection risk,}
+\]
+\[
+\text{Taylor-column/separatrix status,}
+\]
+\[
+\text{lift status,}
+\]
+\[
+\text{energy-cancellation status,}
+\]
+\[
+\text{minimal numerical simulation.}
+\]
+
+Use as possible simulations:
+\[
+\text{vortex-filament simulation},
+\qquad
+\text{Gross--Pitaevskii/NLSE},
+\]
+\[
+\text{HVBK/coarse-grained superfluid model},
+\qquad
+\text{Euler vortex-patch simulation}.
+\]
+
+End with a short final judgment:
+\[
+\text{Which scenarios are orthodox correct?}
+\]
+\[
+\text{Which scenarios are only coarse-grained correct?}
+\]
+\[
+\text{Which scenarios are classical Euler limit only?}
+\]
+\[
+\text{Which scenarios are not realizable in a superfluid?}
+\]
+\[
+\text{Which scenarios are dimensionally or categorically wrong?}
+\]
+
+\end{document}

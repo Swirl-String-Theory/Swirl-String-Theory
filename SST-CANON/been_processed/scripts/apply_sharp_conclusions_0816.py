@@ -1,0 +1,441 @@
+#!/usr/bin/env python3
+"""Apply v0.8.16 sharp-conclusions patch (A/B/C + optional falsifier ladder).
+
+Patch A: pressure--optical locking in Triadic Gravity-Response Corollary (main canon)
+Patch B: no-monopole transport-stress audit (research track)
+Patch C: SST-73 critical notes (pressure equivalence + alpha_grav dimensions)
+Optional: observational falsifier ladder in relativity emergence section (RT)
+"""
+import sys
+from _paths import ROOT, SCRIPTS_DIR
+
+SST73 = (
+    Path(__file__).resolve().parents[2]
+    / "SST-73_A_Poisson-Type_Gravity_Program_from_Organized_Swirl_Transport"
+    / "SST-73_A_Poisson-Type_Gravity_Program_from_Organized_Swirl_Transport.tex"
+)
+
+MARKER = "eq:canonical_pressure_optical_locking"
+
+# --- Patch A: main canon ---
+MAIN_ANCHOR = (
+    "        The three modes may share a common source state but are not mutually identical.\n"
+    "        Therefore"
+)
+
+MAIN_PATCH_A = r"""        The three modes may share a common source state but are not mutually identical.
+
+        \paragraph{Local Euler locking of pressure and optical projections.}
+        Under the additional assumptions of a passive, stationary, inviscid Euler
+        region with constant \(\rhoF\), the pressure and optical projections are not
+        independent.  Bernoulli reconstruction gives
+        \begin{align}
+            \delta p_{\mathrm{swirl}}
+            =
+            -\frac{1}{2}\rhoF\lVert\uswirl\rVert^2,
+        \end{align}
+        while the clock/optical closure gives
+        \begin{align}
+            n_\gamma
+            =
+            \left(
+                1-\frac{\lVert\uswirl\rVert^2}{c^2}
+            \right)^{-1/2}
+            =
+            1+\frac{\lVert\uswirl\rVert^2}{2c^2}
+            +O\!\left(\frac{\lVert\uswirl\rVert^4}{c^4}\right).
+        \end{align}
+        Eliminating \(\lVert\uswirl\rVert^2\) yields the parameter-free leading-order
+        locking relation
+        \begin{align}
+            \boxed{
+            \delta n_\gamma
+            =
+            -\frac{\delta p_{\mathrm{swirl}}}{\rhoF c^2}
+            }
+            \label{eq:canonical_pressure_optical_locking}
+        \end{align}
+        with validity restricted to the passive Euler regime.  Forcing, damping,
+        viscosity, thermal gradients, acoustic drive, plasma response, or explicit
+        Mode-I terms such as \(\Gamma_{\swirlarrow}\mathbf{u}_{\mathrm{plume}}\)
+        break the assumptions and move the prediction to the research-track transfer
+        model.  Thus the refined diagnostic statement is not three fully independent
+        channels, but two locally locked projections plus one nonlocal Poisson/bulk
+        response whenever Eq.~\eqref{eq:canonical_weak_gravity_closure} is invoked.
+
+        With \(\rhoF=7.0\times10^{-7}\,\mathrm{kg\,m^{-3}}\),
+        \begin{align}
+            \frac{1}{\rhoF c^2}
+            &=
+            1.58950008\times10^{-11}\,\mathrm{Pa^{-1}},
+            \\
+            \frac{1}{2}\rhoF\vchar^2
+            &=
+            4.1877439\times10^5\,\mathrm{Pa},
+            \\
+            \delta n_\gamma
+            &=
+            6.6565\times10^{-6}
+        \end{align}
+        at canonical swirl speed, consistent with Eq.~\eqref{eq:canonical_emg_numerical_hierarchy}.
+
+        Therefore"""
+
+# --- Optional falsifier ladder (research track, relativity section) ---
+RT_FALSIFIER_ANCHOR = (
+    "active investigation.\n"
+    "\\end{quote}\n\n\n"
+    "%======================================================================\n"
+    "\\section{Research Track: Core--Torsion Impedance Matching for Inertia Closure}"
+)
+
+RT_FALSIFIER = r"""active investigation.
+\end{quote}
+
+\subsection{Observational falsifier ladder}
+
+The relativity-emergence programme has three immediate observational gates:
+\begin{enumerate}
+    \item \textbf{Tensor-speed gate.} Multimessenger propagation requires
+    \(c_T=c\), equivalently \(c_{13}=0\) in the Einstein--\AE ther comparison
+    layer. This is the spin-2 version of the transverse-mode identification.
+    \item \textbf{Preferred-frame gate.} Any residual preferred-foliation
+    coupling must satisfy the post-Newtonian preferred-frame constraints of
+    the comparison theory. In practice this means that the effective
+    \(\alpha_1\) and \(\alpha_2\) parameters cannot be freely chosen; they must
+    be derived from the same substrate couplings that set the clock sector.
+    \item \textbf{Species-cone gate.} Matter knots, gauge/torsion pulses, and
+    clock excitations must share the same infrared characteristic cone. Failure
+    of this gate predicts species-dependent Lorentz violation and directly
+    falsifies exact monometricity.
+\end{enumerate}
+
+\textbf{[STATUS]} This is not an additional derivation. It is the observational
+test hierarchy attached to the monometricity and tensor-speed theorem targets.
+
+
+%======================================================================
+\section{Research Track: Core--Torsion Impedance Matching for Inertia Closure}"""
+
+# --- Patch B: research track no-monopole section ---
+RT_NO_MONOPOLE_ANCHOR = (
+    "parameter.\n\n"
+    "\\section{Research Track: Atomic Gravity Closure and Condensate Coherence}"
+)
+
+RT_PATCH_B = r"""parameter.
+
+
+% ============================================================
+% Research-track patch: no-monopole transport-stress audit
+% ============================================================
+
+\section{Research Track: No-Monopole Audit of the Transport-Stress Gravity Candidate}
+\label{sec:rt_no_monopole_transport_stress_audit}
+
+\paragraph{Status.}
+\textbf{[RESEARCH TRACK / DERIVED CONSTRAINT].}
+This section records a constraint on the SST-73 transport-stress gravity
+candidate.  It does not modify the canon-level weak-field closure
+\(\nabla^2\Phi_{\swirlarrow}=4\pi G_{\mathrm{swirl}}\rhoM\).  It shows that a
+double-divergence stress source belongs to the local pressure/stress channel
+unless an additional non-divergence density closure or boundary source is
+specified.
+
+\subsection{Pressure equivalence lemma}
+For an incompressible inviscid medium with constant \(\rhoF\),
+\begin{align}
+    \partial_i u_i=0,
+\end{align}
+and no external body force, the Euler equation is
+\begin{align}
+    \rhoF\left(\partial_t u_i + u_j\partial_j u_i\right)
+    =
+    -\partial_i p .
+\end{align}
+Taking the divergence and using \(\partial_i u_i=0\) gives
+\begin{align}
+    \partial_i\partial_j\left(\rhoF u_i u_j\right)
+    =
+    -\nabla^2p .
+    \label{eq:rt_pressure_equivalence_euler_identity}
+\end{align}
+Therefore the SST-73 transport-stress candidate
+\begin{align}
+    \nabla^2\Phi_{\mathrm{tr}}
+    =
+    \lambda\,\partial_i\partial_j\left(\rhoF u_i u_j\right)
+\end{align}
+is equivalent to
+\begin{align}
+    \nabla^2\left(\Phi_{\mathrm{tr}}+\lambda p\right)=0 .
+\end{align}
+For decaying exterior boundary conditions,
+\begin{align}
+    \boxed{
+    \Phi_{\mathrm{tr}}
+    =
+    -\lambda\left(p-p_\infty\right)
+    }
+    \label{eq:rt_transport_pressure_equivalence}
+\end{align}
+up to an irrelevant harmonic constant.  Candidate C is therefore not an
+independent long-range gravity mechanism in the smooth incompressible bulk; it
+is the Euler pressure channel written in Poisson form.
+
+\subsection{No-monopole theorem for smooth compact stress sources}
+Let
+\begin{align}
+    S(\mathbf{x})
+    =
+    \partial_i\partial_j\Sigma_{ij},
+    \qquad
+    \Sigma_{ij}=\rhoF u_i u_j,
+\end{align}
+with \(\Sigma_{ij}\) smooth and compactly supported, or decaying sufficiently
+fast at infinity.  The monopole moment is
+\begin{align}
+    Q_0
+    =
+    \int_{\mathbb{R}^3}S(\mathbf{x})\,dV
+    =
+    \oint_{\partial\mathbb{R}^3}\partial_j\Sigma_{ij}\,dA_i
+    =0 .
+\end{align}
+The dipole moment also vanishes after integration by parts:
+\begin{align}
+    Q_k
+    =
+    \int_{\mathbb{R}^3}x_k S(\mathbf{x})\,dV
+    =0 .
+\end{align}
+Hence the first possible nonzero exterior multipole is quadrupolar:
+\begin{align}
+    \Phi_{\mathrm{tr}}(r)=O(r^{-3}),
+    \qquad
+    \lVert\nabla\Phi_{\mathrm{tr}}\rVert=O(r^{-4}).
+\end{align}
+This cannot supply a Newtonian \(1/r^2\) acceleration by itself.
+
+\subsection{Boundary and singular-core exception}
+The no-monopole result assumes a smooth regularized field on all of
+\(\mathbb{R}^3\).  If vortex tubes are excised, singular cores are retained,
+or material boundaries/shells are present, the surface term
+\begin{align}
+    \oint_{\partial V}\partial_j\Sigma_{ij}\,dA_i
+\end{align}
+need not vanish.  Such terms are boundary-stress or shell-response physics
+\(\mathcal{R}_{\Pi}\), not bulk Poisson gravity.  A nonzero Newtonian monopole
+therefore requires either a genuine scalar density source, such as
+\(\rhoM=\rhoE/c^2\), or an explicitly modeled boundary source.
+
+\subsection{Equivalence-principle consequence of the density source}
+If the gravitational source density is the same effective mass density that
+defines inertial mass,
+\begin{align}
+    \rhoM^{\mathrm{eff}}
+    =
+    \frac{\rhoE}{c^2},
+    \qquad
+    \rhoE=\frac{1}{2}\rhoF\lVert\uswirl\rVert^2,
+\end{align}
+then
+\begin{align}
+    M_{\mathrm{grav}}
+    =
+    \int\rhoM^{\mathrm{eff}}\,dV
+    =
+    \frac{1}{c^2}\int\rhoE\,dV
+    =
+    M_{\mathrm{inert}} .
+\end{align}
+For full topological SST states this statement must be applied to the same
+coarse-grained mass functional used for inertial mass, including topology,
+geometric gate, and clock-impedance factors.  The numerical value of
+\(G_{\mathrm{swirl}}\) remains \textbf{[CALIBRATED]} until derived
+independently of orthodox \(G\) or \(t_p\).
+
+\subsection{Minimal numerical tests}
+A verification script for this sector must include:
+\begin{enumerate}
+    \item a smooth compact divergence-free test field for which
+    \(\int S\,dV\approx0\) and \(\int x_kS\,dV\approx0\);
+    \item a far-field multipole fit verifying
+    \(\Phi_{\mathrm{tr}}\sim r^{-3}\), not \(r^{-1}\);
+    \item a pressure-equivalence test verifying
+    \(\Phi_{\mathrm{tr}}+\lambda p\) is harmonic/constant under the stated
+    boundary conditions;
+    \item a separate density-source Poisson test verifying
+    \(\Phi\sim -G_{\mathrm{swirl}}M/r\) and
+    \(\lVert\mathbf{g}\rVert\sim r^{-2}\) for compact positive
+    \(\rhoM^{\mathrm{eff}}\).
+\end{enumerate}
+
+\section{Research Track: Atomic Gravity Closure and Condensate Coherence}"""
+
+# --- Patch C: SST-73 ---
+SST73_LOC1_ANCHOR = (
+    "            This is the first complete statement of the gravity program:\n"
+    "            \\begin{equation}\n"
+    "                \\boxed{\n"
+    "                    \\text{Gravity is the scalar response field generated by the spatial organization of organized swirl transport.}\n"
+    "                }\n"
+    "                \\label{eq:program-statement}\n"
+    "            \\end{equation}\n"
+    "        \n"
+    "        \\section{Aligned-channel reduction}"
+)
+
+SST73_LOC1 = r"""            This is the first complete statement of the gravity program:
+            \begin{equation}
+                \boxed{
+                    \text{Gravity is the scalar response field generated by the spatial organization of organized swirl transport.}
+                }
+                \label{eq:program-statement}
+            \end{equation}
+
+            \paragraph{Critical note: pressure equivalence and no bulk monopole.}
+            For constant-density incompressible Euler flow without external body force,
+            \begin{align}
+                \partial_i\partial_j\left(\rhoF u_i u_j\right)
+                =
+                -\nabla^2p .
+            \end{align}
+            Consequently the tensorial Candidate C is pressure-equivalent:
+            \begin{align}
+                \nabla^2\Phi_{\grav}
+                =
+                \lambda\partial_i\partial_j(\rhoF u_i u_j)
+                \quad\Longrightarrow\quad
+                \nabla^2(\Phi_{\grav}+\lambda p)=0 .
+            \end{align}
+            With decaying exterior boundary conditions this gives
+            \begin{align}
+                \Phi_{\grav}=-\lambda(p-p_\infty) .
+            \end{align}
+            For smooth compact stress fields the integrated source
+            \(\int\partial_i\partial_j\Sigma_{ij}\,dV\) vanishes by Gauss' theorem, and the
+            dipole moment also vanishes by integration by parts.  The first possible
+            far-field moment is quadrupolar.  Candidate C should therefore be retained as a
+            local pressure/stress diagnostic unless an explicit boundary source or a
+            non-divergence scalar density source is added.  This is the same mathematical
+            obstruction that appears in Lighthill's quadrupole source structure for
+            aerodynamic sound \cite{Lighthill1952}.
+        
+        \section{Aligned-channel reduction}"""
+
+SST73_LOC2_ANCHOR = (
+    "            \\label{eq:poisson-practical}\n"
+    "        \\end{equation}\n"
+    "        \n"
+    "        \\paragraph{Important remark.}"
+)
+
+SST73_LOC2 = r"""            \label{eq:poisson-practical}
+        \end{equation}
+
+        \paragraph{Dimensional note on \(\alpha_{\grav}\).}
+        In the practical axisymmetric proxy
+        \begin{align}
+            \rho_{\grav}^{(\SST)}
+            =
+            \alpha_{\grav}\nabla^2(\rhoF u_\theta^2),
+        \end{align}
+        \(\alpha_{\grav}\) is not dimensionless.  Since
+        \begin{align}
+            [\rho_{\grav}^{(\SST)}]=\mathrm{kg\,m^{-3}},
+            \qquad
+            [\nabla^2(\rhoF u_\theta^2)]
+            =
+            \mathrm{kg\,m^{-3}\,s^{-2}},
+        \end{align}
+        one must have
+        \begin{align}
+            \boxed{[\alpha_{\grav}]=\mathrm{s^2}.}
+        \end{align}
+        Equivalently, in
+        \(\nabla^2\Phi_{\grav}=4\pi G_{\eff}\alpha_{\grav}\nabla^2(\rhoF u_\theta^2)\),
+        \(\alpha_{\grav}\) supplies the missing time-scale squared.  A natural but not
+        yet derived candidate is
+        \begin{align}
+            \alpha_{\grav}
+            \sim
+            \left(\frac{\rc}{\vchar}\right)^2
+            \approx
+            1.6595\times10^{-42}\,\mathrm{s^2},
+        \end{align}
+        which is \textbf{[SPECULATIVE]} until obtained from a closure theorem or
+        calibration.
+        
+        \paragraph{Important remark.}"""
+
+SST73_BIB_ANCHOR = "        \\end{thebibliography}"
+SST73_BIB_ADD = r"""            \bibitem{Lighthill1952}
+            M.~J. Lighthill,
+            \newblock On Sound Generated Aerodynamically. I. General Theory,
+            \newblock \emph{Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences}
+            \textbf{211}(1107), 564--587 (1952),
+            \newblock DOI: \href{https://doi.org/10.1098/rspa.1952.0060}{10.1098/rspa.1952.0060}.
+
+        \end{thebibliography}"""
+
+
+def _apply_pairs(text, pairs, strict=False):
+    for old, new in pairs:
+        if old in text:
+            text = text.replace(old, new, 1)
+        elif strict and new not in text:
+            raise SystemExit(f"missing expected block:\n{old[:120]}...")
+    return text
+
+
+def apply(version: str = "0.8.16") -> None:
+    main = ROOT / f"v{version}" / f"SST_CANON-v{version}.tex"
+    rt = ROOT / f"v{version}" / f"SST_CANON-v{version}-research-track.tex"
+    mtext = main.read_text(encoding="utf-8")
+    if MARKER in mtext:
+        print(f"v0.8.16 sharp-conclusions patch already present in v{version}.")
+        return
+
+    mtext = _apply_pairs(mtext, [(MAIN_ANCHOR, MAIN_PATCH_A)], strict=True)
+    rtext = rt.read_text(encoding="utf-8")
+    rtext = _apply_pairs(
+        rtext,
+        [
+            (RT_FALSIFIER_ANCHOR, RT_FALSIFIER),
+            (RT_NO_MONOPOLE_ANCHOR, RT_PATCH_B),
+        ],
+        strict=True,
+    )
+
+    if SST73.is_file():
+        s73 = SST73.read_text(encoding="utf-8")
+        if "Critical note: pressure equivalence and no bulk monopole" not in s73:
+            s73 = _apply_pairs(
+                s73,
+                [
+                    (SST73_LOC1_ANCHOR, SST73_LOC1),
+                    (SST73_LOC2_ANCHOR, SST73_LOC2),
+                    (SST73_BIB_ANCHOR, SST73_BIB_ADD),
+                ],
+                strict=True,
+            )
+            SST73.write_text(s73, encoding="utf-8")
+            print("Patch C applied to SST-73.")
+        else:
+            print("Patch C already present in SST-73.")
+    else:
+        print(f"WARNING: SST-73 not found at {SST73}; Patch C skipped.")
+
+    main.write_text(mtext, encoding="utf-8")
+    rt.write_text(rtext, encoding="utf-8")
+    print(f"v0.8.16 sharp-conclusions patch applied to v{version}.")
+
+
+def main() -> None:
+    version = sys.argv[1] if len(sys.argv) > 1 else "0.8.16"
+    apply(version)
+
+
+if __name__ == "__main__":
+    main()
