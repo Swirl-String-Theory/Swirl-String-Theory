@@ -1,0 +1,199 @@
+--- a/SST_CANON-v0.8.20-research-track.tex
++++ b/SST_CANON-v0.8.20-research-track.tex
+@@ -2870,6 +2870,99 @@
+     \text{taxonomy refinement required.}
+ \end{equation}
+ 
++\subsection{Research Appendix: Spherical Curl Spectrum and Helicity Capacity}
++    \label{subsec:rt_spherical_curl_spectrum_capacity}
++
++    \paragraph{Status.}
++    \textbf{[ORTHODOX SOURCE RESULT / SST RESEARCH-TRACK APPLICATION].}
++    This appendix records the bounded-domain curl-spectrum consequences of
++    Cantarella, DeTurck, Gluck, and Teytel without identifying a spheromak with an
++    SST particle state
++    \cite{CantarellaDeTurckGluckTeytel2000CurlSpherical}.
++
++    \paragraph{Helicity capacity.}
++    For any domain on which the projected Biot--Savart/curl inverse is defined, set
++    \begin{align}
++        C_H(\Omega)
++        &:=
++        \frac{1}{\kappa_1(\Omega)},
++        &
++        [C_H]&=\mathrm{m}.
++        \label{eq:rt_helicity_capacity}
++    \end{align}
++    This is the maximum helicity-to-\(L^2\)-energy ratio in the source convention.
++    A scale-invariant resolved-tube diagnostic is
++    \begin{align}
++        \chi_{\rm curl}(K)
++        :=
++        a_{\rm core}\,\kappa_1(\Omega_K),
++        \qquad
++        [\chi_{\rm curl}]=1,
++        \label{eq:rt_chi_curl}
++    \end{align}
++    where \(\Omega_K\) is the actual finite-thickness knot domain.  A pure
++    ropelength mass branch requires \(\chi_{\rm curl}(K)\) and the normalized field
++    profile to be sufficiently universal across the compared knot classes.
++
++    \paragraph{Thin active-shell cost.}
++    Let \(\delta=b-a\ll b\).  Expanding the spherical-shell root condition in the
++    thin-shell regime gives the leading radial scaling
++    \begin{align}
++        \kappa_1(B^3(a,b))
++        \sim
++        \frac{\pi}{\delta}.
++        \label{eq:rt_thin_shell_curl_scaling}
++    \end{align}
++    Thus a progressively thinner \emph{vorticity- or flux-carrying filled shell}
++    acquires a large spectral cost.  This result must not be transferred to an
++    irrotational horn envelope surrounding a much smaller vorticity-bearing core;
++    those are different field sectors.
++
++    \paragraph{Field-line geometry.}
++    The minimum-eigenvalue ball and shell fields are axisymmetric and are organized
++    by nested toroidal invariant surfaces.  This supports their use as qualitative
++    benchmarks for a bent coarse-grained flux bundle.  It does not imply that a
++    remote background flow must be toroidal, nor does it establish the geometry of a
++    knotted SST carrier.
++
++    \paragraph{Beltrami residual.}
++    For a numerical candidate \(\mathbf{V}\), define
++    \begin{align}
++        \mathcal R_{\rm CK}(\kappa)
++        :=
++        \frac{
++        \left\|
++        \nabla\times\mathbf{V}-\kappa\mathbf{V}
++        \right\|_{L^2(\Omega)}
++        }{
++        \left\|\nabla\times\mathbf{V}\right\|_{L^2(\Omega)}
++        +
++        |\kappa|\left\|\mathbf{V}\right\|_{L^2(\Omega)}
++        }.
++        \label{eq:rt_ck_residual}
++    \end{align}
++    The fitted \(\kappa\), \(\mathcal R_{\rm CK}\), and
++    \(a_{\rm core}\kappa\) must be reported together.
++
++    \paragraph{No automatic ideal-Euler relaxation.}
++    A lowest curl eigenfield is a stationary variational benchmark.  In the ideal,
++    incompressible, unforced Euler limit, kinetic energy and helicity are conserved;
++    the dynamics therefore do not automatically dissipate toward the lowest mode.
++    Any relaxation claim requires a separately declared dissipative, radiative, or
++    coarse-graining mechanism.  Hence
++    \begin{align}
++        \text{small }\mathcal R_{\rm CK}
++        \not\Rightarrow
++        \text{dynamical attractor or particle stability}.
++        \label{eq:rt_ck_no_relaxation_guard}
++    \end{align}
++
++    \paragraph{Minimal falsifier.}
++    Compute \(\kappa_1\) on resolved unknot, trefoil, figure-eight, and selected
++    higher-knot tubes at common \(a_{\rm core}\) and common volume.  Strong
++    knot-dependent variation in \(\chi_{\rm curl}\) falsifies any claim that the
++    entire field-energy splitting is determined by scalar ropelength alone.
++
+ \section{Research-Track particle and clock ansatz}
+ \label{app:research-track}
+ 
+--- a/SST_CANON-v0.8.20.tex
++++ b/SST_CANON-v0.8.20.tex
+@@ -1488,6 +1488,81 @@
+     \paragraph{Status.}
+         \textbf{Secondary derived result.} Valid under spectral assumptions; not a defining postulate. The cubic weighting $\sum_n 1/\omega_n^3$ with $\omega_n\sim n$ yields $\zeta(3)$ for \emph{any} asymptotically linear spectrum; this is a generic calculus property $[\text{CALIBRATED}]$, not an SST-specific fluid-dynamical or topological invariant.
+ 
++\subsection{Bounded-Domain Curl-Spectrum Benchmarks}
++    \label{subsec:bounded_domain_curl_spectrum}
++
++    \textbf{[ORTHODOX / SPECTRAL BENCHMARK].}
++    Let \(\Omega\subset\mathbb{R}^3\) be a smooth bounded domain and let
++    \(\mathbf{V}\) be divergence-free and tangent to \(\partial\Omega\).  In the
++    bounded-domain curl eigenproblem
++    \begin{align}
++        \nabla\times\mathbf{V}
++        &=
++        \kappa_{\rm curl}\mathbf{V},
++        &
++        \nabla\cdot\mathbf{V}&=0,
++        &
++        \mathbf{V}\cdot\mathbf{n}\big|_{\partial\Omega}&=0,
++        \label{eq:canon_curl_eigenproblem}
++    \end{align}
++    the smallest positive eigenvalue is a property of the complete domain and its
++    boundary conditions, not of the centreline alone
++    \cite{CantarellaDeTurckGluckTeytel2000CurlSpherical}.
++
++    For a ball \(B_b^3\) of radius \(b\),
++    \begin{align}
++        \kappa_1(B_b^3)
++        &=
++        \frac{x_1}{b},
++        &
++        \tan x_1&=x_1,
++        &
++        x_1&=4.493409458\ldots,
++        \label{eq:canon_ball_curl_eigenvalue}
++    \end{align}
++    with multiplicity three.  For a concentric spherical shell
++    \(B^3(a,b)=\{a<r<b\}\), the first positive eigenvalue is the smallest positive
++    root of
++    \begin{align}
++        J_{3/2}(a\kappa)Y_{3/2}(b\kappa)
++        -
++        J_{3/2}(b\kappa)Y_{3/2}(a\kappa)
++        =0.
++        \label{eq:canon_shell_curl_eigenvalue}
++    \end{align}
++
++    In the normalization
++    \begin{align}
++        \mathscr E_V
++        &=
++        \int_\Omega |\mathbf{V}|^2\,d^3x,
++        &
++        \mathscr H_V
++        &=
++        \left\langle
++        \mathbf{V},\operatorname{BS}_{K(\Omega)}\mathbf{V}
++        \right\rangle_{L^2},
++    \end{align}
++    a curl eigenfield satisfies
++    \begin{align}
++        \mathscr E_V
++        =
++        \kappa_{\rm curl}\mathscr H_V,
++        \qquad
++        \frac{\mathscr H_V}{\mathscr E_V}
++        =
++        \frac{1}{\kappa_{\rm curl}}.
++        \label{eq:canon_helicity_capacity_relation}
++    \end{align}
++
++    \textbf{[CANON / SCOPE GUARD].}
++    Equations~\eqref{eq:canon_ball_curl_eigenvalue} and
++    \eqref{eq:canon_shell_curl_eigenvalue} are exact benchmarks only for the stated
++    filled spherical domains.  The constant \(4.493409458\ldots\) is not a universal
++    SST particle constant, the distinguished central orbit of the eigenfield is not
++    an independently resolved vortex core, and neither formula determines
++    \(a_{\rm core}\) or \(r_{\rm horn}\) for a knotted tube.
++
+ \subsection{Symmetry-Sensitive Dark-Knot Classification}
+     \label{subsec:dark_knot_classification}
+ 
+@@ -5037,6 +5112,12 @@
+             \newblock Astronomy \& Astrophysics \textbf{641} (2020), A6,
+             \newblock DOI: 10.1051/0004-6361/201833910.
+ 
++\bibitem{CantarellaDeTurckGluckTeytel2000CurlSpherical}
++            J.~Cantarella, D.~DeTurck, H.~Gluck, and M.~Teytel,
++            \newblock ``The Spectrum of the Curl Operator on Spherically Symmetric Domains,''
++            \newblock \emph{Physics of Plasmas} \textbf{7} (2000), 2766--2775,
++            \newblock DOI: \href{https://doi.org/10.1063/1.874127}{10.1063/1.874127}.
++
+             \bibitem{CantarellaKusnerSullivan2002}
+             J.~Cantarella, R.~B. Kusner, and J.~M. Sullivan,
+             \newblock On the Minimum Ropelength of Knots and Links,

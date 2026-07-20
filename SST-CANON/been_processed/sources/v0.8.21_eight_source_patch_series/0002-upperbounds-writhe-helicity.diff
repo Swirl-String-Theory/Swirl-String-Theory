@@ -1,0 +1,138 @@
+--- a/SST_CANON-v0.8.20-research-track.tex
++++ b/SST_CANON-v0.8.20-research-track.tex
+@@ -2963,6 +2963,81 @@
+     knot-dependent variation in \(\chi_{\rm curl}\) falsifies any claim that the
+     entire field-energy splitting is determined by scalar ropelength alone.
+ 
++\subsection{Research Appendix: Writhe Bounds, Twist Guards, and Flat-Torus Benchmark}
++    \label{subsec:rt_upper_bounds_writhe_helicity}
++
++    \paragraph{Status.}
++    \textbf{[ORTHODOX SOURCE RESULTS / SST DIAGNOSTIC USE].}
++    This appendix imports only the bounds and explicit model-domain results of
++    Cantarella, DeTurck, and Gluck
++    \cite{CantarellaDeTurckGluck2001UpperBounds}.
++
++    \paragraph{Writhe sanity gate.}
++    A computed centerline with radius-convention ropelength
++    \(\operatorname{Rop}_{\rm rad}\) must satisfy
++    \begin{align}
++        |\operatorname{Wr}|
++        <
++        \frac14\operatorname{Rop}_{\rm rad}^{4/3}.
++        \label{eq:rt_writhe_sanity_gate}
++    \end{align}
++    Violation indicates a convention, discretization, or integration error.  Passing
++    the bound does not certify ideality because the inequality is intentionally broad.
++
++    \paragraph{Special zero-internal-twist tube.}
++    For the particular tube field used in the source---normal to each cross-sectional
++    disk and with magnitude depending only on distance from the centerline---the
++    internal twist contribution is absent and
++    \begin{align}
++        \mathscr H_V
++        =
++        \Phi^2\operatorname{Wr}(K).
++        \label{eq:rt_special_zero_twist_helicity}
++    \end{align}
++    This equality is not a general SST identity.  It may be used only after the
++    selected framing and cross-sectional field have independently established zero
++    internal twist.  In particular,
++    \begin{align}
++        \mathscr H_V/\Phi^2
++        =
++        \operatorname{Wr}
++        \quad\Longrightarrow\quad
++        \text{verified zero-twist model},
++        \label{eq:rt_zero_twist_implication_guard}
++    \end{align}
++    not a post-hoc choice of twist to match a target helicity.
++
++    \paragraph{Flat solid-torus benchmark.}
++    On the product domain \(D^2(a)\times S^1\), the first positive curl eigenvalue is
++    \begin{align}
++        \kappa_1
++        =
++        \frac{j_{0,1}}{a},
++        \qquad
++        j_{0,1}=2.404825558\ldots,
++        \label{eq:rt_flat_solid_torus_eigenvalue}
++    \end{align}
++    with an eigenfield containing both longitudinal and azimuthal components.  This
++    supplies a local slender-tube benchmark for \(a\kappa_1\).  The product torus is
++    not an embedded curved horn torus in \(\mathbb R^3\); major-radius curvature,
++    knotting, and self-contact are absent and must be recomputed in the physical
++    domain.
++
++    \paragraph{Research requirement.}
++    For every candidate particle tube, report the tuple
++    \begin{align}
++        \left(
++        \operatorname{Rop}_{\rm rad},
++        \operatorname{Wr},
++        \text{framing/twist prescription},
++        \mathscr H_V/\Phi^2,
++        a_{\rm core}\kappa_1
++        \right).
++        \label{eq:rt_writhe_helicity_audit_tuple}
++    \end{align}
++    A scalar ropelength or writhe value alone is insufficient to specify the
++    volumetric field state.
++
+ \section{Research-Track particle and clock ansatz}
+ \label{app:research-track}
+ 
+--- a/SST_CANON-v0.8.20.tex
++++ b/SST_CANON-v0.8.20.tex
+@@ -4412,6 +4412,37 @@
+             \cdots .
+         \end{align}
+ 
++\paragraph{Writhe and helicity upper-bound guard.}
++        \textbf{[ORTHODOX / NON-SHARP BOUNDS].}
++        For a smooth knot or link of length \(L\) carrying an embedded tube of
++        radius \(R\),
++        \begin{align}
++            |\operatorname{Wr}(K)|
++            <
++            \frac14\left(\frac{L}{R}\right)^{4/3}
++            =
++            \frac14\operatorname{Rop}_{\rm rad}(K)^{4/3}.
++            \label{eq:canon_writhe_ropelength_upper_bound}
++        \end{align}
++        For a smooth vector field \(\mathbf V\) on a bounded domain \(\Omega\),
++        the corresponding rough geometric helicity bound is
++        \begin{align}
++            |\mathscr H_V|
++            \leq
++            R_{\rm vol}(\Omega)\,\mathscr E_V,
++            \label{eq:canon_rough_helicity_volume_bound}
++        \end{align}
++        where \(R_{\rm vol}(\Omega)\) is the radius of a ball with the same volume
++        as \(\Omega\) and \(\mathscr E_V=\int_\Omega|\mathbf V|^2d^3x\)
++        \cite{CantarellaDeTurckGluck2001UpperBounds}.
++
++        \textbf{[CANON / PRECISION GUARD].}
++        Equations~\eqref{eq:canon_writhe_ropelength_upper_bound} and
++        \eqref{eq:canon_rough_helicity_volume_bound} are deliberately non-sharp.
++        They are admissibility and regression bounds, not estimators of particle
++        mass, chirality strength, or equilibrium helicity.  Sharp helicity bounds
++        require the domain-specific projected Biot--Savart/curl spectrum.
++
+         \paragraph{Convention guard for trefoil alpha comparisons.}
+         The mathematical literature uses both radius- and diameter-based thickness
+         conventions.  If
+@@ -5118,6 +5149,13 @@
+             \newblock \emph{Physics of Plasmas} \textbf{7} (2000), 2766--2775,
+             \newblock DOI: \href{https://doi.org/10.1063/1.874127}{10.1063/1.874127}.
+ 
++\bibitem{CantarellaDeTurckGluck2001UpperBounds}
++            J.~Cantarella, D.~DeTurck, and H.~Gluck,
++            \newblock ``Upper Bounds for the Writhing of Knots and the Helicity of Vector Fields,''
++            \newblock in \emph{Knots, Braids, and Mapping Class Groups---Papers Dedicated to Joan S. Birman},
++            AMS/IP Studies in Advanced Mathematics \textbf{24} (2001), 1--21,
++            \newblock Permalink: \href{https://jasoncantarella.com/downloads/papers/upperbounds/upperbounds.pdf}{author PDF}.
++
+             \bibitem{CantarellaKusnerSullivan2002}
+             J.~Cantarella, R.~B. Kusner, and J.~M. Sullivan,
+             \newblock On the Minimum Ropelength of Knots and Links,

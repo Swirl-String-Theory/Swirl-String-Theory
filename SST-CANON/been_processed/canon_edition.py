@@ -174,7 +174,7 @@ EDITION_CONFIG = {
     },
     "0.8.20": {
         "prev": "0.8.19",
-        "header": "%! v0.8.20 edition: chronos kelvin hitting conditions + contact pressure saturation + rank9 contact channels + SSDL monopole DtN (been_processed).",
+        "header": "%! v0.8.20 edition: chronos kelvin + contact pressure + rank9 + SSDL + particle/clock ansatz (been_processed).",
         "note": (
             r"\textbf{v0.8.20} adds Chronos--Kelvin topological hitting conditions with a first-hitting "
             r"kink-versus-reconnection split and Kairos boundary ledger "
@@ -183,8 +183,37 @@ EDITION_CONFIG = {
             r"(\(\ref{subsec:rt_contact_pressure_saturation_swirl_clock}\), \(\ref{eq:rt_contact_pressure_split}\)), "
             r"a main-text research-track guard and colored rank-nine contact-channel diagnostic "
             r"(\(\ref{sec:rt_colored_contact_rank_nine}\), \(\ref{eq:rt_rank9_factorization}\)), "
-            r"and a Separatrix Surface-Density Lift monopole DtN research-track route "
-            r"(\(\ref{subsec:ssdl_monopole_dtn}\)) with audit v0.2 numeric support on top of v0.8.19."
+            r"a Separatrix Surface-Density Lift monopole DtN research-track route "
+            r"(\(\ref{subsec:ssdl_monopole_dtn}\)) with audit v0.2 numeric support, "
+            r"and a canon-safe Research-Track particle/clock ansatz with preregistered mass falsifiers "
+            r"(\(\ref{app:research-track}\), \(\ref{app:minimal-numerical-programme}\)) on top of v0.8.19."
+        ),
+    },
+    "0.8.21": {
+        "prev": "0.8.20",
+        "header": (
+            "%! v0.8.21 edition: eight-source curl/writhe/Gehring/Biot-Savart/"
+            "Hodge/helicity-forms/isoperimetric/Ridgerunner series (been_processed)."
+        ),
+        "note": (
+            r"\textbf{v0.8.21} adds the eight-source research appendices and matching main-canon "
+            r"guards: spherical/shell curl spectrum and helicity capacity "
+            r"(\(\ref{subsec:bounded_domain_curl_spectrum}\), \(\ref{subsec:rt_spherical_curl_spectrum_capacity}\)), "
+            r"coarse writhe/helicity upper bounds "
+            r"(\(\ref{subsec:rt_upper_bounds_writhe_helicity}\)), "
+            r"Gehring link-criticality and continuum contact measure "
+            r"(\(\ref{subsec:rt_gehring_contact_measure}\)), "
+            r"bounded-domain Biot--Savart operator admissibility "
+            r"(\(\ref{subsec:bounded_domain_biot_savart}\), \(\ref{subsec:rt_biot_savart_realizability}\)), "
+            r"five-sector Hodge topology and harmonic circulation "
+            r"(\(\ref{subsec:hodge_topological_circulation}\), \(\ref{subsec:rt_hodge_complete_reconstruction}\)), "
+            r"cohomological helicity and mapping-class/Dehn-twist jumps "
+            r"(\(\ref{subsec:canon_helicity_mapping_class_guard}\), \(\ref{subsubsec:rt_helicity_mapping_class}\)), "
+            r"isoperimetric domain-spectrum and enstrophy guards "
+            r"(\(\ref{subsec:canon_isoperimetric_helicity_guard}\), \(\ref{subsubsec:rt_isoperimetric_domain_shape}\)), "
+            r"and Ridgerunner polygonal-to-smooth certification "
+            r"(\(\ref{subsec:canon_ropelength_certification_guard}\), \(\ref{subsubsec:rt_polygonal_smooth_certification}\)) "
+            r"on top of v0.8.20."
         ),
     },
 }
@@ -253,6 +282,16 @@ EDITION_KEYWORDS: dict[str, list[str]] = {
         "contact pressure saturation",
         "rank nine contact channels",
         "SSDL monopole DtN",
+    ],
+    "0.8.21": [
+        "curl spectrum helicity capacity",
+        "writhe helicity upper bounds",
+        "Gehring link criticality",
+        "Biot-Savart operator",
+        "Hodge topology circulation",
+        "helicity forms mapping class",
+        "isoperimetric domain spectrum",
+        "Ridgerunner certification",
     ],
 }
 

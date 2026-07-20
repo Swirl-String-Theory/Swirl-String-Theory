@@ -1,0 +1,212 @@
+diff --git a/SST_CANON-v0.8.20-research-track.tex b/SST_CANON-v0.8.20-research-track.tex
+index aa919d9c72a81ca4bf0f1908953173f09db3ddf6..a02a967a0a089c8e8ca404f8c08806c5fcc07b02 100644
+--- a/SST_CANON-v0.8.20-research-track.tex
++++ b/SST_CANON-v0.8.20-research-track.tex
+@@ -2066,6 +2066,116 @@
+ \end{equation}
+ where $SL_i$ is self-linking and $Lk_{ij}$ is Gauss linking number.
+ 
++\subsubsection{Cohomological helicity and mapping-class sectors}
++\label{subsubsec:rt_helicity_mapping_class}
++\paragraph{Status.}
++\textbf{[ORTHODOX DIFFERENTIAL-TOPOLOGICAL INPUT / RESEARCH-TRACK SST STATE LABEL].}
++Let $\alpha=\iota_{\mathbf V}d^3x$ be the two-form dual to a divergence-free
++field $\mathbf V$ tangent to the boundary of a compact domain
++$\Omega\subset\mathbb R^3$.  Cantarella and Parsley express the same helicity
++both as a configuration-space cohomology pairing and as a wedge product with a
++Biot--Savart-selected primitive \cite{CantarellaParsley2010Helicity}:
++\begin{align}
++    \mathcal H(\alpha)
++    &=
++    \int_{C_2[\Omega]}
++    \alpha_x\wedge\alpha_y\wedge g^*(d\Omega_{S^2}),
++    \label{eq:rt_helicity_configuration_space}\\
++    &=
++    \int_{\Omega}\alpha\wedge\operatorname{BS}(\alpha).
++    \label{eq:rt_helicity_primitive_form}
++\end{align}
++The compactified configuration space $C_2[\Omega]$ resolves the pair diagonal
++$x=y$ by retaining the limiting direction of approach.  This is a geometric
++regularization of the Gauss kernel; it is not an SST core cutoff and does not
++set $a_{\rm core}$ or $\rc$.
++
++\paragraph{Primitive and gauge discipline.}
++On a multiply connected domain, the value of
++$\int_{\Omega}\alpha\wedge\beta$ need not be independent of an arbitrary
++primitive $d\beta=\alpha$.  The Biot--Savart/Hodge choice in
++Eq.~\eqref{eq:rt_helicity_primitive_form}, together with the independent flux
++and boundary data, is part of the observable definition.  A numerical export
++of $\mathcal H$ is therefore incomplete unless it declares
++\begin{align}
++    \left(
++        \boldsymbol\omega,
++        \{\Gamma_i\},
++        [\beta|_{\partial\Omega}],
++        \text{Hodge/Biot--Savart gauge}
++    \right).
++    \label{eq:rt_helicity_gauge_metadata}
++\end{align}
++For the kinetic-helicity mapping one sets $\mathbf V=\boldsymbol\omega$ and
++$\operatorname{BS}(\boldsymbol\omega)=\uswirl$ up to the separately fixed
++harmonic sector.
++
++\paragraph{Mapping-class jump law.}
++For an orientation-preserving diffeomorphism $f:\Omega\to\Omega'$, the exact
++change is
++\begin{align}
++    \Delta\mathcal H
++    &=
++    \mathcal H\!\left((f^{-1})^*\alpha\right)-\mathcal H(\alpha)
++    =
++    \sum_{i,j}c_{ij}\Phi_i\Phi_j
++    =
++    \boldsymbol\Phi^{\!T}C\boldsymbol\Phi,
++    \label{eq:rt_helicity_mapping_class_quadratic}
++\end{align}
++where the coefficients $c_{ij}$ are fixed by the induced action on boundary
++homology.  For a solid torus and $j\in\mathbb Z$ Dehn twists,
++\begin{align}
++    \Delta\mathcal H=j\Phi^2 .
++    \label{eq:rt_helicity_dehn_twist_jump}
++\end{align}
++With $\mathbf V=\boldsymbol\omega$, the spanning-disk flux is the circulation,
++$\Phi=\Gamma$.  One canonical circulation unit therefore gives
++\begin{align}
++    \Gamma_0
++    &=2\pi\rc\vchar
++      =9.68361920\times10^{-9}\,{\rm m^2\,s^{-1}},\\
++    \Delta\mathcal H_{j=1}
++    &=\Gamma_0^2
++      =9.37724809\times10^{-17}\,{\rm m^4\,s^{-2}}.
++    \label{eq:rt_helicity_dehn_twist_numeric}
++\end{align}
++The dimensions are those of kinetic helicity.  Equation
++\eqref{eq:rt_helicity_dehn_twist_numeric} does not quantize circulation by
++itself; integer circulation requires an independent phase or Onsager closure.
++
++\paragraph{Relation to writhe and twist.}
++In the thin single-tube limit,
++\begin{align}
++    \mathcal H\simeq\Gamma^2(Wr+Tw),
++    \label{eq:rt_helicity_wr_tw_sector}
++\end{align}
++and a Dehn twist changes the framing by $\Delta Tw=j$ while leaving the
++centerline embedding potentially unchanged.  Thus two states with the same
++$K$, $\operatorname{Rop}(K)$, $Wr$, and $\Gamma$ may still differ by
++$j\Gamma^2$ in helicity.  The SST state label must therefore be enlarged to
++\begin{align}
++    \mathfrak T_K
++    =
++    \left(K,\{\Gamma_i\},Wr,Tw,[f]_{\rm map}\right).
++    \label{eq:rt_helicity_state_label}
++\end{align}
++The twist variable is measured state data, not a residual parameter chosen to
++close a target helicity.
++
++\paragraph{Chronos--Kairos separation.}
++A smooth ideal material flow $f_t$ with $f_0=\operatorname{id}$ is homotopic to
++the identity and conserves helicity.  A transition between distinct mapping
++classes is therefore entered in the Kairos ledger and must name its physical
++trigger.  Fluxless sectors, $\Phi_i=0$, are invariant under the quadratic jump
++law even when the mapping class is nontrivial.
++
++\paragraph{Falsifier.}
++If a numerical ideal-Euler evolution without boundary work, phase slip, or
++reconnection changes the tuple
++$\left(\mathcal H,\{\Gamma_i\},[f]_{\rm map}\right)$ beyond discretization
++error, the implementation violates the frozen-field topology gate.
++
+ \subsubsection{Energy relaxation under topological constraints}
+ For a slender swirl tube, the leading hydrodynamic energy scale is
+ \begin{equation}
+@@ -3912,6 +4022,13 @@
+ ``The degree of knottedness of tangled vortex lines,''
+ \emph{Journal of Fluid Mechanics} \textbf{35}, 117--129 (1969).
+ DOI: \href{https://doi.org/10.1017/S0022112069000991}{10.1017/S0022112069000991}.
++
++\bibitem{CantarellaParsley2010Helicity}
++J.~Cantarella and J.~Parsley,
++``A new cohomological formula for helicity in $\mathbb R^{2k+1}$ reveals the effect of a diffeomorphism on helicity,''
++\emph{Journal of Geometry and Physics} \textbf{60}, 1127--1155 (2010).
++DOI: \href{https://doi.org/10.1016/j.geomphys.2010.04.001}{10.1016/j.geomphys.2010.04.001};
++arXiv: \href{https://arxiv.org/abs/0903.1465}{0903.1465}.
+ 
+ \bibitem{ArnoldKhesin1998TopologicalMethods}
+ V.~I.~Arnold and B.~A.~Khesin,
+diff --git a/SST_CANON-v0.8.20.tex b/SST_CANON-v0.8.20.tex
+index 2ea0841003e55e28663677a936f71a0d9d84e58d..4cce1b8e868eccf996ccb3dc556a12c348fde21c 100644
+--- a/SST_CANON-v0.8.20.tex
++++ b/SST_CANON-v0.8.20.tex
+@@ -4481,6 +4481,58 @@
+                 =
+                 3_1^{\rm core}\otimes\Psi_{n\ell m\sigma}^{\rm envelope} .
+             \end{align}
++
++        \paragraph{Helicity mapping-class and framing guard.}
++        \label{subsec:canon_helicity_mapping_class_guard}
++        \textbf{[ORTHODOX / CANON SEMANTIC GUARD].}
++        Let $\Omega\subset\mathbb R^3$ be a compact resolved-tube domain and let
++        $\mathbf V$ be divergence free and tangent to $\partial\Omega$.  The
++        dual two-form $\alpha=\iota_{\mathbf V}d^3x$ is closed and vanishes when
++        pulled back to the boundary.  Helicity may then be written using the
++        Biot--Savart/Hodge-selected primitive,
++        \begin{align}
++            \mathcal H(\alpha)
++            =
++            \int_{\Omega}\alpha\wedge\operatorname{BS}(\alpha),
++            \label{eq:canon_helicity_bs_primitive}
++        \end{align}
++        but an arbitrary primitive is not a gauge-complete replacement on a
++        multiply connected domain \cite{CantarellaParsley2010Helicity}.
++
++        For an orientation-preserving diffeomorphism $f:\Omega\to\Omega'$, the
++        general mapping-class correction is a quadratic form in the independent
++        fluxes,
++        \begin{align}
++            \Delta\mathcal H
++            =
++            \mathcal H\!\left((f^{-1})^*\alpha\right)-\mathcal H(\alpha)
++            =
++            \sum_{i,j}c_{ij}\Phi_i\Phi_j .
++            \label{eq:canon_helicity_mapping_class_jump}
++        \end{align}
++        For a solid torus subjected to $j$ Dehn twists this reduces to
++        \begin{align}
++            \Delta\mathcal H=j\Phi^2 .
++            \label{eq:canon_helicity_dehn_twist}
++        \end{align}
++        In the hydrodynamic identification $\mathbf V=\boldsymbol\omega$,
++        $\Phi=\Gamma$ and hence $\Delta\mathcal H=j\Gamma^2$.  A smooth ideal
++        material evolution generated from the identity remains in the identity
++        mapping class and preserves helicity; a nonzero jump in
++        Eq.~\eqref{eq:canon_helicity_mapping_class_jump} is therefore not ordinary
++        Euler advection.  It requires a declared boundary operation, framing
++        change, phase slip, reconnection, or other Kairos transition.
++
++        \textbf{[CANON CONSEQUENCE].}
++        Knot type, centerline, and ropelength do not by themselves fix the
++        helicity sector.  Any SST state that uses helicity or twist energetically
++        must expose at least
++        \begin{align}
++            \left(K,\{\Gamma_i\},\text{framing/mapping class}\right),
++            \label{eq:canon_helicity_state_metadata}
++        \end{align}
++        and must not fit $Tw$ after the fact to force a desired value of
++        $\mathcal H$.
+ 
+ 
+         \paragraph{Ropelength representative and thickness-constrained ground state.}
+@@ -5223,6 +5275,13 @@
+             \newblock J. Fluid Mech. \textbf{35} (1969), 117--129,
+             \newblock DOI: 10.1017/S0022112069000991.
+ 
++            \bibitem{CantarellaParsley2010Helicity}
++            J.~Cantarella and J.~Parsley,
++            \newblock A new cohomological formula for helicity in $\mathbb R^{2k+1}$ reveals the effect of a diffeomorphism on helicity,
++            \newblock \emph{Journal of Geometry and Physics} \textbf{60} (2010), 1127--1155,
++            \newblock DOI: \href{https://doi.org/10.1016/j.geomphys.2010.04.001}{10.1016/j.geomphys.2010.04.001},
++            \newblock arXiv: \href{https://arxiv.org/abs/0903.1465}{0903.1465}.
++
+             \bibitem{Zurek2003}
+             W.~H. Zurek,
+             \newblock Decoherence, einselection, and the quantum origins of the classical,

@@ -1,0 +1,477 @@
+\section{Research-Track particle and clock ansatz}
+\label{app:research-track}
+
+\[
+\boxed{
+\text{SUBSTRATE INTERPRETATION / NON-ORTHODOX RESEARCH TRACK}
+}
+\]
+
+\paragraph{Status.}
+This section introduces candidate SST closures that are not consequences of
+orthodox Euler hydrodynamics, Gross--Pitaevskii theory, or established particle
+physics.  The purpose is to formulate a constrained and falsifiable research
+programme while preserving the distinction between geometric definitions,
+canonically calibrated SST quantities, and unverified particle assignments.
+
+Suppose, as an additional hypothesis, that microscopic matter structures are
+finite-core vortex knots of an incompressible underlying substrate.  A
+predictive implementation must derive its equilibrium states from a declared
+continuum energy and finite-thickness constraint.  Arbitrary pairwise
+short-range potentials introduced only to prevent strand crossings are
+excluded.
+
+\subsection{Resolved finite-core energy functional}
+
+Let
+\begin{equation}
+\gamma_K:
+S^1\rightarrow\mathbb{R}^3,
+\qquad
+s\mapsto\bm{X}_K(s)
+\end{equation}
+be an arclength-parametrized centreline of knot type \(K\).  Its resolved tube
+radius is defined geometrically by
+\begin{equation}
+a_{\rm core}(K)
+=
+\operatorname{reach}(\gamma_K)
+=
+\min\left[
+\inf_s\frac{1}{\kappa(s)},
+\frac{1}{2}d_{\rm dcsd}(\gamma_K)
+\right],
+\label{eq:RT-reach}
+\end{equation}
+where \(d_{\rm dcsd}\) is the minimum doubly-critical self-distance
+\cite{CantarellaKusnerSullivan2002}.
+
+A candidate resolved-tube energy is
+\begin{align}
+\mathcal{E}_{\rm eff}[\gamma_K]
+={}&
+E_{\rm SI}^{(a)}[\gamma_K,\Gamma_K]
++
+T_{\rm eff}L[\gamma_K]
++
+B_{\rm eff}\oint_{\gamma_K}\kappa^2\,\dd s
++
+E_{\rm twist}[\gamma_K],
+\label{eq:RT-resolved-functional}
+\\
+L[\gamma_K]
+={}&
+\oint_{\gamma_K}\dd s .
+\end{align}
+
+Here \(E_{\rm SI}^{(a)}\) is a finite-core regularization of the kinetic
+self-induction energy.  It may be represented generally as
+\begin{equation}
+E_{\rm SI}^{(a)}
+=
+\frac{\rhoF\Gamma_K^2}{8\pi}
+\oint_{\gamma_K}
+\oint_{\gamma_K}
+\bm{t}(s)\cdot\bm{t}(s')\,
+\mathcal{K}_{a_{\rm core}}
+\left(
+\left|
+\bm{X}_K(s)-\bm{X}_K(s')
+\right|
+\right)
+\dd s\,\dd s',
+\label{eq:RT-regularized-self-induction}
+\end{equation}
+where
+\begin{equation}
+\mathcal{K}_{a}(r)
+\longrightarrow
+\frac{1}{r}
+\qquad
+(r\gg a)
+\end{equation}
+and \(\mathcal{K}_{a}(0)\) is finite.  The regularization kernel must be
+derived from, or fixed by, a declared core profile before mass predictions
+are evaluated.
+
+The coefficients have dimensions
+\begin{equation}
+[T_{\rm eff}]
+=
+\mathrm{J\,m^{-1}},
+\qquad
+[B_{\rm eff}]
+=
+\mathrm{J\,m}.
+\end{equation}
+A finite-core scaling ansatz may take the form
+\begin{equation}
+B_{\rm eff}
+=
+c_B T_{\rm eff}a_{\rm core}^2,
+\label{eq:RT-bending-scaling}
+\end{equation}
+where \(c_B\) is dimensionless.  Dimensional analysis does not determine
+\(c_B=1\); it must follow from a resolved cross-sectional calculation.
+
+The minimization problem is therefore
+\begin{equation}
+\min_{\gamma_K\in K}
+\mathcal{E}_{\rm eff}[\gamma_K]
+\qquad
+\text{subject to}
+\qquad
+\operatorname{reach}(\gamma_K)
+\geq
+a_{\rm core}.
+\label{eq:RT-constrained-minimization}
+\end{equation}
+
+For a polygonal discretization \(V\), this constraint becomes
+\begin{align}
+\operatorname{MinRad}(v_i)
+&\geq
+a_{\rm core},
+\\
+\frac{1}{2}d(p,q)
+&\geq
+a_{\rm core}.
+\end{align}
+The active curvature constraints are kinks and the active self-distance
+constraints are struts.  Their non-negative KKT multipliers supply a
+contact-stress skeleton for the resolved tube
+\cite{AshtonCantarellaPiatekRawdon2011}.
+
+The hard reach constraint is a geometric admissibility condition, not an
+auxiliary Lennard--Jones interaction.  Bending stiffness can oppose
+homothetic collapse, but it cannot by itself exclude a finite-curvature
+self-crossing.
+
+\subsection{Quantized circulation and characteristic velocity}
+
+The circulation is retained in the canonical SST form
+\begin{equation}
+\Gamma_K
+=
+n_K\Gamma_0,
+\qquad
+n_K\in\mathbb{Z},
+\label{eq:RT-circulation-quantization}
+\end{equation}
+with
+\begin{equation}
+\Gamma_0
+=
+2\pi\rc\vchar
+=
+9.68361920\times10^{-9}\,
+\mathrm{m^2\,s^{-1}}.
+\label{eq:RT-circulation-quantum}
+\end{equation}
+
+Thus the conserved circulation must not vary continuously with the knot
+radius \(R_K\).  Instead, the characteristic resolved velocity may depend
+on geometry through
+\begin{equation}
+U_K
+=
+\frac{\Gamma_K}{2\pi R_K}
+\,
+\mathcal{G}
+\left(
+\frac{a_{\rm core}}{R_K},
+\mathcal{T}_K,
+\mathfrak{q}_K
+\right),
+\label{eq:RT-characteristic-speed}
+\end{equation}
+where \(\mathcal{G}\) is dimensionless and \(\mathfrak{q}_K\) denotes any
+independently specified internal coloring data.
+
+Equation~\eqref{eq:RT-characteristic-speed} separates the canonical
+circulation quantum from the geometry-dependent relation between circulation
+and a chosen characteristic velocity.
+
+\subsection{Topology-first particle assignment}
+
+A predictive particle dictionary must be fixed before the observed mass
+spectrum is used.  Let
+\begin{equation}
+\mathsf{A}(P)
+=
+\left(
+K_P,
+n_P,
+\mathfrak{q}_P,
+\text{framing data},
+\text{component structure}
+\right)
+\label{eq:RT-assignment-map}
+\end{equation}
+denote the preregistered assignment for particle \(P\).
+
+If a non-Abelian internal coloring is introduced, the mathematically
+appropriate structure is a group homomorphism
+\begin{equation}
+\mathfrak{q}_K:
+\pi_1
+\left(
+\mathbb{R}^3\setminus K
+\right)
+\longrightarrow
+G,
+\label{eq:RT-coloring-homomorphism}
+\end{equation}
+whose values on Wirtinger generators satisfy the knot-group crossing
+relations.
+
+A tuple such as
+\begin{equation}
+(L\bmod3,S\bmod2,\chi)
+\end{equation}
+may serve as a collection of discrete labels, but it is not by itself a
+homomorphism into
+\(\mathfrak{su}(3)\oplus\mathfrak{su}(2)\oplus\mathfrak{u}(1)\).
+
+The trefoil \(K_{2,3}=3_1\) may be retained as the preregistered electron
+benchmark of the current SST taxonomy.  Baryon assignments remain under
+audit.  A torus-knot candidate \(K_{3,q}\), a three-component colored
+composite, or another explicitly specified topology may be tested, but
+threefold winding must not be identified with QCD color solely because
+both involve the integer three.
+
+\subsection{Preregistered falsifiability test}
+
+Before fitting any mass, the following objects must be fixed:
+
+\begin{enumerate}
+\item the particle-to-topology map \(\mathsf{A}\);
+\item the core regularization kernel \(\mathcal{K}_{a}\);
+\item the circulation numbers \(n_P\);
+\item the dimensionless coefficient \(c_B\);
+\item the twist-energy law, if retained;
+\item the admissible embedding class and numerical convergence criteria.
+\end{enumerate}
+
+Only one overall energy normalization may then be calibrated using the
+electron mass.  Define the dimensionless minimized energy
+\begin{equation}
+\widehat{\mathcal{E}}_P
+=
+\min_{\gamma\in\mathcal{C}_P}
+\widehat{\mathcal{E}}_{\rm eff}
+\left[
+\gamma;
+\mathsf{A}(P)
+\right],
+\label{eq:RT-dimensionless-minimum}
+\end{equation}
+where \(\mathcal{C}_P\) is the preregistered admissible class.
+
+The out-of-sample proton prediction is
+\begin{equation}
+\widehat{R}_{p/e}
+=
+\frac{
+\widehat{\mathcal{E}}_p
+}{
+\widehat{\mathcal{E}}_e
+}.
+\label{eq:RT-predicted-proton-ratio}
+\end{equation}
+The model must reproduce
+\begin{equation}
+\widehat{R}_{p/e}
+\simeq
+1836.15267
+\label{eq:RT-proton-target}
+\end{equation}
+within a preregistered numerical and theoretical uncertainty, without
+changing the topology assignment, the kernel, or any dimensionless
+coefficient after inspecting the result \cite{Mohr2025CODATA}.
+
+The same fixed model must then predict additional ratios, including the
+neutron-to-electron ratio and at least one further particle sector.  Failure
+of any preregistered primary target falsifies the corresponding assignment
+or the energy closure.
+
+\subsection{Clock-rate discipline}
+
+Define
+\begin{equation}
+\beta_K
+=
+\frac{U_K}{c},
+\qquad
+\Pi_a
+=
+\frac{a_{\rm core}}{R_K},
+\qquad
+\Pi_\kappa
+=
+a_{\rm core}^2\langle\kappa^2\rangle.
+\label{eq:RT-clock-parameters}
+\end{equation}
+
+The canon-compatible local clock factor is
+\begin{equation}
+\frac{\dd\tau_K}{\dd T}
+=
+\sqrt{1-\beta_K^2}.
+\label{eq:RT-canonical-clock}
+\end{equation}
+
+A Research-Track deviation may only be introduced in the explicitly
+factorized form
+\begin{equation}
+\frac{\dd\tau_K}{\dd T}
+=
+\sqrt{1-\beta_K^2}
+\left[
+1+
+\varepsilon_{\rm RT}
+\Delta_K
+\left(
+\Pi_a,
+\Pi_\kappa,
+\mathcal{T}_K,
+\mathfrak{q}_K,
+\ldots
+\right)
+\right],
+\label{eq:RT-clock-deviation}
+\end{equation}
+subject to
+\begin{equation}
+\Delta_K(0,0,\ldots)=0.
+\end{equation}
+
+The correction must be local, universal, independently derived, and
+preregistered before experimental comparison.  A ratio involving the
+galactic averaging radius \(R_{\rm gal}\) is not admitted into the local
+clock law unless a specific non-local coupling mechanism is derived.
+
+In the absence of such a derivation,
+\begin{equation}
+\varepsilon_{\rm RT}=0
+\end{equation}
+and Eq.~\eqref{eq:RT-canonical-clock} remains the operative clock law.
+
+\subsection{Reconnection, framing, and twist}
+
+A smooth filled Euler vortex tube has frozen topology and does not possess
+the Gross--Pitaevskii reconnection mechanism.  The model must therefore
+choose among:
+
+\begin{enumerate}
+\item exact topological conservation in the ideal limit;
+\item a declared finite-scale nonideal reconnection law;
+\item a compressible or order-parameter core theory.
+\end{enumerate}
+
+A framed finite-core tube may carry twist.  Any twist term
+\(E_{\rm twist}\) must specify the material frame, its transport equation,
+and the partition of helicity between linking, writhe, and twist
+\cite{Moffatt1969}.  Candidate falsifiers include Kelvin-wave dispersion,
+reconnection scaling, and helicity-transfer measurements.
+
+\section{Minimal numerical programme}
+\label{app:minimal-numerical-programme}
+
+A staged numerical test must separate geometry, hydrodynamics, topology
+assignment, and clock interpretation.
+
+\begin{enumerate}
+
+\item
+Preregister the candidate particle topologies, circulation integers, core
+profile, regularization kernel, and all dimensionless coefficients.
+
+\item
+Generate centreline discretizations for the preregistered knot and link
+classes.  Measure
+\[
+L,\qquad
+\operatorname{MinRad},\qquad
+d_{\rm dcsd},\qquad
+\operatorname{reach},
+\qquad
+\int\kappa^2\,\dd s.
+\]
+
+\item
+Minimize Eq.~\eqref{eq:RT-resolved-functional} subject to the hard
+finite-thickness conditions
+\[
+\operatorname{MinRad}\geq a_{\rm core},
+\qquad
+\frac12d_{\rm dcsd}\geq a_{\rm core}.
+\]
+Record the active struts, kinks, KKT multipliers, and constrained-gradient
+residual.
+
+\item
+Perform core-resolution and discretization convergence tests.  The predicted
+energy ratios must be stable under changes in vertex count, quadrature order,
+kernel resolution, and optimizer tolerance.
+
+\item
+Calibrate only the overall energy scale on the electron.  Evaluate all
+preregistered baryon and additional particle ratios without further fitting.
+
+\item
+For a fully contained closed vortex loop, verify the exact global identity
+\begin{equation}
+\int_{V}\bm{\omega}\,\dd V
+=
+\Gamma_K\oint_{\gamma_K}\dd\bm{X}
+=
+\bm{0}.
+\label{eq:RT-closed-loop-zero-monopole}
+\end{equation}
+
+\item
+Test the local coarse-grained relation
+\begin{equation}
+\overline{\omega}_z(\bm{x})
+\simeq
+\Gamma_K
+\mathcal{L}(\bm{x})
+p_z(\bm{x})
+\label{eq:RT-local-polarization}
+\end{equation}
+only as a local segment average.  For fully contained closed loops, verify
+that positive axial-vorticity regions are balanced by return-vorticity
+regions.
+
+\item
+Compare separately:
+\begin{enumerate}
+\item straight vortex lines crossing the averaging boundary;
+\item boundary-anchored or periodic vortex lines;
+\item fully closed vortex knots;
+\item space-filling vortex-cell models.
+\end{enumerate}
+Only the first two classes can support a nonzero global vector-vorticity
+monopole without an explicit return region.
+
+\item
+Measure finite-size and homogenization errors as
+\[
+\frac{L_{\rm cg}}{R_{\rm gal}}\rightarrow0,
+\qquad
+\frac{\ell_v}{L_{\rm cg}}\rightarrow0.
+\]
+
+\item
+Use Gross--Pitaevskii simulations for depleted-core quantum superfluids and
+Euler, vortex-blob, or resolved finite-core methods for filled classical
+tubes.  Do not transfer reconnection laws between these models without a
+declared bridge.
+
+\item
+Do not introduce a modified clock law until the circulation, velocity,
+energy, and topology closures have passed their independent tests.
+
+\end{enumerate}
+

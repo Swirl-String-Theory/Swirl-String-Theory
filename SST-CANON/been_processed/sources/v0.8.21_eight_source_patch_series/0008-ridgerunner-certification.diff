@@ -1,0 +1,285 @@
+diff --git a/SST_CANON-v0.8.20-research-track.tex b/SST_CANON-v0.8.20-research-track.tex
+index 4844712e58a26a98895a16694e84ae5c0c8bfc7a..0b82645c43b77afa982217585c8f8c4dcf229f84 100644
+--- a/SST_CANON-v0.8.20-research-track.tex
++++ b/SST_CANON-v0.8.20-research-track.tex
+@@ -2459,8 +2459,6 @@
+ for a discrete swirl-stress/contact-force map, not yet canonical physical
+ forces.
+ 
+-\subsubsection{Contact-map refinement of the topological kernel}
+-
+ \subsubsection{Contact-pressure saturation and Swirl-Clock shielding}
+ \label{subsec:rt_contact_pressure_saturation_swirl_clock}
+ 
+@@ -2656,6 +2654,8 @@
+ to a Biot--Savart pressure postprocessor.
+ 
+ 
++\subsubsection{Contact-map refinement of the topological kernel}
++\label{subsubsec:rt_contact_map_refinement}
+ A scalar ropelength is not enough to determine all shape-sensitive SST
+ observables.  A resolved ideal tube carries a contact skeleton
+ \begin{align}
+@@ -2828,36 +2828,177 @@
+ rather than assuming $\mathcal L_{\rm comp}=\sum_i\mathcal L_{K_i}$.  This is a
+ research-track guard, not a universal law for all SST composites.
+ 
++
++\subsubsection{Polygonal-to-smooth certification ladder}
++\label{subsubsec:rt_polygonal_smooth_certification}
++\paragraph{Status.}
++\textbf{[ORTHODOX NUMERICAL GEOMETRY / RESEARCH-TRACK SST INPUT GATE].}
++This subsection isolates the numerical implications of the Ridgerunner
++constrained-gradient method \cite{AshtonCantarellaPiatekRawdon2011}.  It
++certifies an approximately thickness-critical polygon and a smooth ropelength
++upper bound; it does not certify a unique global minimizer or a physical SST
++energy ground state.
++
++\paragraph{Equilateral constraint gate.}
++For an equilateral polygon of edge length $\ell$, Ridgerunner's constraint
++thickness and Rawdon polygonal thickness define the same feasible set,
++\begin{align}
++    \operatorname{CThi}(\ell,V)\ge1
++    \quad\Longleftrightarrow\quad
++    \operatorname{Thi}_p(V)\ge1 .
++    \label{eq:rt_cthi_thip_equivalence}
++\end{align}
++This equivalence must not be transferred silently to a strongly
++non-equilateral simulation mesh.  Define
++\begin{align}
++    \bar\ell
++    &=\frac1N\sum_{i=1}^{N}\ell_i,\\
++    \epsilon_{\rm eq}
++    &=
++    \max_i\left|\frac{\ell_i}{\bar\ell}-1\right| .
++    \label{eq:rt_equilateral_error}
++\end{align}
++A pipeline must control $\epsilon_{\rm eq}$ by arc-length remeshing or use a
++thickness formulation proved for its non-equilateral discretization.
++
++\paragraph{Curvature-stiffness scaling.}
++At normalized $\operatorname{MinRad}=1$, an equilateral polygon obeys
++\begin{align}
++    \left\|\nabla\operatorname{MinRad}^{\pm}\right\|_2
++    \ge
++    \frac{2}{\ell^2} .
++    \label{eq:rt_minrad_stiffness_scaling}
++\end{align}
++Thus halving the edge length can increase the curvature-constraint stiffness
++by a factor of four.  Timestep, conditioning, and constraint-correction
++tolerances must scale with resolution; increasing the vertex count is not by
++itself a stability improvement.
++
++\paragraph{Polygonal versus smooth ropelength.}
++The polygonal value
++\begin{align}
++    \operatorname{Rop}_p(V)
++    =
++    \frac{\operatorname{Len}(V)}{\operatorname{Thi}_p(V)}
++    \label{eq:rt_polygonal_ropelength}
++\end{align}
++is not the final smooth certification.  After replacing vertices by controlled
++circular or spline arcs, all newly introduced self-distances must be checked
++and one must report
++\begin{align}
++    \operatorname{Rop}_{\rm smooth}^{\rm ub}
++    =
++    \frac{\operatorname{Len}(\widetilde V)}
++         {\operatorname{Thi}(\widetilde V)} .
++    \label{eq:rt_smooth_ropelength_upper_bound}
++\end{align}
++The label ``ideal'' attached to a Fourier, KnotPlot, or atlas file is not a
++geometric certificate.  The Ridgerunner authors could not reproduce every
++published Fourier/Gilbert ropelength claim under their polygonal thickness
++measurement, which makes independent reconstruction and smooth-thickness
++verification mandatory.
++
++\paragraph{Constrained-gradient certificate.}
++With rigidity matrix $A$ assembled from active strut and kink gradients, the
++nonnegative least-squares problem is
++\begin{align}
++    \min_{\Lambda\ge0}
++    \left\|A\Lambda-(-\nabla E_{\rm SST})\right\|_2,
++    \label{eq:rt_ridgerunner_nnls}
++\end{align}
++and the relative first-order residual is
++\begin{align}
++    \chi_{\rm KKT}
++    =
++    \frac{\|-\nabla E_{\rm SST}+A\Lambda\|_2}
++         {\|\nabla E_{\rm SST}\|_2},
++    \qquad \Lambda\ge0 .
++    \label{eq:rt_contact_residual}
++\end{align}
++The published dataset had mean residual approximately $2.99\times10^{-3}$,
++with specially refined examples reaching approximately
++$2.54\times10^{-5}$.  These values are historical benchmarks, not universal
++acceptance thresholds.  A small $\chi_{\rm KKT}$ establishes only first-order
++criticality and must be interpreted together with the stability hierarchy in
++Eq.~\eqref{eq:rt_gehring_stability_hierarchy}.
++
++\paragraph{Contact-map and refinement convergence.}
++Ropelength convergence is insufficient.  The positive strut measure of
++Eq.~\eqref{eq:rt_discrete_contact_measure}, the analogous kink measure, their
++supports, total masses, and representative test integrals must converge under
++refinement.  The arclength contact map should be compared across resolutions;
++new or disappearing contact branches are a geometry change even when the
++scalar ropelength changes little.
++
++\paragraph{Multistart protocol.}
++For each knot/link class use at least five independent initial embeddings, as
++in the published computation, and a resolution ladder.  Suitable starts
++include analytic/Fourier, diagram/KnotPlot, previously tightened atlas, and
++independent isotopic perturbations.  Retain the best certified smooth upper
++bound, not merely the shortest polygon encountered, and preserve seed,
++remeshing, active-set, correction-step, and stopping-residual metadata.
++
++\paragraph{Precision ceiling.}
++Define a conservative geometry-certification envelope
++\begin{align}
++    \epsilon_{\rm geom}
++    =
++    \max\!\left(
++        \epsilon_{\rm eq},
++        \epsilon_{\rm thi},
++        \chi_{\rm KKT},
++        \epsilon_{\rm smooth},
++        \epsilon_{\rm contact}
++    \right),
++    \label{eq:rt_geometry_precision_ceiling}
++\end{align}
++where, for the normalized unit-thickness problem,
++\begin{align}
++    \epsilon_{\rm thi}
++    :=\max\!\left(0,1-\operatorname{CThi}(\bar\ell,V)\right),\\
++    \epsilon_{\rm smooth}
++    :=
++    \frac{\left|\operatorname{Rop}_{\rm smooth}^{\rm ub}
++    -\operatorname{Rop}_p\right|}
++    {\operatorname{Rop}_{\rm smooth}^{\rm ub}} .
++    \label{eq:rt_geometry_error_components}
++\end{align}
++Here $\epsilon_{\rm contact}$ is a declared resolution-to-resolution norm on
++the contact measures.  A downstream SST mass, coupling, or constant extraction
++must not quote relative precision parametrically smaller than
++$\epsilon_{\rm geom}$ unless an independent error-propagation analysis proves
++a cancellation.
++
+ \subsubsection{Operational SSTcore diagnostics}
+ A profile-resolved SSTcore tightening or imported ideal-knot pipeline should
+ report at least
+ \begin{align}
+-    \mathcal D_K
+-    =
+-    \left(
+-        \operatorname{Rop}_{\rm rad},\,
+-        a_{\rm core},\,
+-        \operatorname{Strut},\,
+-        \operatorname{Kink},\,
+-        \Lambda,\,
+-        \chi_{\rm contact}
+-    \right),
++    \mathcal D_K^{\rm num}
++    =
++    \Bigg(
++        N,
++        \bar\ell,
++        \epsilon_{\rm eq},
++        \operatorname{Thi}_p,
++        \operatorname{CThi},
++        \operatorname{Rop}_p,
++        \operatorname{Rop}_{\rm smooth}^{\rm ub},
++        \min_i\operatorname{MinRad}(v_i),
++        \frac12d_{\rm dcsd},
++        |\operatorname{Strut}|,
++        |\operatorname{Kink}|,
++        \Lambda,
++        \chi_{\rm KKT},
++        \operatorname{cond}_2(A_F),
++        N_{\rm seed},
++        \epsilon_{\rm geom}
++    \Bigg),
+     \label{eq:rt_sstcore_contact_diagnostics}
+ \end{align}
+-where
+-\begin{align}
+-    \chi_{\rm contact}
+-    =
+-    \frac{\left\|-
+-        \nabla E_{\rm SST}+A\Lambda\right\|}
+-         {\left\|\nabla E_{\rm SST}\right\|},
+-    \qquad
+-    \Lambda\ge0 .
+-    \label{eq:rt_contact_residual}
+-\end{align}
+-Here $A$ is the rigidity/contact matrix built from strut and kink gradients.
+-Small $\chi_{\rm contact}$ means that the candidate state is not merely short;
+-it is approximately contact-critical under the declared energy model.
++where the rigidity-matrix column-sign convention is declared and $A_F$ is the
++free-column submatrix in the final NNLS active set.  This tuple supplements,
++rather than replaces, the continuum contact-measure audit of
++Sec.~\ref{subsec:rt_gehring_contact_measure}.
+ 
+ \subsubsection{Colored contact-channel rank test for the factor nine}
+ \label{sec:rt_colored_contact_rank_nine}
+diff --git a/SST_CANON-v0.8.20.tex b/SST_CANON-v0.8.20.tex
+index 19cb9968b502ccf1351d676174be72440753fc8c..64c038b9f6728a27e0201851d59444df60ef0a94 100644
+--- a/SST_CANON-v0.8.20.tex
++++ b/SST_CANON-v0.8.20.tex
+@@ -4751,6 +4751,56 @@
+         \end{align}
+         is therefore a robust sub-promille numerical coincidence, not an exact
+         or ppm-certified derivation of the fine-structure constant.
++
++
++        \paragraph{Numerical certification guard for ideal-knot inputs.}
++        \label{subsec:canon_ropelength_certification_guard}
++        \textbf{[ORTHODOX NUMERICAL GEOMETRY / CANON VALIDATION RULE].}
++        A Ridgerunner-style output is an approximately thickness-critical
++        polygon and a candidate smooth ropelength upper bound, not automatically
++        a unique smooth global minimizer \cite{AshtonCantarellaPiatekRawdon2011}.
++        The equivalence between constraint thickness and polygonal thickness is
++        established for equilateral polygons.  Every imported ideal-knot input
++        must therefore expose at least
++        \begin{align}
++            \mathcal D_K^{\rm cert}
++            =
++            \left(
++                N,
++                \epsilon_{\rm eq},
++                \operatorname{Thi}_p,
++                \operatorname{CThi},
++                \operatorname{Rop}_p,
++                \operatorname{Rop}_{\rm smooth}^{\rm ub},
++                \min_i\operatorname{MinRad}(v_i),
++                \frac12d_{\rm dcsd},
++                \chi_{\rm KKT},
++                N_{\rm seed}
++            \right),
++            \label{eq:canon_ideal_knot_certification_tuple}
++        \end{align}
++        with a declared rigidity-matrix sign convention and
++        \begin{align}
++            \chi_{\rm KKT}
++            =
++            \frac{\|-\nabla E+A\Lambda\|_2}
++                 {\|\nabla E\|_2},
++            \qquad \Lambda\ge0 .
++            \label{eq:canon_ideal_knot_kkt_residual}
++        \end{align}
++        The smooth bound must be recomputed after controlled $C^{1,1}$
++        reconstruction.  The label ``ideal'' on a Fourier or atlas file is not
++        a certificate.
++
++        Scalar ropelength convergence is insufficient: active strut/kink
++        support, positive multiplier measures, and arclength contact maps must
++        also converge under refinement and across independent initial
++        embeddings.  A small Eq.~\eqref{eq:canon_ideal_knot_kkt_residual}
++        establishes only first-order constrained criticality.  It does not prove
++        global minimality, positive second variation, or dynamical SST stability.
++        No downstream mass, coupling, or constant claim may quote relative
++        precision substantially finer than the worst certified mesh,
++        thickness, smoothing, contact-map, and KKT error of its knot input.
+ 
+         \subsection{Finite-cell $\alpha$ coincidence and obstruction summary}
+             \label{subsec:finite_cell_alpha_obstruction}

@@ -115,6 +115,17 @@ def apply_ssdl(rt: str) -> str:
     return insert_once(rt, anchor, block, "subsec:ssdl_monopole_dtn")
 
 
+def apply_particle_clock(rt: str) -> str:
+    block = (SOURCES / "v0.8.20_research_track_particle_clock_ansatz_block.tex").read_text(encoding="utf-8").rstrip() + "\n\n"
+    anchor = (
+        "    \\text{taxonomy refinement required.}\n"
+        "\\end{equation}\n\n"
+        "% ----------------------------------------------------------\n"
+        "% Bibliography entries to merge into the main thebibliography\n"
+    )
+    return insert_once(rt, anchor, block, "app:research-track")
+
+
 def main() -> None:
     rt = RT.read_text(encoding="utf-8")
     main_text = MAIN.read_text(encoding="utf-8")
@@ -135,6 +146,10 @@ def main() -> None:
     rt = apply_ssdl(rt)
     RT.write_text(rt, encoding="utf-8")
     print("Applied SSDL")
+
+    rt = apply_particle_clock(rt)
+    RT.write_text(rt, encoding="utf-8")
+    print("Applied particle_clock_ansatz")
 
 
 if __name__ == "__main__":

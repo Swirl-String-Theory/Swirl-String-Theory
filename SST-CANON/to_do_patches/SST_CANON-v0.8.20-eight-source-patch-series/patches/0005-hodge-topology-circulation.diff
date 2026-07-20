@@ -1,0 +1,200 @@
+--- a/SST_CANON-v0.8.20-research-track.tex
++++ b/SST_CANON-v0.8.20-research-track.tex
+@@ -3266,6 +3266,122 @@
+     \end{align}
+     The denominators and treatment of exact-zero cases must be declared in code.
+ 
++\subsection{Research Appendix: Hodge-Complete SST Velocity Reconstruction}
++    \label{subsec:rt_hodge_complete_reconstruction}
++
++    \paragraph{Status.}
++    \textbf{[ORTHODOX HODGE DECOMPOSITION / DERIVED SST RECONSTRUCTION].}
++    The following reconstruction uses the domain topology explicitly
++    \cite{CantarellaDeTurckGluck2002Hodge}.
++
++    \paragraph{Harmonic basis and circulation coordinates.}
++    Let
++    \begin{align}
++        g
++        :=
++        \dim H_1(\Omega;\mathbb R),
++    \end{align}
++    and choose harmonic-knot fields \(\mathbf h_1,\ldots,\mathbf h_g\) normalized by
++    \begin{align}
++        \oint_{\gamma_i}\mathbf h_j\cdot d\boldsymbol\ell
++        =
++        \delta_{ij}.
++        \label{eq:rt_harmonic_basis_normalization}
++    \end{align}
++    A Hodge-complete bounded-domain velocity reconstruction has the form
++    \begin{align}
++        \boxed{
++        \mathbf u
++        =
++        P_{K(\Omega)}\operatorname{BS}[\boldsymbol\omega]
++        +
++        \sum_{j=1}^{g}\Gamma_j\mathbf h_j
++        }
++        \label{eq:rt_hodge_complete_velocity}
++    \end{align}
++    after the flux and gauge conventions defining the projection have been fixed.
++    The coefficients \(\Gamma_j\) are independent topological circulation data; they
++    cannot be reconstructed from \(\boldsymbol\omega=\nabla\times\mathbf u\).
++
++    \paragraph{Solid-torus sector.}
++    For a solid torus, \(g=1\).  In the standard torus of revolution an illustrative
++    harmonic-knot field is locally
++    \begin{align}
++        \mathbf h
++        =
++        \frac{1}{r}\,\widehat{\boldsymbol\phi},
++        \qquad
++        \nabla\cdot\mathbf h=0,
++        \qquad
++        \nabla\times\mathbf h=0.
++        \label{eq:rt_solid_torus_harmonic_field}
++    \end{align}
++    Thus local curl-free flow may carry nonzero circulation around a non-contractible
++    loop.  For the SST circulation quantum, the local slender-core scaling is
++    \begin{align}
++        u_{\rm HK}(r)
++        =
++        \frac{\Gamma_0}{2\pi r}
++        =
++        \vchar\frac{\rc}{r}.
++        \label{eq:rt_harmonic_circulation_scaling}
++    \end{align}
++    This is a local benchmark outside an excluded core, not a determination of
++    \(r_{\rm horn}\) or of the full curved-knot velocity profile.
++
++    \paragraph{Irrotational envelope guard.}
++    Equation~\eqref{eq:rt_hodge_complete_velocity} supplies a mathematically valid
++    separation between a vorticity-bearing core sector and a curl-free global
++    circulation sector.  It therefore permits an irrotational horn/envelope flow
++    around a smaller core.  It does not prove that every SST horn is harmonic, nor
++    does it fix the separatrix, pressure profile, or envelope radius.
++
++    \paragraph{Hodge data are not particle identity.}
++    Every tubular neighborhood of a single knot is topologically a solid torus, so
++    \begin{align}
++        \dim HK(\Omega_{3_1})
++        =
++        \dim HK(\Omega_{4_1})
++        =1.
++        \label{eq:rt_hodge_not_knot_classifier}
++    \end{align}
++    Hodge homology alone cannot distinguish a trefoil from a figure-eight knot.
++    Particle classification still requires embedding-sensitive and knot-sensitive
++    data such as knot group, chirality, writhe/twist, ropelength, contact map, and
++    spectral geometry.
++
++    \paragraph{Numerical circulation residual.}
++    A bounded-domain solver must report
++    \begin{align}
++        \epsilon_{\Gamma}
++        :=
++        \max_j
++        \frac{
++        \left|
++        \oint_{\gamma_j}\mathbf u\cdot d\boldsymbol\ell-\Gamma_j
++        \right|
++        }{
++        \max(|\Gamma_j|,\Gamma_{\rm floor})
++        },
++        \label{eq:rt_hodge_circulation_residual}
++    \end{align}
++    with a declared nonzero \(\Gamma_{\rm floor}\).  A solver that matches
++    \(\nabla\times\mathbf u\) but fails this circulation test is not Hodge-complete.
++
++    \paragraph{Minimal research requirement.}
++    For each resolved knot or link domain, compute a homology basis, normalize the
++    harmonic fields, project the raw Biot--Savart field into \(K(\Omega)\), and verify
++    both curl recovery and circulation recovery.  The stored state must include
++    \begin{align}
++        \left(
++        \boldsymbol\omega,
++        \{\Gamma_j\}_{j=1}^{g},
++        \text{boundary conditions},
++        \text{projection/gauge convention}
++        \right).
++        \label{eq:rt_hodge_state_metadata}
++    \end{align}
++
+ \section{Research-Track particle and clock ansatz}
+ \label{app:research-track}
+ 
+--- a/SST_CANON-v0.8.20.tex
++++ b/SST_CANON-v0.8.20.tex
+@@ -410,6 +410,59 @@
+         derived from a separately declared pressure/source, non-compact background,
+         singular-core, or boundary-supported mechanism.
+ 
++\subsection{Hodge Decomposition and Topological Circulation Sectors}
++        \label{subsec:hodge_topological_circulation}
++
++        \textbf{[ORTHODOX VECTOR-CALCULUS FOUNDATION].}
++        On a smooth bounded domain \(\Omega\subset\mathbb R^3\), the space of
++        smooth vector fields decomposes orthogonally as
++        \begin{align}
++            VF(\Omega)
++            =
++            FK\oplus HK\oplus CG\oplus HG\oplus GG,
++            \label{eq:canon_hodge_five_way}
++        \end{align}
++        where
++        \begin{align}
++            FK&=
++            \{\nabla\cdot\mathbf V=0,\ \mathbf V\cdot\mathbf n=0,\\
++            \text{all interior fluxes}=0\},\\
++            HK&=
++            \{\nabla\cdot\mathbf V=0,\ \nabla\times\mathbf V=0,\\
++            \mathbf V\cdot\mathbf n=0\},\\
++            CG&=
++            \{\mathbf V=\nabla\phi,\ \nabla\cdot\mathbf V=0,\\
++            \text{all boundary fluxes}=0\},\\
++            HG&=
++            \{\mathbf V=\nabla\phi,\ \nabla\cdot\mathbf V=0,\\
++            \phi\text{ constant on each boundary component}\},\\
++            GG&=
++            \{\mathbf V=\nabla\phi,\ \phi|_{\partial\Omega}=0\}.
++            \label{eq:canon_hodge_subspaces}
++        \end{align}
++        The incompressible boundary-tangent sector is
++        \begin{align}
++            K(\Omega)=FK\oplus HK,
++            \label{eq:canon_fluid_knot_hodge_sector}
++        \end{align}
++        and
++        \begin{align}
++            HK
++            \cong
++            H_1(\Omega;\mathbb R)
++            \cong
++            H_2(\Omega,\partial\Omega;\mathbb R).
++            \label{eq:canon_harmonic_knot_homology}
++        \end{align}
++        Hence \(\dim HK\) is the total genus of the boundary
++        \cite{CantarellaDeTurckGluck2002Hodge}.
++
++        \textbf{[CANON / INTERPRETATION GUARD].}
++        Vorticity determines the fluxless/curl-bearing part but does not determine
++        the harmonic-knot circulation sector.  A ball has \(HK=0\); a solid torus
++        has \(\dim HK=1\).  This counts independent global circulation channels, not
++        particle species or knot type.
++
+     \subsection{Energy and Mass Relation}
+         
+         Mass is interpreted as stored rotational energy:
+@@ -5302,6 +5355,12 @@
+             \newblock \emph{Journal of Mathematical Physics} \textbf{42} (2001), 876--905,
+             \newblock DOI: \href{https://doi.org/10.1063/1.1329659}{10.1063/1.1329659}.
+ 
++\bibitem{CantarellaDeTurckGluck2002Hodge}
++            J.~Cantarella, D.~DeTurck, and H.~Gluck,
++            \newblock ``Vector Calculus and the Topology of Domains in 3-Space,''
++            \newblock \emph{The American Mathematical Monthly} \textbf{109} (2002), 409--442,
++            \newblock DOI: \href{https://doi.org/10.1080/00029890.2002.11919870}{10.1080/00029890.2002.11919870}.
++
+             \bibitem{CantarellaKusnerSullivan2002}
+             J.~Cantarella, R.~B. Kusner, and J.~M. Sullivan,
+             \newblock On the Minimum Ropelength of Knots and Links,

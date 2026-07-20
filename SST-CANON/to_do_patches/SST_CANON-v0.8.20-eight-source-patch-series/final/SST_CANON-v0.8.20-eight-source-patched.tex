@@ -313,6 +313,156 @@
         
         \textbf{[DERIVED]}: In SST, $\Gamma_0$ is no longer an input but follows from Eq.~\ref{eq:rc_definition}.
     
+\subsection{Bounded-Domain Biot--Savart Admissibility}
+        \label{subsec:bounded_domain_biot_savart}
+
+        \textbf{[ORTHODOX OPERATOR FOUNDATION].}
+        For a smooth vector field \(\mathbf V\) supported in a bounded smooth domain
+        \(\Omega\subset\mathbb R^3\), define
+        \begin{align}
+            \operatorname{BS}[\mathbf V](\mathbf y)
+            :=
+            \frac{1}{4\pi}
+            \int_\Omega
+            \mathbf V(\mathbf x)\times
+            \frac{\mathbf y-\mathbf x}{|\mathbf y-\mathbf x|^3}
+            \,d^3x.
+            \label{eq:canon_bounded_biot_savart}
+        \end{align}
+        Its curl contains explicit source and boundary corrections:
+        \begin{align}
+            \nabla_{\mathbf y}\times\operatorname{BS}[\mathbf V]
+            ={}&
+            \mathbf 1_\Omega(\mathbf y)\mathbf V(\mathbf y)
+            +
+            \frac{1}{4\pi}\nabla_{\mathbf y}
+            \int_\Omega
+            \frac{\nabla_{\mathbf x}\cdot\mathbf V(\mathbf x)}
+                 {|\mathbf y-\mathbf x|}
+            \,d^3x
+            \notag\\
+            &-
+            \frac{1}{4\pi}\nabla_{\mathbf y}
+            \int_{\partial\Omega}
+            \frac{\mathbf V(\mathbf x)\cdot\mathbf n(\mathbf x)}
+                 {|\mathbf y-\mathbf x|}
+            \,dA_x.
+            \label{eq:canon_biot_savart_curl_corrections}
+        \end{align}
+        Consequently,
+        \begin{align}
+            \nabla\times\operatorname{BS}[\mathbf V]
+            =
+            \mathbf V
+            \quad\text{in }\Omega
+            \quad\Longleftrightarrow\quad
+            \nabla\cdot\mathbf V=0,
+            \quad
+            \mathbf V\cdot\mathbf n=0
+            \text{ on }\partial\Omega.
+            \label{eq:canon_biot_savart_left_inverse_gate}
+        \end{align}
+        These conditions are necessary as well as sufficient
+        \cite{CantarellaDeTurckGluck2001BiotSavart}.
+
+        The same source establishes
+        \begin{align}
+            \ker\operatorname{BS}
+            &=
+            \left\{
+            \nabla\phi:
+            \nabla\phi\text{ is normal to }\partial\Omega
+            \right\},
+            \label{eq:canon_biot_savart_kernel}\\
+            \operatorname{im}\operatorname{BS}
+            &\subsetneq
+            \operatorname{im}(\nabla\times),
+            \label{eq:canon_biot_savart_image_guard}
+        \end{align}
+        and the \(L^2\) bound
+        \begin{align}
+            \left\|\operatorname{BS}[\mathbf V]\right\|_{L^2(\Omega)}
+            \leq
+            \frac{\operatorname{OS}(\Omega)}{4\pi}
+            \left\|\mathbf V\right\|_{L^2(\Omega)},
+            \qquad
+            \operatorname{OS}(\Omega)
+            :=
+            \sup_{\mathbf y\in\mathbb R^3}
+            \int_\Omega\frac{d^3x}{|\mathbf y-\mathbf x|^2}.
+            \label{eq:canon_biot_savart_optical_size_bound}
+        \end{align}
+        The extended operator is bounded, compact, and self-adjoint on its
+        \(L^2\) completion.
+
+        \textbf{[CANON / FAR-FIELD GUARD].}
+        A general compact source gives
+        \(\operatorname{BS}[\mathbf V]=O(r^{-2})\).  If \(\mathbf V\) is
+        divergence-free and boundary-tangent, the leading moment cancels and
+        \begin{align}
+            \operatorname{BS}[\mathbf V](r)
+            =
+            O(r^{-3}).
+            \label{eq:canon_compact_fluid_knot_far_field}
+        \end{align}
+        Therefore the direct Biot--Savart velocity of one compact resolved vortex
+        knot is not a Newtonian monopole sector.  Any \(r^{-2}\) force claim must be
+        derived from a separately declared pressure/source, non-compact background,
+        singular-core, or boundary-supported mechanism.
+
+\subsection{Hodge Decomposition and Topological Circulation Sectors}
+        \label{subsec:hodge_topological_circulation}
+
+        \textbf{[ORTHODOX VECTOR-CALCULUS FOUNDATION].}
+        On a smooth bounded domain \(\Omega\subset\mathbb R^3\), the space of
+        smooth vector fields decomposes orthogonally as
+        \begin{align}
+            VF(\Omega)
+            =
+            FK\oplus HK\oplus CG\oplus HG\oplus GG,
+            \label{eq:canon_hodge_five_way}
+        \end{align}
+        where
+        \begin{align}
+            FK&=
+            \{\nabla\cdot\mathbf V=0,\ \mathbf V\cdot\mathbf n=0,\\
+            \text{all interior fluxes}=0\},\\
+            HK&=
+            \{\nabla\cdot\mathbf V=0,\ \nabla\times\mathbf V=0,\\
+            \mathbf V\cdot\mathbf n=0\},\\
+            CG&=
+            \{\mathbf V=\nabla\phi,\ \nabla\cdot\mathbf V=0,\\
+            \text{all boundary fluxes}=0\},\\
+            HG&=
+            \{\mathbf V=\nabla\phi,\ \nabla\cdot\mathbf V=0,\\
+            \phi\text{ constant on each boundary component}\},\\
+            GG&=
+            \{\mathbf V=\nabla\phi,\ \phi|_{\partial\Omega}=0\}.
+            \label{eq:canon_hodge_subspaces}
+        \end{align}
+        The incompressible boundary-tangent sector is
+        \begin{align}
+            K(\Omega)=FK\oplus HK,
+            \label{eq:canon_fluid_knot_hodge_sector}
+        \end{align}
+        and
+        \begin{align}
+            HK
+            \cong
+            H_1(\Omega;\mathbb R)
+            \cong
+            H_2(\Omega,\partial\Omega;\mathbb R).
+            \label{eq:canon_harmonic_knot_homology}
+        \end{align}
+        Hence \(\dim HK\) is the total genus of the boundary
+        \cite{CantarellaDeTurckGluck2002Hodge}.
+
+        \textbf{[CANON / INTERPRETATION GUARD].}
+        Vorticity determines the fluxless/curl-bearing part but does not determine
+        the harmonic-knot circulation sector.  A ball has \(HK=0\); a solid torus
+        has \(\dim HK=1\).  This counts independent global circulation channels, not
+        particle species or knot type.
+
     \subsection{Energy and Mass Relation}
         
         Mass is interpreted as stored rotational energy:
@@ -1487,6 +1637,81 @@
 
     \paragraph{Status.}
         \textbf{Secondary derived result.} Valid under spectral assumptions; not a defining postulate. The cubic weighting $\sum_n 1/\omega_n^3$ with $\omega_n\sim n$ yields $\zeta(3)$ for \emph{any} asymptotically linear spectrum; this is a generic calculus property $[\text{CALIBRATED}]$, not an SST-specific fluid-dynamical or topological invariant.
+
+\subsection{Bounded-Domain Curl-Spectrum Benchmarks}
+    \label{subsec:bounded_domain_curl_spectrum}
+
+    \textbf{[ORTHODOX / SPECTRAL BENCHMARK].}
+    Let \(\Omega\subset\mathbb{R}^3\) be a smooth bounded domain and let
+    \(\mathbf{V}\) be divergence-free and tangent to \(\partial\Omega\).  In the
+    bounded-domain curl eigenproblem
+    \begin{align}
+        \nabla\times\mathbf{V}
+        &=
+        \kappa_{\rm curl}\mathbf{V},
+        &
+        \nabla\cdot\mathbf{V}&=0,
+        &
+        \mathbf{V}\cdot\mathbf{n}\big|_{\partial\Omega}&=0,
+        \label{eq:canon_curl_eigenproblem}
+    \end{align}
+    the smallest positive eigenvalue is a property of the complete domain and its
+    boundary conditions, not of the centreline alone
+    \cite{CantarellaDeTurckGluckTeytel2000CurlSpherical}.
+
+    For a ball \(B_b^3\) of radius \(b\),
+    \begin{align}
+        \kappa_1(B_b^3)
+        &=
+        \frac{x_1}{b},
+        &
+        \tan x_1&=x_1,
+        &
+        x_1&=4.493409458\ldots,
+        \label{eq:canon_ball_curl_eigenvalue}
+    \end{align}
+    with multiplicity three.  For a concentric spherical shell
+    \(B^3(a,b)=\{a<r<b\}\), the first positive eigenvalue is the smallest positive
+    root of
+    \begin{align}
+        J_{3/2}(a\kappa)Y_{3/2}(b\kappa)
+        -
+        J_{3/2}(b\kappa)Y_{3/2}(a\kappa)
+        =0.
+        \label{eq:canon_shell_curl_eigenvalue}
+    \end{align}
+
+    In the normalization
+    \begin{align}
+        \mathscr E_V
+        &=
+        \int_\Omega |\mathbf{V}|^2\,d^3x,
+        &
+        \mathscr H_V
+        &=
+        \left\langle
+        \mathbf{V},\operatorname{BS}_{K(\Omega)}\mathbf{V}
+        \right\rangle_{L^2},
+    \end{align}
+    a curl eigenfield satisfies
+    \begin{align}
+        \mathscr E_V
+        =
+        \kappa_{\rm curl}\mathscr H_V,
+        \qquad
+        \frac{\mathscr H_V}{\mathscr E_V}
+        =
+        \frac{1}{\kappa_{\rm curl}}.
+        \label{eq:canon_helicity_capacity_relation}
+    \end{align}
+
+    \textbf{[CANON / SCOPE GUARD].}
+    Equations~\eqref{eq:canon_ball_curl_eigenvalue} and
+    \eqref{eq:canon_shell_curl_eigenvalue} are exact benchmarks only for the stated
+    filled spherical domains.  The constant \(4.493409458\ldots\) is not a universal
+    SST particle constant, the distinguished central orbit of the eigenfield is not
+    an independently resolved vortex core, and neither formula determines
+    \(a_{\rm core}\) or \(r_{\rm horn}\) for a knotted tube.
 
 \subsection{Symmetry-Sensitive Dark-Knot Classification}
     \label{subsec:dark_knot_classification}
@@ -4257,6 +4482,58 @@
                 3_1^{\rm core}\otimes\Psi_{n\ell m\sigma}^{\rm envelope} .
             \end{align}
 
+        \paragraph{Helicity mapping-class and framing guard.}
+        \label{subsec:canon_helicity_mapping_class_guard}
+        \textbf{[ORTHODOX / CANON SEMANTIC GUARD].}
+        Let $\Omega\subset\mathbb R^3$ be a compact resolved-tube domain and let
+        $\mathbf V$ be divergence free and tangent to $\partial\Omega$.  The
+        dual two-form $\alpha=\iota_{\mathbf V}d^3x$ is closed and vanishes when
+        pulled back to the boundary.  Helicity may then be written using the
+        Biot--Savart/Hodge-selected primitive,
+        \begin{align}
+            \mathcal H(\alpha)
+            =
+            \int_{\Omega}\alpha\wedge\operatorname{BS}(\alpha),
+            \label{eq:canon_helicity_bs_primitive}
+        \end{align}
+        but an arbitrary primitive is not a gauge-complete replacement on a
+        multiply connected domain \cite{CantarellaParsley2010Helicity}.
+
+        For an orientation-preserving diffeomorphism $f:\Omega\to\Omega'$, the
+        general mapping-class correction is a quadratic form in the independent
+        fluxes,
+        \begin{align}
+            \Delta\mathcal H
+            =
+            \mathcal H\!\left((f^{-1})^*\alpha\right)-\mathcal H(\alpha)
+            =
+            \sum_{i,j}c_{ij}\Phi_i\Phi_j .
+            \label{eq:canon_helicity_mapping_class_jump}
+        \end{align}
+        For a solid torus subjected to $j$ Dehn twists this reduces to
+        \begin{align}
+            \Delta\mathcal H=j\Phi^2 .
+            \label{eq:canon_helicity_dehn_twist}
+        \end{align}
+        In the hydrodynamic identification $\mathbf V=\boldsymbol\omega$,
+        $\Phi=\Gamma$ and hence $\Delta\mathcal H=j\Gamma^2$.  A smooth ideal
+        material evolution generated from the identity remains in the identity
+        mapping class and preserves helicity; a nonzero jump in
+        Eq.~\eqref{eq:canon_helicity_mapping_class_jump} is therefore not ordinary
+        Euler advection.  It requires a declared boundary operation, framing
+        change, phase slip, reconnection, or other Kairos transition.
+
+        \textbf{[CANON CONSEQUENCE].}
+        Knot type, centerline, and ropelength do not by themselves fix the
+        helicity sector.  Any SST state that uses helicity or twist energetically
+        must expose at least
+        \begin{align}
+            \left(K,\{\Gamma_i\},\text{framing/mapping class}\right),
+            \label{eq:canon_helicity_state_metadata}
+        \end{align}
+        and must not fit $Tw$ after the fact to force a desired value of
+        $\mathcal H$.
+
 
         \paragraph{Ropelength representative and thickness-constrained ground state.}
         For a tame knot or link type \(K\), orthodox ropelength theory proves the
@@ -4337,6 +4614,114 @@
             \cdots .
         \end{align}
 
+\paragraph{Writhe and helicity upper-bound guard.}
+        \textbf{[ORTHODOX / NON-SHARP BOUNDS].}
+        For a smooth knot or link of length \(L\) carrying an embedded tube of
+        radius \(R\),
+        \begin{align}
+            |\operatorname{Wr}(K)|
+            <
+            \frac14\left(\frac{L}{R}\right)^{4/3}
+            =
+            \frac14\operatorname{Rop}_{\rm rad}(K)^{4/3}.
+            \label{eq:canon_writhe_ropelength_upper_bound}
+        \end{align}
+        For a smooth vector field \(\mathbf V\) on a bounded domain \(\Omega\),
+        the corresponding rough geometric helicity bound is
+        \begin{align}
+            |\mathscr H_V|
+            \leq
+            R_{\rm vol}(\Omega)\,\mathscr E_V,
+            \label{eq:canon_rough_helicity_volume_bound}
+        \end{align}
+        where \(R_{\rm vol}(\Omega)\) is the radius of a ball with the same volume
+        as \(\Omega\) and \(\mathscr E_V=\int_\Omega|\mathbf V|^2d^3x\)
+        \cite{CantarellaDeTurckGluck2001UpperBounds}.
+
+        \textbf{[CANON / PRECISION GUARD].}
+        Equations~\eqref{eq:canon_writhe_ropelength_upper_bound} and
+        \eqref{eq:canon_rough_helicity_volume_bound} are deliberately non-sharp.
+        They are admissibility and regression bounds, not estimators of particle
+        mass, chirality strength, or equilibrium helicity.  Sharp helicity bounds
+        require the domain-specific projected Biot--Savart/curl spectrum.
+
+\paragraph{Multi-component Gehring-thickness guard.}
+        \textbf{[ORTHODOX / DISTINCT CONSTRAINT PROBLEM].}
+        For a link \(L=L_1\cup\cdots\cup L_N\), Gehring link-thickness is
+        \begin{align}
+            \operatorname{LThi}(L)
+            :=
+            \min_{i\neq j}\operatorname{Dist}(L_i,L_j),
+            \qquad
+            \operatorname{LRop}(L)
+            :=
+            \frac{\operatorname{Len}(L)}{\operatorname{LThi}(L)}.
+            \label{eq:canon_gehring_link_thickness}
+        \end{align}
+        It constrains distances between distinct components but does not constrain
+        self-distance or curvature within one component
+        \cite{CantarellaFuKusnerSullivanWrinkle2006Gehring}.
+
+        Therefore an SST composite made from finite-radius components requires the
+        hybrid admissibility conditions
+        \begin{align}
+            \operatorname{Thi}_{\rm rad}(\gamma_i)
+            &\geq a_i,
+            &
+            \operatorname{Dist}(\gamma_i,\gamma_j)
+            &\geq a_i+a_j
+            \quad(i\neq j),
+            \label{eq:canon_hybrid_component_thickness}
+        \end{align}
+        together with preservation of each component's intended isotopy class.
+
+        \textbf{[CANON / TOPOLOGY GUARD].}
+        Link-homotopy permits self-intersections of an individual component and is
+        therefore too weak, by itself, to protect an SST particle component from
+        changing its knot type.  Gehring criticality may diagnose intercomponent
+        exclusion, but it does not replace ordinary reach/thickness constraints.
+
+        \paragraph{Domain-spectral helicity optimization guard.}
+        \label{subsec:canon_isoperimetric_helicity_guard}
+        \textbf{[ORTHODOX / CANON SEMANTIC GUARD].}
+        On a fixed smooth domain $\Omega$, let
+        $K(\Omega)=\{\mathbf V:\nabla\cdot\mathbf V=0,
+        \mathbf V\cdot\mathbf n=0\}$ and define the boundary-compatible
+        Biot--Savart operator
+        \begin{align}
+            \operatorname{BS}_{K}
+            =P_{K(\Omega)}\operatorname{BS} .
+            \label{eq:canon_projected_bs_operator}
+        \end{align}
+        Its largest positive eigenvalue is the sharp helicity-to-$L^2$ ratio
+        and is the inverse of the smallest positive curl eigenvalue on its
+        image \cite{CantarellaDeTurckGluckTeytel2000Isoperimetric}:
+        \begin{align}
+            \lambda_{\max}(\Omega)
+            =
+            \max_{\mathbf V\in K(\Omega)\setminus\{0\}}
+            \frac{\mathcal H(\mathbf V)}
+                 {\int_{\Omega}|\mathbf V|^2d^3x}
+            =
+            \frac{1}{\kappa_{1}^{\rm curl}(\Omega)} .
+            \label{eq:canon_isoperimetric_spectral_equivalence}
+        \end{align}
+        If $\mathbf V=\boldsymbol\omega$, the denominator in
+        Eq.~\eqref{eq:canon_isoperimetric_spectral_equivalence} is enstrophy,
+        not the SST kinetic energy
+        $\tfrac12\rhoF\int|\uswirl|^2d^3x$.  The two optimization problems must
+        not be identified without an explicit constitutive relation.
+
+        A smooth global optimizer over all fixed-volume domains would have
+        nonzero constant $|\mathbf V|$ on each boundary component, toroidal
+        boundary components, and boundary field lines that are intrinsic
+        geodesics.  These are necessary isoperimetric conditions, not a proof
+        that an SST particle is a horn torus, not a derivation of $\rc$ or
+        $a_{\rm core}$, and not a proof that ideal Euler evolution relaxes to the
+        extremal eigenfield.  Ropelength minimization of a centerline and
+        spectral optimization of a filled three-dimensional domain are distinct
+        variational layers.
+
         \paragraph{Convention guard for trefoil alpha comparisons.}
         The mathematical literature uses both radius- and diameter-based thickness
         conventions.  If
@@ -4366,6 +4751,56 @@
         \end{align}
         is therefore a robust sub-promille numerical coincidence, not an exact
         or ppm-certified derivation of the fine-structure constant.
+
+
+        \paragraph{Numerical certification guard for ideal-knot inputs.}
+        \label{subsec:canon_ropelength_certification_guard}
+        \textbf{[ORTHODOX NUMERICAL GEOMETRY / CANON VALIDATION RULE].}
+        A Ridgerunner-style output is an approximately thickness-critical
+        polygon and a candidate smooth ropelength upper bound, not automatically
+        a unique smooth global minimizer \cite{AshtonCantarellaPiatekRawdon2011}.
+        The equivalence between constraint thickness and polygonal thickness is
+        established for equilateral polygons.  Every imported ideal-knot input
+        must therefore expose at least
+        \begin{align}
+            \mathcal D_K^{\rm cert}
+            =
+            \left(
+                N,
+                \epsilon_{\rm eq},
+                \operatorname{Thi}_p,
+                \operatorname{CThi},
+                \operatorname{Rop}_p,
+                \operatorname{Rop}_{\rm smooth}^{\rm ub},
+                \min_i\operatorname{MinRad}(v_i),
+                \frac12d_{\rm dcsd},
+                \chi_{\rm KKT},
+                N_{\rm seed}
+            \right),
+            \label{eq:canon_ideal_knot_certification_tuple}
+        \end{align}
+        with a declared rigidity-matrix sign convention and
+        \begin{align}
+            \chi_{\rm KKT}
+            =
+            \frac{\|-\nabla E+A\Lambda\|_2}
+                 {\|\nabla E\|_2},
+            \qquad \Lambda\ge0 .
+            \label{eq:canon_ideal_knot_kkt_residual}
+        \end{align}
+        The smooth bound must be recomputed after controlled $C^{1,1}$
+        reconstruction.  The label ``ideal'' on a Fourier or atlas file is not
+        a certificate.
+
+        Scalar ropelength convergence is insufficient: active strut/kink
+        support, positive multiplier measures, and arclength contact maps must
+        also converge under refinement and across independent initial
+        embeddings.  A small Eq.~\eqref{eq:canon_ideal_knot_kkt_residual}
+        establishes only first-order constrained criticality.  It does not prove
+        global minimality, positive second variation, or dynamical SST stability.
+        No downstream mass, coupling, or constant claim may quote relative
+        precision substantially finer than the worst certified mesh,
+        thickness, smoothing, contact-map, and KKT error of its knot input.
 
         \subsection{Finite-cell $\alpha$ coincidence and obstruction summary}
             \label{subsec:finite_cell_alpha_obstruction}
@@ -4931,6 +5366,13 @@
             \newblock J. Fluid Mech. \textbf{35} (1969), 117--129,
             \newblock DOI: 10.1017/S0022112069000991.
 
+            \bibitem{CantarellaParsley2010Helicity}
+            J.~Cantarella and J.~Parsley,
+            \newblock A new cohomological formula for helicity in $\mathbb R^{2k+1}$ reveals the effect of a diffeomorphism on helicity,
+            \newblock \emph{Journal of Geometry and Physics} \textbf{60} (2010), 1127--1155,
+            \newblock DOI: \href{https://doi.org/10.1016/j.geomphys.2010.04.001}{10.1016/j.geomphys.2010.04.001},
+            \newblock arXiv: \href{https://arxiv.org/abs/0903.1465}{0903.1465}.
+
             \bibitem{Zurek2003}
             W.~H. Zurek,
             \newblock Decoherence, einselection, and the quantum origins of the classical,
@@ -5037,12 +5479,50 @@
             \newblock Astronomy \& Astrophysics \textbf{641} (2020), A6,
             \newblock DOI: 10.1051/0004-6361/201833910.
 
+\bibitem{CantarellaDeTurckGluckTeytel2000CurlSpherical}
+            J.~Cantarella, D.~DeTurck, H.~Gluck, and M.~Teytel,
+            \newblock ``The Spectrum of the Curl Operator on Spherically Symmetric Domains,''
+            \newblock \emph{Physics of Plasmas} \textbf{7} (2000), 2766--2775,
+            \newblock DOI: \href{https://doi.org/10.1063/1.874127}{10.1063/1.874127}.
+
+\bibitem{CantarellaDeTurckGluck2001UpperBounds}
+            J.~Cantarella, D.~DeTurck, and H.~Gluck,
+            \newblock ``Upper Bounds for the Writhing of Knots and the Helicity of Vector Fields,''
+            \newblock in \emph{Knots, Braids, and Mapping Class Groups---Papers Dedicated to Joan S. Birman},
+            AMS/IP Studies in Advanced Mathematics \textbf{24} (2001), 1--21,
+            \newblock Permalink: \href{https://jasoncantarella.com/downloads/papers/upperbounds/upperbounds.pdf}{author PDF}.
+
+\bibitem{CantarellaFuKusnerSullivanWrinkle2006Gehring}
+            J.~Cantarella, J.~H.~G.~Fu, R.~B.~Kusner, J.~M.~Sullivan, and N.~C.~Wrinkle,
+            \newblock ``Criticality for the Gehring Link Problem,''
+            \newblock \emph{Geometry \& Topology} \textbf{10} (2006), 2055--2115,
+            \newblock DOI: \href{https://doi.org/10.2140/gt.2006.10.2055}{10.2140/gt.2006.10.2055},
+            \newblock arXiv: \href{https://arxiv.org/abs/math/0402212}{math/0402212}.
+
+\bibitem{CantarellaDeTurckGluck2001BiotSavart}
+            J.~Cantarella, D.~DeTurck, and H.~Gluck,
+            \newblock ``The Biot--Savart Operator for Application to Knot Theory, Fluid Dynamics, and Plasma Physics,''
+            \newblock \emph{Journal of Mathematical Physics} \textbf{42} (2001), 876--905,
+            \newblock DOI: \href{https://doi.org/10.1063/1.1329659}{10.1063/1.1329659}.
+
+\bibitem{CantarellaDeTurckGluck2002Hodge}
+            J.~Cantarella, D.~DeTurck, and H.~Gluck,
+            \newblock ``Vector Calculus and the Topology of Domains in 3-Space,''
+            \newblock \emph{The American Mathematical Monthly} \textbf{109} (2002), 409--442,
+            \newblock DOI: \href{https://doi.org/10.1080/00029890.2002.11919870}{10.1080/00029890.2002.11919870}.
+
             \bibitem{CantarellaKusnerSullivan2002}
             J.~Cantarella, R.~B. Kusner, and J.~M. Sullivan,
             \newblock On the Minimum Ropelength of Knots and Links,
             \newblock \emph{Inventiones Mathematicae} \textbf{150} (2002), 257--286,
             \newblock DOI: \href{https://doi.org/10.1007/s00222-002-0234-y}{10.1007/s00222-002-0234-y},
             \newblock arXiv: \href{https://arxiv.org/abs/math/0103224}{math/0103224}.
+
+            \bibitem{CantarellaDeTurckGluckTeytel2000Isoperimetric}
+            J.~Cantarella, D.~DeTurck, H.~Gluck, and M.~Teytel,
+            \newblock Isoperimetric problems for the helicity of vector fields and the Biot--Savart and curl operators,
+            \newblock \emph{Journal of Mathematical Physics} \textbf{41} (2000), 5615--5641,
+            \newblock DOI: \href{https://doi.org/10.1063/1.533429}{10.1063/1.533429}.
 
             \bibitem{AshtonCantarellaPiatekRawdon2011}
             T.~Ashton, J.~Cantarella, M.~Piatek, and E.~J. Rawdon,

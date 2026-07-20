@@ -2066,6 +2066,116 @@ For linked tubes with circulations $\Gamma_i$, the leading topological helicity 
 \end{equation}
 where $SL_i$ is self-linking and $Lk_{ij}$ is Gauss linking number.
 
+\subsubsection{Cohomological helicity and mapping-class sectors}
+\label{subsubsec:rt_helicity_mapping_class}
+\paragraph{Status.}
+\textbf{[ORTHODOX DIFFERENTIAL-TOPOLOGICAL INPUT / RESEARCH-TRACK SST STATE LABEL].}
+Let $\alpha=\iota_{\mathbf V}d^3x$ be the two-form dual to a divergence-free
+field $\mathbf V$ tangent to the boundary of a compact domain
+$\Omega\subset\mathbb R^3$.  Cantarella and Parsley express the same helicity
+both as a configuration-space cohomology pairing and as a wedge product with a
+Biot--Savart-selected primitive \cite{CantarellaParsley2010Helicity}:
+\begin{align}
+    \mathcal H(\alpha)
+    &=
+    \int_{C_2[\Omega]}
+    \alpha_x\wedge\alpha_y\wedge g^*(d\Omega_{S^2}),
+    \label{eq:rt_helicity_configuration_space}\\
+    &=
+    \int_{\Omega}\alpha\wedge\operatorname{BS}(\alpha).
+    \label{eq:rt_helicity_primitive_form}
+\end{align}
+The compactified configuration space $C_2[\Omega]$ resolves the pair diagonal
+$x=y$ by retaining the limiting direction of approach.  This is a geometric
+regularization of the Gauss kernel; it is not an SST core cutoff and does not
+set $a_{\rm core}$ or $\rc$.
+
+\paragraph{Primitive and gauge discipline.}
+On a multiply connected domain, the value of
+$\int_{\Omega}\alpha\wedge\beta$ need not be independent of an arbitrary
+primitive $d\beta=\alpha$.  The Biot--Savart/Hodge choice in
+Eq.~\eqref{eq:rt_helicity_primitive_form}, together with the independent flux
+and boundary data, is part of the observable definition.  A numerical export
+of $\mathcal H$ is therefore incomplete unless it declares
+\begin{align}
+    \left(
+        \boldsymbol\omega,
+        \{\Gamma_i\},
+        [\beta|_{\partial\Omega}],
+        \text{Hodge/Biot--Savart gauge}
+    \right).
+    \label{eq:rt_helicity_gauge_metadata}
+\end{align}
+For the kinetic-helicity mapping one sets $\mathbf V=\boldsymbol\omega$ and
+$\operatorname{BS}(\boldsymbol\omega)=\uswirl$ up to the separately fixed
+harmonic sector.
+
+\paragraph{Mapping-class jump law.}
+For an orientation-preserving diffeomorphism $f:\Omega\to\Omega'$, the exact
+change is
+\begin{align}
+    \Delta\mathcal H
+    &=
+    \mathcal H\!\left((f^{-1})^*\alpha\right)-\mathcal H(\alpha)
+    =
+    \sum_{i,j}c_{ij}\Phi_i\Phi_j
+    =
+    \boldsymbol\Phi^{\!T}C\boldsymbol\Phi,
+    \label{eq:rt_helicity_mapping_class_quadratic}
+\end{align}
+where the coefficients $c_{ij}$ are fixed by the induced action on boundary
+homology.  For a solid torus and $j\in\mathbb Z$ Dehn twists,
+\begin{align}
+    \Delta\mathcal H=j\Phi^2 .
+    \label{eq:rt_helicity_dehn_twist_jump}
+\end{align}
+With $\mathbf V=\boldsymbol\omega$, the spanning-disk flux is the circulation,
+$\Phi=\Gamma$.  One canonical circulation unit therefore gives
+\begin{align}
+    \Gamma_0
+    &=2\pi\rc\vchar
+      =9.68361920\times10^{-9}\,{\rm m^2\,s^{-1}},\\
+    \Delta\mathcal H_{j=1}
+    &=\Gamma_0^2
+      =9.37724809\times10^{-17}\,{\rm m^4\,s^{-2}}.
+    \label{eq:rt_helicity_dehn_twist_numeric}
+\end{align}
+The dimensions are those of kinetic helicity.  Equation
+\eqref{eq:rt_helicity_dehn_twist_numeric} does not quantize circulation by
+itself; integer circulation requires an independent phase or Onsager closure.
+
+\paragraph{Relation to writhe and twist.}
+In the thin single-tube limit,
+\begin{align}
+    \mathcal H\simeq\Gamma^2(Wr+Tw),
+    \label{eq:rt_helicity_wr_tw_sector}
+\end{align}
+and a Dehn twist changes the framing by $\Delta Tw=j$ while leaving the
+centerline embedding potentially unchanged.  Thus two states with the same
+$K$, $\operatorname{Rop}(K)$, $Wr$, and $\Gamma$ may still differ by
+$j\Gamma^2$ in helicity.  The SST state label must therefore be enlarged to
+\begin{align}
+    \mathfrak T_K
+    =
+    \left(K,\{\Gamma_i\},Wr,Tw,[f]_{\rm map}\right).
+    \label{eq:rt_helicity_state_label}
+\end{align}
+The twist variable is measured state data, not a residual parameter chosen to
+close a target helicity.
+
+\paragraph{Chronos--Kairos separation.}
+A smooth ideal material flow $f_t$ with $f_0=\operatorname{id}$ is homotopic to
+the identity and conserves helicity.  A transition between distinct mapping
+classes is therefore entered in the Kairos ledger and must name its physical
+trigger.  Fluxless sectors, $\Phi_i=0$, are invariant under the quadratic jump
+law even when the mapping class is nontrivial.
+
+\paragraph{Falsifier.}
+If a numerical ideal-Euler evolution without boundary work, phase slip, or
+reconnection changes the tuple
+$\left(\mathcal H,\{\Gamma_i\},[f]_{\rm map}\right)$ beyond discretization
+error, the implementation violates the frozen-field topology gate.
+
 \subsubsection{Energy relaxation under topological constraints}
 For a slender swirl tube, the leading hydrodynamic energy scale is
 \begin{equation}
@@ -2089,6 +2199,156 @@ Near contacts and curvature corrections may be encoded by
     \label{eq:geometric_energy_functional}
 \end{equation}
 Here $\kappa_s$ is centerline curvature and $C_{\rm near}$ is a near-contact or crossing-complexity proxy.
+
+\subsubsection{Isoperimetric domain-shape and curl-spectrum gate}
+\label{subsubsec:rt_isoperimetric_domain_shape}
+\paragraph{Status.}
+\textbf{[ORTHODOX OPERATOR/SHAPE CALCULUS / RESEARCH-TRACK SST DOMAIN OPTIMIZATION].}
+For a smooth compact domain $\Omega\subset\mathbb R^3$, define
+\begin{align}
+    K(\Omega)
+    &=
+    \left\{
+        \mathbf V:\nabla\cdot\mathbf V=0,
+        \ \mathbf V\cdot\mathbf n=0
+    \right\},\\
+    \operatorname{BS}_{K}
+    &=
+    P_{K(\Omega)}\operatorname{BS} .
+    \label{eq:rt_isoperimetric_projected_bs}
+\end{align}
+The modified operator is compact and self-adjoint on the $L^2$ completion of
+$K(\Omega)$.  Its largest positive eigenvalue, the maximal helicity-to-$L^2$
+ratio, and the smallest positive curl eigenvalue on
+$\operatorname{im}\operatorname{BS}_{K}$ satisfy
+\begin{align}
+    \lambda_{\max}(\Omega)
+    &=
+    \max_{\mathbf V\in K(\Omega)\setminus\{0\}}
+    \frac{\langle\mathbf V,
+    \operatorname{BS}_{K}\mathbf V\rangle}
+    {\langle\mathbf V,\mathbf V\rangle}
+    =
+    \frac{1}{\kappa_{1}^{\rm curl}(\Omega)},
+    \label{eq:rt_isoperimetric_equivalent_problems}\\
+    \nabla\times\mathbf V_1
+    &=
+    \kappa_{1}^{\rm curl}\mathbf V_1 .
+    \label{eq:rt_isoperimetric_beltrami_field}
+\end{align}
+Thus centerline ropelength and the spectrum of the filled tube domain are
+independent geometric data \cite{CantarellaDeTurckGluckTeytel2000Isoperimetric}.
+
+\paragraph{Energy-symbol guard.}
+The operator paper uses
+\begin{align}
+    \mathscr E_V
+    =
+    \int_{\Omega}|\mathbf V|^2d^3x .
+    \label{eq:rt_isoperimetric_l2_energy}
+\end{align}
+For the hydrodynamic choice $\mathbf V=\boldsymbol\omega$,
+$\mathscr E_V$ is enstrophy while
+\begin{align}
+    E_{\rm kin}
+    =
+    \frac{\rhoF}{2}\int_{\Omega}|\uswirl|^2d^3x
+    \label{eq:rt_isoperimetric_kinetic_energy_guard}
+\end{align}
+is kinetic energy.  Maximizing helicity per enstrophy is not automatically the
+same problem as minimizing SST rest energy at fixed helicity.  Any use of
+$\kappa_1^{\rm curl}$ in a mass functional must state which field occupies the
+operator slot and which physical energy is being extremized.
+
+\paragraph{First variation under a volume-preserving shape deformation.}
+Let $\mathbf W$ be the initial velocity of a volume-preserving deformation of
+$\Omega$ and carry $\mathbf V$ with the domain.  The orthodox shape derivative
+is
+\begin{align}
+    \delta\mathscr E_V
+    =
+    -2\int_{\Omega}
+    \left[
+        \mathbf V\times(\nabla\times\mathbf V)
+    \right]\cdot\mathbf W\,d^3x
+    -
+    \int_{\partial\Omega}
+    |\mathbf V|^2\,\mathbf W\cdot\mathbf n\,dA .
+    \label{eq:rt_isoperimetric_energy_shape_derivative}
+\end{align}
+For a curl eigenfield the volume term vanishes, leaving a boundary-only shape
+sensitivity.  For a simple eigenvalue the corresponding exact Rayleigh-quotient
+derivative is
+\begin{align}
+    \delta\lambda_1
+    =
+    \lambda_1
+    \frac{
+        \int_{\partial\Omega}
+        |\mathbf V_1|^2\,\mathbf W\cdot\mathbf n\,dA
+    }{
+        \int_{\Omega}|\mathbf V_1|^2\,d^3x
+    } .
+    \label{eq:rt_isoperimetric_eigenvalue_shape_derivative}
+\end{align}
+
+\paragraph{Necessary boundary conditions for a smooth global optimum.}
+At fixed domain volume, any smooth global maximizer must satisfy
+\begin{align}
+    \left.|\mathbf V_1|\right|_{\partial\Omega_a}
+    &=C_a>0
+    \quad\text{on each boundary component},
+    \label{eq:rt_isoperimetric_boundary_magnitude}\\
+    \chi(\partial\Omega_a)&=0,
+    \label{eq:rt_isoperimetric_boundary_euler_characteristic}\\
+    k_g(\text{boundary orbit})&=0 .
+    \label{eq:rt_isoperimetric_boundary_geodesic}
+\end{align}
+Hence each smooth closed boundary component is a torus and the boundary field
+orbits are intrinsic geodesics.  No smooth simply connected domain can be a
+global optimizer in this unrestricted fixed-volume problem.
+
+\paragraph{Horn-envelope non-claim.}
+The proposed singular ``extreme apple'' or pinched-torus optimizer in the
+source is conjectural.  It does not identify a trefoil, does not determine
+$R_{\rm horn}$, and does not resolve a finite SST vortex core.  A canon-compatible
+research problem is instead the regularized, embedding-restricted program
+\begin{align}
+    \min_{\gamma_K,\Omega_K}
+    \quad
+    \kappa_{1}^{\rm curl}(\Omega_K)
+    \quad\text{subject to}\quad
+    &[\gamma_K]=K,
+    \qquad
+    \Omega_K=\operatorname{Tube}_{a_{\rm core}}(\gamma_K),\\
+    &\operatorname{Vol}(\Omega_K)=V_0,
+    \qquad
+    \operatorname{reach}(\gamma_K)\ge a_{\rm core}.
+    \label{eq:rt_isoperimetric_regularized_sst_target}
+\end{align}
+The knot/link embedding, flux data, and harmonic circulations are held fixed
+within each comparison.  This target is a Research-Track shape optimization,
+not an existing SST theorem.
+
+\paragraph{Operational diagnostics.}
+A domain-shape solver should report
+\begin{align}
+    \mathcal D_{\rm iso}
+    =
+    \left(
+        \kappa_{1}^{\rm curl},
+        \lambda_{\max},
+        \frac{\operatorname{std}_{\partial\Omega}|\mathbf V_1|}
+             {\operatorname{mean}_{\partial\Omega}|\mathbf V_1|},
+        \|k_g\|_{L^2(\partial\Omega)},
+        \operatorname{reach}(\partial\Omega)
+    \right).
+    \label{eq:rt_isoperimetric_diagnostics}
+\end{align}
+The extremal eigenfield is a variational benchmark or stationary candidate.
+In an ideal inviscid SST evolution, conservation of energy and helicity does
+not make it a dynamical attractor without a separately declared relaxation
+mechanism.
 
 \subsubsection{Reduction to the SST normal form}
 After nondimensionalization by a reference energy $E_0$, Eq.~\eqref{eq:geometric_energy_functional} reduces to the canon-style scoring form
@@ -2198,8 +2458,6 @@ profile-resolved SST tube one should instead test a functional of the form
 The multipliers $\lambda_{pq}$ and $\mu_i$ are then research-track candidates
 for a discrete swirl-stress/contact-force map, not yet canonical physical
 forces.
-
-\subsubsection{Contact-map refinement of the topological kernel}
 
 \subsubsection{Contact-pressure saturation and Swirl-Clock shielding}
 \label{subsec:rt_contact_pressure_saturation_swirl_clock}
@@ -2396,6 +2654,8 @@ contact-stress multiplier or without reducing the local speed field back below
 to a Biot--Savart pressure postprocessor.
 
 
+\subsubsection{Contact-map refinement of the topological kernel}
+\label{subsubsec:rt_contact_map_refinement}
 A scalar ropelength is not enough to determine all shape-sensitive SST
 observables.  A resolved ideal tube carries a contact skeleton
 \begin{align}
@@ -2568,36 +2828,177 @@ length proxy must expose a correction term,
 rather than assuming $\mathcal L_{\rm comp}=\sum_i\mathcal L_{K_i}$.  This is a
 research-track guard, not a universal law for all SST composites.
 
+
+\subsubsection{Polygonal-to-smooth certification ladder}
+\label{subsubsec:rt_polygonal_smooth_certification}
+\paragraph{Status.}
+\textbf{[ORTHODOX NUMERICAL GEOMETRY / RESEARCH-TRACK SST INPUT GATE].}
+This subsection isolates the numerical implications of the Ridgerunner
+constrained-gradient method \cite{AshtonCantarellaPiatekRawdon2011}.  It
+certifies an approximately thickness-critical polygon and a smooth ropelength
+upper bound; it does not certify a unique global minimizer or a physical SST
+energy ground state.
+
+\paragraph{Equilateral constraint gate.}
+For an equilateral polygon of edge length $\ell$, Ridgerunner's constraint
+thickness and Rawdon polygonal thickness define the same feasible set,
+\begin{align}
+    \operatorname{CThi}(\ell,V)\ge1
+    \quad\Longleftrightarrow\quad
+    \operatorname{Thi}_p(V)\ge1 .
+    \label{eq:rt_cthi_thip_equivalence}
+\end{align}
+This equivalence must not be transferred silently to a strongly
+non-equilateral simulation mesh.  Define
+\begin{align}
+    \bar\ell
+    &=\frac1N\sum_{i=1}^{N}\ell_i,\\
+    \epsilon_{\rm eq}
+    &=
+    \max_i\left|\frac{\ell_i}{\bar\ell}-1\right| .
+    \label{eq:rt_equilateral_error}
+\end{align}
+A pipeline must control $\epsilon_{\rm eq}$ by arc-length remeshing or use a
+thickness formulation proved for its non-equilateral discretization.
+
+\paragraph{Curvature-stiffness scaling.}
+At normalized $\operatorname{MinRad}=1$, an equilateral polygon obeys
+\begin{align}
+    \left\|\nabla\operatorname{MinRad}^{\pm}\right\|_2
+    \ge
+    \frac{2}{\ell^2} .
+    \label{eq:rt_minrad_stiffness_scaling}
+\end{align}
+Thus halving the edge length can increase the curvature-constraint stiffness
+by a factor of four.  Timestep, conditioning, and constraint-correction
+tolerances must scale with resolution; increasing the vertex count is not by
+itself a stability improvement.
+
+\paragraph{Polygonal versus smooth ropelength.}
+The polygonal value
+\begin{align}
+    \operatorname{Rop}_p(V)
+    =
+    \frac{\operatorname{Len}(V)}{\operatorname{Thi}_p(V)}
+    \label{eq:rt_polygonal_ropelength}
+\end{align}
+is not the final smooth certification.  After replacing vertices by controlled
+circular or spline arcs, all newly introduced self-distances must be checked
+and one must report
+\begin{align}
+    \operatorname{Rop}_{\rm smooth}^{\rm ub}
+    =
+    \frac{\operatorname{Len}(\widetilde V)}
+         {\operatorname{Thi}(\widetilde V)} .
+    \label{eq:rt_smooth_ropelength_upper_bound}
+\end{align}
+The label ``ideal'' attached to a Fourier, KnotPlot, or atlas file is not a
+geometric certificate.  The Ridgerunner authors could not reproduce every
+published Fourier/Gilbert ropelength claim under their polygonal thickness
+measurement, which makes independent reconstruction and smooth-thickness
+verification mandatory.
+
+\paragraph{Constrained-gradient certificate.}
+With rigidity matrix $A$ assembled from active strut and kink gradients, the
+nonnegative least-squares problem is
+\begin{align}
+    \min_{\Lambda\ge0}
+    \left\|A\Lambda-(-\nabla E_{\rm SST})\right\|_2,
+    \label{eq:rt_ridgerunner_nnls}
+\end{align}
+and the relative first-order residual is
+\begin{align}
+    \chi_{\rm KKT}
+    =
+    \frac{\|-\nabla E_{\rm SST}+A\Lambda\|_2}
+         {\|\nabla E_{\rm SST}\|_2},
+    \qquad \Lambda\ge0 .
+    \label{eq:rt_contact_residual}
+\end{align}
+The published dataset had mean residual approximately $2.99\times10^{-3}$,
+with specially refined examples reaching approximately
+$2.54\times10^{-5}$.  These values are historical benchmarks, not universal
+acceptance thresholds.  A small $\chi_{\rm KKT}$ establishes only first-order
+criticality and must be interpreted together with the stability hierarchy in
+Eq.~\eqref{eq:rt_gehring_stability_hierarchy}.
+
+\paragraph{Contact-map and refinement convergence.}
+Ropelength convergence is insufficient.  The positive strut measure of
+Eq.~\eqref{eq:rt_discrete_contact_measure}, the analogous kink measure, their
+supports, total masses, and representative test integrals must converge under
+refinement.  The arclength contact map should be compared across resolutions;
+new or disappearing contact branches are a geometry change even when the
+scalar ropelength changes little.
+
+\paragraph{Multistart protocol.}
+For each knot/link class use at least five independent initial embeddings, as
+in the published computation, and a resolution ladder.  Suitable starts
+include analytic/Fourier, diagram/KnotPlot, previously tightened atlas, and
+independent isotopic perturbations.  Retain the best certified smooth upper
+bound, not merely the shortest polygon encountered, and preserve seed,
+remeshing, active-set, correction-step, and stopping-residual metadata.
+
+\paragraph{Precision ceiling.}
+Define a conservative geometry-certification envelope
+\begin{align}
+    \epsilon_{\rm geom}
+    =
+    \max\!\left(
+        \epsilon_{\rm eq},
+        \epsilon_{\rm thi},
+        \chi_{\rm KKT},
+        \epsilon_{\rm smooth},
+        \epsilon_{\rm contact}
+    \right),
+    \label{eq:rt_geometry_precision_ceiling}
+\end{align}
+where, for the normalized unit-thickness problem,
+\begin{align}
+    \epsilon_{\rm thi}
+    :=\max\!\left(0,1-\operatorname{CThi}(\bar\ell,V)\right),\\
+    \epsilon_{\rm smooth}
+    :=
+    \frac{\left|\operatorname{Rop}_{\rm smooth}^{\rm ub}
+    -\operatorname{Rop}_p\right|}
+    {\operatorname{Rop}_{\rm smooth}^{\rm ub}} .
+    \label{eq:rt_geometry_error_components}
+\end{align}
+Here $\epsilon_{\rm contact}$ is a declared resolution-to-resolution norm on
+the contact measures.  A downstream SST mass, coupling, or constant extraction
+must not quote relative precision parametrically smaller than
+$\epsilon_{\rm geom}$ unless an independent error-propagation analysis proves
+a cancellation.
+
 \subsubsection{Operational SSTcore diagnostics}
 A profile-resolved SSTcore tightening or imported ideal-knot pipeline should
 report at least
 \begin{align}
-    \mathcal D_K
+    \mathcal D_K^{\rm num}
     =
-    \left(
-        \operatorname{Rop}_{\rm rad},\,
-        a_{\rm core},\,
-        \operatorname{Strut},\,
-        \operatorname{Kink},\,
-        \Lambda,\,
-        \chi_{\rm contact}
-    \right),
+    \Bigg(
+        N,
+        \bar\ell,
+        \epsilon_{\rm eq},
+        \operatorname{Thi}_p,
+        \operatorname{CThi},
+        \operatorname{Rop}_p,
+        \operatorname{Rop}_{\rm smooth}^{\rm ub},
+        \min_i\operatorname{MinRad}(v_i),
+        \frac12d_{\rm dcsd},
+        |\operatorname{Strut}|,
+        |\operatorname{Kink}|,
+        \Lambda,
+        \chi_{\rm KKT},
+        \operatorname{cond}_2(A_F),
+        N_{\rm seed},
+        \epsilon_{\rm geom}
+    \Bigg),
     \label{eq:rt_sstcore_contact_diagnostics}
 \end{align}
-where
-\begin{align}
-    \chi_{\rm contact}
-    =
-    \frac{\left\|-
-        \nabla E_{\rm SST}+A\Lambda\right\|}
-         {\left\|\nabla E_{\rm SST}\right\|},
-    \qquad
-    \Lambda\ge0 .
-    \label{eq:rt_contact_residual}
-\end{align}
-Here $A$ is the rigidity/contact matrix built from strut and kink gradients.
-Small $\chi_{\rm contact}$ means that the candidate state is not merely short;
-it is approximately contact-critical under the declared energy model.
+where the rigidity-matrix column-sign convention is declared and $A_F$ is the
+free-column submatrix in the final NNLS active set.  This tuple supplements,
+rather than replaces, the continuum contact-measure audit of
+Sec.~\ref{subsec:rt_gehring_contact_measure}.
 
 \subsubsection{Colored contact-channel rank test for the factor nine}
 \label{sec:rt_colored_contact_rank_nine}
@@ -2869,6 +3270,518 @@ If two distinct knots have the same SST particle assignment but relax to incompa
     \quad\Rightarrow\quad
     \text{taxonomy refinement required.}
 \end{equation}
+
+\subsection{Research Appendix: Spherical Curl Spectrum and Helicity Capacity}
+    \label{subsec:rt_spherical_curl_spectrum_capacity}
+
+    \paragraph{Status.}
+    \textbf{[ORTHODOX SOURCE RESULT / SST RESEARCH-TRACK APPLICATION].}
+    This appendix records the bounded-domain curl-spectrum consequences of
+    Cantarella, DeTurck, Gluck, and Teytel without identifying a spheromak with an
+    SST particle state
+    \cite{CantarellaDeTurckGluckTeytel2000CurlSpherical}.
+
+    \paragraph{Helicity capacity.}
+    For any domain on which the projected Biot--Savart/curl inverse is defined, set
+    \begin{align}
+        C_H(\Omega)
+        &:=
+        \frac{1}{\kappa_1(\Omega)},
+        &
+        [C_H]&=\mathrm{m}.
+        \label{eq:rt_helicity_capacity}
+    \end{align}
+    This is the maximum helicity-to-\(L^2\)-energy ratio in the source convention.
+    A scale-invariant resolved-tube diagnostic is
+    \begin{align}
+        \chi_{\rm curl}(K)
+        :=
+        a_{\rm core}\,\kappa_1(\Omega_K),
+        \qquad
+        [\chi_{\rm curl}]=1,
+        \label{eq:rt_chi_curl}
+    \end{align}
+    where \(\Omega_K\) is the actual finite-thickness knot domain.  A pure
+    ropelength mass branch requires \(\chi_{\rm curl}(K)\) and the normalized field
+    profile to be sufficiently universal across the compared knot classes.
+
+    \paragraph{Thin active-shell cost.}
+    Let \(\delta=b-a\ll b\).  Expanding the spherical-shell root condition in the
+    thin-shell regime gives the leading radial scaling
+    \begin{align}
+        \kappa_1(B^3(a,b))
+        \sim
+        \frac{\pi}{\delta}.
+        \label{eq:rt_thin_shell_curl_scaling}
+    \end{align}
+    Thus a progressively thinner \emph{vorticity- or flux-carrying filled shell}
+    acquires a large spectral cost.  This result must not be transferred to an
+    irrotational horn envelope surrounding a much smaller vorticity-bearing core;
+    those are different field sectors.
+
+    \paragraph{Field-line geometry.}
+    The minimum-eigenvalue ball and shell fields are axisymmetric and are organized
+    by nested toroidal invariant surfaces.  This supports their use as qualitative
+    benchmarks for a bent coarse-grained flux bundle.  It does not imply that a
+    remote background flow must be toroidal, nor does it establish the geometry of a
+    knotted SST carrier.
+
+    \paragraph{Beltrami residual.}
+    For a numerical candidate \(\mathbf{V}\), define
+    \begin{align}
+        \mathcal R_{\rm CK}(\kappa)
+        :=
+        \frac{
+        \left\|
+        \nabla\times\mathbf{V}-\kappa\mathbf{V}
+        \right\|_{L^2(\Omega)}
+        }{
+        \left\|\nabla\times\mathbf{V}\right\|_{L^2(\Omega)}
+        +
+        |\kappa|\left\|\mathbf{V}\right\|_{L^2(\Omega)}
+        }.
+        \label{eq:rt_ck_residual}
+    \end{align}
+    The fitted \(\kappa\), \(\mathcal R_{\rm CK}\), and
+    \(a_{\rm core}\kappa\) must be reported together.
+
+    \paragraph{No automatic ideal-Euler relaxation.}
+    A lowest curl eigenfield is a stationary variational benchmark.  In the ideal,
+    incompressible, unforced Euler limit, kinetic energy and helicity are conserved;
+    the dynamics therefore do not automatically dissipate toward the lowest mode.
+    Any relaxation claim requires a separately declared dissipative, radiative, or
+    coarse-graining mechanism.  Hence
+    \begin{align}
+        \text{small }\mathcal R_{\rm CK}
+        \not\Rightarrow
+        \text{dynamical attractor or particle stability}.
+        \label{eq:rt_ck_no_relaxation_guard}
+    \end{align}
+
+    \paragraph{Minimal falsifier.}
+    Compute \(\kappa_1\) on resolved unknot, trefoil, figure-eight, and selected
+    higher-knot tubes at common \(a_{\rm core}\) and common volume.  Strong
+    knot-dependent variation in \(\chi_{\rm curl}\) falsifies any claim that the
+    entire field-energy splitting is determined by scalar ropelength alone.
+
+\subsection{Research Appendix: Writhe Bounds, Twist Guards, and Flat-Torus Benchmark}
+    \label{subsec:rt_upper_bounds_writhe_helicity}
+
+    \paragraph{Status.}
+    \textbf{[ORTHODOX SOURCE RESULTS / SST DIAGNOSTIC USE].}
+    This appendix imports only the bounds and explicit model-domain results of
+    Cantarella, DeTurck, and Gluck
+    \cite{CantarellaDeTurckGluck2001UpperBounds}.
+
+    \paragraph{Writhe sanity gate.}
+    A computed centerline with radius-convention ropelength
+    \(\operatorname{Rop}_{\rm rad}\) must satisfy
+    \begin{align}
+        |\operatorname{Wr}|
+        <
+        \frac14\operatorname{Rop}_{\rm rad}^{4/3}.
+        \label{eq:rt_writhe_sanity_gate}
+    \end{align}
+    Violation indicates a convention, discretization, or integration error.  Passing
+    the bound does not certify ideality because the inequality is intentionally broad.
+
+    \paragraph{Special zero-internal-twist tube.}
+    For the particular tube field used in the source---normal to each cross-sectional
+    disk and with magnitude depending only on distance from the centerline---the
+    internal twist contribution is absent and
+    \begin{align}
+        \mathscr H_V
+        =
+        \Phi^2\operatorname{Wr}(K).
+        \label{eq:rt_special_zero_twist_helicity}
+    \end{align}
+    This equality is not a general SST identity.  It may be used only after the
+    selected framing and cross-sectional field have independently established zero
+    internal twist.  In particular,
+    \begin{align}
+        \mathscr H_V/\Phi^2
+        =
+        \operatorname{Wr}
+        \quad\Longrightarrow\quad
+        \text{verified zero-twist model},
+        \label{eq:rt_zero_twist_implication_guard}
+    \end{align}
+    not a post-hoc choice of twist to match a target helicity.
+
+    \paragraph{Flat solid-torus benchmark.}
+    On the product domain \(D^2(a)\times S^1\), the first positive curl eigenvalue is
+    \begin{align}
+        \kappa_1
+        =
+        \frac{j_{0,1}}{a},
+        \qquad
+        j_{0,1}=2.404825558\ldots,
+        \label{eq:rt_flat_solid_torus_eigenvalue}
+    \end{align}
+    with an eigenfield containing both longitudinal and azimuthal components.  This
+    supplies a local slender-tube benchmark for \(a\kappa_1\).  The product torus is
+    not an embedded curved horn torus in \(\mathbb R^3\); major-radius curvature,
+    knotting, and self-contact are absent and must be recomputed in the physical
+    domain.
+
+    \paragraph{Research requirement.}
+    For every candidate particle tube, report the tuple
+    \begin{align}
+        \left(
+        \operatorname{Rop}_{\rm rad},
+        \operatorname{Wr},
+        \text{framing/twist prescription},
+        \mathscr H_V/\Phi^2,
+        a_{\rm core}\kappa_1
+        \right).
+        \label{eq:rt_writhe_helicity_audit_tuple}
+    \end{align}
+    A scalar ropelength or writhe value alone is insufficient to specify the
+    volumetric field state.
+
+\subsection{Research Appendix: Gehring-Link Criticality and Contact Measures}
+    \label{subsec:rt_gehring_contact_measure}
+
+    \paragraph{Status.}
+    \textbf{[ORTHODOX VARIATIONAL GEOMETRY / SST CONTACT APPLICATION].}
+    This appendix records the continuum balance theorem and its limitations from
+    the Gehring link problem
+    \cite{CantarellaFuKusnerSullivanWrinkle2006Gehring}.
+
+    \paragraph{Continuum strut measure.}
+    Let \(\operatorname{Strut}(L)\) be the set of intercomponent pairs realizing
+    \(\operatorname{LThi}(L)\).  For a variation field \(\boldsymbol\xi\), define
+    \begin{align}
+        (A_S\boldsymbol\xi)(x,y)
+        :=
+        \frac{
+        \left\langle
+        \boldsymbol\xi(y)-\boldsymbol\xi(x),y-x
+        \right\rangle
+        }{|y-x|}.
+        \label{eq:rt_gehring_rigidity_operator}
+    \end{align}
+    Strong criticality is equivalent to the existence of a positive Radon measure
+    \(\mu\) on \(\operatorname{Strut}(L)\) satisfying
+    \begin{align}
+        \delta_{\boldsymbol\xi}\operatorname{Len}(L)
+        &=
+        \int_{\operatorname{Strut}(L)}
+        A_S\boldsymbol\xi\,d\mu,
+        &
+        A_S^*\mu&=-\mathbf K,
+        \label{eq:rt_gehring_continuum_balance}
+    \end{align}
+    where \(\mathbf K\) is the vector-valued curvature-force measure.
+
+    For a resolved SST energy with both self-contact and curvature constraints, the
+    corresponding first-order structure is
+    \begin{align}
+        -\frac{\delta E_{\rm SST}}{\delta\gamma}
+        +
+        A_S^*\mu
+        +
+        A_K^*\nu
+        =0,
+        \qquad
+        \mu,\nu\geq0,
+        \label{eq:rt_sst_measure_kkt_balance}
+    \end{align}
+    where \(\nu\) is the kink/curvature multiplier measure.
+
+    \paragraph{Geometric contact versus load-bearing contact.}
+    The multiplier measure need not have support on every active geometric strut:
+    \begin{align}
+        \operatorname{supp}\mu
+        \subseteq
+        \operatorname{Strut}(L),
+        \label{eq:rt_load_bearing_strut_subset}
+    \end{align}
+    with possible strict inclusion.  Hence
+    \(d(x,y)=a_i+a_j\) does not by itself imply nonzero contact pressure.  A solver
+    must distinguish the active geometric strut set from the positive-multiplier
+    load-bearing set.
+
+    \paragraph{Discrete-to-continuum convergence.}
+    A polygonal contact solution should be represented as
+    \begin{align}
+        \mu_N
+        =
+        \sum_{q\in\operatorname{Strut}(V_N)}
+        \lambda_q^{(N)}\delta_q.
+        \label{eq:rt_discrete_contact_measure}
+    \end{align}
+    Refinement requires weak-* convergence \(\mu_N\overset{*}{\rightharpoonup}\mu\),
+    not merely convergence of the number of struts or total ropelength.  The total
+    measure, support geometry, and selected test integrals \(\int f\,d\mu_N\) must be
+    reported.
+
+    \paragraph{Criticality is not stability.}
+    Equation~\eqref{eq:rt_gehring_continuum_balance} is a first-order KKT balance.
+    It does not establish a nonnegative constrained Hessian and does not establish
+    stability under Euler or Biot--Savart time evolution.  The required hierarchy is
+    \begin{align}
+        \text{balanced}
+        \quad\not\Rightarrow\quad
+        \text{variationally stable}
+        \quad\not\Rightarrow\quad
+        \text{dynamically stable}.
+        \label{eq:rt_gehring_stability_hierarchy}
+    \end{align}
+
+    \paragraph{Clasp singularity and finite-core regularization.}
+    In the critical unit clasp, the tip curvature behaves as
+    \begin{align}
+        \kappa(s)
+        \sim
+        |s|^{-1/3},
+        \label{eq:rt_gehring_clasp_curvature}
+    \end{align}
+    so the curve is \(C^{1,2/3}\), not \(C^{1,1}\), while the central inter-tip
+    distance is approximately \(1.05639\) for unit link-thickness.  This demonstrates
+    that intercomponent exclusion alone permits unbounded curvature and a non-contact
+    gap at the visually closest tips.  A physical SST tube therefore requires the
+    ordinary curvature/reach gate or a resolved bending/core regularization in
+    addition to Gehring separation.
+
+    \paragraph{Unequal component tensions.}
+    For component-dependent effective tensions \(T_i\), the curvature-force side is
+    weighted:
+    \begin{align}
+        A_S^*\mu
+        =
+        -\sum_i T_i\mathbf K_i.
+        \label{eq:rt_gehring_unequal_tension_balance}
+    \end{align}
+    A geometrically symmetric multi-component state is not automatically critical
+    when its components have unequal circulation, profile, or tension data.
+
+    \paragraph{Higher link-homotopy data.}
+    Pairwise linking numbers do not classify three-component Brunnian links.  The
+    Borromean sector therefore requires a higher invariant such as Milnor's
+    \(\mu_{123}\) in addition to \(Lk_{ij}\).  This is a topology label; it does not
+    by itself establish the mechanical balance of Eq.~\eqref{eq:rt_sst_measure_kkt_balance}.
+
+    \paragraph{Minimal falsifier.}
+    A claimed multi-component SST equilibrium fails this gate if it preserves only
+    intercomponent distance while allowing a component self-crossing, if any required
+    multiplier is negative, if the load-bearing support does not converge under
+    refinement, or if KKT balance is reported as dynamical stability without a
+    separate perturbation spectrum.
+
+\subsection{Research Appendix: Biot--Savart Realizability and Far-Field Gate}
+    \label{subsec:rt_biot_savart_realizability}
+
+    \paragraph{Status.}
+    \textbf{[ORTHODOX OPERATOR RESULTS / SST IMPLEMENTATION REQUIREMENT].}
+    This appendix maps the bounded-domain Biot--Savart theorems to SSTcore and
+    VortexLab diagnostics
+    \cite{CantarellaDeTurckGluck2001BiotSavart}.
+
+    \paragraph{Exact vorticity-to-velocity inversion.}
+    With \(\mathbf V=\boldsymbol\omega\), the raw reconstruction
+    \(\mathbf u=\operatorname{BS}[\boldsymbol\omega]\) is a left inverse of curl
+    only when
+    \begin{align}
+        \nabla\cdot\boldsymbol\omega=0,
+        \qquad
+        \boldsymbol\omega\cdot\mathbf n=0
+        \quad\text{on }\partial\Omega.
+        \label{eq:rt_biot_savart_vorticity_conditions}
+    \end{align}
+    Boundary leakage or discrete divergence produces the explicit gradient terms in
+    Eq.~\eqref{eq:canon_biot_savart_curl_corrections}; it is not a harmless numerical
+    detail.
+
+    \paragraph{Potential-sector non-reconstruction.}
+    Since boundary-normal gradients lie in \(\ker\operatorname{BS}\), a vorticity
+    solver does not recover the complete pressure or potential-gradient sector.
+    Therefore
+    \begin{align}
+        \boldsymbol\omega
+        \text{ and }
+        \operatorname{BS}[\boldsymbol\omega]
+        \quad\not\Rightarrow\quad
+        \text{unique pressure, contact stress, or gravity closure}.
+        \label{eq:rt_biot_savart_pressure_nonreconstruction}
+    \end{align}
+    The pressure Poisson problem and its boundary data remain independent parts of
+    the SST state.
+
+    \paragraph{Realizability gate.}
+    Because
+    \(\operatorname{im}\operatorname{BS}\subsetneq\operatorname{im}\nabla\times\),
+    a smooth divergence-free target field need not be generated by sources confined
+    to the same domain.  Proposed analytic swirl profiles must therefore be tested
+    against the projected Biot--Savart image rather than accepted from
+    \(\nabla\cdot\mathbf u=0\) alone.
+
+    \paragraph{Optical-size diagnostic.}
+    Define the dimensionless geometry factor
+    \begin{align}
+        \chi_{\rm OS}(K)
+        :=
+        \frac{\operatorname{OS}(\Omega_K)}{a_{\rm core}},
+        \qquad
+        [\chi_{\rm OS}]=1.
+        \label{eq:rt_biot_savart_optical_size_factor}
+    \end{align}
+    It supplies an operator-norm bound independent of scalar ropelength and should be
+    reported when comparing domains with different compactness or concavity.
+
+    \paragraph{Far-field regression test.}
+    For an isolated compact fluid-knot source, fit
+    \begin{align}
+        \left\|\mathbf u(r)\right\|
+        \propto
+        r^{-p}
+        \quad(r\gg\operatorname{diam}\Omega).
+        \label{eq:rt_biot_savart_far_field_fit}
+    \end{align}
+    The direct Biot--Savart sector requires \(p\simeq3\).  A measured numerical
+    exponent near \(1\) or \(2\) indicates a non-compact source, boundary leakage,
+    an added background/potential sector, or an implementation error; it must not be
+    silently attributed to the compact knot.
+
+    \paragraph{Required residuals.}
+    A bounded-domain reconstruction must report
+    \begin{align}
+        \epsilon_{\rm div}
+        &:={
+        \|\nabla\cdot\boldsymbol\omega\|_{L^2}
+        \over
+        \|\nabla\boldsymbol\omega\|_{L^2}},
+        &
+        \epsilon_{\rm wall}
+        &:={
+        \|\boldsymbol\omega\cdot\mathbf n\|_{L^2(\partial\Omega)}
+        \over
+        \|\boldsymbol\omega\|_{L^2(\Omega)}},
+        \notag\\
+        \epsilon_{\rm curl}
+        &:={
+        \|\nabla\times\mathbf u-\boldsymbol\omega\|_{L^2}
+        \over
+        \|\boldsymbol\omega\|_{L^2}}.
+        \label{eq:rt_biot_savart_residuals}
+    \end{align}
+    The denominators and treatment of exact-zero cases must be declared in code.
+
+\subsection{Research Appendix: Hodge-Complete SST Velocity Reconstruction}
+    \label{subsec:rt_hodge_complete_reconstruction}
+
+    \paragraph{Status.}
+    \textbf{[ORTHODOX HODGE DECOMPOSITION / DERIVED SST RECONSTRUCTION].}
+    The following reconstruction uses the domain topology explicitly
+    \cite{CantarellaDeTurckGluck2002Hodge}.
+
+    \paragraph{Harmonic basis and circulation coordinates.}
+    Let
+    \begin{align}
+        g
+        :=
+        \dim H_1(\Omega;\mathbb R),
+    \end{align}
+    and choose harmonic-knot fields \(\mathbf h_1,\ldots,\mathbf h_g\) normalized by
+    \begin{align}
+        \oint_{\gamma_i}\mathbf h_j\cdot d\boldsymbol\ell
+        =
+        \delta_{ij}.
+        \label{eq:rt_harmonic_basis_normalization}
+    \end{align}
+    A Hodge-complete bounded-domain velocity reconstruction has the form
+    \begin{align}
+        \boxed{
+        \mathbf u
+        =
+        P_{K(\Omega)}\operatorname{BS}[\boldsymbol\omega]
+        +
+        \sum_{j=1}^{g}\Gamma_j\mathbf h_j
+        }
+        \label{eq:rt_hodge_complete_velocity}
+    \end{align}
+    after the flux and gauge conventions defining the projection have been fixed.
+    The coefficients \(\Gamma_j\) are independent topological circulation data; they
+    cannot be reconstructed from \(\boldsymbol\omega=\nabla\times\mathbf u\).
+
+    \paragraph{Solid-torus sector.}
+    For a solid torus, \(g=1\).  In the standard torus of revolution an illustrative
+    harmonic-knot field is locally
+    \begin{align}
+        \mathbf h
+        =
+        \frac{1}{r}\,\widehat{\boldsymbol\phi},
+        \qquad
+        \nabla\cdot\mathbf h=0,
+        \qquad
+        \nabla\times\mathbf h=0.
+        \label{eq:rt_solid_torus_harmonic_field}
+    \end{align}
+    Thus local curl-free flow may carry nonzero circulation around a non-contractible
+    loop.  For the SST circulation quantum, the local slender-core scaling is
+    \begin{align}
+        u_{\rm HK}(r)
+        =
+        \frac{\Gamma_0}{2\pi r}
+        =
+        \vchar\frac{\rc}{r}.
+        \label{eq:rt_harmonic_circulation_scaling}
+    \end{align}
+    This is a local benchmark outside an excluded core, not a determination of
+    \(r_{\rm horn}\) or of the full curved-knot velocity profile.
+
+    \paragraph{Irrotational envelope guard.}
+    Equation~\eqref{eq:rt_hodge_complete_velocity} supplies a mathematically valid
+    separation between a vorticity-bearing core sector and a curl-free global
+    circulation sector.  It therefore permits an irrotational horn/envelope flow
+    around a smaller core.  It does not prove that every SST horn is harmonic, nor
+    does it fix the separatrix, pressure profile, or envelope radius.
+
+    \paragraph{Hodge data are not particle identity.}
+    Every tubular neighborhood of a single knot is topologically a solid torus, so
+    \begin{align}
+        \dim HK(\Omega_{3_1})
+        =
+        \dim HK(\Omega_{4_1})
+        =1.
+        \label{eq:rt_hodge_not_knot_classifier}
+    \end{align}
+    Hodge homology alone cannot distinguish a trefoil from a figure-eight knot.
+    Particle classification still requires embedding-sensitive and knot-sensitive
+    data such as knot group, chirality, writhe/twist, ropelength, contact map, and
+    spectral geometry.
+
+    \paragraph{Numerical circulation residual.}
+    A bounded-domain solver must report
+    \begin{align}
+        \epsilon_{\Gamma}
+        :=
+        \max_j
+        \frac{
+        \left|
+        \oint_{\gamma_j}\mathbf u\cdot d\boldsymbol\ell-\Gamma_j
+        \right|
+        }{
+        \max(|\Gamma_j|,\Gamma_{\rm floor})
+        },
+        \label{eq:rt_hodge_circulation_residual}
+    \end{align}
+    with a declared nonzero \(\Gamma_{\rm floor}\).  A solver that matches
+    \(\nabla\times\mathbf u\) but fails this circulation test is not Hodge-complete.
+
+    \paragraph{Minimal research requirement.}
+    For each resolved knot or link domain, compute a homology basis, normalize the
+    harmonic fields, project the raw Biot--Savart field into \(K(\Omega)\), and verify
+    both curl recovery and circulation recovery.  The stored state must include
+    \begin{align}
+        \left(
+        \boldsymbol\omega,
+        \{\Gamma_j\}_{j=1}^{g},
+        \text{boundary conditions},
+        \text{projection/gauge convention}
+        \right).
+        \label{eq:rt_hodge_state_metadata}
+    \end{align}
 
 \section{Research-Track particle and clock ansatz}
 \label{app:research-track}
@@ -3388,6 +4301,12 @@ T.~Ashton, J.~Cantarella, M.~Piatek, and E.~J. Rawdon,
 DOI: \href{https://doi.org/10.1080/10586458.2011.544581}{10.1080/10586458.2011.544581};
 arXiv: \href{https://arxiv.org/abs/1002.1723}{1002.1723}.
 
+\bibitem{CantarellaDeTurckGluckTeytel2000Isoperimetric}
+J.~Cantarella, D.~DeTurck, H.~Gluck, and M.~Teytel,
+``Isoperimetric problems for the helicity of vector fields and the Biot--Savart and curl operators,''
+\emph{Journal of Mathematical Physics} \textbf{41}, 5615--5641 (2000).
+DOI: \href{https://doi.org/10.1063/1.533429}{10.1063/1.533429}.
+
 
 \bibitem{Ricca1998KnotFluidMechanics}
 R.~L.~Ricca,
@@ -3400,6 +4319,13 @@ H.~K.~Moffatt,
 ``The degree of knottedness of tangled vortex lines,''
 \emph{Journal of Fluid Mechanics} \textbf{35}, 117--129 (1969).
 DOI: \href{https://doi.org/10.1017/S0022112069000991}{10.1017/S0022112069000991}.
+
+\bibitem{CantarellaParsley2010Helicity}
+J.~Cantarella and J.~Parsley,
+``A new cohomological formula for helicity in $\mathbb R^{2k+1}$ reveals the effect of a diffeomorphism on helicity,''
+\emph{Journal of Geometry and Physics} \textbf{60}, 1127--1155 (2010).
+DOI: \href{https://doi.org/10.1016/j.geomphys.2010.04.001}{10.1016/j.geomphys.2010.04.001};
+arXiv: \href{https://arxiv.org/abs/0903.1465}{0903.1465}.
 
 \bibitem{ArnoldKhesin1998TopologicalMethods}
 V.~I.~Arnold and B.~A.~Khesin,

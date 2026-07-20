@@ -1,0 +1,239 @@
+diff --git a/SST_CANON-v0.8.20-research-track.tex b/SST_CANON-v0.8.20-research-track.tex
+index a02a967a0a089c8e8ca404f8c08806c5fcc07b02..4844712e58a26a98895a16694e84ae5c0c8bfc7a 100644
+--- a/SST_CANON-v0.8.20-research-track.tex
++++ b/SST_CANON-v0.8.20-research-track.tex
+@@ -2200,6 +2200,156 @@
+ \end{equation}
+ Here $\kappa_s$ is centerline curvature and $C_{\rm near}$ is a near-contact or crossing-complexity proxy.
+ 
++\subsubsection{Isoperimetric domain-shape and curl-spectrum gate}
++\label{subsubsec:rt_isoperimetric_domain_shape}
++\paragraph{Status.}
++\textbf{[ORTHODOX OPERATOR/SHAPE CALCULUS / RESEARCH-TRACK SST DOMAIN OPTIMIZATION].}
++For a smooth compact domain $\Omega\subset\mathbb R^3$, define
++\begin{align}
++    K(\Omega)
++    &=
++    \left\{
++        \mathbf V:\nabla\cdot\mathbf V=0,
++        \ \mathbf V\cdot\mathbf n=0
++    \right\},\\
++    \operatorname{BS}_{K}
++    &=
++    P_{K(\Omega)}\operatorname{BS} .
++    \label{eq:rt_isoperimetric_projected_bs}
++\end{align}
++The modified operator is compact and self-adjoint on the $L^2$ completion of
++$K(\Omega)$.  Its largest positive eigenvalue, the maximal helicity-to-$L^2$
++ratio, and the smallest positive curl eigenvalue on
++$\operatorname{im}\operatorname{BS}_{K}$ satisfy
++\begin{align}
++    \lambda_{\max}(\Omega)
++    &=
++    \max_{\mathbf V\in K(\Omega)\setminus\{0\}}
++    \frac{\langle\mathbf V,
++    \operatorname{BS}_{K}\mathbf V\rangle}
++    {\langle\mathbf V,\mathbf V\rangle}
++    =
++    \frac{1}{\kappa_{1}^{\rm curl}(\Omega)},
++    \label{eq:rt_isoperimetric_equivalent_problems}\\
++    \nabla\times\mathbf V_1
++    &=
++    \kappa_{1}^{\rm curl}\mathbf V_1 .
++    \label{eq:rt_isoperimetric_beltrami_field}
++\end{align}
++Thus centerline ropelength and the spectrum of the filled tube domain are
++independent geometric data \cite{CantarellaDeTurckGluckTeytel2000Isoperimetric}.
++
++\paragraph{Energy-symbol guard.}
++The operator paper uses
++\begin{align}
++    \mathscr E_V
++    =
++    \int_{\Omega}|\mathbf V|^2d^3x .
++    \label{eq:rt_isoperimetric_l2_energy}
++\end{align}
++For the hydrodynamic choice $\mathbf V=\boldsymbol\omega$,
++$\mathscr E_V$ is enstrophy while
++\begin{align}
++    E_{\rm kin}
++    =
++    \frac{\rhoF}{2}\int_{\Omega}|\uswirl|^2d^3x
++    \label{eq:rt_isoperimetric_kinetic_energy_guard}
++\end{align}
++is kinetic energy.  Maximizing helicity per enstrophy is not automatically the
++same problem as minimizing SST rest energy at fixed helicity.  Any use of
++$\kappa_1^{\rm curl}$ in a mass functional must state which field occupies the
++operator slot and which physical energy is being extremized.
++
++\paragraph{First variation under a volume-preserving shape deformation.}
++Let $\mathbf W$ be the initial velocity of a volume-preserving deformation of
++$\Omega$ and carry $\mathbf V$ with the domain.  The orthodox shape derivative
++is
++\begin{align}
++    \delta\mathscr E_V
++    =
++    -2\int_{\Omega}
++    \left[
++        \mathbf V\times(\nabla\times\mathbf V)
++    \right]\cdot\mathbf W\,d^3x
++    -
++    \int_{\partial\Omega}
++    |\mathbf V|^2\,\mathbf W\cdot\mathbf n\,dA .
++    \label{eq:rt_isoperimetric_energy_shape_derivative}
++\end{align}
++For a curl eigenfield the volume term vanishes, leaving a boundary-only shape
++sensitivity.  For a simple eigenvalue the corresponding exact Rayleigh-quotient
++derivative is
++\begin{align}
++    \delta\lambda_1
++    =
++    \lambda_1
++    \frac{
++        \int_{\partial\Omega}
++        |\mathbf V_1|^2\,\mathbf W\cdot\mathbf n\,dA
++    }{
++        \int_{\Omega}|\mathbf V_1|^2\,d^3x
++    } .
++    \label{eq:rt_isoperimetric_eigenvalue_shape_derivative}
++\end{align}
++
++\paragraph{Necessary boundary conditions for a smooth global optimum.}
++At fixed domain volume, any smooth global maximizer must satisfy
++\begin{align}
++    \left.|\mathbf V_1|\right|_{\partial\Omega_a}
++    &=C_a>0
++    \quad\text{on each boundary component},
++    \label{eq:rt_isoperimetric_boundary_magnitude}\\
++    \chi(\partial\Omega_a)&=0,
++    \label{eq:rt_isoperimetric_boundary_euler_characteristic}\\
++    k_g(\text{boundary orbit})&=0 .
++    \label{eq:rt_isoperimetric_boundary_geodesic}
++\end{align}
++Hence each smooth closed boundary component is a torus and the boundary field
++orbits are intrinsic geodesics.  No smooth simply connected domain can be a
++global optimizer in this unrestricted fixed-volume problem.
++
++\paragraph{Horn-envelope non-claim.}
++The proposed singular ``extreme apple'' or pinched-torus optimizer in the
++source is conjectural.  It does not identify a trefoil, does not determine
++$R_{\rm horn}$, and does not resolve a finite SST vortex core.  A canon-compatible
++research problem is instead the regularized, embedding-restricted program
++\begin{align}
++    \min_{\gamma_K,\Omega_K}
++    \quad
++    \kappa_{1}^{\rm curl}(\Omega_K)
++    \quad\text{subject to}\quad
++    &[\gamma_K]=K,
++    \qquad
++    \Omega_K=\operatorname{Tube}_{a_{\rm core}}(\gamma_K),\\
++    &\operatorname{Vol}(\Omega_K)=V_0,
++    \qquad
++    \operatorname{reach}(\gamma_K)\ge a_{\rm core}.
++    \label{eq:rt_isoperimetric_regularized_sst_target}
++\end{align}
++The knot/link embedding, flux data, and harmonic circulations are held fixed
++within each comparison.  This target is a Research-Track shape optimization,
++not an existing SST theorem.
++
++\paragraph{Operational diagnostics.}
++A domain-shape solver should report
++\begin{align}
++    \mathcal D_{\rm iso}
++    =
++    \left(
++        \kappa_{1}^{\rm curl},
++        \lambda_{\max},
++        \frac{\operatorname{std}_{\partial\Omega}|\mathbf V_1|}
++             {\operatorname{mean}_{\partial\Omega}|\mathbf V_1|},
++        \|k_g\|_{L^2(\partial\Omega)},
++        \operatorname{reach}(\partial\Omega)
++    \right).
++    \label{eq:rt_isoperimetric_diagnostics}
++\end{align}
++The extremal eigenfield is a variational benchmark or stationary candidate.
++In an ideal inviscid SST evolution, conservation of energy and helicity does
++not make it a dynamical attractor without a separately declared relaxation
++mechanism.
++
+ \subsubsection{Reduction to the SST normal form}
+ After nondimensionalization by a reference energy $E_0$, Eq.~\eqref{eq:geometric_energy_functional} reduces to the canon-style scoring form
+ \begin{equation}
+@@ -4009,6 +4159,12 @@
+ \emph{Experimental Mathematics} \textbf{20}(1), 57--90 (2011).
+ DOI: \href{https://doi.org/10.1080/10586458.2011.544581}{10.1080/10586458.2011.544581};
+ arXiv: \href{https://arxiv.org/abs/1002.1723}{1002.1723}.
++
++\bibitem{CantarellaDeTurckGluckTeytel2000Isoperimetric}
++J.~Cantarella, D.~DeTurck, H.~Gluck, and M.~Teytel,
++``Isoperimetric problems for the helicity of vector fields and the Biot--Savart and curl operators,''
++\emph{Journal of Mathematical Physics} \textbf{41}, 5615--5641 (2000).
++DOI: \href{https://doi.org/10.1063/1.533429}{10.1063/1.533429}.
+ 
+ 
+ \bibitem{Ricca1998KnotFluidMechanics}
+diff --git a/SST_CANON-v0.8.20.tex b/SST_CANON-v0.8.20.tex
+index 4cce1b8e868eccf996ccb3dc556a12c348fde21c..19cb9968b502ccf1351d676174be72440753fc8c 100644
+--- a/SST_CANON-v0.8.20.tex
++++ b/SST_CANON-v0.8.20.tex
+@@ -4680,6 +4680,47 @@
+         therefore too weak, by itself, to protect an SST particle component from
+         changing its knot type.  Gehring criticality may diagnose intercomponent
+         exclusion, but it does not replace ordinary reach/thickness constraints.
++
++        \paragraph{Domain-spectral helicity optimization guard.}
++        \label{subsec:canon_isoperimetric_helicity_guard}
++        \textbf{[ORTHODOX / CANON SEMANTIC GUARD].}
++        On a fixed smooth domain $\Omega$, let
++        $K(\Omega)=\{\mathbf V:\nabla\cdot\mathbf V=0,
++        \mathbf V\cdot\mathbf n=0\}$ and define the boundary-compatible
++        Biot--Savart operator
++        \begin{align}
++            \operatorname{BS}_{K}
++            =P_{K(\Omega)}\operatorname{BS} .
++            \label{eq:canon_projected_bs_operator}
++        \end{align}
++        Its largest positive eigenvalue is the sharp helicity-to-$L^2$ ratio
++        and is the inverse of the smallest positive curl eigenvalue on its
++        image \cite{CantarellaDeTurckGluckTeytel2000Isoperimetric}:
++        \begin{align}
++            \lambda_{\max}(\Omega)
++            =
++            \max_{\mathbf V\in K(\Omega)\setminus\{0\}}
++            \frac{\mathcal H(\mathbf V)}
++                 {\int_{\Omega}|\mathbf V|^2d^3x}
++            =
++            \frac{1}{\kappa_{1}^{\rm curl}(\Omega)} .
++            \label{eq:canon_isoperimetric_spectral_equivalence}
++        \end{align}
++        If $\mathbf V=\boldsymbol\omega$, the denominator in
++        Eq.~\eqref{eq:canon_isoperimetric_spectral_equivalence} is enstrophy,
++        not the SST kinetic energy
++        $\tfrac12\rhoF\int|\uswirl|^2d^3x$.  The two optimization problems must
++        not be identified without an explicit constitutive relation.
++
++        A smooth global optimizer over all fixed-volume domains would have
++        nonzero constant $|\mathbf V|$ on each boundary component, toroidal
++        boundary components, and boundary field lines that are intrinsic
++        geodesics.  These are necessary isoperimetric conditions, not a proof
++        that an SST particle is a horn torus, not a derivation of $\rc$ or
++        $a_{\rm core}$, and not a proof that ideal Euler evolution relaxes to the
++        extremal eigenfield.  Ropelength minimization of a centerline and
++        spectral optimization of a filled three-dimensional domain are distinct
++        variational layers.
+ 
+         \paragraph{Convention guard for trefoil alpha comparisons.}
+         The mathematical literature uses both radius- and diameter-based thickness
+@@ -5427,6 +5468,12 @@
+             \newblock DOI: \href{https://doi.org/10.1007/s00222-002-0234-y}{10.1007/s00222-002-0234-y},
+             \newblock arXiv: \href{https://arxiv.org/abs/math/0103224}{math/0103224}.
+ 
++            \bibitem{CantarellaDeTurckGluckTeytel2000Isoperimetric}
++            J.~Cantarella, D.~DeTurck, H.~Gluck, and M.~Teytel,
++            \newblock Isoperimetric problems for the helicity of vector fields and the Biot--Savart and curl operators,
++            \newblock \emph{Journal of Mathematical Physics} \textbf{41} (2000), 5615--5641,
++            \newblock DOI: \href{https://doi.org/10.1063/1.533429}{10.1063/1.533429}.
++
+             \bibitem{AshtonCantarellaPiatekRawdon2011}
+             T.~Ashton, J.~Cantarella, M.~Piatek, and E.~J. Rawdon,
+             \newblock Knot Tightening by Constrained Gradient Descent,
