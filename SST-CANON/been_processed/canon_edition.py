@@ -216,6 +216,25 @@ EDITION_CONFIG = {
             r"on top of v0.8.20."
         ),
     },
+    "0.8.22": {
+        "prev": "0.8.21",
+        "header": (
+            "%! v0.8.22 edition: operational spacetime axiom + quasinormal swirl "
+            "spectroscopy (been_processed)."
+        ),
+        "note": (
+            r"\textbf{v0.8.22} elevates special relativity to an operational founding SST input "
+            r"via vortex clocks, rods, and luminal R-phase torsion pulses "
+            r"(\(\ref{subsec:sr_operational_origin}\), \(\ref{axiom:operational_spacetime_vortex_matter}\), "
+            r"\(\ref{eq:foundational_operational_interval}\)), "
+            r"records Alice--Bob radar/Lorentz maps and a non-circular \(c\)-emergence ladder in the "
+            r"research track "
+            r"(\(\ref{eq:rt_alice_bob_lorentz_map}\), \(\ref{eq:rt_non_circular_c_emergence_ladder}\)), "
+            r"and adds the Quasinormal Swirl Spectroscopy (QSS) spectral-robustness programme "
+            r"(\(\ref{sec:rt_quasinormal_swirl_spectroscopy}\), \(\ref{eq:rt_qss_eigenproblem}\), "
+            r"\(\ref{eq:rt_qss_pseudospectrum}\)) on top of v0.8.21."
+        ),
+    },
 }
 
 CANON_BASE_KEYWORDS: list[str] = [
@@ -292,6 +311,13 @@ EDITION_KEYWORDS: dict[str, list[str]] = {
         "helicity forms mapping class",
         "isoperimetric domain spectrum",
         "Ridgerunner certification",
+    ],
+    "0.8.22": [
+        "operational spacetime",
+        "vortex atom luminal torsion",
+        "Alice-Bob Lorentz map",
+        "quasinormal swirl spectroscopy",
+        "pseudospectral robustness",
     ],
 }
 

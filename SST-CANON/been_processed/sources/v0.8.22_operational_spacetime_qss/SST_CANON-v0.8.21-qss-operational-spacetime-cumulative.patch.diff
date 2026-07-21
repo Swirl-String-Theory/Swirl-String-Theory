@@ -1,0 +1,1321 @@
+--- a/SST_CANON-v0.8.21.tex
++++ b/SST_CANON-v0.8.21.tex
+@@ -132,7 +132,7 @@
+ 
+     \begin{abstract}
+         \noindent
+-        This document presents Swirl-String Theory (SST) as a structured canonical synthesis rather than as a claim that every phenomenological sector has already been derived to theorem level. The text consolidates the primitive constant chain linking the effective fluid density, characteristic swirl speed, Compton anchoring, and horn/circulation scale; records delay-induced mode selection as the preferred non-operator route to spectral discreteness; and organizes the atomic bridge, spectroscopic filter, relational-time sector, and topology-based mass program within one explicitly stratified framework. Throughout, orthodox inputs, SST-internal derivations, bridge-level constructions, and conjectural extensions are kept distinct so that the canon remains internally coherent, externally comparable, and open to falsification.
++        This document presents Swirl-String Theory (SST) as a structured canonical synthesis rather than as a claim that every phenomenological sector has already been derived to theorem level. The text consolidates the primitive constant chain linking the effective fluid density, characteristic swirl speed, Compton anchoring, and horn/circulation scale; records the operational special-relativity postulate that stable vortex matter constructs local spacetime with clocks, rods, and luminal R-phase torsion pulses; records delay-induced mode selection as the preferred non-operator route to spectral discreteness; and organizes the atomic bridge, spectroscopic filter, relational-time sector, and topology-based mass program within one explicitly stratified framework. Throughout, orthodox inputs, SST-internal derivations, bridge-level constructions, and conjectural extensions are kept distinct so that the canon remains internally coherent, externally comparable, and open to falsification.
+     \end{abstract}
+ 
+     \vspace{0.2cm}
+@@ -189,6 +189,7 @@
+         \begin{align}
+             \text{point particles} &\longrightarrow \text{stable swirl-string configurations}, \\
+             \text{vacuum as background} &\longrightarrow \text{vacuum as structured medium}, \\
++            \text{metric spacetime as primitive} &\longrightarrow \text{operational Lorentz geometry of vortex clocks and torsion pulses}, \\
+             \text{quantization as postulate} &\longrightarrow \text{discreteness from dynamics and topology}.
+         \end{align}
+         This is not a denial of effective particle language. Rather, it is a claim that particle language is secondary and emerges from a more primitive hydrodynamic and topological layer.
+@@ -202,6 +203,39 @@
+         \end{enumerate}
+         In this sense the canon follows a \emph{Rosetta principle}: whenever a standard description already works, SST must map to it before claiming any deeper reinterpretation.
+ 
++    \subsection{Special relativity as the operational starting point}
++        \label{subsec:sr_operational_origin}
++
++        \textbf{[ORTHODOX].}
++        Special relativity does not assert that a clock reading and a spatial distance are numerically identical. It states that temporal and spatial coordinates are components of one Lorentzian interval and are mixed by relative motion while the interval and the null propagation speed remain invariant \cite{Einstein1905}. For observers Alice and Bob, their separate assignments of time and distance therefore depend on their relative state of motion, although both reconstruct the same causal ordering and the same local value of the invariant speed~\(c\).
++
++        \textbf{[CANONICAL FOUNDATIONAL POSTULATE].}
++        This operational observation is a starting point of SST. The substrate is modeled ontologically as a three-dimensional incompressible medium with a global ordering parameter~\(T\), but a localized vortex atom does not directly read that parameter. A vortex atom constructs physical time from its internal cycle accumulation, physical length from equilibrated matter standards, and distant-event coordinates from exchanged R-phase torsion pulses. For every stable low-energy vortex carrier~\(A\), the rod-calibrated two-way torsion-pulse speed is postulated to satisfy
++        \begin{align}
++            c_A^{(2\mathrm w)}
++            :=
++            \frac{2\ell_A}{\Delta\tau_A}
++            = c,
++            \label{eq:foundational_vortex_atom_two_way_c}
++        \end{align}
++        where \(\ell_A\) is an independently calibrated local separation and \(\Delta\tau_A\) is the elapsed proper time on the carrier clock for the out-and-back exchange.
++
++        The corresponding local operational interval is
++        \begin{align}
++            d\sigma_A^2
++            =
++            -c^2dt_A^2+d\ell_A^2,
++            \label{eq:foundational_operational_interval}
++        \end{align}
++        with an R-phase torsion pulse satisfying \(d\sigma_A^2=0\). Hence Alice measures
++        \begin{align}
++            \left|\frac{d\ell_A}{dt_A}\right|=c,
++        \end{align}
++        and Bob must obtain the same result in his own vortex-clock and vortex-ruler coordinates. In this precise sense, ``space and time form one structure'' means that relative motion mixes their operational coordinate components while preserving Eq.~\eqref{eq:foundational_operational_interval}; it does not erase the distinction between substrate foliation time and local measured proper time.
++
++        \textbf{[CANON / COORDINATE-SPEED GUARD].}
++        The bare substrate-coordinate ratio \(dX/dT\) is not, by itself, the operational definition of the speed of light. It may depend on the chosen substrate coordinates and on the clock/ruler response. The canonically observable statement is Eq.~\eqref{eq:foundational_vortex_atom_two_way_c}. Deriving this universality from the torsional constitutive law, rather than using measured~\(c\) as calibration input, remains a theorem target.
++
+     \subsection{Why delay and topology matter}
+         Two themes recur across the development of the canon.
+         First, finite circulation delay on closed carriers provides a natural source of temporal nonlocality. Second, topological invariants constrain admissible configurations and stabilize structures that would otherwise collapse or disperse. Together they motivate the canonical SST slogan
+@@ -494,19 +528,33 @@
+         \textbf{[CRITICAL NOTE]} This is not an independent fluid-dynamical derivation of $\alpha$ or of the characteristic speed. The fine-structure constant enters through the adopted electron-radius / horn-radius calibration, so the result is a calibrated algebraic identity rather than an emergent theorem.
+     
+     \subsection{Swirl-Clock Definition}
+-        
+-        We introduce the Swirl-Clock as a local scalar field encoding relativistic time dilation:
+-        
++        \label{subsec:swirl_clock_definition}
++
++        For a localized carrier or observer~\(A\), define the Swirl-Clock as the conversion between substrate foliation time and accumulated local proper time:
+         \begin{align}
+-            \SwirlClock = \sqrt{1 - \frac{\vchar{}^2}{c^2}}
++            \SwirlClock[A;T]
++            :=
++            \frac{d\tau_A}{dT}
++            =
++            \sqrt{1-\frac{u_A^2(T)}{c^2}},
+             \label{eq:swirl_clock}
+         \end{align}
+-        
+-        \textbf{[ORTHODOX] Functional form}: This matches the standard Lorentz time-dilation factor.
++        where \(u_A\) is the resolved kinematic speed entering the clock response. The canonical internal swirl-speed evaluation is the special case
++        \begin{align}
++            \SwirlClock_c
++            =
++            \sqrt{1-\frac{\vchar{}^2}{c^2}}.
++            \label{eq:swirl_clock_canonical_internal_evaluation}
++        \end{align}
+ 
+-        \textbf{[SPECULATIVE] Identification}: In SST, the relevant velocity is interpreted as a local medium-kinematic state rather than only a standard worldline speed.
++        \textbf{[ORTHODOX FORM].}
++        Equation~\eqref{eq:swirl_clock} has the standard Lorentz time-dilation form. Operational comparison between Alice and Bob is governed by their relative velocity after clocks and rulers are synchronized by the common torsion cone.
+ 
+-        \textbf{[DERIVED] Consequence}: Once this identification is adopted, the Swirl-Clock provides a local scalar measure of kinematic time modulation within the medium description.
++        \textbf{[CANONICAL SST POSTULATE].}
++        The clock response is part of the founding operational interpretation of SST: stable vortex matter measures local spacetime through the same luminal torsion sector that defines~\(c\). It is therefore stronger than a merely decorative analogy.
++
++        \textbf{[OPEN DERIVATION].}
++        A substrate-level derivation must still show that the torsion sector dresses all stable matter carriers isotropically and produces Eq.~\eqref{eq:swirl_clock} without species-dependent retuning. This is the monometricity and core--torsion impedance problem developed in the research track.
+ 
+     \subsection{Two-Speed Discipline for Clock Emergence}
+         \label{subsec:two_speed_clock_discipline}
+@@ -547,7 +595,7 @@
+             \frac{2E_0[K]}{c_T^2}\,\mathsf I .
+             \label{eq:core_torsion_impedance_gate_main}
+         \end{align}
+-        Until Eq.~\eqref{eq:core_torsion_impedance_gate_main} is derived from a controlled field calculation, the Swirl-Clock remains an orthodox functional form with an SST interpretation, or a derived-conditional bridge result, rather than a hard theorem from the NLSE core alone.
++        Equation~\eqref{eq:swirl_clock} and the operational identification \(c_A^{(2\mathrm w)}=c\) are retained as canonical founding postulates of SST, motivated by the empirical structure of special relativity. What remains open is their non-circular derivation from the substrate: Eq.~\eqref{eq:core_torsion_impedance_gate_main}, universal clock-and-ruler dressing, and low-energy monometricity must follow from a controlled field calculation. The NLSE core alone does not supply that proof.
+ 
+     \subsection{Density Hierarchy}
+         
+@@ -1096,23 +1144,41 @@
+         
+         \textbf{[SPECULATIVE]}: Interpreted as rotational energy of the vortex configuration.
+     
+-    \subsection{Axiom 7: Swirl-Clock Relational Time}
+-        
++    \subsection{Axiom 7: Operational Spacetime of Vortex Matter}
++        \label{axiom:operational_spacetime_vortex_matter}
++
+         \textbf{Statement.}
+-        Local time is encoded in a scalar field derived from fluid kinematics:
+-        
++        The global substrate parameter~\(T\) orders the medium evolution, but physical observers are localized vortex structures. They construct measurable time, distance, and simultaneity using internal vortex-clock cycles, equilibrated matter standards, and exchanged R-phase torsion pulses.
++
++        For every stable low-energy carrier~\(A\), the locally measured two-way torsion-pulse speed is universal:
+         \begin{align}
+-            \SwirlClock = \sqrt{1 - \frac{\vchar{}^2}{c^2}}
++            c_A^{(2\mathrm w)}
++            =
++            \frac{2\ell_A}{\Delta\tau_A}
++            =c.
++            \label{eq:axiom_vortex_atom_luminal_torsion}
++        \end{align}
++        The local clock rate is
++        \begin{align}
++            \frac{d\tau_A}{dT}
++            =
++            \SwirlClock[A;T]
++            =
++            \sqrt{1-\frac{u_A^2}{c^2}}.
++            \label{eq:axiom_operational_swirl_clock}
+         \end{align}
+-        
+-        \textbf{[ORTHODOX]} Functional form: this matches Lorentz time dilation.
+ 
+-        \textbf{[SPECULATIVE]} Identification: the relevant velocity is taken to be the local medium kinematic state.
++        \textbf{[ORTHODOX CONTENT].}
++        The invariant interval and the relative-motion mixing of temporal and spatial coordinates are the standard content of special relativity \cite{Einstein1905}.
++
++        \textbf{[CANONICAL SST IDENTIFICATION].}
++        In SST, this operational Lorentz structure is attributed to the common torsion cone and to the dynamical response of vortex clocks and vortex rulers, rather than to a primitive geometric spacetime ontology.
++
++        \textbf{[THEOREM TARGET].}
++        The substrate dynamics must derive that Alice and Bob recover the same~\(c\), that their observable transformation depends only on relative velocity, and that all stable matter and radiation species share the same infrared cone. Failure of any of these conditions is a preferred-frame or non-monometric falsifier of SST.
+ 
+-        \textbf{[DERIVED]} Consequence: within SST this yields a relational clock field tied to local motion.
+-        
+         \textbf{Interpretation.}
+-        Time is not fundamental but relational to the state of motion in the medium.
++        The substrate ordering parameter is primitive at the ontological level; operational spacetime is relational and is reconstructed by vortex matter.
+     
+     \subsection{Axiom 8: Density Saturation and Horn-Envelope Structure}
+         
+@@ -1137,6 +1203,7 @@
+             \text{Continuum}
+             \rightarrow \text{Vortex Structures}
+             \rightarrow \text{Quantization}
++            \rightarrow \text{Torsion Cone and Operational Spacetime}
+             \rightarrow \text{Delay Dynamics}
+             \rightarrow \text{Mass/Energy Emergence}
+         \end{align}
+@@ -1638,6 +1705,18 @@
+     \paragraph{Status.}
+         \textbf{Secondary derived result.} Valid under spectral assumptions; not a defining postulate. The cubic weighting $\sum_n 1/\omega_n^3$ with $\omega_n\sim n$ yields $\zeta(3)$ for \emph{any} asymptotically linear spectrum; this is a generic calculus property $[\text{CALIBRATED}]$, not an SST-specific fluid-dynamical or topological invariant.
+ 
++    \paragraph{Closed-mode versus open-resonance guard.}
++        Equations~\eqref{eq:field_model}--\eqref{eq:dispersion} describe a closed,
++        conservative quadratic phase model with periodic boundary conditions.  They do
++        \emph{not} by themselves derive damped resonances, outgoing-flux conditions,
++        quasinormal modes, or a non-self-adjoint evolution generator.  The distinct
++        research programme for open or coarse-grained vortex response is therefore kept
++        in the companion research track as
++        \emph{quasinormal swirl spectroscopy}; see
++        Section~\ref{sec:rt_quasinormal_swirl_spectroscopy}.  That programme imports
++        operator and resonance methodology only.  It does not import Kerr geometry,
++        event horizons, or Einstein dynamics into SST.
++
+ \subsection{Bounded-Domain Curl-Spectrum Benchmarks}
+     \label{subsec:bounded_domain_curl_spectrum}
+ 
+@@ -1790,6 +1869,26 @@
+             \label{eq:vector_wave_Aeff}
+         \end{align}
+ 
++        \textbf{[CANONICAL FOUNDATIONAL IDENTIFICATION].}
++        The photon-sector R-phase excitation is identified with the transverse torsion pulse used by vortex matter to define the local invariant speed. Therefore the low-energy, locally measured propagation speed satisfies
++        \begin{align}
++            c_\gamma=c_T=c.
++            \label{eq:r_phase_operational_light_speed}
++        \end{align}
++        Within the quadratic bridge model this fixes the target stiffness
++        \begin{align}
++            K_\gamma
++            =
++            \rhoF c^2
++            =
++            6.29128625115772348\times10^{10}\ \mathrm{Pa}.
++            \label{eq:r_phase_torsion_stiffness_target}
++        \end{align}
++        Equation~\eqref{eq:r_phase_torsion_stiffness_target} is dimensionally a shear/torsion stiffness target. Substituting the measured value of~\(c\) calibrates the bridge; it is not yet a microscopic derivation of~\(K_\gamma\).
++
++        \textbf{[NO-ACOUSTIC-MODE GUARD].}
++        The speed \(c_\gamma\) is not an ordinary sound speed. In the exact incompressible SST substrate, density compression is excluded and pressure enforces a constraint on each foliation slice. The luminal branch belongs to the independent transverse torsion/director sector represented by \(\mathbf A_{\mathrm{eff}}\) \cite{BarceloLiberatiVisser2026}.
++
+         Define
+ 
+         \begin{align}
+@@ -1824,6 +1923,23 @@
+         geodesic is only the orthodox comparison language for the coarse-grained
+         propagation path.
+ 
++        \paragraph{Helmholtz-sector compatibility.}
++        Define material Euler vorticity by
++        \begin{align}
++            \boldsymbol{\zeta}
++            :=
++            \nabla\times\mathbf v .
++        \end{align}
++        The torsion/director curl \(\nabla\times\mathbf A_{\mathrm{eff}}\) is not identified with the creation of new material Euler vorticity. On a smooth ideal branch, an R-phase pulse may transport energy, phase, and polarization while preserving the circulation sector of every material loop~\(C(T)\):
++        \begin{align}
++            \Delta\Gamma_C
++            =
++            \Delta\oint_{C(T)}\mathbf v\cdot d\boldsymbol\ell
++            =0.
++            \label{eq:r_phase_helmholtz_sector_gate}
++        \end{align}
++        Thus propagation through an initially irrotational material region must not leave behind a permanent transition from \(\boldsymbol\zeta=0\) to \(\boldsymbol\zeta\neq0\). Such a transition requires an explicitly non-ideal source, boundary, singularity, or Kairos event; it is not ordinary photon propagation.
++
+     \subsection{R-to-T closure threshold and conservation bookkeeping}
+         \label{subsec:rt_closure_threshold_bookkeeping}
+ 
+@@ -2773,6 +2889,61 @@
+             \label{eq:absolute_T_local_tau_layers}
+         \end{align}
+ 
++        \paragraph{Operational coordinates of a vortex observer.}
++        Let Alice be a localized vortex observer. Her coordinate time \(t_A\) is assembled from a network of clocks identical to her local clock, synchronized by R-phase torsion-pulse exchange; at Alice's reference worldline, \(dt_A=d\tau_A\). Let \(\ell_A\) denote distance measured by an independently equilibrated vortex-matter ruler. The directly testable two-way propagation speed is
++        \begin{align}
++            c_A^{(2\mathrm w)}
++            =
++            \frac{2\ell_A}
++            {\tau_A^{\mathrm{recv}}-\tau_A^{\mathrm{emit}}}
++            =c.
++            \label{eq:canonical_time_vortex_radar_speed}
++        \end{align}
++        Once this local calibration is established, Alice assigns radar coordinates to a reflected event~\(E\) by
++        \begin{align}
++            t_A(E)
++            &=
++            \frac{\tau_A^{\mathrm{recv}}+\tau_A^{\mathrm{emit}}}{2},\\
++            \ell_A(E)
++            &=
++            \frac{c}{2}
++            \left(
++                \tau_A^{\mathrm{recv}}-\tau_A^{\mathrm{emit}}
++            \right).
++            \label{eq:canonical_time_vortex_radar_coordinates}
++        \end{align}
++
++        \paragraph{Alice--Bob space--time mixing.}
++        Let Bob move uniformly relative to Alice with operationally measured speed \(u_{AB}\), and define
++        \begin{align}
++            \beta_{AB}=\frac{u_{AB}}{c},
++            \qquad
++            \gamma_{AB}=\frac{1}{\sqrt{1-\beta_{AB}^2}}.
++        \end{align}
++        In the shared infrared torsion-cone limit, their operational coordinates obey
++        \begin{align}
++            ct_B
++            &=
++            \gamma_{AB}
++            \left(ct_A-\beta_{AB}x_A\right),\\
++            x_B
++            &=
++            \gamma_{AB}
++            \left(x_A-\beta_{AB}ct_A\right),
++            \label{eq:canonical_time_alice_bob_lorentz_map}
++        \end{align}
++        with
++        \begin{align}
++            -c^2dt_A^2+dx_A^2
++            =
++            -c^2dt_B^2+dx_B^2.
++            \label{eq:canonical_time_alice_bob_interval}
++        \end{align}
++        Equations~\eqref{eq:canonical_time_alice_bob_lorentz_map}--\eqref{eq:canonical_time_alice_bob_interval} formalize the statement that space and time form one operational Lorentz structure: a change of relative motion mixes their coordinate components. SST does not interpret this as proof that the substrate itself lacks a preferred ordering parameter; rather, it requires that the preferred foliation be operationally hidden at low energy when clocks, rulers, and signals are all dressed by the same torsion sector.
++
++        \textbf{[PREFERRED-FRAME FALSIFIER].}
++        If an Alice--Bob experiment depends separately on Alice's or Bob's velocity relative to the substrate, rather than only on \(u_{AB}\), then exact operational Lorentz invariance fails. The allowed residual is constrained by preferred-frame experiments and must vanish in the exact monometric limit.
++
+         \paragraph{Proper loop or turnover time.}
+         The symbol \(\tau_{\rm circ}\) denotes a carrier-internal circulation or
+         delay time.  For a loop of resolved length \(L_K\),
+@@ -2818,6 +2989,7 @@
+         External comparison time & \(t_{\infty}\) & laboratory/asymptotic comparison time \\
+         Swirl-Clock factor & \(\SwirlClock\) & dimensionless local rate conversion \\
+         Local proper time & \(\tau_A\), \(\tau_{\rm loc}\) & accumulated local clock time \\
++        Operational chart & \((t_A,\ell_A)\) & local radar coordinates \\
+         Loop/circulation delay & \(\tau_{\rm circ}\) & internal circulation period \\
+         Kairos event & \(\mathcal{K}_{\rm Kairos}\) & discrete topological transition \\
+         \hline
+@@ -2835,7 +3007,7 @@
+         \begin{align}
+             d\tau_{\rm loc} = \SwirlClock(x)\,dt_{\infty},
+         \end{align}
+-        consistent with Eq.~\eqref{eq:canonical_time_ontology_local_tau}.  Here $t_{\infty}$ denotes the asymptotic laboratory time and $\tau_{\rm loc}$ the effective proper time associated with a localized process in the medium. In SST, this factor is interpreted as a fluid-kinematic clock field rather than as a purely geometric spacetime postulate.
++        consistent with Eq.~\eqref{eq:canonical_time_ontology_local_tau}.  Here $t_{\infty}$ denotes the asymptotic laboratory time and $\tau_{\rm loc}$ the effective proper time associated with a localized process in the medium. In SST, this factor is interpreted as a fluid-kinematic clock response. Operational special relativity requires the corresponding vortex-ruler response and R-phase torsion propagation to be governed by the same infrared cone; time dilation alone is insufficient to derive invariant local~\(c\).
+ 
+         \paragraph{No-signalling research-track note.}
+         The pressure field \(p_{\swirlarrow}(\mathbf{x},T)\) is a constraint
+@@ -4393,7 +4565,7 @@
+         \subsection{Canon edition notes}
+ 
+         \subsubsection{v0.8.21}
+-            \textbf{v0.8.21} adds the eight-source research appendices and matching main-canon guards: spherical/shell curl spectrum and helicity capacity (\(\ref{subsec:bounded_domain_curl_spectrum}\), \(\ref{subsec:rt_spherical_curl_spectrum_capacity}\)), coarse writhe/helicity upper bounds (\(\ref{subsec:rt_upper_bounds_writhe_helicity}\)), Gehring link-criticality and continuum contact measure (\(\ref{subsec:rt_gehring_contact_measure}\)), bounded-domain Biot--Savart operator admissibility (\(\ref{subsec:bounded_domain_biot_savart}\), \(\ref{subsec:rt_biot_savart_realizability}\)), five-sector Hodge topology and harmonic circulation (\(\ref{subsec:hodge_topological_circulation}\), \(\ref{subsec:rt_hodge_complete_reconstruction}\)), cohomological helicity and mapping-class/Dehn-twist jumps (\(\ref{subsec:canon_helicity_mapping_class_guard}\), \(\ref{subsubsec:rt_helicity_mapping_class}\)), isoperimetric domain-spectrum and enstrophy guards (\(\ref{subsec:canon_isoperimetric_helicity_guard}\), \(\ref{subsubsec:rt_isoperimetric_domain_shape}\)), and Ridgerunner polygonal-to-smooth certification (\(\ref{subsec:canon_ropelength_certification_guard}\), \(\ref{subsubsec:rt_polygonal_smooth_certification}\)) on top of v0.8.20.
++            \textbf{v0.8.21} adds the eight-source research appendices and matching main-canon guards: spherical/shell curl spectrum and helicity capacity (\(\ref{subsec:bounded_domain_curl_spectrum}\), \(\ref{subsec:rt_spherical_curl_spectrum_capacity}\)), coarse writhe/helicity upper bounds (\(\ref{subsec:rt_upper_bounds_writhe_helicity}\)), Gehring link-criticality and continuum contact measure (\(\ref{subsec:rt_gehring_contact_measure}\)), bounded-domain Biot--Savart operator admissibility (\(\ref{subsec:bounded_domain_biot_savart}\), \(\ref{subsec:rt_biot_savart_realizability}\)), five-sector Hodge topology and harmonic circulation (\(\ref{subsec:hodge_topological_circulation}\), \(\ref{subsec:rt_hodge_complete_reconstruction}\)), cohomological helicity and mapping-class/Dehn-twist jumps (\(\ref{subsec:canon_helicity_mapping_class_guard}\), \(\ref{subsubsec:rt_helicity_mapping_class}\)), isoperimetric domain-spectrum and enstrophy guards (\(\ref{subsec:canon_isoperimetric_helicity_guard}\), \(\ref{subsubsec:rt_isoperimetric_domain_shape}\)), and Ridgerunner polygonal-to-smooth certification (\(\ref{subsec:canon_ropelength_certification_guard}\), \(\ref{subsubsec:rt_polygonal_smooth_certification}\)) on top of v0.8.20. The operational-spacetime clarification further records special relativity as a founding SST input: vortex clocks, vortex rulers, and R-phase torsion pulses reconstruct one local Lorentz structure, while the derivation of universal monometricity from substrate microdynamics remains open.
+ 
+         \subsubsection{v0.8.20}
+             \textbf{v0.8.20} adds Chronos--Kelvin topological hitting conditions with a first-hitting kink-versus-reconnection split and Kairos boundary ledger (\(\ref{subsubsec:chronos_kelvin_hitting_conditions}\), \(\ref{eq:sst_first_hitting_time}\)), a contact-pressure saturation and Swirl-Clock kinematic shielding block (\(\ref{subsec:rt_contact_pressure_saturation_swirl_clock}\), \(\ref{eq:rt_contact_pressure_split}\)), a main-text research-track guard and colored rank-nine contact-channel diagnostic (\(\ref{sec:rt_colored_contact_rank_nine}\), \(\ref{eq:rt_rank9_factorization}\)), a Separatrix Surface-Density Lift monopole DtN research-track route (\(\ref{subsec:ssdl_monopole_dtn}\)) with audit v0.2 numeric support, and a canon-safe Research-Track particle/clock ansatz with preregistered mass falsifiers (\(\ref{app:research-track}\), \(\ref{app:minimal-numerical-programme}\)) on top of v0.8.19.
+@@ -5440,6 +5612,13 @@
+             \newblock Living Reviews in Relativity \textbf{14} (2011), 3,
+             \newblock DOI: 10.12942/lrr-2011-3.
+ 
++            \bibitem{BarceloLiberatiVisser2026}
++            C.~Barcel{\'o}, S.~Liberati, and M.~Visser,
++            \newblock ``Analogue Gravity,''
++            \newblock \textit{Living Reviews in Relativity} \textbf{29}, 2 (2026),
++            \newblock DOI: 10.1007/s41114-026-00064-9,
++            \newblock permalink: https://doi.org/10.1007/s41114-026-00064-9.
++
+             \bibitem{Jacobson1995}
+             T.~Jacobson,
+             \newblock Thermodynamics of spacetime: The Einstein equation of state,
+@@ -5602,6 +5781,37 @@
+             \newblock \emph{Banach Center Publications} \textbf{42} (1998), 321--346,
+             \newblock Permalink: \href{https://eudml.org/doc/252224}{EuDML:252224}.
+ 
++
++            \bibitem{BertiEtAl2026BlackHoleSpectroscopy}
++            E.~Berti et al.,
++            \newblock Black hole spectroscopy: from theory to experiment,
++            \newblock \emph{Classical and Quantum Gravity} \textbf{43} (2026), 123001,
++            \newblock DOI: \href{https://doi.org/10.1088/1361-6382/ae59e2}{10.1088/1361-6382/ae59e2}.
++
++            \bibitem{MajdaBertozzi2002}
++            A.~J. Majda and A.~L. Bertozzi,
++            \newblock \emph{Vorticity and Incompressible Flow},
++            \newblock Cambridge Texts in Applied Mathematics, Cambridge University Press (2002),
++            \newblock DOI: \href{https://doi.org/10.1017/CBO9780511613203}{10.1017/CBO9780511613203}.
++
++            \bibitem{JaramilloPanossoMacedoAlSheikh2021}
++            J.~L. Jaramillo, R.~Panosso Macedo, and L.~Al~Sheikh,
++            \newblock Pseudospectrum and black hole quasinormal mode instability,
++            \newblock \emph{Physical Review X} \textbf{11} (2021), 031003,
++            \newblock DOI: \href{https://doi.org/10.1103/PhysRevX.11.031003}{10.1103/PhysRevX.11.031003}.
++
++            \bibitem{CardosoMirandaBertiWitekZanchin2009}
++            V.~Cardoso, A.~S. Miranda, E.~Berti, H.~Witek, and V.~T. Zanchin,
++            \newblock Geodesic stability, Lyapunov exponents, and quasinormal modes,
++            \newblock \emph{Physical Review D} \textbf{79} (2009), 064016,
++            \newblock DOI: \href{https://doi.org/10.1103/PhysRevD.79.064016}{10.1103/PhysRevD.79.064016}.
++
++            \bibitem{TorresPatrickRichartzWeinfurtner2020}
++            T.~Torres, S.~Patrick, M.~Richartz, and S.~Weinfurtner,
++            \newblock Quasinormal mode oscillations in an analogue black hole experiment,
++            \newblock \emph{Physical Review Letters} \textbf{125} (2020), 011301,
++            \newblock DOI: \href{https://doi.org/10.1103/PhysRevLett.125.011301}{10.1103/PhysRevLett.125.011301}.
++
+         \end{thebibliography}
+ 
+ \end{document}
+\ No newline at end of file
+--- a/SST_CANON-v0.8.21-research-track.tex
++++ b/SST_CANON-v0.8.21-research-track.tex
+@@ -4873,14 +4873,24 @@
+             \item a linking/helicity response,
+             \item a global Swirl-Clock phase response.
+         \end{itemize}
+-        The decay constants \(\tau_i\) should therefore be treated as \emph{effective metastable relaxation times}. A safe parametrization is
++        The decay constants \(\tau_i\) should therefore be treated as
++        \emph{effective metastable amplitude-relaxation times}.  With the linewidth
++        convention of Eq.~\eqref{eq:linewidth_quality_factor},
++        \(\gamma_i\) is the half-width at half maximum in angular frequency and the
++        time-domain amplitude is \(e^{-\gamma_i t}\).  Hence
+         \begin{equation}
+-            \tau_i
+-            =
+-            \frac{Q_i}{\omega_i},
++            \boxed{
++                \tau_i
++                =
++                \frac{1}{\gamma_i}
++                =
++                \frac{2Q_i}{\omega_i}
++            },
+             \label{eq:tau_Q_over_omega}
+         \end{equation}
+-        where \(Q_i\) is the quality factor of the \(i\)-th mode.
++        where \(Q_i\) is the quality factor of the \(i\)-th mode.  The earlier
++        \(\tau_i=Q_i/\omega_i\) convention is rejected because it is inconsistent by a
++        factor of two with Eq.~\eqref{eq:linewidth_quality_factor}.
+     
+     \subsubsection*{Critical scale check}
+         
+@@ -4896,13 +4906,14 @@
+         This is a single radial crossing time, distinct from the full circulation
+         period \(\tau_{\rm circ,c}=2\pi\rc/\vchar\) of Eq.~\eqref{eq:compton_delay}
+         in the main canon.
+-        Therefore, an observed lifetime of \(1\ \mathrm{s}\) would require
++        Therefore, an observed amplitude lifetime of \(1\ \mathrm{s}\) at the
++        core-scale angular frequency would require
+         \begin{equation}
+             Q
++            =
++            \frac{\omega_i\tau_i}{2}
+             \sim
+-            \omega_i\tau_i
+-            \sim
+-            7.76\times10^{20}.
++            3.88\times10^{20}.
+             \label{eq:large_Q_warning}
+         \end{equation}
+         Such a huge \(Q\)-factor is not impossible as a formal metastability parameter, but it cannot be interpreted as a simple geometric shell crossing.
+@@ -4915,11 +4926,617 @@
+         
+         The layered relaxation ansatz predicts that perturbing a structured target should produce reproducible decay constants \(\tau_i\) independent of total pulse amplitude, provided the response remains linear. If the apparent \(\tau_i\) vary strongly with drive amplitude, heating, or detector threshold, the model is likely observing instrumental or thermal relaxation rather than swirl-string metastability.
+ 
++
++% ============================================================
++\subsection{Research Track: Quasinormal Swirl Spectroscopy and Spectral-Robustness Gate}
++    \label{sec:rt_quasinormal_swirl_spectroscopy}
++
++    \subsubsection*{Status, scope, and terminology}
++
++        \noindent
++        \textbf{Status:} [RESEARCH-TRACK / NOT CANONICAL].
++        This subsection transfers the mathematically useful parts of quasinormal-mode
++        spectroscopy to perturbations of resolved SST vortex states
++        \cite{BertiEtAl2026BlackHoleSpectroscopy}.  It does \emph{not} identify an SST
++        knot with a Kerr black hole, does not assume an event horizon, and does not
++        import the Einstein equations.  The transferable content is the analysis of
++        open, non-normal, or coarse-grained evolution through response poles,
++        adjoint modes, resolvents, pseudospectra, nonlinear combination frequencies,
++        and controlled mode-identification tests.
++
++        To avoid an ontological overstatement, this track uses the term
++        \emph{quasinormal swirl mode} (QSM).  A QSM is an SST response resonance with a
++        complex frequency.  The term \emph{QNM} remains reserved for the orthodox
++        black-hole or analogue-gravity comparison.
++
++        Three objects must remain distinct:
++        \begin{enumerate}
++            \item the real normal-mode tower of a closed conservative carrier, as in
++            Section~\ref{subsec:spectral_locked_carriers};
++            \item the phenomenological Lorentzian response model of
++            Section~\ref{sec:resonance-selection-principle};
++            \item QSMs defined as poles or isolated spectral resonances of a specified
++            linearized SST evolution problem.
++        \end{enumerate}
++        A fitted damped sinusoid or an FFT peak alone is not a QSM certification.
++
++    \subsubsection*{Relative-equilibrium background and linearized Euler operator}
++
++        Let \(\mathbf v_0(\mathbf x)\) and \(p_0(\mathbf x)\) be a resolved,
++        divergence-free SST background in a frame in which the chosen vortex ring or
++        knot is stationary:
++        \begin{align}
++            \nabla\cdot\mathbf v_0 &= 0,
++            \\
++            (\mathbf v_0\cdot\nabla)\mathbf v_0
++            &=
++            -\frac{1}{\rhoF}\nabla p_0.
++            \label{eq:rt_qss_background_euler}
++        \end{align}
++        A translating or rotating vortex is therefore treated as a
++        \emph{relative equilibrium}; the translation and rotation generators belong to
++        the frame definition rather than to the internal mode spectrum.  Failure to
++        remove those rigid motions produces spurious low-frequency modes.
++
++        Write
++        \begin{equation}
++            \mathbf v
++            =
++            \mathbf v_0+\epsilon\mathbf u+O(\epsilon^2),
++            \qquad
++            p
++            =
++            p_0+\epsilon\pi+O(\epsilon^2),
++        \end{equation}
++        with \(\nabla\cdot\mathbf u=0\).  The first-order incompressible Euler system is
++        \begin{equation}
++            \partial_t\mathbf u
++            +
++            (\mathbf v_0\cdot\nabla)\mathbf u
++            +
++            (\mathbf u\cdot\nabla)\mathbf v_0
++            =
++            -\frac{1}{\rhoF}\nabla\pi.
++            \label{eq:rt_qss_linearized_euler}
++        \end{equation}
++        Introducing the Leray projector \(\mathbb P\) onto the admissible
++        divergence-free subspace gives
++        \begin{equation}
++            \partial_t\mathbf u
++            =
++            \mathcal L_K\mathbf u,
++            \qquad
++            \mathcal L_K\mathbf u
++            =
++            -\mathbb P
++            \left[
++                (\mathbf v_0\cdot\nabla)\mathbf u
++                +
++                (\mathbf u\cdot\nabla)\mathbf v_0
++            \right]
++            +
++            \mathcal L_{\rm frame}\mathbf u.
++            \label{eq:rt_qss_linear_operator}
++        \end{equation}
++        Here \(\mathcal L_{\rm frame}\) contains only the explicitly declared
++        co-translating or co-rotating frame generators and vanishes for a stationary
++        laboratory-frame background.  Equations
++        \eqref{eq:rt_qss_background_euler}--\eqref{eq:rt_qss_linear_operator} are the
++        orthodox incompressible-flow linearization used as the starting point for this
++        SST track \cite{MajdaBertozzi2002}.
++
++        The domain, core profile, regularization, topological sector, outer boundary,
++        and allowed flux conditions are part of the operator definition.  A spectrum
++        quoted without this metadata is non-reproducible.
++
++    \subsubsection*{Complex frequencies and admissible damping mechanisms}
++
++        A modal ansatz
++        \begin{equation}
++            \mathbf u_j(\mathbf x,t)
++            =
++            \mathbf q_j(\mathbf x)e^{s_jt}
++            =
++            \mathbf q_j(\mathbf x)e^{-i\omega_jt},
++            \qquad
++            s_j=-i\omega_j,
++        \end{equation}
++        yields
++        \begin{equation}
++            \mathcal L_K\mathbf q_j
++            =
++            s_j\mathbf q_j.
++            \label{eq:rt_qss_eigenproblem}
++        \end{equation}
++        With
++        \begin{equation}
++            \omega_j
++            =
++            \omega_{R,j}-i\gamma_j,
++            \qquad
++            \gamma_j>0,
++        \end{equation}
++        the amplitude behaves as
++        \(e^{-\gamma_jt}\cos(\omega_{R,j}t+\phi_j)\).
++
++        \textbf{[INVISCID CONSISTENCY GATE].}
++        In an exactly closed, fully resolved, inviscid system, damping may not be
++        inserted as an unexplained friction coefficient.  A negative imaginary part
++        must be traced to at least one declared mechanism:
++        \begin{enumerate}
++            \item advective energy or vorticity flux through an open boundary;
++            \item phase mixing or transfer into a continuous spectrum;
++            \item transfer into unresolved internal degrees of freedom under an
++            explicitly declared coarse graining;
++            \item projection onto a local observable while the total conservative
++            state continues to evolve.
++        \end{enumerate}
++        A numerical sponge or absorbing layer is a computational boundary treatment,
++        not a physical SST damping mechanism, unless the extracted pole converges as
++        the layer is moved outward and weakened.
++
++        The linewidth convention is fixed throughout this track by
++        \begin{equation}
++            \boxed{
++                \gamma_j
++                =
++                \frac{1}{\tau_{A,j}}
++                =
++                \frac{\omega_{R,j}}{2Q_j},
++                \qquad
++                \Delta\omega_{{\rm FWHM},j}=2\gamma_j
++            }.
++            \label{eq:rt_qss_linewidth_convention}
++        \end{equation}
++        Thus \(\tau_{A,j}\) is the amplitude-decay time.  An energy-decay time would be
++        \(\tau_{E,j}=1/(2\gamma_j)\), and these two conventions must not be mixed.
++
++    \subsubsection*{Pole definition, residues, and continuous spectrum}
++
++        Define the retarded resolvent
++        \begin{equation}
++            \mathcal R_K(s)
++            =
++            (sI-\mathcal L_K)^{-1}.
++            \label{eq:rt_qss_resolvent}
++        \end{equation}
++        A certified QSM is an isolated pole \(s_j\) of the analytically continued
++        response, or an isolated eigenvalue of a rigorously specified time-evolution
++        generator on the chosen function space.  Near a simple pole,
++        \begin{equation}
++            \chi_K(\omega)
++            =
++            \frac{\mathcal B_j}
++            {\omega-\omega_j}
++            +
++            \chi_{\rm reg}(\omega),
++            \label{eq:rt_qss_local_pole}
++        \end{equation}
++        where \(\mathcal B_j\) is a residue fixed by the forcing and observable.
++        Consequently, the Lorentzian forms in
++        Eqs.~\eqref{eq:RK_lorentzian} and
++        \eqref{eq:frequency_response_chi} are local isolated-pole approximations, not
++        primary definitions of the spectrum.
++
++        In general the response may contain both discrete resonances and a continuous
++        contribution:
++        \begin{equation}
++            A(t)
++            =
++            \sum_j
++            C_j e^{-i\omega_jt}
++            +
++            \int_{\mathcal C}
++            C(\omega)e^{-i\omega t}\,d\omega.
++            \label{eq:rt_qss_poles_and_continuum}
++        \end{equation}
++        The second term may produce phase-mixed transients or algebraic tails.
++        Therefore a stable multi-exponential fit over one short time interval does not
++        establish completeness of the pole sum
++        \cite{BertiEtAl2026BlackHoleSpectroscopy}.
++
++    \subsubsection*{Adjoint modes, biorthogonality, and first-order sensitivity}
++
++        For a non-normal evolution generator, right and adjoint modes satisfy
++        \begin{align}
++            \mathcal L_K\mathbf q_j
++            &=
++            s_j\mathbf q_j,
++            \\
++            \mathcal L_K^\dagger\mathbf q_j^\dagger
++            &=
++            s_j^\ast\mathbf q_j^\dagger.
++        \end{align}
++        With an explicitly declared energy or Sobolev inner product, the modes may be
++        normalized biorthogonally:
++        \begin{equation}
++            \left\langle
++                \mathbf q_i^\dagger,
++                \mathbf q_j
++            \right\rangle_E
++            =
++            \delta_{ij}.
++            \label{eq:rt_qss_biorthogonality}
++        \end{equation}
++        For a small structured perturbation
++        \(\delta\mathcal L_K\), the simple-eigenvalue shift is
++        \begin{equation}
++            \delta s_j
++            =
++            \frac{
++                \left\langle
++                    \mathbf q_j^\dagger,
++                    \delta\mathcal L_K\mathbf q_j
++                \right\rangle_E
++            }{
++                \left\langle
++                    \mathbf q_j^\dagger,
++                    \mathbf q_j
++                \right\rangle_E
++            }
++            +
++            O(\|\delta\mathcal L_K\|^2).
++            \label{eq:rt_qss_adjoint_shift}
++        \end{equation}
++        A useful conditioning diagnostic is
++        \begin{equation}
++            \kappa_j
++            =
++            \frac{
++                \|\mathbf q_j^\dagger\|_E
++                \|\mathbf q_j\|_E
++            }{
++                \left|
++                    \left\langle
++                        \mathbf q_j^\dagger,
++                        \mathbf q_j
++                    \right\rangle_E
++                \right|
++            }.
++            \label{eq:rt_qss_condition_number}
++        \end{equation}
++        Large \(\kappa_j\) means that the pole can move strongly under a small change in
++        core profile, embedding, boundary, or discretization.  Reporting only
++        \(\omega_j\) without \(\kappa_j\) can therefore misclassify a fragile numerical
++        overtone as a robust physical mode.
++
++    \subsubsection*{Pseudospectral robustness gate}
++
++        The \(\varepsilon\)-pseudospectrum is
++        \begin{equation}
++            \boxed{
++                \sigma_\varepsilon(\mathcal L_K)
++                =
++                \left\{
++                    s\in\mathbb C:
++                    \left\|
++                        (sI-\mathcal L_K)^{-1}
++                    \right\|_E
++                    >
++                    \varepsilon^{-1}
++                \right\}
++            }.
++            \label{eq:rt_qss_pseudospectrum}
++        \end{equation}
++        It measures where small operator perturbations can create large responses or
++        large spectral shifts.  This is required because open gravitational spectra
++        provide explicit examples in which very small potential perturbations strongly
++        displace overtones \cite{JaramilloPanossoMacedoAlSheikh2021,
++        BertiEtAl2026BlackHoleSpectroscopy}.
++
++        For SST, the perturbation classes must be separated:
++        \begin{align}
++            \delta\mathcal L_{\rm geom}
++            &: \text{embedding, reach, core-profile, and contact-map changes},
++            \\
++            \delta\mathcal L_{\rm num}
++            &: \text{mesh, quadrature, regularization, and timestep changes},
++            \\
++            \delta\mathcal L_{\rm env}
++            &: \text{outer-flow, wall, background-vorticity, and probe changes}.
++        \end{align}
++        A QSM is \emph{spectrally robust} only if the relevant
++        pseudospectral contours remain localized on the perturbation scale actually
++        admitted by the benchmark.  Broad contours are not automatically a
++        falsification; they require the mode to be labelled \emph{fragile} and prevent
++        its promotion as a precision observable.
++
++    \subsubsection*{Conditional trapped-characteristic/eikonal route}
++
++        A light-ring formula may not be copied into SST.  The required starting point is
++        the principal symbol of the actual SST perturbation equations,
++        \begin{equation}
++            D_K(\mathbf x,\mathbf k,\omega)=0.
++            \label{eq:rt_qss_principal_symbol}
++        \end{equation}
++        Its characteristic rays satisfy
++        \begin{equation}
++            \dot{\mathbf x}
++            =
++            \frac{\partial D_K}{\partial\mathbf k},
++            \qquad
++            \dot{\mathbf k}
++            =
++            -\frac{\partial D_K}{\partial\mathbf x}.
++            \label{eq:rt_qss_characteristic_rays}
++        \end{equation}
++        Only if a specific perturbation branch possesses an unstable periodic
++        characteristic with orbital frequency \(\Omega_\star\) and transverse
++        Lyapunov exponent \(\Lambda_\star\) may SST test the asymptotic hypothesis
++        \begin{equation}
++            \boxed{
++                \omega_{mn}^{\rm QSM}
++                \simeq
++                m\Omega_\star
++                -
++                i\left(n+\frac12\right)\Lambda_\star
++            }
++            \qquad
++            (m\gg1).
++            \label{eq:rt_qss_eikonal_hypothesis}
++        \end{equation}
++        This structure is motivated by the orthodox eikonal QNM relation
++        \cite{CardosoMirandaBertiWitekZanchin2009,
++        BertiEtAl2026BlackHoleSpectroscopy}, but Eq.~\eqref{eq:rt_qss_eikonal_hypothesis}
++        is only an SST research hypothesis.
++
++        \textbf{[CRITICAL GATE].}
++        Incompressible Euler flow does not generically supply an acoustic null cone or
++        a scalar wave branch.  The characteristic branch, localization, WKB ordering,
++        and large-\(m\) limit must therefore be derived before
++        \(\Omega_\star\) or \(\Lambda_\star\) is assigned.  Failure of this derivation
++        blocks the entire trapped-characteristic route but does not block the
++        resolvent-based QSM programme.
++
++    \subsubsection*{Second-order combination modes}
++
++        Expand a perturbation variable as
++        \begin{equation}
++            q
++            =
++            \epsilon q^{(1)}
++            +
++            \epsilon^2q^{(2)}
++            +
++            O(\epsilon^3).
++        \end{equation}
++        The second-order equation has the schematic form
++        \begin{equation}
++            \left(
++                \partial_t-\mathcal L_K
++            \right)q^{(2)}
++            =
++            \mathcal N_2
++            \left[
++                q^{(1)},q^{(1)}
++            \right].
++            \label{eq:rt_qss_second_order_equation}
++        \end{equation}
++        If the first-order field contains modes \(a\) and \(b\), the quadratic source
++        contains candidate frequencies
++        \begin{equation}
++            \omega_{ab}^{(+)}
++            =
++            \omega_a+\omega_b,
++            \qquad
++            \omega_{ab}^{(-)}
++            =
++            \omega_a-\omega_b^\ast.
++            \label{eq:rt_qss_combination_frequencies}
++        \end{equation}
++        Their decay rates add.  For an azimuthally resolved background the corresponding
++        selection rules include \(m_{ab}=m_a+m_b\) for the sum channel and
++        \(m_{ab}=m_a-m_b\) for the difference channel, subject to the actual parity and
++        topology constraints of the chosen state.
++
++        In the perturbative regime,
++        \begin{equation}
++            A_{ab}^{(2)}
++            \propto
++            A_a^{(1)}A_b^{(1)}
++            \propto
++            \epsilon^2.
++            \label{eq:rt_qss_quadratic_amplitude_scaling}
++        \end{equation}
++        A peak near a sum or difference frequency is not sufficient: its amplitude must
++        exhibit the quadratic scaling and its symmetry label must satisfy the selection
++        rule.  This provides a direct nonlinear benchmark inspired by quadratic
++        black-hole modes, without importing their dynamics
++        \cite{BertiEtAl2026BlackHoleSpectroscopy}.
++
++    \subsubsection*{Mode avoidance and exceptional-point scan}
++
++        For two interacting modes, a local reduced model is
++        \begin{equation}
++            H_{\rm eff}
++            =
++            \begin{pmatrix}
++                s_1 & g_{12}\\
++                g_{21} & s_2
++            \end{pmatrix},
++        \end{equation}
++        with eigenvalues
++        \begin{equation}
++            s_\pm
++            =
++            \frac{s_1+s_2}{2}
++            \pm
++            \sqrt{
++                \left(
++                    \frac{s_1-s_2}{2}
++                \right)^2
++                +
++                g_{12}g_{21}
++            }.
++            \label{eq:rt_qss_two_mode_eigenvalues}
++        \end{equation}
++        An exceptional point requires the square-root discriminant to vanish and the
++        eigenvectors to coalesce.  Because this is one complex condition, two
++        independent real control parameters are generically required.  Candidate SST
++        scans include
++        \begin{equation}
++            \left(
++                \frac{a_{\rm core}}{L_K},
++                \frac{\Gamma_K}{v_{\rm ref}L_K}
++            \right),
++            \qquad
++            \left(
++                \mathrm{Tw},
++                \frac{\operatorname{reach}(K)}{L_K}
++            \right).
++        \end{equation}
++        A credible identification requires eigenvector exchange, adjoint-norm growth,
++        and the expected square-root parameter dependence; an avoided crossing in a
++        frequency plot alone is insufficient
++        \cite{BertiEtAl2026BlackHoleSpectroscopy}.
++
++    \subsubsection*{Dimensionless scaling and canonical numerical values}
++
++        For any mode family define
++        \begin{equation}
++            \widehat\omega_j
++            =
++            \omega_j
++            \frac{L_{\rm ref}}{v_{\rm ref}}.
++            \label{eq:rt_qss_dimensionless_frequency}
++        \end{equation}
++        The pair \((L_{\rm ref},v_{\rm ref})\) must match the localization scale of the
++        mode.  The core reference choice
++        \(L_{\rm ref}=\rc\) and \(v_{\rm ref}=\vnorm\) gives
++        \begin{align}
++            t_c
++            &=
++            \frac{\rc}{\vnorm}
++            =
++            1.28808868\times10^{-21}\ \mathrm{s},
++            \\
++            \Omega_c
++            &=
++            \frac{\vnorm}{\rc}
++            =
++            7.76344066\times10^{20}\ \mathrm{s^{-1}},
++            \\
++            f_c
++            &=
++            \frac{\Omega_c}{2\pi}
++            =
++            1.23558996\times10^{20}\ \mathrm{Hz}.
++            \label{eq:rt_qss_canonical_scales}
++        \end{align}
++        These values are reference scales, not predictions that every global knot mode
++        lies at \(\Omega_c\).  A trefoil-scale mode must instead use a resolved global
++        length such as \(L_K\), \(R_{\rm horn}\), or a certified localization length.
++
++    \subsubsection*{Numerical certification ladder}
++
++        The minimum numerical programme is:
++        \begin{enumerate}
++            \item \textbf{Background certification.}
++            Construct a vortex ring first and then a trefoil relative equilibrium.
++            Record Euler residual, divergence residual, impulse, circulation, helicity,
++            topology, reach, and core profile.
++
++            \item \textbf{Consistent tangent operator.}
++            Linearize the same discretized evolution used for the nonlinear run or
++            validate the continuum linearization against finite differences.  Enforce
++            the divergence-free projection and remove rigid translation/rotation modes.
++
++            \item \textbf{Dual extraction.}
++            Compute leading eigenvalues with an Arnoldi or Jacobi--Davidson method and
++            independently extract damped components from small-amplitude time-domain
++            data using matrix-pencil, Prony, or validated dynamic-mode decomposition.
++
++            \item \textbf{Resolution and boundary sequence.}
++            Vary spatial resolution, timestep, domain size, core regularization, and
++            absorbing-boundary placement independently.  Extrapolate before assigning
++            a physical frequency.
++
++            \item \textbf{Adjoint and pseudospectral audit.}
++            Compute left modes, \(\kappa_j\), resolvent norms, and structured
++            perturbations from
++            \(\delta\mathcal L_{\rm geom}\),
++            \(\delta\mathcal L_{\rm num}\), and
++            \(\delta\mathcal L_{\rm env}\).
++
++            \item \textbf{Nonlinear amplitude sweep.}
++            Repeat at several perturbation amplitudes.  Linear poles must be
++            amplitude-independent over a declared interval, while quadratic
++            combination amplitudes follow
++            Eq.~\eqref{eq:rt_qss_quadratic_amplitude_scaling}.
++
++            \item \textbf{Model hierarchy.}
++            Validate the axisymmetric ring benchmark before interpreting a knotted
++            spectrum.  The default first knot is the resolved trefoil \(3_1\); extended
++            knot families enter only after the ring and trefoil pass the same gates.
++        \end{enumerate}
++
++        Passive tracer particles should be disabled during the eigensolve and restored
++        afterward.  They are visualization degrees of freedom, not part of
++        \(\mathcal L_K\), unless a benchmark explicitly promotes them to an active
++        coupled field.
++
++    \subsubsection*{Preregistered pass/fail criteria}
++
++        A mode may be labelled a \emph{certified numerical QSM candidate} only if:
++        \begin{enumerate}
++            \item the complex frequency converges to within a preregistered tolerance,
++            initially \(1\%\) for the fundamental ring and trefoil modes;
++            \item time-domain and operator-based estimates agree within their combined
++            uncertainty;
++            \item divergence and background-residual errors decrease under refinement;
++            \item the knot type and resolved tube do not undergo reconnection during
++            the linear measurement window;
++            \item boundary dependence is either negligible at the tolerance level or
++            explicitly identified as the physical open-system mechanism;
++            \item the linewidth, \(Q\), and decay-time convention satisfies
++            Eq.~\eqref{eq:rt_qss_linewidth_convention};
++            \item the residual after subtracting the pole model is tested for a
++            continuous-spectrum or tail contribution.
++        \end{enumerate}
++
++        Promotion beyond a numerical candidate additionally requires robustness under
++        physically admissible geometry perturbations and a reproducible observable
++        coupling coefficient or residue.
++
++    \subsubsection*{Analogue-experiment discipline}
++
++        Hydrodynamic analogue experiments demonstrate that complex vortex-response
++        spectra can be measured and that many counter-rotating resonances may be
++        excited in one nonequilibrium experiment
++        \cite{TorresPatrickRichartzWeinfurtner2020,
++        BertiEtAl2026BlackHoleSpectroscopy}.  This supports the feasibility of a
++        spectroscopy workflow, but it is not evidence for SST ontology.  Any proposed
++        analogue must independently vary and report dispersion, background vorticity,
++        asymmetry, finite-size effects, and boundary reflections.
++
++    \subsubsection*{Falsifiers and promotion rule}
++
++        This track is falsified or blocked for a stated configuration if:
++        \begin{enumerate}
++            \item the apparent poles do not converge under resolution and boundary
++            refinement;
++            \item the damping disappears while no admissible inviscid transfer or
++            open-flux mechanism remains;
++            \item the pole locations are dominated by numerical regularization or
++            tracer settings;
++            \item Eq.~\eqref{eq:rt_qss_eikonal_hypothesis} fails after its principal-
++            symbol, localization, and asymptotic prerequisites have been satisfied;
++            \item predicted quadratic peaks fail the frequency, symmetry, or
++            amplitude-scaling tests;
++            \item a claimed exceptional point lacks eigenvector coalescence and
++            adjoint-conditioning growth.
++        \end{enumerate}
++
++        No QSM formula is promoted to the main canon until at least one axisymmetric
++        ring and one resolved trefoil benchmark pass the full certification ladder.
++        Even after such promotion, the result would establish an SST spectral property,
++        not a black-hole identity.
++
+ % ============================================================
+ \subsection*{Summary of Canon Placement}
+     \label{app:canon-placement-summary}
+     
+-    The four additions should be placed as follows:
++    The five additions should be placed as follows:
+     
+     \begin{center}
+         \begin{tabular}{|p{0.25\linewidth}|p{0.22\linewidth}|p{0.42\linewidth}|}
+@@ -4942,6 +5559,10 @@
+             [RESEARCH-TRACK] analogy only &
+             Keep as metastable multi-mode response; reject direct delayed-neutron shell-crossing interpretation. \\
+             \hline
++            Quasinormal Swirl Spectroscopy &
++            [RESEARCH-TRACK] certification framework &
++            Keep in the companion track until a vortex ring and resolved trefoil pass the operator, boundary, adjoint, pseudospectral, and nonlinear gates. \\
++            \hline
+         \end{tabular}
+     \end{center}
+ 
+@@ -6952,8 +7573,8 @@
+     \qquad
+     \nabla\cdot \mathbf{v}=0 ,
+ \end{align}
+-with structured vorticity, quantized circulation, a canonical transverse
+-propagation speed \(c\), and a local Swirl--Clock factor
++with structured vorticity, quantized circulation, an operationally canonical
++transverse torsion speed \(c\), and a local Swirl--Clock factor
+ \begin{align}
+     S_{(t)}(x)
+     =
+@@ -6967,16 +7588,131 @@
+ \textbf{[SST INTERPRETATION]} The velocity \(u(x)\) is interpreted as a local
+ medium-kinematic state rather than as an abstract spacetime postulate.
+ 
+-\textbf{[CRITICAL NOTE]} If \(c\) is inserted as a primitive signal speed, then
+-the existence of a limiting cone is not itself derived. What may be derived is
+-the operational Lorentz kinematics of clocks and rods whose internal dynamics
+-are mediated only by that cone.
++\textbf{[FOUNDATIONAL STATUS]} The equality between the locally measured
++R-phase torsion-pulse speed and the observed constant \(c\) is a canonical
++operational postulate of SST. If \(c\) is inserted as calibration input, the
++existence and universality of the limiting cone are not thereby derived. What
++must be derived is the common torsional constitutive speed, the dynamical
++response of clocks and rods, and the absence of species- or orientation-dependent
++retuning.
++
++\subsection{Operational vortex-atom postulate}
++
++Let \(A\) denote a stable vortex atom equipped with an internal cycle counter and
++an independently equilibrated length standard \(\ell_A\). For an out-and-back
++R-phase torsion-pulse exchange, define the measured two-way speed
++\begin{align}
++    c_A^{(2\mathrm w)}
++    :=
++    \frac{2\ell_A}
++    {\tau_A^{\mathrm{recv}}-\tau_A^{\mathrm{emit}}} .
++    \label{eq:rt_vortex_atom_two_way_speed}
++\end{align}
++The foundational SST target is
++\begin{align}
++    \boxed{
++    c_A^{(2\mathrm w)}=c
++    }
++    \qquad
++    \text{for every stable low-energy carrier }A .
++    \label{eq:rt_vortex_atom_luminal_postulate}
++\end{align}
++The bare ratio \(dX/dT\) in substrate coordinates is not the observable in
++Eq.~\eqref{eq:rt_vortex_atom_two_way_speed}. It may vary under a change of
++substrate coordinates or through the clock/ruler response. The physical claim is
++that each vortex atom reconstructs the same local null cone.
++
++After the two-way speed has been established relative to an independent ruler,
++Alice assigns radar coordinates
++\begin{align}
++    t_A(E)
++    &=
++    \frac{\tau_A^{\mathrm{recv}}+\tau_A^{\mathrm{emit}}}{2},\\
++    \ell_A(E)
++    &=
++    \frac{c}{2}
++    \left(
++        \tau_A^{\mathrm{recv}}-\tau_A^{\mathrm{emit}}
++    \right).
++    \label{eq:rt_vortex_atom_radar_coordinates}
++\end{align}
++The corresponding local interval is
++\begin{align}
++    d\sigma_A^2
++    =
++    -c^2dt_A^2+d\ell_A^2,
++    \qquad
++    d\sigma_A^2=0
++    \quad\text{for an R-phase torsion pulse}.
++    \label{eq:rt_vortex_atom_operational_interval}
++\end{align}
++
++\subsection{Alice--Bob operational Lorentz map}
++
++Let Bob move at relative speed \(u_{AB}\) along Alice's \(x\)-axis. Define
++\begin{align}
++    \beta_{AB}=\frac{u_{AB}}{c},
++    \qquad
++    \gamma_{AB}=\frac{1}{\sqrt{1-\beta_{AB}^2}}.
++\end{align}
++If both observers' clocks, rulers, and synchronization signals are controlled by
++the same torsion cone, their measured coordinates obey
++\begin{align}
++    ct_B
++    &=
++    \gamma_{AB}
++    \left(ct_A-\beta_{AB}x_A\right),\\
++    x_B
++    &=
++    \gamma_{AB}
++    \left(x_A-\beta_{AB}ct_A\right),
++    \label{eq:rt_alice_bob_lorentz_map}
++\end{align}
++and
++\begin{align}
++    -c^2dt_A^2+dx_A^2
++    =
++    -c^2dt_B^2+dx_B^2 .
++    \label{eq:rt_alice_bob_interval_invariance}
++\end{align}
++
++\textbf{[ORTHODOX]} Equations~\eqref{eq:rt_alice_bob_lorentz_map}--
++\eqref{eq:rt_alice_bob_interval_invariance} are standard special-relativistic
++kinematics \cite{Einstein1905}.
++
++\textbf{[SST THEOREM TARGET]} Although the substrate contains a preferred
++foliation, every low-energy Alice--Bob observable must depend only on
++\(u_{AB}\), not separately on their velocities relative to that foliation. A
++residual dependence on the individual substrate velocities is a preferred-frame
++falsifier.
++
++\subsection{Non-circular emergence ladder}
++
++The non-circular derivation order is
++\begin{align}
++    \mathcal L_{\mathrm{micro}}
++    &\longrightarrow
++    \left(\rho_T,K_T\right)
++    \longrightarrow
++    c_T=\sqrt{K_T/\rho_T}
++    \longrightarrow
++    \text{clock and ruler response}
++    \nonumber\\
++    &\longrightarrow
++    c_A^{(2\mathrm w)}=c_T
++    \longrightarrow
++    c_T\stackrel{\mathrm{experiment}}{=}c .
++    \label{eq:rt_non_circular_c_emergence_ladder}
++\end{align}
++Using measured \(c\) to set \(K_T=\rho_Tc^2\) is a valid calibrated bridge, but
++it does not constitute the first-principles derivation represented by
++Eq.~\eqref{eq:rt_non_circular_c_emergence_ladder}.
+ 
+ \subsection{Light-clock derivation of the Lorentz factor}
+ 
+-Consider a clock whose tick is defined by a transverse signal moving at speed
+-\(c\) in the substrate frame. If the clock moves with speed \(u\) relative to
+-the substrate, then during one half-cycle
++Consider a clock whose tick is defined by a transverse R-phase torsion pulse
++with constitutive speed \(c_T=c\) in the substrate frame. If the clock moves with
++speed \(u\) relative to the substrate, then during one half-cycle
+ \begin{align}
+     c^2 \Delta t^2
+     =
+@@ -7040,6 +7776,43 @@
+ \textbf{Falsifier.} Failure of Eq.~\eqref{eq:rt_monometricity} predicts
+ species-dependent Lorentz violation and preferred-frame effects.
+ 
++\subsection{Operational universality benchmarks}
++
++A valid theorem-level closure must pass all of the following tests:
++\begin{enumerate}
++    \item \textbf{Knot-species universality:}
++    \begin{align}
++        \frac{c_A^{(2\mathrm w)}}{c}-1
++        \longrightarrow 0
++        \qquad
++        \text{for }A\in\{3_1,4_1,5_2,6_1,\ldots\}.
++    \end{align}
++    \item \textbf{Orientation and polarization isotropy:}
++    \begin{align}
++        \partial_{\hat{\mathbf n}}c_A^{(2\mathrm w)}=0,
++        \qquad
++        \partial_{\mathrm{pol}}c_A^{(2\mathrm w)}=0
++    \end{align}
++    in the infrared regime.
++    \item \textbf{Low-energy nondispersion:}
++    \begin{align}
++        \omega_A^2(k)
++        =
++        c^2k^2
++        \left[1+O\!\left((kr_c)^2\right)\right],
++        \qquad
++        kr_c\ll1 .
++        \label{eq:rt_torsion_ir_dispersion_target}
++    \end{align}
++    \item \textbf{Relative-motion closure:} clock comparison, ruler comparison,
++    and pulse propagation between Alice and Bob must be functions of \(u_{AB}\)
++    only, within the stated approximation.
++    \item \textbf{Helmholtz-sector preservation:} ordinary R-phase propagation
++    must satisfy \(\Delta\Gamma_C=0\) for every unaffected material loop and
++    must not leave permanent vorticity in an initially irrotational material
++    element.
++\end{enumerate}
++
+ \subsection{Analogue-metric bridge}
+ 
+ For a hyperbolic perturbation sector with common characteristic speed \(c\),
+@@ -7059,14 +7832,18 @@
+ 
+ \textbf{[ORTHODOX]} Equations of the form
+ \eqref{eq:rt_analogue_metric} are standard in analogue-gravity systems
+-\cite{Unruh1981,BarceloLiberatiVisser2011}.
++\cite{Unruh1981,BarceloLiberatiVisser2011,BarceloLiberatiVisser2026}.
+ 
+ \textbf{[SST STATUS: CONDITIONAL BRIDGE]} In SST this bridge applies only to the
+ explicit hyperbolic excitation sector. It does not follow from incompressibility
+ alone, because incompressible Euler pressure is a constraint field rather than
+-an ordinary compressional sound mode. The correct conditional statement is: if
+-the torsion/transverse excitation sector has a hyperbolic principal operator
+-with speed \(c\), then an effective Lorentz cone follows.
++an ordinary compressional sound mode. Exact incompressibility therefore removes
++the standard longitudinal acoustic branch from the SST foundation. The correct
++conditional statement is: if the independent torsion/transverse excitation
++sector has a hyperbolic principal operator with constitutive speed \(c_T\), and
++if clocks and rulers couple universally to that sector, then an effective
++Lorentz cone follows. The operational canon identifies \(c_T=c\); the
++microphysical derivation remains open.
+ 
+ \textbf{[CRITICAL NOTE]} Analogue gravity reproduces curved-spacetime
+ kinematics for perturbations. It does not, by itself, derive the Einstein field
+@@ -7769,10 +8546,25 @@
+ \begin{align}
+     c_T^2=\frac{K_T}{\rhoF}.
+ \end{align}
+-The canon-compatible light-speed identification belongs only to this transverse layer:
++The canonical operational light-speed identification belongs only to this
++transverse layer:
+ \begin{align}
+     c_T=c.
++    \label{eq:rt_core_torsion_operational_c}
++\end{align}
++With the canonical fluid density this corresponds to the calibrated stiffness
++target
++\begin{align}
++    K_T^{\mathrm{target}}
++    =
++    \rhoF c^2
++    =
++    6.29128625115772348\times10^{10}\ \mathrm{Pa}.
++    \label{eq:rt_core_torsion_stiffness_target}
+ \end{align}
++Equation~\eqref{eq:rt_core_torsion_stiffness_target} fixes the value required by
++the operational postulate. A first-principles closure must obtain this value from
++the substrate microphysics without using \(c\) as the same-step input.
+ Its intensive impedance is
+ \begin{align}
+     Z_T=\rhoF c_T=\sqrt{\rhoF K_T},
+@@ -7835,7 +8627,12 @@
+ \end{enumerate}
+ 
+ \textbf{[CANON INTERPRETATION].}
+-The canon may retain the two-speed discipline and the open impedance lemma. It should not promote the Lorentz clock factor to hard canon through the NLSE core alone.
++The operational statement that stable vortex matter measures R-phase torsion
++pulses locally at \(c\), together with the Lorentz-form Swirl-Clock, is a founding
++canon postulate. The open problem is not the intended meaning of \(c\), but the
++non-circular derivation of \(K_T\), universal clock-and-ruler dressing, and the
++impedance identity from the substrate. The NLSE core alone must not be presented
++as supplying that derivation.
+ 
+ 
+ % ============================================================

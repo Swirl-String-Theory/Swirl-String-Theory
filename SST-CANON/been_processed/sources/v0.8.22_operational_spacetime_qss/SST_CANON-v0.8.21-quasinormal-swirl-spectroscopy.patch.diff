@@ -1,0 +1,741 @@
+--- a/SST_CANON-v0.8.21.tex
++++ b/SST_CANON-v0.8.21.tex
+@@ -1638,6 +1638,18 @@
+     \paragraph{Status.}
+         \textbf{Secondary derived result.} Valid under spectral assumptions; not a defining postulate. The cubic weighting $\sum_n 1/\omega_n^3$ with $\omega_n\sim n$ yields $\zeta(3)$ for \emph{any} asymptotically linear spectrum; this is a generic calculus property $[\text{CALIBRATED}]$, not an SST-specific fluid-dynamical or topological invariant.
+ 
++    \paragraph{Closed-mode versus open-resonance guard.}
++        Equations~\eqref{eq:field_model}--\eqref{eq:dispersion} describe a closed,
++        conservative quadratic phase model with periodic boundary conditions.  They do
++        \emph{not} by themselves derive damped resonances, outgoing-flux conditions,
++        quasinormal modes, or a non-self-adjoint evolution generator.  The distinct
++        research programme for open or coarse-grained vortex response is therefore kept
++        in the companion research track as
++        \emph{quasinormal swirl spectroscopy}; see
++        Section~\ref{sec:rt_quasinormal_swirl_spectroscopy}.  That programme imports
++        operator and resonance methodology only.  It does not import Kerr geometry,
++        event horizons, or Einstein dynamics into SST.
++
+ \subsection{Bounded-Domain Curl-Spectrum Benchmarks}
+     \label{subsec:bounded_domain_curl_spectrum}
+ 
+@@ -5602,6 +5614,37 @@
+             \newblock \emph{Banach Center Publications} \textbf{42} (1998), 321--346,
+             \newblock Permalink: \href{https://eudml.org/doc/252224}{EuDML:252224}.
+ 
++
++            \bibitem{BertiEtAl2026BlackHoleSpectroscopy}
++            E.~Berti et al.,
++            \newblock Black hole spectroscopy: from theory to experiment,
++            \newblock \emph{Classical and Quantum Gravity} \textbf{43} (2026), 123001,
++            \newblock DOI: \href{https://doi.org/10.1088/1361-6382/ae59e2}{10.1088/1361-6382/ae59e2}.
++
++            \bibitem{MajdaBertozzi2002}
++            A.~J. Majda and A.~L. Bertozzi,
++            \newblock \emph{Vorticity and Incompressible Flow},
++            \newblock Cambridge Texts in Applied Mathematics, Cambridge University Press (2002),
++            \newblock DOI: \href{https://doi.org/10.1017/CBO9780511613203}{10.1017/CBO9780511613203}.
++
++            \bibitem{JaramilloPanossoMacedoAlSheikh2021}
++            J.~L. Jaramillo, R.~Panosso Macedo, and L.~Al~Sheikh,
++            \newblock Pseudospectrum and black hole quasinormal mode instability,
++            \newblock \emph{Physical Review X} \textbf{11} (2021), 031003,
++            \newblock DOI: \href{https://doi.org/10.1103/PhysRevX.11.031003}{10.1103/PhysRevX.11.031003}.
++
++            \bibitem{CardosoMirandaBertiWitekZanchin2009}
++            V.~Cardoso, A.~S. Miranda, E.~Berti, H.~Witek, and V.~T. Zanchin,
++            \newblock Geodesic stability, Lyapunov exponents, and quasinormal modes,
++            \newblock \emph{Physical Review D} \textbf{79} (2009), 064016,
++            \newblock DOI: \href{https://doi.org/10.1103/PhysRevD.79.064016}{10.1103/PhysRevD.79.064016}.
++
++            \bibitem{TorresPatrickRichartzWeinfurtner2020}
++            T.~Torres, S.~Patrick, M.~Richartz, and S.~Weinfurtner,
++            \newblock Quasinormal mode oscillations in an analogue black hole experiment,
++            \newblock \emph{Physical Review Letters} \textbf{125} (2020), 011301,
++            \newblock DOI: \href{https://doi.org/10.1103/PhysRevLett.125.011301}{10.1103/PhysRevLett.125.011301}.
++
+         \end{thebibliography}
+ 
+ \end{document}
+\ No newline at end of file
+--- a/SST_CANON-v0.8.21-research-track.tex
++++ b/SST_CANON-v0.8.21-research-track.tex
+@@ -4873,14 +4873,24 @@
+             \item a linking/helicity response,
+             \item a global Swirl-Clock phase response.
+         \end{itemize}
+-        The decay constants \(\tau_i\) should therefore be treated as \emph{effective metastable relaxation times}. A safe parametrization is
++        The decay constants \(\tau_i\) should therefore be treated as
++        \emph{effective metastable amplitude-relaxation times}.  With the linewidth
++        convention of Eq.~\eqref{eq:linewidth_quality_factor},
++        \(\gamma_i\) is the half-width at half maximum in angular frequency and the
++        time-domain amplitude is \(e^{-\gamma_i t}\).  Hence
+         \begin{equation}
+-            \tau_i
+-            =
+-            \frac{Q_i}{\omega_i},
++            \boxed{
++                \tau_i
++                =
++                \frac{1}{\gamma_i}
++                =
++                \frac{2Q_i}{\omega_i}
++            },
+             \label{eq:tau_Q_over_omega}
+         \end{equation}
+-        where \(Q_i\) is the quality factor of the \(i\)-th mode.
++        where \(Q_i\) is the quality factor of the \(i\)-th mode.  The earlier
++        \(\tau_i=Q_i/\omega_i\) convention is rejected because it is inconsistent by a
++        factor of two with Eq.~\eqref{eq:linewidth_quality_factor}.
+     
+     \subsubsection*{Critical scale check}
+         
+@@ -4896,13 +4906,14 @@
+         This is a single radial crossing time, distinct from the full circulation
+         period \(\tau_{\rm circ,c}=2\pi\rc/\vchar\) of Eq.~\eqref{eq:compton_delay}
+         in the main canon.
+-        Therefore, an observed lifetime of \(1\ \mathrm{s}\) would require
++        Therefore, an observed amplitude lifetime of \(1\ \mathrm{s}\) at the
++        core-scale angular frequency would require
+         \begin{equation}
+             Q
++            =
++            \frac{\omega_i\tau_i}{2}
+             \sim
+-            \omega_i\tau_i
+-            \sim
+-            7.76\times10^{20}.
++            3.88\times10^{20}.
+             \label{eq:large_Q_warning}
+         \end{equation}
+         Such a huge \(Q\)-factor is not impossible as a formal metastability parameter, but it cannot be interpreted as a simple geometric shell crossing.
+@@ -4915,11 +4926,617 @@
+         
+         The layered relaxation ansatz predicts that perturbing a structured target should produce reproducible decay constants \(\tau_i\) independent of total pulse amplitude, provided the response remains linear. If the apparent \(\tau_i\) vary strongly with drive amplitude, heating, or detector threshold, the model is likely observing instrumental or thermal relaxation rather than swirl-string metastability.
+ 
++
++% ============================================================
++\subsection{Research Track: Quasinormal Swirl Spectroscopy and Spectral-Robustness Gate}
++    \label{sec:rt_quasinormal_swirl_spectroscopy}
++
++    \subsubsection*{Status, scope, and terminology}
++
++        \noindent
++        \textbf{Status:} [RESEARCH-TRACK / NOT CANONICAL].
++        This subsection transfers the mathematically useful parts of quasinormal-mode
++        spectroscopy to perturbations of resolved SST vortex states
++        \cite{BertiEtAl2026BlackHoleSpectroscopy}.  It does \emph{not} identify an SST
++        knot with a Kerr black hole, does not assume an event horizon, and does not
++        import the Einstein equations.  The transferable content is the analysis of
++        open, non-normal, or coarse-grained evolution through response poles,
++        adjoint modes, resolvents, pseudospectra, nonlinear combination frequencies,
++        and controlled mode-identification tests.
++
++        To avoid an ontological overstatement, this track uses the term
++        \emph{quasinormal swirl mode} (QSM).  A QSM is an SST response resonance with a
++        complex frequency.  The term \emph{QNM} remains reserved for the orthodox
++        black-hole or analogue-gravity comparison.
++
++        Three objects must remain distinct:
++        \begin{enumerate}
++            \item the real normal-mode tower of a closed conservative carrier, as in
++            Section~\ref{subsec:spectral_locked_carriers};
++            \item the phenomenological Lorentzian response model of
++            Section~\ref{sec:resonance-selection-principle};
++            \item QSMs defined as poles or isolated spectral resonances of a specified
++            linearized SST evolution problem.
++        \end{enumerate}
++        A fitted damped sinusoid or an FFT peak alone is not a QSM certification.
++
++    \subsubsection*{Relative-equilibrium background and linearized Euler operator}
++
++        Let \(\mathbf v_0(\mathbf x)\) and \(p_0(\mathbf x)\) be a resolved,
++        divergence-free SST background in a frame in which the chosen vortex ring or
++        knot is stationary:
++        \begin{align}
++            \nabla\cdot\mathbf v_0 &= 0,
++            \\
++            (\mathbf v_0\cdot\nabla)\mathbf v_0
++            &=
++            -\frac{1}{\rhoF}\nabla p_0.
++            \label{eq:rt_qss_background_euler}
++        \end{align}
++        A translating or rotating vortex is therefore treated as a
++        \emph{relative equilibrium}; the translation and rotation generators belong to
++        the frame definition rather than to the internal mode spectrum.  Failure to
++        remove those rigid motions produces spurious low-frequency modes.
++
++        Write
++        \begin{equation}
++            \mathbf v
++            =
++            \mathbf v_0+\epsilon\mathbf u+O(\epsilon^2),
++            \qquad
++            p
++            =
++            p_0+\epsilon\pi+O(\epsilon^2),
++        \end{equation}
++        with \(\nabla\cdot\mathbf u=0\).  The first-order incompressible Euler system is
++        \begin{equation}
++            \partial_t\mathbf u
++            +
++            (\mathbf v_0\cdot\nabla)\mathbf u
++            +
++            (\mathbf u\cdot\nabla)\mathbf v_0
++            =
++            -\frac{1}{\rhoF}\nabla\pi.
++            \label{eq:rt_qss_linearized_euler}
++        \end{equation}
++        Introducing the Leray projector \(\mathbb P\) onto the admissible
++        divergence-free subspace gives
++        \begin{equation}
++            \partial_t\mathbf u
++            =
++            \mathcal L_K\mathbf u,
++            \qquad
++            \mathcal L_K\mathbf u
++            =
++            -\mathbb P
++            \left[
++                (\mathbf v_0\cdot\nabla)\mathbf u
++                +
++                (\mathbf u\cdot\nabla)\mathbf v_0
++            \right]
++            +
++            \mathcal L_{\rm frame}\mathbf u.
++            \label{eq:rt_qss_linear_operator}
++        \end{equation}
++        Here \(\mathcal L_{\rm frame}\) contains only the explicitly declared
++        co-translating or co-rotating frame generators and vanishes for a stationary
++        laboratory-frame background.  Equations
++        \eqref{eq:rt_qss_background_euler}--\eqref{eq:rt_qss_linear_operator} are the
++        orthodox incompressible-flow linearization used as the starting point for this
++        SST track \cite{MajdaBertozzi2002}.
++
++        The domain, core profile, regularization, topological sector, outer boundary,
++        and allowed flux conditions are part of the operator definition.  A spectrum
++        quoted without this metadata is non-reproducible.
++
++    \subsubsection*{Complex frequencies and admissible damping mechanisms}
++
++        A modal ansatz
++        \begin{equation}
++            \mathbf u_j(\mathbf x,t)
++            =
++            \mathbf q_j(\mathbf x)e^{s_jt}
++            =
++            \mathbf q_j(\mathbf x)e^{-i\omega_jt},
++            \qquad
++            s_j=-i\omega_j,
++        \end{equation}
++        yields
++        \begin{equation}
++            \mathcal L_K\mathbf q_j
++            =
++            s_j\mathbf q_j.
++            \label{eq:rt_qss_eigenproblem}
++        \end{equation}
++        With
++        \begin{equation}
++            \omega_j
++            =
++            \omega_{R,j}-i\gamma_j,
++            \qquad
++            \gamma_j>0,
++        \end{equation}
++        the amplitude behaves as
++        \(e^{-\gamma_jt}\cos(\omega_{R,j}t+\phi_j)\).
++
++        \textbf{[INVISCID CONSISTENCY GATE].}
++        In an exactly closed, fully resolved, inviscid system, damping may not be
++        inserted as an unexplained friction coefficient.  A negative imaginary part
++        must be traced to at least one declared mechanism:
++        \begin{enumerate}
++            \item advective energy or vorticity flux through an open boundary;
++            \item phase mixing or transfer into a continuous spectrum;
++            \item transfer into unresolved internal degrees of freedom under an
++            explicitly declared coarse graining;
++            \item projection onto a local observable while the total conservative
++            state continues to evolve.
++        \end{enumerate}
++        A numerical sponge or absorbing layer is a computational boundary treatment,
++        not a physical SST damping mechanism, unless the extracted pole converges as
++        the layer is moved outward and weakened.
++
++        The linewidth convention is fixed throughout this track by
++        \begin{equation}
++            \boxed{
++                \gamma_j
++                =
++                \frac{1}{\tau_{A,j}}
++                =
++                \frac{\omega_{R,j}}{2Q_j},
++                \qquad
++                \Delta\omega_{{\rm FWHM},j}=2\gamma_j
++            }.
++            \label{eq:rt_qss_linewidth_convention}
++        \end{equation}
++        Thus \(\tau_{A,j}\) is the amplitude-decay time.  An energy-decay time would be
++        \(\tau_{E,j}=1/(2\gamma_j)\), and these two conventions must not be mixed.
++
++    \subsubsection*{Pole definition, residues, and continuous spectrum}
++
++        Define the retarded resolvent
++        \begin{equation}
++            \mathcal R_K(s)
++            =
++            (sI-\mathcal L_K)^{-1}.
++            \label{eq:rt_qss_resolvent}
++        \end{equation}
++        A certified QSM is an isolated pole \(s_j\) of the analytically continued
++        response, or an isolated eigenvalue of a rigorously specified time-evolution
++        generator on the chosen function space.  Near a simple pole,
++        \begin{equation}
++            \chi_K(\omega)
++            =
++            \frac{\mathcal B_j}
++            {\omega-\omega_j}
++            +
++            \chi_{\rm reg}(\omega),
++            \label{eq:rt_qss_local_pole}
++        \end{equation}
++        where \(\mathcal B_j\) is a residue fixed by the forcing and observable.
++        Consequently, the Lorentzian forms in
++        Eqs.~\eqref{eq:RK_lorentzian} and
++        \eqref{eq:frequency_response_chi} are local isolated-pole approximations, not
++        primary definitions of the spectrum.
++
++        In general the response may contain both discrete resonances and a continuous
++        contribution:
++        \begin{equation}
++            A(t)
++            =
++            \sum_j
++            C_j e^{-i\omega_jt}
++            +
++            \int_{\mathcal C}
++            C(\omega)e^{-i\omega t}\,d\omega.
++            \label{eq:rt_qss_poles_and_continuum}
++        \end{equation}
++        The second term may produce phase-mixed transients or algebraic tails.
++        Therefore a stable multi-exponential fit over one short time interval does not
++        establish completeness of the pole sum
++        \cite{BertiEtAl2026BlackHoleSpectroscopy}.
++
++    \subsubsection*{Adjoint modes, biorthogonality, and first-order sensitivity}
++
++        For a non-normal evolution generator, right and adjoint modes satisfy
++        \begin{align}
++            \mathcal L_K\mathbf q_j
++            &=
++            s_j\mathbf q_j,
++            \\
++            \mathcal L_K^\dagger\mathbf q_j^\dagger
++            &=
++            s_j^\ast\mathbf q_j^\dagger.
++        \end{align}
++        With an explicitly declared energy or Sobolev inner product, the modes may be
++        normalized biorthogonally:
++        \begin{equation}
++            \left\langle
++                \mathbf q_i^\dagger,
++                \mathbf q_j
++            \right\rangle_E
++            =
++            \delta_{ij}.
++            \label{eq:rt_qss_biorthogonality}
++        \end{equation}
++        For a small structured perturbation
++        \(\delta\mathcal L_K\), the simple-eigenvalue shift is
++        \begin{equation}
++            \delta s_j
++            =
++            \frac{
++                \left\langle
++                    \mathbf q_j^\dagger,
++                    \delta\mathcal L_K\mathbf q_j
++                \right\rangle_E
++            }{
++                \left\langle
++                    \mathbf q_j^\dagger,
++                    \mathbf q_j
++                \right\rangle_E
++            }
++            +
++            O(\|\delta\mathcal L_K\|^2).
++            \label{eq:rt_qss_adjoint_shift}
++        \end{equation}
++        A useful conditioning diagnostic is
++        \begin{equation}
++            \kappa_j
++            =
++            \frac{
++                \|\mathbf q_j^\dagger\|_E
++                \|\mathbf q_j\|_E
++            }{
++                \left|
++                    \left\langle
++                        \mathbf q_j^\dagger,
++                        \mathbf q_j
++                    \right\rangle_E
++                \right|
++            }.
++            \label{eq:rt_qss_condition_number}
++        \end{equation}
++        Large \(\kappa_j\) means that the pole can move strongly under a small change in
++        core profile, embedding, boundary, or discretization.  Reporting only
++        \(\omega_j\) without \(\kappa_j\) can therefore misclassify a fragile numerical
++        overtone as a robust physical mode.
++
++    \subsubsection*{Pseudospectral robustness gate}
++
++        The \(\varepsilon\)-pseudospectrum is
++        \begin{equation}
++            \boxed{
++                \sigma_\varepsilon(\mathcal L_K)
++                =
++                \left\{
++                    s\in\mathbb C:
++                    \left\|
++                        (sI-\mathcal L_K)^{-1}
++                    \right\|_E
++                    >
++                    \varepsilon^{-1}
++                \right\}
++            }.
++            \label{eq:rt_qss_pseudospectrum}
++        \end{equation}
++        It measures where small operator perturbations can create large responses or
++        large spectral shifts.  This is required because open gravitational spectra
++        provide explicit examples in which very small potential perturbations strongly
++        displace overtones \cite{JaramilloPanossoMacedoAlSheikh2021,
++        BertiEtAl2026BlackHoleSpectroscopy}.
++
++        For SST, the perturbation classes must be separated:
++        \begin{align}
++            \delta\mathcal L_{\rm geom}
++            &: \text{embedding, reach, core-profile, and contact-map changes},
++            \\
++            \delta\mathcal L_{\rm num}
++            &: \text{mesh, quadrature, regularization, and timestep changes},
++            \\
++            \delta\mathcal L_{\rm env}
++            &: \text{outer-flow, wall, background-vorticity, and probe changes}.
++        \end{align}
++        A QSM is \emph{spectrally robust} only if the relevant
++        pseudospectral contours remain localized on the perturbation scale actually
++        admitted by the benchmark.  Broad contours are not automatically a
++        falsification; they require the mode to be labelled \emph{fragile} and prevent
++        its promotion as a precision observable.
++
++    \subsubsection*{Conditional trapped-characteristic/eikonal route}
++
++        A light-ring formula may not be copied into SST.  The required starting point is
++        the principal symbol of the actual SST perturbation equations,
++        \begin{equation}
++            D_K(\mathbf x,\mathbf k,\omega)=0.
++            \label{eq:rt_qss_principal_symbol}
++        \end{equation}
++        Its characteristic rays satisfy
++        \begin{equation}
++            \dot{\mathbf x}
++            =
++            \frac{\partial D_K}{\partial\mathbf k},
++            \qquad
++            \dot{\mathbf k}
++            =
++            -\frac{\partial D_K}{\partial\mathbf x}.
++            \label{eq:rt_qss_characteristic_rays}
++        \end{equation}
++        Only if a specific perturbation branch possesses an unstable periodic
++        characteristic with orbital frequency \(\Omega_\star\) and transverse
++        Lyapunov exponent \(\Lambda_\star\) may SST test the asymptotic hypothesis
++        \begin{equation}
++            \boxed{
++                \omega_{mn}^{\rm QSM}
++                \simeq
++                m\Omega_\star
++                -
++                i\left(n+\frac12\right)\Lambda_\star
++            }
++            \qquad
++            (m\gg1).
++            \label{eq:rt_qss_eikonal_hypothesis}
++        \end{equation}
++        This structure is motivated by the orthodox eikonal QNM relation
++        \cite{CardosoMirandaBertiWitekZanchin2009,
++        BertiEtAl2026BlackHoleSpectroscopy}, but Eq.~\eqref{eq:rt_qss_eikonal_hypothesis}
++        is only an SST research hypothesis.
++
++        \textbf{[CRITICAL GATE].}
++        Incompressible Euler flow does not generically supply an acoustic null cone or
++        a scalar wave branch.  The characteristic branch, localization, WKB ordering,
++        and large-\(m\) limit must therefore be derived before
++        \(\Omega_\star\) or \(\Lambda_\star\) is assigned.  Failure of this derivation
++        blocks the entire trapped-characteristic route but does not block the
++        resolvent-based QSM programme.
++
++    \subsubsection*{Second-order combination modes}
++
++        Expand a perturbation variable as
++        \begin{equation}
++            q
++            =
++            \epsilon q^{(1)}
++            +
++            \epsilon^2q^{(2)}
++            +
++            O(\epsilon^3).
++        \end{equation}
++        The second-order equation has the schematic form
++        \begin{equation}
++            \left(
++                \partial_t-\mathcal L_K
++            \right)q^{(2)}
++            =
++            \mathcal N_2
++            \left[
++                q^{(1)},q^{(1)}
++            \right].
++            \label{eq:rt_qss_second_order_equation}
++        \end{equation}
++        If the first-order field contains modes \(a\) and \(b\), the quadratic source
++        contains candidate frequencies
++        \begin{equation}
++            \omega_{ab}^{(+)}
++            =
++            \omega_a+\omega_b,
++            \qquad
++            \omega_{ab}^{(-)}
++            =
++            \omega_a-\omega_b^\ast.
++            \label{eq:rt_qss_combination_frequencies}
++        \end{equation}
++        Their decay rates add.  For an azimuthally resolved background the corresponding
++        selection rules include \(m_{ab}=m_a+m_b\) for the sum channel and
++        \(m_{ab}=m_a-m_b\) for the difference channel, subject to the actual parity and
++        topology constraints of the chosen state.
++
++        In the perturbative regime,
++        \begin{equation}
++            A_{ab}^{(2)}
++            \propto
++            A_a^{(1)}A_b^{(1)}
++            \propto
++            \epsilon^2.
++            \label{eq:rt_qss_quadratic_amplitude_scaling}
++        \end{equation}
++        A peak near a sum or difference frequency is not sufficient: its amplitude must
++        exhibit the quadratic scaling and its symmetry label must satisfy the selection
++        rule.  This provides a direct nonlinear benchmark inspired by quadratic
++        black-hole modes, without importing their dynamics
++        \cite{BertiEtAl2026BlackHoleSpectroscopy}.
++
++    \subsubsection*{Mode avoidance and exceptional-point scan}
++
++        For two interacting modes, a local reduced model is
++        \begin{equation}
++            H_{\rm eff}
++            =
++            \begin{pmatrix}
++                s_1 & g_{12}\\
++                g_{21} & s_2
++            \end{pmatrix},
++        \end{equation}
++        with eigenvalues
++        \begin{equation}
++            s_\pm
++            =
++            \frac{s_1+s_2}{2}
++            \pm
++            \sqrt{
++                \left(
++                    \frac{s_1-s_2}{2}
++                \right)^2
++                +
++                g_{12}g_{21}
++            }.
++            \label{eq:rt_qss_two_mode_eigenvalues}
++        \end{equation}
++        An exceptional point requires the square-root discriminant to vanish and the
++        eigenvectors to coalesce.  Because this is one complex condition, two
++        independent real control parameters are generically required.  Candidate SST
++        scans include
++        \begin{equation}
++            \left(
++                \frac{a_{\rm core}}{L_K},
++                \frac{\Gamma_K}{v_{\rm ref}L_K}
++            \right),
++            \qquad
++            \left(
++                \mathrm{Tw},
++                \frac{\operatorname{reach}(K)}{L_K}
++            \right).
++        \end{equation}
++        A credible identification requires eigenvector exchange, adjoint-norm growth,
++        and the expected square-root parameter dependence; an avoided crossing in a
++        frequency plot alone is insufficient
++        \cite{BertiEtAl2026BlackHoleSpectroscopy}.
++
++    \subsubsection*{Dimensionless scaling and canonical numerical values}
++
++        For any mode family define
++        \begin{equation}
++            \widehat\omega_j
++            =
++            \omega_j
++            \frac{L_{\rm ref}}{v_{\rm ref}}.
++            \label{eq:rt_qss_dimensionless_frequency}
++        \end{equation}
++        The pair \((L_{\rm ref},v_{\rm ref})\) must match the localization scale of the
++        mode.  The core reference choice
++        \(L_{\rm ref}=\rc\) and \(v_{\rm ref}=\vnorm\) gives
++        \begin{align}
++            t_c
++            &=
++            \frac{\rc}{\vnorm}
++            =
++            1.28808868\times10^{-21}\ \mathrm{s},
++            \\
++            \Omega_c
++            &=
++            \frac{\vnorm}{\rc}
++            =
++            7.76344066\times10^{20}\ \mathrm{s^{-1}},
++            \\
++            f_c
++            &=
++            \frac{\Omega_c}{2\pi}
++            =
++            1.23558996\times10^{20}\ \mathrm{Hz}.
++            \label{eq:rt_qss_canonical_scales}
++        \end{align}
++        These values are reference scales, not predictions that every global knot mode
++        lies at \(\Omega_c\).  A trefoil-scale mode must instead use a resolved global
++        length such as \(L_K\), \(R_{\rm horn}\), or a certified localization length.
++
++    \subsubsection*{Numerical certification ladder}
++
++        The minimum numerical programme is:
++        \begin{enumerate}
++            \item \textbf{Background certification.}
++            Construct a vortex ring first and then a trefoil relative equilibrium.
++            Record Euler residual, divergence residual, impulse, circulation, helicity,
++            topology, reach, and core profile.
++
++            \item \textbf{Consistent tangent operator.}
++            Linearize the same discretized evolution used for the nonlinear run or
++            validate the continuum linearization against finite differences.  Enforce
++            the divergence-free projection and remove rigid translation/rotation modes.
++
++            \item \textbf{Dual extraction.}
++            Compute leading eigenvalues with an Arnoldi or Jacobi--Davidson method and
++            independently extract damped components from small-amplitude time-domain
++            data using matrix-pencil, Prony, or validated dynamic-mode decomposition.
++
++            \item \textbf{Resolution and boundary sequence.}
++            Vary spatial resolution, timestep, domain size, core regularization, and
++            absorbing-boundary placement independently.  Extrapolate before assigning
++            a physical frequency.
++
++            \item \textbf{Adjoint and pseudospectral audit.}
++            Compute left modes, \(\kappa_j\), resolvent norms, and structured
++            perturbations from
++            \(\delta\mathcal L_{\rm geom}\),
++            \(\delta\mathcal L_{\rm num}\), and
++            \(\delta\mathcal L_{\rm env}\).
++
++            \item \textbf{Nonlinear amplitude sweep.}
++            Repeat at several perturbation amplitudes.  Linear poles must be
++            amplitude-independent over a declared interval, while quadratic
++            combination amplitudes follow
++            Eq.~\eqref{eq:rt_qss_quadratic_amplitude_scaling}.
++
++            \item \textbf{Model hierarchy.}
++            Validate the axisymmetric ring benchmark before interpreting a knotted
++            spectrum.  The default first knot is the resolved trefoil \(3_1\); extended
++            knot families enter only after the ring and trefoil pass the same gates.
++        \end{enumerate}
++
++        Passive tracer particles should be disabled during the eigensolve and restored
++        afterward.  They are visualization degrees of freedom, not part of
++        \(\mathcal L_K\), unless a benchmark explicitly promotes them to an active
++        coupled field.
++
++    \subsubsection*{Preregistered pass/fail criteria}
++
++        A mode may be labelled a \emph{certified numerical QSM candidate} only if:
++        \begin{enumerate}
++            \item the complex frequency converges to within a preregistered tolerance,
++            initially \(1\%\) for the fundamental ring and trefoil modes;
++            \item time-domain and operator-based estimates agree within their combined
++            uncertainty;
++            \item divergence and background-residual errors decrease under refinement;
++            \item the knot type and resolved tube do not undergo reconnection during
++            the linear measurement window;
++            \item boundary dependence is either negligible at the tolerance level or
++            explicitly identified as the physical open-system mechanism;
++            \item the linewidth, \(Q\), and decay-time convention satisfies
++            Eq.~\eqref{eq:rt_qss_linewidth_convention};
++            \item the residual after subtracting the pole model is tested for a
++            continuous-spectrum or tail contribution.
++        \end{enumerate}
++
++        Promotion beyond a numerical candidate additionally requires robustness under
++        physically admissible geometry perturbations and a reproducible observable
++        coupling coefficient or residue.
++
++    \subsubsection*{Analogue-experiment discipline}
++
++        Hydrodynamic analogue experiments demonstrate that complex vortex-response
++        spectra can be measured and that many counter-rotating resonances may be
++        excited in one nonequilibrium experiment
++        \cite{TorresPatrickRichartzWeinfurtner2020,
++        BertiEtAl2026BlackHoleSpectroscopy}.  This supports the feasibility of a
++        spectroscopy workflow, but it is not evidence for SST ontology.  Any proposed
++        analogue must independently vary and report dispersion, background vorticity,
++        asymmetry, finite-size effects, and boundary reflections.
++
++    \subsubsection*{Falsifiers and promotion rule}
++
++        This track is falsified or blocked for a stated configuration if:
++        \begin{enumerate}
++            \item the apparent poles do not converge under resolution and boundary
++            refinement;
++            \item the damping disappears while no admissible inviscid transfer or
++            open-flux mechanism remains;
++            \item the pole locations are dominated by numerical regularization or
++            tracer settings;
++            \item Eq.~\eqref{eq:rt_qss_eikonal_hypothesis} fails after its principal-
++            symbol, localization, and asymptotic prerequisites have been satisfied;
++            \item predicted quadratic peaks fail the frequency, symmetry, or
++            amplitude-scaling tests;
++            \item a claimed exceptional point lacks eigenvector coalescence and
++            adjoint-conditioning growth.
++        \end{enumerate}
++
++        No QSM formula is promoted to the main canon until at least one axisymmetric
++        ring and one resolved trefoil benchmark pass the full certification ladder.
++        Even after such promotion, the result would establish an SST spectral property,
++        not a black-hole identity.
++
+ % ============================================================
+ \subsection*{Summary of Canon Placement}
+     \label{app:canon-placement-summary}
+     
+-    The four additions should be placed as follows:
++    The five additions should be placed as follows:
+     
+     \begin{center}
+         \begin{tabular}{|p{0.25\linewidth}|p{0.22\linewidth}|p{0.42\linewidth}|}
+@@ -4942,6 +5559,10 @@
+             [RESEARCH-TRACK] analogy only &
+             Keep as metastable multi-mode response; reject direct delayed-neutron shell-crossing interpretation. \\
+             \hline
++            Quasinormal Swirl Spectroscopy &
++            [RESEARCH-TRACK] certification framework &
++            Keep in the companion track until a vortex ring and resolved trefoil pass the operator, boundary, adjoint, pseudospectral, and nonlinear gates. \\
++            \hline
+         \end{tabular}
+     \end{center}
+ 
