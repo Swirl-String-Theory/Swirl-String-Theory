@@ -235,6 +235,23 @@ EDITION_CONFIG = {
             r"\(\ref{eq:rt_qss_pseudospectrum}\)) on top of v0.8.21."
         ),
     },
+    "0.8.23": {
+        "prev": "0.8.22",
+        "header": (
+            "%! v0.8.23 edition: Genesis/provenance architecture + minimal relational "
+            "link-field action + KnotPlot/Ridgerunner provenance on top of v0.8.22."
+        ),
+        "note": (
+            r"\textbf{v0.8.23} integrates the Author's Origin Note and the Genesis/provenance "
+            r"architecture, records the rediscovered capacitance--impedance path with an explicit "
+            r"same-route guard, adds the Historical Notebook and Proto-Canon Provenance Register "
+            r"(Appendix~\ref{sec:appendix_historical_provenance}), inserts the MAIN-Canon interface "
+            r"to relational link torsion (\ref{sec:rt_minimal_link_field_action}), restores the "
+            r"minimal compact link-field action and its zero-legacy speed target in the research "
+            r"track, and records the KnotPlot--Ridgerunner--SSTcore/VortexLab provenance and "
+            r"finite-thickness certification ladder on top of v0.8.22."
+        ),
+    },
 }
 
 CANON_BASE_KEYWORDS: list[str] = [
@@ -318,6 +335,13 @@ EDITION_KEYWORDS: dict[str, list[str]] = {
         "Alice-Bob Lorentz map",
         "quasinormal swirl spectroscopy",
         "pseudospectral robustness",
+    ],
+    "0.8.23": [
+        "Genesis",
+        "Provenance",
+        "Impedance",
+        "Relational Link Field",
+        "Ridgerunner",
     ],
 }
 

@@ -1,0 +1,456 @@
+--- a/SST_CANON-v0.8.23-research-track.tex
++++ b/SST_CANON-v0.8.23-research-track.tex
+@@ -6,16 +6,16 @@
+ \makeatother
+ 
+ %! Author = Omar Iskandarani
+-%! Companion to Swirl-String-Theory Canon-v0.8.22 (included from 	exttt{SST\_CANON-v0.8.22.tex} before the manual bibliography).
++%! Companion to Swirl-String-Theory Canon-v0.8.23 (included from \texttt{SST\_CANON-v0.8.23.tex} before the manual bibliography).
+ 
+ \section{Research-track sectors migrated from the main canon}
+ 
+ \noindent
+-This companion document collects those sectors that remain useful for continuity and future development but are too long, too provisional, or too phenomenology-specific for the core body of \textit{Swirl-String-Theory\_Canon-v0.8.22}. Their migration out of the main canon is editorial rather than negative: each subsection remains part of the broader SST research program, but none is required for the minimal logical closure of the core canon.
++This companion document collects those sectors that remain useful for continuity and future development but are too long, too provisional, or too phenomenology-specific for the core body of \textit{Swirl-String-Theory\_Canon-v0.8.23}. Their migration out of the main canon is editorial rather than negative: each subsection remains part of the broader SST research program, but none is required for the minimal logical closure of the core canon.
+ 
+ \medskip
+ \noindent
+-\textbf{Editorial note (v0.8.22):} the maximal swirl tension sector ($F_{\rm swirl}^{\max}$, Rydberg bridge identities, Gibbons-class maximum-tension comparison, and the threefold interpretation table) is developed in the core document under \verb|been_processed/v0.8.22/SST_CANON-v0.8.22.tex|, subsection \texttt{Maximal Swirl Tension} (label \texttt{sec:Fmax}); it is not duplicated here.
++\textbf{Editorial note (v0.8.23):} the maximal swirl tension sector ($F_{\rm swirl}^{\max}$, Rydberg bridge identities, Gibbons-class maximum-tension comparison, and the threefold interpretation table) is developed in the core document \texttt{SST\_CANON-v0.8.23.tex}, subsection \texttt{Maximal Swirl Tension} (label \texttt{sec:Fmax}); it is not duplicated here.
+ 
+ \medskip
+ 
+@@ -81,7 +81,7 @@
+ Borromean-type analogue & neutron-like neutral baryon analogue & mechanical/topological model for zero exterior charge with internal triple linking \\
+ \hline
+ \end{tabularx}
+-\caption{Minimal knot-class and analogue summary (v0.8.22 research-track), aligned with main canon semantic corrections.}
++\caption{Minimal knot-class and analogue summary (v0.8.23 research-track), aligned with main canon semantic corrections.}
+ \label{tab:particle-candidates}
+ \end{table}
+ 
+@@ -8485,6 +8485,424 @@
+ test hierarchy attached to the monometricity and tensor-speed theorem targets.
+ 
+ 
++\subsection{Research Track: Minimal Relational Link--Field Action}
++\label{sec:rt_minimal_link_field_action}
++%======================================================================
++
++\subsubsection{Status and objective}
++
++\textbf{[RESEARCH-TRACK / CANON CANDIDATE].}
++The purpose of this section is to replace the ambiguous statement that a photon
++is ``local rotation of the medium'' by a sharper microscopic hypothesis:
++material rotation belongs to the site or vortex sector, whereas radiative
++torsion belongs to oriented connections between neighbouring \AE ther elements.
++The action below is the minimal local, parity-even, conservative, Abelian model
++that realizes this distinction.  It is a model-selection hypothesis, not yet a
++derivation from a completed \AE ther microphysics.
++
++\subsubsection{Discrete relational variables}
++
++Let the microscopic adjacency structure be an oriented cellular graph
++\begin{align}
++    \mathcal G=(V,E,P),
++\end{align}
++with sites $i\in V$, oriented links $e=(i\!\to\!j)\in E$, elementary
++plaquettes $p\in P$, and characteristic link spacing $a_\ell$.  Assign to each
++oriented link a compact relative torsion phase
++\begin{align}
++    U_e=e^{i\vartheta_e}\in U(1),
++    \qquad
++    \vartheta_{\bar e}=-\vartheta_e\pmod{2\pi}.
++    \label{eq:rt_link_compact_phase}
++\end{align}
++The compact $U(1)$ choice is the minimal hypothesis when relative torsion is a
++periodic phase.  A noncompact real link field is recovered by linearizing around
++one phase branch.
++
++Introduce a site variable $\phi_i(T)$ only as a temporal connection or Lagrange
++multiplier.  It is not the physical angular velocity of the \AE ther element and
++carries no independent site-rotation kinetic term.  Under a local change of
++phase zero,
++\begin{align}
++    \vartheta_{ij}
++    &\mapsto
++    \vartheta_{ij}+\chi_j-\chi_i,
++    \\
++    \phi_i
++    &\mapsto
++    \phi_i-\dot\chi_i,
++    \label{eq:rt_link_gauge_transformation}
++\end{align}
++the gauge-invariant link twist rate and plaquette holonomy are
++\begin{align}
++    \mathscr E_{ij}
++    &:=-\dot\vartheta_{ij}-(\phi_j-\phi_i),
++    \label{eq:rt_link_electric_variable}
++    \\
++    \mathscr B_p
++    &:={\sum}_{e\in\partial p}s_{pe}\vartheta_e
++    \pmod{2\pi},
++    \label{eq:rt_link_plaquette_holonomy}
++\end{align}
++where $s_{pe}=\pm1$ records relative orientation.
++
++\subsubsection{Minimal compact link action}
++
++The proposed source-free microscopic action is
++\begin{align}
++    S_{\rm link}^{\rm lat}
++    =
++    \int dT\,
++    \left[
++        \frac{I_\ell}{2}
++        \sum_{e\in E}\mathscr E_e^2
++        -
++        K_\ell
++        \sum_{p\in P}
++        \left(1-\cos\mathscr B_p\right)
++    \right],
++    \label{eq:rt_minimal_compact_link_action}
++\end{align}
++with
++\begin{align}
++    I_\ell>0,
++    \qquad
++    K_\ell>0,
++    \qquad
++    [I_\ell]=\mathrm{kg\,m^2},
++    \qquad
++    [K_\ell]=\mathrm{J}.
++    \label{eq:rt_link_parameter_dimensions}
++\end{align}
++Here $I_\ell$ is a link inertia and $K_\ell$ is a plaquette torsional energy
++scale.  No value of $c$, $e$, $m_e$, $h$, $\varepsilon_0$, or $\mu_0$ occurs in
++Eq.~\eqref{eq:rt_minimal_compact_link_action}.
++
++Variation with respect to $\phi_i$ gives the source-free discrete Gauss
++constraint
++\begin{align}
++    \sum_{e\ni i}s_{ie}\,I_\ell\mathscr E_e=0.
++    \label{eq:rt_link_discrete_gauss}
++\end{align}
++Variation with respect to an oriented link gives, up to the declared orientation
++convention,
++\begin{align}
++    I_\ell\dot{\mathscr E}_e
++    =
++    K_\ell
++    \sum_{p\supset e}s_{pe}\sin\mathscr B_p.
++    \label{eq:rt_link_discrete_ampere}
++\end{align}
++Equations~\eqref{eq:rt_link_discrete_gauss}--
++\eqref{eq:rt_link_discrete_ampere} evolve link torsion without introducing a
++net site-spin degree of freedom.
++
++\subsubsection{Linear spectrum and emergent causal speed}
++
++For $|\mathscr B_p|\ll1$, the compact potential becomes quadratic.  On a
++regular isotropic cubic complex, after gauge fixing and projection onto either
++transverse polarization, the linear branch satisfies
++\begin{align}
++    \omega^2(\mathbf k)
++    =
++    \frac{4K_\ell}{I_\ell}
++    \sum_{a=1}^{3}
++    \sin^2\!\left(\frac{k_a a_\ell}{2}\right).
++    \label{eq:rt_link_lattice_dispersion}
++\end{align}
++Therefore, for $|\mathbf k|a_\ell\ll1$,
++\begin{align}
++    \omega^2
++    =
++    c_T^2|\mathbf k|^2
++    +O\!\left(a_\ell^4|\mathbf k|^4\right),
++    \qquad
++    \boxed{
++    c_T=a_\ell\sqrt{\frac{K_\ell}{I_\ell}}
++    }.
++    \label{eq:rt_link_emergent_speed}
++\end{align}
++Equation~\eqref{eq:rt_link_emergent_speed} is the first zero-legacy speed target:
++$c_T$ is generated by a relation stiffness divided by a relation inertia.  The
++operational identification $c_T=c$ is tested only after $a_\ell$, $I_\ell$, and
++$K_\ell$ have been determined independently.
++
++\subsubsection{Continuum limit and Maxwell--Faraday structure}
++
++Write, on a regular branch,
++\begin{align}
++    \vartheta_{i,a}
++    =
++    a_\ell\mathcal A_{\ell,a}(\mathbf x_i,T)
++    +O(a_\ell^2),
++    \qquad
++    \phi_i=\Phi_\ell(\mathbf x_i,T).
++\end{align}
++Define
++\begin{align}
++    \boldsymbol{\mathcal E}_\ell
++    &:=-\partial_T\boldsymbol{\mathcal A}_\ell-\nabla\Phi_\ell,
++    \\
++    \boldsymbol{\mathcal B}_\ell
++    &:=\nabla\times\boldsymbol{\mathcal A}_\ell.
++    \label{eq:rt_link_continuum_fields}
++\end{align}
++Up to cell-shape and coordination factors, the infrared action is
++\begin{align}
++    S_{\rm link}^{\rm IR}
++    =
++    \int dT\,d^3x
++    \left[
++        \frac{\epsilon_\ell}{2}
++        |\boldsymbol{\mathcal E}_\ell|^2
++        -
++        \frac{1}{2\mu_\ell}
++        |\boldsymbol{\mathcal B}_\ell|^2
++    \right],
++    \label{eq:rt_link_continuum_action}
++\end{align}
++where
++\begin{align}
++    \epsilon_\ell
++    \simeq
++    \frac{I_\ell}{a_\ell},
++    \qquad
++    \mu_\ell^{-1}
++    \simeq
++    K_\ell a_\ell,
++    \qquad
++    \frac{1}{\epsilon_\ell\mu_\ell}
++    =c_T^2.
++    \label{eq:rt_link_continuum_coefficients}
++\end{align}
++The symbols $\epsilon_\ell$ and $\mu_\ell$ are SST link-response coefficients;
++they are not inserted as the measured electromagnetic constants
++$\varepsilon_0$ and $\mu_0$.
++
++With
++\begin{align}
++    \boldsymbol{\mathcal D}_\ell
++    :=\epsilon_\ell\boldsymbol{\mathcal E}_\ell,
++    \qquad
++    \boldsymbol{\mathcal H}_\ell
++    :=\mu_\ell^{-1}\boldsymbol{\mathcal B}_\ell,
++\end{align}
++variation and the definitions in Eq.~\eqref{eq:rt_link_continuum_fields} give
++\begin{align}
++    \nabla\cdot\boldsymbol{\mathcal D}_\ell&=0,
++    &
++    \nabla\times\boldsymbol{\mathcal H}_\ell
++    -\partial_T\boldsymbol{\mathcal D}_\ell&=0,
++    \\
++    \nabla\cdot\boldsymbol{\mathcal B}_\ell&=0,
++    &
++    \nabla\times\boldsymbol{\mathcal E}_\ell
++    +\partial_T\boldsymbol{\mathcal B}_\ell&=0.
++    \label{eq:rt_link_source_free_maxwell_structure}
++\end{align}
++Thus the source-free Maxwell--Faraday form is an infrared consequence of the
++minimal link action.  This is a structural isomorphism, not yet a proof that the
++SST fields equal the experimentally normalized electromagnetic fields.
++
++Gauge invariance removes a physical longitudinal connection mode and forbids a
++bare mass term $m_A^2|\boldsymbol{\mathcal A}_\ell|^2$.  The remaining linear
++vacuum sector has two transverse polarizations.  A parity-odd term proportional
++to $\boldsymbol{\mathcal E}_\ell\cdot\boldsymbol{\mathcal B}_\ell$, nonlinear
++terms, higher derivatives, and source couplings are deliberately excluded from
++the minimal parity-even action and belong to later research stages.
++
++\subsubsection{Relation to the existing continuum radiation bridge}
++
++The existing field $\mathbf A_{\rm eff}$ may be treated as a field-rescaled
++representative of the continuum link connection,
++\begin{align}
++    \mathbf A_{\rm eff}
++    =
++    \Lambda_\ell\boldsymbol{\mathcal A}_\ell.
++\end{align}
++In radiation gauge this gives the identifications
++\begin{align}
++    \rhoF
++    =
++    \frac{\epsilon_\ell}{\Lambda_\ell^2},
++    \qquad
++    K_\gamma
++    =
++    \frac{\mu_\ell^{-1}}{\Lambda_\ell^2},
++    \qquad
++    \frac{K_\gamma}{\rhoF}
++    =
++    \frac{1}{\epsilon_\ell\mu_\ell}
++    =c_T^2.
++    \label{eq:rt_link_to_Aeff_normalization}
++\end{align}
++The speed is invariant under the field normalization $\Lambda_\ell$.  Therefore
++the current quadratic continuum bridge need not be discarded; it is supplied
++with a microscopic relational interpretation.
++
++\subsubsection{Energy, flux, and link momentum}
++
++The positive quadratic energy density and energy flux are
++\begin{align}
++    u_\ell
++    &=
++    \frac12
++    \left(
++        \epsilon_\ell|\boldsymbol{\mathcal E}_\ell|^2
++        +
++        \mu_\ell^{-1}|\boldsymbol{\mathcal B}_\ell|^2
++    \right),
++    \\
++    \mathbf S_\ell
++    &=
++    \boldsymbol{\mathcal E}_\ell
++    \times
++    \boldsymbol{\mathcal H}_\ell,
++    \qquad
++    \partial_Tu_\ell+\nabla\cdot\mathbf S_\ell=0.
++    \label{eq:rt_link_energy_flux}
++\end{align}
++The associated momentum density in the isotropic linear branch is
++\begin{align}
++    \mathbf g_\ell
++    =
++    \frac{\mathbf S_\ell}{c_T^2}
++    =
++    \boldsymbol{\mathcal D}_\ell
++    \times
++    \boldsymbol{\mathcal B}_\ell.
++    \label{eq:rt_link_momentum_density}
++\end{align}
++These quantities reside in the link field.  They do not require nonzero net
++material angular momentum of the endpoint sites.
++
++\subsubsection{Helmholtz-sector separation}
++
++At leading vacuum order the total action is required to separate as
++\begin{align}
++    S^{(0)}
++    =
++    S_{\rm Euler}[\mathbf v,p]
++    +
++    S_{\rm link}[\vartheta,\phi].
++    \label{eq:rt_link_euler_factorization}
++\end{align}
++The material vorticity
++\begin{align}
++    \boldsymbol\zeta=\nabla\times\mathbf v
++\end{align}
++is not the link curvature
++$\boldsymbol{\mathcal B}_\ell$.  Ordinary source-free link propagation must
++therefore satisfy
++\begin{align}
++    \Delta\Gamma_C=0
++\end{align}
++for every unaffected material loop $C(T)$ and must leave the site sector label
++``rotating'' versus ``nonrotating'' unchanged.  Any later matter--link coupling
++must preserve this gate except at an explicitly declared source, boundary,
++reconnection, singularity, or Kairos event.
++
++A gauge-invariant source extension may later be written schematically as
++\begin{align}
++    \mathcal L_{\rm src}
++    =
++    \mathbf J_\ell\cdot\boldsymbol{\mathcal A}_\ell
++    -
++    q_\ell\Phi_\ell,
++    \qquad
++    \partial_Tq_\ell+\nabla\cdot\mathbf J_\ell=0,
++    \label{eq:rt_link_source_extension}
++\end{align}
++but neither $q_\ell$ nor its normalization is identified with the elementary
++charge at this stage.
++
++\subsubsection{Zero-legacy dimensional closure}
++
++If the only dimensional microscopic inputs allowed for the link layer are a
++mass density $\rhoF$, a circulation scale $\Gamma_0$, and the link spacing
++$a_\ell$, dimensional analysis permits
++\begin{align}
++    I_\ell
++    &=
++    \iota_\ell\rhoF a_\ell^5,
++    \\
++    K_\ell
++    &=
++    \kappa_\ell\rhoF\Gamma_0^2a_\ell,
++    \label{eq:rt_link_zero_legacy_coefficients}
++\end{align}
++where $\iota_\ell$ and $\kappa_\ell$ are dimensionless microstructural response
++coefficients.  Equation~\eqref{eq:rt_link_emergent_speed} then becomes
++\begin{align}
++    \boxed{
++    c_T
++    =
++    \frac{\Gamma_0}{a_\ell}
++    \sqrt{\frac{\kappa_\ell}{\iota_\ell}}
++    }.
++    \label{eq:rt_link_zero_legacy_speed}
++\end{align}
++Using $\Gamma_0=2\pi r_c\vchar$ only after the circulation convention has been
++fixed gives the dimensionless relation
++\begin{align}
++    2\frac{\vchar}{c_T}
++    =
++    \frac{a_\ell}{\pi r_c}
++    \sqrt{\frac{\iota_\ell}{\kappa_\ell}}.
++    \label{eq:rt_link_alpha_route}
++\end{align}
++For the special identification $a_\ell=r_c$, the original SST kinematic target
++$\alpha=2\vchar/c_T$ reduces to
++\begin{align}
++    \alpha_{\rm SST}
++    =
++    \frac{1}{\pi}
++    \sqrt{\frac{\iota_\ell}{\kappa_\ell}}.
++    \label{eq:rt_link_alpha_response_ratio}
++\end{align}
++Equations~\eqref{eq:rt_link_zero_legacy_speed}--
++\eqref{eq:rt_link_alpha_response_ratio} use no electromagnetic or quantum
++constant as an algebraic input.  They become predictions only if $a_\ell$,
++$\iota_\ell$, and $\kappa_\ell$ are obtained from an independently specified
++microstructure rather than fitted to $c$ or $\alpha$.  Agreement with the
++historical capacitance/impedance identity would then be a closure test; the
++capacitance formula and its impedance rewriting are not two independent routes.
++
++\subsubsection{Required certification programme}
++
++The link-field hypothesis is not promoted beyond research-track status until all
++of the following are completed:
++\begin{enumerate}
++    \item specify the microscopic graph or continuum adjacency law without
++    choosing $a_\ell$ from a target value of $c$;
++    \item calculate $I_\ell$ from the quadratic energy cost of link twist rate
++    and $K_\ell$ from the quadratic energy cost of plaquette holonomy;
++    \item recover two transverse modes and no physical longitudinal radiative
++    mode after constraint reduction;
++    \item verify Eq.~\eqref{eq:rt_link_lattice_dispersion} and the isotropic
++    infrared limit under lattice rotation and refinement;
++    \item demonstrate positive energy, local energy flux, and stable evolution;
++    \item verify Helmholtz-sector preservation and zero residual material
++    vorticity after a source-free pulse passes;
++    \item determine whether the microscopic dynamics has an exact front-speed
++    cone or only an infrared group-velocity cone;
++    \item add conserved knot sources and derive the static force law without
++    inserting $e$, $\varepsilon_0$, or $\mu_0$;
++    \item compare the independently predicted $c_T$ and dimensionless coupling
++    ratios with experiment only after the above steps are frozen.
++\end{enumerate}
++
++\textbf{Falsifiers.}
++The minimal hypothesis fails if the link action produces a ghost or negative
++energy branch, a species- or direction-dependent infrared speed without a
++controlled symmetry-breaking mechanism, an unavoidable longitudinal photon
++mode, permanent generation of material vorticity by a source-free pulse, or a
++value of $c_T$ that can be matched only by reusing the observed value of $c$ in
++$I_\ell$, $K_\ell$, or $a_\ell$.
++
++%======================================================================
++
++
+ %======================================================================
+ \subsection{Research Track: Core--Torsion Impedance Matching for Inertia Closure}
+ \label{sec:rt_core_torsion_impedance_matching}

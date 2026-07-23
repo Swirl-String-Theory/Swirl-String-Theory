@@ -1,0 +1,42 @@
+SST Canon v0.8.22 -> v0.8.23
+================================
+
+RECOMMENDED: Git rename patch
+-----------------------------
+Run from the directory containing the two v0.8.22 files:
+
+  git apply --check SST_CANON-v0.8.22-to-v0.8.23-GIT-RENAME.patch.diff
+  git apply SST_CANON-v0.8.22-to-v0.8.23-GIT-RENAME.patch.diff
+
+This renames and updates both files:
+
+  SST_CANON-v0.8.22.tex
+    -> SST_CANON-v0.8.23.tex
+
+  SST_CANON-v0.8.22-research-track.tex
+    -> SST_CANON-v0.8.23-research-track.tex
+
+ALTERNATIVE: standard patch
+---------------------------
+First copy the files to the target v0.8.23 names:
+
+  cp SST_CANON-v0.8.22.tex SST_CANON-v0.8.23.tex
+  cp SST_CANON-v0.8.22-research-track.tex SST_CANON-v0.8.23-research-track.tex
+
+Then apply:
+
+  patch -p1 --binary < SST_CANON-v0.8.22-to-v0.8.23-COMBINED.patch.diff
+
+The MAIN and RESEARCH patch files may also be applied separately.
+
+VALIDATION PERFORMED
+--------------------
+- Both patch workflows tested byte-for-byte against the delivered v0.8.23 files.
+- CRLF line endings preserved.
+- Three pdflatex passes completed successfully.
+- Output: 209 A4 pages.
+- No undefined citations or references after the final pass.
+- No new duplicate labels. Five duplicate labels already present in v0.8.22 remain:
+  sec:consistency, sec:delay, sec:atomic, sec:spectroscopy, sec:unification.
+- Rendered checks performed for the title/Genesis pages, provenance appendix,
+  and Minimal Relational Link--Field Action pages.
