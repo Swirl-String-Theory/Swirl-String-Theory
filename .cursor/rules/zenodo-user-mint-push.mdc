@@ -1,0 +1,22 @@
+---
+description: User owns all Zenodo mint/push/publish; agents only prepare local mint-ready config
+alwaysApply: true
+---
+
+# Zenodo mint / push — user only
+
+The user always performs Zenodo **mint**, **remint**, **publish**, `--push-metadata`, and PDF upload (GUI or CLI).
+
+Agents must **not**:
+
+- mint or remint Zenodo deposits
+- push metadata or files to Zenodo
+- publish deposits
+- run `publish_canon_zenodo.py` / GUI flows that hit the network for mint/push unless the user explicitly asks in that chat
+
+Agents **may**:
+
+- seed a local mint-ready `.zenodo.json` (no `deposit_id` / `doi`)
+- clear borrowed `\paperdoi` in edition tex
+- refresh local description text offline
+- register `EDITION_CONFIG` / keywords so the user's GUI can mint later

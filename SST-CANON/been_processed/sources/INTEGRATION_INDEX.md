@@ -61,6 +61,9 @@
 | `v0.8.20_ssdl_audit_result_v0_2.pure.json` | **v0.8.20** (archive) | SSDL audit pure JSON |
 | `v0.8.20_to_do_patches_README.md` | **v0.8.20** | Original to_do_patches package README |
 | `scripts/apply_v085.py` … `scripts/apply_v0820.py` | **v0.8.5–v0.8.20** | Reproducible incremental build |
+| `to_do_patches/0.8.25-to-0.8.26/` (patches 01–06) | **v0.8.26** | Fmax erratum; rho_calc retirement; M0/rho_f guards; label discipline; RT dedup fence |
+| `scripts/apply_v0826.py` | **v0.8.26** | Apply audit pack onto v0.8.25 |
+| `scripts/apply_v0827.py` + `sources/v0.8.27_hygiene/` | **v0.8.27** | Selective-Recovery RT stubs; duplicate-label strip; `\canonversion`; exact-closure benchmark fill |
 
 ## SST v0.8.12 evidence-pack patch status
 

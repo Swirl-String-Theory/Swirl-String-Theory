@@ -1,0 +1,18 @@
+--- a/SST_CANON-v0_8_25.tex	2026-07-24 13:38:23.614485713 +0000
++++ b/SST_CANON-v0_8_25.tex	2026-07-24 13:38:23.617841453 +0000
+@@ -6274,6 +6274,15 @@
+         \end{align}
+         This branch is subordinate to Eq.~\eqref{eq:sst_master_equation}. It records a normalization-level geometric closure used in historical mass-program benchmarks; it does not replace the canonical master functional or the explicit kernel branch below. The density in Eq.~\eqref{eq:pure_geometric_mass_baseline} is the horn-envelope normalization density of Eq.~\eqref{eq:core_density}; using the background mass-equivalent density $\rhoM$ here would move the benchmark down by the factor $\rhoM/\rhohorn\simeq1.20\times10^{-30}$ and is therefore a symbol-collision error, not a physical branch.
+ 
++        \textbf{[CALIBRATED ALGEBRAIC IDENTITY / TRANSPARENCY GUARD]} Substituting the canonical closures $\rhohorn=m_ec^2/(2\pi\vchar{}^2\rc^3)$ and $\rc/\lambda_c=\alpha/(4\pi)$ into Eq.~\eqref{eq:pure_geometric_mass_baseline} collapses it exactly (verified to machine precision) to
++        \begin{align}
++            M_0(T)
++            =
++            \frac{m_e}{4}\,\mathcal{L}_{\mathrm{tot}}(T).
++            \label{eq:M0_me_quarter_reduction}
++        \end{align}
++        All factors of $\alpha$ cancel, and the electron mass enters entirely through the horn-envelope normalization. Consequences: (i) the branch is not ``purely geometric''; it is a calibrated, electron-anchored length functional, and the label of this subsection must be read together with the present guard; (ii) for the ideal trefoil, $M_0(3_1)=\tfrac14\,\mathcal{L}_{3_1}\,m_e\simeq4.0929\,m_e$ (using $\mathcal{L}_{3_1}=16.371637$), so the baseline branch does \emph{not} reproduce the electron mass and cannot serve as an electron-mass closure without an explicit kernel or dressing factor; (iii) any benchmark built on this branch inherits $m_e$ as an input and must not be labelled as a mass prediction. Numerical anchor: $M_0(T)/\mathcal{L}_{\mathrm{tot}}(T)=2.277346\times10^{-31}\,\mathrm{kg}=m_e/4$.
++
+     \subsection{Explicit invariant branch of the canonical kernel}
+         A conservative explicit specialization is obtained by resolving the topological kernel into ropelength, braid complexity, and Seifert-genus data:
+         \begin{align}

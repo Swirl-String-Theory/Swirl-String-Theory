@@ -1,0 +1,21 @@
+--- a/SST_CANON-v0_8_25.tex	2026-07-24 13:38:23.599320785 +0000
++++ b/SST_CANON-v0_8_25.tex	2026-07-24 13:38:23.602774027 +0000
+@@ -1864,14 +1864,16 @@
+             \label{eq:Fmax_em}\\
+             &= \frac{h\alpha c}{8\pi \rc^2},
+             \label{eq:Fmax_hac}\\
+-            &= \pi \rc^2\,\rho_{\rm calc}\,\vchar{}^2,
++            &= \pi \rc^2\,\rhohorn\,\vchar{}^2,
+             \label{eq:Fmax_rho}\\
+             &= \frac{c^4}{4G}\,\alpha
+             \left(\frac{\rc}{\ell_P}\right)^{-2}.
+             \label{eq:Fmax_planck_suppressed}
+         \end{align}
+ 
+-        where $\rho_{\rm calc} = 4F_{\rm swirl}^{\max}/(\pi\alpha^2 c^2 \rc^2)$ is the derived bulk density consistent with the canonical neutral-circulation closure.
++        where $\rhohorn$ is the horn-envelope normalization density of Eq.~\eqref{eq:core_density}. The equality $F_{\rm swirl}^{\max}=\pi\rc^2\,\rhohorn\,\vchar{}^2$ follows exactly from Eq.~\eqref{eq:core_density} together with $F_{\rm swirl}^{\max}=m_ec^2/(2\rc)$; it is an internal coherence identity between two previously defined canonical quantities, not an independent definition.
++
++        \textbf{[NOTATION RETIREMENT]} The legacy symbol $\rho_{\rm calc}$, formerly introduced self-referentially as $\rho_{\rm calc}=4F_{\rm swirl}^{\max}/(\pi\alpha^2c^2\rc^2)$, is retired: it is algebraically and numerically identical to $\rhohorn$ ($3.8934\times10^{18}\,\mathrm{kg\,m^{-3}}$), and its self-referential definition rendered Eq.~\eqref{eq:Fmax_rho} a tautology by construction rather than a coherence check.
+ 
+         \textbf{[CALIBRATED ALGEBRAIC IDENTITY] Consistency check}: Eqs.~\eqref{eq:Fmax_em}--\eqref{eq:Fmax_planck_suppressed} are equivalent given $\vchar = \alpha c/2$, the standard identity $e^2/(4\pi\varepsilon_0) = \alpha\hbar c$, $\rc=\alpha\hbar/(2m_ec)$, and $\ell_P^2=\hbar G/c^3$. The Planck-force form in Eq.~\eqref{eq:Fmax_planck_suppressed} is a hierarchy reparameterization of the same calibrated tension scale, not an independent derivation from Planck physics. Their mutual agreement is an internal algebraic coherence test of the calibrated chain, not an independent dynamical prediction.
+ 

@@ -292,6 +292,42 @@ EDITION_CONFIG = {
             r"v0.8.24."
         ),
     },
+    "0.8.26": {
+        "prev": "0.8.25",
+        "header": (
+            "%! v0.8.26 edition: Fmax Rydberg factor-2 erratum; rho_calc retirement; "
+            "M0 transparency and rho_f provenance guards; label discipline; RT dedup fence "
+            "on top of v0.8.25."
+        ),
+        "note": (
+            r"\textbf{v0.8.26} corrects the boxed Rydberg form of $F_{\rm swirl}^{\max}$ "
+            r"($32\pi^2\to 16\pi^2$) with an explicit [ERRATUM], retires the tautological "
+            r"$\rho_{\rm calc}$ in favour of $\rhohorn$ in Eq.~\eqref{eq:Fmax_rho}, adds the "
+            r"$M_0(T)=(m_e/4)\mathcal{L}_{\rm tot}(T)$ transparency identity "
+            r"(Eq.~\eqref{eq:M0_me_quarter_reduction}), records a $\rho_f$ provenance guard, "
+            r"tightens $\Gamma_0$ and spring-energy epistemic labels, and fences the seven "
+            r"duplicated Selective-Recovery/research-track subsections with a critical note "
+            r"while harmonising the Pauli regularized-template label to [ORTHODOX] on top of "
+            r"v0.8.25."
+        ),
+    },
+    "0.8.27": {
+        "prev": "0.8.26",
+        "header": (
+            "%! v0.8.27 edition: RT/main Selective-Recovery de-duplication; duplicate-label "
+            "hygiene; \\canonversion macro; RT benchmark protocol on top of v0.8.26."
+        ),
+        "note": (
+            r"\textbf{v0.8.27} completes the research-track de-duplication of the seven "
+            r"Selective-Recovery subsections (RT full-text replaced by main-canon pointers), "
+            r"strips pre-existing commented duplicate section labels "
+            r"(\texttt{sec:atomic}/\texttt{consistency}/\texttt{delay}/\texttt{spectroscopy}/"
+            r"\texttt{unification}), introduces a \texttt{\string\canonversion} macro for "
+            r"current-edition pointers with targeted stale inline-version hygiene, and replaces "
+            r"empty RT predictive-candidate benchmark cells by archived exact-closure numbers "
+            r"or an explicit population protocol on top of v0.8.26."
+        ),
+    },
 }
 
 CANON_BASE_KEYWORDS: list[str] = [
@@ -399,6 +435,18 @@ EDITION_KEYWORDS: dict[str, list[str]] = {
         "nonlinear normal form",
         "KAM certificate ladder",
         "golden rotation null test",
+    ],
+    "0.8.26": [
+        "Fmax Rydberg erratum",
+        "rho_calc retirement",
+        "M0 transparency",
+        "rho_f provenance",
+    ],
+    "0.8.27": [
+        "Selective Recovery dedup",
+        "canonversion macro",
+        "duplicate label hygiene",
+        "RT benchmark protocol",
     ],
 }
 
