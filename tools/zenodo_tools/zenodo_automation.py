@@ -43,6 +43,30 @@ class ZenodoAutomation:
             "Content-Type": "application/json",
             "Authorization": f"Bearer {access_token}"
         }
+        # Last failed API call: {operation, status, detail, url}
+        self.last_api_error: Optional[Dict] = None
+
+    def clear_api_error(self) -> None:
+        self.last_api_error = None
+
+    def record_api_error(self, operation: str, response: requests.Response) -> Dict:
+        """Store HTTP failure details for callers (GUI / PushResult)."""
+        detail = (response.text or "").strip()
+        if len(detail) > 800:
+            detail = detail[:800] + "…"
+        self.last_api_error = {
+            "operation": operation,
+            "status": int(response.status_code),
+            "detail": detail,
+            "url": str(response.url),
+        }
+        print(f"[ERROR] {operation}: HTTP {response.status_code}")
+        if detail:
+            print(f"  Error: {detail}")
+        return self.last_api_error
+
+    def record_api_success(self) -> None:
+        self.last_api_error = None
     
     def extract_metadata_from_latex(self, tex_file: Path) -> Dict:
         """Extract metadata from LaTeX file preamble."""
@@ -126,14 +150,14 @@ class ZenodoAutomation:
         response = requests.post(url, json=zenodo_metadata, headers=self.headers)
         
         if response.status_code == 201:
+            self.record_api_success()
             deposit = response.json()
             deposit_id = str(deposit['id'])
             print(f"[OK] Created draft deposit: {deposit_id}")
             print(f"  Draft URL: {deposit['links']['html']}")
             return deposit_id
         else:
-            print(f"[ERROR] Failed to create deposit: {response.status_code}")
-            print(f"  Error: {response.text}")
+            self.record_api_error("create_draft_deposit", response)
             return None
     
     def get_deposit_doi(self, deposit_id: str) -> Optional[str]:
@@ -299,10 +323,10 @@ class ZenodoAutomation:
         url = f"{self.base_url}/api/records/{record_id}/versions"
         response = requests.post(url, headers=self.headers)
         if response.status_code not in (200, 201):
-            print(f"[ERROR] Failed to create new version: {response.status_code}")
-            print(f"  Error: {response.text}")
+            self.record_api_error("create_new_version", response)
             return None
 
+        self.record_api_success()
         data = response.json()
         deposit_id = str(data.get('id', ''))
         metadata = data.get('metadata', {})
@@ -504,11 +528,11 @@ class ZenodoAutomation:
         response = requests.put(url, json=zenodo_metadata, headers=self.headers)
         
         if response.status_code == 200:
+            self.record_api_success()
             print(f"[OK] Updated deposit metadata")
             return True
         else:
-            print(f"[ERROR] Failed to update metadata: {response.status_code}")
-            print(f"  Error: {response.text}")
+            self.record_api_error("update_deposit_metadata", response)
             return False
     
     def edit_deposit(self, deposit_id: str) -> bool:
@@ -517,11 +541,11 @@ class ZenodoAutomation:
         response = requests.post(url, headers=self.headers)
 
         if response.status_code in (200, 201):
+            self.record_api_success()
             print(f"[OK] Deposit {deposit_id} opened for edit")
             return True
 
-        print(f"[ERROR] Failed to open deposit for edit: {response.status_code}")
-        print(f"  Error: {response.text}")
+        self.record_api_error("edit_deposit", response)
         return False
 
     def publish_deposit(self, deposit_id: str) -> bool:
@@ -530,14 +554,14 @@ class ZenodoAutomation:
         response = requests.post(url, headers=self.headers)
         
         if response.status_code == 202:
+            self.record_api_success()
             deposit = response.json()
             print(f"[OK] Published deposit!")
             print(f"  DOI: {deposit.get('doi', 'N/A')}")
             print(f"  URL: {deposit.get('links', {}).get('html', 'N/A')}")
             return True
         else:
-            print(f"[ERROR] Failed to publish: {response.status_code}")
-            print(f"  Error: {response.text}")
+            self.record_api_error("publish_deposit", response)
             return False
     
     def full_workflow(self, tex_file: Path, metadata: Optional[Dict] = None, 
@@ -647,15 +671,28 @@ class ZenodoAutomation:
         
         return deposits
     
-    def get_deposit_info(self, deposit_id: str) -> Optional[Dict]:
+    def get_deposit_info(self, deposit_id: str, quiet: bool = False) -> Optional[Dict]:
         """Get detailed information about a specific deposit."""
         url = f"{self.base_url}/api/deposit/depositions/{deposit_id}"
         response = requests.get(url, headers=self.headers)
         
         if response.status_code == 200:
+            self.record_api_success()
             return response.json()
         else:
-            print(f"[ERROR] Failed to get deposit info: {response.status_code}")
+            if not quiet:
+                self.record_api_error("get_deposit_info", response)
+            else:
+                # Still record quietly for callers that check last_api_error
+                detail = (response.text or "").strip()
+                if len(detail) > 800:
+                    detail = detail[:800] + "…"
+                self.last_api_error = {
+                    "operation": "get_deposit_info",
+                    "status": int(response.status_code),
+                    "detail": detail,
+                    "url": str(response.url),
+                }
             return None
     
     def list_published_papers(self, limit: int = 100) -> List[Dict]:

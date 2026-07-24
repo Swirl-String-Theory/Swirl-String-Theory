@@ -1,0 +1,68 @@
+release:
+  name: SST Canon v0.8.25 clean KAM stability patch
+  base_version: 0.8.24
+  target_version: 0.8.25
+  release_date: '2026-07-24'
+  scope: KAM-S/KAM-T stability architecture for resolved finite-core vortex-knot states
+
+release_files:
+  main: SST_CANON-v0.8.25.tex
+  research_track: SST_CANON-v0.8.25-research-track.tex
+  compiled_pdf: SST_CANON-v0.8.25.pdf
+  complete_diff: SST_CANON-v0.8.24-to-v0.8.25-clean.diff
+  release_only_diff: SST_CANON-v0.8.24-to-v0.8.25-release-only.diff
+
+nonrelease_files:
+  speculative_appendix_source: SST_NONRELEASE_SPECULATIVE_RESEARCH-v0.1.tex
+  speculative_appendix_pdf: SST_NONRELEASE_SPECULATIVE_RESEARCH-v0.1.pdf
+  included_by_main_canon: false
+
+section_labels_added:
+  - subsec:canon_kam_caged_knot_guard
+  - sec:rt_kam_caged_knot_states
+  - subsec:rt_kam_geometry_scope_guard
+
+release_epistemic_ledger:
+  kam_caged_knot_state: '[RESEARCH] high priority'
+  lia_H0_full_biot_savart_H1: '[BRIDGE/RESEARCH]'
+  golden_rotation_number: '[HYPOTHESIS] controlled null test only'
+  golden_logarithmic_spiral_centreline: '[REJECTED]'
+
+excluded_from_release:
+  periodic_exponential_modulation: moved_to_nonrelease_appendix
+  T_6_9_three_trefoil_candidate: moved_to_nonrelease_appendix
+  Z3_cross_Z3_phase_architecture: moved_to_nonrelease_appendix
+  Z9_carry_dynamics: moved_to_nonrelease_appendix
+  modulo_9_doubling_physics: moved_to_nonrelease_appendix
+
+promotion_sequence:
+  - certified topology
+  - relative equilibrium or periodic relative orbit
+  - symmetry-reduced Floquet ellipticity and Krein audit
+  - nonlinear normal form and nonzero twist
+  - positive-measure invariant-torus evidence with bounded drift
+  - computer-assisted KAM certificate
+
+build:
+  main_command: latexmk -pdf -interaction=nonstopmode -halt-on-error SST_CANON-v0.8.25.tex
+  appendix_command: latexmk -pdf -interaction=nonstopmode -halt-on-error SST_NONRELEASE_SPECULATIVE_RESEARCH-v0.1.tex
+  baseline_pages: 213
+  target_pages: 224
+  appendix_pages: 4
+  undefined_references: 0
+  undefined_citations: 0
+  multiply_defined_labels: 0
+  latex_errors: 0
+  overfull_hboxes:
+    baseline: 57
+    target: 57
+  underfull_hboxes:
+    baseline: 104
+    target: 104
+  git_apply_check: PASS
+  byte_comparison_after_apply: PASS
+
+patch_statistics:
+  files_changed: 3
+  insertions: 1311
+  deletions: 11

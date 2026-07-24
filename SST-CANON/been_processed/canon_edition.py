@@ -36,9 +36,9 @@ EDITION_CONFIG = {
     },
     "0.8.8": {
         "prev": "0.8.7",
-        "header": "%! v0.8.8 edition: Gemini epistemic/notation audit (been_processed).",
+        "header": "%! v0.8.8 edition: Epistemic/notation audit (been_processed).",
         "note": (
-            r"\textbf{v0.8.8} applies the Gemini audit: primitive calibration notation "
+            r"\textbf{v0.8.8} applies the epistemic/notation audit: primitive calibration notation "
             r"($\mathcal{P}_{\mathrm{cal}}$, $\vchar$, $\uswirl$), conditional Kelvin/DDE labels, "
             r"Pauli $a_{\rm cut}$ disambiguation, and research-track epistemic relabeling on top of v0.8.7."
         ),
@@ -54,9 +54,9 @@ EDITION_CONFIG = {
     },
     "0.8.10": {
         "prev": "0.8.9",
-        "header": "%! v0.8.10 edition: Gemini round-2 calibration notation audit (been_processed).",
+        "header": "%! v0.8.10 edition: Round-2 calibration notation audit (been_processed).",
         "note": (
-            r"\textbf{v0.8.10} applies the Gemini round-2 audit: canonical speed $\vchar$ vs.\ local "
+            r"\textbf{v0.8.10} applies the round-2 calibration/notation audit: canonical speed $\vchar$ vs.\ local "
             r"$\uswirl(x,t)$ discipline, $\eta_0$ algebraic-within-calibration status, delay-equation "
             r"sign convention, Rydberg/finite-cell relabeling, and research-track $v_K$ disambiguation on top of v0.8.9."
         ),
@@ -72,9 +72,9 @@ EDITION_CONFIG = {
     },
     "0.8.12": {
         "prev": "0.8.11",
-        "header": "%! v0.8.12 edition: Gemini round-3 epistemic patch (been_processed).",
+        "header": "%! v0.8.12 edition: Round-3 epistemic patch (been_processed).",
         "note": (
-            r"\textbf{v0.8.12} applies the Gemini round-3 epistemic audit: "
+            r"\textbf{v0.8.12} applies the round-3 epistemic audit: "
             r"$\mathcal{P}_{\mathrm{cal}}$-aligned identity relabels, coarse-grain density caveat, "
             r"Pauli $a_{\rm cut}$ disambiguation, galaxy-scale $\rhoF$ note, and research-track EM-bridge limits "
             r"on top of v0.8.11."
@@ -252,6 +252,46 @@ EDITION_CONFIG = {
             r"finite-thickness certification ladder on top of v0.8.22."
         ),
     },
+    "0.8.24": {
+        "prev": "0.8.23",
+        "header": (
+            "%! v0.8.24 edition: compact-link attribution and phase gate; UV-scale guard; "
+            "zero-legacy symbol separation; core--torsion normalization repair; "
+            "certification canonization; structural hygiene on top of v0.8.23."
+        ),
+        "note": (
+            r"\textbf{v0.8.24} corrects the core--torsion inertia target to the Lorentz-consistent "
+            r"normalization \(\mathsf M_{\rm torsion}=E_0\mathsf I/c_T^2\), adds trace-based scale "
+            r"and anisotropy residuals, attributes the minimal compact link action to the orthodox "
+            r"Wilson/Kogut--Susskind template with a Coulomb/deconfinement phase gate, separates "
+            r"three link-spacing scenarios, rewrites zero-legacy closure in the symbolic star "
+            r"basis, canonizes the geometry-certification ladder and material--link sector "
+            r"separation, introduces the four-class failure taxonomy (E/T/N/M), and repairs "
+            r"companion pointers, heading hierarchy, substrate terminology, and precision hygiene "
+            r"on top of v0.8.23."
+        ),
+    },
+    "0.8.25": {
+        "prev": "0.8.24",
+        "header": (
+            "%! v0.8.25 edition: KAM-caged knot-state stability programme; LIA/full-Biot--Savart "
+            "bridge; relative-equilibrium and Floquet gates; nonlinear normal-form certification; "
+            "controlled golden-ratio null test on top of v0.8.24."
+        ),
+        "note": (
+            r"\textbf{v0.8.25} adds the KAM-caged knot-state stability programme and separates "
+            r"spatial vortex-line confinement (KAM-S) from temporal knot-shape stability (KAM-T); "
+            r"introduces the LIA and Hasimoto reference layer with full finite-core Biot--Savart "
+            r"correction as a measured research perturbation; requires relative-equilibrium, "
+            r"reduced Floquet, Krein-signature, nonlinear twist, finite-order non-resonance, "
+            r"Poincar\'e-map, and action-drift gates; defines the vector-valued KAM certificate "
+            r"and KAM--0 through KAM--5 promotion ladder; retains the golden rotation number only "
+            r"as a preregistered controlled null-test hypothesis; rejects the open golden "
+            r"logarithmic spiral as a particle centreline; and keeps unvalidated composite-link, "
+            r"modulo-class, and modulation constructions outside the release canon on top of "
+            r"v0.8.24."
+        ),
+    },
 }
 
 CANON_BASE_KEYWORDS: list[str] = [
@@ -342,6 +382,23 @@ EDITION_KEYWORDS: dict[str, list[str]] = {
         "Impedance",
         "Relational Link Field",
         "Ridgerunner",
+    ],
+    "0.8.24": [
+        "core-torsion normalization",
+        "compact U(1) phase gate",
+        "link spacing scenarios",
+        "zero-legacy star basis",
+        "failure taxonomy",
+        "geometry certification",
+        "material-link sector separation",
+    ],
+    "0.8.25": [
+        "KAM-S KAM-T stability",
+        "LIA Hasimoto Biot-Savart bridge",
+        "Floquet Krein audit",
+        "nonlinear normal form",
+        "KAM certificate ladder",
+        "golden rotation null test",
     ],
 }
 

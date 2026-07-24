@@ -1,0 +1,246 @@
+diff --git a/SST_NONRELEASE_SPECULATIVE_RESEARCH-v0.1.tex b/SST_NONRELEASE_SPECULATIVE_RESEARCH-v0.1.tex
+new file mode 100644
+index 0000000000000000000000000000000000000000..2269714e19b2c419ca080d245a6eb29c4ef8b6cc
+--- /dev/null
++++ b/SST_NONRELEASE_SPECULATIVE_RESEARCH-v0.1.tex
+@@ -0,0 +1,240 @@
++%! Author = Omar Iskandarani
++%! Date = 2026-07-24
++%! Non-release speculative appendix v0.1
++
++\documentclass[11pt]{article}
++\usepackage[T1]{fontenc}
++\usepackage[utf8]{inputenc}
++\usepackage[a4paper,margin=1in]{geometry}
++\usepackage{amsmath,amssymb,amsthm,bm}
++\usepackage{mathtools}
++\usepackage{booktabs,tabularx,array}
++\usepackage{hyperref}
++\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
++
++\newtheorem{definition}{Definition}[section]
++\newtheorem{hypothesis}{Hypothesis}[section]
++\newcommand{\Z}{\mathbb Z}
++
++\title{SST Non-Release Speculative Research Appendix v0.1\\
++\large Composite Links, Phase Products, Modulo Classes, and Closed Modulation Ans\"atze}
++\author{Omar Iskandarani\\Independent Researcher, Groningen, The Netherlands}
++\date{2026-07-24}
++
++\begin{document}
++\maketitle
++
++\begin{quote}
++\textbf{Non-release status.}
++This document records exploratory constructions, geometric intuitions, and
++unvalidated ans\"atze.  Its contents are not part of the SST Canon, are not part
++of the release research-track companion, do not define SST predictions, and
++may be modified or rejected without requiring a Canon version change.  No item
++in this appendix may be used to tune a Canon calibration, optimizer, null test,
++or stopping rule before formal promotion.
++\end{quote}
++
++\section{Epistemic ledger and promotion rule}
++
++\begin{center}
++\begin{tabularx}{0.96\textwidth}{@{}>{\bfseries}p{0.37\textwidth}X@{}}
++\toprule
++Item & Non-release status \\
++\midrule
++Periodic exponential modulation & \texttt{[ANSATZ]}; one closed modulation family among many. \\
++Torus link $T(6,9)$ & \texttt{[RESEARCH CANDIDATE]}; exact three-component topology, no established SST selection law. \\
++Three components times three phase labels & \texttt{[STRUCTURAL ANSATZ]}; naturally $\Z_3\times\Z_3$, not automatically $\Z_9$. \\
++Order-nine carry dynamics & \texttt{[SPECULATIVE]}; requires an explicit physical coupling law. \\
++Doubling map modulo nine & \texttt{[EXACT DISCRETE MATHEMATICS / PHYSICAL STATUS OPEN]}. \\
++Rodin-style toroidal projection & \texttt{[INSPIRATION ONLY]}; geometry depends on representation choices. \\
++\bottomrule
++\end{tabularx}
++\end{center}
++
++Promotion into the release research track requires, at minimum:
++\begin{enumerate}
++    \item independently defined physical variables and an evolution law;
++    \item dimensional consistency and conservation-law compatibility;
++    \item comparison against alternative moduli, geometries, and phase laws;
++    \item a preregistered falsifier and a minimal analytic or numerical test;
++    \item no use of the candidate pattern in calibration or model selection;
++    \item reproducible improvement over simpler control models.
++\end{enumerate}
++
++\section{Periodic exponential modulation}
++
++A bounded periodic radius modulation may be written as
++\begin{equation}
++    \rho(u)
++    =
++    \rho_0\exp\!\left[\eta\sin(nu)\right],
++    \qquad
++    n\in\Z,
++    \label{eq:spec_periodic_exponential_radius}
++\end{equation}
++with a torus-knot or torus-link parameterization
++\begin{equation}
++    \mathbf X_{p,q,n,\eta}(u)
++    =
++    \begin{pmatrix}
++    [R+\rho(u)\cos(qu)]\cos(pu)\\
++    [R+\rho(u)\cos(qu)]\sin(pu)\\
++    \rho(u)\sin(qu)
++    \end{pmatrix},
++    \qquad 0\le u<2\pi.
++    \label{eq:spec_periodically_modulated_torus_embedding}
++\end{equation}
++For integer $p,q,n$, the parameterization is closed.  Closure alone does not
++establish preservation of knot type, finite reach, adequate core clearance,
++or dynamical stability.  The parameter $\eta$ must remain free in the primary
++test.  Assignments such as $\eta=\ln\phi$ are secondary hypotheses and are not
++permitted in an optimizer before the free-$\eta$ comparison.
++
++The mandatory controls include an unmodulated embedding, ordinary sinusoidal
++or Fourier modulation, a spline family with comparable degrees of freedom,
++and equalized length or energy constraints.  The exponential family is
++promoted only if it produces a reproducible dynamical advantage not explained
++by parameter count or geometric clearance.
++
++\section{The $T(6,9)$ three-trefoil candidate}
++
++For the torus link $T(p,q)$, the number of components is
++\begin{equation}
++    d=\gcd(p,q).
++\end{equation}
++Consequently,
++\begin{equation}
++    \gcd(6,9)=3,
++\end{equation}
++and each component has reduced torus-knot type
++\begin{equation}
++    T\!\left(\frac{6}{3},\frac{9}{3}\right)
++    =T(2,3),
++\end{equation}
++so $T(6,9)$ consists of three trefoil components.  With consistent orientation,
++the pairwise linking number of parallel torus-link components is
++\begin{equation}
++    \operatorname{Lk}_{ij}
++    =
++    \frac{pq}{d^2}
++    =6.
++\end{equation}
++These are topological facts.  They do not imply that $T(6,9)$ is selected by
++Euler or Biot--Savart dynamics, that it is more stable than alternative
++three-component links, or that it realizes a particle state.
++
++\begin{hypothesis}[Composite-link candidate]
++After a single resolved trefoil reaches at least the declared numerical
++KAM--3 gate under a fixed protocol, $T(6,9)$ may be compared with control
++three-component links under matched core radius, circulation, total length,
++helicity metadata, and minimum clearance.
++\end{hypothesis}
++
++\section{Three-by-three phase labels}
++
++Label the three components by $a\in\Z_3$ and three local phase sectors by
++$k\in\Z_3$.  The nine labels form
++\begin{equation}
++    (a,k)\in\Z_3^{\rm component}\times\Z_3^{\rm phase},
++    \qquad
++    \left|\Z_3\times\Z_3\right|=9.
++    \label{eq:spec_z3_product}
++\end{equation}
++This product group is not cyclic:
++\begin{equation}
++    \Z_3\times\Z_3\not\cong\Z_9,
++\end{equation}
++because every nonzero element of $\Z_3\times\Z_3$ has order three, whereas
++$\Z_9$ contains elements of order nine.
++
++A genuine order-nine orbit therefore requires an additional successor law.
++One possible bookkeeping map is the base-three carry operation
++\begin{equation}
++    S(a,k)
++    =
++    \begin{cases}
++    (a+1,k), & a=0,1,\\
++    (0,k+1\!\!\pmod 3), & a=2,
++    \end{cases}
++    \qquad S^9=\operatorname{id}.
++    \label{eq:spec_order_nine_carry}
++\end{equation}
++Equation~\eqref{eq:spec_order_nine_carry} is only a discrete indexing rule
++until a physical interaction derives it.
++
++\section{Doubling modulo nine}
++
++The map
++\begin{equation}
++    x_{m+1}=2x_m\pmod 9
++    \label{eq:spec_mod9_doubling}
++\end{equation}
++is an exact finite dynamical system.  Its orbit decomposition is
++\begin{align}
++    1&\rightarrow2\rightarrow4\rightarrow8\rightarrow7\rightarrow5\rightarrow1,
++    \\
++    3&\leftrightarrow6,
++    \\
++    0&\rightarrow0.
++\end{align}
++The six-cycle is the multiplicative unit group
++\begin{equation}
++    \Z_9^{\times}=\{1,2,4,5,7,8\},
++    \qquad
++    \operatorname{ord}_9(2)=6.
++\end{equation}
++This is rigorous number theory.  The familiar decimal digital-root
++representation follows from $10\equiv1\pmod9$ and is therefore partly tied to
++the choice of base ten.  A physical role for Eq.~\eqref{eq:spec_mod9_doubling}
++requires an independently derived nine-state variable and a reason that one
++physical update acts as multiplication by two modulo nine.
++
++\section{Separation from the KAM release programme}
++
++The v0.8.25 KAM release programme tests relative equilibria, reduced Floquet
++ellipticity, Krein signatures, nonlinear twist, finite-order non-resonance,
++Poincar\'e maps, action drift, and invariant-torus survival.  The constructions
++in this appendix may not be used to preselect a stable state.  The valid order
++is
++\begin{equation}
++    \text{unbiased KAM search}
++    \longrightarrow
++    \text{observed structure}
++    \longrightarrow
++    \text{post-hoc comparison with speculative candidates}.
++\end{equation}
++A candidate is rejected when its apparent advantage disappears under matched
++controls, resolution refinement, alternative parameterizations, or removal of
++base-dependent encoding choices.
++
++\paragraph{Child-level analogy.}
++The appendix is a sketchbook, not the construction manual.  A beautiful gear
++pattern can suggest what to test, but the machine must still work when the
++pattern is hidden from the engineer.
++
++\begin{thebibliography}{99}
++
++\bibitem{Rolfsen1976Knots}
++D.~Rolfsen,
++1976,
++\emph{Knots and Links},
++Publish or Perish,
++reprinted by AMS Chelsea Publishing,
++\url{https://bookstore.ams.org/chel-346}.
++
++\bibitem{HardyWright2008NumberTheory}
++G.~H.~Hardy and E.~M.~Wright,
++2008,
++\emph{An Introduction to the Theory of Numbers},
++6th ed., Oxford University Press,
++\url{https://global.oup.com/academic/product/an-introduction-to-the-theory-of-numbers-9780199219865}.
++
++\bibitem{Moffatt1969Knottedness}
++H.~K.~Moffatt,
++1969,
++``The Degree of Knottedness of Tangled Vortex Lines,''
++\emph{Journal of Fluid Mechanics}, vol.~35, no.~1, pp.~117--129,
++\href{https://doi.org/10.1017/S0022112069000991}{doi:10.1017/S0022112069000991}.
++
++\end{thebibliography}
++\end{document}
