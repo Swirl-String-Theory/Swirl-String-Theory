@@ -2,14 +2,12 @@
 %! Date = 4/10/2026
 %! Affiliation = Independent Researcher, Groningen, The Netherlands
 %! ORCID = 0009-0006-1686-3961
-%! DOI = 10.5281/zenodo.21156066
-%! v0.8.12 edition: Round-3 epistemic patch (been_processed).
-%! Mint a new Zenodo DOI when publishing this edition; the v0.8.0 deposit remains \texttt{10.5281/zenodo.19682949}.
-%! Build: with \texttt{-output-directory=...}, run \texttt{pdflatex} twice (or use \texttt{latexmk}) so citations and cross-refs settle.
+%! DOI = 10.5281/zenodo.21249056
+%! v0.8.24 edition: compact-link attribution and phase gate; UV-scale guard; zero-legacy symbol separation; core--torsion normalization repair; certification canonization; structural hygiene on top of v0.8.23.
 
-\newcommand{\paperdoi}{10.5281/zenodo.21156066}
-\newcommand{\papertitle}{Swirl-String-Theory Canon-v0.8.12}
-\newcommand{\paperkeywords}{Swirl String Theory, SST, Canon, Topological Hydrodynamics, Knot Theory, Relational Time, Delay Dynamics, Epistemic Classification, Pauli exclusion, galaxy rotation curve}
+\newcommand{\paperdoi}{10.5281/zenodo.21249056}
+\newcommand{\papertitle}{Swirl-String-Theory Canon-v0.8.24}
+\newcommand{\paperkeywords}{Swirl String Theory, SST, Canon, Topological Hydrodynamics, Knot Theory, Genesis, Provenance, Impedance, Relational Link Field, Ridgerunner, Operational Spacetime, Vortex Atom Luminal Torsion, Quasinormal Swirl Spectroscopy, Pseudospectral Robustness}
 
 \documentclass[11pt]{article}
 % ---------------------------
@@ -26,6 +24,7 @@
 \usepackage{physics}
 \usepackage{mathtools}
 \usepackage{array}
+\usepackage{tabularx}
 \usepackage{import}
 \usepackage{subfiles}
 \usepackage{lmodern}
@@ -96,7 +95,8 @@
 \newcommand{\vchar}{v_{\!\boldsymbol{\circlearrowleft}}^{\ast}}
 \newcommand{\uswirl}{\mathbf{u}_{\!\boldsymbol{\circlearrowleft}}}
 \newcommand{\omegaswirl}{\boldsymbol{\omega}_{\!\boldsymbol{\circlearrowleft}}}
-
+\newcommand{\tauCirc}{\tau_{\rm circ}}
+\newcommand{\tauCircC}{\tau_{\rm circ,c}}
 
 
 \begin{document}
@@ -122,7 +122,7 @@
         {\normalsize Groningen, The Netherlands\par}
         \vspace{0.6cm}
 
-        {\normalsize Version v0.8.12\par}
+        {\normalsize Version v0.8.24\par}
         {\normalsize \today\par}
         \vspace{0.9cm}
 
@@ -132,7 +132,7 @@
 
     \begin{abstract}
         \noindent
-        This document presents Swirl-String Theory (SST) as a structured canonical synthesis rather than as a claim that every phenomenological sector has already been derived to theorem level. The text consolidates the primitive constant chain linking the effective fluid density, characteristic swirl speed, Compton anchoring, and horn/circulation scale; records delay-induced mode selection as the preferred non-operator route to spectral discreteness; and organizes the atomic bridge, spectroscopic filter, relational-time sector, and topology-based mass program within one explicitly stratified framework. Throughout, orthodox inputs, SST-internal derivations, bridge-level constructions, and conjectural extensions are kept distinct so that the canon remains internally coherent, externally comparable, and open to falsification.
+        This document presents Swirl-String Theory (SST) as a structured canonical synthesis rather than as a claim that every phenomenological sector has already been derived to theorem level. The text records the impedance--resonance and free-to-bound-mode origin of the programme; consolidates the primitive constant chain linking the effective fluid density, characteristic swirl speed, Compton anchoring, and horn/circulation scale; assigns a minimal relational link-field action as the microscopic research candidate beneath the continuum torsion bridge; records the operational special-relativity postulate that stable vortex matter constructs local spacetime with clocks, rods, and luminal R-phase torsion pulses; and organizes delay selection, atomic bridges, spectroscopy, knot-geometry certification, relational time, and topology-based mass within one explicitly stratified framework. Throughout, historical provenance, calibrated identities, SST-internal derivations, predictions, and conjectural extensions are kept distinct so that the canon remains internally coherent, externally comparable, and open to falsification.
     \end{abstract}
 
     \vspace{0.2cm}
@@ -178,6 +178,945 @@
 % ===========================
 
 % ---------- PRELUDE ----------
+% ============================================================================
+% v0.8.23 integrated Genesis module (source-module revision v0.2).
+% Historical mechanisms are retained as provenance and theorem targets; they
+% are not promoted to established results by their inclusion here.
+% ============================================================================
+
+\section*{Author's Origin Note: From Impedance and Resonance to Vorticity}
+\addcontentsline{toc}{section}{Author's Origin Note: From Impedance and Resonance to Vorticity}
+\label{sec:authors_origin_note}
+
+Swirl--String Theory did not begin as a fluid-mechanical model built from a
+preselected set of hydrodynamic constants. Its first written development arose
+from a different question: whether the apparent constants and discontinuities
+of atomic excitation could be understood as consequences of a classical,
+local, resonant interaction. The earliest notebooks from 2012 and the first
+synthesis document from July 2013 investigated stored field energy,
+capacitance, wavelength, oscillator stiffness, internal rotation, and the
+transition between a freely propagating excitation and a temporarily or
+permanently bound rotating configuration.
+
+The guiding intuition was that the quantum jump should not be treated as a
+primitive discontinuity without mechanism. It should instead be examined as a
+finite dynamical transfer between a free field mode and a bound material mode.
+The early language was electrical and mechanical: capacitance, dielectric
+response, oscillation, characteristic speed, force, and impedance. The later
+language of circulation, vorticity, vortex tubes, toroidal geometry, knots, and
+relative vortex clocks was developed in order to provide a more coherent
+dynamical substrate for that earlier program.
+
+This historical order matters. The present Canon must not imply that the
+current symbols $\Gamma_0$, $\rhoF$, and $\rc$ were the original ontological
+starting point. They are candidate parameters of a later continuum
+representation. The older and more persistent commitment is structural:
+freely propagating radiation and bound matter are different dynamical regimes
+of one underlying medium, and their coupling is controlled by the response and
+impedance of that medium.
+
+The historical documents are not treated as evidence that the proposed physics
+is correct. They are primary provenance records. Their role is to preserve the
+origin of the research questions, prevent later formulations from erasing the
+original logic, and identify which modern results must be derived independently
+rather than reconstructed algebraically from known constants.
+
+\begin{quote}
+\small
+\textbf{Canonical origin statement.}
+SST originated as an impedance--resonance attempt to explain atomic excitation,
+the proportionality between energy and frequency, the emergence of mass from a
+bound rotating state, and the relation between internal material speed and the
+free propagation speed. Vorticity and knot topology are later dynamical
+languages introduced to make that program local, conservative, geometric, and
+falsifiable.
+\end{quote}
+
+\section{Genesis, Foundational Commitments, and Epistemic Architecture}
+\label{sec:genesis_epistemic_architecture}
+
+\subsection{Purpose and canonical scope}
+\label{subsec:genesis_scope}
+
+This section records three distinct layers that must not be conflated:
+\begin{enumerate}
+    \item \textbf{historical origin}: what the notebooks and the 2013
+    proto-Canon actually proposed;
+    \item \textbf{modern SST translation}: how those ideas are now expressed
+    using vortex, link-field, topological, and operational-spacetime language;
+    \item \textbf{current epistemic status}: which statements are definitions,
+    hypotheses, calibrated bridges, derived consequences, predictions, or
+    falsifiers.
+\end{enumerate}
+
+No historical claim becomes canonical merely because it appeared early. No
+modern equation may be projected backward into the notebooks as if it had been
+explicitly present there. Conversely, a modern reformulation should not erase
+the earlier physical question that motivated it.
+
+\subsection{Primary provenance record}
+\label{subsec:primary_provenance_record}
+
+The present origin layer is anchored by the following source classes:
+\begin{description}
+    \item[Notebook 2012.] The earliest surviving page-level record of rotating
+    charge, free versus bound wave structures, toroidal geometry, Lorentz
+    transformations, oscillator-speed constructions, explicit circulation,
+    vorticity, and the capacitance path.
+
+    \item[\texttt{DOC2013-CANON-001}.] \emph{Een hypothese over de constantes in
+    de kwantum mechanica, verklaard met de klassieke logica}, July 2013. This is
+    the first surviving attempt to turn the notebook ideas into a single
+    explanatory document. It explicitly introduced an excitation or internal
+    circumferential speed, treated mass as a rotating state, interpreted the
+    fine-structure constant as a speed ratio, and developed a capacitance-based
+    route to the Planck relation.
+
+    \item[Notebook 2013--2014.] Subsequent geometric and algebraic development,
+    including toroidal field structures, relative rotation, clock ideas,
+    impedance reasoning, and attempts to interpret the earlier numerical
+    closures.
+
+    \item[Modern SST Canon.] The current hydrodynamic and topological
+    architecture, including link-field dynamics, operational spacetime, and
+    falsification rules.
+
+    \item[Modern computational provenance.] The 2026 KnotPlot-to-Ridgerunner
+    pipeline, geometry sidecars, seed-selection records, certified and candidate
+    knot exports, and downstream SSTcore/VortexLab audits. These records test the
+    translation from a closed-mode idea to resolved finite-thickness geometry.
+\end{description}
+
+Stable notebook identifiers such as \texttt{NB2012-P070} and
+\texttt{NB2013-P019} shall be used in the provenance appendix. Their purpose is
+traceability, not authority.
+
+\subsection{Historical development of the core idea}
+\label{subsec:historical_development_core}
+
+The source record supports the following developmental sequence:
+\begin{align}
+    &\text{stored field energy and capacitance}
+    \nonumber\\[-0.2em]
+    &\quad\longrightarrow
+    \text{resonant photon--matter interaction}
+    \nonumber\\[-0.2em]
+    &\quad\longrightarrow
+    \text{internal circumferential or excitation speed}
+    \nonumber\\[-0.2em]
+    &\quad\longrightarrow
+    \text{mass as a bound rotating state}
+    \nonumber\\[-0.2em]
+    &\quad\longrightarrow
+    \text{relative time and spatial deformation of rotating matter}
+    \nonumber\\[-0.2em]
+    &\quad\longrightarrow
+    \text{circulation, vorticity, toroidal cores, and vortex knots}
+    \nonumber\\[-0.2em]
+    &\quad\longrightarrow
+    \text{link-field propagation and operational spacetime}.
+    \label{eq:historical_sst_development_chain}
+\end{align}
+
+The 2013 proto-Canon already contained an important epistemic caution. After
+rewriting the Planck relation from known electromagnetic quantities and the new
+excitation speed, it described the result as, in effect, a calculation trick
+unless the same structure could be recovered through another independent
+combination. That caution is retained here as a canonical methodological rule:
+algebraic closure is not yet dynamical explanation.
+
+\subsection{Modern computational provenance: from KnotPlot seeds to certified finite-thickness representatives}
+\label{subsec:genesis_knotplot_ridgerunner_provenance}
+
+The 2012--2014 source record proposed closed recurrent field structures before
+SST possessed a controlled finite-thickness knot geometry.  The modern
+KnotPlot-to-Ridgerunner project is the first systematic attempt to resolve that
+old bound-mode intuition as an auditable embedded tube rather than as a sketch,
+a knot diagram, or a scalar topological label.  Its role in the Genesis record
+is therefore methodological: it connects the early claim ``matter is a closed
+self-maintaining mode'' to a reproducible geometry pipeline.  It does not by
+itself establish that physical particles are ideal knots.
+
+\paragraph{Three distinct computational roles.}
+The project separates three layers which must remain distinct:
+\begin{enumerate}
+    \item \textbf{KnotPlot exploration.} KnotPlot creates and relaxes isotopic
+    candidate centerlines and supplies checkpoint families.  It is a seed and
+    topology-exploration tool, not a final smooth-thickness certificate.
+
+    \item \textbf{Ridgerunner certification.} Ridgerunner minimizes polygonal
+    length subject to explicit finite-thickness constraints and reports a
+    first-order constrained-gradient balance through active struts and kinks
+    \cite{AshtonCantarellaPiatekRawdon2011}.
+
+    \item \textbf{SSTcore/VortexLab use.} A certified or candidate centerline is
+    converted into a separately versioned, uniformly arc-length sampled copy
+    for Biot--Savart, reach, clock, parity, or spectroscopy diagnostics.  The
+    original Ridgerunner polish remains the audit geometry.
+\end{enumerate}
+A successful result in one layer is not silently promoted to the next.
+
+\paragraph{Orthodox finite-thickness core.}
+For a smooth embedded centerline $\gamma$, radius-convention thickness is
+\begin{align}
+    \operatorname{Thi}_{\rm rad}(\gamma)
+    =
+    \min\!\left(
+        \inf_s\frac{1}{\kappa(s)},
+        \frac12d_{\rm dcsd}(\gamma)
+    \right),
+    \label{eq:genesis_knotplot_thickness_split}
+\end{align}
+where $d_{\rm dcsd}$ is the minimum doubly-critical self-distance.  Thus a
+resolved tube is limited either by local curvature or by nonlocal self-contact.
+In a polygonal approximation these active constraints become the kink and
+strut sets.  At constrained criticality their nonnegative multipliers balance
+the length or declared SST energy gradient,
+\begin{align}
+    -\nabla E
+    +
+    \sum_{(p,q)\in\operatorname{Strut}(V)}
+        \lambda_{pq}\nabla\!\left(\frac{d(p,q)}{2}\right)
+    +
+    \sum_{i\in\operatorname{Kink}(V)}
+        \mu_i\nabla\operatorname{MinRad}_i
+    =0,
+    \qquad
+    \lambda_{pq},\mu_i\ge0.
+    \label{eq:genesis_knotplot_contact_balance}
+\end{align}
+Ropelength minimizers exist in every tame knot type and are $C^{1,1}$, but they
+need not be $C^2$ or unique \cite{CantarellaKusnerSullivan2002}.  Therefore knot
+type alone does not select one unique physical centerline, and a scalar
+ropelength cannot determine every shape-sensitive SST observable.
+
+\paragraph{Project conclusion 1: ``ideal'' is a claim to be certified.}
+A file labelled \emph{ideal}, a visually tight KnotPlot configuration, a
+Fourier atlas entry, or a small scalar ropelength excess is not by itself a
+geometric certificate.  The project found that the same knot may pass a length
+comparison while still lacking strict residual convergence, resolution
+convergence, smooth-thickness verification, or a stable contact skeleton.
+
+\begin{definition}[Geometry certification ladder]
+\label{def:geometry_certification_ladder}
+Every knot geometry used in a downstream SST claim carries exactly one of the
+graded statuses
+\begin{equation}
+    \begin{gathered}
+        \texttt{seed}<\texttt{relaxed candidate}<\texttt{near-ideal candidate},\\
+        \texttt{near-ideal candidate}<\texttt{strict near-ideal}
+        <\texttt{certified smooth upper bound},
+    \end{gathered}
+    \label{eq:genesis_knotplot_status_ladder}
+\end{equation}
+determined solely by the preregistered gate profile of the release in which the
+geometry was produced.
+\end{definition}
+
+\begin{quote}
+\textbf{[CANON RULE].}
+No SST manuscript, benchmark, or numerical result may cite a geometry above its
+certified status, silently promote it between statuses, or weaken a gate profile
+after inspecting a physical output.  Downstream claims must expose the geometry
+source, topology certificate, thickness convention, resolution, constrained
+residual, contact map, and certified error envelope.
+\end{quote}
+No software or database name substitutes for these gates.
+
+\paragraph{Project conclusion 2: topology and geometry require independent gates.}
+The automatic pipeline records a topology sidecar for every checkpoint,
+including at least a safety flag, component count, vertices per component, and
+pairwise linking matrix where applicable.  A geometrically plausible seed with
+missing or inconsistent topology metadata receives the status
+\texttt{geometry-qualified-topology-unverified}; automatic tightening stops
+rather than guessing.  The specific trial number selected in a run is
+provenance metadata, not a canonical physical fact.
+
+\paragraph{Project conclusion 3: checkpoint selection must not be ``take the latest''.}
+KnotPlot checkpoint quality is not assumed to improve monotonically.  The
+project therefore uses signed fractional length gain, per-component flatness,
+and a finite-thickness proxy
+\begin{align}
+    D_{\rm proxy}
+    &=
+    \min\!\left(2R_{\min},d_{\rm self}^{\rm nonlocal},d_{\rm inter}\right),
+    \\
+    \mathcal R_{\rm proxy}
+    &=
+    \frac{L}{D_{\rm proxy}},
+    \label{eq:genesis_knotplot_seed_proxy}
+\end{align}
+rather than raw length alone.  A signed plateau requires nonnegative but small
+improvements over successive checkpoints; a length regression is never called
+a plateau.  If no plateau is found within the preregistered scan range, the
+pipeline may retain a best-so-far seed only with an explicit
+\texttt{best-so-far-no-plateau} warning.
+
+\paragraph{Project conclusion 4: radius and diameter conventions must be explicit.}
+The Brian Gilbert Fourier database records $D=1$ and, for the benchmark entries,
+\begin{align}
+    L(3{:}1{:}1)&=16.371637,
+    &
+    L(4{:}1{:}1)&=21.043322.
+    \label{eq:genesis_gilbert_length_benchmarks}
+\end{align}
+Under the radius-thickness convention used in the SST ropelength sections,
+these correspond to
+\begin{align}
+    \operatorname{Rop}_{\rm rad}(3_1)&=32.743274,
+    &
+    \operatorname{Rop}_{\rm rad}(4_1)&=42.086644.
+    \label{eq:genesis_gilbert_rop_benchmarks}
+\end{align}
+Any comparison that omits the factor-of-two convention is rejected before
+physical interpretation.
+
+\paragraph{Project conclusion 5: uniform sampling and physical relaxation are different operations.}
+The raw tightened polygon is retained unchanged for geometry audit.  A separate
+copy is uniformly resampled in arc length for downstream field solvers.  The
+uniform copy improves quadrature and removes mesh-density bias; it does not
+improve the physical optimum and does not erase the original residual or
+contact data.  For strict resolution convergence, the current best Ridgerunner
+polish is used as the common parent, independently resampled to $N=600$ and
+$N=1200$, and each branch is re-relaxed and re-certified.  The convergence
+study does not restart KnotPlot and does not treat the read-only VortexLab
+$N=300$ export as a new canonical seed.
+
+\paragraph{Current strict near-ideal profile.}
+The present SST project profile requires, for a strict near-ideal label,
+\begin{align}
+    \chi_{\rm KKT}&\le5\times10^{-3},
+    &
+    \epsilon_{\rm Rop}&\le5\times10^{-4},
+    \\
+    \epsilon_{\rm multistart}&\le2\times10^{-4},
+    &
+    \epsilon_{600\rightarrow1200}&\le2\times10^{-4},
+    \\
+    \frac{\ell_{\max}}{\ell_{\min}}&\le1.02,
+    &
+    \operatorname{CV}(\ell)&\le5\times10^{-3}.
+    \label{eq:genesis_strict_near_ideal_profile}
+\end{align}
+These are project acceptance thresholds, not mathematical constants of nature.
+They may be tightened in later releases, but they must not be weakened after
+seeing a desired physical output.
+
+\paragraph{Trefoil snapshot and status discipline.}
+One dated $N=300$ project snapshot derived from a Ridgerunner polish reports
+$L=16.3763431828$ at $D=1$, corresponding to
+$\operatorname{Rop}_{\rm rad}=32.7526863657$.  Relative to the Gilbert reference
+in Equation~\eqref{eq:genesis_gilbert_rop_benchmarks}, the excess is about
+$2.87\times10^{-4}$, while the uniform export has edge ratio approximately
+$1.000693$ and edge-length coefficient of variation approximately
+$8.24\times10^{-5}$.  It passes topology, ropelength, uniform-mesh, and the
+looser $\chi_{\rm KKT}\le10^{-2}$ candidate gate, but fails the strict residual
+gate and has not yet completed the $600\rightarrow1200$ convergence test.
+Its correct status is therefore \texttt{near-ideal-candidate}, not
+\texttt{strict-near-ideal}.  This example is deliberately retained because it
+shows that excellent scalar length agreement is not equivalent to complete
+certification.
+
+\paragraph{Project conclusion 6: the contact skeleton is the physically richer output.}
+For SST, the active set
+\begin{align}
+    \mathcal C_K
+    =
+    \left(
+        \operatorname{Strut}(V),
+        \operatorname{Kink}(V),
+        \{\lambda_{pq}\},
+        \{\mu_i\},
+        \operatorname{cond}A_F
+    \right)
+    \label{eq:genesis_contact_skeleton}
+\end{align}
+contains more physical information than the scalar ropelength.  It identifies
+where the resolved tube is compression-limited, where curvature saturates, how
+loads are distributed, and whether the constraint system is well conditioned.
+Ropelength convergence without contact-measure convergence is insufficient for
+a shape-sensitive mass, magnetic, clock, or impedance claim.
+
+\paragraph{Connection to the rediscovered impedance path.}
+The KnotPlot/Ridgerunner project supplies a candidate geometry and contact
+skeleton for the \emph{bound} side of the free--bound transition.  It does not
+supply the free link-field impedance $Z_\ell$, the transition action
+$\mathcal J_0$, or the source normalization $Q_0$.  A future jump impedance
+$Z_{\mathrm J}$ may depend on the certified knot domain and its linear response,
+but it cannot be identified with ropelength alone.  The non-circular program
+therefore requires the chain
+\begin{equation}
+    \begin{aligned}
+        \text{certified finite-thickness geometry}
+        &\longrightarrow \text{bound-mode response operator},\\
+        \text{bound-mode response operator}
+        &\longrightarrow Z_{\mathrm J}(\omega)
+        \longrightarrow \text{comparison with }Z_\ell(\omega).
+    \end{aligned}
+    \label{eq:genesis_bound_impedance_chain}
+\end{equation}
+with all geometry errors propagated into the final coupling uncertainty.
+
+\paragraph{Canonical status.}
+The orthodox thickness, reach, ropelength, and constrained-criticality results
+belong in the MAIN Canon.  The specific KnotPlot commands, checkpoint
+heuristics, thresholds, trial selections, and current candidate values are
+\textbf{[RESEARCH-TRACK / COMPUTATIONAL PROVENANCE]}.  Downstream SST claims
+must expose the geometry source, topology certificate, convention, resolution,
+residual, contact map, and error envelope used.
+
+
+\subsection{Foundational physical commitments}
+\label{subsec:foundational_physical_commitments}
+
+The following commitments summarize the persistent physical content of the
+origin program without promoting unverified historical mechanisms to theorem
+status.
+
+\begin{enumerate}
+    \item \textbf{One-substrate commitment.}
+    Matter, radiation, and operational clocks are organized regimes of one
+    underlying medium rather than unrelated primitive ontologies.
+
+    \item \textbf{Free/bound mode distinction.}
+    A freely propagating radiation mode and a stable material particle are not
+    the same solution. The former is an extended propagating excitation; the
+    latter is a closed, recurrent, topologically or dynamically trapped state.
+
+    \item \textbf{Rotational matter commitment.}
+    The inertia and clock structure of matter are associated with recurrent
+    internal motion. In modern SST this is represented by stable vortex and
+    link-field configurations, not by the literal rigid charged sphere of the
+    earliest model.
+
+    \item \textbf{Local transition commitment.}
+    Absorption and emission are local transfers between a free mode and a bound
+    mode. The transition must possess an action, energy flux, coupling law, and
+    finite response structure.
+
+    \item \textbf{Impedance commitment.}
+    The strength of the free--bound coupling is controlled by the response of
+    the propagating link sector relative to the response of the bound
+    transition sector.
+
+    \item \textbf{Operational relativity commitment.}
+    Stable matter constructs time, length, and simultaneity with its internal
+    cycles and exchanged torsion pulses. Relative motion mixes the resulting
+    temporal and spatial coordinates while preserving the local torsion cone.
+\end{enumerate}
+
+\subsection{The original capacitance and transition hypothesis}
+\label{subsec:original_capacitance_transition_hypothesis}
+
+\textbf{[ORIGIN / HISTORICAL BRIDGE].}
+The early construction combined the classical relations
+\begin{align}
+    E_{\mathrm{cap}}
+    &=
+    \frac{Q^2}{2C_{\mathrm{cap}}},
+    &
+    C_{\mathrm{cap}}
+    &=
+    \varepsilon\frac{A}{D},
+    \label{eq:origin_capacitance_pair}
+    \\
+    v_{\mathrm{ex}}
+    &=
+    f\lambda,
+    &
+    E
+    &=
+    hf.
+    \label{eq:origin_speed_planck_pair}
+\end{align}
+
+With the historical geometric ansatz $A=\lambda^2$ and $D=\lambda/2$, the
+capacity becomes proportional to $\varepsilon\lambda$. Substitution of
+$\lambda=v_{\mathrm{ex}}/f$ then produces a coefficient multiplying $f$ in the
+stored-energy expression. Under that specific normalization, the historical
+construction may be summarized as
+\begin{align}
+    h_{\mathrm{bridge}}
+    =
+    \frac{Q^2}{4\varepsilon v_{\mathrm{ex}}}.
+    \label{eq:historical_h_capacitance_bridge}
+\end{align}
+
+Equation~\eqref{eq:historical_h_capacitance_bridge} is not a current derivation
+of Planck's constant. It depends on an assumed interaction geometry, on the
+identification of the relevant charge, on a pre-existing electromagnetic
+susceptibility, and on a speed that was itself calibrated from known particle
+relations. Moreover, its later impedance form is an exact reparameterization of
+this same algebraic construction, not an independent second route. Its canonical
+value is that it exposes the original physical question:
+\begin{quote}
+Can the linear energy--frequency law arise from the static and dynamic response
+of a finite transition region rather than being inserted as an unexplained
+proportionality?
+\end{quote}
+
+\subsection{Impedance form of the origin hypothesis}
+\label{subsec:impedance_form_origin_hypothesis}
+
+The capacitance construction can be rewritten more transparently in terms of a
+propagation impedance and a transition impedance. This change of variables does
+not by itself add independent evidence or close the multiple-route requirement.
+For an isotropic lossless
+link-field sector, define
+\begin{align}
+    c_T
+    &=
+    \frac{1}{\sqrt{\epsilon_\ell\mu_\ell}},
+    &
+    Z_\ell
+    &=
+    \sqrt{\frac{\mu_\ell}{\epsilon_\ell}}
+    =
+    \frac{1}{\epsilon_\ell c_T}.
+    \label{eq:link_speed_impedance_pair}
+\end{align}
+
+Here $\epsilon_\ell$ and $\mu_\ell$ are SST link-response coefficients. They
+are not assumed to equal the SI vacuum constants. Let $Q_0$ denote a candidate
+minimal topological source unit and let $\mathcal J_0$ denote a candidate
+minimal transition action. The corresponding transition-impedance scale is
+\begin{align}
+    Z_{\mathrm J}
+    :=
+    \frac{\mathcal J_0}{Q_0^2}.
+    \label{eq:jump_impedance_definition}
+\end{align}
+
+A modern statement of the old fine-structure intuition is then
+\begin{align}
+    \alpha_{\mathrm{SST}}
+    =
+    \kappa_Z\frac{Z_\ell}{Z_{\mathrm J}}
+    =
+    \kappa_Z\frac{Q_0^2Z_\ell}{\mathcal J_0},
+    \label{eq:alpha_impedance_candidate}
+\end{align}
+where $\kappa_Z$ is a dimensionless geometric and normalization factor. The
+present electromagnetic bridge corresponds to the target $\kappa_Z=1/2$ under
+one conventional normalization, but that value is not to be imposed in the
+zero-legacy derivation. It must follow from the transition geometry and source
+normalization.
+
+Equation~\eqref{eq:alpha_impedance_candidate} is a \textbf{[RESEARCH
+HYPOTHESIS]}. In the historical bridge it is the impedance notation of the same
+capacitance identity, so the two forms count as one route. It becomes stronger
+than a numerical identity only if $Z_\ell$, $Q_0$, $\mathcal J_0$, and
+$\kappa_Z$ are independently obtained from the SST action and are then compared
+with a genuinely separate bound-mode, static-source, or transition-action
+calculation.
+
+\subsection{Modern link-field translation}
+\label{subsec:modern_link_field_translation}
+
+The minimal link action introduced later in this Canon supplies the first
+controlled candidate for the propagation side of the origin program. On a
+regular network with link spacing $a_\ell$, link inertia $I_\ell$, and link
+holonomy stiffness $K_\ell$, the transverse long-wavelength branch satisfies
+\begin{align}
+    \omega^2(\mathbf k)
+    &=
+    c_T^2\lvert\mathbf k\rvert^2
+    +
+    O(a_\ell^4\lvert\mathbf k\rvert^4),
+    \\
+    c_T
+    &=
+    a_\ell\sqrt{\frac{K_\ell}{I_\ell}}.
+    \label{eq:genesis_link_speed}
+\end{align}
+
+This is the modern action-level descendant of the early oscillator construction
+$v\sim \lambda\sqrt{k/m}$. The difference is decisive:
+Equation~\eqref{eq:genesis_link_speed} follows from a declared set of degrees of
+freedom and an action, while the early formula substituted measured particle
+quantities directly into a harmonic-oscillator analogy.
+
+The material Euler-vorticity sector and the link-torsion sector remain distinct:
+\begin{align}
+    \boldsymbol{\zeta}
+    &=
+    \nabla\times\mathbf v,
+    &
+    \boldsymbol{\mathcal B}_\ell
+    &=
+    \nabla\times\boldsymbol{\mathcal A}_\ell.
+    \label{eq:material_vorticity_link_curvature_distinction}
+\end{align}
+A torsion pulse may therefore propagate by changing relational link states
+without creating permanent material vorticity in an initially irrotational
+material element.
+
+\subsection{The non-circular route to the propagation speed}
+\label{subsec:noncircular_route_to_c}
+
+\textbf{[NON-CIRCULARITY GUARD].}
+The empirical value of $c$ may be used in calibrated phenomenology, but it may
+not be used directly or indirectly in a derivation that is presented as a
+prediction of $c$.
+
+A legitimate derivation has the logical structure
+\begin{align}
+    \text{microgeometry and action}
+    \longrightarrow
+    (a_\ell,I_\ell,K_\ell)
+    \longrightarrow
+    c_T
+    \longrightarrow
+    c_T\stackrel{?}{=}c_{\mathrm{obs}}.
+    \label{eq:noncircular_c_chain}
+\end{align}
+
+A circular construction has the structure
+\begin{align}
+    c_{\mathrm{obs}}
+    \longrightarrow
+    \text{calibrated microparameter}
+    \longrightarrow
+    c_T
+    \longrightarrow
+    c_{\mathrm{obs}}.
+    \label{eq:circular_c_chain}
+\end{align}
+
+For a candidate dimensional basis $(\Gamma_\star,\rho_\star,r_\star)$, one may
+write
+\begin{align}
+    a_\ell
+    &=
+    \xi_\ell r_\star,
+    \\
+    I_\ell
+    &=
+    \iota_\ell\rho_\star a_\ell^5,
+    \\
+    K_\ell
+    &=
+    \kappa_\ell\rho_\star\Gamma_\star^2a_\ell,
+    \label{eq:zero_legacy_link_scaling}
+\end{align}
+which gives
+\begin{align}
+    c_T
+    =
+    \frac{\Gamma_\star}{a_\ell}
+    \sqrt{\frac{\kappa_\ell}{\iota_\ell}}
+    =
+    \frac{\Gamma_\star}{r_\star}
+    \frac{1}{\xi_\ell}
+    \sqrt{\frac{\kappa_\ell}{\iota_\ell}}.
+    \label{eq:zero_legacy_c_candidate}
+\end{align}
+
+The set $(\Gamma_\star,\rho_\star,r_\star)$ is a candidate dimensional basis,
+not yet the asserted ontological core of SST. Its numerical values must remain
+symbolic in a zero-legacy derivation unless their provenance is independent of
+$c$, $h$, $e$, $m_e$, $\alpha$, $\epsilon_0$, $\mu_0$, and any other validation
+target.
+
+\subsection{Three valid modes of use}
+\label{subsec:three_valid_modes_of_use}
+
+The same equations may be used under three different epistemic modes:
+\begin{description}
+    \item[Symbolic mode.] All dimensional primitives remain symbolic. The
+    outputs are dimensionless spectra, ratios, topology-dependent coefficients,
+    and scaling laws. This is the cleanest theory-development mode.
+
+    \item[Calibrated consistency mode.] Current canonical numerical values may
+    be inserted to test stability, dispersion, convergence, mode count, energy
+    conservation, and order of magnitude. The result is labelled
+    \textbf{[CALIBRATED CONSISTENCY TEST]}, not \textbf{[PREDICTION]}.
+
+    \item[Prediction mode.] A preregistered set of independent observables fixes
+    the dimensional scale and any permitted coefficients. All remaining
+    observables are then computed without retuning. Only those unused
+    observables qualify as predictions.
+\end{description}
+
+The use of known numbers in simulation is therefore not concealed. What is
+forbidden is to use a known number to define an input and later count its
+recovery as an independent success.
+
+\subsection{From relative rotation to operational spacetime}
+\label{subsec:relative_rotation_operational_spacetime_genesis}
+
+The notebooks combined Lorentz transformations, moving frames, rotating matter,
+and internal clock ideas before the modern Swirl Clock notation existed. The
+persistent question was whether the time and length measured by matter could be
+properties of its internal recurrent dynamics rather than primitive properties
+of a detached coordinate system.
+
+The modern formulation distinguishes substrate ordering from operational
+measurement. A stable carrier $A$ constructs proper time $\tau_A$, calibrated
+length $\ell_A$, and radar coordinates with exchanged torsion pulses. The local
+statement is
+\begin{align}
+    c_A^{(2\mathrm w)}
+    =
+    \frac{2\ell_A}{\Delta\tau_A}
+    =
+    c_T.
+    \label{eq:genesis_local_radar_speed}
+\end{align}
+
+The target is not merely that clocks slow. The same link-field cone must govern
+clock response, rod equilibration, synchronization, and free propagation. Only
+then can Alice and Bob reconstruct the same local invariant speed while
+assigning different temporal and spatial coordinates to the same event.
+
+The languages of relative vorticity and relativistic congruence kinematics
+both use expansion, shear, rotation, and acceleration. This is only a structural
+vocabulary, not an identification by analogy. SST must derive the
+observer-dependent kinematic decomposition from the actual vortex and link-field
+dynamics.
+
+\subsection{Canonical provenance and dependency rules}
+\label{subsec:canonical_provenance_dependency_rules}
+
+The following rules govern all claims developed from the origin program:
+
+\begin{enumerate}
+    \item \textbf{Single-source rule.}
+    A claim is not normatively part of SST merely because it occurs in a chat,
+    notebook, old manuscript, code comment, or research-track file. Active
+    foundational claims must appear in the MAIN Canon with status and
+    dependencies.
+
+    \item \textbf{No-backprojection rule.}
+    Modern vortex, gauge, knot, or link-field mathematics must not be described
+    as literally present in an early notebook unless the source supports that
+    statement.
+
+    \item \textbf{Dependency rule.}
+    Every claimed prediction must have an acyclic dependency path from declared
+    inputs to output.
+
+    \item \textbf{Calibration-exclusion rule.}
+    A quantity used directly or indirectly to determine an input parameter may
+    not also be counted as an independent prediction.
+
+    \item \textbf{Multiple-route rule.}
+    A proposed structural constant should, where possible, be obtained through
+    at least two genuinely independent sectors---for example a link-field
+    propagation/constitutive calculation and a bound-mode, static-source, or
+    transition-action calculation. Rewriting one capacitance identity in
+    impedance notation does not count as a second route.
+
+    \item \textbf{Historical-preservation rule.}
+    Incorrect or incomplete old mechanisms are retained in the provenance
+    appendix under \textbf{[ORIGIN]} or \textbf{[REJECTED]}, while the corrected
+    modern formulation is placed beside them.
+\end{enumerate}
+
+\subsection{Extended epistemic labels}
+\label{subsec:extended_epistemic_labels}
+
+The origin and dependency architecture uses the following labels in addition to
+the primary Canon stratification:
+\begin{center}
+\begin{tabularx}{0.94\textwidth}{@{}>{\bfseries}p{0.24\textwidth}X@{}}
+\toprule
+Label & Meaning \\
+\midrule
+\texttt{[ORIGIN]} & Historical idea or source statement; not a present derivation. \\
+\texttt{[FOUNDATIONAL POSTULATE]} & Explicit starting commitment of the current model. \\
+\texttt{[HISTORICAL BRIDGE]} & Algebraic or conceptual link from the old formulation to known physics. \\
+\texttt{[DERIVED]} & Consequence of explicitly declared current assumptions. \\
+\texttt{[CALIBRATED]} & Numerical quantity fixed from external data or a bridge relation. \\
+\texttt{[PREDICTION]} & Output not used directly or indirectly in calibration. \\
+\texttt{[THEOREM TARGET]} & Statement that must be obtained from the action or governing equations. \\
+\texttt{[FALSIFIER]} & Preregistered result that would reject the stated hypothesis. \\
+\texttt{[REJECTED]} & Historical mechanism retained for provenance but not active in the model. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Immediate theorem targets}
+\label{subsec:genesis_immediate_theorem_targets}
+
+The rediscovered impedance path yields the following immediate research targets:
+
+\begin{enumerate}
+    \item \textbf{Link propagation theorem.}
+    Derive $I_\ell$, $K_\ell$, and $a_\ell$ from the microscopic adjacency and
+    interaction law, and prove the existence of an isotropic transverse branch
+    with a controlled infrared and front velocity.
+
+    \item \textbf{Monometricity theorem.}
+    Show that all physically relevant torsion polarizations and all stable
+    vortex-matter species reconstruct the same local characteristic cone.
+
+    \item \textbf{Transition-action theorem.}
+    Derive a minimal transition action $\mathcal J_0$ from a closed phase-space
+    cycle or a topological transition, rather than setting
+    $\mathcal J_0=h$ or $\hbar$.
+
+    \item \textbf{Source-quantization theorem.}
+    Derive the minimal source unit $Q_0$ from knot/link topology or a Noether
+    charge, rather than inserting the elementary SI charge.
+
+    \item \textbf{Impedance-ratio theorem.}
+    Derive $\kappa_Z$ and test
+    Equation~\eqref{eq:alpha_impedance_candidate} without using $\alpha$ in any
+    input or normalization.
+
+    \item \textbf{Free--bound conversion theorem.}
+    Construct a coupled action for a propagating link excitation and a bound
+    vortex mode, and derive absorption, emission, selection rules, linewidth,
+    and energy conservation.
+
+    \item \textbf{Clock--rod--cone closure theorem.}
+    Derive the response of vortex clocks and rods from the same link-field cone
+    that governs propagation, rather than imposing Lorentz kinematics as an
+    additional unrelated rule.
+
+    \item \textbf{Resolved-knot certification target.}
+    Across independent seeds and both the $N=600$ and $N=1200$ branches,
+    demonstrate convergence of topology, thickness, residual,
+    smooth-upper-bound, and contact measures for the selected bound-state
+    geometry.
+
+    \item \textbf{Bound-mode impedance target.}
+    Derive the frequency-dependent transition response on a certified finite-
+    thickness knot domain and show which contact-skeleton observables enter
+    $Z_{\mathrm J}(\omega)$; scalar ropelength alone is not an admissible closure.
+\end{enumerate}
+
+\subsection{Preregistered falsifiers and integrity failures}
+\label{subsec:genesis_preregistered_falsifiers}
+
+The impedance and non-circularity programme uses four distinct failure classes.
+They must not be conflated: a methodological failure voids a derivation claim,
+whereas an empirical failure conflicts directly with observation.
+
+\paragraph{Class E --- empirical falsifiers.}
+\begin{enumerate}
+    \item the inferred propagation speed depends irreducibly on polarization,
+    lattice orientation, or vortex species at low energy;
+    \item clock slowing, rod response, synchronization, and propagation require
+    mutually inconsistent characteristic speeds.
+\end{enumerate}
+
+\paragraph{Class T --- theoretical or model-closure falsifiers.}
+\begin{enumerate}
+    \item no stable transverse link branch exists;
+    \item the transition action or source unit remains continuously tunable
+    rather than dynamically or topologically quantized;
+    \item a free torsion pulse necessarily creates permanent material vorticity
+    in an initially irrotational region, contrary to the declared material--link
+    sector separation.
+\end{enumerate}
+
+\paragraph{Class N --- numerical or certification failures.}
+\begin{enumerate}
+    \item the selected knot geometry changes topology, component linking data,
+    or strict near-ideal classification under the declared refinement pipeline;
+    \item scalar ropelength converges while the positive strut/kink contact
+    measures or active rigidity rank fail to converge.
+\end{enumerate}
+
+\paragraph{Class M --- methodological-integrity failures.}
+\begin{enumerate}
+    \item the value of $c_T$ can match experiment only by inserting a parameter
+    whose provenance already contains $c$;
+    \item the impedance-ratio route reproduces $\alpha$ only after
+    $\alpha$-dependent calibration;
+    \item alternative microparameters fit $c$ and $\alpha$ equally well while
+    making incompatible predictions elsewhere, without a dynamical selection
+    principle;
+    \item a downstream mass, impedance, or constant extraction quotes precision
+    parametrically smaller than the certified geometry-error envelope without an
+    independent cancellation proof;
+    \item a preregistered gate or tolerance is weakened after inspecting the
+    downstream physical output.
+\end{enumerate}
+
+\textbf{[CANON INTERPRETATION].}
+A Class~M event does not by itself falsify the physical hypothesis; it voids the
+claimed derivation and returns the result to calibrated-consistency status.
+
+\subsection{Canonical dependency summary}
+\label{subsec:canonical_dependency_summary}
+
+The intended non-circular dependency graph is
+\begin{align}
+    &\text{micro-adjacency, symmetry, topology, and local action}
+    \nonumber\\
+    &\quad\longrightarrow
+    \{a_\ell,I_\ell,K_\ell,Q_0,\mathcal J_0,\kappa_Z\}
+    \nonumber\\
+    &\quad\longrightarrow
+    \{c_T,Z_\ell,Z_{\mathrm J},\alpha_{\mathrm{SST}}\}
+    \nonumber\\
+    &\quad\longrightarrow
+    \text{clock, rod, spectral, atomic, and scattering observables}
+    \nonumber\\
+    &\quad\longrightarrow
+    \text{comparison with }\{c,h,e,\alpha,m_e,\ldots\}_{\mathrm{obs}}.
+    \label{eq:canonical_zero_legacy_dependency_graph}
+\end{align}
+
+The reverse arrows are permitted only in the explicitly calibrated
+phenomenology layer. They are prohibited in a claimed zero-legacy prediction.
+
+\subsection{Cross-document operating rule}
+\label{subsec:genesis_cross_document_operating_rule}
+
+\begin{quote}
+\textbf{[CANON OPERATING RULE].}
+Every SST sub-paper, software benchmark, and numerical data release shall state
+for each material result whether it is used in \texttt{symbolic},
+\texttt{calibrated-consistency}, or \texttt{prediction} mode, and shall attach an
+explicit epistemic label such as \textbf{[ORTHODOX]}, \textbf{[DERIVED]},
+\textbf{[RESEARCH TRACK]}, or \textbf{[SPECULATIVE]}.  A result may be promoted
+only after its dependency graph, gate profile, and error envelope are exposed.
+\end{quote}
+
+\subsection{Provenance references for this section}
+\label{subsec:genesis_provenance_references}
+
+The principal source anchors are summarized in the Historical Notebook and
+Proto-Canon Provenance Register, Appendix~\ref{sec:appendix_historical_provenance}.
+The full page-level ledger remains a supporting archive; the MAIN Canon records
+its stable identifiers, active conclusions, and status. The principal source
+anchors for the present section are:
+\begin{itemize}
+    \item \texttt{NB2012-P002}, \texttt{P006}, \texttt{P017}: free and bound
+    wave structures, rotating matter, and the early unification aim;
+    \item \texttt{NB2012-P021--P025}: Lorentz transformations, speed ratios,
+    transition geometry, and oscillator dynamics;
+    \item \texttt{NB2012-P044--P050}, \texttt{P055}: the turn to circulation,
+    vortices, toroidal cores, and time/mass as properties of rotating matter;
+    \item \texttt{NB2012-P069--P071}: oscillator propagation speed,
+    capacitance, vacuum response, and the constants dependency network;
+    \item \texttt{NB2013-P010}, \texttt{P019}, \texttt{P045}: transition
+    dynamics, the distinction between numerical closure and physical meaning,
+    and the early relative-rotation/time interpretation;
+    \item \texttt{DOC2013-CANON-001}: the first synthesis of excitation speed,
+    rotating mass, the fine-structure speed ratio, and the capacitance route to
+    the Planck relation.
+    \item \texttt{PROJ2026-KNOTPLOT-RR-001}: KnotPlot checkpoint
+    families, topology sidecars, signed-plateau seed selection, Ridgerunner
+    constrained-gradient polishes, uniform-arc-length exports, and strict
+    near-ideal certification thresholds.
+\end{itemize}
+
+\begin{quote}
+\small
+\textbf{Reading guard.}
+The origin archive establishes continuity of the research program. It does not
+validate the physical claims. Validation requires the independent action-level
+derivations and falsification tests stated above.
+\end{quote}
+
+% End of integrated Genesis module.
+
+
     \section{Philosophical Prelude}
         \label{sec:philosophy}
 
@@ -189,6 +1128,7 @@
         \begin{align}
             \text{point particles} &\longrightarrow \text{stable swirl-string configurations}, \\
             \text{vacuum as background} &\longrightarrow \text{vacuum as structured medium}, \\
+            \text{metric spacetime as primitive} &\longrightarrow \text{operational Lorentz geometry of vortex clocks and torsion pulses}, \\
             \text{quantization as postulate} &\longrightarrow \text{discreteness from dynamics and topology}.
         \end{align}
         This is not a denial of effective particle language. Rather, it is a claim that particle language is secondary and emerges from a more primitive hydrodynamic and topological layer.
@@ -201,6 +1141,39 @@
             \item to supply a dynamical mechanism for phenomena that are otherwise postulated axiomatically.
         \end{enumerate}
         In this sense the canon follows a \emph{Rosetta principle}: whenever a standard description already works, SST must map to it before claiming any deeper reinterpretation.
+
+    \subsection{Special relativity as the operational starting point}
+        \label{subsec:sr_operational_origin}
+
+        \textbf{[ORTHODOX].}
+        Special relativity does not assert that a clock reading and a spatial distance are numerically identical. It states that temporal and spatial coordinates are components of one Lorentzian interval and are mixed by relative motion while the interval and the null propagation speed remain invariant \cite{Einstein1905}. For observers Alice and Bob, their separate assignments of time and distance therefore depend on their relative state of motion, although both reconstruct the same causal ordering and the same local value of the invariant speed~\(c\).
+
+        \textbf{[CANONICAL FOUNDATIONAL POSTULATE].}
+        This operational observation is a starting point of SST. The substrate is modeled ontologically as a three-dimensional incompressible medium with a global ordering parameter~\(T\), but a localized vortex atom does not directly read that parameter. A vortex atom constructs physical time from its internal cycle accumulation, physical length from equilibrated matter standards, and distant-event coordinates from exchanged R-phase torsion pulses. For every stable low-energy vortex carrier~\(A\), the rod-calibrated two-way torsion-pulse speed is postulated to satisfy
+        \begin{align}
+            c_A^{(2\mathrm w)}
+            :=
+            \frac{2\ell_A}{\Delta\tau_A}
+            = c,
+            \label{eq:foundational_vortex_atom_two_way_c}
+        \end{align}
+        where \(\ell_A\) is an independently calibrated local separation and \(\Delta\tau_A\) is the elapsed proper time on the carrier clock for the out-and-back exchange.
+
+        The corresponding local operational interval is
+        \begin{align}
+            d\sigma_A^2
+            =
+            -c^2dt_A^2+d\ell_A^2,
+            \label{eq:foundational_operational_interval}
+        \end{align}
+        with an R-phase torsion pulse satisfying \(d\sigma_A^2=0\). Hence Alice measures
+        \begin{align}
+            \left|\frac{d\ell_A}{dt_A}\right|=c,
+        \end{align}
+        and Bob must obtain the same result in his own vortex-clock and vortex-ruler coordinates. In this precise sense, ``space and time form one structure'' means that relative motion mixes their operational coordinate components while preserving Eq.~\eqref{eq:foundational_operational_interval}; it does not erase the distinction between substrate foliation time and local measured proper time.
+
+        \textbf{[CANON / COORDINATE-SPEED GUARD].}
+        The bare substrate-coordinate ratio \(dX/dT\) is not, by itself, the operational definition of the speed of light. It may depend on the chosen substrate coordinates and on the clock/ruler response. The canonically observable statement is Eq.~\eqref{eq:foundational_vortex_atom_two_way_c}. Deriving this universality from the torsional constitutive law, rather than using measured~\(c\) as calibration input, remains a theorem target.
 
     \subsection{Why delay and topology matter}
         Two themes recur across the development of the canon.
@@ -285,6 +1258,8 @@
         \end{align}
 
         \textbf{[DERIVED] Consequence}: Eq.~\eqref{eq:rc_definition} removes $\rc$ as an independent parameter while avoiding the earlier ambiguity between horn-envelope scale, tube radius, and vorticity.
+
+        \textbf{[CALIBRATED CHAIN GUARD]}: Eq.~\eqref{eq:rc_definition} is a Compton--electron-radius closure inside the primitive calibration chain. It must not be cited as an independent hydrodynamic derivation of either $\alpha$, $\vchar$, or $\rc$. A future fluid-dynamical derivation would have to obtain the same radius from a resolved vortex-tube variational problem using $a_{\mathrm{core}}$ or an explicit profile, without inserting the electron-radius identity.
     
     \subsection{Circulation Quantization}
         
@@ -311,6 +1286,156 @@
         
         \textbf{[DERIVED]}: In SST, $\Gamma_0$ is no longer an input but follows from Eq.~\ref{eq:rc_definition}.
     
+\subsection{Bounded-Domain Biot--Savart Admissibility}
+        \label{subsec:bounded_domain_biot_savart}
+
+        \textbf{[ORTHODOX OPERATOR FOUNDATION].}
+        For a smooth vector field \(\mathbf V\) supported in a bounded smooth domain
+        \(\Omega\subset\mathbb R^3\), define
+        \begin{align}
+            \operatorname{BS}[\mathbf V](\mathbf y)
+            :=
+            \frac{1}{4\pi}
+            \int_\Omega
+            \mathbf V(\mathbf x)\times
+            \frac{\mathbf y-\mathbf x}{|\mathbf y-\mathbf x|^3}
+            \,d^3x.
+            \label{eq:canon_bounded_biot_savart}
+        \end{align}
+        Its curl contains explicit source and boundary corrections:
+        \begin{align}
+            \nabla_{\mathbf y}\times\operatorname{BS}[\mathbf V]
+            ={}&
+            \mathbf 1_\Omega(\mathbf y)\mathbf V(\mathbf y)
+            +
+            \frac{1}{4\pi}\nabla_{\mathbf y}
+            \int_\Omega
+            \frac{\nabla_{\mathbf x}\cdot\mathbf V(\mathbf x)}
+                 {|\mathbf y-\mathbf x|}
+            \,d^3x
+            \notag\\
+            &-
+            \frac{1}{4\pi}\nabla_{\mathbf y}
+            \int_{\partial\Omega}
+            \frac{\mathbf V(\mathbf x)\cdot\mathbf n(\mathbf x)}
+                 {|\mathbf y-\mathbf x|}
+            \,dA_x.
+            \label{eq:canon_biot_savart_curl_corrections}
+        \end{align}
+        Consequently,
+        \begin{align}
+            \nabla\times\operatorname{BS}[\mathbf V]
+            =
+            \mathbf V
+            \quad\text{in }\Omega
+            \quad\Longleftrightarrow\quad
+            \nabla\cdot\mathbf V=0,
+            \quad
+            \mathbf V\cdot\mathbf n=0
+            \text{ on }\partial\Omega.
+            \label{eq:canon_biot_savart_left_inverse_gate}
+        \end{align}
+        These conditions are necessary as well as sufficient
+        \cite{CantarellaDeTurckGluck2001BiotSavart}.
+
+        The same source establishes
+        \begin{align}
+            \ker\operatorname{BS}
+            &=
+            \left\{
+            \nabla\phi:
+            \nabla\phi\text{ is normal to }\partial\Omega
+            \right\},
+            \label{eq:canon_biot_savart_kernel}\\
+            \operatorname{im}\operatorname{BS}
+            &\subsetneq
+            \operatorname{im}(\nabla\times),
+            \label{eq:canon_biot_savart_image_guard}
+        \end{align}
+        and the \(L^2\) bound
+        \begin{align}
+            \left\|\operatorname{BS}[\mathbf V]\right\|_{L^2(\Omega)}
+            \leq
+            \frac{\operatorname{OS}(\Omega)}{4\pi}
+            \left\|\mathbf V\right\|_{L^2(\Omega)},
+            \qquad
+            \operatorname{OS}(\Omega)
+            :=
+            \sup_{\mathbf y\in\mathbb R^3}
+            \int_\Omega\frac{d^3x}{|\mathbf y-\mathbf x|^2}.
+            \label{eq:canon_biot_savart_optical_size_bound}
+        \end{align}
+        The extended operator is bounded, compact, and self-adjoint on its
+        \(L^2\) completion.
+
+        \textbf{[CANON / FAR-FIELD GUARD].}
+        A general compact source gives
+        \(\operatorname{BS}[\mathbf V]=O(r^{-2})\).  If \(\mathbf V\) is
+        divergence-free and boundary-tangent, the leading moment cancels and
+        \begin{align}
+            \operatorname{BS}[\mathbf V](r)
+            =
+            O(r^{-3}).
+            \label{eq:canon_compact_fluid_knot_far_field}
+        \end{align}
+        Therefore the direct Biot--Savart velocity of one compact resolved vortex
+        knot is not a Newtonian monopole sector.  Any \(r^{-2}\) force claim must be
+        derived from a separately declared pressure/source, non-compact background,
+        singular-core, or boundary-supported mechanism.
+
+\subsection{Hodge Decomposition and Topological Circulation Sectors}
+        \label{subsec:hodge_topological_circulation}
+
+        \textbf{[ORTHODOX VECTOR-CALCULUS FOUNDATION].}
+        On a smooth bounded domain \(\Omega\subset\mathbb R^3\), the space of
+        smooth vector fields decomposes orthogonally as
+        \begin{align}
+            VF(\Omega)
+            =
+            FK\oplus HK\oplus CG\oplus HG\oplus GG,
+            \label{eq:canon_hodge_five_way}
+        \end{align}
+        where
+        \begin{align}
+            FK&=
+            \{\nabla\cdot\mathbf V=0,\ \mathbf V\cdot\mathbf n=0,\\
+            \text{all interior fluxes}=0\},\\
+            HK&=
+            \{\nabla\cdot\mathbf V=0,\ \nabla\times\mathbf V=0,\\
+            \mathbf V\cdot\mathbf n=0\},\\
+            CG&=
+            \{\mathbf V=\nabla\phi,\ \nabla\cdot\mathbf V=0,\\
+            \text{all boundary fluxes}=0\},\\
+            HG&=
+            \{\mathbf V=\nabla\phi,\ \nabla\cdot\mathbf V=0,\\
+            \phi\text{ constant on each boundary component}\},\\
+            GG&=
+            \{\mathbf V=\nabla\phi,\ \phi|_{\partial\Omega}=0\}.
+            \label{eq:canon_hodge_subspaces}
+        \end{align}
+        The incompressible boundary-tangent sector is
+        \begin{align}
+            K(\Omega)=FK\oplus HK,
+            \label{eq:canon_fluid_knot_hodge_sector}
+        \end{align}
+        and
+        \begin{align}
+            HK
+            \cong
+            H_1(\Omega;\mathbb R)
+            \cong
+            H_2(\Omega,\partial\Omega;\mathbb R).
+            \label{eq:canon_harmonic_knot_homology}
+        \end{align}
+        Hence \(\dim HK\) is the total genus of the boundary
+        \cite{CantarellaDeTurckGluck2002Hodge}.
+
+        \textbf{[CANON / INTERPRETATION GUARD].}
+        Vorticity determines the fluxless/curl-bearing part but does not determine
+        the harmonic-knot circulation sector.  A ball has \(HK=0\); a solid torus
+        has \(\dim HK=1\).  This counts independent global circulation channels, not
+        particle species or knot type.
+
     \subsection{Energy and Mass Relation}
         
         Mass is interpreted as stored rotational energy:
@@ -342,27 +1467,104 @@
         \textbf{[CRITICAL NOTE]} This is not an independent fluid-dynamical derivation of $\alpha$ or of the characteristic speed. The fine-structure constant enters through the adopted electron-radius / horn-radius calibration, so the result is a calibrated algebraic identity rather than an emergent theorem.
     
     \subsection{Swirl-Clock Definition}
-        
-        We introduce the Swirl-Clock as a local scalar field encoding relativistic time dilation:
-        
+        \label{subsec:swirl_clock_definition}
+
+        For a localized carrier or observer~\(A\), define the Swirl-Clock as the conversion between substrate foliation time and accumulated local proper time:
         \begin{align}
-            \SwirlClock = \sqrt{1 - \frac{\vchar^2}{c^2}}
+            \SwirlClock[A;T]
+            :=
+            \frac{d\tau_A}{dT}
+            =
+            \sqrt{1-\frac{u_A^2(T)}{c^2}},
             \label{eq:swirl_clock}
         \end{align}
-        
-        \textbf{[ORTHODOX] Functional form}: This matches the standard Lorentz time-dilation factor.
+        where \(u_A\) is the resolved kinematic speed entering the clock response. The canonical internal swirl-speed evaluation is the special case
+        \begin{align}
+            \SwirlClock_c
+            =
+            \sqrt{1-\frac{\vchar{}^2}{c^2}}.
+            \label{eq:swirl_clock_canonical_internal_evaluation}
+        \end{align}
 
-        \textbf{[SPECULATIVE] Identification}: In SST, the relevant velocity is interpreted as a local medium-kinematic state rather than only a standard worldline speed.
+        \textbf{[ORTHODOX FORM].}
+        Equation~\eqref{eq:swirl_clock} has the standard Lorentz time-dilation form. Operational comparison between Alice and Bob is governed by their relative velocity after clocks and rulers are synchronized by the common torsion cone.
 
-        \textbf{[DERIVED] Consequence}: Once this identification is adopted, the Swirl-Clock provides a local scalar measure of kinematic time modulation within the medium description.
-    
+        \textbf{[CANONICAL SST POSTULATE].}
+        The clock response is part of the founding operational interpretation of SST: stable vortex matter measures local spacetime through the same luminal torsion sector that defines~\(c\). It is therefore stronger than a merely decorative analogy.
+
+        \textbf{[OPEN DERIVATION].}
+        A substrate-level derivation must still show that the torsion sector dresses all stable matter carriers isotropically and produces Eq.~\eqref{eq:swirl_clock} without species-dependent retuning. This is the monometricity and core--torsion impedance problem developed in the research track.
+
+    \subsection{Two-Speed Discipline for Clock Emergence}
+        \label{subsec:two_speed_clock_discipline}
+
+        The canon distinguishes the canonical horn/circulation speed \(\vchar\) from the transverse causal speed \(c\):
+        \begin{align}
+            \vchar = 1.09384563\times 10^{6}\ \mathrm{m\,s^{-1}},
+            \qquad
+            c = 2.99792458\times 10^{8}\ \mathrm{m\,s^{-1}},
+            \qquad
+            \frac{\vchar}{c}=3.64867628\times10^{-3}.
+        \end{align}
+        Thus \(\vchar\) is a calibrated circulation/horn speed, not the universal causal speed.
+
+        \textbf{[CANON / SEMANTIC RULE].}
+        The calibrated identity \(\vchar=\alpha c/2\) must not be inverted into a
+        claim that the internal core sound speed equals \(c\).
+
+        \begin{lemma}[Conditional two-speed core relation]
+        \label{lem:conditional_two_speed_core_relation}
+        Assume a Gross--Pitaevskii / NLSE core with Madelung circulation quantum
+        \(\Gamma_q=h_*/m_*\), healing length
+        \(\xi=\hbar_*/(\sqrt{2}\,m_*c_s)\), the single-winding identification
+        \(\Gamma_q=\Gamma_0\), and the scale identification \(\xi=\rc\).  Then
+        \begin{align}
+            c_s
+            =
+            \frac{\Gamma_0}{2\sqrt{2}\pi\rc}
+            =
+            \frac{\vchar}{\sqrt{2}}
+            =
+            7.73465663\times10^{5}\ \mathrm{m\,s^{-1}}.
+            \label{eq:core_sound_speed_vchar_over_sqrt2}
+        \end{align}
+        \end{lemma}
+        \textbf{[DERIVED, CONDITIONAL].}
+        The relation follows from the four stated hypotheses; it is not a
+        zero-legacy derivation of the universal causal speed.  A calculation that
+        closes an inertia ratio as \(u^2/c_s^2\) has produced an internal
+        core-acoustic closure, not yet the Lorentz-compatible ratio \(u^2/c^2\).
+
+        \textbf{[RESEARCH-TRACK GATE].}
+        A Lorentz-compatible derivation of the Swirl-Clock requires a separate
+        transverse torsion/shear sector with propagation speed \(c_T=c\), plus a
+        core--torsion inertia identity of the form
+        \begin{align}
+            \mathsf M_{\mathrm{torsion}}[K]
+            \stackrel{?}{=}
+            \frac{E_0[K]}{c_T^2}\,\mathsf I .
+            \label{eq:core_torsion_impedance_gate_main}
+        \end{align}
+        \textbf{[NORMALIZATION NOTE, v0.8.24].}
+        Here \(E_0[K]\) is the full rest energy.  The earlier factor
+        \(2E_0[K]/c_T^2\) is superseded because it conflicts with the canonical
+        mass-equivalence rule \(M=E_0/c^2\) and with the expansion
+        \(\gamma E_0=E_0+\tfrac12E_0u^2/c^2+O(u^4)\).
+        Equation~\eqref{eq:swirl_clock} and the operational identification
+        \(c_A^{(2\mathrm w)}=c\) remain canonical founding postulates of SST,
+        motivated by the empirical structure of special relativity.  What remains
+        open is their non-circular derivation from the substrate:
+        Eq.~\eqref{eq:core_torsion_impedance_gate_main}, universal clock-and-ruler
+        dressing, and low-energy monometricity must follow from a controlled field
+        calculation.  The NLSE core alone does not supply that proof.
+
     \subsection{Density Hierarchy}
         
         We distinguish the following densities:
         
         \begin{align}
             \rhoF &\quad \text{(effective background fluid density)}, \\
-            \rhoE &= \tfrac12 \rhoF \, \vchar^2 \quad \text{(swirl energy density)}, \\
+            \rhoE &= \tfrac12 \rhoF \, \vchar{}^2 \quad \text{(swirl energy density)}, \\
             \rhoM &= \rhoE / c^2 \quad \text{(mass-equivalent density)}, \\
             \rhocore &\quad \text{(canonical saturated envelope-equivalent density)}.
         \end{align}
@@ -380,9 +1582,9 @@
         \begin{align}
             \rhohorn
             \equiv
-            \frac{m_e c^2}{2\pi \vchar^2 R_{\mathrm{horn}}^3}
+            \frac{m_e c^2}{2\pi \vchar{}^2 R_{\mathrm{horn}}^3}
             =
-            \frac{m_e c^2}{2\pi \vchar^2 \rc^3}.
+            \frac{m_e c^2}{2\pi \vchar{}^2 \rc^3}.
             \label{eq:core_density}
         \end{align}
         
@@ -446,7 +1648,7 @@
 
         \begin{align}
             \Gamma_0 = 2\pi \rc \, \vchar
-            = 2\pi \frac{\vchar^2}{\omega_c}.
+            = 2\pi \frac{\vchar{}^2}{\omega_c}.
             \label{eq:gamma0_reparam}
         \end{align}
 
@@ -496,10 +1698,44 @@
             \Pi_K = \left( \frac{\lambda_c}{\pi \rc} \right)^{G(K)} = \left( \frac{4}{\alpha} \right)^{G(K)} .
         \end{align}
 
+        \textbf{[CANON / ALPHA-GATE GUARD]} The equality \(\lambda_c/(\pi\rc)=4/\alpha\) is a calibrated geometric rewriting inside the present constant chain. It must not be cited as an independent derivation of the fine-structure constant. The finite-cell trefoil result is retained separately as an \(\alpha\)-free sub-per-mille coincidence plus obstruction result in Subsection~\ref{subsec:finite_cell_alpha_obstruction}.
+
+        Numerically,
+        \begin{align}
+            \frac{\lambda_c}{\pi\rc}
+            =
+            \frac{4}{\alpha}
+            \simeq 5.48144\times10^{2}.
+            \label{eq:alpha_gate_numeric_guard}
+        \end{align}
+        This number is therefore an exposure or shielding gate inside the calibrated mass functional, not a new measurement or theorem for \(\alpha\).
+
+
         The canonical topological kernel is taken to be
         \begin{align}
             \Xi_K = \left[ \alpha_C\,C(K) + \beta_L\,L(K) + \gamma_H\,\mathcal{H}(K) \right] \varphi^{-2k(K)} .
         \end{align}
+
+        \textbf{[CANON / GOLDEN-LAYER GUARD].}
+        The golden-layer factor has an exact hyperbolic reparametrization,
+        \begin{align}
+            \eta_\varphi
+            &\equiv
+            \operatorname{asinh}\!\left(\frac12\right)
+            =\ln\varphi,
+            \label{eq:golden_layer_rapidity_def}\\
+            \varphi^{-2k(K)}
+            &=
+            \exp\!\left[-2k(K)\eta_\varphi\right].
+            \label{eq:golden_layer_rapidity_guard}
+        \end{align}
+        This is a parametrization guard for the existing layer factor, not a
+        derivation of the golden factor from Euler dynamics, ropelength
+        criticality, or knot stability.  It also does not assert that the
+        electron trefoil is a hyperbolic knot; the trefoil remains a torus knot
+        in the topology dictionary.  Any future promotion of this notation must
+        identify \(k(K)\) with a mechanically defined discrete transfer,
+        impedance, or relaxation step.
 
         The canonical SST master equation is therefore
         \begin{align}
@@ -530,6 +1766,17 @@
         \textbf{[SPECULATIVE] Interpretation}: The same local kinematic state that slows the Swirl-Clock also enters the effective mass scale; mass and local proper-time modulation are therefore treated as two aspects of one medium configuration.
 
         \textbf{[CRITICAL NOTE]} Equation~\eqref{eq:sst_master_equation} is presently a canonical synthesis formula, not yet a theorem derived from first-principles filament dynamics alone.
+
+        \textbf{[NORMALIZATION TRANSPARENCY]} With the canonical background-energy reading, $\rhoM=\rhoE/c^2=4.65949\times10^{-12}\,\mathrm{kg\,m^{-3}}$ and $\rhoM\rc^3=1.30330\times10^{-56}\,\mathrm{kg}=1.43072\times10^{-26}m_e$. Therefore an exposed electron-scale benchmark with $\Pi_K=4/\alpha$ requires a dimensionless kernel of order
+        \begin{align}
+            \Xi_{3_1}^{(e)}
+            \sim
+            \frac{m_e}{\rhoM\rc^3(4/\alpha)}
+            =
+            1.28\times10^{23}.
+            \label{eq:kernel_normalization_scale_guard}
+        \end{align}
+        Unless a branch explicitly re-anchors the medium scale to $\rhohorn$, the coefficients inside $\Xi_K$ are therefore calibrated matching coefficients carrying the medium-to-particle hierarchy, not order-unity topological invariants. This note is a scale-accounting guard; it does not alter the dimensional validity of Eq.~\eqref{eq:sst_master_equation}.
 
         In the stationary weak-swirl limit $\SwirlClock \to 1$, it reduces to the static mass-functional form; in the local-kinematic limit at fixed $K$, it reduces to a pure clock-impedance correction. The hierarchy is therefore carried predominantly by the geometric and topological factors, while the Swirl-Clock supplies a coherent local correction rather than the primary source of mass separation.
 
@@ -605,22 +1852,27 @@
             \label{eq:Fmax_em}\\
             &= \frac{h\alpha c}{8\pi \rc^2},
             \label{eq:Fmax_hac}\\
-            &= \pi \rc^2\,\rho_{\rm calc}\,\vchar^2,
-            \label{eq:Fmax_rho}
+            &= \pi \rc^2\,\rho_{\rm calc}\,\vchar{}^2,
+            \label{eq:Fmax_rho}\\
+            &= \frac{c^4}{4G}\,\alpha
+            \left(\frac{\rc}{\ell_P}\right)^{-2}.
+            \label{eq:Fmax_planck_suppressed}
         \end{align}
 
         where $\rho_{\rm calc} = 4F_{\rm swirl}^{\max}/(\pi\alpha^2 c^2 \rc^2)$ is the derived bulk density consistent with the canonical neutral-circulation closure.
 
-        \textbf{[CALIBRATED ALGEBRAIC IDENTITY] Consistency check}: Eqs.~\eqref{eq:Fmax_em}--\eqref{eq:Fmax_rho} are equivalent given $\vchar = \alpha c/2$ and the standard identity $e^2/(4\pi\varepsilon_0) = \alpha\hbar c$. Their mutual agreement is an internal algebraic coherence test of the calibrated chain, not an independent dynamical prediction.
+        \textbf{[CALIBRATED ALGEBRAIC IDENTITY] Consistency check}: Eqs.~\eqref{eq:Fmax_em}--\eqref{eq:Fmax_planck_suppressed} are equivalent given $\vchar = \alpha c/2$, the standard identity $e^2/(4\pi\varepsilon_0) = \alpha\hbar c$, $\rc=\alpha\hbar/(2m_ec)$, and $\ell_P^2=\hbar G/c^3$. The Planck-force form in Eq.~\eqref{eq:Fmax_planck_suppressed} is a hierarchy reparameterization of the same calibrated tension scale, not an independent derivation from Planck physics. Their mutual agreement is an internal algebraic coherence test of the calibrated chain, not an independent dynamical prediction.
 
         \subsubsection{Rydberg consistency identity}
 
         \textbf{[CALIBRATED IDENTITY]} The Rydberg constant is recoverable from the three SST calibration variables without $e$, $\varepsilon_0$, or $m_e$ appearing \emph{explicitly}:
 
         \begin{align}
-            R_\infty \;=\; \frac{\vchar^3}{\pi\,\rc\,c^3}.
+            R_\infty \;=\; \frac{\vchar{}^3}{\pi\,\rc\,c^3}.
             \label{eq:Rydberg_SST}
         \end{align}
+
+        \textbf{[DIMENSIONAL GUARD]} The direction of Eq.~\eqref{eq:Rydberg_SST} is fixed: the numerator is $\vchar{}^3$ and the denominator is $\pi\rc c^3$. Its units are $\mathrm{m^{-1}}$. The reciprocal expression $\pi\rc c^3/\vchar{}^3$ has units of length and is not a Rydberg constant.
 
         This is a benchmark for algebraic consistency of the calibration chain, not for independent non-redundancy of the primitive set. \textbf{[CRITICAL NOTE]} Substituting the canonical definitions $\vchar=\alpha c/2$ and $\rc=\vchar/\omega_c=\alpha\hbar/(2m_ec)$ reduces Eq.~\eqref{eq:Rydberg_SST} \emph{exactly} to the standard $R_\infty=\alpha^2 m_e c/(4\pi\hbar)$ (verified to machine precision): $m_e$ is hidden inside $\rc$ and $\alpha$ inside both $\vchar$ and $\rc$. The identity is therefore a consistency check, not an independent non-circular derivation of $R_\infty$. Combining Eq.~\eqref{eq:Rydberg_SST} with Eq.~\eqref{eq:Fmax_def} yields the compact relation
 
@@ -830,7 +2082,7 @@
         Finite propagation time along closed vortex structures is a fundamental dynamical ingredient.
         
         \begin{align}
-            \tau = \frac{L}{\vchar}
+            \tau_{\rm circ}(K) = \frac{L_K}{\vchar}
         \end{align}
         
         \textbf{[DERIVED]} Kinematic consequence: the delay follows from finite signal speed along a closed carrier.
@@ -853,23 +2105,41 @@
         
         \textbf{[SPECULATIVE]}: Interpreted as rotational energy of the vortex configuration.
     
-    \subsection{Axiom 7: Swirl-Clock Relational Time}
-        
+    \subsection{Axiom 7: Operational Spacetime of Vortex Matter}
+        \label{axiom:operational_spacetime_vortex_matter}
+
         \textbf{Statement.}
-        Local time is encoded in a scalar field derived from fluid kinematics:
-        
+        The global substrate parameter~\(T\) orders the medium evolution, but physical observers are localized vortex structures. They construct measurable time, distance, and simultaneity using internal vortex-clock cycles, equilibrated matter standards, and exchanged R-phase torsion pulses.
+
+        For every stable low-energy carrier~\(A\), the locally measured two-way torsion-pulse speed is universal:
         \begin{align}
-            \SwirlClock = \sqrt{1 - \frac{\vchar^2}{c^2}}
+            c_A^{(2\mathrm w)}
+            =
+            \frac{2\ell_A}{\Delta\tau_A}
+            =c.
+            \label{eq:axiom_vortex_atom_luminal_torsion}
         \end{align}
-        
-        \textbf{[ORTHODOX]} Functional form: this matches Lorentz time dilation.
+        The local clock rate is
+        \begin{align}
+            \frac{d\tau_A}{dT}
+            =
+            \SwirlClock[A;T]
+            =
+            \sqrt{1-\frac{u_A^2}{c^2}}.
+            \label{eq:axiom_operational_swirl_clock}
+        \end{align}
 
-        \textbf{[SPECULATIVE]} Identification: the relevant velocity is taken to be the local medium kinematic state.
+        \textbf{[ORTHODOX CONTENT].}
+        The invariant interval and the relative-motion mixing of temporal and spatial coordinates are the standard content of special relativity \cite{Einstein1905}.
 
-        \textbf{[DERIVED]} Consequence: within SST this yields a relational clock field tied to local motion.
-        
+        \textbf{[CANONICAL SST IDENTIFICATION].}
+        In SST, this operational Lorentz structure is attributed to the common torsion cone and to the dynamical response of vortex clocks and vortex rulers, rather than to a primitive geometric spacetime ontology.
+
+        \textbf{[THEOREM TARGET].}
+        The substrate dynamics must derive that Alice and Bob recover the same~\(c\), that their observable transformation depends only on relative velocity, and that all stable matter and radiation species share the same infrared cone. Failure of any of these conditions is a preferred-frame or non-monometric falsifier of SST.
+
         \textbf{Interpretation.}
-        Time is not fundamental but relational to the state of motion in the medium.
+        The substrate ordering parameter is primitive at the ontological level; operational spacetime is relational and is reconstructed by vortex matter.
     
     \subsection{Axiom 8: Density Saturation and Horn-Envelope Structure}
         
@@ -886,17 +2156,45 @@
         corresponds to configurations whose neutral circulation envelope reaches
         a structural normalization limit.
     
+    \subsection{Foundational Postulate: Material--Link Sector Separation}
+        \label{subsec:material_link_sector_separation_postulate}
+
+        \textbf{Statement.}
+        Source-free propagation of the relational link field does not change the
+        circulation or topology class of an unaffected material loop.  On every
+        smooth ideal branch,
+        \begin{align}
+            \Delta\Gamma_C
+            =
+            \Delta\oint_{C(T)}\mathbf v\cdot d\boldsymbol\ell
+            =0.
+            \label{eq:r_phase_helmholtz_sector_gate}
+        \end{align}
+        An exception requires an explicitly modeled matter--link source, boundary,
+        singularity, reconnection, or Kairos coupling.
+
+        \textbf{[FOUNDATIONAL POSTULATE / FALSIFIABLE].}
+        This is a constitutive sector-separation rule, not an identity derived from
+        compact \(U(1)\) gauge structure.  A deconfined link-field phase is necessary
+        for long-range radiation but is not identical to material circulation
+        preservation.  Any identification of a link-field defect current with a
+        material Kairos event requires a separate coupling law and defect test.
+
     \subsection{Logical Structure of the Axioms}
         
-        The axioms form a dependency hierarchy:
+        The axioms and foundational postulate form a dependency hierarchy:
         
-        \begin{align}
-            \text{Continuum}
-            \rightarrow \text{Vortex Structures}
-            \rightarrow \text{Quantization}
-            \rightarrow \text{Delay Dynamics}
-            \rightarrow \text{Mass/Energy Emergence}
-        \end{align}
+        \begin{equation}
+            \begin{aligned}
+                \text{Continuum}
+                &\rightarrow \text{Vortex Structures}
+                \rightarrow \text{Quantization}\\
+                &\rightarrow \text{Torsion Cone and Operational Spacetime}\\
+                &\rightarrow \text{Material--Link Sector Separation}
+                \rightarrow \text{Delay Dynamics}\\
+                &\rightarrow \text{Mass/Energy Emergence}.
+            \end{aligned}
+        \end{equation}
     
     \subsection{Minimality Principle}
         
@@ -1393,7 +2691,94 @@
         Deviation from this scaling excludes Eq.~\eqref{eq:zeta3_result}.
 
     \paragraph{Status.}
-        \textbf{Secondary derived result.} Valid under spectral assumptions; not a defining postulate.
+        \textbf{Secondary derived result.} Valid under spectral assumptions; not a defining postulate. The cubic weighting $\sum_n 1/\omega_n^3$ with $\omega_n\sim n$ yields $\zeta(3)$ for \emph{any} asymptotically linear spectrum; this is a generic calculus property $[\text{CALIBRATED}]$, not an SST-specific fluid-dynamical or topological invariant.
+
+    \paragraph{Closed-mode versus open-resonance guard.}
+        Equations~\eqref{eq:field_model}--\eqref{eq:dispersion} describe a closed,
+        conservative quadratic phase model with periodic boundary conditions.  They do
+        \emph{not} by themselves derive damped resonances, outgoing-flux conditions,
+        quasinormal modes, or a non-self-adjoint evolution generator.  The distinct
+        research programme for open or coarse-grained vortex response is therefore kept
+        in the companion research track as
+        \emph{quasinormal swirl spectroscopy}; see
+        Section~\ref{sec:rt_quasinormal_swirl_spectroscopy}.  That programme imports
+        operator and resonance methodology only.  It does not import Kerr geometry,
+        event horizons, or Einstein dynamics into SST.
+
+\subsection{Bounded-Domain Curl-Spectrum Benchmarks}
+    \label{subsec:bounded_domain_curl_spectrum}
+
+    \textbf{[ORTHODOX / SPECTRAL BENCHMARK].}
+    Let \(\Omega\subset\mathbb{R}^3\) be a smooth bounded domain and let
+    \(\mathbf{V}\) be divergence-free and tangent to \(\partial\Omega\).  In the
+    bounded-domain curl eigenproblem
+    \begin{align}
+        \nabla\times\mathbf{V}
+        &=
+        \kappa_{\rm curl}\mathbf{V},
+        &
+        \nabla\cdot\mathbf{V}&=0,
+        &
+        \mathbf{V}\cdot\mathbf{n}\big|_{\partial\Omega}&=0,
+        \label{eq:canon_curl_eigenproblem}
+    \end{align}
+    the smallest positive eigenvalue is a property of the complete domain and its
+    boundary conditions, not of the centreline alone
+    \cite{CantarellaDeTurckGluckTeytel2000CurlSpherical}.
+
+    For a ball \(B_b^3\) of radius \(b\),
+    \begin{align}
+        \kappa_1(B_b^3)
+        &=
+        \frac{x_1}{b},
+        &
+        \tan x_1&=x_1,
+        &
+        x_1&=4.493409458\ldots,
+        \label{eq:canon_ball_curl_eigenvalue}
+    \end{align}
+    with multiplicity three.  For a concentric spherical shell
+    \(B^3(a,b)=\{a<r<b\}\), the first positive eigenvalue is the smallest positive
+    root of
+    \begin{align}
+        J_{3/2}(a\kappa)Y_{3/2}(b\kappa)
+        -
+        J_{3/2}(b\kappa)Y_{3/2}(a\kappa)
+        =0.
+        \label{eq:canon_shell_curl_eigenvalue}
+    \end{align}
+
+    In the normalization
+    \begin{align}
+        \mathscr E_V
+        &=
+        \int_\Omega |\mathbf{V}|^2\,d^3x,
+        &
+        \mathscr H_V
+        &=
+        \left\langle
+        \mathbf{V},\operatorname{BS}_{K(\Omega)}\mathbf{V}
+        \right\rangle_{L^2},
+    \end{align}
+    a curl eigenfield satisfies
+    \begin{align}
+        \mathscr E_V
+        =
+        \kappa_{\rm curl}\mathscr H_V,
+        \qquad
+        \frac{\mathscr H_V}{\mathscr E_V}
+        =
+        \frac{1}{\kappa_{\rm curl}}.
+        \label{eq:canon_helicity_capacity_relation}
+    \end{align}
+
+    \textbf{[CANON / SCOPE GUARD].}
+    Equations~\eqref{eq:canon_ball_curl_eigenvalue} and
+    \eqref{eq:canon_shell_curl_eigenvalue} are exact benchmarks only for the stated
+    filled spherical domains.  The constant \(4.493409458\ldots\) is not a universal
+    SST particle constant, the distinguished central orbit of the eigenfield is not
+    an independently resolved vortex core, and neither formula determines
+    \(a_{\rm core}\) or \(r_{\rm horn}\) for a knotted tube.
 
 \subsection{Symmetry-Sensitive Dark-Knot Classification}
     \label{subsec:dark_knot_classification}
@@ -1472,6 +2857,26 @@
             \label{eq:vector_wave_Aeff}
         \end{align}
 
+        \textbf{[CANONICAL FOUNDATIONAL IDENTIFICATION].}
+        The photon-sector R-phase excitation is identified with the transverse torsion pulse used by vortex matter to define the local invariant speed. Therefore the low-energy, locally measured propagation speed satisfies
+        \begin{align}
+            c_\gamma=c_T=c.
+            \label{eq:r_phase_operational_light_speed}
+        \end{align}
+        Within the quadratic bridge model this fixes the target stiffness
+        \begin{align}
+            K_\gamma
+            =
+            \rhoF c^2
+            =
+            6.3\times10^{10}\ \mathrm{Pa}.
+            \label{eq:r_phase_torsion_stiffness_target}
+        \end{align}
+        Equation~\eqref{eq:r_phase_torsion_stiffness_target} is dimensionally a shear/torsion stiffness target. Substituting the measured value of~\(c\) calibrates the bridge; it is not yet a microscopic derivation of~\(K_\gamma\).
+
+        \textbf{[NO-ACOUSTIC-MODE GUARD].}
+        The speed \(c_\gamma\) is not an ordinary sound speed. In the exact incompressible SST substrate, density compression is excluded and pressure enforces a constraint on each foliation slice. The luminal branch belongs to the independent transverse torsion/director sector represented by \(\mathbf A_{\mathrm{eff}}\) \cite{BarceloLiberatiVisser2026}.
+
         Define
 
         \begin{align}
@@ -1493,6 +2898,36 @@
 
         \textbf{[SPECULATIVE IDENTIFICATION]}: SST identifies $\mathbf{A}_{\mathrm{eff}}$ with a coarse-grained torsional or director displacement field of the medium.
 
+
+        \paragraph{Relational link--field interpretation.}
+        \textbf{[CANON / RESEARCH-TRACK INTERFACE].}
+        The fundamental torsional degree of freedom is assigned to the dynamical
+        connection between neighbouring substrate elements, rather than to a
+        necessary net local rotation of either endpoint.  At a microscopic level
+        an oriented link $e=(i\!\to\!j)$ carries a relative phase or twist variable
+        $\vartheta_e$, with reversal of orientation giving
+        $\vartheta_{\bar e}=-\vartheta_e$ modulo the phase period.  The continuum
+        field $\mathbf A_{\mathrm{eff}}$ is retained as a normalized infrared
+        representative of this link connection; it is not identified with the
+        material Euler vorticity $\nabla\times\mathbf v$.
+
+        The quadratic action in Eq.~\eqref{eq:rad_lagrangian} is therefore retained
+        as the long-wavelength bridge, while its microscopic completion is assigned
+        to the compact relational link action in
+        Section~\ref{sec:rt_minimal_link_field_action}.  Ordinary R-phase
+        propagation changes link holonomy and transports torsional energy, but it
+        does not by itself switch a substrate element between the material sectors
+        $\boldsymbol\zeta=0$ and $\boldsymbol\zeta\neq0$.
+
+        \textbf{[ORTHODOX STRUCTURAL TEMPLATE / COULOMB-PHASE CONDITIONAL].}
+        The weak-field Maxwell-form continuum equations of compact \(U(1)\) link
+        theory are orthodox lattice-gauge structure
+        \cite{Wilson1974,KogutSusskind1975,Kogut1979}.  Their interpretation as the
+        physical SST radiation sector remains conditional on a deconfined Coulomb
+        phase, a controlled continuum window, and an independently derived
+        matter--link coupling.
+
+
     \subsection{Photon / unknot sector}
 
         The minimal retained radiation picture is that an R-phase excitation is an unknotted, finite-duration torsional packet propagating in the field $\mathbf{A}_{\mathrm{eff}}$. At the Rosetta level this corresponds to a source-free transverse wave packet with dispersion inherited from Eq.~\eqref{eq:vector_wave_Aeff}.
@@ -1505,6 +2940,15 @@
         It is a phase/torsion support on a swirl-characteristic. A spacetime
         geodesic is only the orthodox comparison language for the coarse-grained
         propagation path.
+
+        \paragraph{Helmholtz-sector compatibility.}
+        Define material Euler vorticity by
+        \begin{align}
+            \boldsymbol{\zeta}
+            :=
+            \nabla\times\mathbf v .
+        \end{align}
+        The torsion/director curl \(\nabla\times\mathbf A_{\mathrm{eff}}\) is not identified with the creation of new material Euler vorticity.  On a smooth ideal branch, an R-phase pulse may transport energy, phase, and polarization only while satisfying the foundational material--link separation rule, Eq.~\eqref{eq:r_phase_helmholtz_sector_gate}, for every unaffected material loop~\(C(T)\).  Thus propagation through an initially irrotational material region must not leave behind a permanent transition from \(\boldsymbol\zeta=0\) to \(\boldsymbol\zeta\neq0\). Such a transition requires an explicitly modeled source, boundary, singularity, reconnection, or Kairos coupling; it is not ordinary photon propagation.
 
     \subsection{R-to-T closure threshold and conservation bookkeeping}
         \label{subsec:rt_closure_threshold_bookkeeping}
@@ -1601,6 +3045,184 @@
 
         \textbf{[DERIVED] Observables / falsifiers:} (i) consistency of a pressure profile reconstructed from archived $v_\theta(r)$ with the radial gradient implied by \eqref{eq:swirl_pressure_law}; (ii) null test: systematic sign or scale mismatch of the reconstructed $dp_{\mathrm{swirl}}/dr$ relative to $v_\theta^2/r$ across validated radial windows excludes the applicability of the balance in those windows.
 
+    \subsection{Lorentz-Type Force Density as Swirl Stress}
+    \label{sec:lorentz_type_force_density_as_swirl_stress}
+
+        \paragraph{Status labels.}
+        The vector identity used in this section is \textbf{[ORTHODOX]}.  The
+        definition of the swirl-force density is \textbf{[DERIVED]} as a hydrodynamic
+        force-density structure.  The numerical SST scales are \textbf{[CALIBRATED]}
+        with respect to the canonical constants
+        \(\rhoF\), \(\rc\), and \(\vchar\).
+        No microscopic electromagnetic element-force law is canonized here.
+
+        \paragraph{Hydrodynamic identity.}
+        For incompressible inviscid flow,
+        \[
+        \nabla\cdot\mathbf v=0,
+        \qquad
+        \boldsymbol{\omega}=\nabla\times\mathbf v .
+        \]
+        The convective acceleration satisfies the exact identity
+        \[
+        (\mathbf v\cdot\nabla)\mathbf v
+        =
+        \nabla\!\left(\frac12|\mathbf v|^2\right)
+        -
+        \mathbf v\times\boldsymbol{\omega}.
+        \]
+        Equivalently,
+        \[
+        \boxed{
+        \mathbf v\times\boldsymbol{\omega}
+        =
+        \nabla\!\left(\frac12|\mathbf v|^2\right)
+        -
+        (\mathbf v\cdot\nabla)\mathbf v .
+        }
+        \]
+        This provides the hydrodynamic structure behind a Lorentz-type transverse
+        force-density term.
+
+        \paragraph{Swirl-force density.}
+        SST defines the local swirl-force density
+        \[
+        \boxed{
+        \mathbf f_{\circlearrowleft}
+        =
+        \rhoF\mathbf v\times\boldsymbol{\omega}.
+        }
+        \]
+        Its dimensional consistency is
+        \[
+        [\rhoF\mathbf v\times\boldsymbol{\omega}]
+        =
+        \mathrm{kg\,m^{-3}}\,
+        \mathrm{m\,s^{-1}}\,
+        \mathrm{s^{-1}}
+        =
+        \mathrm{N\,m^{-3}},
+        \]
+        as required for a force density.
+
+        \paragraph{Bernoulli relation and sign convention.}
+        The scalar quantity
+        \[
+        p_{\circlearrowleft}
+        =
+        \frac12\rhoF|\mathbf v|^2
+        \]
+        is the dynamic swirl-pressure scale.  It should not be confused with the
+        static pressure, which decreases in high-swirl regions in the usual
+        Bernoulli sense.  For stationary Euler flow with constant
+        \(\rhoF\) and no external body force,
+        \[
+        \rhoF(\mathbf v\cdot\nabla)\mathbf v
+        =
+        -\nabla p_{\mathrm{stat}} .
+        \]
+        Using the identity above gives
+        \[
+        \boxed{
+        \rhoF\mathbf v\times\boldsymbol{\omega}
+        =
+        \nabla\!\left(
+        p_{\mathrm{stat}}
+        +
+        \frac12\rhoF|\mathbf v|^2
+        \right).
+        }
+        \]
+        Thus the swirl-force density is canonically tied to the gradient of total
+        Euler pressure, not to an independently postulated electromagnetic force law.
+
+        \paragraph{Closed-loop observables.}
+        SST assigns canonical status to integrated and topological observables rather
+        than to a unique microscopic segment-to-segment force kernel.  The canonical
+        loop observables include circulation,
+        \[
+        \Gamma
+        =
+        \oint_C \mathbf v\cdot d\boldsymbol{\ell},
+        \]
+        helicity,
+        \[
+        H
+        =
+        \int_V \mathbf v\cdot\boldsymbol{\omega}\,d^3x,
+        \]
+        and the Gauss linking number,
+        \[
+        Lk(C_1,C_2)
+        =
+        \frac{1}{4\pi}
+        \oint_{C_1}\oint_{C_2}
+        \frac{
+        (d\mathbf x_1\times d\mathbf x_2)\cdot(\mathbf x_1-\mathbf x_2)
+        }{
+        |\mathbf x_1-\mathbf x_2|^3
+        }.
+        \]
+        Distinct local force kernels may yield identical closed-loop observables.
+        Therefore SST canonizes circulation, helicity, linking number, pressure
+        differences, and net forces, but not a unique microscopic electromagnetic
+        element-force law.
+
+        \paragraph{Canonical scales.}
+        Using the canonical SST constants
+        \[
+        \vchar
+        =
+        1.09384563\times10^6\,\mathrm{m\,s^{-1}},
+        \qquad
+        \rc
+        =
+        1.40897017\times10^{-15}\,\mathrm m,
+        \qquad
+        \rhoF
+        =
+        7.0\times10^{-7}\,\mathrm{kg\,m^{-3}},
+        \]
+        the natural circulation scale is
+        \[
+        \Gamma_0
+        =
+        2\pi \rc\vchar
+        =
+        9.68361920\times10^{-9}\,\mathrm{m^2\,s^{-1}}.
+        \]
+        The associated dynamic swirl-pressure scale is
+        \[
+        p_{\circlearrowleft,0}
+        =
+        \frac12\rhoF\vchar{}^2
+        =
+        4.1877439\times10^{5}\,\mathrm{Pa}.
+        \]
+        This value is the canonical SST stress scale for Lorentz-type
+        force-density analogies and coincides with the calibrated source-pressure
+        scale used in the swirl-pressure sector.
+
+        \paragraph{Canonical conclusion.}
+        The canonized result is not a replacement of Maxwell--Lorentz electrodynamics.
+        The canonized result is the hydrodynamic statement that a Lorentz-type
+        transverse force-density structure has the exact SST form
+        \[
+        \boxed{
+        \mathbf f_{\circlearrowleft}
+        =
+        \rhoF\mathbf v\times\boldsymbol{\omega}
+        =
+        \rhoF
+        \nabla\!\left(\frac12|\mathbf v|^2\right)
+        -
+        \rhoF(\mathbf v\cdot\nabla)\mathbf v .
+        }
+        \]
+        Accordingly, magnetic-type force densities in SST are interpreted as
+        effective projections of pressure, vorticity, and closed-loop topology in the
+        substrate.
+
     \subsection{Minimal effective Lagrangian bridge}
 
         A compact field-theoretic summary retaining the clock, radiation, and matter sectors is
@@ -1634,14 +3256,14 @@
         For a closed vortex filament of effective length $L$ and characteristic propagation speed $\vchar$, the circulation time is defined as:
         
         \begin{align}
-            \tau = \frac{L}{\vchar}
+            \tau_{\rm circ}(K) = \frac{L_K}{\vchar}
             \label{eq:delay_time}
         \end{align}
         
         In the special case of a minimal closed loop associated with the neutral circulation scale, this reduces to:
         
         \begin{align}
-            \tau_c = \frac{2\pi \rc}{\vchar} = \frac{2\pi}{\omega_c}
+            \tau_{\rm circ,c} = \frac{2\pi \rc}{\vchar} = \frac{2\pi}{\omega_c}
             \label{eq:compton_delay}
         \end{align}
         
@@ -1654,7 +3276,7 @@
         We model the phase $\phi(t)$ of a circulating excitation as a delayed self-interacting oscillator:
         
         \begin{align}
-            \dot{\phi}(t) = \omega_0 + \kappa \sin\big(\phi(t - \tau) - \phi(t)\big)
+            \dot{\phi}(t) = \omega_0 + \kappa \sin\big(\phi(t - \tau_{\rm circ}) - \phi(t)\big)
             \label{eq:delay_phase}
         \end{align}
         
@@ -1670,14 +3292,14 @@
             \phi(t) = \Omega t
         \end{align}
         
-        Substituting into Eq.~\ref{eq:delay_phase} yields $\phi(t-\tau)-\phi(t)=-\Omega\tau$, hence:
+        Substituting into Eq.~\ref{eq:delay_phase} yields $\phi(t-\tau_{\rm circ})-\phi(t)=-\Omega\tau_{\rm circ}$, hence:
         
         \begin{align}
-            \Omega = \omega_0 - \kappa \sin(\Omega \tau)
+            \Omega = \omega_0 - \kappa \sin(\Omega \tau_{\rm circ})
             \label{eq:mode_condition}
         \end{align}
         
-        This transcendental equation admits a discrete set of stable solutions $\Omega_n$ determined by the delay parameter $\tau$. The sign convention is not physically unique---one may absorb it into $\kappa$ or reverse the delay argument---but the displayed form is the direct consequence of Eq.~\eqref{eq:delay_phase} as written.
+        This transcendental equation admits a discrete set of stable solutions $\Omega_n$ determined by the delay parameter $\tau_{\rm circ}$. The sign convention is not physically unique---one may absorb it into $\kappa$ or reverse the delay argument---but the displayed form is the direct consequence of Eq.~\eqref{eq:delay_phase} as written.
         
         \textbf{[CONDITIONAL DERIVED]}: Given the effective DDE ansatz of Eq.~\eqref{eq:delay_phase}, the delayed feedback equation admits discrete locked branches. The claim that the SST medium obeys this specific DDE remains a bridge assumption, not a first-principles Euler theorem.
     
@@ -1698,7 +3320,7 @@
         To connect with field-theoretic descriptions, we extend the delay mechanism to a nonlinear Schrödinger framework:
         
         \begin{align}
-            i \hbar \partial_t \psi = -\frac{\hbar^2}{2m} \nabla^2 \psi + F_{\text{delay}}[\psi(t - \tau)]
+            i \hbar \partial_t \psi = -\frac{\hbar^2}{2m} \nabla^2 \psi + F_{\text{delay}}[\psi(t - \tau_{\rm circ})]
         \end{align}
         
         where the delayed functional introduces temporal nonlocality into the field evolution.
@@ -1707,7 +3329,7 @@
     
     \subsection{Physical Interpretation}
         
-        The delay $\tau$ acts as:
+        The delay $\tau_{\rm circ}$ acts as:
         
         \begin{itemize}
             \item a memory kernel
@@ -1749,7 +3371,7 @@
 
         Define the effective coupling scale
         \begin{align}
-            \Lambda_{\mathrm{SST}} = 4\pi \, \rhocore \, \vchar^{2} \, \rc^{4}
+            \Lambda_{\mathrm{SST}} = 4\pi \, \rhocore \, \vchar{}^{2} \, \rc^{4}
             \label{eq:lambda_sst}
         \end{align}
         with dimensions
@@ -1783,6 +3405,8 @@
         \end{align}
         
         \textbf{[BRIDGE ANSATZ]}: This is an orthodox-operator perturbation template whose coefficient depends on the SST circulation amplitude $\gamma(r,t)$. Because \(\hat L_z\) is imported from the standard quantum Hamiltonian, Eq.~\eqref{eq:sst_correction} is not a first-principles derivation of quantum angular momentum from the substrate.
+
+        \textbf{[CRITICAL NOTE]}: The fractional shift scales as $\delta E_n/E_n \sim \eta_0\gamma=(\alpha/2)\gamma$. With $\gamma=\mathcal{O}(1)$ this is $\mathcal{O}(\alpha)$, far larger than the orthodox fine-structure splitting $\mathcal{O}(\alpha^2)$ (fractional). Compatibility with the atomic spectroscopy bounds (Sec.~7) therefore requires $\gamma$ to be $\alpha$-suppressed; this suppression is not yet derived.
 
     \subsection{Circulation source chain}
         The atomic perturbation is not introduced as an arbitrary extra scalar, but is intended to descend from a circulation-bearing source chain,
@@ -2197,21 +3821,222 @@
     \section{Relational Time Framework}
         \label{sec:time}
 
-    \subsection{Swirl-Clock and local proper time}
-        The canonical time variable of SST is not introduced as an independent primitive. It is defined relationally from the local kinematic state of the medium through the Swirl-Clock already introduced in Eq.~\eqref{eq:swirl_clock}. In its coarse-grained form,
+    \subsection{Canonical Time Ontology}
+        \label{subsec:canonical_time_ontology}
+
+        \paragraph{Status.}
+        \textbf{[CANON / SEMANTIC ORGANIZATION].}
+        This subsection fixes the time-language of SST.  It does not introduce a
+        new dynamical postulate.  Its purpose is to prevent the absolute foliation
+        parameter, laboratory time, local proper time, carrier loop time, the
+        Swirl-Clock factor, and Kairos transition events from being conflated.
+
+        \paragraph{No bare-\(\tau\) convention.}
+        Because SST uses both relativistic local clock accumulation and finite
+        circulation delay, the unqualified symbol \(\tau\) is avoided in mixed
+        contexts.  Circulation delay is denoted by
+        \(\tau_{\rm circ}\), while local proper time carried by a localized
+        process \(A\) is denoted by \(\tau_A\) or \(\tau_{\rm loc}\).
+
+        \paragraph{Absolute foliation time.}
+        The symbol \(T\) denotes the global foliation parameter of the
+        incompressible SST substrate.  Each value of \(T\) labels a constraint
+        slice
         \begin{align}
-            dt_{\mathrm{loc}} = S_{(t)}(x)\,dt_{\infty},
-            \qquad
-            S_{(t)}(x)=\sqrt{1-\frac{v(x)^2}{c^2}}.
+            \Sigma_T .
         \end{align}
-        Here $t_{\infty}$ denotes the asymptotic laboratory time and $t_{\mathrm{loc}}$ the effective proper time associated with a localized process in the medium. In SST, this factor is interpreted as a fluid-kinematic clock field rather than as a purely geometric spacetime postulate.
+        The pressure field and incompressibility constraint are reconstructed on
+        \(\Sigma_T\).  The parameter \(T\) is bookkeeping time for the medium
+        foliation; it is not by itself a local clock reading.  This foliation
+        \(T\) is distinct from the coarse-grained clock field \(T(x)\) introduced
+        later in relational observables from conserved currents.
+
+        \paragraph{External comparison time.}
+        The symbol \(t_{\infty}\) denotes asymptotic laboratory time or external
+        comparison time.  It is the time coordinate used when matching SST clock
+        predictions to standard relativistic observables.  In weakly perturbed
+        laboratory settings one may identify \(t_{\infty}\) with \(T\), but the
+        distinction should be retained whenever local clock rates are being
+        discussed.
+
+        \paragraph{Swirl-Clock factor.}
+        The local Swirl-Clock factor is the dimensionless rate-conversion field
+        already defined in Eq.~\eqref{eq:swirl_clock}:
+        \begin{align}
+            \SwirlClock(x,T)
+            =
+            \sqrt{
+                1
+                -
+                \frac{
+                    \left\|
+                    \uswirl(x,T)
+                    \right\|^2
+                }{c^2}
+            } .
+            \label{eq:canonical_time_ontology_swirl_clock}
+        \end{align}
+        It is not a duration.  It converts the foliation rate into the local
+        proper-clock rate of a resolved carrier or process.
+
+        \paragraph{Local proper time.}
+        The symbol \(\tau_A\) (or \(\tau_{\rm loc}\)) denotes local proper clock time.  Along a localized
+        carrier \(A\),
+        \begin{align}
+            d\tau_A
+            =
+            \SwirlClock[A;T]\,dT .
+            \label{eq:canonical_time_ontology_local_tau}
+        \end{align}
+        Thus two localized carriers \(A\) and \(B\) may share the same foliation
+        slice \(\Sigma_T\) while accumulating different proper times:
+        \begin{align}
+            \frac{d\tau_A}{dT}=\SwirlClock[A;T],
+            \qquad
+            \frac{d\tau_B}{dT}=\SwirlClock[B;T],
+            \qquad
+            \frac{d\tau_C}{dT}=\SwirlClock[C;T].
+            \label{eq:absolute_T_local_tau_layers}
+        \end{align}
+
+        \paragraph{Operational coordinates of a vortex observer.}
+        Let Alice be a localized vortex observer. Her coordinate time \(t_A\) is assembled from a network of clocks identical to her local clock, synchronized by R-phase torsion-pulse exchange; at Alice's reference worldline, \(dt_A=d\tau_A\). Let \(\ell_A\) denote distance measured by an independently equilibrated vortex-matter ruler. The directly testable two-way propagation speed is
+        \begin{align}
+            c_A^{(2\mathrm w)}
+            =
+            \frac{2\ell_A}
+            {\tau_A^{\mathrm{recv}}-\tau_A^{\mathrm{emit}}}
+            =c.
+            \label{eq:canonical_time_vortex_radar_speed}
+        \end{align}
+        Once this local calibration is established, Alice assigns radar coordinates to a reflected event~\(E\) by
+        \begin{align}
+            t_A(E)
+            &=
+            \frac{\tau_A^{\mathrm{recv}}+\tau_A^{\mathrm{emit}}}{2},\\
+            \ell_A(E)
+            &=
+            \frac{c}{2}
+            \left(
+                \tau_A^{\mathrm{recv}}-\tau_A^{\mathrm{emit}}
+            \right).
+            \label{eq:canonical_time_vortex_radar_coordinates}
+        \end{align}
+
+        \paragraph{Alice--Bob space--time mixing.}
+        Let Bob move uniformly relative to Alice with operationally measured speed \(u_{AB}\), and define
+        \begin{align}
+            \beta_{AB}=\frac{u_{AB}}{c},
+            \qquad
+            \gamma_{AB}=\frac{1}{\sqrt{1-\beta_{AB}^2}}.
+        \end{align}
+        In the shared infrared torsion-cone limit, their operational coordinates obey
+        \begin{align}
+            ct_B
+            &=
+            \gamma_{AB}
+            \left(ct_A-\beta_{AB}x_A\right),\\
+            x_B
+            &=
+            \gamma_{AB}
+            \left(x_A-\beta_{AB}ct_A\right),
+            \label{eq:canonical_time_alice_bob_lorentz_map}
+        \end{align}
+        with
+        \begin{align}
+            -c^2dt_A^2+dx_A^2
+            =
+            -c^2dt_B^2+dx_B^2.
+            \label{eq:canonical_time_alice_bob_interval}
+        \end{align}
+        Equations~\eqref{eq:canonical_time_alice_bob_lorentz_map}--\eqref{eq:canonical_time_alice_bob_interval} formalize the statement that space and time form one operational Lorentz structure: a change of relative motion mixes their coordinate components. SST does not interpret this as proof that the substrate itself lacks a preferred ordering parameter; rather, it requires that the preferred foliation be operationally hidden at low energy when clocks, rulers, and signals are all dressed by the same torsion sector.
+
+        \textbf{[PREFERRED-FRAME FALSIFIER].}
+        If an Alice--Bob experiment depends separately on Alice's or Bob's velocity relative to the substrate, rather than only on \(u_{AB}\), then exact operational Lorentz invariance fails. The allowed residual is constrained by preferred-frame experiments and must vanish in the exact monometric limit.
+
+        \paragraph{Proper loop or turnover time.}
+        The symbol \(\tau_{\rm circ}\) denotes a carrier-internal circulation or
+        delay time.  For a loop of resolved length \(L_K\),
+        \begin{align}
+            \tau_{\rm circ}(K)
+            =
+            \frac{L_K}{\vchar}.
+            \label{eq:canonical_time_ontology_loop_time}
+        \end{align}
+        At the canonical core scale this reduces to
+        \begin{align}
+            \tau_{\rm circ,c}
+            =
+            \frac{2\pi \rc}{\vchar}
+            =
+            \frac{2\pi}{\omega_c}.
+        \end{align}
+        The turnover time \(\tau_{\rm circ}\) counts internal circulation cycles; it is
+        therefore distinct from the dimensionless Swirl-Clock factor \(\SwirlClock\).
+
+        \paragraph{Kairos transition event.}
+        A Kairos event is not a continuous clock variable.  It is a discrete
+        topological transition marker,
+        \begin{align}
+            \mathcal{K}_{\rm Kairos}:
+            K_-
+            \longrightarrow
+            K_+ ,
+            \label{eq:canonical_time_ontology_kairos}
+        \end{align}
+        used when a process changes topological sector, chirality class, closure
+        state, or reconnection class.  It may occur at some foliation value \(T\),
+        but it is not itself a time coordinate.
+
+        \paragraph{Summary schema.}
+        \begin{center}
+        \begin{tabular}{lll}
+        \hline
+        Layer & Symbol & Role \\
+        \hline
+        Foliation slice & \(\Sigma_T\) & global incompressible constraint slice \\
+        Absolute foliation time & \(T\) & ordering parameter of the substrate \\
+        External comparison time & \(t_{\infty}\) & laboratory/asymptotic comparison time \\
+        Swirl-Clock factor & \(\SwirlClock\) & dimensionless local rate conversion \\
+        Local proper time & \(\tau_A\), \(\tau_{\rm loc}\) & accumulated local clock time \\
+        Operational chart & \((t_A,\ell_A)\) & local radar coordinates \\
+        Loop/circulation delay & \(\tau_{\rm circ}\) & internal circulation period \\
+        Kairos event & \(\mathcal{K}_{\rm Kairos}\) & discrete topological transition \\
+        \hline
+        \end{tabular}
+        \end{center}
+
+        \paragraph{Units guard.}
+        \(\SwirlClock\) is dimensionless; \(T\), \(t_{\infty}\), \(\tau_A\), and
+        \(\tau_{\rm circ}\) have units of time; \(\mathcal{K}_{\rm Kairos}\) is an
+        event, not a coordinate.
+
+    \subsection{Swirl-Clock and local proper time}
+        Section~\ref{subsec:canonical_time_ontology} fixes the time-language of SST.
+        The canonical time variable is not introduced as an independent primitive. It is defined relationally from the local kinematic state of the medium through the Swirl-Clock already introduced in Eq.~\eqref{eq:swirl_clock}. In its coarse-grained form,
+        \begin{align}
+            d\tau_{\rm loc} = \SwirlClock(x)\,dt_{\infty},
+        \end{align}
+        consistent with Eq.~\eqref{eq:canonical_time_ontology_local_tau}.  Here $t_{\infty}$ denotes the asymptotic laboratory time and $\tau_{\rm loc}$ the effective proper time associated with a localized process in the medium. In SST, this factor is interpreted as a fluid-kinematic clock response. Operational special relativity requires the corresponding vortex-ruler response and R-phase torsion propagation to be governed by the same infrared cone; time dilation alone is insufficient to derive invariant local~\(c\).
+
+        \paragraph{No-signalling research-track note.}
+        The pressure field \(p_{\swirlarrow}(\mathbf{x},T)\) is a constraint
+        field on \(\Sigma_T\).  Its elliptic reconstruction may be instantaneous
+        in the \(T\)-bookkeeping sense, but this does not by itself define an
+        operational superluminal signal channel.  Observable clock and photon
+        phases are read through the local Swirl--Clock projection
+        \(d\tau_A/dT=\SwirlClock[A;T]\).  The no-signalling status of the pressure
+        constraint is a research-track theorem target, not an assumed device
+        capability.
 
     \subsection{Carrier-local clocking and the turnover scale}
         For localized carriers the natural microscopic rate is the turnover frequency
         \begin{align}
             \Omega_0 = \frac{\vchar}{\rc} = \omega_c,
         \end{align}
-        which coincides with the Compton anchoring scale. A complete SST clock description therefore involves two linked but distinct levels:
+        which coincides with the Compton anchoring scale and satisfies
+        \(\tau_{\rm circ,c}=2\pi/\omega_c\) (Eq.~\eqref{eq:compton_delay}).
+        A complete SST clock description therefore involves two linked but distinct levels:
         \begin{itemize}
             \item the \emph{microscopic turnover scale} $\Omega_0$, which counts circulation cycles of the carrier,
             \item the \emph{coarse-grained Swirl-Clock} $S_{(t)}$, which relates local rates to asymptotic time.
@@ -2331,6 +4156,45 @@
         \textbf{[ORTHODOX] Constraint}: any SST realization employing the EFT bridge of Eq.~\eqref{eq:clock_sector_action}
         must preserve Eq.~\eqref{eq:c13_constraint}.
 
+    \subsection{Internal Tensor-Speed Naturalness}
+    \label{subsec:tensor_speed_naturalness}
+
+        \textbf{[DERIVED, conditional]} In the clock-field / Einstein--\AE ther
+        comparison layer, the spin-2 tensor-mode speed is conventionally written as
+        \begin{align}
+            c_T^2
+            =
+            \frac{c^2}{1-c_{13}},
+            \qquad
+            c_{13}:=c_1+c_3 .
+            \label{eq:eaether_tensor_speed}
+        \end{align}
+        Multimessenger observations require \(c_T=c\) to high precision and therefore
+        impose \(c_{13}\simeq 0\) observationally \cite{Monitor2017,Abbott2017GW170817}. In SST there is a stronger conditional
+        interpretation: if the metric tensor mode of the coarse-grained clock-field
+        sector is identified with the transverse excitation mode of the underlying
+        medium, and if \(c\) is the canonical transverse propagation speed of that
+        medium, then
+        \begin{align}
+            c_T=c
+            \quad\Longrightarrow\quad
+            c_{13}=0 .
+            \label{eq:c13_internal_identity}
+        \end{align}
+
+        \textbf{Status.} Equation~\eqref{eq:c13_internal_identity} is not an
+        independent derivation of the Einstein--Hilbert dynamics. It is a conditional
+        mode-identification result inside the orthodox Einstein--\AE ther comparison
+        layer \cite{JacobsonMattingly2001,FosterJacobson2006}. Its canon role is to upgrade the luminal tensor-speed condition from a
+        purely external observational constraint to an internal naturalness condition,
+        provided the SST tensor-mode identification is valid.
+
+        \textbf{[CRITICAL NOTE]} The proposition applies only to the spin-2/tensor
+        sector. It does not by itself constrain the scalar and vector \AE{}-modes,
+        nor does it prove monometricity for all matter, gauge, and knot species. The
+        full monometricity target and the Einstein-dynamics routes are developed in the
+        research track (Relativity Emergence Ladder).
+
     \subsection{Interpretive Role in the Canon}
 
         This section has a deliberately limited role:
@@ -2383,6 +4247,32 @@
             \label{eq:emg_source_state}
         \end{align}
         The topological piercing density \(\varrho_{\swirlarrow}\) belongs to the electromagnetic impulse channel, while \(p_{\swirlarrow}\), \(\rhoM\), and \(\boldsymbol{\sigma}^{\mathrm{swirl}}\) belong to the force and gravity channel.
+
+        \textbf{[CANON / PREFACTOR GUARD]} The SI-normalized electromagnetic bridge, when invoked, uses the electron mass-to-charge factor
+        \begin{align}
+            \mathbf{A}_{\rm SI}
+            =
+            \frac{m_e}{e}\,\uswirl(\mathbf{x},t),
+            \qquad
+            \mathbf{B}_{\rm SST}
+            =
+            \nabla\times\mathbf{A}_{\rm SI}
+            =
+            \frac{m_e}{e}\,\boldsymbol{\omega}.
+            \label{eq:canonical_em_prefactor_guard}
+        \end{align}
+        The inverse factor \(e/m_e\) is rejected in this bridge because it has the wrong SI dimensions for mapping vorticity to magnetic flux density. At the Compton angular frequency this calibrated bridge gives
+        \begin{align}
+            B_{\rm core}^{\rm SST}
+            =
+            \frac{m_e}{e}\omega_c
+            =
+            \frac{m_e^2c^2}{e\hbar}
+            =
+            B_{\rm QED},
+            \label{eq:canonical_qed_field_guard}
+        \end{align}
+        while preserving the epistemic status of the result as a normalization bridge, not a derivation of QED from Euler dynamics.
 
         \paragraph{Electromagnetic projection.}
         The canonical topological electromagnetic impulse is
@@ -2481,7 +4371,7 @@
         The clock sector supplies the shared time-rate projection:
         \begin{align}
             \boxed{
-            \frac{d\tau}{dt}
+            \frac{d\tau_{\rm loc}}{dt_\infty}
             =
             \SwirlClock
             =
@@ -2506,6 +4396,38 @@
             \label{eq:canonical_gswirl_emg_closure}
         \end{align}
         Thus the EM--gravity bridge is not an unlabeled free-parameter assertion. However, because \(t_p\) already contains \(G\) in orthodox units, Eq.~\eqref{eq:canonical_gswirl_emg_closure} is a \textbf{[CALIBRATED]} electron-normalized consistency identity unless a future SST sector derives \(t_p\) or \(G_{\mathrm{swirl}}\) independently from medium dynamics.
+
+        \paragraph{Compton--horn reduction guard.}
+        Substituting the calibrated horn closure \(\rc=\vchar/\omega_c\) into Eq.~\eqref{eq:canonical_gswirl_emg_closure} gives
+        \begin{align}
+            G_{\mathrm{swirl}}
+            =
+            \frac{\omega_c c^3 t_p^2}{M_e}.
+            \label{eq:canonical_gswirl_compton_reduction}
+        \end{align}
+        With the orthodox definitions
+        \begin{align}
+            \omega_c=\frac{M_ec^2}{\hbar},
+            \qquad
+            t_p^2=\frac{\hbar G}{c^5},
+        \end{align}
+        Eq.~\eqref{eq:canonical_gswirl_compton_reduction} reduces identically to \(G\). This confirms that the electron-normalized bridge is algebraically closed under the v0.8.18 calibration chain, but it also fixes the epistemic status: the identity must not be cited as an independent derivation of Newton's constant unless \(t_p\), \(G_{\mathrm{swirl}}\), or the Compton--horn closure is derived without importing \(G\) through orthodox Planck units.
+
+        \textbf{[CANON / STATUS GUARD]} A dimensionless balance angle \(\phi_G\) may be introduced only as a research-track diagnostic of Eq.~\eqref{eq:canonical_gswirl_emg_closure}. Since the calibrated chain gives \(\tan^2\phi_G=1\), the associated \(45^\circ\) angle is a visualization of equal radial-confinement and tangential-swirl weighting, not a physical direction of gravitational force and not an additional gravitational law. See Sec.~\ref{sec:rt_compton_horn_balance_angle}.
+
+        \textbf{[ORTHODOX GR REPARAMETERIZATION].}
+        In orthodox units the electron Schwarzschild radius may be written as
+        \begin{align}
+            r_s(e)
+            =
+            \frac{2Gm_e}{c^2}
+            =
+            \frac{4\pi \ell_P^2}{\lambda_c},
+            \qquad
+            \ell_P=\sqrt{\frac{\hbar G}{c^3}}.
+            \label{eq:orthodox_rs_planck_reparam}
+        \end{align}
+        This is a standard GR identity and notational bridge. It does not derive \(G\) from SST medium dynamics.
 
         \paragraph{Dimensional checks.}
         The electromagnetic source term has units
@@ -2543,7 +4465,7 @@
         \paragraph{Numerical hierarchy.}
         At the canonical speed \(\vchar=1.09384563\times10^6\,\mathrm{m\,s^{-1}}\),
         \begin{align}
-            \frac{1}{2}\rhoF\vchar^2
+            \frac{1}{2}\rhoF\vchar{}^2
             &=
             4.1877439\times10^5\,\mathrm{Pa},
             \\
@@ -2621,6 +4543,61 @@
         plume or flame-like medium, \(\mathcal{R}_{\gamma}\) is an optical phase/caustic
         response, and \(\mathcal{R}_{\Pi}\) is a boundary-stress or elastic-shell response.
         The three modes may share a common source state but are not mutually identical.
+
+        \paragraph{Local Euler locking of pressure and optical projections.}
+        Under the additional assumptions of a passive, stationary, inviscid Euler
+        region with constant \(\rhoF\), the pressure and optical projections are not
+        independent.  Bernoulli reconstruction gives
+        \begin{align}
+            \delta p_{\mathrm{swirl}}
+            =
+            -\frac{1}{2}\rhoF\lVert\uswirl\rVert^2,
+        \end{align}
+        while the clock/optical closure gives
+        \begin{align}
+            n_\gamma
+            =
+            \left(
+                1-\frac{\lVert\uswirl\rVert^2}{c^2}
+            \right)^{-1/2}
+            =
+            1+\frac{\lVert\uswirl\rVert^2}{2c^2}
+            +O\!\left(\frac{\lVert\uswirl\rVert^4}{c^4}\right).
+        \end{align}
+        Eliminating \(\lVert\uswirl\rVert^2\) yields the parameter-free leading-order
+        locking relation
+        \begin{align}
+            \boxed{
+            \delta n_\gamma
+            =
+            -\frac{\delta p_{\mathrm{swirl}}}{\rhoF c^2}
+            }
+            \label{eq:canonical_pressure_optical_locking}
+        \end{align}
+        with validity restricted to the passive Euler regime.  Forcing, damping,
+        viscosity, thermal gradients, acoustic drive, plasma response, or explicit
+        Mode-I terms such as \(\Gamma_{\swirlarrow}\mathbf{u}_{\mathrm{plume}}\)
+        break the assumptions and move the prediction to the research-track transfer
+        model.  Thus the refined diagnostic statement is not three fully independent
+        channels, but two locally locked projections plus one nonlocal Poisson/bulk
+        response whenever Eq.~\eqref{eq:canonical_weak_gravity_closure} is invoked.
+
+        With \(\rhoF=7.0\times10^{-7}\,\mathrm{kg\,m^{-3}}\),
+        \begin{align}
+            \frac{1}{\rhoF c^2}
+            &=
+            1.58950008\times10^{-11}\,\mathrm{Pa^{-1}},
+            \\
+            \frac{1}{2}\rhoF\vchar{}^2
+            &=
+            4.1877439\times10^5\,\mathrm{Pa},
+            \\
+            \delta n_\gamma
+            &=
+            6.6565\times10^{-6}
+        \end{align}
+        at canonical swirl speed, consistent with Eq.~\eqref{eq:canonical_emg_numerical_hierarchy}.
+
         Therefore
         \begin{equation}
         \boxed{
@@ -2905,15 +4882,21 @@
     \subsection{Notation and density cleanup}
         Earlier canon versions sometimes conflated background density, mass-equivalent density, and saturated envelope-equivalent density. The present version adopts the cleaned hierarchy
         \begin{align}
-            \rhoF \quad \text{(effective fluid density)},
-            \qquad
-            \rhoE \quad \text{(swirl energy density)},
-            \qquad
-            \rhoM = \rhoE/c^2,
-            \qquad
-            \rhohorn \quad \text{(canonical saturated envelope-equivalent density)},
-            \qquad
-            \rhocore \quad \text{(legacy alias, deprecated unless explicitly defined)}.
+            \rhoF
+            &\quad \text{effective fluid density},
+            \nonumber\\
+            \rhoE
+            &\quad \text{swirl energy density},
+            \nonumber\\
+            \rhoM = \rhoE/c^2
+            &\quad \text{mass-equivalent density},
+            \nonumber\\
+            \rhohorn
+            &\quad \text{canonical saturated envelope-equivalent density},
+            \nonumber\\
+            \rhocore
+            &\quad \text{legacy alias, deprecated unless explicitly defined}.
+            \label{eq:density_symbol_roles}
         \end{align}
         Any older passage that identifies a single symbol with more than one of these roles is superseded by the present separation.
 
@@ -2935,12 +4918,34 @@
         The purpose of v0.8.1 is therefore not to maximize novelty per page, but to minimize duplication and to expose the dependency graph of the theory. Whenever two earlier canon fragments make the same structural claim in different language, the present version keeps one canonical form and demotes the others to historical context.
 
     \subsection{Research-track companion}
-        The sectors that are useful for continuity but too long or too speculative for a minimal main-canon reading are also collected in the companion file \texttt{canon-0.8.1-research-track.tex}. That excerpt includes the thermodynamic-radiation interface, the minimal-coupling QED analogy, the ribbon-invariant chirality refinement, the particle-candidate mapping layer, the hydrodynamic exchange / Pauli-barrier estimate, the numerical-benchmark policy block, the gauge-sector roadmap, and the \emph{dark-sector and galactic canonization execution package} (frozen topology toolkit, benchmark protocol template, Euler-pressure anchor details, galactic branch gate, and probe--equation map). The integration subsections below retain the full in-context treatments with labels and cross-references; the companion file provides a portable standalone copy. Editorial separation does not reject these sectors; it prevents the core narrative from over-claiming closure.
+        Sectors that are useful for continuity but too long or too provisional for a minimal main-canon reading are collected in the companion research-track file of the current edition.  Its contents are versioned with the main canon; no historical filename or fixed contents list is normative.  The integration subsections below retain the in-context interfaces and cross-references, while the companion supplies the extended derivations, diagnostics, and research programmes.  Editorial separation does not reject these sectors; it prevents the core narrative from over-claiming closure.
+
+    \subsection{Research-track knot-energy normal form}
+        \label{sec:research_track_knot_energy_normal_form}
+
+        \paragraph{Status.}
+        \textbf{[RESEARCH TRACK / NON-DERIVED SCREENING FUNCTIONAL].}
+        The main canon does not assume a closed universal knot-energy functional beyond the calibrated constant chain and the explicitly derived hydrodynamic energy scales.  For classification and numerical screening, the research track uses the dimensionless normal form
+        \begin{equation}
+            \frac{E_{\rm eff}[K]}{E_0}
+            =
+            \alpha_C C(K)
+            +\alpha_L L(K)
+            +\alpha_H\widehat{\mathcal H}(K)
+            +\alpha_G I_G(K)
+            +\cdots,
+            \label{eq:research_track_energy_normal_form}
+        \end{equation}
+        where $C(K)$ denotes a crossing/contact-complexity proxy, $L(K)$ a ropelength or relaxed-length invariant, $\widehat{\mathcal H}(K)$ a nondimensional helicity measure, and $I_G(K)$ a scalar index extracted from a possible non-Abelian topological charge sector $Q_G(K)$.  The map
+        \begin{equation}
+            I_G:Q_G(K)\longrightarrow \mathbb R_{\ge 0}
+        \end{equation}
+        is required because $Q_G(K)$ is generally a sector label, not a real-valued energy contribution.  Equation~\eqref{eq:research_track_energy_normal_form} is therefore a research-track screening functional, not a derived SST Hamiltonian or mass theorem.
 
     \subsection{Dark-sector and galactic canonization status (v0.8.x)}
         \label{sec:dark-canonicalization-status}
 
-        This block records promotion labels for the dark-sector / galactic program consistent with the internal canonization plan. Detailed freezes, the mandatory benchmark-protocol checklist, the galactic profile branch gate (Branch~A: legacy-profile refine with benchmark traceability), and the probe falsification table live in \texttt{canon-0.8.1-research-track.tex} (Section titled \texttt{Dark-sector and galactic canonization execution package}).
+        This block records promotion labels for the dark-sector / galactic programme consistent with the internal canonization plan.  Detailed freezes, the mandatory benchmark-protocol checklist, the galactic profile branch gate, and the probe falsification table live in the companion research-track file of the current edition.
 
         \begin{table}[h]
         \centering
@@ -3082,7 +5087,7 @@
         \centering
         \caption{Minimal knot-class and analogue summary retained in v0.8.3, with current semantic corrections.}
         \label{tab:particle_candidate_mapping}
-        \begin{tabular}{lll}
+        \begin{tabularx}{\linewidth}{p{0.28\linewidth}p{0.22\linewidth}X}
         \hline
         Carrier / composition & Candidate role & Status / interpretation \\
         \hline
@@ -3094,7 +5099,7 @@
         triple-gear locked analogue & proton-like charged baryon analogue & mechanical model for nonzero exterior collective rotation \\
         Borromean-type analogue & neutron-like neutral baryon analogue & mechanical/topological model for zero exterior charge with internal triple linking \\
         \hline
-        \end{tabular}
+        \end{tabularx}
         \end{table}
 
         \textbf{[CRITICAL NOTE]}: Table~\ref{tab:particle_candidate_mapping} is a working dictionary only. Electric charge is not identified with raw Hopf helicity or pairwise linking number. The safer current placeholder is a boundary-winding charge variable $q_{\partial}$, while knot/link data supply mass, chirality, confinement, and internal topological structure.
@@ -3224,6 +5229,9 @@
 
         \textbf{[CRITICAL NOTE]} The gauge layer is retained in v0.8.1 only as a roadmap statement. Running couplings,
         anomaly cancellation, and realistic mixing matrices remain open work.
+
+        \paragraph{Research-track contact-channel guard.}
+        Any QCD-like factor-nine or confinement-sheet tension claim must be routed through the resolved colored contact-channel rank test in Sec.~\ref{sec:rt_colored_contact_rank_nine}.  In the core canon this remains \textbf{[RESEARCH TRACK / MATCHING DIAGNOSTIC]}: the number is not inferred from \(\dim SU(3)=8\), nor from a fitted hadronic scale, but only from a future positive-rank condition on the finite-thickness contact-stress matrix.
 
     \section{Discussion and Limits}
         \label{sec:discussion}
@@ -3371,7 +5379,61 @@
 % ================================================================================= %
 \newpage
 \section*{Appendices}
+    \addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+    \setcounter{tocdepth}{1}
     \appendix
+
+    \section{Historical Notebook and Proto-Canon Provenance Register}
+    \label{sec:appendix_historical_provenance}
+
+    \subsection{Purpose and authority}
+    This register preserves the traceable origin of active SST questions without
+    assigning evidential authority to age or priority.  Notebook pages and early
+    synthesis documents are primary historical sources; current definitions,
+    status labels, and normative claims are determined only by the MAIN Canon.
+    The complete page-level inventory is maintained as a supporting ledger, while
+    this appendix records the stable source classes and the conclusions that have
+    survived into the present architecture.
+
+    \begin{center}
+    \begin{tabularx}{0.96\textwidth}{@{}>{\bfseries}p{0.19\textwidth}p{0.26\textwidth}X@{}}
+    \toprule
+    Source class & Stable identifier & Canonical use \\
+    \midrule
+    Primary notebook & \texttt{NB2012-Pxxx} & Earliest surviving sketches, equations, and local reasoning. Read as \texttt{[ORIGIN]}, not as current derivation. \\
+    Partial later notebook & \texttt{NB2013-Pxxx}, \texttt{NB2014-Pxxx} & Development of transition geometry, toroidal fields, relative rotation, impedance, circulation, and vorticity. \\
+    Proto-Canon & \texttt{DOC2013-CANON-001} & First synthesis of excitation speed, rotating mass, the fine-structure speed ratio, and the capacitance route to the Planck relation. \\
+    Modern computational project & \texttt{PROJ2026-KNOTPLOT-RR-001} & KnotPlot seeds, topology sidecars, Ridgerunner constrained polishes, resampling, and near-ideal certification provenance. \\
+    Modern Canon & versioned \texttt{SST\_CANON-vX.Y.Z} & Sole normative source for active definitions, theorem status, calibration, predictions, and falsifiers. \\
+    \bottomrule
+    \end{tabularx}
+    \end{center}
+
+    \subsection{High-priority source concordance}
+    \begin{center}
+    \begin{tabularx}{0.96\textwidth}{@{}p{0.22\textwidth}p{0.33\textwidth}X@{}}
+    \toprule
+    Source anchor & Historical content & Current SST correspondence \\
+    \midrule
+    \texttt{NB2012-P002/P006/P017} & Free and bound wave structures; rotating matter; unification aim. & Free link-field packet versus bound vortex/link mode; mass as inertial response of a closed carrier. \\
+    \texttt{NB2012-P021--P025} & Lorentz transformations, speed ratios, transition geometry, and oscillator dynamics. & Operational Alice--Bob spacetime; Swirl-Clock; action-level propagation-speed target. \\
+    \texttt{NB2012-P044--P055} & Circulation, vortices, toroidal cores, and time/mass associated with rotation. & Euler-vorticity sector, finite-thickness carrier geometry, and relational clock response. \\
+    \texttt{NB2012-P069--P071} & Oscillator propagation speed, capacitance, vacuum response, and constant dependencies. & Link inertia/stiffness, constitutive response, impedance, and non-circularity ledger. \\
+    \texttt{NB2013-P010/P019/P045} & Transition dynamics, caution about numerical closure, and relative-rotation/time interpretation. & Transition-action research programme, calibration guard, and observer-dependent kinematics. \\
+    \texttt{DOC2013-CANON-001} & First coherent constant-chain and excitation model. & Historical bridge only; inputs and algebra are audited before any prediction claim. \\
+    \texttt{PROJ2026-KNOTPLOT-RR-001} & Candidate generation, topology verification, constrained tightening, and mesh export. & Bound-mode geometry certification and input domain for a future response/impedance operator. \\
+    \bottomrule
+    \end{tabularx}
+    \end{center}
+
+    \subsection{Preservation and correction policy}
+    Historical formulas are preserved in their original role and may be quoted
+    under \texttt{[ORIGIN]} or \texttt{[HISTORICAL BRIDGE]}. Algebraic,
+    dimensional, or physical corrections are written beside them rather than
+    silently substituted backward into the source.  A historical capacitance
+    formula and its impedance rewriting count as one dependency path.  Promotion
+    requires an independent action-level derivation, explicit assumptions, and a
+    falsification test.
 
     \section{Topological reference toolkit}
         \label{sec:appendix_topology_toolkit}
@@ -3419,7 +5481,7 @@
             \begin{align}
                 \rho_{\mathrm{horn}}^{\mathrm{eff}}
                 \equiv
-                \frac{m_e c^2}{2\pi \vchar^2 R_{\mathrm{horn}}^3}.
+                \frac{m_e c^2}{2\pi \vchar{}^2 R_{\mathrm{horn}}^3}.
                 \label{eq:rho_horn_eff}
             \end{align}
             This relation is dimensionally exact,
@@ -3456,7 +5518,7 @@
             \end{align}
             one has the Compton turnover time
             \begin{align}
-                \tau_c = \frac{2\pi \rc}{\vchar} = \frac{2\pi}{\omega_c},
+                \tau_{\rm circ,c} = \frac{2\pi \rc}{\vchar} = \frac{2\pi}{\omega_c},
             \end{align}
             and the geometric gate
             \begin{align}
@@ -3469,7 +5531,7 @@
         \subsection{Fixed-point condition for locked modes}
             Starting from the delayed phase equation
             \begin{align}
-                \dot{\phi}(t) = \omega_0 + \kappa \sin\big(\phi(t-\tau)-\phi(t)\big),
+                \dot{\phi}(t) = \omega_0 + \kappa \sin\big(\phi(t-\tau_{\rm circ})-\phi(t)\big),
             \end{align}
             seek a rigidly rotating solution
             \begin{align}
@@ -3477,9 +5539,9 @@
             \end{align}
             Substitution gives the algebraic mode condition
             \begin{align}
-                \Omega = \omega_0 - \kappa \sin(\Omega\tau),
+                \Omega = \omega_0 - \kappa \sin(\Omega\tau_{\rm circ}),
             \end{align}
-            where the minus sign follows from $\sin[-\Omega\tau]=-\sin(\Omega\tau)$. This admits multiple branches labelled by the effective phase winding across the delay interval.
+            where the minus sign follows from $\sin[-\Omega\tau_{\rm circ}]=-\sin(\Omega\tau_{\rm circ})$. This admits multiple branches labelled by the effective phase winding across the delay interval.
 
         \subsection{Linear stability of a locked branch}
             Let
@@ -3491,28 +5553,28 @@
             \begin{align}
                 \dot{\epsilon}(t)
                 =
-                \kappa \cos(\Omega\tau)
-                \big(\epsilon(t-\tau)-\epsilon(t)\big).
+                \kappa \cos(\Omega\tau_{\rm circ})
+                \big(\epsilon(t-\tau_{\rm circ})-\epsilon(t)\big).
             \end{align}
             Using the exponential ansatz $\epsilon(t)\propto e^{\lambda t}$ gives the characteristic equation
             \begin{align}
                 \lambda
                 =
-                \kappa \cos(\Omega\tau)
-                \left(e^{-\lambda\tau}-1\right).
+                \kappa \cos(\Omega\tau_{\rm circ})
+                \left(e^{-\lambda\tau_{\rm circ}}-1\right).
             \end{align}
             Stability requires $\Re(\lambda)<0$ for all nontrivial roots. Thus discrete spectra in SST are not arbitrary: only those branches satisfying both the fixed-point equation and the stability inequality survive dynamically.
 
         \subsection{Small-delay expansion}
-            For $|\lambda\tau|\ll 1$,
+            For $|\lambda\tau_{\rm circ}|\ll 1$,
             \begin{align}
-                e^{-\lambda\tau} = 1 - \lambda\tau + \mathcal{O}((\lambda\tau)^2),
+                e^{-\lambda\tau_{\rm circ}} = 1 - \lambda\tau_{\rm circ} + \mathcal{O}((\lambda\tau_{\rm circ})^2),
             \end{align}
             so the characteristic equation becomes
             \begin{align}
-                \lambda \approx -\kappa\tau\cos(\Omega\tau)\,\lambda.
+                \lambda \approx -\kappa\tau_{\rm circ}\cos(\Omega\tau_{\rm circ})\,\lambda.
             \end{align}
-            Nontrivial damping therefore requires the effective factor $\kappa\tau\cos(\Omega\tau)$ to have the correct sign. This provides a simple branch-selection criterion at weak delay.
+            Nontrivial damping therefore requires the effective factor $\kappa\tau_{\rm circ}\cos(\Omega\tau_{\rm circ})$ to have the correct sign. This provides a simple branch-selection criterion at weak delay.
 
         \subsection{Interpretive consequence}
             The important canon point is that discreteness is produced in two stages:
@@ -3562,37 +5624,75 @@
         \subsection{Dual-vacuum and photon sector status}
             The project-level discussions also clarified a canon policy: the photon/torsion bridge and the dual-vacuum phenomenology are valuable and fertile, but they should not silently override the simpler core canon. They are best treated as phenomenological extensions built on top of the primitive constant chain and Swirl-Clock structure.
 
-        \subsection{Canon edition notes (v0.8.12)}
-            \textbf{v0.8.12} applies the round-3 epistemic audit: $\mathcal{P}_{\mathrm{cal}}$-aligned identity relabels, coarse-grain density caveat, Pauli $a_{\rm cut}$ disambiguation, galaxy-scale $\rhoF$ note, and research-track EM-bridge limits on top of v0.8.11.
+        \subsection{Canon edition notes}
 
-        \subsection{Canon edition notes (v0.8.11)}
+        \subsubsection{v0.8.24}
+            \textbf{v0.8.24} corrects the core--torsion inertia target to the Lorentz-consistent normalization \(\mathsf M_{\rm torsion}=E_0\mathsf I/c_T^2\), adds trace-based scale and anisotropy residuals, attributes the minimal compact link action to the orthodox Wilson/Kogut--Susskind template, introduces the Coulomb/deconfinement and closed-cell defect gates, separates three interpretations of the link spacing \(a_\ell\), rewrites zero-legacy closure in the symbolic star basis, canonizes the geometry-certification ladder and cross-document operating rule, establishes the material--link sector-separation postulate, separates empirical, theoretical, numerical, and methodological failure classes, and repairs companion pointers, heading hierarchy, substrate terminology, and precision hygiene on top of v0.8.23.
+
+        \subsubsection{v0.8.23}
+            \textbf{v0.8.23} integrates the Author's Origin Note and the Genesis/provenance architecture, records the rediscovered capacitance--impedance path with an explicit same-route guard, adds the Historical Notebook and Proto-Canon Provenance Register (Appendix~\ref{sec:appendix_historical_provenance}), inserts the MAIN-Canon interface to relational link torsion (\ref{sec:rt_minimal_link_field_action}), restores the minimal compact link-field action and its zero-legacy speed target in the research track, and records the KnotPlot--Ridgerunner--SSTcore/VortexLab provenance and finite-thickness certification ladder on top of v0.8.22.
+
+        \subsubsection{v0.8.22}
+            \textbf{v0.8.22} elevates special relativity to an operational founding SST input via vortex clocks, rods, and luminal R-phase torsion pulses (\(\ref{subsec:sr_operational_origin}\), \(\ref{axiom:operational_spacetime_vortex_matter}\), \(\ref{eq:foundational_operational_interval}\)), records Alice--Bob radar/Lorentz maps and a non-circular \(c\)-emergence ladder in the research track (\(\ref{eq:rt_alice_bob_lorentz_map}\), \(\ref{eq:rt_non_circular_c_emergence_ladder}\)), and adds the Quasinormal Swirl Spectroscopy (QSS) spectral-robustness programme (\(\ref{sec:rt_quasinormal_swirl_spectroscopy}\), \(\ref{eq:rt_qss_eigenproblem}\), \(\ref{eq:rt_qss_pseudospectrum}\)) on top of v0.8.21.
+
+        \subsubsection{v0.8.21}
+            \textbf{v0.8.21} adds the eight-source research appendices and matching main-canon guards: spherical/shell curl spectrum and helicity capacity (\(\ref{subsec:bounded_domain_curl_spectrum}\), \(\ref{subsec:rt_spherical_curl_spectrum_capacity}\)), coarse writhe/helicity upper bounds (\(\ref{subsec:rt_upper_bounds_writhe_helicity}\)), Gehring link-criticality and continuum contact measure (\(\ref{subsec:rt_gehring_contact_measure}\)), bounded-domain Biot--Savart operator admissibility (\(\ref{subsec:bounded_domain_biot_savart}\), \(\ref{subsec:rt_biot_savart_realizability}\)), five-sector Hodge topology and harmonic circulation (\(\ref{subsec:hodge_topological_circulation}\), \(\ref{subsec:rt_hodge_complete_reconstruction}\)), cohomological helicity and mapping-class/Dehn-twist jumps (\(\ref{subsec:canon_helicity_mapping_class_guard}\), \(\ref{subsubsec:rt_helicity_mapping_class}\)), isoperimetric domain-spectrum and enstrophy guards (\(\ref{subsec:canon_isoperimetric_helicity_guard}\), \(\ref{subsubsec:rt_isoperimetric_domain_shape}\)), and Ridgerunner polygonal-to-smooth certification (\(\ref{subsec:canon_ropelength_certification_guard}\), \(\ref{subsubsec:rt_polygonal_smooth_certification}\)) on top of v0.8.20. The operational-spacetime clarification further records special relativity as a founding SST input: vortex clocks, vortex rulers, and R-phase torsion pulses reconstruct one local Lorentz structure, while the derivation of universal monometricity from substrate microdynamics remains open.
+
+        \subsubsection{v0.8.20}
+            \textbf{v0.8.20} adds Chronos--Kelvin topological hitting conditions with a first-hitting kink-versus-reconnection split and Kairos boundary ledger (\(\ref{subsubsec:chronos_kelvin_hitting_conditions}\), \(\ref{eq:sst_first_hitting_time}\)), a contact-pressure saturation and Swirl-Clock kinematic shielding block (\(\ref{subsec:rt_contact_pressure_saturation_swirl_clock}\), \(\ref{eq:rt_contact_pressure_split}\)), a main-text research-track guard and colored rank-nine contact-channel diagnostic (\(\ref{sec:rt_colored_contact_rank_nine}\), \(\ref{eq:rt_rank9_factorization}\)), a Separatrix Surface-Density Lift monopole DtN research-track route (\(\ref{subsec:ssdl_monopole_dtn}\)) with audit v0.2 numeric support, and a canon-safe Research-Track particle/clock ansatz with preregistered mass falsifiers (\(\ref{app:research-track}\), \(\ref{app:minimal-numerical-programme}\)) on top of v0.8.19.
+
+        \subsubsection{v0.8.19}
+            \textbf{v0.8.19} adds an orthodox radius-convention ropelength/thickness foundation, a main-text guard that knot type alone does not determine a unique physical representative, a scalarized research-track screening functional \(E_{\rm screen}\) with \(Q_G\) retained only as a sector label unless mapped to \(I_G\), a derived leading thin-filament length/log energy anchor, a density and dimensional audit for geometric mass branches, a geometric impedance bridge demoted to research-track pointer form with an explicit \(T_{\rm core}\) free-symbol guard, stricter reintegration rules for derived Hamiltonian terms versus screening surrogates, a consolidated audit bundle (unified \(\SwirlClock\) discipline, F\_max hygiene, Poisson--clock bridge, EMG guards, trefoil precision, pure-geometric mass collapse), a Foucault-pendulum rotation-to-clock inference protocol in the research track, projected swirl-vorticity frequency diagnostics, symmetry-metadata guards for dark-knot taxonomy, benchmark CSV schema hardening, operator-valued Swirl-Clock visibility diagnostics, a cosmological-impedance route for \(\rho_f\) (\S\ref{sec:rt_rhof_cosmological_impedance_route}, Eq.~\ref{eq:rt_rhof_lambda_chi}) with horn-effective density label hygiene, and Taylor-column / rotating-fluid Swirl-Clock parity benchmarks (\S\ref{sec:taylor_column_finite_thickness_swirl_strings}, \S\ref{sec:rotating_fluid_swirl_clock_parity}) on top of v0.8.18.
+
+        \subsubsection{v0.8.18}
+            \textbf{v0.8.18} adds calibration-chain guardrails (rc/$\alpha$ gates, kernel normalization, EM prefactor, $\rhohorn$ baseline fix), research-track observational falsifier bounds (GW170817, pulsar preferred-frame limits), orthodox resolved-tube reach/thickness definitions, the four topology/stability research appendices (non-Abelian protection, reconnection decay, fractional torus-phase winding, and topological-fluid mechanics), the research-track knot-energy normal form with $I_G$ scalarization, Euler/Magnus probe-transport polish, canonical time ontology with no-bare-$\tau$ policy, golden-layer hyperbolic rapidity guards, Planck-suppressed $F_{\rm swirl}^{\max}$ reparameterization, Compton--horn $G_{\mathrm{swirl}}$ reduction guard and balance-angle diagnostic, hybrid density-source Swirl-Clock benchmark, and the contact-stress geometry research appendix on top of v0.8.17.
+
+        \subsubsection{v0.8.17}
+            \textbf{v0.8.17} adds the T-foliation versus local Swirl-Clock remark (Eq.~\ref{eq:absolute_T_local_tau_layers}), the ropelength/trefoil-$\alpha$ convention guard, Route-I SST-63/23/56 integration in the research track, and aligned updates in SST-73, SST-63, SST-64 v2, and SST-34 on top of v0.8.16. RC2 release-clean polish: p.119 summary quote, `\AE{}`-modes fix, `tabularx` particle-candidate tables, and targeted version-phrase cleanup.
+
+        \subsubsection{v0.8.16}
+            \textbf{v0.8.16} adds the pressure--optical locking relation (Eq.~\ref{eq:canonical_pressure_optical_locking}) in the Triadic Gravity-Response Corollary, the research-track no-monopole transport-stress audit (\S\ref{sec:rt_no_monopole_transport_stress_audit}), and the relativity falsifier ladder on top of v0.8.15. SST-73 receives matching critical notes on Candidate C and $[\alpha_{\mathrm{grav}}]=\mathrm{s^2}$.
+
+        \subsubsection{v0.8.15}
+            \textbf{v0.8.15} adds the canon hydrodynamic Lorentz-type swirl-force density (\S\ref{sec:lorentz_type_force_density_as_swirl_stress}: Bernoulli tie, loop observables, calibrated scales) and the research-track EM-to-swirl correspondence with $\lambda_{\mathrm{EM}\to\circlearrowleft}$, SST-44 stress closure, and pending $\mathbf f_{\mathrm{link}}$ (\S\ref{sec:research_em_to_swirl_force_density_correspondence}) on top of v0.8.14.
+
+        \subsubsection{v0.8.14}
+            \textbf{v0.8.14} adds the two-speed clock discipline (\S\ref{subsec:two_speed_clock_discipline}: $\vchar$ vs.\ $c$, NLSE core sound speed $c_s=\vchar/\sqrt{2}$, research-track gate), the $\alpha$-gate guard on $\lambda_c/(\pi\rc)=4/\alpha$, and the research-track core--torsion impedance-matching lemma (\S\ref{sec:rt_core_torsion_impedance_matching}) on top of v0.8.13.
+
+        \subsubsection{v0.8.13}
+            \textbf{v0.8.13} adds the relativity-emergence audit: the internal tensor-speed naturalness proposition (\S\ref{subsec:tensor_speed_naturalness}, conditional $c_{13}=0$) in the main canon, the research-track Relativity Emergence Ladder (\S\ref{sec:rt_relativity_emergence_ladder}) separating derivable SR/GR kinematics from the open Einstein-dynamics program, and relativity/induced-gravity/cosmology bibliography on top of v0.8.12.
+
+        \subsubsection{v0.8.12}
+            \textbf{v0.8.12} applies the Gemini round-3 epistemic audit: $\mathcal{P}_{\mathrm{cal}}$-aligned identity relabels, coarse-grain density caveat, Pauli $a_{\rm cut}$ disambiguation, galaxy-scale $\rhoF$ note, and research-track EM-bridge limits on top of v0.8.11.
+
+        \subsubsection{v0.8.11}
             \textbf{v0.8.11} completes the final hygiene pass: consistent $\mathcal{P}_{\mathrm{cal}}$, $\vchar$ vs.\ $\uswirl$ usage in EMG, framed self-linking, W-boson sector, and research-track numerical bridges on top of v0.8.10.
 
-        \subsection{Canon edition notes (v0.8.10)}
-            \textbf{v0.8.10} applies the round-2 calibration/notation audit: canonical speed $\vchar$ vs.\ local $\uswirl(x,t)$ discipline, $\eta_0$ algebraic-within-calibration status, delay-equation sign convention, Rydberg/finite-cell relabeling, and research-track $v_K$ disambiguation on top of v0.8.9.
+        \subsubsection{v0.8.10}
+            \textbf{v0.8.10} applies the Gemini round-2 audit: canonical speed $\vchar$ vs.\ local $\uswirl(x,t)$ discipline, $\eta_0$ algebraic-within-calibration status, delay-equation sign convention, Rydberg/finite-cell relabeling, and research-track $v_K$ disambiguation on top of v0.8.9.
 
-        \subsection{Canon edition notes (v0.8.9)}
+        \subsubsection{v0.8.9}
             \textbf{v0.8.9} adds the triadic gravity-response corollary (\S\ref{subsec:triadic_gravity_response_corollary}) and research-track flame/caustic/shell diagnostics plus atomic condensate closure notes on top of v0.8.8.
 
-        \subsection{Canon edition notes (v0.8.8)}
-            \textbf{v0.8.8} applies the epistemic/notation audit: primitive calibration notation ($\mathcal{P}_{\mathrm{cal}}$, $\vchar$, $\uswirl$), conditional Kelvin/DDE labels, Pauli $a_{\rm cut}$ disambiguation, and research-track epistemic relabeling on top of v0.8.7.
+        \subsubsection{v0.8.8}
+            \textbf{v0.8.8} applies the Gemini audit: primitive calibration notation ($\mathcal{P}_{\mathrm{cal}}$, $\vchar$, $\uswirl$), conditional Kelvin/DDE labels, Pauli $a_{\rm cut}$ disambiguation, and research-track epistemic relabeling on top of v0.8.7.
 
-        \subsection{Canon edition notes (v0.8.7)}
+        \subsubsection{v0.8.7}
             \textbf{v0.8.7} adds the scalar-vs-$\mathbb{C}P^1$ substrate argument, the $\theta=\pi$ fermionic $\mathbb{Z}_2$ sector, and supporting bibliography on top of v0.8.6.
 
-        \subsection{Canon edition notes (v0.8.6)}
+        \subsubsection{v0.8.6}
             \textbf{v0.8.6} adds framed-tube self-linking ($SL=pq$), spinorial $\chi=\pm1$ selection, and the lepton ladder (\S\ref{subsec:framed_selflinking_spinorial}) on top of v0.8.5.
 
-        \subsection{Canon edition notes (v0.8.5)}
+        \subsubsection{v0.8.5}
             \textbf{v0.8.5} adds the highres conversation audit (Euler discipline, R-to-T bookkeeping, twist-ladder research track, horn/envelope wording) and the CALIBRATED circularity-honesty relabeling on top of v0.8.4.
 
-        \subsection{Canon edition notes (v0.8.4)}
+        \subsubsection{v0.8.4}
             \textbf{v0.8.4} integrates the canonical EM--gravity bridge, finite-cell $\alpha$ obstruction summary, and extended research-track taxonomy blocks.
 
-        \subsection{Canon edition notes (v0.8.3)}
+        \subsubsection{v0.8.3}
             \textbf{v0.8.3} integrates framed-tube ontology, attachment gate, trefoil closure discipline, updated particle dictionary, and Pauli $a_{\rm core}$ regularization per conversation, highres, and trefoil diffs.
 
-        \subsection{Canon edition notes (v0.8.2)}
+        \subsubsection{v0.8.2}
             \textbf{v0.8.2} integrates radius/density semantic correction: $\rc \equiv R_{\mathrm{horn}}$, separate $a_{\mathrm{core}}$, and horn-envelope density normalization per conversation and highres diffs.
 
 
@@ -3628,6 +5728,325 @@
                 3_1^{\rm core}\otimes\Psi_{n\ell m\sigma}^{\rm envelope} .
             \end{align}
 
+        \paragraph{Helicity mapping-class and framing guard.}
+        \label{subsec:canon_helicity_mapping_class_guard}
+        \textbf{[ORTHODOX / CANON SEMANTIC GUARD].}
+        Let $\Omega\subset\mathbb R^3$ be a compact resolved-tube domain and let
+        $\mathbf V$ be divergence free and tangent to $\partial\Omega$.  The
+        dual two-form $\alpha=\iota_{\mathbf V}d^3x$ is closed and vanishes when
+        pulled back to the boundary.  Helicity may then be written using the
+        Biot--Savart/Hodge-selected primitive,
+        \begin{align}
+            \mathcal H(\alpha)
+            =
+            \int_{\Omega}\alpha\wedge\operatorname{BS}(\alpha),
+            \label{eq:canon_helicity_bs_primitive}
+        \end{align}
+        but an arbitrary primitive is not a gauge-complete replacement on a
+        multiply connected domain \cite{CantarellaParsley2010Helicity}.
+
+        For an orientation-preserving diffeomorphism $f:\Omega\to\Omega'$, the
+        general mapping-class correction is a quadratic form in the independent
+        fluxes,
+        \begin{align}
+            \Delta\mathcal H
+            =
+            \mathcal H\!\left((f^{-1})^*\alpha\right)-\mathcal H(\alpha)
+            =
+            \sum_{i,j}c_{ij}\Phi_i\Phi_j .
+            \label{eq:canon_helicity_mapping_class_jump}
+        \end{align}
+        For a solid torus subjected to $j$ Dehn twists this reduces to
+        \begin{align}
+            \Delta\mathcal H=j\Phi^2 .
+            \label{eq:canon_helicity_dehn_twist}
+        \end{align}
+        In the hydrodynamic identification $\mathbf V=\boldsymbol\omega$,
+        $\Phi=\Gamma$ and hence $\Delta\mathcal H=j\Gamma^2$.  A smooth ideal
+        material evolution generated from the identity remains in the identity
+        mapping class and preserves helicity; a nonzero jump in
+        Eq.~\eqref{eq:canon_helicity_mapping_class_jump} is therefore not ordinary
+        Euler advection.  It requires a declared boundary operation, framing
+        change, phase slip, reconnection, or other Kairos transition.
+
+        \textbf{[CANON CONSEQUENCE].}
+        Knot type, centerline, and ropelength do not by themselves fix the
+        helicity sector.  Any SST state that uses helicity or twist energetically
+        must expose at least
+        \begin{align}
+            \left(K,\{\Gamma_i\},\text{framing/mapping class}\right),
+            \label{eq:canon_helicity_state_metadata}
+        \end{align}
+        and must not fit $Tw$ after the fact to force a desired value of
+        $\mathcal H$.
+
+
+        \paragraph{Ropelength representative and thickness-constrained ground state.}
+        For a tame knot or link type \(K\), orthodox ropelength theory proves the
+        existence of a ropelength-minimizing representative
+        \cite{CantarellaKusnerSullivan2002,DenneDiaoSullivan2006}.
+        With the radius convention for thickness,
+        \begin{align}
+            \operatorname{Rop}_{\rm rad}(\gamma)
+            =
+            \frac{\operatorname{Len}(\gamma)}
+                 {\operatorname{Thi}_{\rm rad}(\gamma)} ,
+        \end{align}
+        and the minimizer is \(C^{1,1}\), with bounded curvature, but need not be
+        \(C^2\) \cite{CantarellaKusnerSullivan2002}.
+
+        \textbf{[ORTHODOX GEOMETRY / RESOLVED-TUBE DEFINITION].}
+        For a \(C^1\) embedded centerline, orthodox ropelength theory identifies
+        thickness with both reach and normal injectivity radius
+        \cite{CantarellaKusnerSullivan2002}.  Therefore the SST resolved-tube
+        radius is, when an ideal-tube representative is being used,
+        \begin{align}
+            a_{\rm core}(K)
+            &\equiv
+            \operatorname{Thi}_{\rm rad}(\gamma_K)
+            =
+            \operatorname{reach}(\gamma_K)
+            =
+            \operatorname{NIR}(\gamma_K),
+            \label{eq:a_core_reach_thickness}\\
+            \operatorname{Thi}_{\rm rad}(\gamma_K)
+            &=
+            \min\!\left(\inf_s\frac{1}{\kappa(s)},\,
+            \frac12 d_{\rm dcsd}(\gamma_K)\right),
+            \label{eq:thickness_curvature_dcsd_guard}
+        \end{align}
+        where \(d_{\rm dcsd}\) is the doubly-critical self-distance.  Equations
+        \eqref{eq:a_core_reach_thickness}--\eqref{eq:thickness_curvature_dcsd_guard}
+        are geometric definitions of the resolved tube; they do not license the
+        identification \(a_{\rm core}=\rc\).
+        In an SST sector where the resolved vortex-string energy is
+        tension dominated, with an orthodox knotted flux-tube analogue in the
+        glueball literature \cite{BuniyKephart2003},
+        \begin{align}
+            E_{\rm SST}[\gamma]
+            =
+            T_{\rm eff}\operatorname{Len}(\gamma)
+            +
+            E_{\rm sub}[\gamma],
+            \qquad
+            \operatorname{Thi}_{\rm rad}(\gamma)\ge r_c ,
+        \end{align}
+        the leading-order ground-state problem reduces to ropelength minimization:
+        \begin{align}
+            E_{\rm SST}^{(0)}(K)
+            \approx
+            T_{\rm eff} r_c\,\operatorname{Rop}_{\rm rad}(K).
+        \end{align}
+        This is a derived-conditional reduction, not an independent proof that all
+        shape-dependent observables are ropelength functions.
+
+        \paragraph{Critical note: degeneracy and subleading splitting.}
+        Ropelength minimizers need not be unique.  Therefore, while the scalar
+        mass proxy \(M_K\propto\operatorname{Rop}(K)\) may remain well-defined,
+        shape-sensitive observables such as dipole structure, magnetic moment,
+        moment of inertia, writhe distribution, or local swirl-stress maps may
+        require subleading splitting terms:
+        \begin{align}
+            E_{\rm sub}
+            =
+            E_{\rm bend}
+            +
+            E_{\rm twist}
+            +
+            E_{\rm Biot\text{-}Savart}
+            +
+            E_{\rm core}
+            +
+            \cdots .
+        \end{align}
+
+\paragraph{Writhe and helicity upper-bound guard.}
+        \textbf{[ORTHODOX / NON-SHARP BOUNDS].}
+        For a smooth knot or link of length \(L\) carrying an embedded tube of
+        radius \(R\),
+        \begin{align}
+            |\operatorname{Wr}(K)|
+            <
+            \frac14\left(\frac{L}{R}\right)^{4/3}
+            =
+            \frac14\operatorname{Rop}_{\rm rad}(K)^{4/3}.
+            \label{eq:canon_writhe_ropelength_upper_bound}
+        \end{align}
+        For a smooth vector field \(\mathbf V\) on a bounded domain \(\Omega\),
+        the corresponding rough geometric helicity bound is
+        \begin{align}
+            |\mathscr H_V|
+            \leq
+            R_{\rm vol}(\Omega)\,\mathscr E_V,
+            \label{eq:canon_rough_helicity_volume_bound}
+        \end{align}
+        where \(R_{\rm vol}(\Omega)\) is the radius of a ball with the same volume
+        as \(\Omega\) and \(\mathscr E_V=\int_\Omega|\mathbf V|^2d^3x\)
+        \cite{CantarellaDeTurckGluck2001UpperBounds}.
+
+        \textbf{[CANON / PRECISION GUARD].}
+        Equations~\eqref{eq:canon_writhe_ropelength_upper_bound} and
+        \eqref{eq:canon_rough_helicity_volume_bound} are deliberately non-sharp.
+        They are admissibility and regression bounds, not estimators of particle
+        mass, chirality strength, or equilibrium helicity.  Sharp helicity bounds
+        require the domain-specific projected Biot--Savart/curl spectrum.
+
+\paragraph{Multi-component Gehring-thickness guard.}
+        \textbf{[ORTHODOX / DISTINCT CONSTRAINT PROBLEM].}
+        For a link \(L=L_1\cup\cdots\cup L_N\), Gehring link-thickness is
+        \begin{align}
+            \operatorname{LThi}(L)
+            :=
+            \min_{i\neq j}\operatorname{Dist}(L_i,L_j),
+            \qquad
+            \operatorname{LRop}(L)
+            :=
+            \frac{\operatorname{Len}(L)}{\operatorname{LThi}(L)}.
+            \label{eq:canon_gehring_link_thickness}
+        \end{align}
+        It constrains distances between distinct components but does not constrain
+        self-distance or curvature within one component
+        \cite{CantarellaFuKusnerSullivanWrinkle2006Gehring}.
+
+        Therefore an SST composite made from finite-radius components requires the
+        hybrid admissibility conditions
+        \begin{align}
+            \operatorname{Thi}_{\rm rad}(\gamma_i)
+            &\geq a_i,
+            &
+            \operatorname{Dist}(\gamma_i,\gamma_j)
+            &\geq a_i+a_j
+            \quad(i\neq j),
+            \label{eq:canon_hybrid_component_thickness}
+        \end{align}
+        together with preservation of each component's intended isotopy class.
+
+        \textbf{[CANON / TOPOLOGY GUARD].}
+        Link-homotopy permits self-intersections of an individual component and is
+        therefore too weak, by itself, to protect an SST particle component from
+        changing its knot type.  Gehring criticality may diagnose intercomponent
+        exclusion, but it does not replace ordinary reach/thickness constraints.
+
+        \paragraph{Domain-spectral helicity optimization guard.}
+        \label{subsec:canon_isoperimetric_helicity_guard}
+        \textbf{[ORTHODOX / CANON SEMANTIC GUARD].}
+        On a fixed smooth domain $\Omega$, let
+        $K(\Omega)=\{\mathbf V:\nabla\cdot\mathbf V=0,
+        \mathbf V\cdot\mathbf n=0\}$ and define the boundary-compatible
+        Biot--Savart operator
+        \begin{align}
+            \operatorname{BS}_{K}
+            =P_{K(\Omega)}\operatorname{BS} .
+            \label{eq:canon_projected_bs_operator}
+        \end{align}
+        Its largest positive eigenvalue is the sharp helicity-to-$L^2$ ratio
+        and is the inverse of the smallest positive curl eigenvalue on its
+        image \cite{CantarellaDeTurckGluckTeytel2000Isoperimetric}:
+        \begin{align}
+            \lambda_{\max}(\Omega)
+            =
+            \max_{\mathbf V\in K(\Omega)\setminus\{0\}}
+            \frac{\mathcal H(\mathbf V)}
+                 {\int_{\Omega}|\mathbf V|^2d^3x}
+            =
+            \frac{1}{\kappa_{1}^{\rm curl}(\Omega)} .
+            \label{eq:canon_isoperimetric_spectral_equivalence}
+        \end{align}
+        If $\mathbf V=\boldsymbol\omega$, the denominator in
+        Eq.~\eqref{eq:canon_isoperimetric_spectral_equivalence} is enstrophy,
+        not the SST kinetic energy
+        $\tfrac12\rhoF\int|\uswirl|^2d^3x$.  The two optimization problems must
+        not be identified without an explicit constitutive relation.
+
+        A smooth global optimizer over all fixed-volume domains would have
+        nonzero constant $|\mathbf V|$ on each boundary component, toroidal
+        boundary components, and boundary field lines that are intrinsic
+        geodesics.  These are necessary isoperimetric conditions, not a proof
+        that an SST particle is a horn torus, not a derivation of $\rc$ or
+        $a_{\rm core}$, and not a proof that ideal Euler evolution relaxes to the
+        extremal eigenfield.  Ropelength minimization of a centerline and
+        spectral optimization of a filled three-dimensional domain are distinct
+        variational layers.
+
+        \paragraph{Convention guard for trefoil alpha comparisons.}
+        The mathematical literature uses both radius- and diameter-based thickness
+        conventions.  If
+        \begin{align}
+            \operatorname{Thi}_{\rm diam}=2\operatorname{Thi}_{\rm rad},
+        \end{align}
+        then
+        \begin{align}
+            \operatorname{Rop}_{\rm diam}
+            =
+            \frac12\operatorname{Rop}_{\rm rad}.
+        \end{align}
+        For the trefoil, using certified ideal-knot data
+        \cite{AshtonCantarellaPiatekRawdon2011},
+        \begin{align}
+            \operatorname{Rop}_{\rm rad}(3_1)\approx32.7436,
+            \qquad
+            \operatorname{Rop}_{\rm diam}(3_1)\approx16.3718 .
+        \end{align}
+        The leading coincidence
+        \begin{align}
+            \alpha^{-1}_{\rm lead}
+            =
+            \frac{8\pi}{3}\operatorname{Rop}_{\rm diam}(3_1)
+            \approx
+            137.1561
+        \end{align}
+        is therefore a robust sub-promille numerical coincidence, not an exact
+        or ppm-certified derivation of the fine-structure constant.
+
+
+        \paragraph{Numerical certification guard for ideal-knot inputs.}
+        \label{subsec:canon_ropelength_certification_guard}
+        \textbf{[ORTHODOX NUMERICAL GEOMETRY / CANON VALIDATION RULE].}
+        A Ridgerunner-style output is an approximately thickness-critical
+        polygon and a candidate smooth ropelength upper bound, not automatically
+        a unique smooth global minimizer \cite{AshtonCantarellaPiatekRawdon2011}.
+        The equivalence between constraint thickness and polygonal thickness is
+        established for equilateral polygons.  Every imported ideal-knot input
+        must therefore expose at least
+        \begin{align}
+            \mathcal D_K^{\rm cert}
+            =
+            \left(
+                N,
+                \epsilon_{\rm eq},
+                \operatorname{Thi}_p,
+                \operatorname{CThi},
+                \operatorname{Rop}_p,
+                \operatorname{Rop}_{\rm smooth}^{\rm ub},
+                \min_i\operatorname{MinRad}(v_i),
+                \frac12d_{\rm dcsd},
+                \chi_{\rm KKT},
+                N_{\rm seed}
+            \right),
+            \label{eq:canon_ideal_knot_certification_tuple}
+        \end{align}
+        with a declared rigidity-matrix sign convention and
+        \begin{align}
+            \chi_{\rm KKT}
+            =
+            \frac{\|-\nabla E+A\Lambda\|_2}
+                 {\|\nabla E\|_2},
+            \qquad \Lambda\ge0 .
+            \label{eq:canon_ideal_knot_kkt_residual}
+        \end{align}
+        The smooth bound must be recomputed after controlled $C^{1,1}$
+        reconstruction.  The label ``ideal'' on a Fourier or atlas file is not
+        a certificate.
+
+        Scalar ropelength convergence is insufficient: active strut/kink
+        support, positive multiplier measures, and arclength contact maps must
+        also converge under refinement and across independent initial
+        embeddings.  A small Eq.~\eqref{eq:canon_ideal_knot_kkt_residual}
+        establishes only first-order constrained criticality.  It does not prove
+        global minimality, positive second variation, or dynamical SST stability.
+        No downstream mass, coupling, or constant claim may quote relative
+        precision substantially finer than the worst certified mesh,
+        thickness, smoothing, contact-map, and KKT error of its knot input.
 
         \subsection{Finite-cell $\alpha$ coincidence and obstruction summary}
             \label{subsec:finite_cell_alpha_obstruction}
@@ -3643,7 +6062,8 @@
                 \label{eq:alpha_lead_finite_cell}
             \end{align}
             using the numerically computed ideal trefoil ropelength
-            $\mathcal{L}_{3_1}=16.371637$ as a \emph{benchmark} topological-geometric input.
+            $\mathcal{L}_{3_1}=16.371637$ \cite{AshtonCantarellaPiatekRawdon2011}
+            as a \emph{benchmark} topological-geometric input.
             This lies within $866$~ppm of CODATA $\alpha^{-1}=137.035999$ and is an
             $\alpha$-free sub-per-mille coincidence, not a part-per-million derivation.
 
@@ -3661,7 +6081,8 @@
             sub-percent coefficients (shell weight, cell-radius gate, sector volume,
             ropelength value, or a third-order term), so ppm closure carries no
             discriminating power without pinning all inputs to $\sim10^{-6}$ relative
-            precision---beyond present ideal-knot ropelength certification.
+            precision---beyond present ideal-knot ropelength certification
+            \cite{AshtonCantarellaPiatekRawdon2011,CantarellaKusnerSullivan2002}.
 
             The gate hierarchy is therefore
             \begin{align}
@@ -3675,6 +6096,10 @@
                 \label{eq:finite_cell_gate_hierarchy}
             \end{align}
             with $G_0$ and $G_1$ blocking closure before Hessian-level work becomes relevant.
+
+            The ring-constant proximity $\alpha_{\mathrm{ring}}\approx\varphi$ is treated in
+            Subsection~\ref{subsec:g7_ring_constant_vs_trefoil_closure} of the
+            research track. It is not a canon-level trefoil curvature closure.
 
             \textbf{[CANON / NON-CLAIM].}
             This block does not assert a first-principles derivation of the fine-structure
@@ -3707,7 +6132,18 @@
         \textbf{[DERIVED]} Canon rule: the abstract kernel \(\Xi_K\) of the main text may be specialized to more explicit invariant combinations provided the resulting branch remains dimensionless, benchmarkable, and subordinate to the topology-first hierarchy.
         
         \textbf{[CRITICAL NOTE]} Nothing in this appendix upgrades the explicit kernel to a theorem of first-principles filament dynamics. The present role is closure discipline and reproducible benchmarking.
-    
+
+    \subsection{Pure geometric baseline branch}
+        \textbf{[DERIVED-CONDITIONAL / NORMALIZATION BRANCH].}
+        A pure geometric baseline mass scale for topology class $T$ is
+        \begin{align}
+            M_0(T)
+            =
+            2\pi^3\,\rhohorn\,\frac{\rc^5}{\lambda_c^2}\,\mathcal{L}_{\mathrm{tot}}(T).
+            \label{eq:pure_geometric_mass_baseline}
+        \end{align}
+        This branch is subordinate to Eq.~\eqref{eq:sst_master_equation}. It records a normalization-level geometric closure used in historical mass-program benchmarks; it does not replace the canonical master functional or the explicit kernel branch below. The density in Eq.~\eqref{eq:pure_geometric_mass_baseline} is the horn-envelope normalization density of Eq.~\eqref{eq:core_density}; using the background mass-equivalent density $\rhoM$ here would move the benchmark down by the factor $\rhoM/\rhohorn\simeq1.20\times10^{-30}$ and is therefore a symbol-collision error, not a physical branch.
+
     \subsection{Explicit invariant branch of the canonical kernel}
         A conservative explicit specialization is obtained by resolving the topological kernel into ropelength, braid complexity, and Seifert-genus data:
         \begin{align}
@@ -3734,7 +6170,7 @@
         
         \textbf{[ORTHODOX]} The invariants \(\mathcal{L}_{\mathrm{tot}}(K)\), \(b(K)\), and \(g(K)\) are standard topological or geometric knot descriptors.
         
-        \textbf{[DERIVED]} Equation~\eqref{eq:explicit_kernel} is dimensionless and therefore admissible as a branch of the canonical kernel.
+        \textbf{[DERIVED / MATCHING-ANSATZ GUARD]} The dimensional admissibility of Eq.~\eqref{eq:explicit_kernel} is derived. The displayed three-coefficient form and the $\varphi^{-2k(K)}$ dressing are a benchmark matching ansatz; the coefficients $\alpha_{\mathcal{L}}$, $\alpha_b$, and $\alpha_g$ remain calibrated unless a separate variational or statistical-mechanical calculation derives them.
         
         Substituting Eq.~\eqref{eq:explicit_kernel} into Eq.~\eqref{eq:sst_master_equation} yields the explicit benchmark mass branch
         \begin{align}
@@ -3794,6 +6230,8 @@
         \textbf{[DERIVED]} SST may use these formulas as a coarse-grained field representation once a local amplitude density and phase have been specified.
         
         \textbf{[SPECULATIVE]} The identification of the resulting fields with branch-resolved swirl carriers remains an SST interpretation.
+
+        \textbf{[CRITICAL NOTE]}: $\rho_\psi$ is a coarse-grained mode-support density of the emergent carrier field, \emph{not} a compression of the incompressible substrate $\rhoF$ (Axiom~1, $\nabla\cdot\mathbf v=0$). The two densities are distinct objects, so the Madelung amplitude does not violate substrate incompressibility.
     
     \subsection{Amplitude--phase decomposition}
         Introduce an effective complex mode field
@@ -3950,19 +6388,65 @@
             \item a separate astrophysics / dark-sector track,
             \item a fit target for future rotation-curve studies.
         \end{enumerate}
-        It is deliberately not promoted in v0.8.1 to the same status as the primitive constant chain, the Swirl-Clock, or the delay-selection sector.
+        It is deliberately not promoted in v0.8.18 to the same status as the primitive constant chain, the Swirl-Clock, or the delay-selection sector.
         
 % ---------------------------
 % RESEARCH TRACKS for future
 % ---------------------------
         \newpage
-        \input{SST_CANON-v0.8.12-research-track}
+        \newif\ifresearchtrackincluded
+        \researchtrackincludedtrue
+        \input{SST_CANON-v0.8.24-research-track}
         
 % ---------------------------
 % Bibliography
 % ---------------------------
         \begin{thebibliography}{99}
             
+            \bibitem{Wilson1974}
+            K.~G. Wilson,
+            \newblock Confinement of quarks,
+            \newblock \emph{Physical Review D} \textbf{10} (1974), 2445--2459,
+            \newblock DOI: \href{https://doi.org/10.1103/PhysRevD.10.2445}{10.1103/PhysRevD.10.2445}.
+
+            \bibitem{KogutSusskind1975}
+            J.~Kogut and L.~Susskind,
+            \newblock Hamiltonian formulation of Wilson's lattice gauge theories,
+            \newblock \emph{Physical Review D} \textbf{11} (1975), 395--408,
+            \newblock DOI: \href{https://doi.org/10.1103/PhysRevD.11.395}{10.1103/PhysRevD.11.395}.
+
+            \bibitem{Kogut1979}
+            J.~B. Kogut,
+            \newblock An introduction to lattice gauge theory and spin systems,
+            \newblock \emph{Reviews of Modern Physics} \textbf{51} (1979), 659--713,
+            \newblock DOI: \href{https://doi.org/10.1103/RevModPhys.51.659}{10.1103/RevModPhys.51.659}.
+
+            \bibitem{Polyakov1977}
+            A.~M. Polyakov,
+            \newblock Quark confinement and topology of gauge theories,
+            \newblock \emph{Nuclear Physics B} \textbf{120} (1977), 429--458,
+            \newblock DOI: \href{https://doi.org/10.1016/0550-3213(77)90086-4}{10.1016/0550-3213(77)90086-4}.
+
+            \bibitem{Guth1980}
+            A.~H. Guth,
+            \newblock Existence proof of a nonconfining phase in four-dimensional
+            \(U(1)\) lattice gauge theory,
+            \newblock \emph{Physical Review D} \textbf{21} (1980), 2291--2307,
+            \newblock DOI: \href{https://doi.org/10.1103/PhysRevD.21.2291}{10.1103/PhysRevD.21.2291}.
+
+            \bibitem{JersakLangNeuhaus1996}
+            J.~Jers\'ak, C.~B. Lang, and T.~Neuhaus,
+            \newblock Four-dimensional pure compact \(U(1)\) gauge theory on a spherical lattice,
+            \newblock \emph{Physical Review D} \textbf{54} (1996), 6909--6919,
+            \newblock DOI: \href{https://doi.org/10.1103/PhysRevD.54.6909}{10.1103/PhysRevD.54.6909}.
+
+            \bibitem{LHAASO2021PeV}
+            Z.~Cao, F.~A. Aharonian, Q.~An, et al. (LHAASO Collaboration),
+            \newblock Ultrahigh-energy photons up to 1.4 petaelectronvolts from 12
+            gamma-ray Galactic sources,
+            \newblock \emph{Nature} \textbf{594} (2021), 33--36,
+            \newblock DOI: \href{https://doi.org/10.1038/s41586-021-03498-z}{10.1038/s41586-021-03498-z}.
+
             \bibitem{SST_delay_basic}
             J.~K. Hale and S.~M. Verduyn Lunel,
             \newblock \emph{Introduction to Functional Differential Equations},
@@ -3996,6 +6480,48 @@
             G.~K. Batchelor,
             \newblock \emph{An Introduction to Fluid Dynamics},
             \newblock Cambridge University Press (1967).
+
+            \bibitem{Taylor1922}
+            G.~I. Taylor,
+            \newblock The motion of a sphere in a rotating liquid,
+            \newblock \emph{Proceedings of the Royal Society of London A} \textbf{102} (1922), 180--189,
+            \newblock DOI: \href{https://doi.org/10.1098/rspa.1922.0079}{10.1098/rspa.1922.0079}.
+
+            \bibitem{Proudman1916}
+            J.~Proudman,
+            \newblock On the motion of solids in a liquid possessing vorticity,
+            \newblock \emph{Proceedings of the Royal Society of London A} \textbf{92} (1916), 408--424,
+            \newblock DOI: \href{https://doi.org/10.1098/rspa.1916.0026}{10.1098/rspa.1916.0026}.
+
+            \bibitem{Hill1894}
+            M.~J.~M. Hill,
+            \newblock On a spherical vortex,
+            \newblock \emph{Philosophical Transactions of the Royal Society of London A} \textbf{185} (1894), 213--245,
+            \newblock DOI: \href{https://doi.org/10.1098/rsta.1894.0006}{10.1098/rsta.1894.0006}.
+
+            \bibitem{Greenspan1968}
+            H.~P. Greenspan,
+            \newblock \emph{The Theory of Rotating Fluids},
+            \newblock Cambridge University Press (1968),
+            \newblock ISBN: 978-0521051477.
+
+            \bibitem{Onsager1949}
+            L.~Onsager,
+            \newblock Statistical hydrodynamics,
+            \newblock \emph{Il Nuovo Cimento} \textbf{6}(S2) (1949), 279--287,
+            \newblock DOI: \href{https://doi.org/10.1007/BF02780991}{10.1007/BF02780991}.
+
+            \bibitem{Feynman1955}
+            R.~P. Feynman,
+            \newblock Application of quantum mechanics to liquid helium,
+            \newblock \emph{Progress in Low Temperature Physics} \textbf{1} (1955), 17--53,
+            \newblock DOI: \href{https://doi.org/10.1016/S0079-6417(08)60077-3}{10.1016/S0079-6417(08)60077-3}.
+
+            \bibitem{KlecknerIrvine2013}
+            D.~Kleckner and W.~T.~M.~Irvine,
+            \newblock Creation and dynamics of knotted vortices,
+            \newblock \emph{Nature Physics} \textbf{9} (2013), 253--258,
+            \newblock DOI: \href{https://doi.org/10.1038/nphys2560}{10.1038/nphys2560}.
 
             \bibitem{Jacobson2008}
             T.~Jacobson,
@@ -4093,6 +6619,12 @@
             \newblock \emph{Vortex Dynamics},
             \newblock Cambridge University Press (1992).
 
+            \bibitem{Zhang2005TransverseForce}
+            P.-M.~Zhang, L.-M.~Cao, Y.-S.~Duan, and C.-K.~Zhong,
+            \newblock Transverse force on a moving vortex with the acoustic geometry,
+            \newblock arXiv:hep-th/0501073 (2005).
+            \newblock Permalink: \url{https://arxiv.org/abs/hep-th/0501073}.
+
 
             \bibitem{KidaTakaoka1994}
             S.~Kida and M.~Takaoka,
@@ -4105,11 +6637,31 @@
             \newblock Vortex reconnection in superfluid helium,
             \newblock Physical Review Letters \textbf{71} (1993), 1375--1378,
             \newblock DOI: 10.1103/PhysRevLett.71.1375.
+
+            \bibitem{BewleyPaolettiSreenivasanLathrop2008}
+            G.~P. Bewley, M.~S. Paoletti, K.~R. Sreenivasan, and D.~P. Lathrop,
+            \newblock Characterization of reconnecting vortices in superfluid helium,
+            \newblock Proceedings of the National Academy of Sciences \textbf{105} (2008), 13707--13710,
+            \newblock DOI: 10.1073/pnas.0806002105.
+
+            \bibitem{Varoquaux2015AndersonPhaseSlippage}
+            E.~Varoquaux,
+            \newblock Anderson's considerations on the flow of superfluid helium: Some offshoots,
+            \newblock Reviews of Modern Physics \textbf{87} (2015), 803--854,
+            \newblock DOI: 10.1103/RevModPhys.87.803.
+
             \bibitem{Moffatt1969}
             H.~K. Moffatt,
             \newblock The degree of knottedness of tangled vortex lines,
             \newblock J. Fluid Mech. \textbf{35} (1969), 117--129,
             \newblock DOI: 10.1017/S0022112069000991.
+
+            \bibitem{CantarellaParsley2010Helicity}
+            J.~Cantarella and J.~Parsley,
+            \newblock A new cohomological formula for helicity in $\mathbb R^{2k+1}$ reveals the effect of a diffeomorphism on helicity,
+            \newblock \emph{Journal of Geometry and Physics} \textbf{60} (2010), 1127--1155,
+            \newblock DOI: \href{https://doi.org/10.1016/j.geomphys.2010.04.001}{10.1016/j.geomphys.2010.04.001},
+            \newblock arXiv: \href{https://arxiv.org/abs/0903.1465}{0903.1465}.
 
             \bibitem{Zurek2003}
             W.~H. Zurek,
@@ -4156,6 +6708,224 @@
             \newblock \textit{Physical Review Letters} \textbf{131}, 011602 (2023),
             \newblock doi:10.1103/PhysRevLett.131.011602,
             \newblock arXiv:2210.13780.
+
+            \bibitem{Einstein1905}
+            A.~Einstein,
+            \newblock Zur Elektrodynamik bewegter K{\"o}rper,
+            \newblock Annalen der Physik \textbf{322} (1905), 891--921,
+            \newblock DOI: 10.1002/andp.19053221004.
+
+            \bibitem{Einstein1915}
+            A.~Einstein,
+            \newblock Die Feldgleichungen der Gravitation,
+            \newblock Sitzungsberichte der K{\"o}niglich Preussischen Akademie der Wissenschaften (1915), 844--847,
+            \newblock permalink: https://einsteinpapers.press.princeton.edu/vol6-trans/129.
+
+            \bibitem{BarceloLiberatiVisser2011}
+            C.~Barcel{\'o}, S.~Liberati, and M.~Visser,
+            \newblock Analogue Gravity,
+            \newblock Living Reviews in Relativity \textbf{14} (2011), 3,
+            \newblock DOI: 10.12942/lrr-2011-3.
+
+            \bibitem{BarceloLiberatiVisser2026}
+            C.~Barcel{\'o}, S.~Liberati, and M.~Visser,
+            \newblock ``Analogue Gravity,''
+            \newblock \textit{Living Reviews in Relativity} \textbf{29}, 2 (2026),
+            \newblock DOI: 10.1007/s41114-026-00064-9,
+            \newblock permalink: https://doi.org/10.1007/s41114-026-00064-9.
+
+            \bibitem{Jacobson1995}
+            T.~Jacobson,
+            \newblock Thermodynamics of spacetime: The Einstein equation of state,
+            \newblock Phys. Rev. Lett. \textbf{75} (1995), 1260--1263,
+            \newblock DOI: 10.1103/PhysRevLett.75.1260.
+
+            \bibitem{Sakharov1967}
+            A.~D. Sakharov,
+            \newblock Vacuum quantum fluctuations in curved space and the theory of gravitation,
+            \newblock Dokl. Akad. Nauk SSSR \textbf{177} (1967), 70--71;
+            \newblock Sov. Phys. Dokl. \textbf{12} (1968), 1040--1041.
+
+            \bibitem{JacobsonMattingly2001}
+            T.~Jacobson and D.~Mattingly,
+            \newblock Gravity with a dynamical preferred frame,
+            \newblock Phys. Rev. D \textbf{64} (2001), 024028,
+            \newblock DOI: 10.1103/PhysRevD.64.024028.
+
+            \bibitem{FosterJacobson2006}
+            B.~Z. Foster and T.~Jacobson,
+            \newblock Post-Newtonian parameters and constraints on Einstein-\AE ther theory,
+            \newblock Phys. Rev. D \textbf{73} (2006), 064015,
+            \newblock DOI: 10.1103/PhysRevD.73.064015.
+
+            \bibitem{Abbott2017GW170817}
+            B.~P. Abbott et al. (LIGO Scientific Collaboration and Virgo Collaboration),
+            \newblock GW170817: Observation of gravitational waves from a binary neutron star inspiral,
+            \newblock Phys. Rev. Lett. \textbf{119} (2017), 161101,
+            \newblock DOI: 10.1103/PhysRevLett.119.161101.
+
+            \bibitem{Mohr2025CODATA}
+            P.~J. Mohr, D.~B. Newell, B.~N. Taylor, and E.~Tiesinga,
+            \newblock CODATA recommended values of the fundamental physical constants: 2022,
+            \newblock Rev. Mod. Phys. \textbf{97} (2025), 025002,
+            \newblock DOI: 10.1103/RevModPhys.97.025002.
+
+            \bibitem{Planck2018Cosmology}
+            N.~Aghanim et al. (Planck Collaboration),
+            \newblock Planck 2018 results. VI. Cosmological parameters,
+            \newblock Astronomy \& Astrophysics \textbf{641} (2020), A6,
+            \newblock DOI: 10.1051/0004-6361/201833910.
+
+\bibitem{CantarellaDeTurckGluckTeytel2000CurlSpherical}
+            J.~Cantarella, D.~DeTurck, H.~Gluck, and M.~Teytel,
+            \newblock ``The Spectrum of the Curl Operator on Spherically Symmetric Domains,''
+            \newblock \emph{Physics of Plasmas} \textbf{7} (2000), 2766--2775,
+            \newblock DOI: \href{https://doi.org/10.1063/1.874127}{10.1063/1.874127}.
+
+\bibitem{CantarellaDeTurckGluck2001UpperBounds}
+            J.~Cantarella, D.~DeTurck, and H.~Gluck,
+            \newblock ``Upper Bounds for the Writhing of Knots and the Helicity of Vector Fields,''
+            \newblock in \emph{Knots, Braids, and Mapping Class Groups---Papers Dedicated to Joan S. Birman},
+            AMS/IP Studies in Advanced Mathematics \textbf{24} (2001), 1--21,
+            \newblock Permalink: \href{https://jasoncantarella.com/downloads/papers/upperbounds/upperbounds.pdf}{author PDF}.
+
+\bibitem{CantarellaFuKusnerSullivanWrinkle2006Gehring}
+            J.~Cantarella, J.~H.~G.~Fu, R.~B.~Kusner, J.~M.~Sullivan, and N.~C.~Wrinkle,
+            \newblock ``Criticality for the Gehring Link Problem,''
+            \newblock \emph{Geometry \& Topology} \textbf{10} (2006), 2055--2115,
+            \newblock DOI: \href{https://doi.org/10.2140/gt.2006.10.2055}{10.2140/gt.2006.10.2055},
+            \newblock arXiv: \href{https://arxiv.org/abs/math/0402212}{math/0402212}.
+
+\bibitem{CantarellaDeTurckGluck2001BiotSavart}
+            J.~Cantarella, D.~DeTurck, and H.~Gluck,
+            \newblock ``The Biot--Savart Operator for Application to Knot Theory, Fluid Dynamics, and Plasma Physics,''
+            \newblock \emph{Journal of Mathematical Physics} \textbf{42} (2001), 876--905,
+            \newblock DOI: \href{https://doi.org/10.1063/1.1329659}{10.1063/1.1329659}.
+
+\bibitem{CantarellaDeTurckGluck2002Hodge}
+            J.~Cantarella, D.~DeTurck, and H.~Gluck,
+            \newblock ``Vector Calculus and the Topology of Domains in 3-Space,''
+            \newblock \emph{The American Mathematical Monthly} \textbf{109} (2002), 409--442,
+            \newblock DOI: \href{https://doi.org/10.1080/00029890.2002.11919870}{10.1080/00029890.2002.11919870}.
+
+            \bibitem{CantarellaKusnerSullivan2002}
+            J.~Cantarella, R.~B. Kusner, and J.~M. Sullivan,
+            \newblock On the Minimum Ropelength of Knots and Links,
+            \newblock \emph{Inventiones Mathematicae} \textbf{150} (2002), 257--286,
+            \newblock DOI: \href{https://doi.org/10.1007/s00222-002-0234-y}{10.1007/s00222-002-0234-y},
+            \newblock arXiv: \href{https://arxiv.org/abs/math/0103224}{math/0103224}.
+
+            \bibitem{CantarellaDeTurckGluckTeytel2000Isoperimetric}
+            J.~Cantarella, D.~DeTurck, H.~Gluck, and M.~Teytel,
+            \newblock Isoperimetric problems for the helicity of vector fields and the Biot--Savart and curl operators,
+            \newblock \emph{Journal of Mathematical Physics} \textbf{41} (2000), 5615--5641,
+            \newblock DOI: \href{https://doi.org/10.1063/1.533429}{10.1063/1.533429}.
+
+            \bibitem{AshtonCantarellaPiatekRawdon2011}
+            T.~Ashton, J.~Cantarella, M.~Piatek, and E.~J. Rawdon,
+            \newblock Knot Tightening by Constrained Gradient Descent,
+            \newblock \emph{Experimental Mathematics} \textbf{20}(1) (2011), 57--90,
+            \newblock DOI: \href{https://doi.org/10.1080/10586458.2011.544581}{10.1080/10586458.2011.544581},
+            \newblock arXiv: \href{https://arxiv.org/abs/1002.1723}{1002.1723}.
+
+            \bibitem{DenneDiaoSullivan2006}
+            E.~Denne, Y.~Diao, and J.~M. Sullivan,
+            \newblock Quadrisecants Give New Lower Bounds for the Ropelength of a Knot,
+            \newblock \emph{Geometry \& Topology} \textbf{10} (2006), 1--26,
+            \newblock DOI: \href{https://doi.org/10.2140/gt.2006.10.1}{10.2140/gt.2006.10.1},
+            \newblock arXiv: \href{https://arxiv.org/abs/math/0408026}{math/0408026}.
+
+            \bibitem{BuniyKephart2003}
+            R.~V. Buniy and T.~W. Kephart,
+            \newblock A Model of Glueballs,
+            \newblock \emph{Physics Letters B} \textbf{576} (2003), 127--134,
+            \newblock DOI: \href{https://doi.org/10.1016/j.physletb.2003.09.081}{10.1016/j.physletb.2003.09.081},
+            \newblock arXiv: \href{https://arxiv.org/abs/hep-ph/0209339}{hep-ph/0209339}.
+
+            \bibitem{LIGOVirgoFermiINTEGRAL2017}
+            B.~P. Abbott et al. (LIGO Scientific Collaboration, Virgo Collaboration, Fermi Gamma-ray Burst Monitor, and INTEGRAL),
+            \newblock Gravitational Waves and Gamma-rays from a Binary Neutron Star Merger: GW170817 and GRB 170817A,
+            \newblock \emph{Astrophysical Journal Letters} \textbf{848}, L13 (2017),
+            \newblock DOI: \href{https://doi.org/10.3847/2041-8213/aa920c}{10.3847/2041-8213/aa920c}.
+
+            \bibitem{OostMukohyamaWang2018}
+            J.~Oost, S.~Mukohyama, and A.~Wang,
+            \newblock Constraints on Einstein-aether theory after GW170817,
+            \newblock \emph{Physical Review D} \textbf{97}, 124023 (2018),
+            \newblock DOI: \href{https://doi.org/10.1103/PhysRevD.97.124023}{10.1103/PhysRevD.97.124023}.
+
+            \bibitem{ShaoWex2012}
+            L.~Shao and N.~Wex,
+            \newblock New tests of local Lorentz invariance of gravity with small-eccentricity binary pulsars,
+            \newblock \emph{Classical and Quantum Gravity} \textbf{29}, 215018 (2012),
+            \newblock DOI: \href{https://doi.org/10.1088/0264-9381/29/21/215018}{10.1088/0264-9381/29/21/215018}.
+
+            \bibitem{ShaoCaballeroKramerWexChampionJessner2013}
+            L.~Shao, R.~N. Caballero, M.~Kramer, N.~Wex, D.~J. Champion, and A.~Jessner,
+            \newblock A new limit on local Lorentz invariance violation of gravity from solitary pulsars,
+            \newblock \emph{Classical and Quantum Gravity} \textbf{30}, 165019 (2013),
+            \newblock DOI: \href{https://doi.org/10.1088/0264-9381/30/16/165019}{10.1088/0264-9381/30/16/165019}.
+
+            \bibitem{GuptaHerreroValeaBlasBarausseCornishYagiYunes2021}
+            T.~Gupta, M.~Herrero-Valea, D.~Blas, E.~Barausse, N.~Cornish, K.~Yagi, and N.~Yunes,
+            \newblock New binary pulsar constraints on Einstein-\ae ther theory after GW170817,
+            \newblock \emph{Classical and Quantum Gravity} \textbf{38}, 195003 (2021),
+            \newblock DOI: \href{https://doi.org/10.1088/1361-6382/ac1a69}{10.1088/1361-6382/ac1a69}.
+
+            \bibitem{Annala2022ProtectedVortexKnots}
+            T.~Annala, R.~Zamora-Zamora, and M.~M{\"o}tt{\"o}nen,
+            \newblock Topologically protected vortex knots and links,
+            \newblock \emph{Communications Physics} \textbf{5} (2022), 309,
+            \newblock DOI: \href{https://doi.org/10.1038/s42005-022-01071-2}{10.1038/s42005-022-01071-2}.
+
+            \bibitem{Kleckner2016SuperfluidKnotsUntie}
+            D.~Kleckner, L.~H.~Kauffman, and W.~T.~M.~Irvine,
+            \newblock How superfluid vortex knots untie,
+            \newblock \emph{Nature Physics} \textbf{12} (2016), 650--655,
+            \newblock DOI: \href{https://doi.org/10.1038/nphys3679}{10.1038/nphys3679}.
+
+            \bibitem{Pisanty2018FractionalKnotsLight}
+            E.~Pisanty, G.~Jim{\'e}nez, V.~Vicu{\~n}a-Hern{\'a}ndez, A.~Pic{\'o}n, A.~Celi, J.~P.~Torres, and M.~Lewenstein,
+            \newblock Knotting fractional-order knots with the polarization state of light,
+            \newblock \emph{arXiv:1808.05193} (2018),
+            \newblock arXiv: \href{https://arxiv.org/abs/1808.05193}{1808.05193}.
+
+            \bibitem{Ricca1998KnotFluidMechanics}
+            R.~L.~Ricca,
+            \newblock Applications of knot theory in fluid mechanics,
+            \newblock \emph{Banach Center Publications} \textbf{42} (1998), 321--346,
+            \newblock Permalink: \href{https://eudml.org/doc/252224}{EuDML:252224}.
+
+
+            \bibitem{BertiEtAl2026BlackHoleSpectroscopy}
+            E.~Berti et al.,
+            \newblock Black hole spectroscopy: from theory to experiment,
+            \newblock \emph{Classical and Quantum Gravity} \textbf{43} (2026), 123001,
+            \newblock DOI: \href{https://doi.org/10.1088/1361-6382/ae59e2}{10.1088/1361-6382/ae59e2}.
+
+            \bibitem{MajdaBertozzi2002}
+            A.~J. Majda and A.~L. Bertozzi,
+            \newblock \emph{Vorticity and Incompressible Flow},
+            \newblock Cambridge Texts in Applied Mathematics, Cambridge University Press (2002),
+            \newblock DOI: \href{https://doi.org/10.1017/CBO9780511613203}{10.1017/CBO9780511613203}.
+
+            \bibitem{JaramilloPanossoMacedoAlSheikh2021}
+            J.~L. Jaramillo, R.~Panosso Macedo, and L.~Al~Sheikh,
+            \newblock Pseudospectrum and black hole quasinormal mode instability,
+            \newblock \emph{Physical Review X} \textbf{11} (2021), 031003,
+            \newblock DOI: \href{https://doi.org/10.1103/PhysRevX.11.031003}{10.1103/PhysRevX.11.031003}.
+
+            \bibitem{CardosoMirandaBertiWitekZanchin2009}
+            V.~Cardoso, A.~S. Miranda, E.~Berti, H.~Witek, and V.~T. Zanchin,
+            \newblock Geodesic stability, Lyapunov exponents, and quasinormal modes,
+            \newblock \emph{Physical Review D} \textbf{79} (2009), 064016,
+            \newblock DOI: \href{https://doi.org/10.1103/PhysRevD.79.064016}{10.1103/PhysRevD.79.064016}.
+
+            \bibitem{TorresPatrickRichartzWeinfurtner2020}
+            T.~Torres, S.~Patrick, M.~Richartz, and S.~Weinfurtner,
+            \newblock Quasinormal mode oscillations in an analogue black hole experiment,
+            \newblock \emph{Physical Review Letters} \textbf{125} (2020), 011301,
+            \newblock DOI: \href{https://doi.org/10.1103/PhysRevLett.125.011301}{10.1103/PhysRevLett.125.011301}.
 
         \end{thebibliography}
 

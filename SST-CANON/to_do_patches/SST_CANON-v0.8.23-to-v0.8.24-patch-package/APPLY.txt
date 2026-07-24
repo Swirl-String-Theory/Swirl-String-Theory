@@ -1,0 +1,44 @@
+SST CANON v0.8.23 -> v0.8.24
+================================
+
+BASELINE FILES
+  SST_CANON-v0.8.23.tex
+  SST_CANON-v0.8.23-research-track.tex
+
+RECOMMENDED: GIT RENAME PATCH
+  git apply --check SST_CANON-v0.8.23-to-v0.8.24-GIT-RENAME.patch.diff
+  git apply SST_CANON-v0.8.23-to-v0.8.24-GIT-RENAME.patch.diff
+
+This directly creates:
+  SST_CANON-v0.8.24.tex
+  SST_CANON-v0.8.24-research-track.tex
+and removes the old v0.8.23 names from the worktree.
+
+PORTABLE GNU PATCH
+  cp SST_CANON-v0.8.23.tex SST_CANON-v0.8.24.tex
+  cp SST_CANON-v0.8.23-research-track.tex SST_CANON-v0.8.24-research-track.tex
+  patch --dry-run -p1 --binary < SST_CANON-v0.8.23-to-v0.8.24-COMBINED.patch.diff
+  patch -p1 --binary < SST_CANON-v0.8.23-to-v0.8.24-COMBINED.patch.diff
+
+BUILD
+  pdflatex -interaction=nonstopmode -halt-on-error SST_CANON-v0.8.24.tex
+  pdflatex -interaction=nonstopmode -halt-on-error SST_CANON-v0.8.24.tex
+  pdflatex -interaction=nonstopmode -halt-on-error SST_CANON-v0.8.24.tex
+
+QUICK REGRESSION CHECKS
+  grep -n 'canon-0.8.1-research-track' SST_CANON-v0.8.24*.tex
+  grep -n '\\AE ther element' SST_CANON-v0.8.24*.tex
+  grep -n '2E_0' SST_CANON-v0.8.24*.tex
+
+Expected:
+  - no stale v0.8.1 companion pointer;
+  - no substrate use of "Æther element";
+  - `2E_0` occurs only in explicit historical normalization notes;
+  - combined PDF: 213 pages;
+  - 0 undefined references/citations;
+  - 0 multiply-defined-label warnings.
+
+ROLLBACK
+  In Git: git restore SST_CANON-v0.8.23.tex SST_CANON-v0.8.23-research-track.tex
+          and remove the v0.8.24 files, or revert the patch commit.
+  Outside Git: restore the two v0.8.23 files from backup.

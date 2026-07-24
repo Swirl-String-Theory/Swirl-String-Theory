@@ -36,9 +36,9 @@ EDITION_CONFIG = {
     },
     "0.8.8": {
         "prev": "0.8.7",
-        "header": "%! v0.8.8 edition: Gemini epistemic/notation audit (been_processed).",
+        "header": "%! v0.8.8 edition: Epistemic/notation audit (been_processed).",
         "note": (
-            r"\textbf{v0.8.8} applies the Gemini audit: primitive calibration notation "
+            r"\textbf{v0.8.8} applies the epistemic/notation audit: primitive calibration notation "
             r"($\mathcal{P}_{\mathrm{cal}}$, $\vchar$, $\uswirl$), conditional Kelvin/DDE labels, "
             r"Pauli $a_{\rm cut}$ disambiguation, and research-track epistemic relabeling on top of v0.8.7."
         ),
@@ -54,9 +54,9 @@ EDITION_CONFIG = {
     },
     "0.8.10": {
         "prev": "0.8.9",
-        "header": "%! v0.8.10 edition: Gemini round-2 calibration notation audit (been_processed).",
+        "header": "%! v0.8.10 edition: Round-2 calibration notation audit (been_processed).",
         "note": (
-            r"\textbf{v0.8.10} applies the Gemini round-2 audit: canonical speed $\vchar$ vs.\ local "
+            r"\textbf{v0.8.10} applies the round-2 calibration/notation audit: canonical speed $\vchar$ vs.\ local "
             r"$\uswirl(x,t)$ discipline, $\eta_0$ algebraic-within-calibration status, delay-equation "
             r"sign convention, Rydberg/finite-cell relabeling, and research-track $v_K$ disambiguation on top of v0.8.9."
         ),
@@ -72,9 +72,9 @@ EDITION_CONFIG = {
     },
     "0.8.12": {
         "prev": "0.8.11",
-        "header": "%! v0.8.12 edition: Gemini round-3 epistemic patch (been_processed).",
+        "header": "%! v0.8.12 edition: Round-3 epistemic patch (been_processed).",
         "note": (
-            r"\textbf{v0.8.12} applies the Gemini round-3 epistemic audit: "
+            r"\textbf{v0.8.12} applies the round-3 epistemic audit: "
             r"$\mathcal{P}_{\mathrm{cal}}$-aligned identity relabels, coarse-grain density caveat, "
             r"Pauli $a_{\rm cut}$ disambiguation, galaxy-scale $\rhoF$ note, and research-track EM-bridge limits "
             r"on top of v0.8.11."
