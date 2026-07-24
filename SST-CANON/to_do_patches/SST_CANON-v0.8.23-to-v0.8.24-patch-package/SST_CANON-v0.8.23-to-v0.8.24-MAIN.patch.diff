@@ -1,0 +1,415 @@
+--- a/SST_CANON-v0.8.24.tex
++++ b/SST_CANON-v0.8.24.tex
+@@ -3,10 +3,10 @@
+ %! Affiliation = Independent Researcher, Groningen, The Netherlands
+ %! ORCID = 0009-0006-1686-3961
+ %! DOI = 10.5281/zenodo.21249056
+-%! v0.8.23 edition: Genesis/provenance architecture + minimal relational link-field action + KnotPlot/Ridgerunner provenance on top of v0.8.22.
++%! v0.8.24 edition: compact-link attribution and phase gate; UV-scale guard; zero-legacy symbol separation; core--torsion normalization repair; certification canonization; structural hygiene on top of v0.8.23.
+ 
+ \newcommand{\paperdoi}{10.5281/zenodo.21249056}
+-\newcommand{\papertitle}{Swirl-String-Theory Canon-v0.8.23}
++\newcommand{\papertitle}{Swirl-String-Theory Canon-v0.8.24}
+ \newcommand{\paperkeywords}{Swirl String Theory, SST, Canon, Topological Hydrodynamics, Knot Theory, Genesis, Provenance, Impedance, Relational Link Field, Ridgerunner, Operational Spacetime, Vortex Atom Luminal Torsion, Quasinormal Swirl Spectroscopy, Pseudospectral Robustness}
+ 
+ \documentclass[11pt]{article}
+@@ -122,7 +122,7 @@
+         {\normalsize Groningen, The Netherlands\par}
+         \vspace{0.6cm}
+ 
+-        {\normalsize Version v0.8.23\par}
++        {\normalsize Version v0.8.24\par}
+         {\normalsize \today\par}
+         \vspace{0.9cm}
+ 
+@@ -396,15 +396,31 @@
+ geometric certificate.  The project found that the same knot may pass a length
+ comparison while still lacking strict residual convergence, resolution
+ convergence, smooth-thickness verification, or a stable contact skeleton.
+-Consequently the admissible labels are graded:
++
++\begin{definition}[Geometry certification ladder]
++\label{def:geometry_certification_ladder}
++Every knot geometry used in a downstream SST claim carries exactly one of the
++graded statuses
+ \begin{equation}
+     \begin{gathered}
+         \texttt{seed}<\texttt{relaxed candidate}<\texttt{near-ideal candidate},\\
+         \texttt{near-ideal candidate}<\texttt{strict near-ideal}
+-        <\texttt{certified smooth upper bound}.
++        <\texttt{certified smooth upper bound},
+     \end{gathered}
+     \label{eq:genesis_knotplot_status_ladder}
+ \end{equation}
++determined solely by the preregistered gate profile of the release in which the
++geometry was produced.
++\end{definition}
++
++\begin{quote}
++\textbf{[CANON RULE].}
++No SST manuscript, benchmark, or numerical result may cite a geometry above its
++certified status, silently promote it between statuses, or weaken a gate profile
++after inspecting a physical output.  Downstream claims must expose the geometry
++source, topology certificate, thickness convention, resolution, constrained
++residual, contact map, and certified error envelope.
++\end{quote}
+ No software or database name substitutes for these gates.
+ 
+ \paragraph{Project conclusion 2: topology and geometry require independent gates.}
+@@ -971,39 +987,59 @@
+     $Z_{\mathrm J}(\omega)$; scalar ropelength alone is not an admissible closure.
+ \end{enumerate}
+ 
+-\subsection{Preregistered falsifiers}
++\subsection{Preregistered falsifiers and integrity failures}
+ \label{subsec:genesis_preregistered_falsifiers}
+ 
+-The impedance and non-circularity program fails in its strong form if any of the
+-following persists after controlled numerical and analytical refinement:
++The impedance and non-circularity programme uses four distinct failure classes.
++They must not be conflated: a methodological failure voids a derivation claim,
++whereas an empirical failure conflicts directly with observation.
+ 
++\paragraph{Class E --- empirical falsifiers.}
+ \begin{enumerate}
+-    \item no stable transverse link branch exists;
+     \item the inferred propagation speed depends irreducibly on polarization,
+     lattice orientation, or vortex species at low energy;
+-    \item the value of $c_T$ can match experiment only by inserting a parameter
+-    whose provenance already contains $c$;
++    \item clock slowing, rod response, synchronization, and propagation require
++    mutually inconsistent characteristic speeds.
++\end{enumerate}
++
++\paragraph{Class T --- theoretical or model-closure falsifiers.}
++\begin{enumerate}
++    \item no stable transverse link branch exists;
+     \item the transition action or source unit remains continuously tunable
+     rather than dynamically or topologically quantized;
++    \item a free torsion pulse necessarily creates permanent material vorticity
++    in an initially irrotational region, contrary to the declared material--link
++    sector separation.
++\end{enumerate}
++
++\paragraph{Class N --- numerical or certification failures.}
++\begin{enumerate}
++    \item the selected knot geometry changes topology, component linking data,
++    or strict near-ideal classification under the declared refinement pipeline;
++    \item scalar ropelength converges while the positive strut/kink contact
++    measures or active rigidity rank fail to converge.
++\end{enumerate}
++
++\paragraph{Class M --- methodological-integrity failures.}
++\begin{enumerate}
++    \item the value of $c_T$ can match experiment only by inserting a parameter
++    whose provenance already contains $c$;
+     \item the impedance-ratio route reproduces $\alpha$ only after
+     $\alpha$-dependent calibration;
+-    \item the free torsion pulse necessarily creates permanent material
+-    vorticity in an initially irrotational region, contrary to the declared
+-    Helmholtz sector separation;
+-    \item clock slowing, rod response, synchronization, and propagation require
+-    mutually inconsistent characteristic speeds;
+     \item alternative microparameters fit $c$ and $\alpha$ equally well while
+     making incompatible predictions elsewhere, without a dynamical selection
+     principle;
+-    \item the selected knot geometry changes topology, component linking data,
+-    or strict near-ideal classification under the declared refinement pipeline;
+-    \item scalar ropelength converges while the positive strut/kink contact
+-    measures or active rigidity rank fail to converge;
+     \item a downstream mass, impedance, or constant extraction quotes precision
+     parametrically smaller than the certified geometry-error envelope without an
+-    independent cancellation proof.
++    independent cancellation proof;
++    \item a preregistered gate or tolerance is weakened after inspecting the
++    downstream physical output.
+ \end{enumerate}
+ 
++\textbf{[CANON INTERPRETATION].}
++A Class~M event does not by itself falsify the physical hypothesis; it voids the
++claimed derivation and returns the result to calibrated-consistency status.
++
+ \subsection{Canonical dependency summary}
+ \label{subsec:canonical_dependency_summary}
+ 
+@@ -1028,6 +1064,19 @@
+ The reverse arrows are permitted only in the explicitly calibrated
+ phenomenology layer. They are prohibited in a claimed zero-legacy prediction.
+ 
++\subsection{Cross-document operating rule}
++\label{subsec:genesis_cross_document_operating_rule}
++
++\begin{quote}
++\textbf{[CANON OPERATING RULE].}
++Every SST sub-paper, software benchmark, and numerical data release shall state
++for each material result whether it is used in \texttt{symbolic},
++\texttt{calibrated-consistency}, or \texttt{prediction} mode, and shall attach an
++explicit epistemic label such as \textbf{[ORTHODOX]}, \textbf{[DERIVED]},
++\textbf{[RESEARCH TRACK]}, or \textbf{[SPECULATIVE]}.  A result may be promoted
++only after its dependency graph, gate profile, and error envelope are exposed.
++\end{quote}
++
+ \subsection{Provenance references for this section}
+ \label{subsec:genesis_provenance_references}
+ 
+@@ -1459,13 +1508,16 @@
+         \end{align}
+         Thus \(\vchar\) is a calibrated circulation/horn speed, not the universal causal speed.
+ 
+-        \textbf{[CANON / SEMANTIC RULE]} The calibrated identity \(\vchar=\alpha c/2\) must not be inverted into a claim that the internal core sound speed equals \(c\).  In a Gross--Pitaevskii / NLSE core model with circulation quantum and healing length
+-        \begin{align}
+-            \Gamma_q = \frac{h_*}{m_*},
+-            \qquad
+-            \xi = \frac{\hbar_*}{\sqrt{2}\,m_* c_s},
+-        \end{align}
+-        imposing \(\Gamma_q=\Gamma_0\) and \(\xi=\rc\) gives
++        \textbf{[CANON / SEMANTIC RULE].}
++        The calibrated identity \(\vchar=\alpha c/2\) must not be inverted into a
++        claim that the internal core sound speed equals \(c\).
++
++        \begin{lemma}[Conditional two-speed core relation]
++        \label{lem:conditional_two_speed_core_relation}
++        Assume a Gross--Pitaevskii / NLSE core with Madelung circulation quantum
++        \(\Gamma_q=h_*/m_*\), healing length
++        \(\xi=\hbar_*/(\sqrt{2}\,m_*c_s)\), the single-winding identification
++        \(\Gamma_q=\Gamma_0\), and the scale identification \(\xi=\rc\).  Then
+         \begin{align}
+             c_s
+             =
+@@ -1476,16 +1528,35 @@
+             7.73465663\times10^{5}\ \mathrm{m\,s^{-1}}.
+             \label{eq:core_sound_speed_vchar_over_sqrt2}
+         \end{align}
+-        Therefore a calculation that closes an inertia ratio as \(u^2/c_s^2\) has produced an internal core-acoustic closure, not yet the Lorentz-compatible ratio \(u^2/c^2\).
+-
+-        \textbf{[RESEARCH-TRACK GATE]} A Lorentz-compatible derivation of the Swirl-Clock requires a separate transverse torsion/shear sector with propagation speed \(c_T=c\), plus a core--torsion impedance identity of the form
++        \end{lemma}
++        \textbf{[DERIVED, CONDITIONAL].}
++        The relation follows from the four stated hypotheses; it is not a
++        zero-legacy derivation of the universal causal speed.  A calculation that
++        closes an inertia ratio as \(u^2/c_s^2\) has produced an internal
++        core-acoustic closure, not yet the Lorentz-compatible ratio \(u^2/c^2\).
++
++        \textbf{[RESEARCH-TRACK GATE].}
++        A Lorentz-compatible derivation of the Swirl-Clock requires a separate
++        transverse torsion/shear sector with propagation speed \(c_T=c\), plus a
++        core--torsion inertia identity of the form
+         \begin{align}
+             \mathsf M_{\mathrm{torsion}}[K]
+             \stackrel{?}{=}
+-            \frac{2E_0[K]}{c_T^2}\,\mathsf I .
++            \frac{E_0[K]}{c_T^2}\,\mathsf I .
+             \label{eq:core_torsion_impedance_gate_main}
+         \end{align}
+-        Equation~\eqref{eq:swirl_clock} and the operational identification \(c_A^{(2\mathrm w)}=c\) are retained as canonical founding postulates of SST, motivated by the empirical structure of special relativity. What remains open is their non-circular derivation from the substrate: Eq.~\eqref{eq:core_torsion_impedance_gate_main}, universal clock-and-ruler dressing, and low-energy monometricity must follow from a controlled field calculation. The NLSE core alone does not supply that proof.
++        \textbf{[NORMALIZATION NOTE, v0.8.24].}
++        Here \(E_0[K]\) is the full rest energy.  The earlier factor
++        \(2E_0[K]/c_T^2\) is superseded because it conflicts with the canonical
++        mass-equivalence rule \(M=E_0/c^2\) and with the expansion
++        \(\gamma E_0=E_0+\tfrac12E_0u^2/c^2+O(u^4)\).
++        Equation~\eqref{eq:swirl_clock} and the operational identification
++        \(c_A^{(2\mathrm w)}=c\) remain canonical founding postulates of SST,
++        motivated by the empirical structure of special relativity.  What remains
++        open is their non-circular derivation from the substrate:
++        Eq.~\eqref{eq:core_torsion_impedance_gate_main}, universal clock-and-ruler
++        dressing, and low-energy monometricity must follow from a controlled field
++        calculation.  The NLSE core alone does not supply that proof.
+ 
+     \subsection{Density Hierarchy}
+         
+@@ -2085,18 +2156,45 @@
+         corresponds to configurations whose neutral circulation envelope reaches
+         a structural normalization limit.
+     
++    \subsection{Foundational Postulate: Material--Link Sector Separation}
++        \label{subsec:material_link_sector_separation_postulate}
++
++        \textbf{Statement.}
++        Source-free propagation of the relational link field does not change the
++        circulation or topology class of an unaffected material loop.  On every
++        smooth ideal branch,
++        \begin{align}
++            \Delta\Gamma_C
++            =
++            \Delta\oint_{C(T)}\mathbf v\cdot d\boldsymbol\ell
++            =0.
++            \label{eq:r_phase_helmholtz_sector_gate}
++        \end{align}
++        An exception requires an explicitly modeled matter--link source, boundary,
++        singularity, reconnection, or Kairos coupling.
++
++        \textbf{[FOUNDATIONAL POSTULATE / FALSIFIABLE].}
++        This is a constitutive sector-separation rule, not an identity derived from
++        compact \(U(1)\) gauge structure.  A deconfined link-field phase is necessary
++        for long-range radiation but is not identical to material circulation
++        preservation.  Any identification of a link-field defect current with a
++        material Kairos event requires a separate coupling law and defect test.
++
+     \subsection{Logical Structure of the Axioms}
+         
+-        The axioms form a dependency hierarchy:
++        The axioms and foundational postulate form a dependency hierarchy:
+         
+-        \begin{align}
+-            \text{Continuum}
+-            \rightarrow \text{Vortex Structures}
+-            \rightarrow \text{Quantization}
+-            \rightarrow \text{Torsion Cone and Operational Spacetime}
+-            \rightarrow \text{Delay Dynamics}
+-            \rightarrow \text{Mass/Energy Emergence}
+-        \end{align}
++        \begin{equation}
++            \begin{aligned}
++                \text{Continuum}
++                &\rightarrow \text{Vortex Structures}
++                \rightarrow \text{Quantization}\\
++                &\rightarrow \text{Torsion Cone and Operational Spacetime}\\
++                &\rightarrow \text{Material--Link Sector Separation}
++                \rightarrow \text{Delay Dynamics}\\
++                &\rightarrow \text{Mass/Energy Emergence}.
++            \end{aligned}
++        \end{equation}
+     
+     \subsection{Minimality Principle}
+         
+@@ -2771,7 +2869,7 @@
+             =
+             \rhoF c^2
+             =
+-            6.29128625115772348\times10^{10}\ \mathrm{Pa}.
++            6.3\times10^{10}\ \mathrm{Pa}.
+             \label{eq:r_phase_torsion_stiffness_target}
+         \end{align}
+         Equation~\eqref{eq:r_phase_torsion_stiffness_target} is dimensionally a shear/torsion stiffness target. Substituting the measured value of~\(c\) calibrates the bridge; it is not yet a microscopic derivation of~\(K_\gamma\).
+@@ -2804,7 +2902,7 @@
+         \paragraph{Relational link--field interpretation.}
+         \textbf{[CANON / RESEARCH-TRACK INTERFACE].}
+         The fundamental torsional degree of freedom is assigned to the dynamical
+-        connection between neighbouring \AE ther elements, rather than to a
++        connection between neighbouring substrate elements, rather than to a
+         necessary net local rotation of either endpoint.  At a microscopic level
+         an oriented link $e=(i\!\to\!j)$ carries a relative phase or twist variable
+         $\vartheta_e$, with reversal of orientation giving
+@@ -2818,9 +2916,17 @@
+         to the compact relational link action in
+         Section~\ref{sec:rt_minimal_link_field_action}.  Ordinary R-phase
+         propagation changes link holonomy and transports torsional energy, but it
+-        does not by itself switch an \AE ther element between the material sectors
++        does not by itself switch a substrate element between the material sectors
+         $\boldsymbol\zeta=0$ and $\boldsymbol\zeta\neq0$.
+ 
++        \textbf{[ORTHODOX STRUCTURAL TEMPLATE / COULOMB-PHASE CONDITIONAL].}
++        The weak-field Maxwell-form continuum equations of compact \(U(1)\) link
++        theory are orthodox lattice-gauge structure
++        \cite{Wilson1974,KogutSusskind1975,Kogut1979}.  Their interpretation as the
++        physical SST radiation sector remains conditional on a deconfined Coulomb
++        phase, a controlled continuum window, and an independently derived
++        matter--link coupling.
++
+ 
+     \subsection{Photon / unknot sector}
+ 
+@@ -2842,15 +2948,7 @@
+             :=
+             \nabla\times\mathbf v .
+         \end{align}
+-        The torsion/director curl \(\nabla\times\mathbf A_{\mathrm{eff}}\) is not identified with the creation of new material Euler vorticity. On a smooth ideal branch, an R-phase pulse may transport energy, phase, and polarization while preserving the circulation sector of every material loop~\(C(T)\):
+-        \begin{align}
+-            \Delta\Gamma_C
+-            =
+-            \Delta\oint_{C(T)}\mathbf v\cdot d\boldsymbol\ell
+-            =0.
+-            \label{eq:r_phase_helmholtz_sector_gate}
+-        \end{align}
+-        Thus propagation through an initially irrotational material region must not leave behind a permanent transition from \(\boldsymbol\zeta=0\) to \(\boldsymbol\zeta\neq0\). Such a transition requires an explicitly non-ideal source, boundary, singularity, or Kairos event; it is not ordinary photon propagation.
++        The torsion/director curl \(\nabla\times\mathbf A_{\mathrm{eff}}\) is not identified with the creation of new material Euler vorticity.  On a smooth ideal branch, an R-phase pulse may transport energy, phase, and polarization only while satisfying the foundational material--link separation rule, Eq.~\eqref{eq:r_phase_helmholtz_sector_gate}, for every unaffected material loop~\(C(T)\).  Thus propagation through an initially irrotational material region must not leave behind a permanent transition from \(\boldsymbol\zeta=0\) to \(\boldsymbol\zeta\neq0\). Such a transition requires an explicitly modeled source, boundary, singularity, reconnection, or Kairos coupling; it is not ordinary photon propagation.
+ 
+     \subsection{R-to-T closure threshold and conservation bookkeeping}
+         \label{subsec:rt_closure_threshold_bookkeeping}
+@@ -4820,7 +4918,7 @@
+         The purpose of v0.8.1 is therefore not to maximize novelty per page, but to minimize duplication and to expose the dependency graph of the theory. Whenever two earlier canon fragments make the same structural claim in different language, the present version keeps one canonical form and demotes the others to historical context.
+ 
+     \subsection{Research-track companion}
+-        The sectors that are useful for continuity but too long or too speculative for a minimal main-canon reading are also collected in the companion file \texttt{canon-0.8.1-research-track.tex}. That excerpt includes the thermodynamic-radiation interface, the minimal-coupling QED analogy, the ribbon-invariant chirality refinement, the particle-candidate mapping layer, the hydrodynamic exchange / Pauli-barrier estimate, the numerical-benchmark policy block, the gauge-sector roadmap, the four topology/stability appendices on non-Abelian protection, reconnection decay, fractional torus-phase winding, and topological-fluid mechanics, and the \emph{dark-sector and galactic canonization execution package} (frozen topology toolkit, benchmark protocol template, Euler-pressure anchor details, galactic branch gate, and probe--equation map). The integration subsections below retain the full in-context treatments with labels and cross-references; the companion file provides a portable standalone copy. Editorial separation does not reject these sectors; it prevents the core narrative from over-claiming closure.
++        Sectors that are useful for continuity but too long or too provisional for a minimal main-canon reading are collected in the companion research-track file of the current edition.  Its contents are versioned with the main canon; no historical filename or fixed contents list is normative.  The integration subsections below retain the in-context interfaces and cross-references, while the companion supplies the extended derivations, diagnostics, and research programmes.  Editorial separation does not reject these sectors; it prevents the core narrative from over-claiming closure.
+ 
+     \subsection{Research-track knot-energy normal form}
+         \label{sec:research_track_knot_energy_normal_form}
+@@ -4847,7 +4945,7 @@
+     \subsection{Dark-sector and galactic canonization status (v0.8.x)}
+         \label{sec:dark-canonicalization-status}
+ 
+-        This block records promotion labels for the dark-sector / galactic program consistent with the internal canonization plan. Detailed freezes, the mandatory benchmark-protocol checklist, the galactic profile branch gate (Branch~A: legacy-profile refine with benchmark traceability), and the probe falsification table live in \texttt{canon-0.8.1-research-track.tex} (Section titled \texttt{Dark-sector and galactic canonization execution package}).
++        This block records promotion labels for the dark-sector / galactic programme consistent with the internal canonization plan.  Detailed freezes, the mandatory benchmark-protocol checklist, the galactic profile branch gate, and the probe falsification table live in the companion research-track file of the current edition.
+ 
+         \begin{table}[h]
+         \centering
+@@ -5528,6 +5626,9 @@
+ 
+         \subsection{Canon edition notes}
+ 
++        \subsubsection{v0.8.24}
++            \textbf{v0.8.24} corrects the core--torsion inertia target to the Lorentz-consistent normalization \(\mathsf M_{\rm torsion}=E_0\mathsf I/c_T^2\), adds trace-based scale and anisotropy residuals, attributes the minimal compact link action to the orthodox Wilson/Kogut--Susskind template, introduces the Coulomb/deconfinement and closed-cell defect gates, separates three interpretations of the link spacing \(a_\ell\), rewrites zero-legacy closure in the symbolic star basis, canonizes the geometry-certification ladder and cross-document operating rule, establishes the material--link sector-separation postulate, separates empirical, theoretical, numerical, and methodological failure classes, and repairs companion pointers, heading hierarchy, substrate terminology, and precision hygiene on top of v0.8.23.
++
+         \subsubsection{v0.8.23}
+             \textbf{v0.8.23} integrates the Author's Origin Note and the Genesis/provenance architecture, records the rediscovered capacitance--impedance path with an explicit same-route guard, adds the Historical Notebook and Proto-Canon Provenance Register (Appendix~\ref{sec:appendix_historical_provenance}), inserts the MAIN-Canon interface to relational link torsion (\ref{sec:rt_minimal_link_field_action}), restores the minimal compact link-field action and its zero-legacy speed target in the research track, and records the KnotPlot--Ridgerunner--SSTcore/VortexLab provenance and finite-thickness certification ladder on top of v0.8.22.
+ 
+@@ -6295,13 +6396,57 @@
+         \newpage
+         \newif\ifresearchtrackincluded
+         \researchtrackincludedtrue
+-        \input{SST_CANON-v0.8.23-research-track}
++        \input{SST_CANON-v0.8.24-research-track}
+         
+ % ---------------------------
+ % Bibliography
+ % ---------------------------
+         \begin{thebibliography}{99}
+             
++            \bibitem{Wilson1974}
++            K.~G. Wilson,
++            \newblock Confinement of quarks,
++            \newblock \emph{Physical Review D} \textbf{10} (1974), 2445--2459,
++            \newblock DOI: \href{https://doi.org/10.1103/PhysRevD.10.2445}{10.1103/PhysRevD.10.2445}.
++
++            \bibitem{KogutSusskind1975}
++            J.~Kogut and L.~Susskind,
++            \newblock Hamiltonian formulation of Wilson's lattice gauge theories,
++            \newblock \emph{Physical Review D} \textbf{11} (1975), 395--408,
++            \newblock DOI: \href{https://doi.org/10.1103/PhysRevD.11.395}{10.1103/PhysRevD.11.395}.
++
++            \bibitem{Kogut1979}
++            J.~B. Kogut,
++            \newblock An introduction to lattice gauge theory and spin systems,
++            \newblock \emph{Reviews of Modern Physics} \textbf{51} (1979), 659--713,
++            \newblock DOI: \href{https://doi.org/10.1103/RevModPhys.51.659}{10.1103/RevModPhys.51.659}.
++
++            \bibitem{Polyakov1977}
++            A.~M. Polyakov,
++            \newblock Quark confinement and topology of gauge theories,
++            \newblock \emph{Nuclear Physics B} \textbf{120} (1977), 429--458,
++            \newblock DOI: \href{https://doi.org/10.1016/0550-3213(77)90086-4}{10.1016/0550-3213(77)90086-4}.
++
++            \bibitem{Guth1980}
++            A.~H. Guth,
++            \newblock Existence proof of a nonconfining phase in four-dimensional
++            \(U(1)\) lattice gauge theory,
++            \newblock \emph{Physical Review D} \textbf{21} (1980), 2291--2307,
++            \newblock DOI: \href{https://doi.org/10.1103/PhysRevD.21.2291}{10.1103/PhysRevD.21.2291}.
++
++            \bibitem{JersakLangNeuhaus1996}
++            J.~Jers\'ak, C.~B. Lang, and T.~Neuhaus,
++            \newblock Four-dimensional pure compact \(U(1)\) gauge theory on a spherical lattice,
++            \newblock \emph{Physical Review D} \textbf{54} (1996), 6909--6919,
++            \newblock DOI: \href{https://doi.org/10.1103/PhysRevD.54.6909}{10.1103/PhysRevD.54.6909}.
++
++            \bibitem{LHAASO2021PeV}
++            Z.~Cao, F.~A. Aharonian, Q.~An, et al. (LHAASO Collaboration),
++            \newblock Ultrahigh-energy photons up to 1.4 petaelectronvolts from 12
++            gamma-ray Galactic sources,
++            \newblock \emph{Nature} \textbf{594} (2021), 33--36,
++            \newblock DOI: \href{https://doi.org/10.1038/s41586-021-03498-z}{10.1038/s41586-021-03498-z}.
++
+             \bibitem{SST_delay_basic}
+             J.~K. Hale and S.~M. Verduyn Lunel,
+             \newblock \emph{Introduction to Functional Differential Equations},
