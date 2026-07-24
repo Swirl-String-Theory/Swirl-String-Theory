@@ -1,0 +1,90 @@
+SST CANON v0.8.24 -> v0.8.25 CLEAN KAM PATCH
+Build and patch verification report
+Date: 2026-07-24
+
+SCOPE
+-----
+The v0.8.25 release retains the KAM-S/KAM-T stability architecture,
+LIA/full-Biot-Savart research bridge, relative-equilibrium gate, reduced
+Floquet/Krein audit, nonlinear normal form, twist, non-resonance,
+Poincare-map diagnostics, action drift, KAM certificate vector, KAM-0 to
+KAM-5 ladder, controlled golden-rotation null test, and rejection of the
+open golden logarithmic spiral as a closed centreline.
+
+The periodic exponential modulation, T(6,9), Z3 x Z3 phase product,
+order-nine carry dynamics, modulo-nine doubling physics, and Rodin-style
+toroidal projections are absent from the release Canon and release research
+track. They are preserved only in SST_NONRELEASE_SPECULATIVE_RESEARCH-v0.1.
+
+MAIN BUILD
+----------
+Command:
+  latexmk -pdf -interaction=nonstopmode -halt-on-error SST_CANON-v0.8.25.tex
+
+Result:
+  PASS
+  Pages: 224
+  Undefined references: 0
+  Undefined citations: 0
+  Multiply-defined labels: 0
+  LaTeX errors: 0
+  Overfull hboxes: 57
+  Underfull hboxes: 104
+
+BASELINE BUILD
+--------------
+Command:
+  latexmk -pdf -interaction=nonstopmode -halt-on-error SST_CANON-v0.8.24.tex
+
+Result:
+  PASS
+  Pages: 213
+  Undefined references: 0
+  Undefined citations: 0
+  Multiply-defined labels: 0
+  LaTeX errors: 0
+  Overfull hboxes: 57
+  Underfull hboxes: 104
+
+NON-RELEASE APPENDIX BUILD
+--------------------------
+Command:
+  latexmk -pdf -interaction=nonstopmode -halt-on-error SST_NONRELEASE_SPECULATIVE_RESEARCH-v0.1.tex
+
+Result:
+  PASS
+  Pages: 4
+  Undefined references: 0
+  Undefined citations: 0
+  Multiply-defined labels: 0
+  LaTeX errors: 0
+  Overfull hboxes: 2
+  Underfull hboxes: 3
+
+PATCH VERIFICATION
+------------------
+Complete diff:
+  SST_CANON-v0.8.24-to-v0.8.25-clean.diff
+
+Checks:
+  git apply --check: PASS
+  application to clean v0.8.24 copies: PASS
+  byte comparison of generated main source: PASS
+  byte comparison of generated research-track source: PASS
+  byte comparison of generated non-release appendix: PASS
+
+PATCH STATISTICS
+----------------
+  Files changed: 3
+  Insertions: 1311
+  Deletions: 11
+
+VISUAL VERIFICATION
+-------------------
+Rendered and inspected:
+  Main Canon page 74: compact KAM main-canon interface
+  Main Canon page 157: golden null test, rejected spiral guard, release-scope guard
+  Non-release appendix pages 1-4
+
+No clipped text, overlaps, broken glyphs, or black boxes were observed in the
+inspected pages.

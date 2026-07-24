@@ -447,11 +447,16 @@ def update_zenodo_metadata(automation: ZenodoAutomation, deposit_id: str, config
     response = requests.put(url, json=zenodo_metadata, headers=automation.headers)
     
     if response.status_code == 200:
+        if hasattr(automation, "record_api_success"):
+            automation.record_api_success()
         print(f"    [OK] Updated Zenodo metadata")
         return True
     else:
-        print(f"    [ERROR] Failed to update metadata: {response.status_code}")
-        print(f"      Error: {response.text}")
+        if hasattr(automation, "record_api_error"):
+            automation.record_api_error("update_zenodo_metadata", response)
+        else:
+            print(f"    [ERROR] Failed to update metadata: {response.status_code}")
+            print(f"      Error: {response.text}")
         return False
 
 def process_config_file(config_file: Path, automation: ZenodoAutomation, base_dir: Path) -> dict:

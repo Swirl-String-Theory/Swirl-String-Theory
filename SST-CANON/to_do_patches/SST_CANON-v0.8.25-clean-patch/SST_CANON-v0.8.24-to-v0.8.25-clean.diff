@@ -1,0 +1,1450 @@
+diff --git a/SST_CANON-v0.8.24-research-track.tex b/SST_CANON-v0.8.25-research-track.tex
+similarity index 89%
+rename from SST_CANON-v0.8.24-research-track.tex
+rename to SST_CANON-v0.8.25-research-track.tex
+index 09ee81f494a0ea2e3b9983076c048ef5bc1d47bb..3eb837d39c165f6c92b216c114bff4ad53382e4a 100644
+--- a/SST_CANON-v0.8.24-research-track.tex
++++ b/SST_CANON-v0.8.25-research-track.tex
+@@ -6,16 +6,16 @@
+ \makeatother
+ 
+ %! Author = Omar Iskandarani
+-%! Companion to Swirl-String-Theory Canon-v0.8.24 (included from \texttt{SST\_CANON-v0.8.24.tex} before the manual bibliography).
++%! Companion to Swirl-String-Theory Canon-v0.8.25 (included from \texttt{SST\_CANON-v0.8.25.tex} before the manual bibliography).
+ 
+ \section{Research-track sectors migrated from the main canon}
+ 
+ \noindent
+-This companion document collects those sectors that remain useful for continuity and future development but are too long, too provisional, or too phenomenology-specific for the core body of \textit{Swirl-String-Theory\_Canon-v0.8.24}. Their migration out of the main canon is editorial rather than negative: each subsection remains part of the broader SST research program, but none is required for the minimal logical closure of the core canon.
++This companion document collects those sectors that remain useful for continuity and future development but are too long, too provisional, or too phenomenology-specific for the core body of \textit{Swirl-String-Theory\_Canon-v0.8.25}. Their migration out of the main canon is editorial rather than negative: each subsection remains part of the broader SST research program, but none is required for the minimal logical closure of the core canon.
+ 
+ \medskip
+ \noindent
+-\textbf{Editorial note (v0.8.24):} the maximal swirl tension sector ($F_{\rm swirl}^{\max}$, Rydberg bridge identities, Gibbons-class maximum-tension comparison, and the threefold interpretation table) is developed in the core document \texttt{SST\_CANON-v0.8.24.tex}, subsection \texttt{Maximal Swirl Tension} (label \texttt{sec:Fmax}); it is not duplicated here.
++\textbf{Editorial note (v0.8.25):} the maximal swirl tension sector ($F_{\rm swirl}^{\max}$, Rydberg bridge identities, Gibbons-class maximum-tension comparison, and the threefold interpretation table) is developed in the core document \texttt{SST\_CANON-v0.8.25.tex}, subsection \texttt{Maximal Swirl Tension} (label \texttt{sec:Fmax}); it is not duplicated here.
+ 
+ \medskip
+ 
+@@ -81,7 +81,7 @@ triple-gear locked analogue & proton-like charged baryon analogue & mechanical m
+ Borromean-type analogue & neutron-like neutral baryon analogue & mechanical/topological model for zero exterior charge with internal triple linking \\
+ \hline
+ \end{tabularx}
+-\caption{Minimal knot-class and analogue summary (v0.8.24 research-track), aligned with main canon semantic corrections.}
++\caption{Minimal knot-class and analogue summary (v0.8.25 research-track), aligned with main canon semantic corrections.}
+ \label{tab:particle-candidates}
+ \end{table}
+ 
+@@ -4261,6 +4261,765 @@ energy, and topology closures have passed their independent tests.
+ \end{enumerate}
+ 
+ 
++\section{Research Track: KAM-Caged Knot States}
++\label{sec:rt_kam_caged_knot_states}
++
++\paragraph{Status and objective.}
++\textbf{[RESEARCH TRACK / HIGH PRIORITY / NOT YET CANONICAL].}
++This section formulates a falsifiable stability programme for resolved SST
++vortex knots.  Its purpose is not to infer stability from visual toroidal
++symmetry, knot type, the golden ratio, or numerical longevity alone.  It asks
++whether a certified finite-core knot admits a relative equilibrium or periodic
++relative orbit whose reduced perturbation dynamics contain persistent
++quasi-periodic invariant tori.
++
++The central distinction is
++\begin{align}
++    \mathrm{KAM\mbox{-}S}
++    &:
++    \text{spatial invariant tori of vortex lines in a steady Euler field},
++    \\
++    \mathrm{KAM\mbox{-}T}
++    &:
++    \text{temporal invariant tori of perturbation modes of the knot shape}.
++    \label{eq:rt_kam_ST_split}
++\end{align}
++The first is supported by rigorous steady-Euler existence results; the second
++is the open SST particle-stability problem
++\cite{KhesinKuksinPeraltaSalas2014,EncisoPeraltaSalas2015}.
++
++\subsection{Classical nearly integrable structure}
++\label{subsec:rt_kam_classical_structure}
++
++For an \(N\)-degree-of-freedom Hamiltonian system, action--angle variables
++\((\mathbf I,\boldsymbol\theta)\in\mathcal D\times\mathbb T^N\) give the
++nearly integrable form
++\begin{equation}
++    H(\mathbf I,\boldsymbol\theta)
++    =
++    H_0(\mathbf I)
++    +
++    \varepsilon H_1(\mathbf I,\boldsymbol\theta).
++    \label{eq:rt_kam_hamiltonian_split}
++\end{equation}
++The Hamilton equations are
++\begin{align}
++    \dot{\mathbf I}
++    &=
++    -\varepsilon\,\partial_{\boldsymbol\theta}H_1,
++    \\
++    \dot{\boldsymbol\theta}
++    &=
++    \boldsymbol\omega(\mathbf I)
++    +
++    \varepsilon\,\partial_{\mathbf I}H_1,
++    \qquad
++    \boldsymbol\omega(\mathbf I)
++    :=
++    \partial_{\mathbf I}H_0.
++    \label{eq:rt_kam_hamilton_equations}
++\end{align}
++At \(\varepsilon=0\), the actions are constant and the angles advance
++linearly.  Expanding the perturbation,
++\begin{equation}
++    H_1(\mathbf I,\boldsymbol\theta)
++    =
++    \sum_{\mathbf k\in\mathbb Z^N}
++    H_{1,\mathbf k}(\mathbf I)
++    e^{i\mathbf k\cdot\boldsymbol\theta},
++    \label{eq:rt_kam_fourier_expansion}
++\end{equation}
++shows that resonant denominators are controlled by
++\(\mathbf k\cdot\boldsymbol\omega\).  A standard non-resonance condition is
++\begin{equation}
++    \left|
++    \mathbf k\cdot\boldsymbol\omega
++    \right|
++    \geq
++    \frac{\gamma}{\lVert\mathbf k\rVert^{\tau}},
++    \qquad
++    \mathbf k\in\mathbb Z^N\setminus\{\mathbf0\},
++    \label{eq:rt_kam_diophantine_condition}
++\end{equation}
++with \(\gamma>0\) and exponent \(\tau\) above the dimension-dependent lower
++bound.  A Kolmogorov nondegeneracy condition is
++\begin{equation}
++    \det
++    \left[
++    \frac{\partial^2H_0}{\partial I_j\partial I_k}
++    \right]
++    \neq0.
++    \label{eq:rt_kam_kolmogorov_nondegeneracy}
++\end{equation}
++Under the required analyticity or differentiability hypotheses and sufficiently
++small perturbation, a positive-measure Cantor family of non-resonant invariant
++tori persists \cite{Kolmogorov1954,Arnold1963KAM,Moser1962InvariantCurves}.
++
++\textbf{[GEOMETRIC GUARD].}
++The torus \(\mathbb T^N\) in Eqs.~\eqref{eq:rt_kam_hamiltonian_split}--
++\eqref{eq:rt_kam_kolmogorov_nondegeneracy} is generally a torus in phase
++space.  It must not be identified with the physical supporting torus of a
++torus knot without an explicit reduction that maps one structure to the
++other.
++
++\subsection{Spatial cage: invariant vortex-line tori}
++\label{subsec:rt_kam_spatial_cage}
++
++Let \(\mathbf v_0(\mathbf x)\) be a steady incompressible Euler field and
++\(\boldsymbol\omega_0=\nabla\times\mathbf v_0\).  Vortex lines satisfy
++\begin{equation}
++    \frac{d\mathbf x}{d\sigma}
++    =
++    \boldsymbol\omega_0(\mathbf x).
++    \label{eq:rt_kam_vortex_line_flow}
++\end{equation}
++In a thin invariant tube, local coordinates may be chosen so that the
++integrable reference field reads
++\begin{align}
++    \dot\theta_1&=\omega_1(I),
++    &
++    \dot\theta_2&=\omega_2(I),
++    &
++    \dot I&=0.
++    \label{eq:rt_kam_spatial_integrable_coordinates}
++\end{align}
++The rotation number is
++\begin{equation}
++    \nu(I)
++    =
++    \frac{\omega_1(I)}{\omega_2(I)},
++    \label{eq:rt_kam_spatial_rotation_number}
++\end{equation}
++and a two-frequency twist condition is
++\begin{equation}
++    \frac{d\nu}{dI}\neq0,
++    \label{eq:rt_kam_spatial_twist}
++\end{equation}
++or, equivalently where both frequencies are nonzero,
++\begin{equation}
++    \omega_1'(I)\omega_2(I)
++    -
++    \omega_1(I)\omega_2'(I)
++    \neq0.
++    \label{eq:rt_kam_spatial_wronskian_twist}
++\end{equation}
++
++\begin{definition}[Spatial KAM cage]
++A resolved vortex tube is \emph{spatially KAM-caged} on a specified steady
++background if it contains an elliptic periodic core vortex line surrounded by
++a positive-measure set of nested invariant tori with nonzero twist and
++Diophantine rotation numbers.
++\label{def:rt_spatial_kam_cage}
++\end{definition}
++
++Steady Euler constructions with arbitrarily prescribed knot and link type
++supply an orthodox existence precedent for this definition.  They include a
++positive-measure family of invariant tori and infinitely many periodic vortex
++lines after a sufficiently small smooth deformation of the prescribed tubes
++\cite{EncisoPeraltaSalas2015}.  This does not identify the resulting Beltrami
++field with an SST particle state, but it shows that a literal spatial
++transport cage is compatible with classical incompressible Euler dynamics.
++
++\subsection{Temporal cage: relative equilibrium before KAM}
++\label{subsec:rt_kam_temporal_cage}
++
++Let \(\mathbf X(s,t)\) be an arclength-resolved centreline and use a declared
++finite-core regularization \(a\).  A representative self-induced evolution is
++\begin{equation}
++    \partial_t\mathbf X(s,t)
++    =
++    \frac{\Gamma}{4\pi}
++    \operatorname{PV}\!\oint
++    \frac{
++    \partial_{s'}\mathbf X(s',t)
++    \times
++    [\mathbf X(s,t)-\mathbf X(s',t)]
++    }{
++    \left(
++    |\mathbf X(s,t)-\mathbf X(s',t)|^2+a^2
++    \right)^{3/2}
++    }
++    \,ds'.
++    \label{eq:rt_kam_regularized_biot_savart_evolution}
++\end{equation}
++The regularization, core profile, domain, and boundary correction are part of
++the model definition; Eq.~\eqref{eq:rt_kam_regularized_biot_savart_evolution}
++must not be mixed with an unregularized energy or with a different evolution
++kernel.
++
++A knot that retains its shape while translating and rotating is a relative
++equilibrium.  In a co-moving frame it obeys
++\begin{equation}
++    \mathbf v_{\rm BS}[\mathbf X_*](s)
++    =
++    \mathbf U
++    +
++    \boldsymbol\Omega\times\mathbf X_*(s)
++    +
++    \lambda(s)\partial_s\mathbf X_*(s),
++    \label{eq:rt_kam_relative_equilibrium_condition}
++\end{equation}
++where the tangential term changes parametrization but not the geometric curve.
++The objective residual is
++\begin{equation}
++    \mathcal R_{\rm RE}
++    :=
++    \min_{\mathbf U,\boldsymbol\Omega,\lambda}
++    \frac{
++    \left\lVert
++    \mathbf v_{\rm BS}
++    -\mathbf U
++    -\boldsymbol\Omega\times\mathbf X_*
++    -\lambda\partial_s\mathbf X_*
++    \right\rVert_{L^2}
++    }{
++    \max\!\left(
++    \lVert\mathbf v_{\rm BS}\rVert_{L^2},
++    v_{\rm floor}
++    \right)
++    }.
++    \label{eq:rt_kam_relative_equilibrium_residual}
++\end{equation}
++The floor \(v_{\rm floor}>0\) must be declared and scaled with the simulation
++units.  A standard KAM expansion is blocked until a configuration with a
++converged small \(\mathcal R_{\rm RE}\) is found.  Relative equilibria and
++shape-preserving vortex-filament motion are orthodox classical concepts
++\cite{Kida1981VortexFilamentForm}.
++
++\subsection{Local induction as the integrable reference layer}
++\label{subsec:rt_kam_lia_reference}
++
++For a slender filament, the logarithmically enhanced local contribution gives
++the local-induction equation
++\begin{equation}
++    \partial_t\mathbf X
++    =
++    \beta\kappa\mathbf b,
++    \qquad
++    \beta
++    =
++    \frac{\Gamma}{4\pi}\Lambda,
++    \label{eq:rt_kam_lia_equation}
++\end{equation}
++where \(\kappa\) is curvature, \(\mathbf b\) the Frenet binormal, and
++\(\Lambda\) a dimensionless slenderness logarithm with a core-profile-dependent
++finite term.  The corresponding leading energy is proportional to length,
++\begin{equation}
++    H_{\rm LIA}[\mathbf X]
++    =
++    T_{\Lambda}L[\mathbf X],
++    \qquad
++    T_{\Lambda}
++    =
++    \frac{\rhoF\Gamma^2}{4\pi}\Lambda.
++    \label{eq:rt_kam_lia_hamiltonian}
++\end{equation}
++Here \([T_{\Lambda}]=\mathrm{J\,m^{-1}}=\mathrm N\), so
++\([H_{\rm LIA}]=\mathrm J\).
++
++Under the Hasimoto transform
++\begin{equation}
++    \psi(s,t)
++    =
++    \kappa(s,t)
++    \exp\!\left[
++    i\int^s\tau(s',t)\,ds'
++    \right],
++    \label{eq:rt_kam_hasimoto_transform}
++\end{equation}
++Eq.~\eqref{eq:rt_kam_lia_equation} maps, after the conventional time scaling
++and phase gauge, to the focusing nonlinear Schr\"odinger equation
++\begin{equation}
++    i\psi_t+\psi_{ss}+\frac12|\psi|^2\psi=0.
++    \label{eq:rt_kam_focusing_nlse}
++\end{equation}
++This supplies an integrable reference system, not a proof that an arbitrary
++closed knotted filament is an exact LIA solution or remains closed after an
++arbitrary NLS reconstruction \cite{Hasimoto1972,JerrardSeis2017}.
++
++Using the canonical SST circulation
++\begin{equation}
++    \Gamma_0
++    =
++    2\pi\rc\vchar
++    =
++    9.68361920349\times10^{-9}\ \mathrm{m^2\,s^{-1}},
++    \label{eq:rt_kam_gamma_numeric}
++\end{equation}
++we obtain
++\begin{align}
++    \beta_0
++    &=
++    7.70597931627\times10^{-10}\,\Lambda
++    \ \mathrm{m^2\,s^{-1}},
++    \label{eq:rt_kam_beta_numeric}
++    \\
++    T_{\Lambda,0}
++    &=
++    5.22352385021\times10^{-24}\,\Lambda
++    \ \mathrm{N}.
++    \label{eq:rt_kam_line_tension_numeric}
++\end{align}
++The dimensions satisfy
++\([\beta_0\kappa]=\mathrm{m\,s^{-1}}\) and
++\([T_{\Lambda,0}L]=\mathrm J\).
++
++\subsection{Full Biot--Savart correction and the smallness gate}
++\label{subsec:rt_kam_biot_savart_perturbation}
++
++The candidate decomposition is
++\begin{equation}
++    H_{\rm BS}
++    =
++    H_{\rm LIA}
++    +
++    \varepsilon_{\rm NL}H_{\rm NL}.
++    \label{eq:rt_kam_lia_full_bs_decomposition}
++\end{equation}
++It is useful only if the perturbation is defined operationally.  Let
++\(\mathbb P_{\perp}\) remove the local tangential reparametrization direction,
++and let \(\mathbf v_{\rm rigid}\) be the least-squares translational and
++rotational velocity.  Define
++\begin{equation}
++    \varepsilon_{\rm NL}
++    :=
++    \frac{
++    \left\lVert
++    \mathbb P_{\perp}
++    \left(
++    \mathbf v_{\rm BS}
++    -\mathbf v_{\rm LIA}
++    -\mathbf v_{\rm rigid}
++    \right)
++    \right\rVert_{L^2}
++    }{
++    \max\!\left(
++    \lVert\mathbb P_{\perp}\mathbf v_{\rm LIA}\rVert_{L^2},
++    v_{\rm floor}
++    \right)
++    }.
++    \label{eq:rt_kam_nonlocality_ratio}
++\end{equation}
++The geometric slenderness diagnostics
++\begin{equation}
++    \epsilon_{\kappa}
++    =
++    a_{\rm core}\kappa_{\max},
++    \qquad
++    \epsilon_{\rm sep}
++    =
++    \frac{a_{\rm core}}{d_{\min}},
++    \label{eq:rt_kam_slenderness_diagnostics}
++\end{equation}
++are necessary metadata but are not substitutes for
++Eq.~\eqref{eq:rt_kam_nonlocality_ratio}.  In a knot, distant arclength
++segments can be spatially close, so a small local curvature ratio does not
++ensure a small nonlocal induction term.  Full Biot--Savart calculations show
++that winding data can contribute at leading order to vortex-knot motion
++\cite{ObertiRicca2019WindingDynamics}.
++
++\subsection{Symmetry reduction, Floquet gate, and normal form}
++\label{subsec:rt_kam_floquet_normal_form}
++
++Write a perturbation about the relative state as
++\begin{equation}
++    \mathbf X(s,t)
++    =
++    \mathbf X_*(s,t)
++    +
++    \boldsymbol\xi(s,t).
++    \label{eq:rt_kam_shape_perturbation}
++\end{equation}
++The linearized system is
++\begin{equation}
++    \partial_t\boldsymbol\xi
++    =
++    \mathcal L(t)\boldsymbol\xi.
++    \label{eq:rt_kam_linearized_shape_operator}
++\end{equation}
++For a periodic relative orbit with period \(T\), the monodromy operator is
++\begin{equation}
++    \mathcal M_T
++    =
++    \mathcal T
++    \exp\!\left[
++    \int_0^T\mathcal L(t)\,dt
++    \right].
++    \label{eq:rt_kam_monodromy_operator}
++\end{equation}
++After removing translation, rotation, arclength reparametrization, and global
++phase/time-shift modes, the nontrivial Floquet multipliers are
++\begin{equation}
++    \mu_j\in\operatorname{spec}(\mathcal M_T^{\rm red}).
++    \label{eq:rt_kam_reduced_floquet_multipliers}
++\end{equation}
++A necessary ellipticity gate is
++\begin{equation}
++    |\mu_j|=1
++    \qquad
++    \text{for every nontrivial retained mode}.
++    \label{eq:rt_kam_floquet_ellipticity_gate}
++\end{equation}
++Numerically, the deviation is reported as
++\begin{equation}
++    \rho_{\rm Fl}
++    :=
++    \max_j\left||\mu_j|-1\right|.
++    \label{eq:rt_kam_floquet_residual}
++\end{equation}
++Krein signatures must also be tracked: collision of unit-circle modes with
++opposite signature can generate a Hamiltonian instability even before a large
++geometric deformation is visible.
++
++On a finite, symmetry-reduced set of stable modes, the nonlinear normal form
++is written
++\begin{equation}
++    H_{\rm NF}
++    =
++    E_*
++    +
++    \sum_{j=1}^{N}\omega_j I_j
++    +
++    \frac12
++    \sum_{j,k=1}^{N}A_{jk}I_jI_k
++    +
++    R^{(3)}(\mathbf I,\boldsymbol\theta).
++    \label{eq:rt_kam_nonlinear_normal_form}
++\end{equation}
++The twist matrix is
++\begin{equation}
++    A_{jk}
++    =
++    \frac{\partial\omega_j}{\partial I_k}.
++    \label{eq:rt_kam_twist_matrix}
++\end{equation}
++The linear Hamiltonian \(\sum_j\omega_jI_j\) alone is Kolmogorov-degenerate;
++the nonlinear frequency shifts are therefore essential.  The reduced twist
++gate is
++\begin{equation}
++    \sigma_{\min}^{+}(A)
++    >
++    A_{\rm gate}>0,
++    \label{eq:rt_kam_twist_gate}
++\end{equation}
++where \(\sigma_{\min}^{+}\) excludes analytically identified null directions.
++No rank claim may include unremoved rigid-body or gauge modes.
++
++Toroidal vortex-filament models already demonstrate that energetic and
++dynamical stability are distinct and that different trefoil realizations can
++occupy different stability domains \cite{KolokolnikovTicknorKevrekidis2020}.
++This supports the gate sequence but does not substitute for full finite-core
++Euler or Biot--Savart certification.
++
++\subsection{Finite-order non-resonance and action drift}
++\label{subsec:rt_kam_nonresonance_drift}
++
++For a numerical mode truncation and a preregistered integer cutoff \(K\), define
++\begin{equation}
++    \Delta_{\gamma,\tau}^{(K)}
++    :=
++    \min_{\substack{
++    \mathbf k\in\mathbb Z^N\setminus\{\mathbf0\}\\
++    \lVert\mathbf k\rVert_1\leq K
++    }}
++    \lVert\mathbf k\rVert_1^{\tau}
++    \left|
++    \mathbf k\cdot\boldsymbol\omega
++    \right|.
++    \label{eq:rt_kam_finite_diophantine_margin}
++\end{equation}
++This is a finite-resolution diagnostic, not a proof of the infinite set of
++Diophantine inequalities.  It is useful for locating low-order resonances and
++for preregistering which combinations are excluded.
++
++For numerically reconstructed actions, define the normalized drift
++\begin{equation}
++    D_I(T)
++    :=
++    \max_j
++    \frac{
++    |I_j(T)-I_j(0)|
++    }{
++    T\max[I_j(0),I_{\rm floor}]
++    }.
++    \label{eq:rt_kam_action_drift}
++\end{equation}
++A KAM-like orbit requires bounded oscillatory action variation and no resolved
++secular drift over the declared observation window.  A small
++\(D_I\) over only a few turnover times is evidence of short-time regularity,
++not a KAM certificate.
++
++\subsection{Poincar\'e map and invariant-torus measure}
++\label{subsec:rt_kam_poincare_map}
++
++Choose a transverse section \(\Sigma\) and define the return map
++\begin{equation}
++    P:\Sigma\rightarrow\Sigma.
++    \label{eq:rt_kam_poincare_map}
++\end{equation}
++For an orbit with unwrapped angle \(\vartheta_n\), estimate the rotation number
++by
++\begin{equation}
++    \nu
++    =
++    \lim_{N\rightarrow\infty}
++    \frac{\vartheta_N-\vartheta_0}{2\pi N}.
++    \label{eq:rt_kam_numerical_rotation_number}
++\end{equation}
++The finite-window frequency drift is
++\begin{equation}
++    D_{\nu}
++    =
++    \frac{
++    |\nu_{[0,T/2]}-\nu_{[T/2,T]}|
++    }{T}.
++    \label{eq:rt_kam_frequency_drift}
++\end{equation}
++Let \(f_{\rm tor}\in[0,1]\) denote the fraction of the preregistered sampled
++section classified as invariant curves or invariant higher-dimensional tori by
++a resolution-converged classifier.  The exact classifier, sampling measure,
++and uncertainty must be reported.  Resonance islands, chaotic layers,
++cantori, and turnstile transport must not be merged into the same class
++\cite{MacKayMeissPercival1984}.
++
++\subsection{KAM certificate vector and promotion levels}
++\label{subsec:rt_kam_certificate}
++
++The proposed diagnostic vector is
++\begin{equation}
++    \boxed{
++    \mathcal C_{\rm KAM}
++    =
++    \left(
++    \mathcal R_{\rm RE},
++    \varepsilon_{\rm NL},
++    \rho_{\rm Fl},
++    \Delta_{\gamma,\tau}^{(K)},
++    \sigma_{\min}^{+}(A),
++    f_{\rm tor},
++    D_I,
++    \frac{d_{\min}}{a_{\rm core}}
++    \right).
++    }
++    \label{eq:rt_kam_certificate_vector}
++\end{equation}
++No scalar ``KAM score'' is canonical.  The full vector and its convergence
++sequence must remain visible because a good value in one component cannot
++compensate for failure of another.
++
++The certification ladder is
++\begin{center}
++\begin{tabularx}{0.94\textwidth}{@{}>{\bfseries}p{0.16\textwidth}X@{}}
++\toprule
++Level & Required result \\
++\midrule
++KAM--0 & Topology and finite thickness certified; no dynamical stability claim. \\
++KAM--1 & Converged relative equilibrium or periodic relative orbit with small \(\mathcal R_{\rm RE}\). \\
++KAM--2 & Reduced linearly elliptic spectrum with controlled Floquet residual and Krein audit. \\
++KAM--3 & Numerical invariant tori, nonzero twist, bounded drift, and positive \(f_{\rm tor}\). \\
++KAM--4 & Explicit nonlinear normal form with a quantitatively bounded remainder and verified finite-order non-resonance margins. \\
++KAM--5 & Computer-assisted a-posteriori KAM proof for the declared finite-dimensional map or rigorously justified reduction. \\
++\bottomrule
++\end{tabularx}
++\end{center}
++A KAM--5 result may be attempted through parameterization-method and interval
++arithmetic techniques that validate approximate invariant tori, Diophantine
++conditions, nondegeneracy, and analytic norm bounds
++\cite{FiguerasHaroLuque2017}.  It would certify the declared reduced map, not
++automatically the complete infinite-dimensional Euler equation.
++
++\subsection{Golden rotation-number null test}
++\label{subsec:rt_kam_golden_rotation_test}
++
++Define the golden number and its reciprocal by
++\begin{equation}
++    \phi
++    =
++    \frac{1+\sqrt5}{2},
++    \qquad
++    \nu_{\phi}
++    =
++    \phi^{-1}
++    =
++    [0;1,1,1,\ldots].
++    \label{eq:rt_kam_golden_rotation_number}
++\end{equation}
++Its continued-fraction convergents are Fibonacci ratios
++\begin{equation}
++    \frac{F_n}{F_{n+1}}
++    \longrightarrow
++    \nu_{\phi}.
++    \label{eq:rt_kam_fibonacci_convergents}
++\end{equation}
++This makes \(\nu_{\phi}\) a canonical example of a badly rationally
++approximable one-frequency rotation number.  In area-preserving twist maps,
++golden invariant curves are therefore standard breakup probes, often studied
++through periodic-orbit residues \cite{Greene1979StochasticTransition}.
++
++The SST hypothesis is deliberately weaker:
++\begin{equation}
++    \mathsf H_{\phi}:
++    \qquad
++    \varepsilon_{\rm break}(\nu_{\phi})
++    >
++    \operatorname{median}_{\nu\in\mathcal C}
++    \varepsilon_{\rm break}(\nu),
++    \label{eq:rt_kam_golden_break_hypothesis}
++\end{equation}
++for a preregistered control set \(\mathcal C\), after matching twist,
++amplitude, geometry, and numerical resolution.  Required controls include
++nearby rationals, at least one other noble irrational, and randomly selected
++irrationals.  The hypothesis is rejected if the preference disappears under
++those controls.  For systems with three or more independent frequencies, the
++relevant Diophantine object is a frequency vector; the scalar golden ratio has
++no automatic privileged status.
++
++\subsection{Golden logarithmic spiral: rejected centreline guard}
++\label{subsec:rt_kam_golden_spiral_guard}
++
++The logarithmic spiral
++\begin{equation}
++    r(\theta)
++    =
++    a e^{b\theta},
++    \qquad
++    b
++    =
++    \frac{2\ln\phi}{\pi}
++    =
++    0.306348962530\ldots
++    \label{eq:rt_kam_golden_log_spiral}
++\end{equation}
++satisfies
++\begin{equation}
++    r\!\left(\theta+\frac{\pi}{2}\right)
++    =
++    \phi r(\theta),
++    \qquad
++    r(\theta+2\pi)
++    =
++    \phi^4r(\theta).
++    \label{eq:rt_kam_golden_spiral_scaling}
++\end{equation}
++It is therefore open and scale-divergent.  It is rejected as the centreline of
++a closed SST particle carrier.  This rejection does not select a replacement
++geometry.  Any closed modulation family must first be compared against free
++Fourier, spline, and unmodulated controls and must pass topology, reach,
++clearance, relative-equilibrium, and stability gates before entering the
++release research track.
++
++\subsection{Geometry hierarchy and release-scope guard}
++\label{subsec:rt_kam_geometry_scope_guard}
++
++The recommended release hierarchy is
++\begin{equation}
++    \text{vortex ring}
++    \longrightarrow
++    3_1
++    \longrightarrow
++    4_1
++    \longrightarrow
++    \text{larger knot and link families only after single-knot certification}.
++    \label{eq:rt_kam_geometry_hierarchy}
++\end{equation}
++Specific composite links, product-phase architectures, modulo-class update
++rules, and preferred closed modulation families are intentionally outside the
++v0.8.25 release research track.  They may be recorded in a separately
++versioned non-release speculative appendix, but they may not influence the
++primary KAM optimizer, null tests, promotion levels, or Canon claims until
++independently promoted through the declared evidence gates.
++
++\subsection{Minimal numerical execution package}
++\label{subsec:rt_kam_numerical_package}
++
++The first implementation shall use the same centreline, regularization, and
++Biot--Savart operator in the equilibrium solve, tangent operator, and nonlinear
++evolution.
++
++\begin{enumerate}
++    \item \textbf{Geometry baseline.}
++    Start with the ring, then a uniformly arclength-resampled certified
++    trefoil.  Record \(L\), reach, \(\kappa_{\max}\), torsion statistics,
++    \(d_{\min}\), writhe, helicity metadata, topology certificate, and core
++    profile.
++
++    \item \textbf{Relative-state solve.}
++    Minimize Eq.~\eqref{eq:rt_kam_relative_equilibrium_residual} over admissible
++    geometry, translation, rotation, and tangential gauge.  Ropelength
++    optimality and dynamical relative equilibrium must be reported separately.
++
++    \item \textbf{Linear operator.}
++    Differentiate the same discrete evolution, project constraints and zero
++    modes, and compute the leading spectrum, Floquet multipliers, and Krein
++    signatures.  Validate matrix-free products against finite differences.
++
++    \item \textbf{Nonlinear frequency map.}
++    Excite each retained elliptic mode at several small amplitudes, reconstruct
++    \(I_j\), fit \(\omega_j(\mathbf I)\), and estimate the twist matrix of
++    Eq.~\eqref{eq:rt_kam_twist_matrix} with uncertainty and cross-validation.
++
++    \item \textbf{Poincar\'e and frequency-map analysis.}
++    Seed finite-core tracer surfaces, compute return maps, rotation numbers,
++    frequency drift, resonance islands, cantori, and radial transport.  Passive
++    tracers are disabled during equilibrium and eigensolver stages and restored
++    for this diagnostic stage.
++
++    \item \textbf{Perturbation continuation.}
++    Continue a declared perturbation family while measuring
++    \(\varepsilon_{\rm NL}\), \(\rho_{\rm Fl}\),
++    \(\Delta_{\gamma,\tau}^{(K)}\), \(f_{\rm tor}\), action drift, and
++    clearance.  Define the breakup event before inspecting the golden-ratio
++    result.
++
++    \item \textbf{Golden null test.}
++    Compare \(\nu_{\phi}\) with the preregistered control set at matched twist,
++    geometry, and action.  No golden constant may appear in the optimizer,
++    mesh, initial-condition selector, or stopping rule.
++
++    \item \textbf{Resolution sequence.}
++    Repeat across point count, quadrature order, timestep, core radius,
++    regularization family, domain size, and boundary treatment.  Report the
++    entire certificate vector in Eq.~\eqref{eq:rt_kam_certificate_vector} for
++    every level.
++\end{enumerate}
++
++\subsection{Preregistered falsifiers and promotion rule}
++\label{subsec:rt_kam_falsifiers}
++
++The KAM-caged knot hypothesis fails for a declared state if any of the
++following persists under refinement:
++\begin{enumerate}
++    \item no small-residual relative equilibrium or periodic relative orbit can
++    be obtained without changing the knot type or core model;
++    \item a nontrivial Floquet multiplier satisfies \(|\mu_j|>1+\delta_{\rm Fl}\)
++    with converged \(\delta_{\rm Fl}>0\);
++    \item the reduced twist matrix remains singular beyond known symmetry
++    directions;
++    \item the full-Biot--Savart correction is not perturbative in the tested
++    state, or the result changes qualitatively with the regularization;
++    \item invariant curves disappear under resolution refinement or are tracer
++    interpolation artefacts;
++    \item actions or rotation numbers exhibit secular drift incompatible with
++    the declared KAM level;
++    \item the tube loses clearance, reconnects, or changes isotopy class during
++    the measurement window;
++    \item the golden preference fails the preregistered null test.
++\end{enumerate}
++
++Promotion into the main canon requires at minimum KAM--3 for one vortex ring
++and one resolved trefoil under the same numerical protocol.  A theorem-level
++claim requires KAM--5 or a separate rigorous infinite-dimensional argument.
++Until then, ``KAM-caged SST particle'' denotes a research hypothesis and a
++certificate programme, not an established particle ontology.
++
++\paragraph{Child-level analogy.}
++The knot is like a train on a closed track.  Topology says the track remains
++knotted; Floquet analysis checks whether a small wobble grows; KAM analysis
++checks whether many small rhythms remain trapped on orderly lanes instead of
++combining into a destructive resonance.
++
++
++
+ 
+ % ----------------------------------------------------------
+ % Bibliography entries to merge into the main thebibliography
+@@ -4333,6 +5092,91 @@ V.~I.~Arnold and B.~A.~Khesin,
+ Springer (1998).
+ DOI: \href{https://doi.org/10.1007/978-1-4612-0645-3}{10.1007/978-1-4612-0645-3}.
+ 
++
++\bibitem{Kolmogorov1954}
++A.~N. Kolmogorov,
++\newblock On the conservation of conditionally periodic motions under small perturbations of the Hamiltonian,
++\newblock \emph{Doklady Akademii Nauk SSSR} \textbf{98} (1954), 527--530,
++\newblock Permalink: \href{https://cds.cern.ch/record/430016}{CERN Document Server 430016}.
++
++\bibitem{Arnold1963KAM}
++V.~I. Arnol'd,
++\newblock Proof of a theorem of A.~N. Kolmogorov on the invariance of quasi-periodic motions under small perturbations of the Hamiltonian,
++\newblock \emph{Russian Mathematical Surveys} \textbf{18}(5) (1963), 9--36,
++\newblock DOI: \href{https://doi.org/10.1070/RM1963v018n05ABEH004130}{10.1070/RM1963v018n05ABEH004130}.
++
++\bibitem{Moser1962InvariantCurves}
++J.~Moser,
++\newblock On invariant curves of area-preserving mappings of an annulus,
++\newblock \emph{Nachrichten der Akademie der Wissenschaften in G\"ottingen, Mathematisch-Physikalische Klasse II} (1962), 1--20,
++\newblock Permalink: \href{https://cds.cern.ch/record/430015}{CERN Document Server 430015}.
++
++\bibitem{MarsdenWeinstein1983}
++J.~E. Marsden and A.~Weinstein,
++\newblock Coadjoint orbits, vortices, and Clebsch variables for incompressible fluids,
++\newblock \emph{Physica D: Nonlinear Phenomena} \textbf{7} (1983), 305--323,
++\newblock DOI: \href{https://doi.org/10.1016/0167-2789(83)90134-3}{10.1016/0167-2789(83)90134-3}.
++
++\bibitem{Hasimoto1972}
++H.~Hasimoto,
++\newblock A soliton on a vortex filament,
++\newblock \emph{Journal of Fluid Mechanics} \textbf{51}(3) (1972), 477--485,
++\newblock DOI: \href{https://doi.org/10.1017/S0022112072002307}{10.1017/S0022112072002307}.
++
++\bibitem{JerrardSeis2017}
++R.~L. Jerrard and C.~Seis,
++\newblock On the vortex filament conjecture for Euler flows,
++\newblock \emph{Archive for Rational Mechanics and Analysis} \textbf{224} (2017), 135--172,
++\newblock DOI: \href{https://doi.org/10.1007/s00205-016-1070-3}{10.1007/s00205-016-1070-3}.
++
++\bibitem{KhesinKuksinPeraltaSalas2014}
++B.~Khesin, S.~Kuksin, and D.~Peralta-Salas,
++\newblock KAM theory and the 3D Euler equation,
++\newblock \emph{Advances in Mathematics} \textbf{267} (2014), 498--522,
++\newblock DOI: \href{https://doi.org/10.1016/j.aim.2014.09.009}{10.1016/j.aim.2014.09.009}.
++
++\bibitem{EncisoPeraltaSalas2015}
++A.~Enciso and D.~Peralta-Salas,
++\newblock Existence of knotted vortex tubes in steady Euler flows,
++\newblock \emph{Acta Mathematica} \textbf{214}(1) (2015), 61--134,
++\newblock DOI: \href{https://doi.org/10.1007/s11511-015-0123-z}{10.1007/s11511-015-0123-z}.
++
++\bibitem{Kida1981VortexFilamentForm}
++S.~Kida,
++\newblock A vortex filament moving without change of form,
++\newblock \emph{Journal of Fluid Mechanics} \textbf{112} (1981), 397--409,
++\newblock DOI: \href{https://doi.org/10.1017/S0022112081000475}{10.1017/S0022112081000475}.
++
++\bibitem{Greene1979StochasticTransition}
++J.~M. Greene,
++\newblock A method for determining a stochastic transition,
++\newblock \emph{Journal of Mathematical Physics} \textbf{20}(6) (1979), 1183--1201,
++\newblock DOI: \href{https://doi.org/10.1063/1.524170}{10.1063/1.524170}.
++
++\bibitem{MacKayMeissPercival1984}
++R.~S. MacKay, J.~D. Meiss, and I.~C. Percival,
++\newblock Stochasticity and transport in Hamiltonian systems,
++\newblock \emph{Physical Review Letters} \textbf{52} (1984), 697--700,
++\newblock DOI: \href{https://doi.org/10.1103/PhysRevLett.52.697}{10.1103/PhysRevLett.52.697}.
++
++\bibitem{FiguerasHaroLuque2017}
++J.-L. Figueras, A.~Haro, and A.~Luque,
++\newblock Rigorous computer-assisted application of KAM theory: a modern approach,
++\newblock \emph{Foundations of Computational Mathematics} \textbf{17} (2017), 1123--1193,
++\newblock DOI: \href{https://doi.org/10.1007/s10208-016-9339-3}{10.1007/s10208-016-9339-3}.
++
++\bibitem{KolokolnikovTicknorKevrekidis2020}
++T.~Kolokolnikov, C.~Ticknor, and P.~G. Kevrekidis,
++\newblock Toroidal vortex filament knots and links: existence, stability and dynamics,
++\newblock \emph{SIAM Journal on Applied Dynamical Systems} \textbf{19}(4) (2020), 2403--2427,
++\newblock DOI: \href{https://doi.org/10.1137/19M1307019}{10.1137/19M1307019}.
++
++\bibitem{ObertiRicca2019WindingDynamics}
++C.~Oberti and R.~L. Ricca,
++\newblock Influence of winding number on vortex knots dynamics,
++\newblock \emph{Scientific Reports} \textbf{9} (2019), 17284,
++\newblock DOI: \href{https://doi.org/10.1038/s41598-019-53548-w}{10.1038/s41598-019-53548-w}.
++
+ \end{thebibliography}
+ \fi
+ 
+diff --git a/SST_CANON-v0.8.24.tex b/SST_CANON-v0.8.25.tex
+similarity index 94%
+rename from SST_CANON-v0.8.24.tex
+rename to SST_CANON-v0.8.25.tex
+index 097adadf2c53c444f964e6676fb00b662b187e90..720148d40b8cf4dc78118eb356b224141c8c4e60 100644
+--- a/SST_CANON-v0.8.24.tex
++++ b/SST_CANON-v0.8.25.tex
+@@ -3,11 +3,11 @@
+ %! Affiliation = Independent Researcher, Groningen, The Netherlands
+ %! ORCID = 0009-0006-1686-3961
+ %! DOI = 10.5281/zenodo.21249056
+-%! v0.8.24 edition: compact-link attribution and phase gate; UV-scale guard; zero-legacy symbol separation; core--torsion normalization repair; certification canonization; structural hygiene on top of v0.8.23.
++%! v0.8.25 edition: KAM-caged knot-state stability programme; LIA/full-Biot--Savart bridge; relative-equilibrium and Floquet gates; nonlinear normal-form certification; controlled golden-ratio null test on top of v0.8.24.
+ 
+ \newcommand{\paperdoi}{10.5281/zenodo.21249056}
+-\newcommand{\papertitle}{Swirl-String-Theory Canon-v0.8.24}
+-\newcommand{\paperkeywords}{Swirl String Theory, SST, Canon, Topological Hydrodynamics, Knot Theory, Genesis, Provenance, Impedance, Relational Link Field, Ridgerunner, Operational Spacetime, Vortex Atom Luminal Torsion, Quasinormal Swirl Spectroscopy, Pseudospectral Robustness}
++\newcommand{\papertitle}{Swirl-String-Theory Canon-v0.8.25}
++\newcommand{\paperkeywords}{Swirl String Theory, SST, Canon, Topological Hydrodynamics, Knot Theory, KAM Theory, Invariant Tori, Local Induction Approximation, Biot--Savart Dynamics, Floquet Stability, Genesis, Provenance, Impedance, Relational Link Field, Ridgerunner, Operational Spacetime, Vortex Atom Luminal Torsion, Quasinormal Swirl Spectroscopy, Pseudospectral Robustness}
+ 
+ \documentclass[11pt]{article}
+ % ---------------------------
+@@ -122,7 +122,7 @@
+         {\normalsize Groningen, The Netherlands\par}
+         \vspace{0.6cm}
+ 
+-        {\normalsize Version v0.8.24\par}
++        {\normalsize Version v0.8.25\par}
+         {\normalsize \today\par}
+         \vspace{0.9cm}
+ 
+@@ -132,7 +132,7 @@
+ 
+     \begin{abstract}
+         \noindent
+-        This document presents Swirl-String Theory (SST) as a structured canonical synthesis rather than as a claim that every phenomenological sector has already been derived to theorem level. The text records the impedance--resonance and free-to-bound-mode origin of the programme; consolidates the primitive constant chain linking the effective fluid density, characteristic swirl speed, Compton anchoring, and horn/circulation scale; assigns a minimal relational link-field action as the microscopic research candidate beneath the continuum torsion bridge; records the operational special-relativity postulate that stable vortex matter constructs local spacetime with clocks, rods, and luminal R-phase torsion pulses; and organizes delay selection, atomic bridges, spectroscopy, knot-geometry certification, relational time, and topology-based mass within one explicitly stratified framework. Throughout, historical provenance, calibrated identities, SST-internal derivations, predictions, and conjectural extensions are kept distinct so that the canon remains internally coherent, externally comparable, and open to falsification.
++        This document presents Swirl-String Theory (SST) as a structured canonical synthesis rather than as a claim that every phenomenological sector has already been derived to theorem level. The text records the impedance--resonance and free-to-bound-mode origin of the programme; consolidates the primitive constant chain linking the effective fluid density, characteristic swirl speed, Compton anchoring, and horn/circulation scale; assigns a minimal relational link-field action as the microscopic research candidate beneath the continuum torsion bridge; records the operational special-relativity postulate that stable vortex matter constructs local spacetime with clocks, rods, and luminal R-phase torsion pulses; and organizes delay selection, atomic bridges, spectroscopy, knot-geometry certification, KAM-caged dynamical stability, relational time, and topology-based mass within one explicitly stratified framework. Throughout, historical provenance, calibrated identities, SST-internal derivations, predictions, and conjectural extensions are kept distinct so that the canon remains internally coherent, externally comparable, and open to falsification.
+     \end{abstract}
+ 
+     \vspace{0.2cm}
+@@ -929,6 +929,10 @@ Label & Meaning \\
+ \texttt{[DERIVED]} & Consequence of explicitly declared current assumptions. \\
+ \texttt{[CALIBRATED]} & Numerical quantity fixed from external data or a bridge relation. \\
+ \texttt{[PREDICTION]} & Output not used directly or indirectly in calibration. \\
++\texttt{[BRIDGE]} & Explicit translation from an orthodox structure into an SST candidate structure; not a completed derivation of the SST identification. \\
++\texttt{[RESEARCH]} & Active, falsifiable programme whose closure conditions remain open. \\
++\texttt{[HYPOTHESIS]} & Specific testable preference or existence claim not yet established. \\
++\texttt{[ANSATZ]} & Declared trial form used for calculation or continuation; not selected by the governing equations unless separately derived. \\
+ \texttt{[THEOREM TARGET]} & Statement that must be obtained from the action or governing equations. \\
+ \texttt{[FALSIFIER]} & Preregistered result that would reject the stated hypothesis. \\
+ \texttt{[REJECTED]} & Historical mechanism retained for provenance but not active in the model. \\
+@@ -981,6 +985,13 @@ The rediscovered impedance path yields the following immediate research targets:
+     smooth-upper-bound, and contact measures for the selected bound-state
+     geometry.
+ 
++    \item \textbf{KAM-caged knot-state target.}
++    For a vortex ring and then a certified trefoil, find a converged relative
++    equilibrium or periodic relative orbit, remove symmetry and gauge modes,
++    establish reduced Floquet ellipticity, extract a nonlinear twist matrix,
++    and test whether a positive-measure family of invariant tori survives the
++    full finite-core Biot--Savart correction.
++
+     \item \textbf{Bound-mode impedance target.}
+     Derive the frequency-dependent transition response on a certified finite-
+     thickness knot domain and show which contact-skeleton observables enter
+@@ -1017,7 +1028,9 @@ whereas an empirical failure conflicts directly with observation.
+     \item the selected knot geometry changes topology, component linking data,
+     or strict near-ideal classification under the declared refinement pipeline;
+     \item scalar ropelength converges while the positive strut/kink contact
+-    measures or active rigidity rank fail to converge.
++    measures or active rigidity rank fail to converge;
++    \item a claimed KAM-caged state loses reduced Floquet ellipticity, nonlinear
++    twist, invariant-torus measure, or bounded action drift under refinement.
+ \end{enumerate}
+ 
+ \paragraph{Class M --- methodological-integrity failures.}
+@@ -4920,6 +4933,121 @@ derivations and falsification tests stated above.
+     \subsection{Research-track companion}
+         Sectors that are useful for continuity but too long or too provisional for a minimal main-canon reading are collected in the companion research-track file of the current edition.  Its contents are versioned with the main canon; no historical filename or fixed contents list is normative.  The integration subsections below retain the in-context interfaces and cross-references, while the companion supplies the extended derivations, diagnostics, and research programmes.  Editorial separation does not reject these sectors; it prevents the core narrative from over-claiming closure.
+ 
++    \subsection{KAM-caged knot-state stability guard}
++        \label{subsec:canon_kam_caged_knot_guard}
++
++        \paragraph{Status.}
++        \textbf{[CANON/RT INTERFACE].}
++        The canon now distinguishes two mathematically different uses of KAM
++        structure in a vortex-knot programme:
++        \begin{align}
++            \mathrm{KAM\mbox{-}S}
++            &:
++            \text{spatial confinement of vortex lines inside a steady tube},
++            \\
++            \mathrm{KAM\mbox{-}T}
++            &:
++            \text{temporal nonlinear stability of the moving knot shape}.
++            \label{eq:canon_kam_spatial_temporal_split}
++        \end{align}
++        Rigorous steady Euler constructions establish that knotted vortex tubes
++        can contain an elliptic periodic core line, a positive-measure family of
++        invariant tori, and infinitely many periodic vortex lines
++        \cite{KhesinKuksinPeraltaSalas2014,EncisoPeraltaSalas2015}.  This is an
++        orthodox precedent for \(\mathrm{KAM\mbox{-}S}\).  It does not by itself
++        prove that a freely evolving SST carrier retains its geometry under its
++        complete self-induced motion; that stronger question is
++        \(\mathrm{KAM\mbox{-}T}\).
++
++        The research track therefore uses the nearly integrable template
++        \begin{equation}
++            H(\mathbf I,\boldsymbol\theta)
++            =
++            H_0(\mathbf I)
++            +
++            \varepsilon H_1(\mathbf I,\boldsymbol\theta),
++            \label{eq:canon_kam_nearly_integrable_template}
++        \end{equation}
++        only after a relative equilibrium or periodic relative orbit has been
++        identified and its translational, rotational, phase, and
++        reparametrization zero modes have been removed.  Integrability of the
++        local-induction equation through the Hasimoto map supplies a candidate
++        reference layer, while the nonlocal finite-core Biot--Savart correction
++        supplies a candidate perturbation layer
++        \cite{Hasimoto1972,JerrardSeis2017,MarsdenWeinstein1983}:
++        \begin{equation}
++            H_{\rm BS}
++            =
++            H_{\rm LIA}
++            +
++            \varepsilon_{\rm NL} H_{\rm NL}.
++            \label{eq:canon_kam_lia_bs_split}
++        \end{equation}
++        Equation~\eqref{eq:canon_kam_lia_bs_split} is a
++        \textbf{[BRIDGE/RESEARCH]} decomposition, not yet a derived canonical
++        SST action in global action--angle variables.  The effective
++        perturbation size \(\varepsilon_{\rm NL}\) must be measured from the
++        same regularized evolution used in the nonlinear simulation; it may not
++        be declared small solely because \(a_{\rm core}/R\ll1\).
++
++        The admissible promotion order is
++        \begin{align}
++            &\text{certified topology}
++            \longrightarrow
++            \text{relative equilibrium}
++            \longrightarrow
++            \text{reduced Floquet ellipticity}
++            \nonumber\\
++            &\quad\longrightarrow
++            \text{nonlinear normal form and twist}
++            \longrightarrow
++            \text{invariant-torus evidence}
++            \nonumber\\
++            &\quad\longrightarrow
++            \text{computer-assisted KAM certificate}.
++            \label{eq:canon_kam_promotion_ladder}
++        \end{align}
++        Topology alone does not imply any later rung.  A robust multiplier
++        outside the unit circle, a vanishing reduced twist matrix, uncontrolled
++        nonlocal induction, or secular action drift blocks KAM promotion even
++        when the knot type remains unchanged.
++
++        \paragraph{Golden-ratio and spiral discipline.}
++        A golden or noble rotation number may be tested as a
++        \textbf{[HYPOTHESIS]} only by comparing its measured torus-break threshold
++        against preregistered irrational and rational controls.  No golden
++        constant may enter the equilibrium optimizer, mesh, initial-condition
++        selector, or stopping rule.  The open logarithmic spiral
++        \begin{equation}
++            r(\theta)=a e^{b\theta},
++            \qquad
++            b=\frac{2\ln\phi}{\pi},
++            \label{eq:canon_golden_log_spiral_rejected}
++        \end{equation}
++        is \textbf{[REJECTED]} as a closed particle centreline because
++        \(r(\theta+2\pi)=\phi^4r(\theta)\neq r(\theta)\).  Alternative closed
++        modulation geometries are intentionally excluded from the release
++        canon until they pass free-parameter comparison, topology, reach,
++        clearance, and dynamical-selection gates.
++
++        \begin{center}
++        \begin{tabularx}{0.94\textwidth}{@{}>{\bfseries}p{0.37\textwidth}X@{}}
++        \toprule
++        Item & Canon status in v0.8.25 \\
++        \midrule
++        KAM-caged knot state & \texttt{[RESEARCH]}, high-priority stability programme. \\
++        LIA as \(H_0\), full Biot--Savart correction as \(H_1\) & \texttt{[BRIDGE/RESEARCH]}; smallness and canonical coordinates remain to be established. \\
++        Golden rotation number & \texttt{[HYPOTHESIS]}; admissible only through a controlled null test. \\
++        Golden logarithmic spiral as centreline & \texttt{[REJECTED]}; it is open and scale-divergent. \\
++        \bottomrule
++        \end{tabularx}
++        \end{center}
++
++        The full definitions, dimensional audit, certificate vector, numerical
++        stages, and falsifiers are given in
++        Section~\ref{sec:rt_kam_caged_knot_states} of the companion research
++        track.
++
+     \subsection{Research-track knot-energy normal form}
+         \label{sec:research_track_knot_energy_normal_form}
+ 
+@@ -5626,6 +5754,9 @@ derivations and falsification tests stated above.
+ 
+         \subsection{Canon edition notes}
+ 
++        \subsubsection{v0.8.25}
++            \textbf{v0.8.25} adds the KAM-caged knot-state stability programme and separates spatial vortex-line confinement (KAM-S) from temporal knot-shape stability (KAM-T); introduces the LIA and Hasimoto reference layer with full finite-core Biot--Savart correction as a measured research perturbation; requires relative-equilibrium, reduced Floquet, Krein-signature, nonlinear twist, finite-order non-resonance, Poincar\'e-map, and action-drift gates; defines the vector-valued KAM certificate and KAM--0 through KAM--5 promotion ladder; retains the golden rotation number only as a preregistered controlled null-test hypothesis; rejects the open golden logarithmic spiral as a particle centreline; and keeps unvalidated composite-link, modulo-class, and modulation constructions outside the release canon on top of v0.8.24.
++
+         \subsubsection{v0.8.24}
+             \textbf{v0.8.24} corrects the core--torsion inertia target to the Lorentz-consistent normalization \(\mathsf M_{\rm torsion}=E_0\mathsf I/c_T^2\), adds trace-based scale and anisotropy residuals, attributes the minimal compact link action to the orthodox Wilson/Kogut--Susskind template, introduces the Coulomb/deconfinement and closed-cell defect gates, separates three interpretations of the link spacing \(a_\ell\), rewrites zero-legacy closure in the symbolic star basis, canonizes the geometry-certification ladder and cross-document operating rule, establishes the material--link sector-separation postulate, separates empirical, theoretical, numerical, and methodological failure classes, and repairs companion pointers, heading hierarchy, substrate terminology, and precision hygiene on top of v0.8.23.
+ 
+@@ -6396,7 +6527,7 @@ derivations and falsification tests stated above.
+         \newpage
+         \newif\ifresearchtrackincluded
+         \researchtrackincludedtrue
+-        \input{SST_CANON-v0.8.24-research-track}
++        \input{SST_CANON-v0.8.25-research-track}
+         
+ % ---------------------------
+ % Bibliography
+@@ -6927,6 +7058,91 @@ derivations and falsification tests stated above.
+             \newblock \emph{Physical Review Letters} \textbf{125} (2020), 011301,
+             \newblock DOI: \href{https://doi.org/10.1103/PhysRevLett.125.011301}{10.1103/PhysRevLett.125.011301}.
+ 
++
++            \bibitem{Kolmogorov1954}
++            A.~N. Kolmogorov,
++            \newblock On the conservation of conditionally periodic motions under small perturbations of the Hamiltonian,
++            \newblock \emph{Doklady Akademii Nauk SSSR} \textbf{98} (1954), 527--530,
++            \newblock Permalink: \href{https://cds.cern.ch/record/430016}{CERN Document Server 430016}.
++
++            \bibitem{Arnold1963KAM}
++            V.~I. Arnol'd,
++            \newblock Proof of a theorem of A.~N. Kolmogorov on the invariance of quasi-periodic motions under small perturbations of the Hamiltonian,
++            \newblock \emph{Russian Mathematical Surveys} \textbf{18}(5) (1963), 9--36,
++            \newblock DOI: \href{https://doi.org/10.1070/RM1963v018n05ABEH004130}{10.1070/RM1963v018n05ABEH004130}.
++
++            \bibitem{Moser1962InvariantCurves}
++            J.~Moser,
++            \newblock On invariant curves of area-preserving mappings of an annulus,
++            \newblock \emph{Nachrichten der Akademie der Wissenschaften in G\"ottingen, Mathematisch-Physikalische Klasse II} (1962), 1--20,
++            \newblock Permalink: \href{https://cds.cern.ch/record/430015}{CERN Document Server 430015}.
++
++            \bibitem{MarsdenWeinstein1983}
++            J.~E. Marsden and A.~Weinstein,
++            \newblock Coadjoint orbits, vortices, and Clebsch variables for incompressible fluids,
++            \newblock \emph{Physica D: Nonlinear Phenomena} \textbf{7} (1983), 305--323,
++            \newblock DOI: \href{https://doi.org/10.1016/0167-2789(83)90134-3}{10.1016/0167-2789(83)90134-3}.
++
++            \bibitem{Hasimoto1972}
++            H.~Hasimoto,
++            \newblock A soliton on a vortex filament,
++            \newblock \emph{Journal of Fluid Mechanics} \textbf{51}(3) (1972), 477--485,
++            \newblock DOI: \href{https://doi.org/10.1017/S0022112072002307}{10.1017/S0022112072002307}.
++
++            \bibitem{JerrardSeis2017}
++            R.~L. Jerrard and C.~Seis,
++            \newblock On the vortex filament conjecture for Euler flows,
++            \newblock \emph{Archive for Rational Mechanics and Analysis} \textbf{224} (2017), 135--172,
++            \newblock DOI: \href{https://doi.org/10.1007/s00205-016-1070-3}{10.1007/s00205-016-1070-3}.
++
++            \bibitem{KhesinKuksinPeraltaSalas2014}
++            B.~Khesin, S.~Kuksin, and D.~Peralta-Salas,
++            \newblock KAM theory and the 3D Euler equation,
++            \newblock \emph{Advances in Mathematics} \textbf{267} (2014), 498--522,
++            \newblock DOI: \href{https://doi.org/10.1016/j.aim.2014.09.009}{10.1016/j.aim.2014.09.009}.
++
++            \bibitem{EncisoPeraltaSalas2015}
++            A.~Enciso and D.~Peralta-Salas,
++            \newblock Existence of knotted vortex tubes in steady Euler flows,
++            \newblock \emph{Acta Mathematica} \textbf{214}(1) (2015), 61--134,
++            \newblock DOI: \href{https://doi.org/10.1007/s11511-015-0123-z}{10.1007/s11511-015-0123-z}.
++
++            \bibitem{Kida1981VortexFilamentForm}
++            S.~Kida,
++            \newblock A vortex filament moving without change of form,
++            \newblock \emph{Journal of Fluid Mechanics} \textbf{112} (1981), 397--409,
++            \newblock DOI: \href{https://doi.org/10.1017/S0022112081000475}{10.1017/S0022112081000475}.
++
++            \bibitem{Greene1979StochasticTransition}
++            J.~M. Greene,
++            \newblock A method for determining a stochastic transition,
++            \newblock \emph{Journal of Mathematical Physics} \textbf{20}(6) (1979), 1183--1201,
++            \newblock DOI: \href{https://doi.org/10.1063/1.524170}{10.1063/1.524170}.
++
++            \bibitem{MacKayMeissPercival1984}
++            R.~S. MacKay, J.~D. Meiss, and I.~C. Percival,
++            \newblock Stochasticity and transport in Hamiltonian systems,
++            \newblock \emph{Physical Review Letters} \textbf{52} (1984), 697--700,
++            \newblock DOI: \href{https://doi.org/10.1103/PhysRevLett.52.697}{10.1103/PhysRevLett.52.697}.
++
++            \bibitem{FiguerasHaroLuque2017}
++            J.-L. Figueras, A.~Haro, and A.~Luque,
++            \newblock Rigorous computer-assisted application of KAM theory: a modern approach,
++            \newblock \emph{Foundations of Computational Mathematics} \textbf{17} (2017), 1123--1193,
++            \newblock DOI: \href{https://doi.org/10.1007/s10208-016-9339-3}{10.1007/s10208-016-9339-3}.
++
++            \bibitem{KolokolnikovTicknorKevrekidis2020}
++            T.~Kolokolnikov, C.~Ticknor, and P.~G. Kevrekidis,
++            \newblock Toroidal vortex filament knots and links: existence, stability and dynamics,
++            \newblock \emph{SIAM Journal on Applied Dynamical Systems} \textbf{19}(4) (2020), 2403--2427,
++            \newblock DOI: \href{https://doi.org/10.1137/19M1307019}{10.1137/19M1307019}.
++
++            \bibitem{ObertiRicca2019WindingDynamics}
++            C.~Oberti and R.~L. Ricca,
++            \newblock Influence of winding number on vortex knots dynamics,
++            \newblock \emph{Scientific Reports} \textbf{9} (2019), 17284,
++            \newblock DOI: \href{https://doi.org/10.1038/s41598-019-53548-w}{10.1038/s41598-019-53548-w}.
++
+         \end{thebibliography}
+ 
+ \end{document}
+\ No newline at end of file
+diff --git a/SST_NONRELEASE_SPECULATIVE_RESEARCH-v0.1.tex b/SST_NONRELEASE_SPECULATIVE_RESEARCH-v0.1.tex
+new file mode 100644
+index 0000000000000000000000000000000000000000..2269714e19b2c419ca080d245a6eb29c4ef8b6cc
+--- /dev/null
++++ b/SST_NONRELEASE_SPECULATIVE_RESEARCH-v0.1.tex
+@@ -0,0 +1,240 @@
++%! Author = Omar Iskandarani
++%! Date = 2026-07-24
++%! Non-release speculative appendix v0.1
++
++\documentclass[11pt]{article}
++\usepackage[T1]{fontenc}
++\usepackage[utf8]{inputenc}
++\usepackage[a4paper,margin=1in]{geometry}
++\usepackage{amsmath,amssymb,amsthm,bm}
++\usepackage{mathtools}
++\usepackage{booktabs,tabularx,array}
++\usepackage{hyperref}
++\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
++
++\newtheorem{definition}{Definition}[section]
++\newtheorem{hypothesis}{Hypothesis}[section]
++\newcommand{\Z}{\mathbb Z}
++
++\title{SST Non-Release Speculative Research Appendix v0.1\\
++\large Composite Links, Phase Products, Modulo Classes, and Closed Modulation Ans\"atze}
++\author{Omar Iskandarani\\Independent Researcher, Groningen, The Netherlands}
++\date{2026-07-24}
++
++\begin{document}
++\maketitle
++
++\begin{quote}
++\textbf{Non-release status.}
++This document records exploratory constructions, geometric intuitions, and
++unvalidated ans\"atze.  Its contents are not part of the SST Canon, are not part
++of the release research-track companion, do not define SST predictions, and
++may be modified or rejected without requiring a Canon version change.  No item
++in this appendix may be used to tune a Canon calibration, optimizer, null test,
++or stopping rule before formal promotion.
++\end{quote}
++
++\section{Epistemic ledger and promotion rule}
++
++\begin{center}
++\begin{tabularx}{0.96\textwidth}{@{}>{\bfseries}p{0.37\textwidth}X@{}}
++\toprule
++Item & Non-release status \\
++\midrule
++Periodic exponential modulation & \texttt{[ANSATZ]}; one closed modulation family among many. \\
++Torus link $T(6,9)$ & \texttt{[RESEARCH CANDIDATE]}; exact three-component topology, no established SST selection law. \\
++Three components times three phase labels & \texttt{[STRUCTURAL ANSATZ]}; naturally $\Z_3\times\Z_3$, not automatically $\Z_9$. \\
++Order-nine carry dynamics & \texttt{[SPECULATIVE]}; requires an explicit physical coupling law. \\
++Doubling map modulo nine & \texttt{[EXACT DISCRETE MATHEMATICS / PHYSICAL STATUS OPEN]}. \\
++Rodin-style toroidal projection & \texttt{[INSPIRATION ONLY]}; geometry depends on representation choices. \\
++\bottomrule
++\end{tabularx}
++\end{center}
++
++Promotion into the release research track requires, at minimum:
++\begin{enumerate}
++    \item independently defined physical variables and an evolution law;
++    \item dimensional consistency and conservation-law compatibility;
++    \item comparison against alternative moduli, geometries, and phase laws;
++    \item a preregistered falsifier and a minimal analytic or numerical test;
++    \item no use of the candidate pattern in calibration or model selection;
++    \item reproducible improvement over simpler control models.
++\end{enumerate}
++
++\section{Periodic exponential modulation}
++
++A bounded periodic radius modulation may be written as
++\begin{equation}
++    \rho(u)
++    =
++    \rho_0\exp\!\left[\eta\sin(nu)\right],
++    \qquad
++    n\in\Z,
++    \label{eq:spec_periodic_exponential_radius}
++\end{equation}
++with a torus-knot or torus-link parameterization
++\begin{equation}
++    \mathbf X_{p,q,n,\eta}(u)
++    =
++    \begin{pmatrix}
++    [R+\rho(u)\cos(qu)]\cos(pu)\\
++    [R+\rho(u)\cos(qu)]\sin(pu)\\
++    \rho(u)\sin(qu)
++    \end{pmatrix},
++    \qquad 0\le u<2\pi.
++    \label{eq:spec_periodically_modulated_torus_embedding}
++\end{equation}
++For integer $p,q,n$, the parameterization is closed.  Closure alone does not
++establish preservation of knot type, finite reach, adequate core clearance,
++or dynamical stability.  The parameter $\eta$ must remain free in the primary
++test.  Assignments such as $\eta=\ln\phi$ are secondary hypotheses and are not
++permitted in an optimizer before the free-$\eta$ comparison.
++
++The mandatory controls include an unmodulated embedding, ordinary sinusoidal
++or Fourier modulation, a spline family with comparable degrees of freedom,
++and equalized length or energy constraints.  The exponential family is
++promoted only if it produces a reproducible dynamical advantage not explained
++by parameter count or geometric clearance.
++
++\section{The $T(6,9)$ three-trefoil candidate}
++
++For the torus link $T(p,q)$, the number of components is
++\begin{equation}
++    d=\gcd(p,q).
++\end{equation}
++Consequently,
++\begin{equation}
++    \gcd(6,9)=3,
++\end{equation}
++and each component has reduced torus-knot type
++\begin{equation}
++    T\!\left(\frac{6}{3},\frac{9}{3}\right)
++    =T(2,3),
++\end{equation}
++so $T(6,9)$ consists of three trefoil components.  With consistent orientation,
++the pairwise linking number of parallel torus-link components is
++\begin{equation}
++    \operatorname{Lk}_{ij}
++    =
++    \frac{pq}{d^2}
++    =6.
++\end{equation}
++These are topological facts.  They do not imply that $T(6,9)$ is selected by
++Euler or Biot--Savart dynamics, that it is more stable than alternative
++three-component links, or that it realizes a particle state.
++
++\begin{hypothesis}[Composite-link candidate]
++After a single resolved trefoil reaches at least the declared numerical
++KAM--3 gate under a fixed protocol, $T(6,9)$ may be compared with control
++three-component links under matched core radius, circulation, total length,
++helicity metadata, and minimum clearance.
++\end{hypothesis}
++
++\section{Three-by-three phase labels}
++
++Label the three components by $a\in\Z_3$ and three local phase sectors by
++$k\in\Z_3$.  The nine labels form
++\begin{equation}
++    (a,k)\in\Z_3^{\rm component}\times\Z_3^{\rm phase},
++    \qquad
++    \left|\Z_3\times\Z_3\right|=9.
++    \label{eq:spec_z3_product}
++\end{equation}
++This product group is not cyclic:
++\begin{equation}
++    \Z_3\times\Z_3\not\cong\Z_9,
++\end{equation}
++because every nonzero element of $\Z_3\times\Z_3$ has order three, whereas
++$\Z_9$ contains elements of order nine.
++
++A genuine order-nine orbit therefore requires an additional successor law.
++One possible bookkeeping map is the base-three carry operation
++\begin{equation}
++    S(a,k)
++    =
++    \begin{cases}
++    (a+1,k), & a=0,1,\\
++    (0,k+1\!\!\pmod 3), & a=2,
++    \end{cases}
++    \qquad S^9=\operatorname{id}.
++    \label{eq:spec_order_nine_carry}
++\end{equation}
++Equation~\eqref{eq:spec_order_nine_carry} is only a discrete indexing rule
++until a physical interaction derives it.
++
++\section{Doubling modulo nine}
++
++The map
++\begin{equation}
++    x_{m+1}=2x_m\pmod 9
++    \label{eq:spec_mod9_doubling}
++\end{equation}
++is an exact finite dynamical system.  Its orbit decomposition is
++\begin{align}
++    1&\rightarrow2\rightarrow4\rightarrow8\rightarrow7\rightarrow5\rightarrow1,
++    \\
++    3&\leftrightarrow6,
++    \\
++    0&\rightarrow0.
++\end{align}
++The six-cycle is the multiplicative unit group
++\begin{equation}
++    \Z_9^{\times}=\{1,2,4,5,7,8\},
++    \qquad
++    \operatorname{ord}_9(2)=6.
++\end{equation}
++This is rigorous number theory.  The familiar decimal digital-root
++representation follows from $10\equiv1\pmod9$ and is therefore partly tied to
++the choice of base ten.  A physical role for Eq.~\eqref{eq:spec_mod9_doubling}
++requires an independently derived nine-state variable and a reason that one
++physical update acts as multiplication by two modulo nine.
++
++\section{Separation from the KAM release programme}
++
++The v0.8.25 KAM release programme tests relative equilibria, reduced Floquet
++ellipticity, Krein signatures, nonlinear twist, finite-order non-resonance,
++Poincar\'e maps, action drift, and invariant-torus survival.  The constructions
++in this appendix may not be used to preselect a stable state.  The valid order
++is
++\begin{equation}
++    \text{unbiased KAM search}
++    \longrightarrow
++    \text{observed structure}
++    \longrightarrow
++    \text{post-hoc comparison with speculative candidates}.
++\end{equation}
++A candidate is rejected when its apparent advantage disappears under matched
++controls, resolution refinement, alternative parameterizations, or removal of
++base-dependent encoding choices.
++
++\paragraph{Child-level analogy.}
++The appendix is a sketchbook, not the construction manual.  A beautiful gear
++pattern can suggest what to test, but the machine must still work when the
++pattern is hidden from the engineer.
++
++\begin{thebibliography}{99}
++
++\bibitem{Rolfsen1976Knots}
++D.~Rolfsen,
++1976,
++\emph{Knots and Links},
++Publish or Perish,
++reprinted by AMS Chelsea Publishing,
++\url{https://bookstore.ams.org/chel-346}.
++
++\bibitem{HardyWright2008NumberTheory}
++G.~H.~Hardy and E.~M.~Wright,
++2008,
++\emph{An Introduction to the Theory of Numbers},
++6th ed., Oxford University Press,
++\url{https://global.oup.com/academic/product/an-introduction-to-the-theory-of-numbers-9780199219865}.
++
++\bibitem{Moffatt1969Knottedness}
++H.~K.~Moffatt,
++1969,
++``The Degree of Knottedness of Tangled Vortex Lines,''
++\emph{Journal of Fluid Mechanics}, vol.~35, no.~1, pp.~117--129,
++\href{https://doi.org/10.1017/S0022112069000991}{doi:10.1017/S0022112069000991}.
++
++\end{thebibliography}
++\end{document}
