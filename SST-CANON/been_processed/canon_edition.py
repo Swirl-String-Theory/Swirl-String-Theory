@@ -328,6 +328,24 @@ EDITION_CONFIG = {
             r"or an explicit population protocol on top of v0.8.26."
         ),
     },
+    "0.8.28": {
+        "prev": "0.8.27",
+        "header": (
+            "%! v0.8.28 edition: action--phase mass--shell clock bridge; "
+            "translational/internal-rate discipline; no-shape-deformation guard; "
+            "RT residual protocol on top of v0.8.27."
+        ),
+        "note": (
+            r"\textbf{v0.8.28} adds the action--phase mass--shell clock bridge "
+            r"\(H(P,I)=\sqrt{P^2c^2+E_0^2(I)}\), derives the internal carrier phase rate "
+            r"\(\Omega_0/\gamma\) at fixed momentum, links the low-momentum expansion to the "
+            r"canonical inertia normalization \(M_0=E_0/c^2\), separates translational clock "
+            r"dressing from the internal \(\vchar\) diagnostic, records that no "
+            r"flattening/stretching/core-thinning hypothesis is required, and adds "
+            r"research-track mass-shell, phase-rate, velocity, and shape-stability residuals "
+            r"on top of v0.8.27."
+        ),
+    },
 }
 
 CANON_BASE_KEYWORDS: list[str] = [
@@ -447,6 +465,12 @@ EDITION_KEYWORDS: dict[str, list[str]] = {
         "canonversion macro",
         "duplicate label hygiene",
         "RT benchmark protocol",
+    ],
+    "0.8.28": [
+        "mass-shell clock bridge",
+        "action-phase rate",
+        "no-shape deformation",
+        "RT mass-shell residuals",
     ],
 }
 

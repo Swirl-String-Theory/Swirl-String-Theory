@@ -1,0 +1,600 @@
+--- SST_CANON-v0.8.27.tex
++++ SST_CANON-v0.8.28.tex
+@@ -2,12 +2,12 @@
+ %! Date = 4/10/2026
+ %! Affiliation = Independent Researcher, Groningen, The Netherlands
+ %! ORCID = 0009-0006-1686-3961
+-%! v0.8.27 edition: RT/main Selective-Recovery de-duplication; duplicate-label hygiene; \canonversion macro; RT benchmark protocol on top of v0.8.26.
++%! v0.8.28 edition: action--phase mass--shell clock bridge; translational/internal-rate discipline; no-shape-deformation guard; RT residual protocol on top of v0.8.27.
+ 
+ \newcommand{\paperdoi}{10.5281/zenodo.21628167}
+-\newcommand{\canonversion}{0.8.27}
+-\newcommand{\papertitle}{Swirl-String-Theory Canon-v0.8.27}
+-\newcommand{\paperkeywords}{Swirl String Theory, SST, Canon, Topological Hydrodynamics, Knot Theory, Relational Time, Delay Dynamics, Epistemic Classification, Selective Recovery dedup, canonversion macro, duplicate label hygiene, RT benchmark protocol}
++\newcommand{\canonversion}{0.8.28}
++\newcommand{\papertitle}{Swirl-String-Theory Canon-v0.8.28}
++\newcommand{\paperkeywords}{Swirl String Theory, SST, Canon, Topological Hydrodynamics, Knot Theory, Relational Time, Action--Angle Variables, Relativistic Mass Shell, Internal Phase Clock, Delay Dynamics, Epistemic Classification}
+ 
+ \documentclass[11pt]{article}
+ % ---------------------------
+@@ -131,7 +131,7 @@
+ 
+     \begin{abstract}
+         \noindent
+-        This document presents Swirl-String Theory (SST) as a structured canonical synthesis rather than as a claim that every phenomenological sector has already been derived to theorem level. The text records the impedance--resonance and free-to-bound-mode origin of the programme; consolidates the primitive constant chain linking the effective fluid density, characteristic swirl speed, Compton anchoring, and horn/circulation scale; assigns a minimal relational link-field action as the microscopic research candidate beneath the continuum torsion bridge; records the operational special-relativity postulate that stable vortex matter constructs local spacetime with clocks, rods, and luminal R-phase torsion pulses; and organizes delay selection, atomic bridges, spectroscopy, knot-geometry certification, KAM-caged dynamical stability, relational time, and topology-based mass within one explicitly stratified framework. Throughout, historical provenance, calibrated identities, SST-internal derivations, predictions, and conjectural extensions are kept distinct so that the canon remains internally coherent, externally comparable, and open to falsification.
++        This document presents Swirl-String Theory (SST) as a structured canonical synthesis rather than as a claim that every phenomenological sector has already been derived to theorem level. The text records the impedance--resonance and free-to-bound-mode origin of the programme; consolidates the primitive constant chain linking the effective fluid density, characteristic swirl speed, Compton anchoring, and horn/circulation scale; assigns a minimal relational link-field action as the microscopic research candidate beneath the continuum torsion bridge; records the operational special-relativity postulate that stable vortex matter constructs local spacetime with clocks, rods, and luminal R-phase torsion pulses; adds a conditional action--phase mass--shell route in which the internal carrier phase slows by the Lorentz factor without requiring translational flattening or stretching of the knot; and organizes delay selection, atomic bridges, spectroscopy, knot-geometry certification, KAM-caged dynamical stability, relational time, and topology-based mass within one explicitly stratified framework. Throughout, historical provenance, calibrated identities, SST-internal derivations, predictions, and conjectural extensions are kept distinct so that the canon remains internally coherent, externally comparable, and open to falsification.
+     \end{abstract}
+ 
+     \vspace{0.2cm}
+@@ -1492,7 +1492,7 @@
+             \sqrt{1-\frac{u_A^2(T)}{c^2}},
+             \label{eq:swirl_clock}
+         \end{align}
+-        where \(u_A\) is the resolved kinematic speed entering the clock response. The canonical internal swirl-speed evaluation is the special case
++        where \(u_A\) is the resolved effective speed entering the particular clock reduction. Every use must state whether \(u_A\) denotes carrier translation, an internal local flow speed, or another reduced kinematic variable; these meanings may not be exchanged silently. The canonical internal swirl-speed evaluation is the special case
+         \begin{align}
+             \SwirlClock_c
+             =
+@@ -1505,6 +1505,9 @@
+ 
+         \textbf{[CANONICAL SST POSTULATE].}
+         The clock response is part of the founding operational interpretation of SST: stable vortex matter measures local spacetime through the same luminal torsion sector that defines~\(c\). It is therefore stronger than a merely decorative analogy.
++
++        \textbf{[TRANSLATION/INTERNAL-RATE DISCIPLINE, v0.8.28].}
++        Equation~\eqref{eq:swirl_clock_canonical_internal_evaluation} is a local internal-speed diagnostic. It is not the Lorentz factor of a whole electron translating with speed \(V_A\), and \(\vchar\) must not be substituted for \(V_A\). Translational slowing of an internal carrier phase is treated separately by the action--phase mass--shell route in Sec.~\ref{subsec:action_phase_mass_shell_clock}.
+ 
+         \textbf{[OPEN DERIVATION].}
+         A substrate-level derivation must still show that the torsion sector dresses all stable matter carriers isotropically and produces Eq.~\eqref{eq:swirl_clock} without species-dependent retuning. This is the monometricity and core--torsion impedance problem developed in the research track.
+@@ -4055,6 +4058,138 @@
+         \end{itemize}
+         This resolves a recurring ambiguity in earlier canon versions: local cycle counting and coarse-grained time dilation are related, but they are not identical observables.
+ 
++    \subsection{Action--Phase Mass--Shell Route to Internal Clock Dilation}
++        \label{subsec:action_phase_mass_shell_clock}
++
++        \paragraph{Status.}
++        \textbf{[ORTHODOX FORM / SST BRIDGE / CONDITIONAL DERIVATION].}
++        The relativistic mass--shell form and Hamilton equations used below are orthodox.  Their application to a resolved SST vortex carrier is a bridge assumption until the same dispersion is derived from the substrate and shown to be species independent.  Conditional on that bridge, the internal phase-rate reduction is derived and does not require a change of knot geometry.
++
++        Let \((I,\theta)\) be an internal action--angle pair of a stable carrier, with
++        \begin{align}
++            [I]=\mathrm{J\,s},
++            \qquad
++            [\theta]=1,
++        \end{align}
++        and let the rest-branch energy be \(E_0(I)>0\).  Its comoving internal frequency is
++        \begin{align}
++            \Omega_0(I)
++            :=
++            \frac{d\theta}{d\tau_A}
++            =
++            \frac{dE_0}{dI}.
++            \label{eq:action_phase_rest_frequency}
++        \end{align}
++        Introduce the joint translational--internal Hamiltonian
++        \begin{align}
++            \boxed{
++            H(P,I)
++            =
++            \sqrt{P^2c^2+E_0^2(I)}
++            }.
++            \label{eq:action_phase_mass_shell_hamiltonian}
++        \end{align}
++        In this subsection \(H\) denotes the Hamiltonian, not fluid helicity.  Both terms under the square root have units \(\mathrm{J^2}\).
++
++        Hamilton's equations at fixed canonical momentum give
++        \begin{align}
++            V
++            &=
++            \frac{\partial H}{\partial P}
++            =
++            \frac{Pc^2}{H},
++            \label{eq:action_phase_translation_velocity}
++            \\
++            \frac{d\theta}{dT}
++            &=
++            \left.\frac{\partial H}{\partial I}\right|_{P}
++            =
++            \frac{E_0}{H}\,\Omega_0.
++            \label{eq:action_phase_lab_phase_rate}
++        \end{align}
++        Eliminating \(P\) yields
++        \begin{align}
++            \frac{E_0}{H}
++            =
++            \sqrt{1-\frac{V^2}{c^2}}
++            =
++            \frac{1}{\gamma(V)},
++            \label{eq:action_phase_mass_shell_clock_factor}
++        \end{align}
++        so that
++        \begin{align}
++            \boxed{
++            \frac{d\theta}{dT}
++            =
++            \frac{\Omega_0}{\gamma(V)}
++            }.
++            \label{eq:action_phase_internal_clock_dilation}
++        \end{align}
++        If the action--angle phase is the physical clock phase, define \(d\theta=\Omega_0\,d\tau_A\).  Equations~\eqref{eq:action_phase_lab_phase_rate}--\eqref{eq:action_phase_mass_shell_clock_factor} then imply
++        \begin{align}
++            \boxed{
++            \frac{d\tau_A}{dT}
++            =
++            \frac{E_0}{H}
++            =
++            \sqrt{1-\frac{V^2}{c^2}}
++            }.
++            \label{eq:action_phase_proper_time_rate}
++        \end{align}
++
++        \paragraph{Electron/Compton specialization.}
++        At the calibrated electron branch,
++        \begin{align}
++            E_0(I_e)=m_ec^2,
++            \qquad
++            \Omega_0(I_e)=\omega_c,
++        \end{align}
++        and therefore
++        \begin{align}
++            \frac{d\theta_e}{dT}
++            =
++            \omega_c\sqrt{1-\frac{V^2}{c^2}}.
++            \label{eq:action_phase_compton_clock_dilation}
++        \end{align}
++        The optional normalization \(I_e=E_0/\omega_c=\hbar\) is a calibrated algebraic identity once \(E_0=m_ec^2\) and \(\omega_c=m_ec^2/\hbar\) are adopted; it is not an independent derivation of quantization.
++
++        \paragraph{Low-momentum consistency.}
++        For \(Pc\ll E_0\),
++        \begin{align}
++            H(P,I)
++            =
++            E_0(I)
++            +
++            \frac{P^2}{2\,E_0(I)/c^2}
++            +
++            O(P^4),
++            \label{eq:action_phase_low_momentum_expansion}
++        \end{align}
++        so the inertial coefficient is \(M_0(I)=E_0(I)/c^2\), consistent with the core--torsion inertia normalization in Eq.~\eqref{eq:core_torsion_impedance_gate_main}.
++
++        \paragraph{No-shape-deformation consequence.}
++        Let \(q\) denote any internal geometric coordinate and generalize the bridge to
++        \begin{align}
++            H(P,I,q)
++            =
++            \sqrt{P^2c^2+E_0^2(I,q)}.
++        \end{align}
++        Then
++        \begin{align}
++            \frac{\partial H}{\partial q}
++            =
++            \frac{E_0}{H}
++            \frac{\partial E_0}{\partial q}.
++            \label{eq:action_phase_shape_extremum_equivalence}
++        \end{align}
++        Hence every positive-energy rest-shape extremum remains an extremum at finite \(P\) unless an additional explicit momentum--shape coupling is introduced.  The abandoned translation-induced flattening, stretching, and core-thinning hypotheses are therefore not needed for clock dilation and are not adopted by the canon.
++
++        \paragraph{Fixed-momentum guard.}
++        Equation~\eqref{eq:action_phase_lab_phase_rate} is the canonical Hamilton equation with the derivative taken at fixed \(P\).  Differentiating \(H=\gamma(V)E_0\) at fixed \(V\) answers a different question and gives \(\gamma\Omega_0\); it must not be used as the carrier's action--angle clock rate.
++
++        \textbf{[OPEN THEOREM TARGET].}
++        Derive Eq.~\eqref{eq:action_phase_mass_shell_hamiltonian} from the SST substrate, identify a concrete conserved internal action \(I\), demonstrate low-energy monometricity, and verify the mass--shell and phase-rate residuals defined in Sec.~\ref{sec:rt_action_phase_mass_shell_clock} of the research-track companion \cite{Einstein1905,Arnold1989ClassicalMechanics,DeBroglie1925}.
++
+     \subsection{Relational observables from conserved currents}
+         A purely operator-based notion of time is avoided in SST by defining time observables through conserved currents. Let $J^\mu$ denote a matter current and let $j_{\mathrm{ev}}^\mu$ denote a coarse-grained event current associated with structured activity of the medium. The relational clock field $T(x)$ is then recovered only after coarse graining,
+         \begin{align}
+@@ -5755,6 +5890,9 @@
+ 
+         \subsection{Canon edition notes}
+ 
++        \subsubsection{v0.8.28}
++            \textbf{v0.8.28} adds the action--phase mass--shell clock bridge \(H(P,I)=\sqrt{P^2c^2+E_0^2(I)}\), derives the internal carrier phase rate \(\Omega_0/\gamma\) at fixed momentum, links the low-momentum expansion to the canonical inertia normalization \(M_0=E_0/c^2\), separates translational clock dressing from the internal \(\vchar\) diagnostic, records that no flattening/stretching/core-thinning hypothesis is required, and adds research-track mass-shell, phase-rate, velocity, and shape-stability residuals on top of v0.8.27.
++
+         \subsubsection{v0.8.27}
+             \textbf{v0.8.27} completes the research-track de-duplication of the seven Selective-Recovery subsections (RT full-text replaced by main-canon pointers), strips pre-existing commented duplicate section labels (\texttt{sec:atomic}/\texttt{consistency}/\texttt{delay}/\texttt{spectroscopy}/\texttt{unification}), introduces a \texttt{\string\canonversion} macro for current-edition pointers with targeted stale inline-version hygiene, and replaces empty RT predictive-candidate benchmark cells by archived exact-closure numbers or an explicit population protocol on top of v0.8.26.
+ 
+@@ -6543,7 +6681,7 @@
+         \newpage
+         \newif\ifresearchtrackincluded
+         \researchtrackincludedtrue
+-        \input{SST_CANON-v0.8.27-research-track}
++        \input{SST_CANON-v0.8.28-research-track}
+         
+ % ---------------------------
+ % Bibliography
+@@ -6862,6 +7000,18 @@
+             \newblock Annalen der Physik \textbf{322} (1905), 891--921,
+             \newblock DOI: 10.1002/andp.19053221004.
+ 
++            \bibitem{DeBroglie1925}
++            L.~de Broglie,
++            \newblock Recherches sur la th\'eorie des quanta,
++            \newblock \emph{Annales de Physique}, 10th series, \textbf{3} (1925), 22--128,
++            \newblock DOI: \href{https://doi.org/10.1051/anphys/192510030022}{10.1051/anphys/192510030022}.
++
++            \bibitem{Arnold1989ClassicalMechanics}
++            V.~I. Arnol'd,
++            \newblock \emph{Mathematical Methods of Classical Mechanics}, 2nd ed.,
++            \newblock Graduate Texts in Mathematics 60, Springer, New York (1989),
++            \newblock DOI: \href{https://doi.org/10.1007/978-1-4757-2063-1}{10.1007/978-1-4757-2063-1}.
++
+             \bibitem{Einstein1915}
+             A.~Einstein,
+             \newblock Die Feldgleichungen der Gravitation,
+
+--- SST_CANON-v0.8.27-research-track.tex
++++ SST_CANON-v0.8.28-research-track.tex
+@@ -6,12 +6,12 @@
+ \makeatother
+ 
+ %! Author = Omar Iskandarani
+-%! Companion to Swirl-String-Theory Canon-v0.8.27 (included from 	exttt{SST\_CANON-v0.8.27.tex} before the manual bibliography).
++%! Companion to Swirl-String-Theory Canon-v0.8.28 (included from \texttt{SST\_CANON-v0.8.28.tex} before the manual bibliography).
+ 
+ \section{Research-track sectors migrated from the main canon}
+ 
+ \noindent
+-This companion document collects those sectors that remain useful for continuity and future development but are too long, too provisional, or too phenomenology-specific for the core body of \textit{Swirl-String-Theory\_Canon-v0.8.27}. Their migration out of the main canon is editorial rather than negative: each subsection remains part of the broader SST research program, but none is required for the minimal logical closure of the core canon.
++This companion document collects those sectors that remain useful for continuity and future development but are too long, too provisional, or too phenomenology-specific for the core body of \textit{Swirl-String-Theory\_Canon-v0.8.28}. Their migration out of the main canon is editorial rather than negative: each subsection remains part of the broader SST research program, but none is required for the minimal logical closure of the core canon.
+ 
+ \medskip
+ \noindent
+@@ -19,7 +19,7 @@
+ 
+ \medskip
+ \noindent
+-\textbf{Editorial note (v0.8.27):} the maximal swirl tension sector ($F_{\rm swirl}^{\max}$, Rydberg bridge identities, Gibbons-class maximum-tension comparison, and the threefold interpretation table) is developed in the core document \texttt{SST\_CANON-v0.8.27.tex}, subsection \texttt{Maximal Swirl Tension} (label \texttt{sec:Fmax}); it is not duplicated here.
++\textbf{Editorial note (v0.8.27):} the maximal swirl tension sector ($F_{\rm swirl}^{\max}$, Rydberg bridge identities, Gibbons-class maximum-tension comparison, and the threefold interpretation table) is developed in the core document \texttt{SST\_CANON-v0.8.28.tex}, subsection \texttt{Maximal Swirl Tension} (label \texttt{sec:Fmax}); it is not duplicated here.
+ 
+ \medskip
+ 
+@@ -8513,6 +8513,286 @@
+ \textbf{[OPEN CANON GAP]} Universal Lorentz kinematics for all matter species
+ requires the stronger monometricity condition below.
+ 
++\subsubsection{Action--phase mass--shell route to carrier-clock dilation}
++\label{sec:rt_action_phase_mass_shell_clock}
++
++\paragraph{Purpose and epistemic status.}
++\textbf{[ORTHODOX FORM / BRIDGE / CONDITIONAL DERIVATION].}
++The light-clock construction above derives a Lorentz factor from common signal
++propagation.  This subsection supplies an independent Hamiltonian route for a
++localized carrier with an internal periodic degree of freedom.  The derivation
++is exact once the mass--shell Hamiltonian and a canonical internal action--angle
++pair are admitted.  The unresolved SST step is to derive those structures from
++the substrate rather than import them.
++
++Throughout this subsection, \(H\) denotes the Hamiltonian and
++\(\mathscr H_{\rm hel}\) denotes helicity if needed; the two symbols must not be
++conflated.
++
++\paragraph{Assumptions.}
++Let \(P\) be the conserved translational momentum of an isolated carrier along
++one direction, and let \((I,\theta)\) be an internal action--angle pair.  Assume:
++\begin{enumerate}
++    \item \(I\) is adiabatically conserved on the translation timescale;
++    \item the positive rest-branch energy is \(E_0(I)>0\);
++    \item the comoving internal frequency is
++    \begin{align}
++        \Omega_0(I)
++        =
++        \frac{dE_0}{dI};
++        \label{eq:rt_action_phase_rest_frequency}
++    \end{align}
++    \item the joint energy satisfies the low-energy mass shell
++    \begin{align}
++        \boxed{
++        H(P,I)
++        =
++        \sqrt{P^2c^2+E_0^2(I)}
++        }.
++        \label{eq:rt_action_phase_mass_shell_hamiltonian}
++    \end{align}
++\end{enumerate}
++The dimensional audit is
++\begin{align}
++    [Pc]=[E_0]=[H]=\mathrm{J},
++    \qquad
++    [I]=\mathrm{J\,s},
++    \qquad
++    [\Omega_0]=\mathrm{s^{-1}}.
++\end{align}
++
++\paragraph{Translational velocity and Lorentz factor.}
++Hamilton's equation gives
++\begin{align}
++    V
++    =
++    \frac{\partial H}{\partial P}
++    =
++    \frac{Pc^2}{H}.
++    \label{eq:rt_action_phase_velocity}
++\end{align}
++Consequently,
++\begin{align}
++    1-\frac{V^2}{c^2}
++    &=
++    1-\frac{P^2c^2}{H^2}
++    =
++    \frac{E_0^2}{H^2},
++    \\
++    \frac{E_0}{H}
++    &=
++    \sqrt{1-\frac{V^2}{c^2}}
++    =
++    \frac{1}{\gamma(V)},
++    \label{eq:rt_action_phase_e0_over_h}
++\end{align}
++with
++\begin{align}
++    H=\gamma E_0,
++    \qquad
++    P=\gamma\frac{E_0}{c^2}V.
++    \label{eq:rt_action_phase_relativistic_relations}
++\end{align}
++
++\paragraph{Internal phase rate.}
++The canonical angle equation must be evaluated at fixed \(P\):
++\begin{align}
++    \frac{d\theta}{dT}
++    =
++    \left.\frac{\partial H}{\partial I}\right|_P
++    =
++    \frac{E_0}{H}\frac{dE_0}{dI}
++    =
++    \frac{\Omega_0}{\gamma(V)}.
++    \label{eq:rt_action_phase_clock_rate}
++\end{align}
++If \(d\theta=\Omega_0\,d\tau_A\), then
++\begin{align}
++    \boxed{
++    \frac{d\tau_A}{dT}
++    =
++    \frac{1}{\gamma(V)}
++    =
++    \sqrt{1-\frac{V^2}{c^2}}
++    }.
++    \label{eq:rt_action_phase_proper_time}
++\end{align}
++Thus the internal dynamics remain normal in \(\tau_A\) while their phase
++accumulation is slower relative to the comparison time \(T\).
++
++\textbf{[FIXED-MOMENTUM GUARD].}
++The derivative in Eq.~\eqref{eq:rt_action_phase_clock_rate} is a Hamilton equation
++and is therefore taken at fixed canonical momentum.  Rewriting
++\(H=\gamma(V)E_0(I)\) and differentiating at fixed \(V\) gives
++\(\gamma\Omega_0\), but that derivative is not the canonical angle velocity and
++must not be substituted for Eq.~\eqref{eq:rt_action_phase_clock_rate}.
++
++\paragraph{Low-momentum inertia check.}
++For \(Pc/E_0\ll1\),
++\begin{align}
++    H(P,I)
++    =
++    E_0(I)
++    +
++    \frac{P^2c^2}{2E_0(I)}
++    -
++    \frac{P^4c^4}{8E_0^3(I)}
++    +
++    O(P^6).
++    \label{eq:rt_action_phase_low_p_expansion}
++\end{align}
++Writing
++\begin{align}
++    M_0(I)=\frac{E_0(I)}{c^2}
++\end{align}
++gives the Newtonian term \(P^2/(2M_0)\).  This is the same factor-one
++normalization required by the core--torsion inertia gate; an inertia
++\(2E_0/c^2\) would fail this expansion.
++
++\paragraph{Compton specialization.}
++For the calibrated electron branch,
++\begin{align}
++    E_0(I_e)=m_ec^2,
++    \qquad
++    \Omega_0(I_e)=\omega_c
++    =7.76344066\times10^{20}\,\mathrm{s^{-1}},
++\end{align}
++so
++\begin{align}
++    \Omega_e(V)
++    =
++    \omega_c\sqrt{1-\frac{V^2}{c^2}}.
++    \label{eq:rt_action_phase_compton_frequency}
++\end{align}
++Illustrative values are
++\begin{center}
++\begin{tabular}{ccc}
++\hline
++\(V/c\) & \(\gamma^{-1}\) & \(\Omega_e(V)\,[\mathrm{s^{-1}}]\) \\
++\hline
++\(0\) & \(1\) & \(7.76344066\times10^{20}\) \\
++\(0.9\) & \(0.435889894\) & \(3.38400533\times10^{20}\) \\
++\(0.99\) & \(0.141067360\) & \(1.09516808\times10^{20}\) \\
++\(0.999\) & \(0.044710178\) & \(3.47104812\times10^{19}\) \\
++\hline
++\end{tabular}
++\end{center}
++The action normalization
++\begin{align}
++    I_e
++    =
++    \frac{E_0}{\omega_c}
++    =
++    \hbar
++    \label{eq:rt_action_phase_ie_hbar}
++\end{align}
++is a calibrated identity under the adopted Compton closure, not an independent
++hydrodynamic derivation of \(\hbar\).
++
++\paragraph{Worldline-phase cross-check.}
++For the plane-wave phase convention
++\begin{align}
++    \Phi(X,T)
++    =
++    \frac{PX-HT}{\hbar},
++\end{align}
++and a carrier trajectory \(dX/dT=V\),
++\begin{align}
++    \frac{d\Phi}{dT}
++    &=
++    \frac{PV-H}{\hbar}
++    =
++    -\frac{E_0^2}{\hbar H}
++    =
++    -\frac{E_0}{\hbar\gamma}.
++    \label{eq:rt_action_phase_worldline_phase}
++\end{align}
++The magnitude of the phase rate along the carrier therefore decreases as
++\(1/\gamma\).  By contrast, the coordinate-frequency coefficient at fixed
++position is \(H/\hbar=\gamma E_0/\hbar\).  These are different derivatives and
++must not be conflated \cite{DeBroglie1925}.
++
++\paragraph{No flattening or stretching follows from the mass shell.}
++Introduce internal shape coordinates \(q^a\) and let
++\begin{align}
++    H(P,I,q)
++    =
++    \sqrt{P^2c^2+E_0^2(I,q)}.
++    \label{eq:rt_action_phase_shape_hamiltonian}
++\end{align}
++Then
++\begin{align}
++    \frac{\partial H}{\partial q^a}
++    =
++    \frac{E_0}{H}
++    \frac{\partial E_0}{\partial q^a}.
++    \label{eq:rt_action_phase_shape_gradient}
++\end{align}
++For \(E_0>0\),
++\begin{align}
++    \frac{\partial H}{\partial q^a}=0
++    \quad\Longleftrightarrow\quad
++    \frac{\partial E_0}{\partial q^a}=0.
++    \label{eq:rt_action_phase_same_shape_extrema}
++\end{align}
++At such an extremum,
++\begin{align}
++    \left.\frac{\partial^2H}{\partial q^a\partial q^b}\right|_*
++    =
++    \frac{E_0}{H}
++    \left.\frac{\partial^2E_0}{\partial q^a\partial q^b}\right|_*.
++    \label{eq:rt_action_phase_shape_hessian}
++\end{align}
++The positive factor \(E_0/H\) preserves the Hessian signature.  Therefore a
++rest-shape minimum remains a minimum for all finite \(P\) in this separable
++mass--shell bridge.  Translation-induced flattening, stretching, or uniform
++core thinning would require an additional explicit coupling such as
++\(H_{Pq}(P,I,q)\); none is assumed in v0.8.28.
++
++\paragraph{Residuals for an SST derivation.}
++A numerical or analytic carrier family must report
++\begin{align}
++    \Delta_{\rm shell}
++    &:=\frac{H^2-P^2c^2-E_0^2}{E_0^2},
++    \\
++    \Delta_V
++    &:=\frac{VH}{Pc^2}-1,
++    \\
++    \Delta_\Omega
++    &:=\frac{\Omega(P)H}{\Omega_0E_0}-1,
++    \\
++    \Delta_q(P)
++    &:=\frac{\lVert q_*(P)-q_*(0)\rVert}{q_{\rm ref}}.
++    \label{eq:rt_action_phase_residual_vector}
++\end{align}
++The first three residuals must converge to zero under domain, core-profile, and
++resolution refinement.  Under the separable bridge, \(\Delta_q(P)\) must also
++converge to zero after removing rigid translation, rotation, and
++reparametrization.  A reproducible nonzero \(\Delta_q\) is evidence for an
++additional momentum--shape coupling, not evidence supplied by the mass shell
++itself.
++
++\paragraph{Minimal computation programme.}
++\begin{enumerate}
++    \item Identify a stable rest carrier and a concrete internal phase \(\theta\).
++    \item Construct fixed-\(P\), fixed-\(I\) translating solutions or constrained
++    minimizers and measure \(H(P,I)\), \(V(P,I)\), and \(\Omega(P,I)\).
++    \item Test Eq.~\eqref{eq:rt_action_phase_residual_vector} over at least one
++    decade of small \(P/E_0c\) and into the relativistic regime allowed by the
++    numerical model.
++    \item Repeat for multiple knot species and orientations to test monometricity.
++    \item Reject the bridge if a non-removable species-dependent limiting speed,
++    a non-convergent mass-shell residual, or an internal phase ratio different
++    from \(E_0/H\) survives refinement.
++\end{enumerate}
++
++\textbf{[OPEN THEOREM TARGET].}
++Derive Eq.~\eqref{eq:rt_action_phase_mass_shell_hamiltonian} from the microscopic
++SST action, rather than assuming the orthodox mass shell; identify the carrier
++action \(I\) from circulation, phase, or a reduced symplectic form; and prove
++that the same \(c\) appears for every stable low-energy carrier
++\cite{Einstein1905,Arnold1989ClassicalMechanics}.
++
+ \subsubsection{Monometricity theorem target}
+ 
+ Let \(A\) label low-energy SST excitation species. The principal symbol of the
+
+--- SST_NONRELEASE_SPECULATIVE_RESEARCH-v0.1.tex
++++ SST_NONRELEASE_SPECULATIVE_RESEARCH-v0.2.tex
+@@ -1,6 +1,6 @@
+ %! Author = Omar Iskandarani
+ %! Date = 2026-07-24
+-%! Non-release speculative appendix v0.1
++%! Non-release speculative appendix v0.2
+ 
+ \documentclass[11pt]{article}
+ \usepackage[T1]{fontenc}
+@@ -16,10 +16,10 @@
+ \newtheorem{hypothesis}{Hypothesis}[section]
+ \newcommand{\Z}{\mathbb Z}
+ 
+-\title{SST Non-Release Speculative Research Appendix v0.1\\
++\title{SST Non-Release Speculative Research Appendix v0.2\\
+ \large Composite Links, Phase Products, Modulo Classes, and Closed Modulation Ans\"atze}
+ \author{Omar Iskandarani\\Independent Researcher, Groningen, The Netherlands}
+-\date{2026-07-24}
++\date{2026-07-27}
+ 
+ \begin{document}
+ \maketitle
+@@ -47,6 +47,8 @@
+ Order-nine carry dynamics & \texttt{[SPECULATIVE]}; requires an explicit physical coupling law. \\
+ Doubling map modulo nine & \texttt{[EXACT DISCRETE MATHEMATICS / PHYSICAL STATUS OPEN]}. \\
+ Rodin-style toroidal projection & \texttt{[INSPIRATION ONLY]}; geometry depends on representation choices. \\
++Translation-induced trefoil flattening & \texttt{[RETIRED]}; not required by the action--phase mass--shell clock route. \\
++Translation-induced stretching / uniform core thinning & \texttt{[RETIRED]}; no momentum--shape coupling has been derived. \\
+ \bottomrule
+ \end{tabularx}
+ \end{center}
+@@ -61,6 +63,28 @@
+     \item reproducible improvement over simpler control models.
+ \end{enumerate}
+ 
++\section{Retired translation-induced shape hypotheses}
++
++The exploratory suggestions that a translating electron trefoil must flatten,
++stretch, or uniformly thin as its speed approaches \(c\) are retired.  The
++v0.8.28 release route instead uses an internal action--phase Hamiltonian,
++\begin{equation}
++    H(P,I)=\sqrt{P^2c^2+E_0^2(I)},
++\end{equation}
++which produces the conditional phase-rate law
++\begin{equation}
++    \dot\theta=\Omega_0\,\frac{E_0}{H}=\frac{\Omega_0}{\gamma}
++\end{equation}
++without introducing a shape variable.  If shape coordinates \(q\) are added
++only through \(E_0(I,q)\), then
++\begin{equation}
++    \partial_qH=\frac{E_0}{H}\,\partial_qE_0,
++\end{equation}
++so the rest-shape extrema are unchanged at finite momentum.  A future
++translation-dependent deformation may be reconsidered only if an independently
++derived coupling \(H_{Pq}\neq0\) is found.  The retired hypotheses may not be
++used in calibration, particle-size estimates, or relativistic predictions.
++
+ \section{Periodic exponential modulation}
+ 
+ A bounded periodic radius modulation may be written as
