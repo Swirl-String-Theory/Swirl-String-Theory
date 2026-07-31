@@ -1,0 +1,606 @@
+--- a/SST_CANON-v0.8.31-research-track.tex
++++ b/SST_CANON-v0.8.32-research-track.tex
+@@ -6,12 +6,13 @@
+ \makeatother
+ 
+ %! Author = Omar Iskandarani
+-%! Companion to Swirl-String-Theory Canon-v0.8.31 (included from \texttt{SST\_CANON-v0.8.31.tex} before the manual bibliography).
++%! Companion to Swirl-String-Theory Canon-v0.8.32 (included from \texttt{SST\_CANON-v0.8.32.tex} before the manual bibliography).
++\providecommand{\rhoRef}{{\rho_{\mathrm{ref}}}}
+ 
+ \section{Research-track sectors migrated from the main canon}
+ 
+ \noindent
+-This companion document collects those sectors that remain useful for continuity and future development but are too long, too provisional, or too phenomenology-specific for the core body of \textit{Swirl-String-Theory\_Canon-v0.8.31}. Their migration out of the main canon is editorial rather than negative: each subsection remains part of the broader SST research program, but none is required for the minimal logical closure of the core canon.
++This companion document collects those sectors that remain useful for continuity and future development but are too long, too provisional, or too phenomenology-specific for the core body of \textit{Swirl-String-Theory\_Canon-v0.8.32}. Their migration out of the main canon is editorial rather than negative: each subsection remains part of the broader SST research program, but none is required for the minimal logical closure of the core canon.
+ 
+ \medskip
+ \noindent
+@@ -19,7 +20,7 @@
+ 
+ \medskip
+ \noindent
+-\textbf{Editorial note (v0.8.27):} the maximal swirl tension sector ($F_{\rm swirl}^{\max}$, Rydberg bridge identities, Gibbons-class maximum-tension comparison, and the threefold interpretation table) is developed in the core document \texttt{SST\_CANON-v0.8.31.tex}, subsection \texttt{Maximal Swirl Tension} (label \texttt{sec:Fmax}); it is not duplicated here.
++\textbf{Editorial note (v0.8.27):} the maximal swirl tension sector ($F_{\rm swirl}^{\max}$, Rydberg bridge identities, Gibbons-class maximum-tension comparison, and the threefold interpretation table) is developed in the core document \texttt{SST\_CANON-v0.8.32.tex}, subsection \texttt{Maximal Swirl Tension} (label \texttt{sec:Fmax}); it is not duplicated here.
+ 
+ \medskip
+ 
+@@ -370,7 +371,7 @@
+ \textbf{[SPECULATIVE] SST interpretation:}
+ Eq.~\eqref{eq:exec_swirl_pressure} is interpreted as a classifier/driver layer for dark-sector support. This interpretation is model-level and separate from the orthodox derivation.
+ 
+-\textbf{[CRITICAL NOTE]}: Applying Eq.~\eqref{eq:exec_swirl_pressure} unscreened with the microscopic $\rhoF=7.0\times10^{-7}\,\mathrm{kg\,m^{-3}}$ at galactic scales ($v_\theta\sim200\,\mathrm{km\,s^{-1}}$, $r\sim10\,\mathrm{kpc}$) gives $dp/dr\sim10^{-16}\,\mathrm{Pa\,m^{-1}}$ and $\Delta p\sim2.8\times10^{3}\,\mathrm{Pa}$ over $1\,\mathrm{kpc}$, far above the observed ISM. The swirl pressure is not the thermal ISM pressure, but no screening/scaling law for $\rhoF$ across scales is yet derived; this sector stays research-track and is falsifiable on exactly this point.
++\textbf{[CRITICAL NOTE]}: Applying Eq.~\eqref{eq:exec_swirl_pressure} unscreened with the legacy reference $\rhoRef=7.0\times10^{-7}\,\mathrm{kg\,m^{-3}}$ at galactic scales ($v_\theta\sim200\,\mathrm{km\,s^{-1}}$, $r\sim10\,\mathrm{kpc}$) gives $dp/dr\sim10^{-16}\,\mathrm{Pa\,m^{-1}}$ and $\Delta p\sim2.8\times10^{3}\,\mathrm{Pa}$ over $1\,\mathrm{kpc}$, far above the observed ISM. The swirl pressure is not the thermal ISM pressure, but no screening/scaling law for $\rhoF$ across scales is yet derived; this sector stays research-track and is falsifiable on exactly this point.
+ 
+ \textbf{[DERIVED] Attached observables/falsifiers:}
+ \begin{enumerate}
+@@ -1254,9 +1255,9 @@
+ =
+ \frac{1}{2}\rhoF \vnorm^2.
+ \end{equation}
+-Using
++Using the legacy-reference normalization
+ \[
+-\rhoF = 7.0\times10^{-7}\,\mathrm{kg\,m^{-3}},
++\rhoRef = 7.0\times10^{-7}\,\mathrm{kg\,m^{-3}},
+ \qquad
+ \vnorm = 1.09384563\times10^{6}\,\mathrm{m\,s^{-1}},
+ \]
+@@ -1270,6 +1271,9 @@
+ =
+ 4.187\times10^{5}\,\mathrm{J\,m^{-3}}.
+ \end{equation}
++\textbf{[LEGACY-REFERENCE NORMALIZED].}
++This numerical amplitude reproduces the inherited benchmark and is not an
++absolute prediction of the unfixed response \(\rhoEff\).
+ The corresponding mass-equivalent density is
+ \begin{equation}
+ \rhoM
+@@ -9138,10 +9142,10 @@
+ the leading IR term, but it does not explain why a preferred-foliation
+ incompressible medium becomes diffeomorphism invariant in the infrared.
+ 
+-\textbf{[CRITICAL NOTE]} The cosmological-constant problem is severe
++\textbf{[CRITICAL NOTE]} The legacy-reference hierarchy is large
+ \cite{Planck2018Cosmology}:
+ \begin{align}
+-    \frac{\rho_{\!f}}{\rho_\Lambda}
++    \frac{\rhoRef}{\rho_\Lambda}
+     \approx
+     1.2\times10^{20},
+     \qquad
+@@ -9149,124 +9153,159 @@
+     \approx
+     6.6\times10^{44}.
+ \end{align}
+-The first ratio is not arbitrary: it is close to one power of the
+-core--Planck impedance ratio \(r_c/\ell_P\).  This observation motivates
+-the research-track density route below, without changing the canonical
+-status of \(\rho_{\!f}\) in the main text.
++The first ratio is close to one power of the core--Planck impedance ratio
++\(r_c/\ell_P\).  This observation motivates the historical numerical route
++below, but it does not determine the open response \(\rhoEff\).
+ 
+ 
+ 
+ \subsection{Historical Provenance Audit of the Inherited Density Decimal}
+ \label{subsec:rt_historical_rhof_provenance_audit}
+ 
+-\paragraph{Source and status.}
+-\textbf{[HISTORICAL ORIGIN / NOT A CURRENT DERIVATION].}
+-The early VAM paper registered as \texttt{VAM7-DENSITY-2025} is the traced
+-source of the decimal later rounded to
+-$\rhoF=7.0\times10^{-7}\,\mathrm{kg\,m^{-3}}$.  The source assigned the
+-electron rest energy to a vorticity scale
++\paragraph{Verbatim source record.}
++\textbf{[HISTORICAL ORIGIN / PROVENANCE FALSIFIED].}
++The source registered as \texttt{VAM7-DENSITY-2025} explicitly claims a
++first-principles derivation of a classical-fluid mass density.  Its accepted
++formula is
+ \begin{align}
+-    \omega_{\rm VAM}
++    \rho_{\!f}^{\rm VAM,claim}
+     =
+-    \alpha\omega_c
++    \frac{2m_ec^2}{
++        \left(\alpha m_ec^2/\hbar\right)^2
++        \left(r_e^3/3\right)}
++    \approx
++    6.97\times10^{-7}\,\mathrm{kg\,m^{-3}}.
++    \label{eq:rt_vam7_verbatim_density_claim}
++\end{align}
++The source first evaluates the same construction with \(V=r_c^3\), obtains
++approximately \(1.8\times10^{-6}\), states that this overestimates the desired
++macroscopic density, and then adopts \(V=r_e^3/3\).  Since \(r_e=2r_c\),
++\begin{align}
++    \frac{r_e^3}{3}
+     =
+-    \alpha\frac{m_ec^2}{\hbar}
++    \frac{8}{3}r_c^3,
+ \end{align}
+-and to the selected effective volume
++so the accepted result is the rejected result multiplied exactly by \(3/8\).
++The volume change is therefore a documented backward adjustment toward a
++macroscopic baseline, not a resolved geometric derivation.
++
++\paragraph{D1: dimensional failure and corrected quantity.}
++The generating expression has units
+ \begin{align}
+-    V_{\rm eff}^{\rm VAM}
++    \left[
++    \frac{m_ec^2}{\omega^2V}
++    \right]
+     =
+-    \frac{r_e^3}{3} .
++    \mathrm{kg\,m^{-1}},
+ \end{align}
+-It then formed
++not \(\mathrm{kg\,m^{-3}}\).  Its dimensionally consistent interpretation is
+ \begin{align}
++    \boxed{
+     \mathcal J_{\omega}^{\rm VAM}
+     :=
+     \frac{2m_ec^2}{
+         \left(\alpha m_ec^2/\hbar\right)^2
+-        \left(r_e^3/3\right)} .
++        \left(r_e^3/3\right)}
++    =
++    \frac{6m_e^2c}{\alpha^5\hbar}
++    }
+     \label{eq:rt_vam7_historical_microinertia}
+ \end{align}
+-Re-evaluation with the present constant chain gives
++with
+ \begin{align}
+     \mathcal J_{\omega}^{\rm VAM}
+-    \simeq
+-    6.84\times10^{-7}\,\mathrm{kg\,m^{-1}},
++    =
++    6.839859\times10^{-7}\,\mathrm{kg\,m^{-1}}.
+ \end{align}
+-consistent with the historical decimal but not with its stated volumetric
+-unit.
+-
+-\paragraph{Dimensional adjudication.}
+-Because
++The consistent energy density is
+ \begin{align}
+-    \left[
+-    \frac{m_ec^2}{\omega^2V}
+-    \right]
+-    =
+-    \frac{\mathrm{kg\,m^2\,s^{-2}}}
+-         {\mathrm{s^{-2}m^3}}
++    u_\omega
+     =
+-    \mathrm{kg\,m^{-1}},
++    \frac12\mathcal J_{\omega}^{\rm VAM}
++    |\boldsymbol\omega|^2.
+ \end{align}
+-Eq.~\eqref{eq:rt_vam7_historical_microinertia} defines a rotational
+-microinertia per volume or an equivalent line-inertia coefficient.  It does
+-not define a mass density in $\mathrm{kg\,m^{-3}}$.  The dimensionally
+-consistent energy form is
++The later VAM-7 numerical energy-density evaluation reproduces its printed
++number only under this \(\mathrm{kg\,m^{-1}}\) reading, providing an internal
++cross-check of the unit diagnosis.
++
++\paragraph{D2: numerical mismatch.}
++Direct evaluation gives
++\(6.839859\times10^{-7}\), whereas the source prints
++\(6.97\times10^{-7}\), a \(+1.90\%\) unexplained difference.  The subsequent
++rounding \(6.97\to7.0\) is ordinary two-significant-figure rounding and is not
++counted as an additional defect.
++
++\paragraph{D3: invalid cosmological confirmation.}
++For \(\Lambda\sim10^{-52}\,\mathrm{m^{-2}}\), the orthodox relation gives
+ \begin{align}
+-    u_{\omega}
++    \rho_\Lambda
+     =
+-    \frac12\mathcal J_{\omega}^{\rm VAM}
+-    |\boldsymbol\omega|^2,
++    \frac{\Lambda c^2}{8\pi G}
++    \simeq
++    5.36\times10^{-27}\,\mathrm{kg\,m^{-3}},
++    \qquad
++    \frac{\rho_\Lambda}{\alpha}
++    \simeq
++    7.34\times10^{-25}\,\mathrm{kg\,m^{-3}}.
+ \end{align}
+-not $\tfrac12\rhoF|\boldsymbol\omega|^2$.
++VAM-7 instead uses approximately
++\(5\times10^{-9}\,\mathrm{kg\,m^{-3}}\), an error of order
++\(1.9\times10^{18}\), and then calls the resulting
++\(6.85\times10^{-7}\) value an independent confirmation.  That convergence
++claim is withdrawn.
+ 
+-\paragraph{Closed historical form and open assumptions.}
+-Using $r_e=\alpha\hbar/(m_ec)$, the coefficient becomes
++\paragraph{D4: incompatible vorticity scales.}
++The density construction uses
+ \begin{align}
+-    \boxed{
+-    \mathcal J_{\omega}^{\rm VAM}
++    \omega_{\rm VAM}
+     =
+-    \frac{6m_e^2c}{\alpha^5\hbar}
+-    }
+-    \label{eq:rt_vam7_microinertia_closed_form}
++    \alpha\omega_c
++    \simeq
++    5.665\times10^{18}\,\mathrm{s^{-1}},
+ \end{align}
+-within the historical choices.  This is a conditional algebraic consequence
+-of the ansatzes $\omega_{\rm VAM}=\alpha\omega_c$ and
+-$V_{\rm eff}=r_e^3/3$; neither choice is presently derived from resolved
+-vortex dynamics.  The selected volume is also not the volume of a sphere of
+-radius $r_e$; it differs from $4\pi r_e^3/3$ by a factor $4\pi$.
+-
+-\paragraph{Canon consequence.}
+-\textbf{[DERIVED NEGATIVE / PROVENANCE CORRECTION].}
+-The early calculation explains the historical origin of the decimal but
+-cannot justify the current effective density.  The present edition therefore
+-keeps
++whereas the later core-energy section uses
+ \begin{align}
+-    \rhoF\equiv\rhoEff
++    \omega_{\rm core}
++    =
++    \frac{2\vchar}{r_c}
++    \simeq
++    1.553\times10^{21}\,\mathrm{s^{-1}},
++    \qquad
++    \frac{\omega_{\rm core}}{\omega_{\rm VAM}}
++    =
++    \frac{2}{\alpha}
++    \simeq
++    274.07.
++\end{align}
++The same purported density is therefore defined with one vorticity scale and
++applied with another.
++
++\paragraph{Canon adjudication.}
++\textbf{[DERIVED NEGATIVE / ORPHANED NORMALIZATION].}
++The historical calculation establishes neither a volumetric mass density nor
++an independently calibrated effective response.  The present Canon therefore
++separates
++\begin{align}
++    \boxed{
++    \rhoRef
+     =
+     7.0\times10^{-7}\,\mathrm{kg\,m^{-3}}
++    },
++    \label{eq:rt_rhoref_legacy_reference}
++    \\
++    \boxed{
++    \rhoF\equiv\rhoEff
++    }.
++    \label{eq:rt_rhoeff_unfixed_response}
+ \end{align}
+-as a calibrated quasi-static response and records
+-$\mathcal J_{\omega}^{\rm VAM}$ separately as a historical conditional
+-microinertia ansatz.  A conversion between them requires an independently
+-derived micro--macro bridge,
+-\begin{align}
+-    \mathcal J_{\omega}
+-    =
+-    \beta_{\omega u}\rhoEff\ell_{\omega u}^{2},
+-\end{align}
+-including the geometry factor, participation measure, and length
+-$\ell_{\omega u}$.  Numerical inheritance alone is not such a theorem.
+-
+-\paragraph{Cosmological non-confirmation.}
+-The same early source quoted a vacuum mass density of order
+-$10^{-9}\,\mathrm{kg\,m^{-3}}$.  For
+-$\Lambda\sim10^{-52}\,\mathrm{m^{-2}}$, the orthodox relation
+-$\rho_\Lambda=\Lambda c^2/(8\pi G)$ instead gives a scale of order
+-$10^{-27}\,\mathrm{kg\,m^{-3}}$.  The historical cosmological comparison
+-therefore does not independently confirm either
+-$\mathcal J_{\omega}^{\rm VAM}$ or $\rhoF$.  The separately guarded SSDL
+-route below is retained only as a Research-Track consistency relation.
++Equation~\eqref{eq:rt_rhoref_legacy_reference} has status
++\textbf{[LEGACY REFERENCE NORMALIZATION / PROVENANCE INVALIDATED]}.
++Equation~\eqref{eq:rt_rhoeff_unfixed_response} has status
++\textbf{[UNFIXED QUASI-STATIC RESPONSE]}.
++The numerical equality \(\rhoEff=\rhoRef\) is not canonical.  A future
++micro--macro theorem may determine \(\rhoEff\), but it must do so without
++using \(\rhoRef\), the fitted participation ratio, or the SSDL coincidence as
++an input.
+ 
+ \subsection{Twist-Rotor Status and Micro--Macro Participation Audit}
+ \label{subsec:rt_twist_rotor_participation_audit}
+@@ -9395,15 +9434,15 @@
+     1.2231589\times10^{19}\,\mathrm{kg\,m^{-3}},
+     \label{eq:rt_rc_scale_effective_inertia}
+ \end{align}
+-not the calibrated $\rhoF$.  The required scalar participation ratio is
++not the unfixed $\rhoEff$.  The required scalar participation ratio is
+ therefore
+ \begin{align}
+     \boxed{
+-    \phi_{\rm dyn}
++    \phi_{\rm dyn}^{\rm ref}
+     :=
+-    \frac{\rhoF}{\rho_{\rm eff}^{(\rc)}}
++    \frac{\rhoRef}{\rho_{\rm eff}^{(\rc)}}
+     =
+-    \frac{\rhoF}{\pi\rhohorn}
++    \frac{\rhoRef}{\pi\rhohorn}
+     =
+     5.7229\times10^{-26}
+     }.
+@@ -9412,11 +9451,11 @@
+ The same missing normalization can be represented by the equivalent length
+ \begin{align}
+     \boxed{
+-    \ell_{\rho,\rm eq}
++    \ell_{\rho,\rm eq}^{\rm ref}
+     :=
+-    \sqrt{\frac{\mathcal J_{\omega}^{\rm rot}}{\rhoF}}
++    \sqrt{\frac{\mathcal J_{\omega}^{\rm rot}}{\rhoRef}}
+     =
+-    \frac{\rc}{\sqrt{\phi_{\rm dyn}}}
++    \frac{\rc}{\sqrt{\phi_{\rm dyn}^{\rm ref}}}
+     =
+     5.8897\,\mathrm{mm}
+     }.
+@@ -9425,7 +9464,7 @@
+ \textbf{[DERIVED DIAGNOSTIC / NOT A LENGTH PREDICTION].}
+ Equations~\eqref{eq:rt_participation_gap} and
+ \eqref{eq:rt_equivalent_response_length} are reversible reparameterizations
+-of the calibrated response.  They do not establish a coherence length, cell
++of the legacy reference normalization.  They do not establish a coherence length, cell
+ spacing, correlation length, or physical separation between vortex strings.
+ 
+ \paragraph{Weighted macro-response representation.}
+@@ -9449,28 +9488,142 @@
+ by Eq.~\eqref{eq:rhof_quasistatic_response_limit}.
+ 
+ \paragraph{Promotion gates.}
+-A micro--macro derivation of $\rhoF$ may be promoted only if it:
++A micro--macro derivation of $\rhoEff$ may be promoted only if it:
+ \begin{enumerate}
+-    \item computes the participation functional without using $\rhoF$,
+-          $\phi_{\rm dyn}$, or $\ell_{\rho,\rm eq}$ as fitted inputs;
++    \item computes the participation functional without using $\rhoRef$,
++          $\phi_{\rm dyn}^{\rm ref}$, or $\ell_{\rho,\rm eq}^{\rm ref}$ as fitted inputs;
+     \item converges under representative-volume size, discretization, and
+           boundary-condition refinement;
+-    \item preserves the twist/bend distinction and the calibrated units; and
+-    \item predicts at least one independent response observable in addition
+-          to the target value of $\rhoF$.
++    \item preserves the twist/bend distinction and the correct units; and
++    \item predicts at least one additional out-of-sample response observable
++          beyond the quantity used to determine \(\rhoEff\).
+ \end{enumerate}
+-Until these gates close, $\rhoF$ remains
+-\textbf{[CALIBRATED QUASI-STATIC EFFECTIVE RESPONSE]}.
++Until these gates close, $\rhoF\equiv\rhoEff$ remains
++\textbf{[UNFIXED QUASI-STATIC EFFECTIVE RESPONSE]}, while
++$\rhoRef$ remains a legacy numerical benchmark.
++
++
++\subsection{Complete \texorpdfstring{$\rho_f$}{rho-f} Scaling Audit and Parameter-Budget Adjudication}
++\label{subsec:rt_rhof_scaling_audit_v0832}
++
++\paragraph{Audit transformation.}
++Define the positive rescaling
++\begin{align}
++    \mathscr S_\lambda:
++    \qquad
++    \rhoEff
++    \longrightarrow
++    \lambda\rhoEff,
++    \qquad
++    \lambda>0.
++    \label{eq:rt_rhof_scaling_transformation}
++\end{align}
++Every occurrence of the inherited density symbol in the pre-patch
++v0.8.31 main Canon and Research Track was inventoried.  The source scan
++contains \(206\) occurrences: \(85\) in the main Canon and \(121\) in the
++Research Track.  The machine-readable ledger distributed with this patch
++records the file, source line, enclosing section, audit class, and rationale
++for every occurrence.
++
++\paragraph{Classification.}
++\begin{center}
++\begin{tabularx}{0.97\textwidth}{@{}lXl@{}}
++\toprule
++Class & Criterion & Consequence \\
++\midrule
++A & \(\rhoEff\) cancels from a dimensionless or acceleration observable. &
++No absolute density information. \\
++B & The change is absorbed by a field or constitutive normalization. &
++Normalization convention until sources are fixed. \\
++C & An absolute pressure, force, energy, mass, or impedance changes without a
++compensating factor. & Candidate calibration observable. \\
++Q & The absolute action, fluctuation, thermal, or quantum normalization changes. &
++Candidate quantum pinning route. \\
++X & Historical unit error, invalid provenance, or explicitly legacy-only number. &
++Remove from physical inference. \\
++\bottomrule
++\end{tabularx}
++\end{center}
++
++\paragraph{Class-A examples.}
++Steady Euler balance gives
++\begin{align}
++    \frac{1}{\rhoEff}\frac{dp}{dr}
++    =
++    \frac{v_\theta^2}{r}.
++\end{align}
++Under \(p\to\lambda p\), the acceleration is invariant.  Likewise a
++transverse wave speed
++\begin{align}
++    c_T^2=\frac{K_T}{\rhoEff}
++\end{align}
++is invariant when \(K_T\to\lambda K_T\).  Rotation curves and propagation
++speeds therefore do not determine the absolute response coefficient.
++
++\paragraph{Class-B no-go for source-free quadratic fields.}
++For
++\begin{align}
++    \mathcal L
++    =
++    \frac12\rhoEff|\partial_t\mathbf A|^2
++    -
++    \frac12K|\nabla\times\mathbf A|^2,
++\end{align}
++the simultaneous transformation
++\begin{align}
++    \mathbf A\to s\mathbf A,
++    \qquad
++    \rhoEff\to s^{-2}\rhoEff,
++    \qquad
++    K\to s^{-2}K
++\end{align}
++leaves the action unchanged.  Source-free dispersion, polarization, and
++flux ratios determine only \(K/\rhoEff\).  The EM/torsion sector therefore
++cannot fix \(\rhoEff\) without an independently normalized source or
++detector coupling.
++
++\paragraph{Class-C and class-Q candidates.}
++Absolute pressure differences, boundary forces, Pauli-barrier amplitudes,
++dark-sector pressure amplitudes, mechanical impedances, and resolved
++kinetic energies scale with \(\rhoEff\) and are class-C candidates.  The
++absolute action scale, zero-point fluctuations, thermal noise, and
++correlation amplitudes are class-Q candidates.  In the current Canon,
++however, each such candidate either uses the legacy value \(\rhoRef\),
++contains another unfixed coupling or geometry factor, or lacks an
++independent measurement map.  No validated class-C or class-Q observable
++currently pins \(\rhoEff\).
++
++\paragraph{Parameter-budget lemma.}
++\textbf{[DERIVED NEGATIVE].}
++The inherited number \(7.0\times10^{-7}\,\mathrm{kg\,m^{-3}}\) is not a
++physical primitive of the present theory.  The density-sector budget is
++\begin{align}
++    \mathcal P_{\rho}^{(0.8.32)}
++    =
++    \{\rhoSub,\rhoEff\}_{\rm open}
++    \cup
++    \{\rhoRef\}_{\rm legacy},
++\end{align}
++with no calibrated density entry.  This audit does \emph{not} prove that
++\(\rhoEff\) is forever conventional; it proves only that the current Canon
++does not yet contain the observable required to determine it.
++
++\paragraph{Promotion rule.}
++A numerical value for \(\rhoEff\) may be promoted only when one class-C or
++class-Q observable is specified operationally, measured or independently
++computed without \(\rhoRef\), and accompanied by at least one additional
++out-of-sample prediction.  Until then, all numerical quantities linear in
++the inherited density are explicitly legacy-reference normalized.
+ 
+ \subsection{Cosmological Impedance Route for the Background Density}
+ \label{sec:rt_rhof_cosmological_impedance_route}
+ 
+ \paragraph{Status.}
+ \textbf{[RESEARCH TRACK / NOT CANON-DERIVED].}
+-This subsection records a candidate route for reducing the calibrated
+-background density \(\rho_{\!f}\) to a cosmological vacuum input plus a
+-UV--IR impedance lift. It does not promote \(\rho_{\!f}\) out of the
+-primitive calibration set in the main canon.
++This subsection records a legacy numerical reconstruction diagnostic that
++maps cosmological inputs to a value near \(\rhoRef\).  It does not determine
++the physical response \(\rhoEff\) and does not restore the invalidated
++VAM-7 provenance.
+ 
+ The orthodox vacuum mass-equivalent density associated with a cosmological
+ constant is
+@@ -9496,7 +9649,7 @@
+     \Lambda &\simeq 1.09\times10^{-52}\,\mathrm{m^{-2}},\\
+     \rho_\Lambda &\simeq 5.85\times10^{-27}\,\mathrm{kg\,m^{-3}} .
+ \end{align}
+-The ratio required to obtain the canonical SST background density is
++The ratio required to reproduce the legacy reference normalization is
+ \begin{align}
+     \frac{\rho_{\!f}}{\rho_\Lambda}
+     \simeq
+@@ -9570,10 +9723,10 @@
+ resolution thickness and the boundary-response coupling.
+ 
+ \paragraph{Canonical conclusion.}
+-Equation~\eqref{eq:rt_rhof_lambda_chi} is a preregisterable falsifier route,
+-but not a completed derivation. The main canon must continue to label
+-\(\rho_{\!f}\) as a calibrated effective background density. Promotion to
+-\textbf{[CONDITIONAL DERIVED]} requires closure of four independent gates:
++Equation~\eqref{eq:rt_rhof_lambda_chi} is a
++\textbf{[LEGACY NUMERICAL COINCIDENCE DIAGNOSTIC]}, not a completed
++derivation or a calibration route for \(\rhoEff\).  Promotion to a physical
++response law requires closure of four independent gates:
+ source coupling, normal-resolution normalization, separatrix-radius
+ projection, and epoch invariance.  Neither the smaller residual of
+ \(2\Omega_{\Lambda,0}\) nor the structural simplicity of \(\sqrt{2}\) closes
+@@ -9589,8 +9742,8 @@
+ \(R_\partial\)-normalization of the spherical exterior monopole
+ Dirichlet-to-Neumann (DtN) sector.  It does not prove the constitutive
+ coupling of the cosmological vacuum density \(\rho_\Lambda\) to an SST
+-separatrix source, and it does not replace the calibrated status of
+-\(\rho_{\!f}\).
++separatrix source, and it does not determine the unfixed response
++\(\rhoEff\).
+ 
+ \paragraph{Exterior boundary problem.}
+ Let \(\partial\mathcal B\) be a spherical externally resolved separatrix
+@@ -9709,10 +9862,10 @@
+     =
+     6.9806682\times10^{-7}\,\mathrm{kg\,m^{-3}},
+ \end{align}
+-which differs from the calibrated canon value
+-\(\rho_{\!f}=7.0\times10^{-7}\,\mathrm{kg\,m^{-3}}\) by
+-\(-0.2762\%\).  This numerical agreement is not a derivation of
+-\(\rho_{\!f}\); it is a falsifiable research-track target.
++which differs from the legacy reference
++\(\rhoRef=7.0\times10^{-7}\,\mathrm{kg\,m^{-3}}\) by
++\(-0.2762\%\).  This is a central-value coincidence with an orphaned
++reference normalization, not a target or derivation of \(\rhoEff\).
+ 
+ \paragraph{Algebraic content of the electron lift.}
+ Define the unreduced Planck mass
+@@ -9796,13 +9949,11 @@
+ choice \(2\Omega_{\Lambda,0}\) is instead retained only as a present-epoch
+ coincidence record.
+ 
+-\textbf{[DEPENDENCY GUARD]} In the current primitive set, \(\rho_{\!f}\),
+-\(\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\), and \(\omega_c\) are
+-independent calibration entries.  A hypothetical change in \(\rho_{\!f}\)
+-therefore changes \(\rho_{\!E}\), \(\rho_{\!m}\), and other explicitly
+-\(\rho_{\!f}\)-dependent amplitudes, but does not by itself change
+-\(r_c=\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}/\omega_c\) or the Compton
+-closure chain.
++\textbf{[DEPENDENCY GUARD]} The response \(\rhoEff\) is open and
++independent of the electron-anchored pair \((\vchar,\omega_c)\).  Rescaling
++\(\rhoEff\) changes explicitly response-dependent amplitudes, but it does
++not by itself change \(r_c=\vchar/\omega_c\), \(\Gamma_0\), or the
++Compton closure chain.
+ 
+ \paragraph{Precision and covariance guard.}
+ When \(\rho_\Lambda=\Omega_{\Lambda,0}3H_0^2/(8\pi G)\) is substituted into
+@@ -9829,8 +9980,8 @@
+ A formal uncertainty requires the joint cosmological covariance matrix, not
+ the diagonal estimate.  Consequently the quoted \(-0.2762\%\) is only a
+ central-value residual.  It must not be interpreted as a \(0.2762\%\)
+-prediction, especially because the calibrated target itself is stated to two
+-significant figures.
++prediction, especially because the comparison target is only a legacy
++two-significant-figure reference.
+ 
+ \paragraph{Normal-resolution normalization guard.}
+ The orthodox Planck length \(L_p=\sqrt{\hbar G/c^3}\) is not conventionally
+@@ -10620,12 +10771,12 @@
+     c_T=c.
+     \label{eq:rt_core_torsion_operational_c}
+ \end{align}
+-With the canonical fluid density this corresponds to the calibrated stiffness
++Using the legacy reference value gives the reference stiffness
+ target
+ \begin{align}
+     K_T^{\mathrm{target}}
+     =
+-    \rhoF c^2
++    \rhoRef c^2
+     =
+     6.3\times10^{10}\ \mathrm{Pa}.
+     \label{eq:rt_core_torsion_stiffness_target}

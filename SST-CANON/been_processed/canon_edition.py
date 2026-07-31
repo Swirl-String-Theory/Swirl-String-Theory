@@ -403,6 +403,61 @@ EDITION_CONFIG = {
             r"of the effective-inertia response on top of v0.8.30."
         ),
     },
+    "0.8.32": {
+        "prev": "0.8.31",
+        "header": (
+            "%! v0.8.32 edition: orphaned-normalization adjudication and complete "
+            "rho_f scaling audit on top of v0.8.31."
+        ),
+        "note": (
+            r"\textbf{v0.8.32} removes the inherited "
+            r"$7.0\times10^{-7}\,\mathrm{kg\,m^{-3}}$ value from the primitive "
+            r"calibration set, registers it as "
+            r"$\rhoRef$ \textbf{[LEGACY REFERENCE NORMALIZATION / PROVENANCE "
+            r"INVALIDATED]}, leaves the physical "
+            r"$\rhoF\equiv\rhoEff$ numerically unfixed, records all four VAM-7 "
+            r"provenance defects, adds the A/B/C/Q/X response-scaling audit and "
+            r"source-free radiation normalization no-go, and converts numerical "
+            r"$\rho_f$-dependent amplitudes into explicitly "
+            r"legacy-reference-normalized benchmarks on top of v0.8.31."
+        ),
+    },
+    "0.8.33": {
+        "prev": "0.8.32",
+        "header": (
+            "%! v0.8.33 edition: covariant vortex-worldsheet, chirality-response, "
+            "and gauge-certification audit on top of v0.8.32."
+        ),
+        "note": (
+            r"\textbf{v0.8.33} adds the covariant vortex-worldsheet form-degree "
+            r"guard, including the correct distinction between a two-form worldsheet "
+            r"coupling and three-form flux integration; introduces a Research-Track "
+            r"Kalb--Ramond/worldsheet action with source, scale-separation, and "
+            r"reconnection gates; separates a parity-odd kinetic-helicity operator "
+            r"from a parity-even chiral-alignment term; and replaces inherited "
+            r"director-counting and pure-gauge arguments by a staged gauge-emergence "
+            r"certification ladder covering mode census, closure, Jacobi identity, "
+            r"representations, charge separation, anomalies, running couplings, and "
+            r"out-of-sample phenomenology on top of v0.8.32."
+        ),
+    },
+    "0.8.34": {
+        "prev": "0.8.33",
+        "header": (
+            "%! v0.8.34 edition: ideal-knot regime guard, compact-to-slender "
+            "carrier hypothesis, and Kirchhoff--Cosserat diagnostic guards "
+            "(been_processed)."
+        ),
+        "note": (
+            r"\textbf{v0.8.34} adds the regime-of-applicability guard for ideal-knot "
+            r"geometry (compact finite-core versus slender-filament diagnostics), "
+            r"excludes the compact ideal-knot reference from automatic LIA/KAM "
+            r"promotion, records the Moffatt--Ricca single-tube helicity bridge, "
+            r"and adds Research-Track compact-to-slender carrier-state and "
+            r"Kirchhoff--Cosserat stationary-shape diagnostic sections with "
+            r"explicit promotion gates on top of v0.8.33."
+        ),
+    },
 }
 
 CANON_BASE_KEYWORDS: list[str] = [
@@ -547,6 +602,26 @@ EDITION_KEYWORDS: dict[str, list[str]] = {
         "twist bend modes",
         "phi_dyn",
         "rho_f scaling audit",
+    ],
+    "0.8.32": [
+        "orphaned normalization",
+        "rho-ref",
+        "response scaling audit",
+        "parameter budget",
+        "density provenance",
+    ],
+    "0.8.33": [
+        "vortex worldsheet",
+        "two-form field",
+        "chirality response",
+        "gauge certification",
+        "orphaned normalization",
+    ],
+    "0.8.34": [
+        "ideal knot regime",
+        "compact-to-slender",
+        "Kirchhoff-Cosserat",
+        "Moffatt-Ricca",
     ],
 }
 

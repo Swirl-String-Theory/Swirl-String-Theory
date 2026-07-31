@@ -1,0 +1,451 @@
+--- SST_CANON-v0.8.31(2)(1).tex
++++ SST_CANON-v0.8.31(2)(1).tex
+@@ -568,6 +568,114 @@
+ must expose the geometry source, topology certificate, convention, resolution,
+ residual, contact map, and error envelope used.
+ 
++\subsection{Regime of applicability of ideal-knot geometry}
++\label{subsec:ideal_knot_regime_guard}
++
++\paragraph{Compact reference state.}
++\textbf{[CANON / ANSATZ / SCOPE GUARD].}
++The ideal trefoil is retained as the maximally thick, ropelength-critical
++reference geometry for the compact finite-core electron candidate,
++\begin{equation}
++    \mathbf X_{\rm compact}
++    \simeq
++    \mathbf X_{\rm ideal,3_1}.
++    \label{eq:ideal_trefoil_compact_reference}
++\end{equation}
++Equation~\eqref{eq:ideal_trefoil_compact_reference} does not assert that the
++ideal trefoil minimizes the radius of the smallest enclosing sphere, minimizes
++the complete Euler kinetic-energy functional, or represents every excited
++state of the electron.  ``Ideal'' refers to the declared ropelength problem and
++its thickness convention; it is not a universal dynamical ground-state label.
++
++\paragraph{Finite-core and slender-filament regimes.}
++For a resolved tube with effective core radius $a_{\rm core}$, maximum
++centreline curvature $\kappa_{\max}$, and minimum nonlocal centreline separation
++$d_{\rm sep}$, define
++\begin{equation}
++    \epsilon_{\kappa}
++    :=a_{\rm core}\kappa_{\max},
++    \qquad
++    \epsilon_{\rm sep}
++    :=\frac{a_{\rm core}}{d_{\rm sep}}.
++    \label{eq:ideal_knot_regime_diagnostics}
++\end{equation}
++The canon distinguishes
++\begin{equation}
++\begin{array}{lll}
++    \text{compact finite-core regime}
++    &:&
++    \epsilon_{\kappa}=O(1)
++    \ \text{or}\ 
++    \epsilon_{\rm sep}=O(1),
++    \\
++    \text{slender-filament regime}
++    &:&
++    \epsilon_{\kappa}\ll1
++    \ \text{and}\ 
++    \epsilon_{\rm sep}\ll1.
++\end{array}
++\label{eq:ideal_knot_regime_split}
++\end{equation}
++The ideal trefoil belongs primarily to the compact finite-core regime because
++its defining constrained optimum can contain active curvature and contact
++constraints.  Local-induction, logarithmic slender-body, and perturbative
++$B_{\rm eff}\kappa^2$ reductions are not promoted on that state unless
++Eq.~\eqref{eq:ideal_knot_regime_diagnostics} and a nonlocal-induction residual
++show that a controlled asymptotic regime has actually been reached.
++
++\paragraph{Kirchhoff--Cosserat non-equivalence guard.}
++A rod functional may be evaluated as a diagnostic,
++\begin{equation}
++    E_{\rm rod}^{\rm diag}[\mathbf X,\Omega_3]
++    =
++    T L[\mathbf X]
++    +\frac{B}{2}\int\kappa^2\,ds
++    +\frac{C}{2}\int\Omega_3^2\,ds,
++    \label{eq:rod_diagnostic_functional}
++\end{equation}
++where $\Omega_3$ is the material twist strain.  Such an evaluation does not
++show that $\mathbf X$ is stationary under this functional and does not supply
++canonical SST moduli $B$ and $C$.  An ideal incompressible inviscid fluid has no
++material static shear modulus.  Its kinetic energy may nevertheless reduce to
++a geometry-dependent first-order vortex Hamiltonian; that reduced Hamiltonian
++must not be relabelled as an elastic-rod potential without a separate
++hydrodynamic derivation.
++
++Fukumoto's vortex-jet/Kirchhoff correspondence identifies a class of permanent
++translating filament shapes with Kirchhoff-rod equilibrium shapes under
++specific localized-induction and axial-core-flow assumptions
++\cite{Fukumoto2007}.  It is a stationary-shape correspondence, not an
++identification of the complete rod and vortex phase spaces.  Consequently
++Kirchhoff--Cosserat dynamics, elastic normal modes, and rod constitutive
++coefficients are not imported into SST particle dynamics.  Physical elastic
++trefoils can also relax to shapes measurably different from perfectly flexible
++ideal knots \cite{JohannsEtAl2021}.
++
++\paragraph{Preferred topological fluid bridge.}
++For one coherently framed closed thin vortex tube of circulation $\Gamma$, the
++hydrodynamic self-linking relation is
++\begin{equation}
++    \mathcal H
++    =
++    \Gamma^2 Lk
++    =
++    \Gamma^2\left(Wr+Tw\right),
++    \label{eq:moffatt_ricca_single_tube_helicity}
++\end{equation}
++under the usual ideal-flow and thin-tube hypotheses
++\cite{MoffattRicca1992}.  Equation~\eqref{eq:moffatt_ricca_single_tube_helicity}
++provides the canonical topology--fluid bridge.  It carries circulation and
++helicity content but introduces no elastic bending modulus.
++
++\paragraph{Use policy.}
++The ideal trefoil may be used as a certified compact reference geometry and as
++input to finite-core diagnostics.  Kirchhoff--Cosserat quantities may be
++reported as comparative geometric diagnostics.  Neither use establishes that
++the same geometry is an Euler-energy minimizer, a rod equilibrium, or a
++slender-filament solution.  Excited stretched states and the transition from
++the compact to the slender regime are retained in the companion research
++track, Section~\ref{subsec:rt_compact_to_slender_state}.
++
+ 
+ \subsection{Foundational physical commitments}
+ \label{subsec:foundational_physical_commitments}
+@@ -5296,6 +5404,18 @@
+         same regularized evolution used in the nonlinear simulation; it may not
+         be declared small solely because \(a_{\rm core}/R\ll1\).
+ 
++        \textbf{[CANON / COMPACT-STATE EXCLUSION].}
++        The compact ideal-knot reference of
++        Subsection~\ref{subsec:ideal_knot_regime_guard} is not automatically an
++        admissible LIA background.  If either
++        \(\epsilon_{\kappa}\) or \(\epsilon_{\rm sep}\) in
++        Eq.~\eqref{eq:ideal_knot_regime_diagnostics} is not asymptotically
++        small, Eq.~\eqref{eq:canon_kam_lia_bs_split} is only a formal comparison,
++        not a perturbation expansion.  Promotion to an LIA-based KAM programme
++        requires a separately resolved stretched state, both geometric
++        slenderness gates, and a measured small
++        \(\varepsilon_{\rm NL}\).
++
+         The admissible promotion order is
+         \begin{align}
+             &\text{certified topology}
+@@ -5479,6 +5599,12 @@
+         \textbf{[DERIVED BOOKKEEPING]}: once a framed curve is specified, the identity separates writhe and twist contributions.\newline
+         \textbf{[SPECULATIVE]}: the claim that writhe-dominated and twist-dominated realizations are dynamically stable physical isomers, or map to particle/antiparticle sectors, remains a model hypothesis.
+ 
++        For a single closed thin vortex tube with coherent circulation, the
++        preferred fluid-mechanical specialization is
++        Eq.~\eqref{eq:moffatt_ricca_single_tube_helicity}.  The geometric
++        identity alone does not supply energy or stability; the factors of
++        $\Gamma^2$ and the ideal-flow assumptions are essential.
++
+ 
+     \subsection{Framed-Tube Ontology and the Attachment Gate}
+         \label{subsec:framed_tube_attachment_gate}
+@@ -7143,6 +7269,27 @@
+             \newblock J. Fluid Mech. \textbf{35} (1969), 117--129,
+             \newblock DOI: 10.1017/S0022112069000991.
+ 
++
++            \bibitem{MoffattRicca1992}
++            H.~K. Moffatt and R.~L. Ricca,
++            \newblock Helicity and the C\u{a}lug\u{a}reanu invariant,
++            \newblock \emph{Proceedings of the Royal Society of London A}
++            \textbf{439} (1992), 411--429,
++            \newblock DOI: \href{https://doi.org/10.1098/rspa.1992.0159}{10.1098/rspa.1992.0159}.
++
++            \bibitem{Fukumoto2007}
++            Y.~Fukumoto,
++            \newblock Analogy between a vortex-jet filament and the Kirchhoff elastic rod,
++            \newblock \emph{Fluid Dynamics Research} \textbf{39} (2007), 511--520,
++            \newblock DOI: \href{https://doi.org/10.1016/j.fluiddyn.2006.12.004}{10.1016/j.fluiddyn.2006.12.004}.
++
++            \bibitem{JohannsEtAl2021}
++            P.~Johanns, P.~Grandgeorge, C.~Baek, T.~G.~Sano,
++            J.~H.~Maddocks, and P.~M.~Reis,
++            \newblock The shapes of physical trefoil knots,
++            \newblock \emph{Extreme Mechanics Letters} \textbf{43} (2021), 101172,
++            \newblock DOI: \href{https://doi.org/10.1016/j.eml.2021.101172}{10.1016/j.eml.2021.101172}.
++
+             \bibitem{CantarellaParsley2010Helicity}
+             J.~Cantarella and J.~Parsley,
+             \newblock A new cohomological formula for helicity in $\mathbb R^{2k+1}$ reveals the effect of a diffeomorphism on helicity,
+--- SST_CANON-v0.8.31-research-track(2)(1).tex
++++ SST_CANON-v0.8.31-research-track(2)(1).tex
+@@ -4311,6 +4311,238 @@
+ field with an SST particle state, but it shows that a literal spatial
+ transport cage is compatible with classical incompressible Euler dynamics.
+ 
++
++
++\subsection{Compact-to-slender carrier-state hypothesis}
++\label{subsec:rt_compact_to_slender_state}
++
++\textbf{[RESEARCH / STATE-DEPENDENT GEOMETRY].}
++The compact ideal trefoil and a long thin vortex filament are treated as
++different geometric regimes of one topological carrier, not as two
++simultaneous approximations to the same state.  Let
++\begin{equation}
++    \lambda
++    :=
++    \frac{L(\lambda)}{L_0}
++    \ge1,
++    \qquad
++    \mathbf X(1)\simeq\mathbf X_{\rm ideal,3_1},
++    \label{eq:rt_stretch_parameter}
++\end{equation}
++where $L_0$ is the compact reference length.  In the absence of reconnection,
++\begin{equation}
++    K[\mathbf X(\lambda)]=3_1
++    \label{eq:rt_stretch_topology_guard}
++\end{equation}
++throughout the deformation.  Equation~\eqref{eq:rt_stretch_parameter} is a
++state-coordinate ansatz, not an assertion that a physical trajectory with all
++values of $\lambda$ has already been constructed.
++
++\paragraph{Conditional material-volume scaling.}
++If the core is a material tube of conserved volume and effective cross-section
++$A_{\rm core}(\lambda)$, incompressibility gives
++\begin{equation}
++    A_{\rm core}(\lambda)L(\lambda)
++    =
++    A_0L_0.
++    \label{eq:rt_core_volume_conservation}
++\end{equation}
++For an approximately circular cross-section,
++$A_{\rm core}=\pi a^2$, this becomes
++\begin{equation}
++    a(\lambda)
++    =
++    \frac{a_0}{\sqrt{\lambda}}.
++    \label{eq:rt_core_radius_stretch_scaling}
++\end{equation}
++This scaling is conditional.  It must not be used if the chosen core boundary
++is not material, if fluid crosses it, if the vorticity profile changes its
++support definition, or if $a$ is only a fitted effective regularization length.
++
++The transition to a slender state is accepted only when the measured
++quantities
++\begin{equation}
++    \epsilon_{\kappa}(\lambda)
++    =
++    a(\lambda)\kappa_{\max}(\lambda),
++    \qquad
++    \epsilon_{\rm sep}(\lambda)
++    =
++    \frac{a(\lambda)}{d_{\rm sep}(\lambda)}
++    \label{eq:rt_stretched_state_slenderness}
++\end{equation}
++are both small and the nonlocality ratio in
++Eq.~\eqref{eq:rt_kam_nonlocality_ratio} is perturbative.  Increasing $L$ alone
++does not prove slenderness because curvature and nonlocal separation can change
++at the same time.
++
++\paragraph{Compton-scale excitation hypothesis.}
++Let $E_{\rm tr}$ denote the energy actually transferred to the internal carrier
++by a kinematically allowed interaction, and define
++\begin{equation}
++    \eta_{\rm tr}
++    :=
++    \frac{E_{\rm tr}}{m_ec^2}.
++    \label{eq:rt_compton_transfer_parameter}
++\end{equation}
++The conjecture that strong stretching begins for
++$\eta_{\rm tr}=O(1)$ is \textbf{[HYPOTHESIS]}.  The required transition condition
++is
++\begin{equation}
++    E_{\rm tr}
++    \ge
++    \Delta E_{\rm carrier}(\lambda)
++    :=
++    E_{\rm carrier}[\mathbf X(\lambda),a(\lambda)]
++    -
++    E_{\rm carrier}[\mathbf X(1),a_0],
++    \label{eq:rt_stretch_energy_gate}
++\end{equation}
++with momentum and angular-momentum conservation imposed in the same process.
++For photon-mediated excitation, $E_{\rm tr}$ is not automatically equal to
++$h\nu$: a free electron in vacuum cannot absorb one isolated photon while
++remaining an on-shell electron.  The model must specify Compton scattering, a
++bound state, an external field, a third body, or another allowed transfer
++channel.  Therefore
++\begin{equation}
++    h\nu\gtrsim m_ec^2
++    \quad\not\Rightarrow\quad
++    \lambda\gg1
++    \label{eq:rt_compton_not_automatic_stretch}
++\end{equation}
++without an explicit interaction and a computed
++$\Delta E_{\rm carrier}(\lambda)$.
++
++\paragraph{Planck-scale uniform-core obstruction.}
++Consider only the conditional combination
++\begin{equation}
++    a_0=\rc,
++    \qquad
++    L_0=\operatorname{Rop}_{\rm rad}(3_1)\rc,
++    \qquad
++    \operatorname{Rop}_{\rm rad}(3_1)=32.743274,
++    \label{eq:rt_planck_stretch_reference}
++\end{equation}
++with material-volume conservation.  Setting the uniform core radius equal to
++the Planck length gives
++\begin{align}
++    \lambda_P
++    &=
++    \left(\frac{\rc}{\ell_P}\right)^2
++    \simeq
++    7.60\times10^{39},
++    \\
++    L_P
++    &=
++    \lambda_PL_0
++    \simeq
++    3.51\times10^{26}\ \mathrm m,
++    \label{eq:rt_planck_uniform_core_length}
++\end{align}
++using the canonical $\rc$ and the CODATA Planck length
++\cite{Mohr2025CODATA}.  If the canonical circulation is also held fixed and
++$v_\theta(a)\simeq\Gamma_0/(2\pi a)$ is extrapolated to $a=\ell_P$, then
++\begin{equation}
++    v_\theta(\ell_P)
++    \simeq
++    9.54\times10^{25}\ \mathrm{m\,s^{-1}}
++    \simeq
++    3.18\times10^{17}c.
++    \label{eq:rt_planck_uniform_core_speed_obstruction}
++\end{equation}
++Consequently the assumptions
++\begin{equation}
++    a_{\min}=\ell_P,
++    \qquad
++    V_{\rm core}=\mathrm{const.},
++    \qquad
++    \Gamma=\Gamma_0,
++    \qquad
++    v_\theta\simeq\frac{\Gamma}{2\pi a}<c
++    \label{eq:rt_planck_incompatible_assumptions}
++\end{equation}
++cannot all hold simultaneously.  A Planck-scale quantity is therefore retained
++only as a possible local defect, phase-slip, reconnection, or resolution scale;
++it is not identified with the uniform radius of the complete stretched
++electron core.
++
++\paragraph{Promotion gates and falsifiers.}
++The compact-to-slender hypothesis is promoted only if one model and one
++numerical regularization simultaneously provide:
++\begin{enumerate}
++    \item a continuous topology-preserving path from the certified compact
++    state to a state satisfying Eq.~\eqref{eq:rt_stretched_state_slenderness};
++    \item a conserved-quantity ledger for volume, circulation, helicity,
++    energy, momentum, and angular momentum;
++    \item a converged $\Delta E_{\rm carrier}(\lambda)$ and a specified excitation
++    channel satisfying Eq.~\eqref{eq:rt_stretch_energy_gate};
++    \item a finite-core evolution showing that the stretched state is a
++    relative equilibrium, periodic relative orbit, or metastable state;
++    \item no use of $\ell_P$ as a uniform core radius unless the obstruction in
++    Eqs.~\eqref{eq:rt_planck_uniform_core_length}--\eqref{eq:rt_planck_incompatible_assumptions}
++    is removed by an explicit constitutive change.
++\end{enumerate}
++Failure of any item blocks promotion beyond \texttt{[HYPOTHESIS]}.
++
++\subsection{Kirchhoff--Cosserat stationary-shape diagnostic}
++\label{subsec:rt_kirchhoff_cosserat_guard}
++
++\textbf{[BRIDGE / DIAGNOSTIC ONLY].}
++Kirchhoff--Cosserat theory and vortex-filament theory share centreline
++geometry, curvature, torsion, and selected stationary shapes, but they do not
++share the same dynamical phase space.  A schematic inertial rod equation and
++the LIA vortex equation are respectively
++\begin{equation}
++    \rho_{\rm rod}A\,\partial_t^2\mathbf r
++    =
++    -B\,\partial_s^4\mathbf r+\cdots,
++    \qquad
++    \partial_t\mathbf X
++    =
++    \beta\kappa\mathbf b.
++    \label{eq:rt_rod_vortex_time_order}
++\end{equation}
++The former is second order in time and requires position and momentum data;
++the latter is a first-order noncanonical Hamiltonian evolution.  Both can
++produce a $k^2$ frequency scaling after linearization, so the non-equivalence
++must be stated in terms of phase-space and symplectic structure rather than a
++frequency exponent alone.
++
++Fukumoto's result identifies permanent translating vortex-jet-filament shapes
++with Kirchhoff-rod equilibria under localized-induction and axial-core-flow
++assumptions \cite{Fukumoto2007}.  It does not justify importing elastic rod
++normal modes, constitutive moduli, or second-order rod dynamics into SST.
++Accordingly,
++\begin{equation}
++    E_{\rm rod}^{\rm diag}
++    =
++    T L
++    +\frac{B}{2}\int\kappa^2\,ds
++    +\frac{C}{2}\int\Omega_3^2\,ds
++    \label{eq:rt_rod_energy_diagnostic}
++\end{equation}
++may be evaluated on a certified SST centreline only as a comparative diagnostic.
++It is not a derived SST Hamiltonian.  In particular,
++\begin{equation}
++    E_{\rm rod}^{\rm diag}[\mathbf X_{\rm ideal}]
++    \ \text{finite}
++    \quad\not\Rightarrow\quad
++    \left.
++    \frac{\delta E_{\rm rod}^{\rm diag}}{\delta\mathbf X}
++    \right|_{\mathbf X_{\rm ideal}}
++    =0.
++    \label{eq:rt_ideal_not_rod_equilibrium}
++\end{equation}
++A nonzero bending weight generally changes a perfectly flexible ideal-knot
++minimizer; physical elastic trefoils provide a classical comparison
++\cite{JohannsEtAl2021}.  The finite-core Euler/Biot--Savart evolution remains
++the dynamical reference for the SST carrier.
++
++\paragraph{Child-level analogy.}
++A tightly packed soft rope and a bent metal wire can be drawn with the same
++centreline.  That does not make them obey the same motion law when released.
++
++
+ \subsection{Temporal cage: relative equilibrium before KAM}
+ \label{subsec:rt_kam_temporal_cage}
+ 
+@@ -4970,6 +5202,32 @@
+ \emph{Journal of Fluid Mechanics} \textbf{35}, 117--129 (1969).
+ DOI: \href{https://doi.org/10.1017/S0022112069000991}{10.1017/S0022112069000991}.
+ 
++
++\bibitem{MoffattRicca1992}
++H.~K.~Moffatt and R.~L.~Ricca,
++``Helicity and the C\u{a}lug\u{a}reanu invariant,''
++\emph{Proceedings of the Royal Society of London A} \textbf{439}, 411--429 (1992).
++DOI: \href{https://doi.org/10.1098/rspa.1992.0159}{10.1098/rspa.1992.0159}.
++
++\bibitem{Fukumoto2007}
++Y.~Fukumoto,
++``Analogy between a vortex-jet filament and the Kirchhoff elastic rod,''
++\emph{Fluid Dynamics Research} \textbf{39}, 511--520 (2007).
++DOI: \href{https://doi.org/10.1016/j.fluiddyn.2006.12.004}{10.1016/j.fluiddyn.2006.12.004}.
++
++\bibitem{JohannsEtAl2021}
++P.~Johanns, P.~Grandgeorge, C.~Baek, T.~G.~Sano,
++J.~H.~Maddocks, and P.~M.~Reis,
++``The shapes of physical trefoil knots,''
++\emph{Extreme Mechanics Letters} \textbf{43}, 101172 (2021).
++DOI: \href{https://doi.org/10.1016/j.eml.2021.101172}{10.1016/j.eml.2021.101172}.
++
++\bibitem{Mohr2025CODATA}
++P.~J.~Mohr, D.~B.~Newell, B.~N.~Taylor, and E.~Tiesinga,
++``CODATA recommended values of the fundamental physical constants: 2022,''
++\emph{Reviews of Modern Physics} \textbf{97}, 025002 (2025).
++DOI: \href{https://doi.org/10.1103/RevModPhys.97.025002}{10.1103/RevModPhys.97.025002}.
++
+ \bibitem{CantarellaParsley2010Helicity}
+ J.~Cantarella and J.~Parsley,
+ ``A new cohomological formula for helicity in $\mathbb R^{2k+1}$ reveals the effect of a diffeomorphism on helicity,''

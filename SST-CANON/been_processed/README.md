@@ -11,7 +11,7 @@ Each conversation patch gets its own incremental edition.
 | `scripts/` | Incremental build scripts (`apply_v082.py` … `apply_v0820.py`, patch helpers) |
 | `sources/` | **All** conversation diffs, patch blocks, audits, verify scripts, evidence packs (canonical archive) |
 | `blocks/` | Reusable LaTeX blocks integrated into editions |
-| `v0.8.2/` … `v0.8.31/` | Incremental canon editions (`$out/` = build artifacts) |
+| `v0.8.2/` … `v0.8.34/` | Incremental canon editions (`$out/` = build artifacts) |
 
 The `SST-CANON/` root holds only `latexmkrc`, `archive/`, and `been_processed/` — no patch source files.
 
@@ -49,6 +49,9 @@ The `SST-CANON/` root holds only `latexmkrc`, `archive/`, and `been_processed/` 
 | **v0.8.29** | Fermat-metric optical-geometry guard; caustic / light-ring / horizon hierarchy; curved-microcavity QSS benchmark; spatial mode tomography. |
 | **v0.8.30** | Density ontology: `rho_sub` vs calibrated `rho_f≡rho_eff^(0)`; `J_omega` / `mu_l` notation; VAM-7 historical provenance (`kg m^-1`); forbid invalid `rho_f|ω|^2` without derived length²; freeze constant `rho_f` in master equation; RT provenance audit. |
 | **v0.8.31** | Rotor / participation audit: quasi-static `rho_f` guard; Compton-gap rotor as matching ansatz; `J_omega^rot` ≡ horn line-inertia; `c_omega=v_swirl` definitional; twist vs Kelvin bend; `phi_dyn` / `ell_rho,eq` diagnostics + promotion gates. Companion archive: `rho_f` scaling audit phase 1 (no tex edits). |
+| **v0.8.32** | Orphaned-normalization: `rho_ref` legacy reference; physical `rho_f≡rho_eff^(0)` unfixed; VAM-7 defects; A/B/C/Q/X scaling audit; source-free radiation no-go; legacy-reference benchmarks. |
+| **v0.8.33** | Worldsheet/gauge on top of 0.8.32: covariant two-form form-degree guard; Kalb–Ramond RT action; helicity vs chiral alignment; gauge-emergence certification ladder; nonrelease v0.3. |
+| **v0.8.34** | Ideal-knot regime guard (compact vs slender); LIA/KAM compact-state exclusion; Moffatt–Ricca single-tube helicity; RT compact-to-slender + Kirchhoff–Cosserat diagnostics. |
 
 ## Rebuild chain
 
@@ -57,26 +60,29 @@ cd SST-CANON/been_processed
 python scripts/apply_v0829.py
 python scripts/apply_v0830.py
 python scripts/apply_v0831.py
+python scripts/apply_v0832.py
+python scripts/apply_v0833.py
+python scripts/apply_v0834.py
 ```
 
-Individual steps: `scripts/apply_v085.py` … `scripts/apply_v0831.py`.
+Individual steps: `scripts/apply_v085.py` … `scripts/apply_v0834.py`.
 
 Shared metadata: `canon_edition.py`. Patch helpers live in `scripts/` (e.g. `apply_framed_selflinking.py`, `apply_spinstats_z2.py`, `apply_gemini_audit.py`).
 
 ## Build PDF
 
 ```powershell
-cd SST-CANON/been_processed/v0.8.31
-latexmk -pdf -interaction=nonstopmode -output-directory='$out' SST_CANON-v0.8.31.tex
+cd SST-CANON/been_processed/v0.8.34
+latexmk -pdf -interaction=nonstopmode -output-directory='$out' SST_CANON-v0.8.34.tex
 ```
 
 Or manually (three passes):
 
 ```powershell
-cd SST-CANON/been_processed/v0.8.31
-pdflatex -interaction=nonstopmode -output-directory='$out' SST_CANON-v0.8.31.tex
-pdflatex -interaction=nonstopmode -output-directory='$out' SST_CANON-v0.8.31.tex
-pdflatex -interaction=nonstopmode -output-directory='$out' SST_CANON-v0.8.31.tex
+cd SST-CANON/been_processed/v0.8.34
+pdflatex -interaction=nonstopmode -output-directory='$out' SST_CANON-v0.8.34.tex
+pdflatex -interaction=nonstopmode -output-directory='$out' SST_CANON-v0.8.34.tex
+pdflatex -interaction=nonstopmode -output-directory='$out' SST_CANON-v0.8.34.tex
 ```
 
-Output: `v0.8.31/$out/SST_CANON-v0.8.31.pdf` (auxiliary files stay in `$out/`; source `.tex` files remain in the edition folder).
+Output: `v0.8.34/$out/SST_CANON-v0.8.34.pdf` (auxiliary files stay in `$out/`; source `.tex` files remain in the edition folder).

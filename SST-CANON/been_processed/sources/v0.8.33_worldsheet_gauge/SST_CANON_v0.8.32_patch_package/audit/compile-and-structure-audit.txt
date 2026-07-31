@@ -1,0 +1,55 @@
+SST CANON v0.8.32 patch audit
+Date: 2026-07-31
+
+Build validation
+- Main Canon: pdflatex x3, success; final pass has no undefined citations/references and no fatal errors.
+- Non-release appendix: pdflatex x2, success; final pass has no undefined citations/references and no fatal errors.
+- Main PDF build size during audit: 236 pages (PDF not included in package).
+- Non-release PDF build size during audit: 6 pages (PDF not included in package).
+
+Patch validation
+- 0001-main-canon-v0.8.31-to-v0.8.32.diff: dry-run PASS
+- 0002-research-track-v0.8.31-to-v0.8.32.diff: dry-run PASS
+- 0003-nonrelease-spec-v0.2-to-v0.3.diff: dry-run PASS
+
+Structural audit
+- Added labels: 29
+- Newly introduced duplicate labels: 0
+- Duplicate bibliography keys in integrated main bibliography: 0
+- New citation keys KalbRamond1974 and HornNicolisPenco2015 resolved in the integrated build.
+
+Numerical dimensional check
+- omega_c = v_swirl/r_c = 7.763440655e+20 s^-1
+- rho_f v_swirl^2 = 8.375487836e+05 J m^-3
+- This is retained only as a quasi-static dimensional benchmark, not as a microscopic weak-interaction prediction.
+
+New labels
+- eq:canon_gauge_dimension_guard
+- eq:canon_two_form_degree_guard
+- eq:canon_two_form_linking_charge
+- eq:canon_worldsheet_B_coupling
+- eq:rt_chiral_alignment_mirror_split
+- eq:rt_chiral_alignment_term
+- eq:rt_chiral_mass_degeneracy_gate
+- eq:rt_gauge_anomaly_gates
+- eq:rt_gauge_closure_residual
+- eq:rt_gauge_jacobi_residual
+- eq:rt_gauge_mode_count_guard
+- eq:rt_gauge_promotion_certificate
+- eq:rt_helicity_response_numeric_scale
+- eq:rt_helicity_response_operator
+- eq:rt_kinetic_helicity_pseudoscalar
+- eq:rt_parity_odd_response_term
+- eq:rt_two_form_definitions
+- eq:rt_two_form_electric_charge
+- eq:rt_two_form_field_equations
+- eq:rt_two_form_gauge
+- eq:rt_two_form_worldsheet_action
+- eq:rt_worldsheet_current
+- eq:rt_worldsheet_current_conservation
+- eq:rt_worldsheet_matching_map
+- eq:rt_worldsheet_slenderness_gate
+- sec:rt_covariant_two_form_worldsheet
+- sec:rt_gauge_emergence_certification_ladder
+- sec:rt_parity_sensitive_helicity_response
+- subsec:covariant_vortex_worldsheet_guard

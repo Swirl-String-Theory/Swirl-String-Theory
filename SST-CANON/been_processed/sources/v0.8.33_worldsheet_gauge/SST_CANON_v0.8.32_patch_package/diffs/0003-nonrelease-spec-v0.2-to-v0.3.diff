@@ -1,0 +1,213 @@
+--- SST_NONRELEASE_SPECULATIVE_RESEARCH-v0.2.tex
++++ SST_NONRELEASE_SPECULATIVE_RESEARCH-v0.3.tex
+@@ -1,6 +1,6 @@
+ %! Author = Omar Iskandarani
+ %! Date = 2026-07-24
+-%! Non-release speculative appendix v0.2
++%! Non-release speculative appendix v0.3
+ 
+ \documentclass[11pt]{article}
+ \usepackage[T1]{fontenc}
+@@ -16,10 +16,10 @@
+ \newtheorem{hypothesis}{Hypothesis}[section]
+ \newcommand{\Z}{\mathbb Z}
+ 
+-\title{SST Non-Release Speculative Research Appendix v0.2\\
++\title{SST Non-Release Speculative Research Appendix v0.3\\
+ \large Composite Links, Phase Products, Modulo Classes, and Closed Modulation Ans\"atze}
+ \author{Omar Iskandarani\\Independent Researcher, Groningen, The Netherlands}
+-\date{2026-07-27}
++\date{2026-07-31}
+ 
+ \begin{document}
+ \maketitle
+@@ -49,6 +49,7 @@
+ Rodin-style toroidal projection & \texttt{[INSPIRATION ONLY]}; geometry depends on representation choices. \\
+ Translation-induced trefoil flattening & \texttt{[RETIRED]}; not required by the action--phase mass--shell clock route. \\
+ Translation-induced stretching / uniform core thinning & \texttt{[RETIRED]}; no momentum--shape coupling has been derived. \\
++Foliation-ordered Bell/Born programme & \texttt{[SPECULATIVE TEST PROGRAMME]}; no signalling, measurement independence, and anti-tuning gates mandatory. \\
+ \bottomrule
+ \end{tabularx}
+ \end{center}
+@@ -213,6 +214,125 @@
+ requires an independently derived nine-state variable and a reason that one
+ physical update acts as multiplication by two modulo nine.
+ 
++\section{Foliation-ordered Bell, Born, and no-signalling programme}
++\label{sec:spec_bell_born_programme}
++
++\textbf{[NON-RELEASE SPECULATIVE TEST PROGRAMME].}
++A preferred ordering variable does not by itself reproduce quantum
++nonlocality, the Born rule, or operational no-signalling.  This programme
++records the minimum gates for testing such a construction without building the
++quantum target into the kernel.  No result in this section may be used to
++calibrate the release Canon.
++
++\subsection*{Hidden-variable and setting-independence declaration}
++
++Let \(x,y\) denote the two measurement settings, \(a,b\in\{-1,+1\}\) the
++outcomes, and \(\lambda\) the complete model state.  The primary branch must
++state whether it assumes measurement independence,
++\begin{equation}
++    P(\lambda\mid x,y)=P(\lambda).
++    \label{eq:spec_measurement_independence}
++\end{equation}
++If Eq.~\eqref{eq:spec_measurement_independence} is abandoned, that branch must
++be labelled explicitly as measurement-dependent or superdeterministic and must
++quantify the required setting--state mutual information.  It may not be
++presented as an ordinary local-hidden-variable resolution of Bell's theorem.
++
++\subsection*{No-signalling gate}
++
++Operational no-signalling requires the observable marginals
++\begin{align}
++    \sum_bP(a,b\mid x,y)&=P(a\mid x),
++    \\
++    \sum_aP(a,b\mid x,y)&=P(b\mid y),
++    \label{eq:spec_no_signalling_marginals}
++\end{align}
++for every tested setting pair, not only after averaging over a target data set.
++The preregistered residuals are
++\begin{align}
++    \mathcal R_{A\leftarrow B}
++    &=
++    \max_{a,x,y,y'}
++    \left|
++        P(a\mid x,y)-P(a\mid x,y')
++    \right|,
++    \\
++    \mathcal R_{B\leftarrow A}
++    &=
++    \max_{b,y,x,x'}
++    \left|
++        P(b\mid x,y)-P(b\mid x',y)
++    \right|.
++    \label{eq:spec_no_signalling_residuals}
++\end{align}
++A foliation-ordered internal update is admissible only if these operational
++residuals converge to zero within statistically declared uncertainty.
++
++\subsection*{CHSH gate and anti-target-tuning rule}
++
++Define
++\begin{align}
++    S
++    =
++    E_{00}+E_{01}+E_{10}-E_{11}.
++    \label{eq:spec_chsh_parameter}
++\end{align}
++Local measurement-independent hidden-variable models satisfy \(|S|\le2\),
++whereas quantum theory satisfies the Tsirelson bound \(|S|\le2\sqrt2\)
++\cite{Bell1964,CHSH1969,Tsirelson1980}.  The model must reproduce the full
++setting-dependent correlation curve on held-out settings, not merely tune one
++four-setting combination to \(S>2\).  Mandatory controls include detector
++inefficiency, time-window selection, postselection, setting predictability,
++memory effects, and confidence intervals consistent with modern loophole-free
++tests \cite{Hensen2015,Giustina2015,Shalm2015}.
++
++\subsection*{Born-frequency gate}
++
++For an independently defined state amplitude \(\psi_i\), the empirical
++frequency \(f_i^{(N)}\) must approach
++\begin{equation}
++    p_i=|\psi_i|^2
++    \label{eq:spec_born_target}
++\end{equation}
++without using \(|\psi_i|^2\) in the microscopic transition probabilities,
++noise schedule, stopping rule, or sample weighting.  A primary diagnostic is
++\begin{equation}
++    D_{\rm KL}
++    \!\left(
++        f^{(N)}\middle\| |\psi|^2
++    \right)
++    \longrightarrow0
++    \qquad(N\to\infty),
++    \label{eq:spec_born_kl_gate}
++\end{equation}
++across held-out amplitudes, bases, initial conditions, and coarse-graining
++choices.  Reproducing one two-slit histogram is insufficient.  The derivation
++must also explain basis dependence and composition of independent systems
++rather than assuming the Hilbert-space measure \cite{Born1926}.
++
++\subsection*{Promotion blockers}
++
++The programme remains rejected for release use if any of the following occurs:
++\begin{enumerate}
++    \item the nonlocal kernel contains the desired quantum correlator or Born
++    weight as an input;
++    \item signalling cancellation occurs only after parameter fine tuning or
++    postselection;
++    \item the CHSH violation disappears on held-out settings or after closure of
++    detector/time-window loopholes;
++    \item measurement dependence is present but unreported;
++    \item the frequency measure changes under an arbitrary reparameterization
++    or coarse-graining choice;
++    \item the same parameters are used both to choose the model and to claim its
++    validation.
++\end{enumerate}
++
++\paragraph{Child-level analogy.}
++Two distant boxes may share a hidden instruction sheet, but they may not use a
++secret telephone after the questions are chosen.  Getting one clever score is
++not enough: the boxes must give the right pattern for many unseen questions,
++and neither box may reveal which question the other box received.
++
+ \section{Separation from the KAM release programme}
+ 
+ The v0.8.25 KAM release programme tests relative equilibria, reduced Floquet
+@@ -238,7 +358,54 @@
+ 
+ \begin{thebibliography}{99}
+ 
+-\bibitem{Rolfsen1976Knots}
++\bibitem{Born1926}
++M.~Born,
++1926,
++``Zur Quantenmechanik der Sto{\ss}vorg{\"a}nge,''
++\emph{Zeitschrift f{\"u}r Physik}, vol.~37, pp.~863--867,
++\href{https://doi.org/10.1007/BF01397477}{doi:10.1007/BF01397477}.
++
++\bibitem{Bell1964}
++J.~S. Bell,
++1964,
++``On the Einstein Podolsky Rosen paradox,''
++\emph{Physics Physique Fizika}, vol.~1, pp.~195--200,
++\href{https://doi.org/10.1103/PhysicsPhysiqueFizika.1.195}{doi:10.1103/PhysicsPhysiqueFizika.1.195}.
++
++\bibitem{CHSH1969}
++J.~F. Clauser, M.~A. Horne, A.~Shimony, and R.~A. Holt,
++1969,
++``Proposed experiment to test local hidden-variable theories,''
++\emph{Physical Review Letters}, vol.~23, pp.~880--884,
++\href{https://doi.org/10.1103/PhysRevLett.23.880}{doi:10.1103/PhysRevLett.23.880}.
++
++\bibitem{Tsirelson1980}
++B.~S. Tsirelson,
++1980,
++``Quantum generalizations of Bell's inequality,''
++\emph{Letters in Mathematical Physics}, vol.~4, pp.~93--100,
++\href{https://doi.org/10.1007/BF00417500}{doi:10.1007/BF00417500}.
++
++\bibitem{Hensen2015}
++B.~Hensen et al.,
++2015,
++``Loophole-free Bell inequality violation using electron spins separated by 1.3 kilometres,''
++\emph{Nature}, vol.~526, pp.~682--686,
++\href{https://doi.org/10.1038/nature15759}{doi:10.1038/nature15759}.
++
++\bibitem{Giustina2015}
++M.~Giustina et al.,
++2015,
++``Significant-loophole-free test of Bell's theorem with entangled photons,''
++\emph{Physical Review Letters}, vol.~115, 250401,
++\href{https://doi.org/10.1103/PhysRevLett.115.250401}{doi:10.1103/PhysRevLett.115.250401}.
++
++\bibitem{Shalm2015}
++L.~K. Shalm et al.,
++2015,
++``Strong loophole-free test of local realism,''
++\emph{Physical Review Letters}, vol.~115, 250402,
++\href{https://doi.org/10.1103/PhysRevLett.115.250402}{doi:10.1103/PhysRevLett.115.250402}.\bibitem{Rolfsen1976Knots}
+ D.~Rolfsen,
+ 1976,
+ \emph{Knots and Links},

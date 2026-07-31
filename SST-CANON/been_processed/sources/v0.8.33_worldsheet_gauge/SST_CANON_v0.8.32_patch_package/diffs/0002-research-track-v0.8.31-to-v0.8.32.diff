@@ -1,0 +1,462 @@
+--- SST_CANON-v0.8.31-research-track.tex
++++ SST_CANON-v0.8.32-research-track.tex
+@@ -6,12 +6,12 @@
+ \makeatother
+ 
+ %! Author = Omar Iskandarani
+-%! Companion to Swirl-String-Theory Canon-v0.8.31 (included from \texttt{SST\_CANON-v0.8.31.tex} before the manual bibliography).
++%! Companion to Swirl-String-Theory Canon-v0.8.32 (included from \texttt{SST\_CANON-v0.8.32.tex} before the manual bibliography).
+ 
+ \section{Research-track sectors migrated from the main canon}
+ 
+ \noindent
+-This companion document collects those sectors that remain useful for continuity and future development but are too long, too provisional, or too phenomenology-specific for the core body of \textit{Swirl-String-Theory\_Canon-v0.8.31}. Their migration out of the main canon is editorial rather than negative: each subsection remains part of the broader SST research program, but none is required for the minimal logical closure of the core canon.
++This companion document collects those sectors that remain useful for continuity and future development but are too long, too provisional, or too phenomenology-specific for the core body of \textit{Swirl-String-Theory\_Canon-v0.8.32}. Their migration out of the main canon is editorial rather than negative: each subsection remains part of the broader SST research program, but none is required for the minimal logical closure of the core canon.
+ 
+ \medskip
+ \noindent
+@@ -19,7 +19,7 @@
+ 
+ \medskip
+ \noindent
+-\textbf{Editorial note (v0.8.27):} the maximal swirl tension sector ($F_{\rm swirl}^{\max}$, Rydberg bridge identities, Gibbons-class maximum-tension comparison, and the threefold interpretation table) is developed in the core document \texttt{SST\_CANON-v0.8.31.tex}, subsection \texttt{Maximal Swirl Tension} (label \texttt{sec:Fmax}); it is not duplicated here.
++\textbf{Editorial note (v0.8.27):} the maximal swirl tension sector ($F_{\rm swirl}^{\max}$, Rydberg bridge identities, Gibbons-class maximum-tension comparison, and the threefold interpretation table) is developed in the core document \texttt{SST\_CANON-v0.8.32.tex}, subsection \texttt{Maximal Swirl Tension} (label \texttt{sec:Fmax}); it is not duplicated here.
+ 
+ \medskip
+ 
+@@ -10006,6 +10006,397 @@
+ test hierarchy attached to the monometricity and tensor-speed theorem targets.
+ 
+ 
++\subsection{Research Track: Covariant Two-Form Vortex-Worldsheet Sector}
++\label{sec:rt_covariant_two_form_worldsheet}
++
++\subsubsection{Status and scope}
++
++\textbf{[ORTHODOX STRUCTURAL TEMPLATE / RESEARCH-TRACK SST IDENTIFICATION / NOT CANONIZED].}
++A two-form gauge field is the standard covariant field that couples electrically
++to a string worldsheet \cite{KalbRamond1974}.  Effective worldsheet descriptions
++of thin vortex lines are also standard in fluid and superfluid EFTs
++\cite{HornNicolisPenco2015}.  The SST-specific proposal is only that a resolved,
++closed swirl string may admit such a dual long-wavelength representation after
++its finite core has been integrated out.  This section does not identify the
++worldsheet charge with \(\Gamma_0\), does not replace the finite-core Euler or
++Biot--Savart description, and does not promote a new fundamental field.
++
++\subsubsection{Form degree, gauge symmetry, and action}
++
++Let
++\begin{align}
++    B&\in\Omega^2(M),
++    &
++    H&=dB\in\Omega^3(M),
++    &
++    H_{\mu\nu\rho}&=3\nabla_{[\mu}B_{\nu\rho]},
++    \label{eq:rt_two_form_definitions}
++\end{align}
++with gauge transformation
++\begin{align}
++    B\mapsto B+d\Lambda,
++    \qquad
++    \Lambda\in\Omega^1(M).
++    \label{eq:rt_two_form_gauge}
++\end{align}
++For a closed worldsheet \(X^\mu(\sigma^a)\), \(a=0,1\), the minimal
++source-coupled action is
++\begin{align}
++    S_{B\Sigma}
++    ={}&
++    -\frac{1}{12g_B^2}
++    \int_M d^4x\sqrt{-g}\,
++    H_{\mu\nu\rho}H^{\mu\nu\rho}
++    +
++    \frac{q_B}{2}
++    \int_\Sigma d^2\sigma\,
++    \epsilon^{ab}
++    B_{\mu\nu}(X)
++    \partial_aX^\mu\partial_bX^\nu,
++    \label{eq:rt_two_form_worldsheet_action}
++\end{align}
++where the sign of the kinetic term is chosen for positive field energy in the
++\((-+++ )\) convention.  A separate geometric tension term
++\(-T_\Sigma\int_\Sigma\sqrt{-\gamma}\,d^2\sigma\) may be used only after
++\(T_\Sigma\) has been matched to the resolved finite-core energy; it is not a
++new independent particle-mass parameter.
++
++The antisymmetric worldsheet current is
++\begin{align}
++    J_\Sigma^{\mu\nu}(x)
++    =
++    q_B\int_\Sigma d^2\sigma\,
++    \epsilon^{ab}
++    \partial_aX^\mu\partial_bX^\nu
++    \frac{\delta^{(4)}(x-X(\sigma))}{\sqrt{-g}},
++    \label{eq:rt_worldsheet_current}
++\end{align}
++and variation gives
++\begin{align}
++    \nabla_\mu H^{\mu\nu\rho}
++    &=g_B^2J_\Sigma^{\nu\rho},
++    &
++    \nabla_{[\sigma}H_{\mu\nu\rho]}&=0.
++    \label{eq:rt_two_form_field_equations}
++\end{align}
++For a closed worldsheet,
++\begin{align}
++    \nabla_\mu J_\Sigma^{\mu\nu}=0.
++    \label{eq:rt_worldsheet_current_conservation}
++\end{align}
++An open worldsheet requires an endpoint current or an explicit boundary/defect
++sector; otherwise Eq.~\eqref{eq:rt_worldsheet_current_conservation} is violated.
++
++\subsubsection{Charge-cycle and degree guard}
++
++Because \(*H\in\Omega^1(M)\) in \(3+1\) dimensions, the electric string charge
++is measured on a one-cycle \(C\) linking the worldsheet,
++\begin{align}
++    Q_B[C]
++    =
++    \frac{1}{g_B^2}\oint_C {*H}.
++    \label{eq:rt_two_form_electric_charge}
++\end{align}
++Equivalently, if \(C=\partial D\), Stokes' theorem applies to the two-form
++\(d{*H}\) on \(D\).  The inherited expression \(\int_{S^2}H\) is rejected:
++a three-form cannot be integrated over a two-surface.  An \(H\)-flux, when a
++suitable cycle exists, is a three-cycle integral.
++
++\subsubsection{Finite-core matching and validity regime}
++
++Let \(a\) denote the resolved tube radius and \(\mathcal R\) the smallest local
++curvature or background-variation scale.  The worldsheet reduction is admissible
++only in a controlled slender-core regime,
++\begin{align}
++    \epsilon_{\rm ws}
++    :=
++    \max\!\left(
++        \frac{a}{\mathcal R},
++        \frac{a}{\operatorname{Reach}(K)},
++        ka
++    \right)
++    \ll1,
++    \label{eq:rt_worldsheet_slenderness_gate}
++\end{align}
++with resolved circulation, finite reach, and no unresolved reconnection during
++the comparison interval.  The matching problem is to derive
++\begin{align}
++    \bigl(g_B,q_B,T_\Sigma\bigr)
++    =
++    \mathcal M_{\rm ws}
++    \bigl[
++hoSub,\rhoF,\Jomega,\muell,\Gamma_0,\rc;
++    \text{core profile and boundary data}\bigr]
++    \label{eq:rt_worldsheet_matching_map}
++\end{align}
++without inserting the target particle mass or setting \(q_B=\Gamma_0\) by
++notation.
++
++\subsubsection{Reconnection and promotion gates}
++
++A smooth conserved worldsheet current describes topology-preserving evolution.
++Reconnection, phase slip, or nucleation lies outside that closed-current sector
++and must be represented by a defect current, a boundary term, or a breakdown of
++the worldsheet approximation.  Promotion requires all of the following:
++\begin{enumerate}
++    \item convergence of resolved finite-core observables to the worldsheet model
++    as \(\epsilon_{\rm ws}\to0\);
++    \item an independently derived matching map
++    Eq.~\eqref{eq:rt_worldsheet_matching_map};
++    \item correct Kelvin/helicity bookkeeping in topology-preserving runs;
++    \item an explicit failure or defect law during reconnection;
++    \item no extra mass or charge parameter hidden in \(T_\Sigma\) or \(q_B\);
++    \item a demonstrated advantage over the existing centreline/Biot--Savart
++    description on held-out configurations.
++\end{enumerate}
++
++\subsection{Research Track: Parity-Sensitive Helicity Response}
++\label{sec:rt_parity_sensitive_helicity_response}
++
++\subsubsection{Operator and dimensional audit}
++
++\textbf{[BRIDGE/RESEARCH / NOT A WEAK-INTERACTION DERIVATION].}
++For a local resolved velocity \(\mathbf u\) and vorticity
++\(\boldsymbol\omega=\nabla\times\mathbf u\), define the kinetic-helicity
++pseudoscalar
++\begin{align}
++    \mathcal P_h
++    :=
++    \mathbf u\cdot\boldsymbol\omega.
++    \label{eq:rt_kinetic_helicity_pseudoscalar}
++\end{align}
++A dimensionally admissible local response-density operator is
++\begin{align}
++    \mathcal O_h^{(\ell)}
++    :=
++    r_c\,\rho_{\rm resp}^{(\ell)}\,
++    \mathbf u\cdot\boldsymbol\omega,
++    \qquad
++    [\mathcal O_h^{(\ell)}]=\mathrm{J\,m^{-3}},
++    \label{eq:rt_helicity_response_operator}
++\end{align}
++where \(\rho_{\rm resp}^{(\ell)}\) is the response coefficient at the explicitly
++stated coarse-graining scale.  It may approach \(\rhoF\) only in the guarded
++quasi-static sector; it must not be silently identified with \(\rhoSub\),
++\(\rhoM\), or \(\rhocore\).
++
++Under spatial parity, \(\mathbf u\) is polar and
++\(\boldsymbol\omega\) is axial, so
++\begin{align}
++    \mathcal P_h\xrightarrow{P}-\mathcal P_h.
++\end{align}
++Under time reversal both \(\mathbf u\) and \(\boldsymbol\omega\) reverse, so
++\(\mathcal P_h\) is time-reversal even.  Therefore
++\begin{align}
++    \mathcal L_{\rm PV}
++    &=g_5\,\mathcal O_h^{(\ell)}\,\mathcal S_5,
++    \qquad \mathcal S_5\ \text{parity even},
++    \label{eq:rt_parity_odd_response_term}
++\end{align}
++is parity odd, whereas
++\begin{align}
++    \mathcal L_{\rm align}
++    &=g_\chi\,\mathcal O_h^{(\ell)}\,\chi_K,
++    \qquad \chi_K\xrightarrow{P}-\chi_K,
++    \label{eq:rt_chiral_alignment_term}
++\end{align}
++is parity even and represents helicity--chirality alignment.  The two terms must
++not be conflated.  In particular, multiplying one pseudoscalar by another can
++split alignment sectors without deriving fundamental weak parity violation.
++
++\subsubsection{Canonical-scale benchmark and density guard}
++
++Using the quasi-static numerical value only as a dimensional benchmark and the
++turnover estimate \(\omega_c=\vchar/\rc\),
++\begin{align}
++    r_c\rhoF\vchar\omega_c
++    =
++    \rhoF\vchar{}^2
++    =
++    8.37548784\times10^5\ \mathrm{J\,m^{-3}}.
++    \label{eq:rt_helicity_response_numeric_scale}
++\end{align}
++Equation~\eqref{eq:rt_helicity_response_numeric_scale} is not a predicted weak
++energy density: \(g_5\), the resolved field amplitude, the support volume, and
++the scale-dependent response are unfixed, and \(\rhoF\) is not canonically valid
++as a microscopic core density.
++
++\subsubsection{Symmetry tests and falsifiers}
++
++For mirror-related chiral states in an unbiased parity-symmetric background,
++the chirality-blind rest functional must satisfy
++\begin{align}
++    M_0(K)=M_0(\bar K).
++    \label{eq:rt_chiral_mass_degeneracy_gate}
++\end{align}
++A controlled helicity background may produce opposite first-order response,
++\begin{align}
++    \delta E_{\rm align}(K)
++    =
++    -\delta E_{\rm align}(\bar K),
++    \label{eq:rt_chiral_alignment_mirror_split}
++\end{align}
++while an ideally amphichiral state must have vanishing parity-odd ensemble
++average to first order.  Required tests are:
++\begin{enumerate}
++    \item mirror-pair simulations with identical geometry, circulation, reach,
++    and boundary conditions;
++    \item reversal of background helicity and independent reversal of knot
++    chirality;
++    \item separation of parity-odd linear response from parity-even quadratic
++    deformation;
++    \item verification that any claimed \(V-A\) limit follows from field
++    representations and projectors, not from the sign of
++    \(\mathbf u\cdot\boldsymbol\omega\) alone;
++    \item rejection if the effect survives when the helicity pseudoscalar is
++    nulled or if it changes a chirality-blind mass calibration at zero bias.
++\end{enumerate}
++
++\subsection{Research Track: Gauge-Emergence Certification Ladder}
++\label{sec:rt_gauge_emergence_certification_ladder}
++
++\subsubsection{Status and target discipline}
++
++\textbf{[RESEARCH PROGRAMME / NO PREASSIGNED ALGEBRA].}
++The Standard-Model algebra may be used as the comparison target, but it may not
++be assumed during construction of the coarse variables or inserted through a
++charge table.  The input to the programme is a scale-dependent set of
++independently defined currents or holonomies \(J_A^{(\ell)}\), their Poisson or
++commutator algebra, and the actual constraints and quotient symmetries of the
++substrate model.
++
++\subsubsection{Gate G0: physical mode census}
++
++Before naming a Lie algebra, count the independent local physical modes after
++constraints and gauge redundancies.  For example,
++\begin{align}
++    \dim\!\left[SO(3)^3/SO(3)_{\rm diag}\right]=6
++    \neq
++    12=
++    \dim\!\left[\mathfrak{su}(3)\oplus\mathfrak{su}(2)\oplus\mathfrak u(1)\right].
++    \label{eq:rt_gauge_mode_count_guard}
++\end{align}
++Thus three directors modulo a common rotation are insufficient as a standalone
++mode-count derivation.  Additional independent variables must be physically
++identified rather than inferred from the desired answer.
++
++\subsubsection{Gate G1: nontrivial curvature and locality}
++
++If a proposed connection is defined solely by
++\begin{align}
++    \mathcal W_\mu=(\partial_\mu O)O^{-1},
++\end{align}
++then its curvature vanishes locally away from singularities by the
++Maurer--Cartan identity.  A nontrivial field strength must therefore descend
++from independent link variables, unresolved defects, nontrivial bundle
++patching, or holonomy that cannot be globally gauged away.  The location and
++physical energy of those structures must be explicit.
++
++\subsubsection{Gate G2: closure and Jacobi residuals}
++
++Let \(\Pi_\ell\) project onto the candidate generator span.  Define
++\begin{align}
++    \mathcal R_{\rm close}(\ell)
++    :=
++    \max_{A,B}
++    \frac{
++        \left\|
++        (1-\Pi_\ell)\{J_A^{(\ell)},J_B^{(\ell)}\}
++        \right\|
++    }{
++        \left\|
++        \{J_A^{(\ell)},J_B^{(\ell)}\}
++        \right\|+\varepsilon
++    },
++    \label{eq:rt_gauge_closure_residual}
++\end{align}
++and
++\begin{align}
++    \mathcal R_{\rm Jac}(\ell)
++    :=
++    \max_{A,B,C}
++    \frac{
++        \left\|
++        \{J_A,\{J_B,J_C\}\}
++        +\{J_B,\{J_C,J_A\}\}
++        +\{J_C,\{J_A,J_B\}\}
++        \right\|
++    }{
++        \mathcal N_{ABC}+\varepsilon
++    }.
++    \label{eq:rt_gauge_jacobi_residual}
++\end{align}
++Promotion requires convergence of both residuals under scale, resolution,
++boundary-condition, and coarse-graining-kernel changes.  A least-squares fit to
++preselected Standard-Model structure constants is not a closure proof.
++
++\subsubsection{Gate G3: representation and charge separation}
++
++Each proposed particle sector must furnish a representation of the derived
++algebra.  The state descriptor must separate all states assigned different
++charges.  In particular, no linear charge map is admissible when two states
++have identical input invariants but are assigned distinct hypercharges.  The
++map must predict charge conjugation, left/right multiplet structure, and family
++replication without using the observed charge table as a lookup function.
++
++\subsubsection{Gate G4: anomaly and global-consistency tests}
++
++After all fields are written as left-handed Weyl representations, the derived
++content must satisfy at least
++\begin{align}
++    \sum_i T_{SU(3)}(R_i)Y_i&=0,
++    &
++    \sum_i T_{SU(2)}(R_i)Y_i&=0,
++    \\
++    \sum_i Y_i^3&=0,
++    &
++    \sum_i Y_i&=0,
++    \label{eq:rt_gauge_anomaly_gates}
++\end{align}
++for the \([SU(3)]^2U(1)\), \([SU(2)]^2U(1)\), \([U(1)]^3\), and mixed
++gravity--\(U(1)\) anomalies, together with the global \(SU(2)\) condition that the number of left-handed doublets is even.  Anomalies must vanish from independently derived representations;
++``cancellation by construction'' after fitting the charge table has no
++promotion force \cite{Weinberg1967,PDG2024}.
++
++\subsubsection{Gate G5: couplings, running, and universality}
++
++Effective couplings must be extracted from normalized two- and three-point
++functions or response coefficients with uncertainty propagation.  The inferred
++algebra and coupling flow must be stable under admissible coarse-graining
++kernels and must possess a common infrared limit.  Qualitative resemblance of
++a beta-function sign is insufficient; thresholds, normalization conventions,
++and the number of active modes must be stated.
++
++\subsubsection{Gate G6: out-of-sample phenomenology}
++
++Only after G0--G5 close may the model be tested against electroweak and strong
++observables.  At minimum the held-out suite must include charge assignments,
++weak multiplets, parity structure, running couplings, neutral-current ratios,
++confinement/deconfinement behaviour, and a spectrum not used to choose the
++algebra.  Failure at any earlier gate returns the construction to a generic
++multi-director or link-field model rather than a Standard-Model derivation.
++
++\subsubsection{Promotion certificate}
++
++The minimal certificate is the vector
++\begin{align}
++    \mathcal C_{\rm gauge}
++    =
++    \Bigl(
++        N_{\rm phys},
++        \mathcal R_{\rm curvature},
++        \mathcal R_{\rm close},
++        \mathcal R_{\rm Jac},
++        \mathcal R_{\rm rep},
++        \mathcal R_{\rm charge},
++        \mathcal R_{\rm anomaly},
++        \mathcal R_{\beta},
++        \mathcal R_{\rm holdout}
++    \Bigr).
++    \label{eq:rt_gauge_promotion_certificate}
++\end{align}
++No item may be omitted by replacing it with the target algebra name.
++
+ \subsection{Research Track: Minimal Relational Link--Field Action}
+ \label{sec:rt_minimal_link_field_action}
+ %======================================================================
+@@ -11556,7 +11947,36 @@
+ \begin{thebibliography}{99}
+ 
+ 
+-\bibitem{Taylor1922}
++\bibitem{KalbRamond1974}
++M.~Kalb and P.~Ramond,
++``Classical direct interstring action,''
++\emph{Physical Review D} \textbf{9} (1974), 2273--2284.
++DOI: \href{https://doi.org/10.1103/PhysRevD.9.2273}{10.1103/PhysRevD.9.2273}.
++
++\bibitem{HornNicolisPenco2015}
++B.~Horn, A.~Nicolis, and R.~Penco,
++``Effective string theory for vortex lines in fluids and superfluids,''
++\emph{Journal of High Energy Physics} \textbf{2015}(10) (2015), 153.
++DOI: \href{https://doi.org/10.1007/JHEP10(2015)153}{10.1007/JHEP10(2015)153}.
++ArXiv: \href{https://arxiv.org/abs/1507.05635}{1507.05635}.
++
++\bibitem{Moffatt1969}
++H.~K. Moffatt,
++``The degree of knottedness of tangled vortex lines,''
++\emph{Journal of Fluid Mechanics} \textbf{35}(1) (1969), 117--129.
++DOI: \href{https://doi.org/10.1017/S0022112069000991}{10.1017/S0022112069000991}.
++
++\bibitem{Weinberg1967}
++S.~Weinberg,
++``A model of leptons,''
++\emph{Physical Review Letters} \textbf{19} (1967), 1264--1266.
++DOI: \href{https://doi.org/10.1103/PhysRevLett.19.1264}{10.1103/PhysRevLett.19.1264}.
++
++\bibitem{PDG2024}
++S.~Navas et al. (Particle Data Group),
++``Review of Particle Physics,''
++\emph{Physical Review D} \textbf{110} (2024), 030001.
++DOI: \href{https://doi.org/10.1103/PhysRevD.110.030001}{10.1103/PhysRevD.110.030001}.\bibitem{Taylor1922}
+ G.~I. Taylor,
+ `The motion of a sphere in a rotating liquid,''
+ \emph{Proceedings of the Royal Society of London A} \textbf{102} (1922), 180--189.

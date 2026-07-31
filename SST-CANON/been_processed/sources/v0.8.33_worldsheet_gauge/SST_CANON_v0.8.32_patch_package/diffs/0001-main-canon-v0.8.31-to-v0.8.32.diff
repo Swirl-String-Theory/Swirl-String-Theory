@@ -1,0 +1,154 @@
+--- SST_CANON-v0.8.31.tex
++++ SST_CANON-v0.8.32.tex
+@@ -2,12 +2,12 @@
+ %! Date = 4/10/2026
+ %! Affiliation = Independent Researcher, Groningen, The Netherlands
+ %! ORCID = 0009-0006-1686-3961
+-%! v0.8.31 edition: rotor-status, twist/bend, and micro--macro participation audit on top of v0.8.30.
++%! v0.8.32 edition: covariant vortex-worldsheet, chirality-response, and gauge-certification audit on top of v0.8.31.
+ 
+ \newcommand{\paperdoi}{}
+-\newcommand{\canonversion}{0.8.31}
+-\newcommand{\papertitle}{Swirl-String-Theory Canon-v0.8.31}
+-\newcommand{\paperkeywords}{Swirl String Theory, SST, Canon, Topological Hydrodynamics, Knot Theory, Relational Time, Delay Dynamics, Epistemic Classification, rotor participation, quasi-static response guard, twist bend modes, phi_dyn, rho_f scaling audit}
++\newcommand{\canonversion}{0.8.32}
++\newcommand{\papertitle}{Swirl-String-Theory Canon-v0.8.32}
++\newcommand{\paperkeywords}{Swirl String Theory, SST, Canon, Topological Hydrodynamics, Knot Theory, Relational Time, Delay Dynamics, Epistemic Classification, vortex worldsheet, two-form field, chirality response, gauge certification, rotor participation, quasi-static response guard}
+ 
+ \documentclass[11pt]{article}
+ % ---------------------------
+@@ -135,7 +135,7 @@
+ 
+     \begin{abstract}
+         \noindent
+-        This document presents Swirl-String Theory (SST) as a structured canonical synthesis rather than as a claim that every phenomenological sector has already been derived to theorem level. The text records the impedance--resonance and free-to-bound-mode origin of the programme; consolidates the primitive constant chain linking the effective fluid density, characteristic swirl speed, Compton anchoring, and horn/circulation scale; assigns a minimal relational link-field action as the microscopic research candidate beneath the continuum torsion bridge; records the operational special-relativity postulate that stable vortex matter constructs local spacetime with clocks, rods, and luminal R-phase torsion pulses; adds a conditional action--phase mass--shell route in which the internal carrier phase slows by the Lorentz factor without requiring translational flattening or stretching of the knot; and organizes delay selection, atomic bridges, spectroscopy, knot-geometry certification, KAM-caged dynamical stability, relational time, and topology-based mass within one explicitly stratified framework. Throughout, historical provenance, calibrated identities, SST-internal derivations, predictions, and conjectural extensions are kept distinct so that the canon remains internally coherent, externally comparable, and open to falsification.
++        This document presents Swirl-String Theory (SST) as a structured canonical synthesis rather than as a claim that every phenomenological sector has already been derived to theorem level. The text records the impedance--resonance and free-to-bound-mode origin of the programme; consolidates the primitive constant chain linking the effective fluid density, characteristic swirl speed, Compton anchoring, and horn/circulation scale; assigns a minimal relational link-field action as the microscopic research candidate beneath the continuum torsion bridge; records the operational special-relativity postulate that stable vortex matter constructs local spacetime with clocks, rods, and luminal R-phase torsion pulses; adds a conditional action--phase mass--shell route in which the internal carrier phase slows by the Lorentz factor without requiring translational flattening or stretching of the knot; and organizes delay selection, atomic bridges, spectroscopy, knot-geometry certification, KAM-caged dynamical stability, relational time, and topology-based mass within one explicitly stratified framework. Throughout, historical provenance, calibrated identities, SST-internal derivations, predictions, and conjectural extensions are kept distinct so that the canon remains internally coherent, externally comparable, and open to falsification. Version~0.8.32 additionally fixes the differential-form degree rules for any covariant vortex-worldsheet description, introduces a guarded parity-sensitive response interface, and replaces inherited gauge-emergence assertions by an explicit algebra, representation, anomaly, and phenomenology certification ladder.
+     \end{abstract}
+ 
+     \vspace{0.2cm}
+@@ -2542,6 +2542,49 @@
+         Topology protects existing closed carriers; it does not by itself provide
+         an ideal-Euler mechanism for creating them.
+ 
++    \subsection{Covariant vortex-worldsheet form-degree guard}
++        \label{subsec:covariant_vortex_worldsheet_guard}
++
++        \textbf{[ORTHODOX DIFFERENTIAL-FORM GUARD / RESEARCH-TRACK INTERFACE].}
++        A covariant thin-string description may use a two-form potential
++        \(B\in\Omega^2(M)\) and its three-form field strength
++        \begin{align}
++            H=dB\in\Omega^3(M),
++            \qquad
++            H_{\mu\nu\rho}=3\nabla_{[\mu}B_{\nu\rho]},
++            \label{eq:canon_two_form_degree_guard}
++        \end{align}
++        where the brackets have unit-weight antisymmetrization.  A closed
++        two-dimensional string worldsheet \(\Sigma\) may couple electrically through
++        the pullback of \(B\),
++        \begin{align}
++            S_{\Sigma B}=q_B\int_{\Sigma}X^{*}B,
++            \label{eq:canon_worldsheet_B_coupling}
++        \end{align}
++        because both the integration domain and the pulled-back form have degree two.
++        By contrast, \(\int_{S^2}H\) is not a defined flux integral because
++        \(H\) has degree three.  In \(3+1\) dimensions an electric string charge is
++        instead tested by the dual one-form on a loop \(C\simeq S^1\) linking the
++        string,
++        \begin{align}
++            Q_B[C]
++            =
++            \frac{1}{g_B^2}\oint_C {*H},
++            \label{eq:canon_two_form_linking_charge}
++        \end{align}
++        whereas an \(H\)-flux, when the topology supplies a suitable cycle, is
++        integrated over a three-cycle.
++
++        \textbf{[CANON NON-IDENTIFICATION].}
++        Equations~\eqref{eq:canon_two_form_degree_guard}--\eqref{eq:canon_two_form_linking_charge}
++        fix only the covariant bookkeeping.  They do not identify \(q_B\) with the
++        canonical circulation \(\Gamma_0\), do not identify \(B_{\mu\nu}\) with the
++        electromagnetic field, and do not establish that the SST core has already
++        been reduced to a worldsheet EFT.  The corresponding action, scale-separation
++        assumptions, source conservation, reconnection exceptions, and matching gates
++        are confined to Sec.~\ref{sec:rt_covariant_two_form_worldsheet} of the
++        companion Research Track \cite{KalbRamond1974,HornNicolisPenco2015}.
++
+     \subsection{Framed self-linking of the swirl string and the spinorial selection of the lepton ladder}
+         \label{subsec:framed_selflinking_spinorial}
+ 
+@@ -5134,6 +5177,28 @@
+ 
+         with gauge potentials interpreted as holonomy data of coarse-grained multi-director transport.
+ 
++        \textbf{[CANON TARGET / NON-DERIVATION GUARD].}
++        Equation~\eqref{eq:effective_gauge_algebra} is a target infrared algebra,
++        not a result obtained by counting director fields.  In particular,
++        \begin{align}
++            \dim\!\left[SO(3)^3/SO(3)_{\rm diag}\right]
++            &=6,
++            \\
++            \dim\!\left[\mathfrak{su}(3)\oplus\mathfrak{su}(2)\oplus\mathfrak u(1)\right]
++            &=12,
++            \label{eq:canon_gauge_dimension_guard}
++        \end{align}
++        so three \(SO(3)\) directors modulo a common rotation cannot by themselves
++        constitute a derivation of the Standard-Model gauge algebra.  Likewise, a
++        connection written entirely as \(\mathcal W_\mu=(\partial_\mu O)O^{-1}\)
++        is locally pure gauge and has vanishing curvature away from defects by the
++        Maurer--Cartan identity.  A nontrivial emergent gauge sector therefore
++        requires independently resolved physical modes or singular/holonomy data,
++        closure and Jacobi tests, representation and charge separation, anomaly
++        cancellation, coupling extraction, and phenomenological validation.  The
++        mandatory promotion ladder is stated in
++        Sec.~\ref{sec:rt_gauge_emergence_certification_ladder}.
++
+         A minimal bridge ansatz for the weak mixing angle is
+ 
+         \begin{align}
+@@ -6065,6 +6130,18 @@
+ 
+         \subsection{Canon edition notes}
+ 
++        \subsubsection{v0.8.32}
++            \textbf{v0.8.32} adds the covariant vortex-worldsheet form-degree
++            guard, including the correct distinction between a two-form worldsheet
++            coupling and three-form flux integration; introduces a Research-Track
++            Kalb--Ramond/worldsheet action with source, scale-separation, and
++            reconnection gates; separates a parity-odd kinetic-helicity operator
++            from a parity-even chiral-alignment term; and replaces inherited
++            director-counting and pure-gauge arguments by a staged gauge-emergence
++            certification ladder covering mode census, closure, Jacobi identity,
++            representations, charge separation, anomalies, running couplings, and
++            out-of-sample phenomenology on top of v0.8.31.
++
+         \subsubsection{v0.8.31}
+             \textbf{v0.8.31} audits the compact-rotor reinterpretation of the
+             line-inertia sector: it labels the Compton-gap rotor normalization
+@@ -6883,14 +6960,25 @@
+         \newpage
+         \newif\ifresearchtrackincluded
+         \researchtrackincludedtrue
+-        \input{SST_CANON-v0.8.31-research-track}
++        \input{SST_CANON-v0.8.32-research-track}
+         
+ % ---------------------------
+ % Bibliography
+ % ---------------------------
+         \begin{thebibliography}{99}
+             
+-            \bibitem{Wilson1974}
++            \bibitem{KalbRamond1974}
++M.~Kalb and P.~Ramond,
++\newblock Classical direct interstring action,
++\newblock \emph{Physical Review D} \textbf{9} (1974), 2273--2284,
++\newblock DOI: \href{https://doi.org/10.1103/PhysRevD.9.2273}{10.1103/PhysRevD.9.2273}.
++
++\bibitem{HornNicolisPenco2015}
++B.~Horn, A.~Nicolis, and R.~Penco,
++\newblock Effective string theory for vortex lines in fluids and superfluids,
++\newblock \emph{Journal of High Energy Physics} \textbf{2015}(10) (2015), 153,
++\newblock DOI: \href{https://doi.org/10.1007/JHEP10(2015)153}{10.1007/JHEP10(2015)153},
++\newblock arXiv: \href{https://arxiv.org/abs/1507.05635}{1507.05635}.\bibitem{Wilson1974}
+             K.~G. Wilson,
+             \newblock Confinement of quarks,
+             \newblock \emph{Physical Review D} \textbf{10} (1974), 2445--2459,
