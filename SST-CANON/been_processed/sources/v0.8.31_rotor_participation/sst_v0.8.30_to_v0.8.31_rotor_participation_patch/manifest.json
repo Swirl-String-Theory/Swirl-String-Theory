@@ -1,0 +1,33 @@
+{
+  "package": "SST_CANON-v0.8.30_to_v0.8.31-rotor-participation-audit",
+  "base_version": "0.8.30",
+  "target_version": "0.8.31",
+  "files": [
+    "BASE_PROVENANCE.txt",
+    "PATCH_MANIFEST.yml",
+    "README.md",
+    "SHA256SUMS.txt",
+    "VALIDATION_REPORT.md",
+    "apply_patch.ps1",
+    "apply_patch.sh",
+    "base/SST_CANON-v0.8.30-research-track.tex",
+    "base/SST_CANON-v0.8.30.tex",
+    "patched/SST_CANON-v0.8.31-research-track.tex",
+    "patched/SST_CANON-v0.8.31.tex",
+    "patches/0001-main-canon-quasistatic-response-guard.diff",
+    "patches/0002-research-track-rotor-participation-audit.diff",
+    "patches/SST_CANON-v0.8.30_to_v0.8.31-combined.diff",
+    "validation/SST_CANON-v0.8.31-validation-build.pdf",
+    "validation/latexmk.stdout.txt"
+  ],
+  "validation": {
+    "patch_dry_run": true,
+    "byte_match": true,
+    "latex_build": true,
+    "pages": 234,
+    "unresolved_references": 0,
+    "unresolved_citations": 0,
+    "duplicate_labels": 0,
+    "visual_check": true
+  }
+}

@@ -1,0 +1,146 @@
+--- SST_CANON-v0.8.29-research-track.tex
++++ SST_CANON-v0.8.30-research-track.tex
+@@ -6,12 +6,12 @@
+ \makeatother
+ 
+ %! Author = Omar Iskandarani
+-%! Companion to Swirl-String-Theory Canon-v0.8.29 (included from \texttt{SST\_CANON-v0.8.29.tex} before the manual bibliography).
++%! Companion to Swirl-String-Theory Canon-v0.8.30 (included from \texttt{SST\_CANON-v0.8.30.tex} before the manual bibliography).
+ 
+ \section{Research-track sectors migrated from the main canon}
+ 
+ \noindent
+-This companion document collects those sectors that remain useful for continuity and future development but are too long, too provisional, or too phenomenology-specific for the core body of \textit{Swirl-String-Theory\_Canon-v0.8.29}. Their migration out of the main canon is editorial rather than negative: each subsection remains part of the broader SST research program, but none is required for the minimal logical closure of the core canon.
++This companion document collects those sectors that remain useful for continuity and future development but are too long, too provisional, or too phenomenology-specific for the core body of \textit{Swirl-String-Theory\_Canon-v0.8.30}. Their migration out of the main canon is editorial rather than negative: each subsection remains part of the broader SST research program, but none is required for the minimal logical closure of the core canon.
+ 
+ \medskip
+ \noindent
+@@ -19,7 +19,7 @@
+ 
+ \medskip
+ \noindent
+-\textbf{Editorial note (v0.8.27):} the maximal swirl tension sector ($F_{\rm swirl}^{\max}$, Rydberg bridge identities, Gibbons-class maximum-tension comparison, and the threefold interpretation table) is developed in the core document \texttt{SST\_CANON-v0.8.29.tex}, subsection \texttt{Maximal Swirl Tension} (label \texttt{sec:Fmax}); it is not duplicated here.
++\textbf{Editorial note (v0.8.27):} the maximal swirl tension sector ($F_{\rm swirl}^{\max}$, Rydberg bridge identities, Gibbons-class maximum-tension comparison, and the threefold interpretation table) is developed in the core document \texttt{SST\_CANON-v0.8.30.tex}, subsection \texttt{Maximal Swirl Tension} (label \texttt{sec:Fmax}); it is not duplicated here.
+ 
+ \medskip
+ 
+@@ -9155,6 +9155,119 @@
+ status of \(\rho_{\!f}\) in the main text.
+ 
+ 
++
++\subsection{Historical Provenance Audit of the Inherited Density Decimal}
++\label{subsec:rt_historical_rhof_provenance_audit}
++
++\paragraph{Source and status.}
++\textbf{[HISTORICAL ORIGIN / NOT A CURRENT DERIVATION].}
++The early VAM paper registered as \texttt{VAM7-DENSITY-2025} is the traced
++source of the decimal later rounded to
++$\rhoF=7.0\times10^{-7}\,\mathrm{kg\,m^{-3}}$.  The source assigned the
++electron rest energy to a vorticity scale
++\begin{align}
++    \omega_{\rm VAM}
++    =
++    \alpha\omega_c
++    =
++    \alpha\frac{m_ec^2}{\hbar}
++\end{align}
++and to the selected effective volume
++\begin{align}
++    V_{\rm eff}^{\rm VAM}
++    =
++    \frac{r_e^3}{3} .
++\end{align}
++It then formed
++\begin{align}
++    \mathcal J_{\omega}^{\rm VAM}
++    :=
++    \frac{2m_ec^2}{
++        \left(\alpha m_ec^2/\hbar\right)^2
++        \left(r_e^3/3\right)} .
++    \label{eq:rt_vam7_historical_microinertia}
++\end{align}
++Re-evaluation with the present constant chain gives
++\begin{align}
++    \mathcal J_{\omega}^{\rm VAM}
++    \simeq
++    6.84\times10^{-7}\,\mathrm{kg\,m^{-1}},
++\end{align}
++consistent with the historical decimal but not with its stated volumetric
++unit.
++
++\paragraph{Dimensional adjudication.}
++Because
++\begin{align}
++    \left[
++    \frac{m_ec^2}{\omega^2V}
++    \right]
++    =
++    \frac{\mathrm{kg\,m^2\,s^{-2}}}
++         {\mathrm{s^{-2}m^3}}
++    =
++    \mathrm{kg\,m^{-1}},
++\end{align}
++Eq.~\eqref{eq:rt_vam7_historical_microinertia} defines a rotational
++microinertia per volume or an equivalent line-inertia coefficient.  It does
++not define a mass density in $\mathrm{kg\,m^{-3}}$.  The dimensionally
++consistent energy form is
++\begin{align}
++    u_{\omega}
++    =
++    \frac12\mathcal J_{\omega}^{\rm VAM}
++    |\boldsymbol\omega|^2,
++\end{align}
++not $\tfrac12\rhoF|\boldsymbol\omega|^2$.
++
++\paragraph{Closed historical form and open assumptions.}
++Using $r_e=\alpha\hbar/(m_ec)$, the coefficient becomes
++\begin{align}
++    \boxed{
++    \mathcal J_{\omega}^{\rm VAM}
++    =
++    \frac{6m_e^2c}{\alpha^5\hbar}
++    }
++    \label{eq:rt_vam7_microinertia_closed_form}
++\end{align}
++within the historical choices.  This is a conditional algebraic consequence
++of the ansatzes $\omega_{\rm VAM}=\alpha\omega_c$ and
++$V_{\rm eff}=r_e^3/3$; neither choice is presently derived from resolved
++vortex dynamics.  The selected volume is also not the volume of a sphere of
++radius $r_e$; it differs from $4\pi r_e^3/3$ by a factor $4\pi$.
++
++\paragraph{Canon consequence.}
++\textbf{[DERIVED NEGATIVE / PROVENANCE CORRECTION].}
++The early calculation explains the historical origin of the decimal but
++cannot justify the current effective density.  The present edition therefore
++keeps
++\begin{align}
++    \rhoF\equiv\rhoEff
++    =
++    7.0\times10^{-7}\,\mathrm{kg\,m^{-3}}
++\end{align}
++as a calibrated quasi-static response and records
++$\mathcal J_{\omega}^{\rm VAM}$ separately as a historical conditional
++microinertia ansatz.  A conversion between them requires an independently
++derived micro--macro bridge,
++\begin{align}
++    \mathcal J_{\omega}
++    =
++    \beta_{\omega u}\rhoEff\ell_{\omega u}^{2},
++\end{align}
++including the geometry factor, participation measure, and length
++$\ell_{\omega u}$.  Numerical inheritance alone is not such a theorem.
++
++\paragraph{Cosmological non-confirmation.}
++The same early source quoted a vacuum mass density of order
++$10^{-9}\,\mathrm{kg\,m^{-3}}$.  For
++$\Lambda\sim10^{-52}\,\mathrm{m^{-2}}$, the orthodox relation
++$\rho_\Lambda=\Lambda c^2/(8\pi G)$ instead gives a scale of order
++$10^{-27}\,\mathrm{kg\,m^{-3}}$.  The historical cosmological comparison
++therefore does not independently confirm either
++$\mathcal J_{\omega}^{\rm VAM}$ or $\rhoF$.  The separately guarded SSDL
++route below is retained only as a Research-Track consistency relation.
++
+ \subsection{Cosmological Impedance Route for the Background Density}
+ \label{sec:rt_rhof_cosmological_impedance_route}
+ 

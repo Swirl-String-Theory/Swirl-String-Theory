@@ -1,0 +1,590 @@
+--- SST_CANON-v0.8.29.tex
++++ SST_CANON-v0.8.29.tex
+@@ -2,12 +2,12 @@
+ %! Date = 4/10/2026
+ %! Affiliation = Independent Researcher, Groningen, The Netherlands
+ %! ORCID = 0009-0006-1686-3961
+-%! v0.8.28 edition: action--phase mass--shell clock bridge; translational/internal-rate discipline; no-shape-deformation guard; RT residual protocol on top of v0.8.27.
++%! v0.8.29 edition: Fermat-metric optical guard; strict caustic/light-ring/horizon hierarchy; curved-microcavity analogue benchmark; spatial mode tomography on top of v0.8.28.
+ 
+ \newcommand{\paperdoi}{}
+-\newcommand{\canonversion}{0.8.28}
+-\newcommand{\papertitle}{Swirl-String-Theory Canon-v0.8.28}
+-\newcommand{\paperkeywords}{Swirl String Theory, SST, Canon, Topological Hydrodynamics, Knot Theory, Relational Time, Action--Angle Variables, Relativistic Mass Shell, Internal Phase Clock, Delay Dynamics, Epistemic Classification}
++\newcommand{\canonversion}{0.8.29}
++\newcommand{\papertitle}{Swirl-String-Theory Canon-v0.8.29}
++\newcommand{\paperkeywords}{Swirl String Theory, SST, Canon, Topological Hydrodynamics, Knot Theory, Relational Time, Fermat Metric, Optical Caustics, Light-Ring Gate, Quasinormal Swirl Spectroscopy, Spatial Mode Tomography, Epistemic Classification}
+ 
+ \documentclass[11pt]{article}
+ % ---------------------------
+@@ -131,7 +131,7 @@
+ 
+     \begin{abstract}
+         \noindent
+-        This document presents Swirl-String Theory (SST) as a structured canonical synthesis rather than as a claim that every phenomenological sector has already been derived to theorem level. The text records the impedance--resonance and free-to-bound-mode origin of the programme; consolidates the primitive constant chain linking the effective fluid density, characteristic swirl speed, Compton anchoring, and horn/circulation scale; assigns a minimal relational link-field action as the microscopic research candidate beneath the continuum torsion bridge; records the operational special-relativity postulate that stable vortex matter constructs local spacetime with clocks, rods, and luminal R-phase torsion pulses; adds a conditional action--phase mass--shell route in which the internal carrier phase slows by the Lorentz factor without requiring translational flattening or stretching of the knot; and organizes delay selection, atomic bridges, spectroscopy, knot-geometry certification, KAM-caged dynamical stability, relational time, and topology-based mass within one explicitly stratified framework. Throughout, historical provenance, calibrated identities, SST-internal derivations, predictions, and conjectural extensions are kept distinct so that the canon remains internally coherent, externally comparable, and open to falsification.
++        This document presents Swirl-String Theory (SST) as a structured canonical synthesis rather than as a claim that every phenomenological sector has already been derived to theorem level. The text records the impedance--resonance and free-to-bound-mode origin of the programme; consolidates the primitive constant chain linking the effective fluid density, characteristic swirl speed, Compton anchoring, and horn/circulation scale; assigns a minimal relational link-field action as the microscopic research candidate beneath the continuum torsion bridge; records the operational special-relativity postulate that stable vortex matter constructs local spacetime with clocks, rods, and luminal R-phase torsion pulses; adds a conditional action--phase mass--shell route in which the internal carrier phase slows by the Lorentz factor without requiring translational flattening or stretching of the knot; introduces a Fermat-metric guard that separates optical caustics, circular light-ring candidates, and horizon-like clock degeneracy; and organizes delay selection, atomic bridges, spectroscopy, knot-geometry certification, KAM-caged dynamical stability, relational time, and topology-based mass within one explicitly stratified framework. Throughout, historical provenance, calibrated identities, SST-internal derivations, predictions, and conjectural extensions are kept distinct so that the canon remains internally coherent, externally comparable, and open to falsification.
+     \end{abstract}
+ 
+     \vspace{0.2cm}
+@@ -4530,6 +4530,81 @@
+         \end{align}
+         Photon phase therefore probes \(n_\gamma\), while bulk matter probes Eq.~\eqref{eq:canonical_sst_grav_force_density}. These are coupled through \(\uswirl\), but they need not have identical spatial gradients.
+ 
++        \paragraph{Fermat-metric and optical-classification guard.}
++        \label{par:canon_fermat_light_ring_guard}
++        \textbf{[ORTHODOX KINEMATIC BRIDGE / CONDITIONAL SST INTERPRETATION].}
++        For a static axisymmetric effective line element
++        \begin{align}
++            ds_{\mathrm{eff}}^2
++            =
++            -A(r)c^2dt^2+B(r)dr^2+C(r)d\varphi^2,
++            \qquad
++            A,B,C>0,
++        \end{align}
++        the spatial projections of null characteristics are governed by the Fermat
++        metric
++        \begin{align}
++            \boxed{
++            d\ell_F^2
++            =
++            \frac{B(r)}{A(r)}dr^2
++            +
++            \frac{C(r)}{A(r)}d\varphi^2.
++            }
++            \label{eq:canonical_fermat_metric_guard}
++        \end{align}
++        This preserves null-ray kinematics; a constant-time spatial slice does not do
++        so in general \cite{XuEtAl2026PhotonSphereModes}.  If the clock-only photon
++        ansatz uses Euclidean spatial coefficients,
++        \begin{align}
++            A(r)=\SwirlClock(r)^2,
++            \qquad
++            B(r)=1,
++            \qquad
++            C(r)=r^2,
++        \end{align}
++        then Eq.~\eqref{eq:canonical_emg_clock_optical_closure} is the conformal
++        Fermat factor
++        \begin{align}
++            d\ell_F^2
++            =
++            n_\gamma(r)^2
++            \left(dr^2+r^2d\varphi^2\right),
++            \qquad
++            n_\gamma=\SwirlClock^{-1}.
++            \label{eq:canonical_sst_fermat_clock_factor}
++        \end{align}
++        A circular optical characteristic requires the additional stationary-circumference
++        gate
++        \begin{align}
++            \boxed{
++            \frac{d}{dr}
++            \left[
++                \frac{r}{\SwirlClock(r)}
++            \right]
++            =0.
++            }
++            \label{eq:canonical_sst_light_ring_gate}
++        \end{align}
++        Therefore the canonical classification is strict:
++        \begin{align}
++            \boxed{
++            \nabla n_\gamma\neq0
++            \;\not\Rightarrow\;
++            \text{light ring}
++            \;\not\Rightarrow\;
++            \text{horizon}.
++            }
++            \label{eq:canonical_caustic_light_ring_horizon_guard}
++        \end{align}
++        Equation~\eqref{eq:canonical_sst_light_ring_gate} is a necessary kinematic
++        gate, not a proof that the present SST clock profile possesses an external
++        light ring.  No event horizon, Einstein dynamics, or astrophysical black-hole
++        ontology is imported.  The resolved derivation, numerical exclusion for the
++        external inverse-radius profile, Gaussian-curvature test, and spatial mode
++        tomography protocol remain in the research track,
++        Section~\ref{sec:rt_quasinormal_swirl_spectroscopy}.
++
+         \paragraph{Electron-normalized coupling calibration.}
+         The weak gravitational coupling is written in electron-normalized SST variables as
+         \begin{align}
+@@ -5890,6 +5965,16 @@
+ 
+         \subsection{Canon edition notes}
+ 
++        \subsubsection{v0.8.29}
++            \textbf{v0.8.29} adds the Fermat-metric optical-geometry guard
++            (Eqs.~\ref{eq:canonical_fermat_metric_guard}--\ref{eq:canonical_caustic_light_ring_horizon_guard}),
++            separates ray bending / optical caustics from circular light-ring candidates
++            and horizon-like clock degeneracy, derives the conditional SST
++            stationary-circumference gate, and extends Quasinormal Swirl Spectroscopy
++            with the curved-microcavity analogue benchmark, inverse-radius exclusion,
++            Gaussian-curvature stability test, and spatial mode-tomography protocol on
++            top of v0.8.28.
++
+         \subsubsection{v0.8.28}
+             \textbf{v0.8.28} adds the action--phase mass--shell clock bridge \(H(P,I)=\sqrt{P^2c^2+E_0^2(I)}\), derives the internal carrier phase rate \(\Omega_0/\gamma\) at fixed momentum, links the low-momentum expansion to the canonical inertia normalization \(M_0=E_0/c^2\), separates translational clock dressing from the internal \(\vchar\) diagnostic, records that no flattening/stretching/core-thinning hypothesis is required, and adds research-track mass-shell, phase-rate, velocity, and shape-stability residuals on top of v0.8.27.
+ 
+@@ -6681,7 +6766,7 @@
+         \newpage
+         \newif\ifresearchtrackincluded
+         \researchtrackincludedtrue
+-        \input{SST_CANON-v0.8.28-research-track}
++        \input{SST_CANON-v0.8.29-research-track}
+         
+ % ---------------------------
+ % Bibliography
+@@ -7224,6 +7309,13 @@
+             \newblock \emph{Physical Review Letters} \textbf{125} (2020), 011301,
+             \newblock DOI: \href{https://doi.org/10.1103/PhysRevLett.125.011301}{10.1103/PhysRevLett.125.011301}.
+ 
++            \bibitem{XuEtAl2026PhotonSphereModes}
++            C.~Xu, A.~Sundaresan, N.-B.~Kazkal, C.~Lafargue, L.~Zarfaty,
++            L.-G.~Wang, O.~Birnholtz, D.~Decanini, M.~Lebental, and P.~Sebbah,
++            \newblock Photon-Sphere Modes in Curved Optical Microcavities: A Black-Hole Analogue Laser,
++            \newblock \emph{Advanced Science} \textbf{13} (2026), e17466,
++            \newblock DOI: \href{https://doi.org/10.1002/advs.202517466}{10.1002/advs.202517466}.
++
+ 
+             \bibitem{Kolmogorov1954}
+             A.~N. Kolmogorov,
+--- SST_CANON-v0.8.29-research-track.tex
++++ SST_CANON-v0.8.29-research-track.tex
+@@ -6,12 +6,12 @@
+ \makeatother
+ 
+ %! Author = Omar Iskandarani
+-%! Companion to Swirl-String-Theory Canon-v0.8.28 (included from \texttt{SST\_CANON-v0.8.28.tex} before the manual bibliography).
++%! Companion to Swirl-String-Theory Canon-v0.8.29 (included from \texttt{SST\_CANON-v0.8.29.tex} before the manual bibliography).
+ 
+ \section{Research-track sectors migrated from the main canon}
+ 
+ \noindent
+-This companion document collects those sectors that remain useful for continuity and future development but are too long, too provisional, or too phenomenology-specific for the core body of \textit{Swirl-String-Theory\_Canon-v0.8.28}. Their migration out of the main canon is editorial rather than negative: each subsection remains part of the broader SST research program, but none is required for the minimal logical closure of the core canon.
++This companion document collects those sectors that remain useful for continuity and future development but are too long, too provisional, or too phenomenology-specific for the core body of \textit{Swirl-String-Theory\_Canon-v0.8.29}. Their migration out of the main canon is editorial rather than negative: each subsection remains part of the broader SST research program, but none is required for the minimal logical closure of the core canon.
+ 
+ \medskip
+ \noindent
+@@ -19,7 +19,7 @@
+ 
+ \medskip
+ \noindent
+-\textbf{Editorial note (v0.8.27):} the maximal swirl tension sector ($F_{\rm swirl}^{\max}$, Rydberg bridge identities, Gibbons-class maximum-tension comparison, and the threefold interpretation table) is developed in the core document \texttt{SST\_CANON-v0.8.28.tex}, subsection \texttt{Maximal Swirl Tension} (label \texttt{sec:Fmax}); it is not duplicated here.
++\textbf{Editorial note (v0.8.27):} the maximal swirl tension sector ($F_{\rm swirl}^{\max}$, Rydberg bridge identities, Gibbons-class maximum-tension comparison, and the threefold interpretation table) is developed in the core document \texttt{SST\_CANON-v0.8.29.tex}, subsection \texttt{Maximal Swirl Tension} (label \texttt{sec:Fmax}); it is not duplicated here.
+ 
+ \medskip
+ 
+@@ -6023,6 +6023,335 @@
+         blocks the entire trapped-characteristic route but does not block the
+         resolvent-based QSM programme.
+ 
++    \subsubsection*{Fermat-metric light-ring gate and curved-microcavity benchmark}
++
++        \noindent
++        \textbf{Status:} [ORTHODOX OPTICAL GEOMETRY / SST RESEARCH BRIDGE].
++        Xu et al. implement the equatorial Schwarzschild Fermat metric as a curved
++        optical microcavity, preserve the spatial projections of null geodesics, and
++        distinguish modes localized near the photon-sphere orbit from conventional
++        whispering-gallery boundary modes \cite{XuEtAl2026PhotonSphereModes}.  The
++        transferable content is kinematic and spectral.  The experiment does not imply
++        that the optical substrate is an astrophysical black hole, and it does not
++        derive Einstein dynamics or the SST substrate ontology.
++
++        For a static axisymmetric effective line element
++        \begin{align}
++            ds_{\mathrm{eff}}^2
++            =
++            -A(r)c^2dt^2+B(r)dr^2+C(r)d\varphi^2,
++            \qquad A,B,C>0,
++            \label{eq:rt_fermat_static_metric}
++        \end{align}
++        the null condition gives the Fermat metric
++        \begin{align}
++            \boxed{
++            d\ell_F^2
++            =
++            \frac{B(r)}{A(r)}dr^2
++            +
++            \frac{C(r)}{A(r)}d\varphi^2.
++            }
++            \label{eq:rt_fermat_metric_general}
++        \end{align}
++        Introduce the optical radial coordinate and optical circumference radius
++        \begin{align}
++            d\sigma
++            &=
++            \sqrt{\frac{B(r)}{A(r)}}\,dr,
++            &
++            R_F(r)
++            &=
++            \sqrt{\frac{C(r)}{A(r)}}.
++            \label{eq:rt_fermat_radial_circumference}
++        \end{align}
++        Then
++        \begin{align}
++            d\ell_F^2=d\sigma^2+R_F(\sigma)^2d\varphi^2,
++        \end{align}
++        and a circular optical geodesic at fixed radius requires
++        \begin{align}
++            \boxed{
++            \frac{dR_F}{d\sigma}=0
++            }
++            \quad\Longleftrightarrow\quad
++            \boxed{
++            \frac{d}{dr}
++            \left(
++                \frac{C(r)}{A(r)}
++            \right)=0
++            }
++            \label{eq:rt_fermat_light_ring_gate}
++        \end{align}
++        whenever \(d\sigma/dr\neq0\).  This is the precise distinction between a
++        generic index gradient and a circular trapped characteristic.
++
++        The conditional clock-only photon ansatz is
++        \begin{align}
++            ds_{\mathrm{clock}}^2
++            =
++            -\SwirlClock(r)^2c^2dt^2
++            +dr^2+r^2d\varphi^2,
++            \label{eq:rt_sst_clock_metric_ansatz}
++        \end{align}
++        where Eq.~\eqref{eq:rt_sst_clock_metric_ansatz} is a photon-kinematics ansatz,
++        not a derived Einstein metric.  Equations~\eqref{eq:rt_fermat_metric_general}
++        and \eqref{eq:rt_sst_clock_metric_ansatz} give
++        \begin{align}
++            d\ell_F^2
++            &=
++            \SwirlClock(r)^{-2}
++            \left(dr^2+r^2d\varphi^2\right),
++            \\
++            n_\gamma(r)
++            &=
++            \SwirlClock(r)^{-1},
++            &
++            R_F(r)
++            &=
++            \frac{r}{\SwirlClock(r)}.
++            \label{eq:rt_sst_fermat_clock_mapping}
++        \end{align}
++        Hence the SST light-ring gate is
++        \begin{align}
++            \boxed{
++            \frac{d}{dr}
++            \left[
++                \frac{r}{\SwirlClock(r)}
++            \right]
++            =0.
++            }
++            \label{eq:rt_sst_clock_light_ring_gate}
++        \end{align}
++
++        With
++        \begin{align}
++            \SwirlClock(r)
++            =
++            \sqrt{1-\frac{u(r)^2}{c^2}},
++        \end{align}
++        Eq.~\eqref{eq:rt_sst_clock_light_ring_gate} becomes
++        \begin{align}
++            \boxed{
++            -r\,u(r)u'(r)
++            =
++            c^2-u(r)^2.
++            }
++            \label{eq:rt_sst_light_ring_velocity_gate}
++        \end{align}
++        Both sides have dimensions \(\mathrm{m^2\,s^{-2}}\).  A nonzero index
++        gradient is therefore insufficient; the radial speed profile must satisfy the
++        stronger stationary-circumference condition.
++
++        \paragraph{External inverse-radius profile exclusion.}
++        For the exterior profile
++        \begin{align}
++            u(r)
++            =
++            \vchar\frac{\rc}{r},
++            \qquad r\gtrsim\rc,
++            \label{eq:rt_sst_external_inverse_radius_profile}
++        \end{align}
++        one has \(u'=-u/r\), so
++        Eq.~\eqref{eq:rt_sst_light_ring_velocity_gate} formally requires
++        \begin{align}
++            u(r_\star)=\frac{c}{\sqrt{2}},
++            \qquad
++            r_\star
++            =
++            \sqrt{2}\,\rc\frac{\vchar}{c}.
++            \label{eq:rt_sst_formal_light_ring_radius}
++        \end{align}
++        Using the canonical constants,
++        \begin{align}
++            \boxed{
++            r_\star
++            =
++            7.27030\times10^{-18}\,\mathrm{m}
++            =
++            5.16001\times10^{-3}\,\rc.
++            }
++            \label{eq:rt_sst_inverse_radius_light_ring_exclusion}
++        \end{align}
++        The formal stationary radius lies deep inside the fixed core, where the exterior
++        inverse-radius profile is not admissible.  Therefore the current exterior
++        clock-only profile does not establish a physical light ring outside the
++        canonical core.  This is a profile-specific exclusion, not a theorem against all
++        possible SST constitutive sectors.
++
++        Define the radial speed-gradient length
++        \begin{align}
++            L_u:=-\frac{u}{u'}.
++        \end{align}
++        The light-ring gate is equivalently
++        \begin{align}
++            \boxed{
++            \frac{L_u}{r}
++            =
++            \frac{u^2}{c^2-u^2}.
++            }
++            \label{eq:rt_sst_light_ring_gradient_scale}
++        \end{align}
++        At \(u=\vchar\), the required ratio is
++        \begin{align}
++            \frac{L_u}{r}
++            &=
++            1.33130\times10^{-5},
++            &
++            L_u\big|_{r=\rc}
++            &=
++            1.87576\times10^{-20}\,\mathrm{m}.
++        \end{align}
++        Thus a core-scale light ring at the canonical subluminal swirl speed would
++        require an independently derived, extremely sharp constitutive transition or an
++        additional spatial-metric/anisotropic response; it cannot be supplied by an
++        unrestricted gain factor.
++
++        \paragraph{Jacobi and Gaussian-curvature stability gate.}
++        For
++        \(d\ell_F^2=d\sigma^2+R_F(\sigma)^2d\varphi^2\), the Gaussian curvature is
++        \begin{align}
++            \boxed{
++            K_F
++            =
++            -\frac{1}{R_F}
++            \frac{d^2R_F}{d\sigma^2},
++            }
++            \label{eq:rt_fermat_gaussian_curvature}
++        \end{align}
++        and the transverse geodesic separation obeys
++        \begin{align}
++            \frac{d^2\zeta}{d\ell_F^2}+K_F\zeta=0.
++            \label{eq:rt_fermat_jacobi_equation}
++        \end{align}
++        A local minimum of \(R_F\) gives \(K_F<0\) and an unstable circular
++        characteristic.  For the conformal SST metric,
++        \begin{align}
++            \boxed{
++            K_F(r)
++            =
++            -\frac{1}{n_\gamma(r)^2}
++            \left[
++                \frac{d^2\ln n_\gamma}{dr^2}
++                +
++                \frac{1}{r}\frac{d\ln n_\gamma}{dr}
++            \right].
++            }
++            \label{eq:rt_sst_fermat_curvature}
++        \end{align}
++        Negative curvature alone is not a light-ring certificate.  The joint gate is
++        \begin{align}
++            \boxed{
++            R_F'(r_\star)=0,
++            \qquad
++            K_F(r_\star)<0.
++            }
++            \label{eq:rt_sst_unstable_light_ring_joint_gate}
++        \end{align}
++
++        \paragraph{Caustic--light-ring--horizon hierarchy.}
++        The terminology is fixed as
++        \begin{align}
++            \nabla_\perp n_\gamma\neq0
++            &\;\Rightarrow\;
++            \text{ray bending / caustic candidate},
++            \\
++            \frac{d}{dr}\left(rn_\gamma\right)=0
++            &\;\Rightarrow\;
++            \text{circular optical-characteristic candidate},
++            \\
++            \SwirlClock=0
++            &\;\Rightarrow\;
++            \text{horizon-like clock degeneracy candidate}.
++            \label{eq:rt_caustic_light_ring_horizon_hierarchy}
++        \end{align}
++        None of these conditions implies either of the later conditions.  In particular,
++        \begin{align}
++            \boxed{
++            \text{caustic}
++            \;\not\Rightarrow\;
++            \text{light ring}
++            \;\not\Rightarrow\;
++            \text{horizon}.
++            }
++        \end{align}
++
++        \paragraph{Conditional eikonal potential.}
++        Only after a scalar or otherwise wave-like SST branch has been derived from the
++        actual principal symbol may its high-azimuthal-number radial equation acquire
++        the leading structure
++        \begin{align}
++            V_m^{\mathrm{eik}}(r)
++            &\sim
++            m^2\frac{A(r)}{C(r)}+O(m^0),
++            \\
++            V_{m,\mathrm{clock}}^{\mathrm{eik}}(r)
++            &\sim
++            m^2\frac{\SwirlClock(r)^2}{r^2}+O(m^0).
++            \label{eq:rt_sst_fermat_eikonal_potential}
++        \end{align}
++        The extrema coincide with
++        Eq.~\eqref{eq:rt_sst_clock_light_ring_gate}.  This does not remove the
++        critical gate in Eqs.~\eqref{eq:rt_qss_principal_symbol}--\eqref{eq:rt_qss_characteristic_rays}:
++        incompressible Euler flow alone does not automatically furnish the required
++        Klein--Gordon branch.
++
++        \paragraph{Spatial mode tomography.}
++        Xu et al. distinguish photon-sphere-localized modes from boundary WGMs by
++        selectively pumping different radial regions and reconstructing the radial mode
++        profiles \cite{XuEtAl2026PhotonSphereModes}.  The corresponding SST protocol is
++        to scan a localized drive \(\mathbf F(\mathbf x;r_p)\) across the resolved state.
++        For a non-normal linearized operator, the near-pole response is controlled by
++        the adjoint overlap
++        \begin{align}
++            \boxed{
++            a_j(r_p,\omega)
++            \propto
++            \frac{
++                \left\langle
++                    \mathbf q_j^\dagger,
++                    \mathbf F(\cdot;r_p)
++                \right\rangle_E
++            }{
++                \omega-\omega_j
++            }.
++            }
++            \label{eq:rt_qss_spatial_mode_tomography}
++        \end{align}
++        This yields the preregistered discrimination table:
++        \begin{center}
++        \begin{tabularx}{0.96\textwidth}{|>{\raggedright\arraybackslash}p{0.23\textwidth}|X|X|}
++            \hline
++            Candidate & Spatial signature & Required perturbation test \\
++            \hline
++            Internal trapped-characteristic mode & Peak near a certified stationary \(R_F\) radius & Shifts with the internal clock/constitutive profile and remains comparatively insensitive to a distant outer boundary \\
++            \hline
++            Boundary / WGM-like mode & Peak at an outer interface or wall & Shifts strongly under boundary displacement or impedance change \\
++            \hline
++            Generic optical caustic & Phase-gradient or intensity redistribution without an isolated response pole & Persists as ray bending but fails the QSM pole and ringdown gates \\
++            \hline
++            Certified QSM & Isolated complex pole with reproducible right/adjoint spatial profiles & Passes domain, absorber, resolution, adjoint, and pseudospectral convergence tests \\
++            \hline
++        \end{tabularx}
++        \end{center}
++
++        \paragraph{Open-cavity certification guard.}
++        The curved-microcavity calculation uses real wavenumbers to capture resonance
++        positions and spatial structure, while finite lifetimes are determined by
++        radiation loss numerically and experimentally.  SST must retain the stricter
++        QSM definition: a real determinant zero, an FFT peak, or a spatially localized
++        intensity profile is not by itself a certified complex pole.  A linewidth must
++        remain stable under independent variation of domain size, absorber position,
++        absorber strength, and resolution.
++
++        \paragraph{Promotion and falsification rule.}
++        A photon-sphere or light-ring label is prohibited unless
++        Eq.~\eqref{eq:rt_sst_clock_light_ring_gate} is satisfied by an independently
++        specified profile and the localization survives the boundary-discrimination and
++        open-system convergence tests.  Otherwise the correct term remains
++        \emph{optical caustic}, \emph{phase-gradient structure}, or
++        \emph{boundary resonance}.
++
+     \subsubsection*{Second-order combination modes}
+ 
+         Expand a perturbation variable as
+@@ -6355,6 +6684,13 @@
+         Journal of the Physical Society of Japan \textbf{12}, 570--586.
+         doi: \href{https://doi.org/10.1143/JPSJ.12.570}{10.1143/JPSJ.12.570}.
+         
++        \bibitem{XuEtAl2026PhotonSphereModes}
++        C. Xu, A. Sundaresan, N.-B. Kazkal, C. Lafargue, L. Zarfaty,
++        L.-G. Wang, O. Birnholtz, D. Decanini, M. Lebental, and P. Sebbah. (2026).
++        \textit{Photon-Sphere Modes in Curved Optical Microcavities: A Black-Hole Analogue Laser}.
++        Advanced Science \textbf{13}, e17466.
++        doi: \href{https://doi.org/10.1002/advs.202517466}{10.1002/advs.202517466}.
++
+         \bibitem{BreitWigner1936}
+         G. Breit and E. Wigner. (1936).
+         \textit{Capture of Slow Neutrons}.
+@@ -7952,7 +8288,7 @@
+ stabilization of charged flame species, camera exposure artifacts, and ordinary
+ airflow.
+ 
+-\subsection{Mode II: photonless sphere / optical caustic}
++\subsection{Mode II: photonless appearance / optical caustic}
+ 
+ A dark or photon-depleted region is interpreted, if real, as an optical caustic,
+ shadow, or phase-gradient effect, not as a literal astrophysical black hole. The
+@@ -7981,6 +8317,23 @@
+     \mathbf{f}_{\mathrm{matter}}\approx0.
+     \label{eq:rt_photonless_caustic_signature}
+ \end{align}
++For an axisymmetric clock-only optical profile, a circular light-ring candidate
++requires the stronger condition
++\begin{align}
++    \boxed{
++    \frac{d}{dr}\left(rn_\gamma(r)\right)=0,
++    }
++    \label{eq:rt_photonless_light_ring_guard}
++\end{align}
++whereas Eq.~\eqref{eq:rt_photonless_caustic_signature} requires only a
++transverse gradient.  Thus a dark image, caustic, or phase shift must not be
++labelled a photon sphere unless the Fermat and stability gates
++Eqs.~\eqref{eq:rt_sst_clock_light_ring_gate} and
++\eqref{eq:rt_sst_unstable_light_ring_joint_gate} are satisfied.  Curved optical
++microcavities demonstrate that unstable periodic rays can support localized
++resonant patterns, but they also show why boundary WGMs and internally localized
++modes must be separated by spatial excitation scans \cite{XuEtAl2026PhotonSphereModes}.
++
+ Macroscopic photon depletion or black-ball-like appearance over laboratory path
+ lengths requires a resonant enhancement factor:
+ \begin{align}
+@@ -7993,6 +8346,21 @@
+     \label{eq:rt_optical_gain_factor}
+ \end{align}
+ The gain \(Q_\gamma\) is apparatus-specific and is not a canonical constant.
++At the canonical single-pass index shift
++\(n_\gamma-1=6.6564858\times10^{-6}\), an order-unity effective index
++change would require
++\begin{align}
++    Q_\gamma
++    \sim
++    \frac{1}{n_\gamma-1}
++    =
++    1.50229\times10^5.
++    \label{eq:rt_optical_gain_order_unity_guard}
++\end{align}
++At that scale the weak-index expansion used in
++Eq.~\eqref{eq:rt_optical_gain_factor} is no longer self-certifying.  The gain
++must be derived from a specified resonator transfer function and tested against
++absorption, thermal lensing, and boundary-mode explanations.
+ 
+ \textbf{Primary orthodox confounders:}
+ thermal lensing, plasma absorption, smoke or aerosol scattering, detector
+@@ -8747,7 +9115,7 @@
+ rest-shape minimum remains a minimum for all finite \(P\) in this separable
+ mass--shell bridge.  Translation-induced flattening, stretching, or uniform
+ core thinning would require an additional explicit coupling such as
+-\(H_{Pq}(P,I,q)\); none is assumed in v0.8.28.
++\(H_{Pq}(P,I,q)\); none is assumed in v0.8.29.
+ 
+ \paragraph{Residuals for an SST derivation.}
+ A numerical or analytic carrier family must report

@@ -1,0 +1,88 @@
+--- SST_CANON-v0.8.30.tex
++++ SST_CANON-v0.8.31.tex
+@@ -2,11 +2,11 @@
+ %! Date = 4/10/2026
+ %! Affiliation = Independent Researcher, Groningen, The Netherlands
+ %! ORCID = 0009-0006-1686-3961
+-%! v0.8.30 edition: density ontology and historical-provenance correction on top of v0.8.29.
++%! v0.8.31 edition: rotor-status, twist/bend, and micro--macro participation audit on top of v0.8.30.
+ 
+ \newcommand{\paperdoi}{}
+-\newcommand{\canonversion}{0.8.30}
+-\newcommand{\papertitle}{Swirl-String-Theory Canon-v0.8.30}
++\newcommand{\canonversion}{0.8.31}
++\newcommand{\papertitle}{Swirl-String-Theory Canon-v0.8.31}
+ \newcommand{\paperkeywords}{Swirl String Theory, SST, Canon, Topological Hydrodynamics, Knot Theory, Relational Time, Action--Angle Variables, Relativistic Mass Shell, Internal Phase Clock, Delay Dynamics, Epistemic Classification}
+ 
+ \documentclass[11pt]{article}
+@@ -1320,6 +1320,42 @@
+         response model and must not be cited as a measured ordinary rest-mass
+         density of the vacuum or of a resolved vortex tube.
+ 
++        \textbf{[CANON / QUASI-STATIC RESPONSE GUARD].}
++        If a dispersive or anisotropic effective-inertia tensor is introduced,
++        it must be written explicitly as
++        $\boldsymbol{\rho}_{\rm eff}(\omega,\mathbf{k})$.  For an isotropic
++        long-wavelength branch, the backward-compatible scalar is defined only
++        by the quasi-static limit
++        \begin{align}
++            \boxed{
++            \rhoF\equiv\rhoEff
++            :=
++            \frac13\operatorname{tr}
++            \left[
++            \lim_{\omega\to0,\,\mathbf{k}\to\mathbf0}
++            \boldsymbol{\rho}_{\rm eff}(\omega,\mathbf{k})
++            \right]
++            }
++            \label{eq:rhof_quasistatic_response_limit}
++        \end{align}
++        whenever this limit exists.  Equation~\eqref{eq:rhof_quasistatic_response_limit}
++        fixes the meaning of the symbol; it does not derive its calibrated
++        numerical value.  The scalar $\rhoF$ must not be extrapolated to core
++        frequencies, finite wave number, or local material compression without
++        a separately derived constitutive law.
++
++        \textbf{[CANON / PARTICIPATION GUARD].}
++        A conversion such as $\rhoEff=\Jomega/\ell^2$ is not closed until the
++        squared length, geometry factor, and mode-participation functional are
++        independently obtained.  The compact-rotor matching construction
++        reproduces a horn-envelope line-inertia coefficient but leaves a
++        participation factor of order $10^{-26}$ between the microscopic
++        $r_c$ normalization and the calibrated $\rhoF$; see
++        Subsection~\ref{subsec:rt_twist_rotor_participation_audit}.  Neither an
++        equivalent millimetre length nor a fitted participation factor may be
++        cited as a predicted coherence length, cell spacing, or physical line
++        separation.
++
+     \subsection{Derived Horn/Circulation Radius}
+         \label{subsec:derived_horn_circulation_radius}
+ 
+@@ -6029,6 +6065,18 @@
+ 
+         \subsection{Canon edition notes}
+ 
++        \subsubsection{v0.8.31}
++            \textbf{v0.8.31} audits the compact-rotor reinterpretation of the
++            line-inertia sector: it labels the Compton-gap rotor normalization
++            as a matching ansatz, records $c_\omega=\vchar$ as a definitional
++            identity rather than an independent validation, separates linear
++            internal twist waves from quadratic Kelvin bending, quantifies the
++            unresolved micro--macro participation gap
++            $\phi_{\rm dyn}=5.7229\times10^{-26}$ and the equivalent
++            normalization length $\ell_{\rho,\rm eq}=5.8897\,\mathrm{mm}$,
++            and defines $\rhoF$ exclusively as the quasi-static isotropic limit
++            of the effective-inertia response on top of v0.8.30.
++
+         \subsubsection{v0.8.30}
+             \textbf{v0.8.30} separates the unfixed material substrate density
+             $\rhoSub$ from the calibrated quasi-static effective response
+@@ -6835,7 +6883,7 @@
+         \newpage
+         \newif\ifresearchtrackincluded
+         \researchtrackincludedtrue
+-        \input{SST_CANON-v0.8.30-research-track}
++        \input{SST_CANON-v0.8.31-research-track}
+         
+ % ---------------------------
+ % Bibliography

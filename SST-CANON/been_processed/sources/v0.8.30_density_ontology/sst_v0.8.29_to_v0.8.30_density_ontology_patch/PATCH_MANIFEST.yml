@@ -1,0 +1,40 @@
+package: SST_CANON-v0.8.29_to_v0.8.30-density-ontology
+base_version: 0.8.29
+target_version: 0.8.30
+line_endings: CRLF
+main_patch:
+  file: patches/0001-main-canon-density-ontology.diff
+  changes:
+    - add rho_sub, rho_eff^(0), J_omega, and mu_l notation
+    - retain rho_f as backward-compatible alias for rho_eff^(0)
+    - move Axiom 1 material density to rho_sub without assigning a number
+    - forbid rho_f times vorticity-squared without a derived squared length
+    - replace local rho_f(x,t) in the master equation by constant rho_f
+    - add VAM-7 provenance to the historical source register
+research_track_patch:
+  file: patches/0002-research-track-historical-provenance.diff
+  changes:
+    - trace the inherited 7e-7 decimal to the VAM-7 expression
+    - classify the expression as kg m^-1 rotational microinertia
+    - derive the historical closed form 6 m_e^2 c/(alpha^5 hbar)
+    - state the unresolved micro-macro conversion theorem
+    - reject the early cosmological comparison as independent confirmation
+preserved:
+  - v0.8.29 SSDL epoch gate
+  - v0.8.29 force-hierarchy reformulation
+  - v0.8.29 uncertainty and covariance guard
+excluded:
+  - rotor and twist/bend audit
+  - participation-gap numerical architecture
+  - Biot-Savart tension preregistration
+  - nonrelease speculative document
+validation:
+  patch_dry_run: pass
+  patched_output_byte_match: pass
+  latex_build: pass
+  pages: 231
+  unresolved_references: 0
+  unresolved_citations: 0
+  duplicate_labels: 0
+  fatal_errors: 0
+  selected_visual_render_check: pass

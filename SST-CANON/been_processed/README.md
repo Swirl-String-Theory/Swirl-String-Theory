@@ -11,7 +11,7 @@ Each conversation patch gets its own incremental edition.
 | `scripts/` | Incremental build scripts (`apply_v082.py` … `apply_v0820.py`, patch helpers) |
 | `sources/` | **All** conversation diffs, patch blocks, audits, verify scripts, evidence packs (canonical archive) |
 | `blocks/` | Reusable LaTeX blocks integrated into editions |
-| `v0.8.2/` … `v0.8.27/` | Incremental canon editions (`$out/` = build artifacts) |
+| `v0.8.2/` … `v0.8.31/` | Incremental canon editions (`$out/` = build artifacts) |
 
 The `SST-CANON/` root holds only `latexmkrc`, `archive/`, and `been_processed/` — no patch source files.
 
@@ -45,33 +45,38 @@ The `SST-CANON/` root holds only `latexmkrc`, `archive/`, and `been_processed/` 
 | **v0.8.25** | KAM-caged knot-state stability (KAM-S/KAM-T); LIA/Biot–Savart bridge; Floquet/Krein gates; golden rotation null test. |
 | **v0.8.26** | Audit pack: Fmax Rydberg $32\pi^2\to16\pi^2$ erratum; $\rho_{\rm calc}$ retirement; $M_0=(m_e/4)\mathcal{L}_{\rm tot}$ transparency; $\rho_f$ provenance; label discipline; RT duplication fence + Pauli [ORTHODOX]. |
 | **v0.8.27** | RT/main Selective-Recovery de-duplication (seven pointer stubs); strip commented duplicate `sec:*` labels; `\canonversion` + targeted stale-string hygiene; main benchmark table filled from archived exact-closure CSV. |
+| **v0.8.28** | Action–phase mass–shell clock bridge; fixed-momentum phase rate; no-shape-deformation guard; RT mass-shell residuals. |
+| **v0.8.29** | Fermat-metric optical-geometry guard; caustic / light-ring / horizon hierarchy; curved-microcavity QSS benchmark; spatial mode tomography. |
+| **v0.8.30** | Density ontology: `rho_sub` vs calibrated `rho_f≡rho_eff^(0)`; `J_omega` / `mu_l` notation; VAM-7 historical provenance (`kg m^-1`); forbid invalid `rho_f|ω|^2` without derived length²; freeze constant `rho_f` in master equation; RT provenance audit. |
+| **v0.8.31** | Rotor / participation audit: quasi-static `rho_f` guard; Compton-gap rotor as matching ansatz; `J_omega^rot` ≡ horn line-inertia; `c_omega=v_swirl` definitional; twist vs Kelvin bend; `phi_dyn` / `ell_rho,eq` diagnostics + promotion gates. Companion archive: `rho_f` scaling audit phase 1 (no tex edits). |
 
 ## Rebuild chain
 
 ```powershell
 cd SST-CANON/been_processed
-python scripts/apply_v0826.py
-python scripts/apply_v0827.py
+python scripts/apply_v0829.py
+python scripts/apply_v0830.py
+python scripts/apply_v0831.py
 ```
 
-Individual steps: `scripts/apply_v085.py` … `scripts/apply_v0827.py`.
+Individual steps: `scripts/apply_v085.py` … `scripts/apply_v0831.py`.
 
 Shared metadata: `canon_edition.py`. Patch helpers live in `scripts/` (e.g. `apply_framed_selflinking.py`, `apply_spinstats_z2.py`, `apply_gemini_audit.py`).
 
 ## Build PDF
 
 ```powershell
-cd SST-CANON/been_processed/v0.8.27
-latexmk -pdf -interaction=nonstopmode -output-directory='$out' SST_CANON-v0.8.27.tex
+cd SST-CANON/been_processed/v0.8.31
+latexmk -pdf -interaction=nonstopmode -output-directory='$out' SST_CANON-v0.8.31.tex
 ```
 
 Or manually (three passes):
 
 ```powershell
-cd SST-CANON/been_processed/v0.8.27
-pdflatex -interaction=nonstopmode -output-directory='$out' SST_CANON-v0.8.27.tex
-pdflatex -interaction=nonstopmode -output-directory='$out' SST_CANON-v0.8.27.tex
-pdflatex -interaction=nonstopmode -output-directory='$out' SST_CANON-v0.8.27.tex
+cd SST-CANON/been_processed/v0.8.31
+pdflatex -interaction=nonstopmode -output-directory='$out' SST_CANON-v0.8.31.tex
+pdflatex -interaction=nonstopmode -output-directory='$out' SST_CANON-v0.8.31.tex
+pdflatex -interaction=nonstopmode -output-directory='$out' SST_CANON-v0.8.31.tex
 ```
 
-Output: `v0.8.27/$out/SST_CANON-v0.8.27.pdf` (auxiliary files stay in `$out/`; source `.tex` files remain in the edition folder).
+Output: `v0.8.31/$out/SST_CANON-v0.8.31.pdf` (auxiliary files stay in `$out/`; source `.tex` files remain in the edition folder).

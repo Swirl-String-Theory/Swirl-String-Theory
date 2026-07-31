@@ -1,0 +1,39 @@
+package: SST_CANON-v0.8.30_to_v0.8.31-rotor-participation-audit
+base_version: 0.8.30
+target_version: 0.8.31
+line_endings: CRLF
+main_patch:
+  file: patches/0001-main-canon-quasistatic-response-guard.diff
+  changes:
+    - define rho_f as the isotropic omega->0, k->0 effective-inertia limit
+    - prohibit scalar rho_f extrapolation to core frequency or finite wave number
+    - add an explicit micro-macro participation guard
+    - add the v0.8.31 edition note and companion filename update
+research_track_patch:
+  file: patches/0002-research-track-rotor-participation-audit.diff
+  changes:
+    - classify the compact rotor as a matching ansatz and reformulation
+    - identify J_omega^rot with the horn-envelope line-inertia coefficient
+    - classify c_omega=v_swirl as a definitional identity
+    - separate twist and Kelvin-bending dispersions
+    - quantify phi_dyn and ell_rho,eq without promoting them to physical scales
+    - add a weighted macro-response representation and promotion gates
+preserved:
+  - v0.8.30 density ontology
+  - v0.8.30 historical VAM-7 provenance correction
+  - v0.8.29 SSDL epoch and covariance guards
+excluded:
+  - Biot-Savart tension preregistration
+  - F_swirl^max dependency promotion
+  - gravitational entropy-area measures
+  - nonrelease speculative document
+validation:
+  patch_dry_run: pass
+  patched_output_byte_match: pass
+  latex_build: pass
+  pages: 234
+  unresolved_references: 0
+  unresolved_citations: 0
+  duplicate_labels: 0
+  fatal_errors: 0
+  selected_visual_render_check: pass

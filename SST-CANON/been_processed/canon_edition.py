@@ -346,6 +346,63 @@ EDITION_CONFIG = {
             r"on top of v0.8.27."
         ),
     },
+    "0.8.29": {
+        "prev": "0.8.28",
+        "header": (
+            "%! v0.8.29 edition: Fermat-metric optical guard; strict "
+            "caustic/light-ring/horizon hierarchy; curved-microcavity analogue "
+            "benchmark; spatial mode tomography on top of v0.8.28."
+        ),
+        "note": (
+            r"\textbf{v0.8.29} adds the Fermat-metric optical-geometry guard "
+            r"(Eqs.~\ref{eq:canonical_fermat_metric_guard}--"
+            r"\ref{eq:canonical_caustic_light_ring_horizon_guard}), "
+            r"separates ray bending / optical caustics from circular light-ring candidates "
+            r"and horizon-like clock degeneracy, derives the conditional SST "
+            r"stationary-circumference gate, and extends Quasinormal Swirl Spectroscopy "
+            r"with the curved-microcavity analogue benchmark, inverse-radius exclusion, "
+            r"Gaussian-curvature stability test, and spatial mode-tomography protocol on "
+            r"top of v0.8.28."
+        ),
+    },
+    "0.8.30": {
+        "prev": "0.8.29",
+        "header": (
+            "%! v0.8.30 edition: density ontology and historical-provenance "
+            "correction on top of v0.8.29."
+        ),
+        "note": (
+            r"\textbf{v0.8.30} separates the unfixed material substrate density "
+            r"$\rhoSub$ from the calibrated quasi-static effective response "
+            r"$\rhoF\equiv\rhoEff$, introduces distinct notation for rotational "
+            r"microinertia $\Jomega$ and line inertia $\muell$, corrects the "
+            r"historical provenance of the inherited $7\times10^{-7}$ decimal, "
+            r"forbids dimensionally invalid $\rhoF|\boldsymbol\omega|^2$ energy "
+            r"expressions without a derived squared length, freezes $\rhoF$ as a "
+            r"constant response coefficient in the canonical master equation, and "
+            r"moves the detailed VAM-7 provenance audit to the Research Track on top "
+            r"of v0.8.29."
+        ),
+    },
+    "0.8.31": {
+        "prev": "0.8.30",
+        "header": (
+            "%! v0.8.31 edition: rotor-status, twist/bend, and micro--macro "
+            "participation audit on top of v0.8.30."
+        ),
+        "note": (
+            r"\textbf{v0.8.31} audits the compact-rotor reinterpretation of the "
+            r"line-inertia sector: it labels the Compton-gap rotor normalization "
+            r"as a matching ansatz, records $c_\omega=\vchar$ as a definitional "
+            r"identity rather than an independent validation, separates linear "
+            r"internal twist waves from quadratic Kelvin bending, quantifies the "
+            r"unresolved micro--macro participation gap "
+            r"$\phi_{\rm dyn}=5.7229\times10^{-26}$ and the equivalent "
+            r"normalization length $\ell_{\rho,\rm eq}=5.8897\,\mathrm{mm}$, "
+            r"and defines $\rhoF$ exclusively as the quasi-static isotropic limit "
+            r"of the effective-inertia response on top of v0.8.30."
+        ),
+    },
 }
 
 CANON_BASE_KEYWORDS: list[str] = [
@@ -471,6 +528,25 @@ EDITION_KEYWORDS: dict[str, list[str]] = {
         "action-phase rate",
         "no-shape deformation",
         "RT mass-shell residuals",
+    ],
+    "0.8.29": [
+        "Fermat metric",
+        "optical caustics",
+        "light-ring gate",
+        "spatial mode tomography",
+    ],
+    "0.8.30": [
+        "density ontology",
+        "rho_sub vs rho_eff",
+        "rotational microinertia",
+        "VAM-7 provenance",
+    ],
+    "0.8.31": [
+        "rotor participation",
+        "quasi-static response guard",
+        "twist bend modes",
+        "phi_dyn",
+        "rho_f scaling audit",
     ],
 }
 

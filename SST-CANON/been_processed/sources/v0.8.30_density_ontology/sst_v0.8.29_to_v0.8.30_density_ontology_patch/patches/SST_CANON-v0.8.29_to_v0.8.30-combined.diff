@@ -1,0 +1,488 @@
+--- SST_CANON-v0.8.29.tex
++++ SST_CANON-v0.8.30.tex
+@@ -2,11 +2,11 @@
+ %! Date = 4/10/2026
+ %! Affiliation = Independent Researcher, Groningen, The Netherlands
+ %! ORCID = 0009-0006-1686-3961
+-%! v0.8.29 edition: background-density provenance closure; epoch-invariance gate; SSDL large-number and force-hierarchy audit on top of v0.8.28.
++%! v0.8.30 edition: density ontology and historical-provenance correction on top of v0.8.29.
+ 
+ \newcommand{\paperdoi}{}
+-\newcommand{\canonversion}{0.8.29}
+-\newcommand{\papertitle}{Swirl-String-Theory Canon-v0.8.29}
++\newcommand{\canonversion}{0.8.30}
++\newcommand{\papertitle}{Swirl-String-Theory Canon-v0.8.30}
+ \newcommand{\paperkeywords}{Swirl String Theory, SST, Canon, Topological Hydrodynamics, Knot Theory, Relational Time, Action--Angle Variables, Relativistic Mass Shell, Internal Phase Clock, Delay Dynamics, Epistemic Classification}
+ 
+ \documentclass[11pt]{article}
+@@ -84,6 +84,10 @@
+ \newcommand{\vswirl}{\mathbf{v}_{\swirlarrow}}
+ \newcommand{\vswirlcw}{\mathbf{v}_{\swirlarrowcw}}
+ \newcommand{\rhoF}{{\rho_{\!f}}}
++\newcommand{\rhoSub}{{\rho_{\mathrm{sub}}}}
++\newcommand{\rhoEff}{{\rho_{\mathrm{eff}}^{(0)}}}
++\newcommand{\Jomega}{{\mathcal{J}_{\omega}}}
++\newcommand{\muell}{{\mu_{\ell}}}
+ \newcommand{\rhoE}{\rho_{\!E}}
+ \newcommand{\rhoM}{\rho_{\!m}}
+ \newcommand{\rhocore}{\rho_{\mathrm{core}}}
+@@ -1219,7 +1223,7 @@
+         
+         where:
+         \begin{itemize}
+-            \item $\rhoF$ is the effective background fluid density,
++            \item $\rhoF\equiv\rhoEff$ is the calibrated quasi-static effective inertial-response density of the selected collective SST sector,
+             \item $\vchar=\lVert\mathbf{v}_{\!\boldsymbol{\circlearrowleft}}\rVert$ is the canonical characteristic swirl-speed magnitude,
+             \item $\omega_c$ is the Compton angular frequency.
+         \end{itemize}
+@@ -1236,10 +1240,86 @@
+         
+         \textbf{[SPECULATIVE]}: The identification of $\omega_c$ as the primitive Compton phase frequency of the SST carrier is an SST postulate; it is not a local vorticity variable.
+ 
+-        \textbf{[CALIBRATED / PROVENANCE GUARD]}: Within $\mathcal{P}_{\mathrm{cal}}$, the members $\vchar$ and $\omega_c$ are pinned by CODATA constants through $\vchar=\alpha c/2$ and $\omega_c=m_ec^2/\hbar$, whereas $\rhoF=7.0\times10^{-7}\,\mathrm{kg\,m^{-3}}$ is retained at \emph{two significant figures} with no canon-level derivation and, at present, no explicitly stated independent calibration observable. The quoted value is a point calibration with unresolved systematic uncertainty; two-significant-figure notation is not a statistical confidence interval. Candidate reduction routes, e.g.\ the research-track cosmological impedance lift $\rhoF=\chi_\Lambda(\rc/\ell_P)\rho_\Lambda$ with $\chi_\Lambda\simeq1.37$ and $\rho_\Lambda=\Lambda c^2/(8\pi G)$, are not canon derivations. In particular, the smaller central-value residual of the present-epoch choice $\chi_\Lambda=2\Omega_{\Lambda,0}$ has no promotion force without an epoch-invariant mechanism and a covariance-aware uncertainty model; see Section~\ref{sec:rt_rhof_cosmological_impedance_route} and Subsection~\ref{subsec:ssdl_monopole_dtn}. Every quantity linear in $\rhoF$ (the swirl energy density $\rhoE$, the mass-equivalent density $\rhoM$, the Pauli-barrier benchmark, and dark-sector pressure amplitudes) inherits the unresolved relative uncertainty of $\rhoF$, and no claim requiring $\rhoF$ at better than the stated calibration precision may be promoted.
++        \textbf{[CALIBRATED / PROVENANCE GUARD]}: Within $\mathcal{P}_{\mathrm{cal}}$, the members $\vchar$ and $\omega_c$ are pinned by CODATA constants through $\vchar=\alpha c/2$ and $\omega_c=m_ec^2/\hbar$, whereas $\rhoF\equiv\rhoEff=7.0\times10^{-7}\,\mathrm{kg\,m^{-3}}$ is retained at \emph{two significant figures} with no canon-level derivation and, at present, no explicitly stated independent calibration observable. The quoted value is a point calibration with unresolved systematic uncertainty; two-significant-figure notation is not a statistical confidence interval. The historical VAM expression from which the decimal value was inherited has dimensions $\mathrm{kg\,m^{-1}}$, not $\mathrm{kg\,m^{-3}}$, and is therefore registered as a rotational-microinertia coefficient rather than as a derivation of $\rhoF$; see Subsection~\ref{subsec:rt_historical_rhof_provenance_audit}. Candidate reduction routes, e.g.\ the research-track cosmological impedance lift $\rhoF=\chi_\Lambda(\rc/\ell_P)\rho_\Lambda$ with $\chi_\Lambda\simeq1.37$ and $\rho_\Lambda=\Lambda c^2/(8\pi G)$, are not canon derivations. In particular, the smaller central-value residual of the present-epoch choice $\chi_\Lambda=2\Omega_{\Lambda,0}$ has no promotion force without an epoch-invariant mechanism and a covariance-aware uncertainty model; see Section~\ref{sec:rt_rhof_cosmological_impedance_route} and Subsection~\ref{subsec:ssdl_monopole_dtn}. Every quantity linear in $\rhoF$ (the swirl energy density $\rhoE$, the mass-equivalent density $\rhoM$, the Pauli-barrier benchmark, and dark-sector pressure amplitudes) inherits the unresolved relative uncertainty of $\rhoF$, and no claim requiring $\rhoF$ at better than the stated calibration precision may be promoted.
+ 
+         \textbf{[DEPENDENCY GUARD]}: In the present primitive architecture, $\rhoF$, $\vchar$, and $\omega_c$ are independent calibration entries. Therefore uncertainty or hypothetical epoch dependence assigned to $\rhoF$ propagates into $\rhoE$, $\rhoM$, pressure amplitudes, and other explicitly $\rhoF$-dependent quantities, but it does \emph{not} by itself shift $\vchar$, $\omega_c$, $\rc=\vchar/\omega_c$, or the Compton closure chain. Such propagation would require an additional constitutive relation and must be labeled separately. A future edition must either state the explicit calibration target that fixes $\rhoF$ or demote $\rhoF$ to an interval-valued effective parameter.
+ 
++
++    \subsection{Density Ontology and Backward-Compatible Symbol Rule}
++        \label{subsec:density_ontology_v0830}
++
++        \textbf{[CANON / SEMANTIC SEPARATION].}
++        The present edition separates material density, effective translational
++        inertia, rotational microinertia, and line inertia:
++        \begin{align}
++            \rhoSub
++            &\quad [\mathrm{kg\,m^{-3}}]
++            &&\text{material density of the fundamental incompressible substrate},
++            \\
++            \rhoEff
++            &\quad [\mathrm{kg\,m^{-3}}]
++            &&\text{quasi-static effective inertial-response density},
++            \\
++            \Jomega
++            &\quad [\mathrm{kg\,m^{-1}}]
++            &&\text{rotational/twist microinertia per volume},
++            \\
++            \muell
++            &\quad [\mathrm{kg\,m^{-1}}]
++            &&\text{resolved or effective line-mass coefficient}.
++            \label{eq:density_ontology_v0830}
++        \end{align}
++        The legacy house symbol is retained for backward compatibility as
++        \begin{align}
++            \boxed{\rhoF\equiv\rhoEff}
++            \label{eq:rhof_effective_response_alias}
++        \end{align}
++        throughout the current release.  No equality
++        $\rhoSub=\rhoF$, $\Jomega=\muell$, or
++        $\Jomega=\rhoF\ell^2$ is canonical unless an explicit microscopic or
++        homogenization theorem supplies the required profile, length, and
++        participation measure.
++
++        \textbf{[DIMENSIONAL GUARD].}
++        A displacement-field kinetic term may use
++        \begin{align}
++            u_{\rm disp}
++            =
++            \frac12\rhoEff\lVert\partial_t\mathbf A\rVert^2,
++            \qquad
++            [\mathbf A]=\mathrm m,
++        \end{align}
++        whereas an angular, twist-rate, or vorticity-square term requires
++        \begin{align}
++            u_{\rm rot}
++            =
++            \frac12\Jomega\lVert\partial_t\boldsymbol\theta\rVert^2
++            \quad\text{or}\quad
++            u_{\omega}
++            =
++            \frac12\Jomega\lVert\boldsymbol\omega\rVert^2,
++            \qquad
++            [\boldsymbol\theta]=1.
++        \end{align}
++        Writing $\tfrac12\rhoF|\boldsymbol\omega|^2$ without an independently
++        defined squared length is dimensionally invalid.  A future bridge may
++        derive a relation of the form
++        \begin{align}
++            \Jomega
++            =
++            \beta_{\omega u}\,\rhoEff\,\ell_{\omega u}^{2},
++            \label{eq:rotational_translational_inertia_bridge_target}
++        \end{align}
++        but $\beta_{\omega u}$ and $\ell_{\omega u}$ are research outputs, not
++        hidden normalization choices.
++
++        \textbf{[ONTOLOGICAL STATUS].}
++        The existence of a material substrate density $\rhoSub>0$ is part of
++        Axiom~1, but its numerical value is not fixed in the present Canon.
++        The calibrated $\rhoF$ instead belongs to the long-wavelength effective
++        response model and must not be cited as a measured ordinary rest-mass
++        density of the vacuum or of a resolved vortex tube.
++
+     \subsection{Derived Horn/Circulation Radius}
+         \label{subsec:derived_horn_circulation_radius}
+ 
+@@ -1577,20 +1657,39 @@
+         dressing, and low-energy monometricity must follow from a controlled field
+         calculation.  The NLSE core alone does not supply that proof.
+ 
+-    \subsection{Density Hierarchy}
++    \subsection{Density and Inertia Hierarchy}
+         
+-        We distinguish the following densities:
++        We distinguish the following material, response, energetic, and
++        line-inertia quantities:
+         
+         \begin{align}
+-            \rhoF &\quad \text{(effective background fluid density)}, \\
+-            \rhoE &= \tfrac12 \rhoF \, \vchar{}^2 \quad \text{(swirl energy density)}, \\
+-            \rhoM &= \rhoE / c^2 \quad \text{(mass-equivalent density)}, \\
+-            \rhocore &\quad \text{(canonical saturated envelope-equivalent density)}.
++            \rhoSub
++            &\quad \text{(unfixed material substrate density)},
++            \\
++            \rhoF\equiv\rhoEff
++            &\quad \text{(calibrated quasi-static effective response)},
++            \\
++            \rhoE
++            &= \tfrac12 \rhoF \, \vchar{}^2
++            \quad \text{(swirl energy density in the effective sector)},
++            \\
++            \rhoM
++            &= \rhoE / c^2
++            \quad \text{(mass-equivalent density)},
++            \\
++            \Jomega
++            &\quad \text{(rotational/twist microinertia density)},
++            \\
++            \muell
++            &\quad \text{(resolved or effective line-mass coefficient)},
++            \\
++            \rhohorn
++            &\quad \text{(canonical saturated envelope-equivalent density)}.
+         \end{align}
+ 
+         \textbf{[ORTHODOX] Definition}: $\rhoM=\rhoE/c^2$ is the mass-equivalent density associated with the swirl kinetic accounting above; in orthodox limits, total energy $E$ in a region still yields mass density $E/c^2$.
+ 
+-        \textbf{[SPECULATIVE] Interpretation}: The distinction between background, energetic, and saturated envelope-equivalent sectors is elevated in SST to a structural ontology of the medium.
++        \textbf{[CANON / NON-IDENTIFICATION]}: Numerical or dimensional agreement between two entries does not identify their physical roles. In particular, $\rhoSub$, $\rhoF$, $\Jomega$, $\muell$, and $\rhohorn$ remain distinct unless a separately labeled constitutive theorem relates them.
+     
+     \subsection{Horn-Envelope Density Closure}
+         
+@@ -1698,10 +1797,19 @@
+         First define the local swirl energy density and its mass-equivalent form:
+ 
+         \begin{align}
+-            \rhoE(x,t) &= \frac{1}{2}\rhoF(x,t)\,\norm{\uswirl(x,t)}^2 \\
++            \rhoE(x,t) &= \frac{1}{2}\rhoF\,\norm{\uswirl(x,t)}^2 \\
+             \rhoM(x,t) &= \frac{\rhoE(x,t)}{c^2}
+         \end{align}
+ 
++        \textbf{[CANON / CONSTANT-RESPONSE GUARD].}
++        In Eq.~\eqref{eq:sst_master_equation}, spatial and temporal variation
++        resides in $\uswirl(x,t)$ and in the explicitly local derived fields;
++        $\rhoF\equiv\rhoEff$ is the calibrated quasi-static response coefficient.
++        A dispersive or inhomogeneous effective response must be introduced as a
++        distinct object such as $\rho_{\rm eff}(\omega,\mathbf k;\mathbf x,t)$.
++        It must not be represented by silently promoting $\rhoF$ to a local
++        material-density field.
++
+         Using Eq.~\ref{eq:swirl_clock}, the local Swirl-Clock factor is
+ 
+         \begin{align}
+@@ -1760,7 +1868,7 @@
+         \begin{align}
+             M_K(x,t)
+             &= \rhoM(x,t)\,\rc^3\,\Pi_K\,\Xi_K\,\SwirlClock(x,t)^{-2} \\
+-            &= \left( \frac{\rhoF(x,t)\,\norm{\uswirl(x,t)}^2}{2c^2} \right)
++            &= \left( \frac{\rhoF\,\norm{\uswirl(x,t)}^2}{2c^2} \right)
+                \rc^3
+                \left( \frac{\lambda_c}{\pi \rc} \right)^{G(K)}
+                \left[ \alpha_C\,C(K) + \beta_L\,L(K) + \gamma_H\,\mathcal{H}(K) \right]
+@@ -2041,16 +2149,28 @@
+     \subsection{Axiom 1: Continuum Substrate}
+         
+         \textbf{Statement.}
+-        There exists a continuous, incompressible, inviscid medium filling $\mathcal{M}$, characterized by a constant background density $\rhoF$.
++        There exists a continuous, incompressible, inviscid medium filling
++        $\mathcal{M}$, characterized by a positive constant material density
++        $\rhoSub$.
+         
+         \begin{align}
+-            \nabla \cdot \mathbf{v} = 0
++            \nabla \cdot \mathbf{v} = 0,
++            \qquad
++            \rhoSub=\text{constant}>0.
+         \end{align}
+         
+         \textbf{[ORTHODOX]}: This corresponds to the standard incompressible Euler framework.
+         
+         \textbf{Interpretation.}
+         All physical structures arise as configurations within this medium; no discrete particles are assumed at the fundamental level.
++
++        \textbf{[CANON / LEVEL-SEPARATION GUARD].}
++        Axiom~1 does not numerically identify $\rhoSub$ with the calibrated
++        effective response $\rhoF\equiv\rhoEff$.  Equations written with
++        $\rhoF$ in the current Canon are long-wavelength effective-sector
++        equations unless a resolved material-density model is supplied.  Any
++        future equality $\rhoSub=\rhoF$ requires an independent homogenization
++        or response theorem.
+     
+     \subsection{Axiom 2: Existence of Stable Vortex Filaments}
+         
+@@ -2892,7 +3012,7 @@
+             6.3\times10^{10}\ \mathrm{Pa}.
+             \label{eq:r_phase_torsion_stiffness_target}
+         \end{align}
+-        Equation~\eqref{eq:r_phase_torsion_stiffness_target} is dimensionally a shear/torsion stiffness target. Substituting the measured value of~\(c\) calibrates the bridge; it is not yet a microscopic derivation of~\(K_\gamma\).
++        Equation~\eqref{eq:r_phase_torsion_stiffness_target} is dimensionally a shear/torsion stiffness target. Here $\rhoF\equiv\rhoEff$ is the quasi-static inertial coefficient of the displacement field $\mathbf A_{\mathrm{eff}}$, not the unresolved material density $\rhoSub$. Substituting the measured value of~\(c\) calibrates the bridge; it is not yet a microscopic derivation of~\(K_\gamma\).
+ 
+         \textbf{[NO-ACOUSTIC-MODE GUARD].}
+         The speed \(c_\gamma\) is not an ordinary sound speed. In the exact incompressible SST substrate, density compression is excluded and pressure enforces a constraint on each foliation slice. The luminal branch belongs to the independent transverse torsion/director sector represented by \(\mathbf A_{\mathrm{eff}}\) \cite{BarceloLiberatiVisser2026}.
+@@ -5001,7 +5121,7 @@
+     \subsection{Retained from the early canon layers}
+         From the v0.1.x--v0.3.x line, the present canon retains the primitive closure logic:
+         \begin{itemize}
+-            \item a continuum substrate with effective density $\rhoF$,
++            \item a continuum substrate with unfixed material density $\rhoSub$, represented in the current long-wavelength sector by the calibrated effective response $\rhoF\equiv\rhoEff$,
+             \item a core scale $r_c$ fixed by Compton anchoring,
+             \item circulation quantization through $\Gamma_0 = 2\pi \rc \, \vchar$,
+             \item the interpretation of matter as stable organized structures rather than point primitives.
+@@ -5028,10 +5148,21 @@
+         \end{itemize}
+ 
+     \subsection{Notation and density cleanup}
+-        Earlier canon versions sometimes conflated background density, mass-equivalent density, and saturated envelope-equivalent density. The present version adopts the cleaned hierarchy
++        Earlier canon versions sometimes conflated material density, effective
++        response, rotational microinertia, mass-equivalent density, and saturated
++        envelope-equivalent density. The present version adopts the cleaned hierarchy
+         \begin{align}
+-            \rhoF
+-            &\quad \text{effective fluid density},
++            \rhoSub
++            &\quad \text{unfixed material substrate density},
++            \nonumber\\
++            \rhoF\equiv\rhoEff
++            &\quad \text{calibrated quasi-static effective inertial response},
++            \nonumber\\
++            \Jomega
++            &\quad \text{rotational/twist microinertia density},
++            \nonumber\\
++            \muell
++            &\quad \text{resolved or effective line-mass coefficient},
+             \nonumber\\
+             \rhoE
+             &\quad \text{swirl energy density},
+@@ -5046,7 +5177,11 @@
+             &\quad \text{legacy alias, deprecated unless explicitly defined}.
+             \label{eq:density_symbol_roles}
+         \end{align}
+-        Any older passage that identifies a single symbol with more than one of these roles is superseded by the present separation.
++        Any older passage that identifies a single symbol with more than one of
++        these roles is superseded by the present separation.  In particular, the
++        historical decimal $7\times10^{-7}$ does not establish an equality between
++        $\Jomega$ in $\mathrm{kg\,m^{-1}}$ and $\rhoF$ in
++        $\mathrm{kg\,m^{-3}}$.
+ 
+     \subsection{Topology-first reinterpretation of layers}
+         A major consolidation from the recent lepton and knot-mass program is the separation between topology and layering. Knot type is retained as the primary identity label, while Golden-layer or thermal ladder indices are treated as dressing or coherence variables rather than species-defining labels. This prevents the canon from over-reading numerical layer fits as ontological identities.
+@@ -5669,6 +5804,7 @@
+     Primary notebook & \texttt{NB2012-Pxxx} & Earliest surviving sketches, equations, and local reasoning. Read as \texttt{[ORIGIN]}, not as current derivation. \\
+     Partial later notebook & \texttt{NB2013-Pxxx}, \texttt{NB2014-Pxxx} & Development of transition geometry, toroidal fields, relative rotation, impedance, circulation, and vorticity. \\
+     Proto-Canon & \texttt{DOC2013-CANON-001} & First synthesis of excitation speed, rotating mass, the fine-structure speed ratio, and the capacitance route to the Planck relation. \\
++    Early VAM density paper & \texttt{VAM7-DENSITY-2025} & Historical origin of the decimal $7\times10^{-7}$; retained only as an origin record because dimensional audit identifies a rotational-microinertia coefficient in $\mathrm{kg\,m^{-1}}$, not a volumetric density. \\
+     Modern computational project & \texttt{PROJ2026-KNOTPLOT-RR-001} & KnotPlot seeds, topology sidecars, Ridgerunner constrained polishes, resampling, and near-ideal certification provenance. \\
+     Modern Canon & versioned \texttt{SST\_CANON-vX.Y.Z} & Sole normative source for active definitions, theorem status, calibration, predictions, and falsifiers. \\
+     \bottomrule
+@@ -5687,6 +5823,7 @@
+     \texttt{NB2012-P069--P071} & Oscillator propagation speed, capacitance, vacuum response, and constant dependencies. & Link inertia/stiffness, constitutive response, impedance, and non-circularity ledger. \\
+     \texttt{NB2013-P010/P019/P045} & Transition dynamics, caution about numerical closure, and relative-rotation/time interpretation. & Transition-action research programme, calibration guard, and observer-dependent kinematics. \\
+     \texttt{DOC2013-CANON-001} & First coherent constant-chain and excitation model. & Historical bridge only; inputs and algebra are audited before any prediction claim. \\
++    \texttt{VAM7-DENSITY-2025} & Electron energy assigned to $\omega=\alpha\omega_c$ over $r_e^3/3$, producing the inherited decimal. & Reclassified as $\Jomega^{\rm VAM}$ with units $\mathrm{kg\,m^{-1}}$; no derivation of $\rhoF$ follows. \\
+     \texttt{PROJ2026-KNOTPLOT-RR-001} & Candidate generation, topology verification, constrained tightening, and mesh export. & Bound-mode geometry certification and input domain for a future response/impedance operator. \\
+     \bottomrule
+     \end{tabularx}
+@@ -5892,6 +6029,18 @@
+ 
+         \subsection{Canon edition notes}
+ 
++        \subsubsection{v0.8.30}
++            \textbf{v0.8.30} separates the unfixed material substrate density
++            $\rhoSub$ from the calibrated quasi-static effective response
++            $\rhoF\equiv\rhoEff$, introduces distinct notation for rotational
++            microinertia $\Jomega$ and line inertia $\muell$, corrects the
++            historical provenance of the inherited $7\times10^{-7}$ decimal,
++            forbids dimensionally invalid $\rhoF|\boldsymbol\omega|^2$ energy
++            expressions without a derived squared length, freezes $\rhoF$ as a
++            constant response coefficient in the canonical master equation, and
++            moves the detailed VAM-7 provenance audit to the Research Track on top
++            of v0.8.29.
++
+         \subsubsection{v0.8.29}
+             \textbf{v0.8.29} strengthens the provenance guard for the calibrated background density $\rhoF$, distinguishes two-significant-figure notation from a statistical uncertainty model, adds the primitive dependency guard preventing unsupported propagation into $\vchar$, $\omega_c$, $\rc$, or the Compton chain, and audits the research-track cosmological impedance/SSDL route through an explicit epoch-invariance gate, covariance-aware precision guard, exact large-number identity, and force-hierarchy reformulation on top of v0.8.28.
+ 
+@@ -6521,7 +6670,7 @@
+         
+         \textbf{[SPECULATIVE]} The identification of the resulting fields with branch-resolved swirl carriers remains an SST interpretation.
+ 
+-        \textbf{[CRITICAL NOTE]}: $\rho_\psi$ is a coarse-grained mode-support density of the emergent carrier field, \emph{not} a compression of the incompressible substrate $\rhoF$ (Axiom~1, $\nabla\cdot\mathbf v=0$). The two densities are distinct objects, so the Madelung amplitude does not violate substrate incompressibility.
++        \textbf{[CRITICAL NOTE]}: $\rho_\psi$ is a coarse-grained mode-support density of the emergent carrier field, \emph{not} a compression of the incompressible material substrate $\rhoSub$ (Axiom~1, $\nabla\cdot\mathbf v=0$). It is also distinct from the calibrated quasi-static response $\rhoF\equiv\rhoEff$. These are different objects, so the Madelung amplitude does not violate substrate incompressibility.
+     
+     \subsection{Amplitude--phase decomposition}
+         Introduce an effective complex mode field
+@@ -6686,7 +6835,7 @@
+         \newpage
+         \newif\ifresearchtrackincluded
+         \researchtrackincludedtrue
+-        \input{SST_CANON-v0.8.29-research-track}
++        \input{SST_CANON-v0.8.30-research-track}
+         
+ % ---------------------------
+ % Bibliography
+--- SST_CANON-v0.8.29-research-track.tex
++++ SST_CANON-v0.8.30-research-track.tex
+@@ -6,12 +6,12 @@
+ \makeatother
+ 
+ %! Author = Omar Iskandarani
+-%! Companion to Swirl-String-Theory Canon-v0.8.29 (included from \texttt{SST\_CANON-v0.8.29.tex} before the manual bibliography).
++%! Companion to Swirl-String-Theory Canon-v0.8.30 (included from \texttt{SST\_CANON-v0.8.30.tex} before the manual bibliography).
+ 
+ \section{Research-track sectors migrated from the main canon}
+ 
+ \noindent
+-This companion document collects those sectors that remain useful for continuity and future development but are too long, too provisional, or too phenomenology-specific for the core body of \textit{Swirl-String-Theory\_Canon-v0.8.29}. Their migration out of the main canon is editorial rather than negative: each subsection remains part of the broader SST research program, but none is required for the minimal logical closure of the core canon.
++This companion document collects those sectors that remain useful for continuity and future development but are too long, too provisional, or too phenomenology-specific for the core body of \textit{Swirl-String-Theory\_Canon-v0.8.30}. Their migration out of the main canon is editorial rather than negative: each subsection remains part of the broader SST research program, but none is required for the minimal logical closure of the core canon.
+ 
+ \medskip
+ \noindent
+@@ -19,7 +19,7 @@
+ 
+ \medskip
+ \noindent
+-\textbf{Editorial note (v0.8.27):} the maximal swirl tension sector ($F_{\rm swirl}^{\max}$, Rydberg bridge identities, Gibbons-class maximum-tension comparison, and the threefold interpretation table) is developed in the core document \texttt{SST\_CANON-v0.8.29.tex}, subsection \texttt{Maximal Swirl Tension} (label \texttt{sec:Fmax}); it is not duplicated here.
++\textbf{Editorial note (v0.8.27):} the maximal swirl tension sector ($F_{\rm swirl}^{\max}$, Rydberg bridge identities, Gibbons-class maximum-tension comparison, and the threefold interpretation table) is developed in the core document \texttt{SST\_CANON-v0.8.30.tex}, subsection \texttt{Maximal Swirl Tension} (label \texttt{sec:Fmax}); it is not duplicated here.
+ 
+ \medskip
+ 
+@@ -9155,6 +9155,119 @@
+ status of \(\rho_{\!f}\) in the main text.
+ 
+ 
++
++\subsection{Historical Provenance Audit of the Inherited Density Decimal}
++\label{subsec:rt_historical_rhof_provenance_audit}
++
++\paragraph{Source and status.}
++\textbf{[HISTORICAL ORIGIN / NOT A CURRENT DERIVATION].}
++The early VAM paper registered as \texttt{VAM7-DENSITY-2025} is the traced
++source of the decimal later rounded to
++$\rhoF=7.0\times10^{-7}\,\mathrm{kg\,m^{-3}}$.  The source assigned the
++electron rest energy to a vorticity scale
++\begin{align}
++    \omega_{\rm VAM}
++    =
++    \alpha\omega_c
++    =
++    \alpha\frac{m_ec^2}{\hbar}
++\end{align}
++and to the selected effective volume
++\begin{align}
++    V_{\rm eff}^{\rm VAM}
++    =
++    \frac{r_e^3}{3} .
++\end{align}
++It then formed
++\begin{align}
++    \mathcal J_{\omega}^{\rm VAM}
++    :=
++    \frac{2m_ec^2}{
++        \left(\alpha m_ec^2/\hbar\right)^2
++        \left(r_e^3/3\right)} .
++    \label{eq:rt_vam7_historical_microinertia}
++\end{align}
++Re-evaluation with the present constant chain gives
++\begin{align}
++    \mathcal J_{\omega}^{\rm VAM}
++    \simeq
++    6.84\times10^{-7}\,\mathrm{kg\,m^{-1}},
++\end{align}
++consistent with the historical decimal but not with its stated volumetric
++unit.
++
++\paragraph{Dimensional adjudication.}
++Because
++\begin{align}
++    \left[
++    \frac{m_ec^2}{\omega^2V}
++    \right]
++    =
++    \frac{\mathrm{kg\,m^2\,s^{-2}}}
++         {\mathrm{s^{-2}m^3}}
++    =
++    \mathrm{kg\,m^{-1}},
++\end{align}
++Eq.~\eqref{eq:rt_vam7_historical_microinertia} defines a rotational
++microinertia per volume or an equivalent line-inertia coefficient.  It does
++not define a mass density in $\mathrm{kg\,m^{-3}}$.  The dimensionally
++consistent energy form is
++\begin{align}
++    u_{\omega}
++    =
++    \frac12\mathcal J_{\omega}^{\rm VAM}
++    |\boldsymbol\omega|^2,
++\end{align}
++not $\tfrac12\rhoF|\boldsymbol\omega|^2$.
++
++\paragraph{Closed historical form and open assumptions.}
++Using $r_e=\alpha\hbar/(m_ec)$, the coefficient becomes
++\begin{align}
++    \boxed{
++    \mathcal J_{\omega}^{\rm VAM}
++    =
++    \frac{6m_e^2c}{\alpha^5\hbar}
++    }
++    \label{eq:rt_vam7_microinertia_closed_form}
++\end{align}
++within the historical choices.  This is a conditional algebraic consequence
++of the ansatzes $\omega_{\rm VAM}=\alpha\omega_c$ and
++$V_{\rm eff}=r_e^3/3$; neither choice is presently derived from resolved
++vortex dynamics.  The selected volume is also not the volume of a sphere of
++radius $r_e$; it differs from $4\pi r_e^3/3$ by a factor $4\pi$.
++
++\paragraph{Canon consequence.}
++\textbf{[DERIVED NEGATIVE / PROVENANCE CORRECTION].}
++The early calculation explains the historical origin of the decimal but
++cannot justify the current effective density.  The present edition therefore
++keeps
++\begin{align}
++    \rhoF\equiv\rhoEff
++    =
++    7.0\times10^{-7}\,\mathrm{kg\,m^{-3}}
++\end{align}
++as a calibrated quasi-static response and records
++$\mathcal J_{\omega}^{\rm VAM}$ separately as a historical conditional
++microinertia ansatz.  A conversion between them requires an independently
++derived micro--macro bridge,
++\begin{align}
++    \mathcal J_{\omega}
++    =
++    \beta_{\omega u}\rhoEff\ell_{\omega u}^{2},
++\end{align}
++including the geometry factor, participation measure, and length
++$\ell_{\omega u}$.  Numerical inheritance alone is not such a theorem.
++
++\paragraph{Cosmological non-confirmation.}
++The same early source quoted a vacuum mass density of order
++$10^{-9}\,\mathrm{kg\,m^{-3}}$.  For
++$\Lambda\sim10^{-52}\,\mathrm{m^{-2}}$, the orthodox relation
++$\rho_\Lambda=\Lambda c^2/(8\pi G)$ instead gives a scale of order
++$10^{-27}\,\mathrm{kg\,m^{-3}}$.  The historical cosmological comparison
++therefore does not independently confirm either
++$\mathcal J_{\omega}^{\rm VAM}$ or $\rhoF$.  The separately guarded SSDL
++route below is retained only as a Research-Track consistency relation.
++
+ \subsection{Cosmological Impedance Route for the Background Density}
+ \label{sec:rt_rhof_cosmological_impedance_route}
+ 

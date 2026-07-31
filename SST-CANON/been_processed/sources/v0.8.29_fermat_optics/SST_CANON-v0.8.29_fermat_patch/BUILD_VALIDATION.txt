@@ -1,0 +1,24 @@
+Validation date: 2026-07-28
+
+Source build:
+  pdflatex -interaction=nonstopmode -halt-on-error SST_CANON-v0.8.29.tex
+  repeated three times.
+
+Result:
+  PASS
+  231 pages
+  No undefined references.
+  No undefined citations.
+  No duplicate LaTeX labels in the combined main + research-track sources.
+  Unified content patch dry-run: PASS.
+  Git rename patch check: PASS.
+
+Visual inspection:
+  Rendered and inspected affected output pages containing:
+  - main-canon Fermat-metric guard;
+  - research-track Fermat/light-ring derivation and numerical exclusion;
+  - Gaussian-curvature and mode-tomography blocks;
+  - refined photonless-appearance / optical-caustic section.
+  No clipping, overlap, or broken glyphs were observed in those pages.
+
+Pre-existing nonfatal overfull/underfull box warnings remain elsewhere in the long canon build.

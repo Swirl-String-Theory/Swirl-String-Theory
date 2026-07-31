@@ -1,0 +1,227 @@
+--- SST_CANON-v0.8.30-research-track.tex
++++ SST_CANON-v0.8.31-research-track.tex
+@@ -6,12 +6,12 @@
+ \makeatother
+ 
+ %! Author = Omar Iskandarani
+-%! Companion to Swirl-String-Theory Canon-v0.8.30 (included from \texttt{SST\_CANON-v0.8.30.tex} before the manual bibliography).
++%! Companion to Swirl-String-Theory Canon-v0.8.31 (included from \texttt{SST\_CANON-v0.8.31.tex} before the manual bibliography).
+ 
+ \section{Research-track sectors migrated from the main canon}
+ 
+ \noindent
+-This companion document collects those sectors that remain useful for continuity and future development but are too long, too provisional, or too phenomenology-specific for the core body of \textit{Swirl-String-Theory\_Canon-v0.8.30}. Their migration out of the main canon is editorial rather than negative: each subsection remains part of the broader SST research program, but none is required for the minimal logical closure of the core canon.
++This companion document collects those sectors that remain useful for continuity and future development but are too long, too provisional, or too phenomenology-specific for the core body of \textit{Swirl-String-Theory\_Canon-v0.8.31}. Their migration out of the main canon is editorial rather than negative: each subsection remains part of the broader SST research program, but none is required for the minimal logical closure of the core canon.
+ 
+ \medskip
+ \noindent
+@@ -19,7 +19,7 @@
+ 
+ \medskip
+ \noindent
+-\textbf{Editorial note (v0.8.27):} the maximal swirl tension sector ($F_{\rm swirl}^{\max}$, Rydberg bridge identities, Gibbons-class maximum-tension comparison, and the threefold interpretation table) is developed in the core document \texttt{SST\_CANON-v0.8.30.tex}, subsection \texttt{Maximal Swirl Tension} (label \texttt{sec:Fmax}); it is not duplicated here.
++\textbf{Editorial note (v0.8.27):} the maximal swirl tension sector ($F_{\rm swirl}^{\max}$, Rydberg bridge identities, Gibbons-class maximum-tension comparison, and the threefold interpretation table) is developed in the core document \texttt{SST\_CANON-v0.8.31.tex}, subsection \texttt{Maximal Swirl Tension} (label \texttt{sec:Fmax}); it is not duplicated here.
+ 
+ \medskip
+ 
+@@ -9268,6 +9268,200 @@
+ $\mathcal J_{\omega}^{\rm VAM}$ or $\rhoF$.  The separately guarded SSDL
+ route below is retained only as a Research-Track consistency relation.
+ 
++\subsection{Twist-Rotor Status and Micro--Macro Participation Audit}
++\label{subsec:rt_twist_rotor_participation_audit}
++
++\paragraph{Scope and status.}
++\textbf{[RESEARCH TRACK / AUDIT GUARD].}
++This subsection adjudicates the compact-rotor proposal without promoting a
++new SST constant.  It distinguishes a useful twist-channel interpretation
++from a numerical derivation and makes the missing micro--macro participation
++factor explicit.
++
++\paragraph{Compact-rotor matching is a reformulation.}
++For a compact angular rotor with spectrum
++\begin{align}
++    E_n
++    =
++    \frac{n^2\hbar^2}{2I_\ell},
++\end{align}
++the matching postulate
++\begin{align}
++    \Delta E_{01}
++    =
++    \frac{\hbar^2}{2I_\ell^{\rm match}}
++    \stackrel{\rm ansatz}{=}
++    \hbar\omega_c
++    =
++    m_ec^2
++\end{align}
++gives
++\begin{align}
++    I_\ell^{\rm match}
++    =
++    \frac{\hbar}{2\omega_c},
++    \qquad
++    \mathcal J_{\omega}^{\rm rot}
++    :=
++    \frac{I_\ell^{\rm match}}{\rc^3}
++    =
++    \frac{\hbar}{2\omega_c\rc^3}.
++    \label{eq:rt_rotor_matching_microinertia}
++\end{align}
++Using $\omega_c=\vchar/\rc$, the horn-envelope closure
++Eq.~\eqref{eq:core_density}, and the calibrated electron chain, this becomes
++\begin{align}
++    \boxed{
++    \mathcal J_{\omega}^{\rm rot}
++    =
++    \pi\rc^2\rhohorn
++    =:
++    \mu_{\ell}^{\rm horn}
++    }
++    =
++    2.4282114\times10^{-11}\,\mathrm{kg\,m^{-1}}.
++    \label{eq:rt_rotor_line_inertia_reformulation}
++\end{align}
++\textbf{[REFORMULATION / MATCHING ANSATZ].}
++The numerical value is inherited from the same Compton--horn calibration
++chain.  Equation~\eqref{eq:rt_rotor_line_inertia_reformulation} therefore
++interprets the horn-envelope line-inertia coefficient as twist-channel
++microinertia; it does not derive an independent constant and does not identify
++$\mu_{\ell}^{\rm horn}$ with a resolved material filament mass.
++
++\paragraph{The wave-speed result is definitional.}
++If one further defines
++\begin{align}
++    K_\ell
++    :=
++    I_\ell^{\rm match}\omega_c^2,
++    \qquad
++    \mathcal K_\omega
++    :=
++    \frac{K_\ell}{\rc},
++\end{align}
++then
++\begin{align}
++    c_\omega^2
++    :=
++    \frac{\mathcal K_\omega}{\mathcal J_{\omega}^{\rm rot}}
++    =
++    (\omega_c\rc)^2
++    =
++    \vchar{}^2.
++    \label{eq:rt_rotor_speed_tautology}
++\end{align}
++\textbf{[DERIVED IDENTITY / NOT A VALIDATION].}
++The equality follows from the definitions of $K_\ell$ and
++$\mathcal K_\omega$ and cannot be cited as an independent internal check of
++the rotor model.
++
++\paragraph{Twist/bend channel guard.}
++A local nearest-neighbour rotor chain supports, in its long-wavelength limit,
++a linear internal twist or phase branch,
++\begin{align}
++    \omega_{\rm twist}(k)
++    =
++    c_{\rm twist}|k|+O(k^3).
++\end{align}
++A slender vortex centreline instead carries transverse Kelvin bending modes
++with the asymptotic structure
++\begin{align}
++    \omega_{\rm K}(k)
++    \simeq
++    \frac{\Gamma_0k^2}{4\pi}
++    \left[
++        \ln\!\left(\frac{1}{|k|a_{\rm core}}\right)
++        +C_{\rm core}
++    \right]
++    \label{eq:rt_kelvin_bending_dispersion_guard}
++\end{align}
++for a specified finite-core profile \cite{Saffman1992}.
++\textbf{[CRITICAL NOTE].}
++The compact rotor may model an internal twist/phase degree of freedom only.
++It must not be identified with transverse filament bending without an explicit
++coupling that reproduces Eq.~\eqref{eq:rt_kelvin_bending_dispersion_guard}.
++
++\paragraph{Participation-gap diagnostic.}
++Converting the rotor microinertia to a translational inertia with the
++microscopic length $\rc$ would give
++\begin{align}
++    \rho_{\rm eff}^{(\rc)}
++    :=
++    \frac{\mathcal J_{\omega}^{\rm rot}}{\rc^2}
++    =
++    \pi\rhohorn
++    =
++    1.2231589\times10^{19}\,\mathrm{kg\,m^{-3}},
++    \label{eq:rt_rc_scale_effective_inertia}
++\end{align}
++not the calibrated $\rhoF$.  The required scalar participation ratio is
++therefore
++\begin{align}
++    \boxed{
++    \phi_{\rm dyn}
++    :=
++    \frac{\rhoF}{\rho_{\rm eff}^{(\rc)}}
++    =
++    \frac{\rhoF}{\pi\rhohorn}
++    =
++    5.7229\times10^{-26}
++    }.
++    \label{eq:rt_participation_gap}
++\end{align}
++The same missing normalization can be represented by the equivalent length
++\begin{align}
++    \boxed{
++    \ell_{\rho,\rm eq}
++    :=
++    \sqrt{\frac{\mathcal J_{\omega}^{\rm rot}}{\rhoF}}
++    =
++    \frac{\rc}{\sqrt{\phi_{\rm dyn}}}
++    =
++    5.8897\,\mathrm{mm}
++    }.
++    \label{eq:rt_equivalent_response_length}
++\end{align}
++\textbf{[DERIVED DIAGNOSTIC / NOT A LENGTH PREDICTION].}
++Equations~\eqref{eq:rt_participation_gap} and
++\eqref{eq:rt_equivalent_response_length} are reversible reparameterizations
++of the calibrated response.  They do not establish a coherence length, cell
++spacing, correlation length, or physical separation between vortex strings.
++
++\paragraph{Weighted macro-response representation.}
++A future homogenization may write the response schematically as
++\begin{align}
++    \boldsymbol\rho_{\rm eff}(\omega,\mathbf k)
++    =
++    \mu_{\ell}^{\rm horn}\,
++    \boldsymbol\nu_M(\omega,\mathbf k),
++    \qquad
++    [\boldsymbol\nu_M]=\mathrm{m^{-2}},
++    \label{eq:rt_weighted_macro_response}
++\end{align}
++where $\boldsymbol\nu_M$ is a weighted response measure generated by the
++resolved network geometry, mode shapes, boundary conditions, and frequency.
++It is not automatically a literal count of parallel strings.  In a passive
++quasi-static branch the corresponding kinetic quadratic form must be
++non-negative; at finite frequency the effective response may be dispersive,
++anisotropic, or resonant.  The Canon scalar is only the isotropic
++long-wavelength limit of Eq.~\eqref{eq:rt_weighted_macro_response}, as fixed
++by Eq.~\eqref{eq:rhof_quasistatic_response_limit}.
++
++\paragraph{Promotion gates.}
++A micro--macro derivation of $\rhoF$ may be promoted only if it:
++\begin{enumerate}
++    \item computes the participation functional without using $\rhoF$,
++          $\phi_{\rm dyn}$, or $\ell_{\rho,\rm eq}$ as fitted inputs;
++    \item converges under representative-volume size, discretization, and
++          boundary-condition refinement;
++    \item preserves the twist/bend distinction and the calibrated units; and
++    \item predicts at least one independent response observable in addition
++          to the target value of $\rhoF$.
++\end{enumerate}
++Until these gates close, $\rhoF$ remains
++\textbf{[CALIBRATED QUASI-STATIC EFFECTIVE RESPONSE]}.
++
+ \subsection{Cosmological Impedance Route for the Background Density}
+ \label{sec:rt_rhof_cosmological_impedance_route}
+ 
