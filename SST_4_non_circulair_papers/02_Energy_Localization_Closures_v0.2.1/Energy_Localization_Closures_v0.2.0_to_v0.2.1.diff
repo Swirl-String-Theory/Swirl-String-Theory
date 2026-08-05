@@ -1,0 +1,137 @@
+--- Energy_Localization_Closures_v0.2.0.tex
++++ Energy_Localization_Closures_v0.2.1.tex
+@@ -44,7 +44,7 @@
+ \email{info@omariskandarani.com}
+ \thanks{ORCID: 0009-0006-1686-3961}
+ \affiliation{Independent Researcher, Groningen, The Netherlands}
+-\date{2 August 2026; manuscript version 0.2.0}
++\date{2 August 2026; manuscript version 0.2.1}
+ 
+ \begin{abstract}
+ We audit three conditional energy-normalization closures used in a vortex-filament bookkeeping of the electron rest energy.  The first is the calibrated horn-envelope normalization
+@@ -67,7 +67,7 @@
+ The ratio \(\Gammaeff/\GammaC=\alpha^2/4\) is therefore a calibrated comparison, not yet a dynamical circulation deficit.
+ A formal line-vortex interpretation of \(\GammaC\) at sub-Compton radii gives flow speeds exceeding \(c\); this conflicts with a universal-\(c\) relativistic interpretation of that flow, but not with the mathematics of a Galilean incompressible model by itself.
+ 
+-The analysis isolates five independent gates: dynamical selection of the ideal ropelength, computation of the line-energy coefficient, constitutive identification of the relevant density, derivation of the circulation sector, and Maxwell/source matching including the electromagnetic self-energy shape factor.
++The analysis isolates five independent gates: dynamical selection and numerical provenance of the ideal ropelength, computation of the line-energy coefficient, constitutive identification of the relevant density, derivation of the circulation sector, and Maxwell/source matching including the electromagnetic self-energy shape factor.  The first four can fix an \(\alpha\)-free geometric candidate; only the Maxwell/source gate can identify that candidate with the electromagnetic fine-structure constant.
+ The model derives neither \(\alpha\), \(m_e\), nor a medium density.
+ Its present content is a transparent algebraic scaffold and a preregistered falsification programme.
+ \end{abstract}
+@@ -142,15 +142,15 @@
+   =\frac12\Rop_a.
+   \label{eq:rope-conventions}
+ \end{equation}
+-The high-resolution numerical trefoil reported by Przybyl and Pieranski
+-\cite{PrzybylPieranski2014} has
++The high-resolution trefoil study of Przybyl and Pieranski
++\cite{PrzybylPieranski2014} reports the numerical estimate
+ \begin{equation}
+   \Rop_a^{(3_1)}=32.742\,934\,477,
+   \qquad
+   \calL_D^{(3_1)}=16.371\,467\,2385.
+   \label{eq:ropelength}
+ \end{equation}
+-These are high-resolution numerical values for a candidate tight configuration, not a rigorous closed-form value of the global minimizer.  Existence and \(C^{1,1}\) regularity of ropelength minimizers are established mathematically \cite{CantarellaKusnerSullivan2002}.
++The quoted value is a high-resolution numerical estimate associated with the reported finite-resolution/extrapolation procedure.  It is neither a rigorous lower bound nor an exact value of the unknown global minimizer.  Existence and \(C^{1,1}\) regularity of ropelength minimizers are established mathematically \cite{CantarellaKusnerSullivan2002}, but those theorems do not certify the decimal value in \cref{eq:ropelength}.
+ 
+ \subsection{Geometric candidate and its single residual}
+ 
+@@ -202,7 +202,7 @@
+ 
+ \begin{quote}
+ \textbf{[GATE G0].}
+-Before \(\calL_D^{(3_1)}\) is used as a physical input, derive or numerically establish a ropelength-dominated limit of the actual SST energy functional.
++Before \(\calL_D^{(3_1)}\) is used as a physical input, (i) derive or numerically establish a ropelength-dominated limit of the actual SST energy functional, and (ii) propagate the numerical provenance and uncertainty of the high-resolution trefoil estimate.  A finite-resolution or extrapolated value must not be treated as an exact topological invariant.
+ \end{quote}
+ 
+ \section{Three declared normalization closures}
+@@ -496,7 +496,7 @@
+ \simeq4.19.
+ \]
+ 
+-These numbers do not contradict Galilean incompressible Euler theory, in which \(c\) is not a fundamental speed limit and the pressure constraint is instantaneous.  They do obstruct a literal identification of this azimuthal transport speed with a physical matter velocity in a sector obeying universal operational Lorentz invariance with limiting speed \(c\).  A viable model must therefore supply a separate emergent-causality map, a finite-core modification of \cref{eq:vGammaC}, or a different circulation sector \cite{BarceloLiberatiVisser2026}.
++These numbers do not contradict Galilean incompressible Euler theory, in which \(c\) is not a fundamental speed limit and the pressure constraint is instantaneous.  They do obstruct a literal identification of this azimuthal transport speed with a physical matter velocity in a sector obeying universal operational Lorentz invariance with limiting speed \(c\).  The issue is analogous to the superluminal-surface-speed obstruction in classical spinning-electron models \cite{Ohanian1986}, although the present filament model has a different ontology.  A viable model must therefore supply a separate emergent-causality map, a finite-core modification of \cref{eq:vGammaC}, or a different circulation sector \cite{BarceloLiberatiVisser2026}.
+ 
+ \subsection{Calibrated circulation ratio}
+ 
+@@ -541,7 +541,7 @@
+ \begin{tabular}{llll}
+ Branch & defining circulation & coefficient (kg\,m\(^{-3}\)) & status\\
+ \hline
+-H & \(\Gammaeff\) implicit & \(3.8934\times10^{18}\) & horn-envelope calibration\\
++H & --- (no explicit circulation) & \(3.8934\times10^{18}\) & horn-envelope calibration\\
+ F & \(\Gammaeff=(\alpha^2/4)h/m_e\) & \(5.6824\times10^{16}\) & filament closure, \(\alpha\)-contaminated\\
+ C & \(\GammaC=h/m_e\) & \(1.0071\times10^{7}\) & \(\alpha\)-free comparison scale\\
+ \end{tabular}
+@@ -650,8 +650,8 @@
+ The present article supports the following gate structure.
+ 
+ \begin{description}[leftmargin=2.3cm,style=nextline]
+-  \item[\textbf{G0: dynamics}]
+-  Show that the resolved SST energy selects the ideal-rope trefoil, or replace \(\calL_D^{(3_1)}\) by the dynamically selected value.
++  \item[\textbf{G0: geometry and dynamics}]
++  Show that the resolved SST energy selects the ideal-rope trefoil, or replace \(\calL_D^{(3_1)}\) by the dynamically selected value.  Propagate the numerical provenance and uncertainty of the trefoil estimate.
+ 
+   \item[\textbf{G1: line energy}]
+   Compute \(C_F\), the core-profile contribution, and the nonlocal Biot--Savart contribution without fitting to \(\alpha\).
+@@ -662,12 +662,27 @@
+   \item[\textbf{G3: circulation}]
+   Derive the physical circulation of the defect.  In particular, establish or reject \(\GammaC=h/m_e\) without using \(r_e\), \(r_c\), or \(\alpha c\) as hidden calibration inputs.
+ 
+-  \item[\textbf{G4: electromagnetism}]
+-  Derive B2a--B2c and compute the self-energy shape factor \(C_{\rm EM}\).
+-
+-  \item[\textbf{G5: out-of-sample test}]
+-  After all coefficients and profiles are frozen, compare the resulting dimensionless coupling with \(\alpha\).  The measured \(\alpha\), \(r_e\), and any transitive proxies are forbidden during the fit or selector stage.
++  \item[\textbf{G4: electromagnetic identification}]
++  Derive B2a--B2c, compute the self-energy shape factor \(C_{\rm EM}\), and establish which \(\alpha\)-free geometric or hydrodynamic response coefficient is equal to the electromagnetic coupling coefficient.
++
++  \item[\textbf{G5: out-of-sample comparison}]
++  Only after G4 has produced an electromagnetic coupling candidate, compare it with \(\alpha_{\rm obs}\).  The measured \(\alpha\), \(r_e\), and all transitive proxies are forbidden during G0--G4 fitting, branch selection, or coefficient determination.
+ \end{description}
++
++\begin{remark}[Gate ordering]
++\label{rem:gate-ordering}
++Because \(D_{\rm geom}:=\ell_*/\calL_D\) and
++\(\ell_*:=(3/8\pi)\lC\), one has identically
++\begin{equation}
++  \alpha_{\rm geom}
++  \equiv
++  \frac{D_{\rm geom}}{\lC}.
++  \label{eq:alpha-geom-definition}
++\end{equation}
++G0--G3 can, in principle, fix an \(\alpha\)-free geometric candidate by selecting the curve, the line-energy coefficient, the relevant density coefficient, and the circulation sector.  They cannot by themselves establish that this dimensionless ratio is the electromagnetic fine-structure constant.  Gate G4 is therefore the unique \emph{electromagnetic-identification gate}: it must connect the geometric or hydrodynamic response to the Maxwell kinetic coefficient and to the normalized source sector.  Gate G5 is then a genuine out-of-sample comparison of the G4 output with \(\alpha_{\rm obs}\).
++
++Accordingly, any claimed derivation of the electromagnetic \(\alpha\) that bypasses B2a--B2c and \(C_{\rm EM}\) is, at leading order, only a construction of the ratio \(D/\lC\) or a restatement of its definition, not yet a derivation of the electromagnetic coupling.
++\end{remark}
+ 
+ \begin{table}[t]
+ \caption{Epistemic status of the central statements.}
+@@ -686,6 +701,8 @@
+ \(\GammaC\) as substrate circulation quantum & open\\
+ \(D=\re\) & special case \(C_{\rm EM}=1\), not a theorem\\
+ Ideal trefoil as physical minimizer & open Gate G0\\
++Trefoil decimal value as exact invariant & excluded; numerical provenance required\\
++G4 as electromagnetic identification & unique coupling-identification gate\\
+ \end{tabular}
+ \end{ruledtabular}
+ \end{table}
+@@ -697,7 +714,7 @@
+ 
+ The factor \(1/(2\alpha)\) is exact under the chosen horn and filament normalizations, but it is not a universal ratio of geometric volumes and is not independent of the calibrated relation \(r/\lC=\alpha/2\).  The three \(855\)-ppm comparisons are one equation in three forms.  The Compton-circulation branch produces an \(\alpha\)-free density scale, but neither its circulation nor its density has been derived as a substrate property.  The factor \(\alpha^2/4\) is likewise a transparent calibrated ratio rather than a demonstrated dynamical suppression.
+ 
+-Consequently, the model cannot presently be described as containing exactly one physical free parameter.  Once the provisional conventions are unfrozen, at least the dynamical knot representative, the line-energy coefficient, the relevant density sector, the circulation map, the electromagnetic stiffness match, and the electrostatic shape factor remain open.
++Within the frozen closure family, at fixed normalization coefficients and with a fixed geometric input, the bookkeeping contains one free coefficient and one comparison datum.  Once those conventions are unfrozen, however, at least the dynamical knot representative, the line-energy coefficient, the relevant density sector, the circulation map, the electromagnetic stiffness match, and the electrostatic shape factor reopen as independent gates.  The scoped one-parameter statement is therefore valid only for the frozen algebraic scaffold, not for the physical model.
+ 
+ This is nevertheless a useful result.  The problem is now decomposed into independent theorem and falsification gates, and hidden reuse of \(\alpha\) is visible by inspection.  Progress requires a resolved core calculation and an action-level electromagnetic match, not further manipulation of the same calibrated identities.
+ 
+@@ -825,7 +842,7 @@
+ \bibitem{Iskandarani2026}
+ O.~Iskandarani,
+ ``Angular-projector normalization and finite-core energetics of tight knotted vortex tubes,''
+-preprint, manuscript version 0.2.0 (2026).
++preprint, manuscript version 0.2.1 (2026).
+ 
+ \bibitem{CODATA2022}
+ P.~J.~Mohr, D.~B.~Newell, B.~N.~Taylor, and E.~Tiesinga,

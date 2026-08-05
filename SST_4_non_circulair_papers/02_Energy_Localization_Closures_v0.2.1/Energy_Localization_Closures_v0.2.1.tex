@@ -1,0 +1,910 @@
+\documentclass[aps,pre,preprint,notitlepage,nofootinbib,superscriptaddress]{revtex4-2}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,mathtools,bm,amsthm}
+\usepackage{mathrsfs}
+\usepackage{booktabs,array}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\usepackage{enumitem}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  citecolor=blue!55!black,
+  urlcolor=blue!55!black,
+  pdftitle={Energy-Localization Closures for a Vortex-Filament Model of the Electron Mass},
+  pdfauthor={Omar Iskandarani}
+}
+
+\newcommand{\dd}{\mathrm d}
+\newcommand{\lC}{\bar\lambda_C}
+\newcommand{\re}{r_e}
+\newcommand{\Rop}{\operatorname{Rop}}
+\newcommand{\calL}{\mathcal L}
+\newcommand{\rhohorn}{\rho_{\mathrm{horn}}^{\mathrm{eff}}}
+\newcommand{\rhofil}{\rho_{\mathrm{fil}}^{\mathrm{eff}}}
+\newcommand{\rhoCeff}{\rho_{\mathrm C}^{\mathrm{eff}}}
+\newcommand{\Gammaeff}{\Gamma_{\mathrm{eff}}}
+\newcommand{\GammaC}{\Gamma_{\mathrm C}}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\newtheorem{definition}{Definition}
+
+
+\begin{document}
+
+\title{\texorpdfstring{Conditional Energy-Normalization Closures for a Vortex-Filament Electron Model\\\large Exact algebraic ratios, \(\alpha\)-power counting, and open constitutive gates}{Conditional Energy-Normalization Closures for a Vortex-Filament Electron Model}}
+
+\author{Omar Iskandarani}
+\email{info@omariskandarani.com}
+\thanks{ORCID: 0009-0006-1686-3961}
+\affiliation{Independent Researcher, Groningen, The Netherlands}
+\date{2 August 2026; manuscript version 0.2.1}
+
+\begin{abstract}
+We audit three conditional energy-normalization closures used in a vortex-filament bookkeeping of the electron rest energy.  The first is the calibrated horn-envelope normalization
+\(m_ec^2=2\pi\rhohorn v^2r^3\); the second is a declared leading line-energy closure
+\(m_ec^2=\rhofil\Gamma^2\ell/3\); the third replaces the effective circulation by the electron-anchored Compton circulation scale \(\GammaC=h/m_e\).
+For the fixed coefficients \(2\pi\) and \(1/3\), and with \(\Gamma=2\pi rv\), the first two closures obey the exact conditional identity
+\[
+\frac{\rhohorn}{\rhofil}
+=\frac{2\pi}{3}\frac{\ell}{r}.
+\]
+On the calibrated chain \(r=(\alpha/2)\bar\lambda_C\) and on the candidate length
+\(\ell=(3/8\pi)\bar\lambda_C\), this becomes \(1/(2\alpha)=68.518\).
+This factor is a ratio of normalization supports defined by the two closures; it is not a theorem about the geometric volume of a sphere and a circular tube, nor does it identify either coefficient with a material, background, or resolved-core density.
+
+The geometric candidate
+\(\alpha_{\rm geom}^{-1}=(8\pi/3)\mathcal L_D^{(3_1)}\), the associated comparison diameter \(D_{\rm geom}\), and the required radius-normalized aspect ratio encode one and the same residual, \(-855.13\) ppm in \(\alpha\).
+Replacing \(\Gammaeff\) by \(\GammaC=h/m_e\) produces the \(\alpha\)-free but electron-anchored density scale
+\(\rhoCeff=(2/\pi)m_e/\bar\lambda_C^3\).
+Neither \(\GammaC\) nor \(\rhoCeff\) is derived as a property of the substrate.
+The ratio \(\Gammaeff/\GammaC=\alpha^2/4\) is therefore a calibrated comparison, not yet a dynamical circulation deficit.
+A formal line-vortex interpretation of \(\GammaC\) at sub-Compton radii gives flow speeds exceeding \(c\); this conflicts with a universal-\(c\) relativistic interpretation of that flow, but not with the mathematics of a Galilean incompressible model by itself.
+
+The analysis isolates five independent gates: dynamical selection and numerical provenance of the ideal ropelength, computation of the line-energy coefficient, constitutive identification of the relevant density, derivation of the circulation sector, and Maxwell/source matching including the electromagnetic self-energy shape factor.  The first four can fix an \(\alpha\)-free geometric candidate; only the Maxwell/source gate can identify that candidate with the electromagnetic fine-structure constant.
+The model derives neither \(\alpha\), \(m_e\), nor a medium density.
+Its present content is a transparent algebraic scaffold and a preregistered falsification programme.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+\label{sec:intro}
+
+The proposal that particles may be represented by knotted or linked vortical structures has a long history \cite{Thomson1867}.  Quantized vortices are established excitations of superfluids \cite{Onsager1949,Feynman1955,Vinen1961,Donnelly1991}; knotted vortices have been generated and tracked in ordinary fluids \cite{KlecknerIrvine2013}; and tight knots have been used as organizing structures in phenomenological flux-tube spectra \cite{BuniyKephart2005,BuniyEtAl2014}.  Magnetic and hydrodynamic tube models likewise motivate energy functionals with a leading length contribution and geometry-dependent corrections \cite{ChuiMoffatt1995,MaggioniRicca2009,Saffman1992}.
+
+This note does not claim that the electron is a vortex.  Its purpose is narrower: to audit a family of conditional normalization formulas, expose their complete dependency structure, and separate exact algebra from physical identification.  In particular, the symbols called ``densities'' below are initially only coefficients in specified energy closures.  They must not be identified with a material substrate density, the canonical effective response density, a local resolved-tube density, or one another without an additional constitutive theorem.
+
+A companion manuscript \cite{Iskandarani2026} studies the numerical relation
+\[
+\frac{8\pi}{3}\mathcal L_D^{(3_1)}
+\simeq \alpha^{-1},
+\]
+where \(\mathcal L_D^{(3_1)}\) is a diameter-normalized numerical estimate for the ideal trefoil.  That work treats the relation as an independent geometric candidate with a nonzero residual, not as a completed derivation of the fine-structure constant.  The present note asks what follows when this candidate is inserted into several rest-energy bookkeeping closures.
+
+The main results are as follows.
+
+First, the horn-envelope and filament closures imply an exact ratio once their numerical coefficients are frozen.  The ratio becomes \(1/(2\alpha)\) on the calibrated electron chain, but this is a conditional normalization identity, not a universal volume law.
+
+Second, three apparently different numerical comparisons are algebraically identical and therefore constitute only one datum.
+
+Third, the comparison scale \(\GammaC=h/m_e\) eliminates \(\alpha\) from one closure and generates a natural electron-anchored density scale.  This does not prove that the substrate carries that circulation or density.
+
+Fourth, the physically load-bearing questions are not numerical.  They are whether the dynamical energy selects the ideal-rope trefoil, what coefficient replaces the regularized Biot--Savart logarithm, which density enters the line energy, how circulation is selected, and how a defect-sector response matches a bulk Maxwell action.
+
+\section{Conventions, data, and epistemic status}
+\label{sec:conventions}
+
+\subsection{CODATA quantities}
+
+We use the CODATA 2022 recommended values \cite{CODATA2022}:
+\begin{align}
+  \alpha &= 7.297\,352\,5643\times10^{-3},
+  &
+  \alpha^{-1}&=137.035\,999\,177,
+  \notag\\
+  \lC &= \frac{\hbar}{m_ec}
+  =3.861\,592\,6744\times10^{-13}\ \mathrm{m},
+  &
+  \re &= \alpha\lC
+  =2.817\,940\,3205\times10^{-15}\ \mathrm{m},
+  \notag\\
+  \frac{h}{m_e}
+  &=7.273\,895\,0934\times10^{-4}\ \mathrm{m^2\,s^{-1}}.
+\end{align}
+CODATA lists both \(\pi\hbar/m_e=h/(2m_e)\) and
+\(2\pi\hbar/m_e=h/m_e\) under ``quantum of circulation.''  In this manuscript
+\[
+\GammaC:=\frac{h}{m_e}
+\]
+is called the \emph{electron-anchored Compton circulation scale}.  This terminology is deliberately non-dynamical: no microscopic constituent of the proposed medium has been shown to have mass \(m_e\), and no substrate quantization theorem is assumed.
+
+The classical electron radius is used only as the calibrated combination
+\[
+\re=\frac{e^2}{4\pi\varepsilon_0m_ec^2}
+=\alpha\lC.
+\]
+It is not a measured geometrical size of the electron.
+
+\subsection{Ropelength convention}
+
+For a closed curve with embedded tube radius \(a\) and diameter \(D=2a\), define
+\begin{equation}
+  \Rop_a:=\frac{\ell}{a},
+  \qquad
+  \calL_D:=\frac{\ell}{D}
+  =\frac12\Rop_a.
+  \label{eq:rope-conventions}
+\end{equation}
+The high-resolution trefoil study of Przybyl and Pieranski
+\cite{PrzybylPieranski2014} reports the numerical estimate
+\begin{equation}
+  \Rop_a^{(3_1)}=32.742\,934\,477,
+  \qquad
+  \calL_D^{(3_1)}=16.371\,467\,2385.
+  \label{eq:ropelength}
+\end{equation}
+The quoted value is a high-resolution numerical estimate associated with the reported finite-resolution/extrapolation procedure.  It is neither a rigorous lower bound nor an exact value of the unknown global minimizer.  Existence and \(C^{1,1}\) regularity of ropelength minimizers are established mathematically \cite{CantarellaKusnerSullivan2002}, but those theorems do not certify the decimal value in \cref{eq:ropelength}.
+
+\subsection{Geometric candidate and its single residual}
+
+Define
+\begin{equation}
+  \alpha_{\rm geom}
+  :=\frac{3}{8\pi\calL_D^{(3_1)}}
+  =7.291\,112\,3713\times10^{-3},
+  \qquad
+  \alpha_{\rm geom}^{-1}
+  =137.153\,283\,2132.
+  \label{eq:alphageom}
+\end{equation}
+The relative residual is
+\begin{equation}
+  \delta
+  :=\frac{\alpha_{\rm geom}}{\alpha}-1
+  =-8.55131\times10^{-4}
+  =-855.13\ \mathrm{ppm}.
+  \label{eq:residual}
+\end{equation}
+No \(r_e\), \(r_c\), or calibrated swirl velocity enters the evaluation of
+\cref{eq:alphageom}.  The angular coefficient \(8\pi/3\), however, remains a declared normalization whose dynamical origin is an open question \cite{Iskandarani2026}.
+
+For later algebra it is useful to define the \emph{comparison scales}
+\begin{align}
+  \ell_* &:=\frac{3}{8\pi}\lC,
+  \label{eq:ellstar}\\
+  D_{\rm geom}
+  &:=\frac{\ell_*}{\calL_D^{(3_1)}}
+  =\alpha_{\rm geom}\lC.
+  \label{eq:Dgeom}
+\end{align}
+These are reparametrizations of the same candidate relation.  They are not additional predictions.
+
+\subsection{Gate G0: geometric and dynamical minimizers}
+\label{subsec:G0}
+
+Ropelength minimization and field-energy minimization are different variational problems.  The use of \(\calL_D^{(3_1)}\) as a physical electron input is justified only if a resolved SST energy functional has a controlled regime in which
+\begin{equation}
+  E_{\rm SST}[\gamma,a_{\rm core},\ldots]
+  =
+  T_{\rm eff}\operatorname{Len}(\gamma)
+  +E_{\rm exclusion}[\gamma,a_{\rm core}]
+  +o(1),
+  \label{eq:hard-tube-limit}
+\end{equation}
+with fixed effective thickness and hard self-avoidance, so that its minimizer converges to a ropelength minimizer.  Soft Hopf-soliton models such as the Faddeev--Skyrme model minimize a full field energy at fixed Hopf charge and need not select the ideal-rope representative \cite{Sutcliffe2007}.  Thus:
+
+\begin{quote}
+\textbf{[GATE G0].}
+Before \(\calL_D^{(3_1)}\) is used as a physical input, (i) derive or numerically establish a ropelength-dominated limit of the actual SST energy functional, and (ii) propagate the numerical provenance and uncertainty of the high-resolution trefoil estimate.  A finite-resolution or extrapolated value must not be treated as an exact topological invariant.
+\end{quote}
+
+\section{Three declared normalization closures}
+\label{sec:closures}
+
+Consider a closed filament with centerline length \(\ell\), characteristic radius \(r\), characteristic tangential speed \(v\), and circulation
+\begin{equation}
+  \Gamma=2\pi rv.
+  \label{eq:circulation}
+\end{equation}
+A resolved vortex energy is generally nonlocal and core dependent.  For a slender filament it contains a logarithmic contribution of the schematic form
+\begin{equation}
+  E
+  \sim
+  \frac{\rho\Gamma^2\ell}{4\pi}
+  \left[
+    \ln\!\left(\frac{R_{\rm out}}{a_{\rm core}}\right)
+    +C_{\rm profile}
+  \right]
+  +E_{\rm nonlocal},
+  \label{eq:standard-line-energy}
+\end{equation}
+where \(C_{\rm profile}\), the outer scale, and nonlocal terms depend on the core model and global geometry \cite{Saffman1992}.  The closures below replace this structure by fixed coefficients.  They are definitions of bookkeeping branches, not derived hydrodynamic theorems.
+
+\begin{definition}[H: horn-envelope normalization]
+\label{def:H}
+The electron rest energy is represented by
+\begin{equation}
+  m_ec^2
+  =
+  C_H\,\rhohorn\,v^2r^3,
+  \qquad
+  C_H:=2\pi.
+  \label{eq:H}
+\end{equation}
+The coefficient \(\rhohorn\) is a horn-envelope normalization density.  It is not a local resolved-tube density.
+\end{definition}
+
+\begin{definition}[F: filament line-energy normalization]
+\label{def:F}
+The leading line-energy bookkeeping is
+\begin{equation}
+  m_ec^2
+  =
+  C_F\,\rhofil\,\Gamma^2\ell,
+  \qquad
+  C_F:=\frac13.
+  \label{eq:F}
+\end{equation}
+The coefficient \(\rhofil\) is an effective filament energy coefficient until a constitutive theorem identifies it with a physical density.
+\end{definition}
+
+\begin{definition}[C: Compton-circulation comparison]
+\label{def:C}
+As in \cref{def:F}, but with the comparison scale
+\begin{equation}
+  \Gamma=\GammaC:=\frac{h}{m_e}.
+  \label{eq:C}
+\end{equation}
+The resulting coefficient is denoted \(\rhoCeff\).  This branch is not a quantization theorem for the substrate.
+\end{definition}
+
+The dimensions are correct:
+\[
+[\rho\Gamma^2\ell]
+=
+\mathrm{kg\,m^{-3}}\,
+\mathrm{m^4\,s^{-2}}\,
+\mathrm m
+=
+\mathrm J,
+\qquad
+[\rho v^2r^3]=\mathrm J.
+\]
+
+\section{Conditional ratio of horn and filament normalizations}
+\label{sec:ratio}
+
+\begin{proposition}[General coefficient dependence]
+\label{prop:general-ratio}
+For equal total energy, with \(\Gamma=2\pi rv\), the closures
+\[
+E=C_H\rho_Hv^2r^3,
+\qquad
+E=C_F\rho_F\Gamma^2\ell
+\]
+imply
+\begin{equation}
+  \boxed{
+  \frac{\rho_H}{\rho_F}
+  =
+  \frac{4\pi^2C_F}{C_H}\frac{\ell}{r}
+  }.
+  \label{eq:general-ratio}
+\end{equation}
+The result is independent of \(E\) and \(v\), but it depends explicitly on the closure coefficients \(C_H\) and \(C_F\).
+\end{proposition}
+
+\begin{proof}
+Solving the two closures gives
+\[
+\rho_H=\frac{E}{C_Hv^2r^3},
+\qquad
+\rho_F
+=\frac{E}{4\pi^2C_Fv^2r^2\ell}.
+\]
+Their ratio is \cref{eq:general-ratio}.
+\end{proof}
+
+For the declared values \(C_H=2\pi\) and \(C_F=1/3\),
+\begin{equation}
+  \frac{\rhohorn}{\rhofil}
+  =
+  \frac{2\pi}{3}\frac{\ell}{r}.
+  \label{eq:specific-ratio}
+\end{equation}
+On the calibrated chain
+\begin{equation}
+  r=\frac{\re}{2}
+  =\frac{\alpha}{2}\lC,
+  \qquad
+  v=\frac{\alpha c}{2},
+  \qquad
+  \ell=\ell_*=\frac{3}{8\pi}\lC,
+  \label{eq:calibrated-chain}
+\end{equation}
+this becomes
+\begin{equation}
+  \boxed{
+  \frac{\rhohorn}{\rhofil}
+  =
+  \frac{1}{2\alpha}
+  =68.5180
+  }.
+  \label{eq:ratio-alpha}
+\end{equation}
+
+\begin{remark}[What \cref{eq:ratio-alpha} does and does not mean]
+Equation~\eqref{eq:ratio-alpha} is an exact algebraic consequence of the stated coefficients and the calibrated scale chain.  It is not an independent derivation of \(\alpha\), because \(r/\lC=\alpha/2\) is already used.  It is also not a universal geometric volume theorem.
+
+Indeed, the actual Euclidean volumes of a sphere of radius \(r\) and a circular tube of minor radius \(r\) and centerline length \(\ell\) are
+\[
+V_{\rm sphere}=\frac{4\pi}{3}r^3,
+\qquad
+V_{\rm tube}^{\rm geom}=\pi r^2\ell,
+\]
+whose ratio is
+\[
+\frac{V_{\rm tube}^{\rm geom}}{V_{\rm sphere}}
+=\frac34\frac{\ell}{r},
+\]
+not \((2\pi/3)(\ell/r)\).  The factors \(2\pi r^3\) and
+\((4\pi^2/3)r^2\ell\) are effective support factors generated by the two energy normalizations.  They may be useful bookkeeping devices, but they must not be relabelled as literal sphere and tube volumes.
+\end{remark}
+
+\begin{remark}[Density non-identification]
+The identity compares \(\rhohorn\) and \(\rhofil\) as coefficients in two closures.  It does not establish
+\[
+\rhofil=\rho_{\!f},
+\qquad
+\rhofil=\rho_{\rm substrate},
+\qquad
+\rhofil=\rho_{\rm local\ tube},
+\]
+or any other density identification.  Such a statement requires a separate constitutive matching theorem.
+\end{remark}
+
+Numerically, the three branches give
+\begin{equation}
+  \rhohorn=3.8934\times10^{18},
+  \qquad
+  \rhofil=5.6824\times10^{16},
+  \qquad
+  \rhoCeff=1.0071\times10^{7}
+  \quad
+  (\mathrm{kg\,m^{-3}}),
+  \label{eq:numerical-coefficients}
+\end{equation}
+but all three numbers are closure outputs built from measured electron quantities and frozen normalization coefficients.
+
+\section{One residual in three equivalent representations}
+\label{sec:residual-three}
+
+\begin{proposition}[Residual equivalence]
+\label{prop:residual}
+With \(\delta\) defined in \cref{eq:residual},
+\begin{equation}
+  \frac{\alpha_{\rm geom}}{\alpha}-1
+  =
+  \frac{D_{\rm geom}}{\re}-1
+  =
+  \frac{3/(4\pi\alpha)}{\Rop_a^{(3_1)}}-1
+  =
+  \delta.
+  \label{eq:three-faces}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Because \(D_{\rm geom}=\alpha_{\rm geom}\lC\) and
+\(\re=\alpha\lC\),
+\[
+\frac{D_{\rm geom}}{\re}
+=
+\frac{\alpha_{\rm geom}}{\alpha}.
+\]
+Also,
+\[
+\frac{3/(4\pi\alpha)}{\Rop_a^{(3_1)}}
+=
+\frac{3}{8\pi\alpha\calL_D^{(3_1)}}
+=
+\frac{\alpha_{\rm geom}}{\alpha}.
+\]
+\end{proof}
+
+Thus the agreement of any one representation cannot be used as independent corroboration of the other two.
+
+\subsection{Electromagnetic self-energy matching}
+
+A statement such as \(D=\re\) is not a geometry theorem.  The electromagnetic self-energy of a finite charge distribution has the general form
+\begin{equation}
+  E_{\rm EM}
+  =
+  C_{\rm EM}
+  \frac{e^2}{4\pi\varepsilon_0D},
+  \label{eq:EM-shape}
+\end{equation}
+where \(C_{\rm EM}\) depends on the charge profile, topology, screening, and boundary conditions.  Requiring \(E_{\rm EM}=m_ec^2\) yields
+\begin{equation}
+  D=C_{\rm EM}\re.
+  \label{eq:shape-match}
+\end{equation}
+Therefore \(D=\re\) follows only for the special convention \(C_{\rm EM}=1\).  For a knotted or toroidal charge distribution, \(C_{\rm EM}\) must be computed.
+
+It is therefore more accurate to call
+\[
+E_{\rm hydro}=E_{\rm EM}=m_ec^2
+\]
+an \emph{equal-self-energy matching ansatz}, not equipartition.
+
+\section{The Compton-circulation comparison branch}
+\label{sec:compton-branch}
+
+\subsection{An \texorpdfstring{\(\alpha\)-free}{alpha-free}, electron-anchored density scale}
+
+Using \(\GammaC=h/m_e=2\pi\lC c\) in the filament closure and
+\(\ell_*=(3/8\pi)\lC\) gives
+\begin{align}
+  \rhoCeff
+  &=
+  \frac{3m_ec^2}{\GammaC^2\ell_*}
+  \notag\\
+  &=
+  \frac{8\pi m_ec^2}{\GammaC^2\lC}
+  =
+  \boxed{
+  \frac{2}{\pi}\frac{m_e}{\lC^3}
+  }
+  =
+  1.0071\times10^7\ \mathrm{kg\,m^{-3}}.
+  \label{eq:rhoC}
+\end{align}
+This expression is independent of \(\alpha\), but it is not parameter free in the predictive sense: it uses the measured \(m_e\), \(\hbar\), \(c\), the geometric coefficient \(3/(8\pi)\), and the line-energy coefficient \(1/3\).  It is an electron-anchored density scale, not a derived substrate density.
+
+Within this frozen closure, \(\alpha\) cancels and the algebra determines a density coefficient rather than the coupling.  This is a structural statement about the closure, not a no-go theorem for every possible SST derivation of \(\alpha\).
+
+\subsection{\texorpdfstring{Formal speed relative to \(c\)}{Formal speed relative to c}}
+
+For a line vortex with \(\GammaC=2\pi\lC c\),
+\begin{equation}
+  v_\theta(r)
+  =
+  \frac{\GammaC}{2\pi r}
+  =
+  c\frac{\lC}{r}.
+  \label{eq:vGammaC}
+\end{equation}
+At \(a=D_{\rm geom}/2\), the formal ratio is
+\[
+\frac{v_\theta(a)}{c}
+=
+\frac{2}{\alpha_{\rm geom}}
+\simeq274.3,
+\]
+and at \(r=2\ell_*\),
+\[
+\frac{v_\theta(2\ell_*)}{c}
+=
+\frac{4\pi}{3}
+\simeq4.19.
+\]
+
+These numbers do not contradict Galilean incompressible Euler theory, in which \(c\) is not a fundamental speed limit and the pressure constraint is instantaneous.  They do obstruct a literal identification of this azimuthal transport speed with a physical matter velocity in a sector obeying universal operational Lorentz invariance with limiting speed \(c\).  The issue is analogous to the superluminal-surface-speed obstruction in classical spinning-electron models \cite{Ohanian1986}, although the present filament model has a different ontology.  A viable model must therefore supply a separate emergent-causality map, a finite-core modification of \cref{eq:vGammaC}, or a different circulation sector \cite{BarceloLiberatiVisser2026}.
+
+\subsection{Calibrated circulation ratio}
+
+On the calibrated horn chain,
+\begin{equation}
+  r=\frac{\alpha}{2}\lC,
+  \qquad
+  v=\frac{\alpha}{2}c,
+\end{equation}
+so
+\begin{equation}
+  \Gammaeff
+  =
+  2\pi rv
+  =
+  \frac{\alpha^2}{4}\frac{h}{m_e},
+  \qquad
+  \boxed{
+  \frac{\Gammaeff}{\GammaC}
+  =
+  \frac{\alpha^2}{4}
+  }.
+  \label{eq:gamma-ratio}
+\end{equation}
+This ratio is exact, but it is not an independent prediction: both \(r\) and \(v\) are \(\alpha\)-calibrated.  It becomes a physical ``circulation deficit'' only if a separate theorem establishes that \(\GammaC=h/m_e\) is the circulation quantum that the same defect ought to carry.  Until then, \cref{eq:gamma-ratio} is a transparent comparison of two normalization scales.
+
+The corresponding coefficient ratio is
+\begin{equation}
+  \frac{\rhofil}{\rhoCeff}
+  =
+  \left(\frac{\GammaC}{\Gammaeff}\right)^2
+  =
+  \frac{16}{\alpha^4}.
+  \label{eq:rho-ratio-gamma}
+\end{equation}
+Again, this is power counting in a calibrated chain, not evidence for a microscopic suppression mechanism.
+
+\begin{table}[t]
+\caption{Conditional closure outputs on the chain \cref{eq:calibrated-chain}.  The entries are normalization coefficients until constitutive identifications are derived.}
+\label{tab:closures}
+\begin{ruledtabular}
+\begin{tabular}{llll}
+Branch & defining circulation & coefficient (kg\,m\(^{-3}\)) & status\\
+\hline
+H & --- (no explicit circulation) & \(3.8934\times10^{18}\) & horn-envelope calibration\\
+F & \(\Gammaeff=(\alpha^2/4)h/m_e\) & \(5.6824\times10^{16}\) & filament closure, \(\alpha\)-contaminated\\
+C & \(\GammaC=h/m_e\) & \(1.0071\times10^{7}\) & \(\alpha\)-free comparison scale\\
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+
+\section{Meaning of the filament coefficient}
+\label{sec:line-coefficient}
+
+Comparing the declared filament closure
+\[
+E=\frac13\rho\Gamma^2\ell
+\]
+with the leading hollow-core expression
+\[
+E
+\simeq
+\frac{\rho\Gamma^2\ell}{4\pi}
+\left[
+\ln\!\left(\frac{R_{\rm out}}{a_{\rm core}}\right)
++C_{\rm profile}
+\right]
+\]
+shows that the effective condition is
+\begin{equation}
+  \ln\!\left(\frac{R_{\rm out}}{a_{\rm core}}\right)
+  +C_{\rm profile}
+  +C_{\rm nonlocal}
+  =
+  \frac{4\pi}{3}.
+  \label{eq:effective-log}
+\end{equation}
+If all additive profile and nonlocal constants were set to zero, one would obtain \(R_{\rm out}/a_{\rm core}=e^{4\pi/3}=65.94\).  That number is not a computed physical cutoff: an \(O(1)\) change in the additive constants changes the inferred ratio multiplicatively and is vastly larger than the \(855\)-ppm residual.
+
+Hence:
+
+\begin{quote}
+\textbf{[GATE G1].}
+Compute the finite-core and nonlocal coefficient of the actual SST trefoil from a declared velocity profile and regulator.  Do not infer sub-per-mille physics from the provisional value \(C_F=1/3\).
+\end{quote}
+
+A second theorem is required:
+
+\begin{quote}
+\textbf{[GATE G2].}
+Determine whether the coefficient multiplying \(\Gamma^2\ell\) contains the material substrate density, the quasi-static effective response density, a local tube density, a line-inertia coefficient, or another constitutive quantity.
+\end{quote}
+
+\section{Maxwell matching and electron constraints}
+\label{sec:constraints}
+
+\subsection{Maxwell/source bridge}
+
+The scale relation \(D/\lC\) is not by itself an electromagnetic derivation.  A genuine bridge requires three logically separate results.  In the action convention
+\begin{equation}
+  \frac{S_{\rm IR}^{(2)}}{\hbar}
+  =
+  -\frac{\mathscr R_{\rm EM}}{16\pi}
+  \int f_{\mu\nu}f^{\mu\nu}\,\dd^4x
+  +
+  \int j^\mu a_\mu\,\dd^4x,
+  \label{eq:IR-action}
+\end{equation}
+with \(g^2=4\pi\alpha\), the target coefficient is
+\begin{equation}
+  \mathscr R_{\rm EM}
+  =
+  \frac{4\pi}{g^2}
+  =
+  \alpha^{-1}.
+  \label{eq:EM-stiffness}
+\end{equation}
+The three gates are:
+
+\begin{enumerate}[label=\textbf{B2\alph*:},leftmargin=*]
+  \item derive a local, gauge-invariant, monometric Maxwell quadratic action in the observable infrared sector;
+  \item derive the source normalization that assigns the elementary defect the observed unit charge;
+  \item prove that the hydrodynamic/defect response coefficient computed from the vortex sector equals the bulk electromagnetic stiffness \(\mathscr R_{\rm EM}\).
+\end{enumerate}
+
+The third step is the load-bearing one.  A photon kinetic coefficient is a property of the bulk response; its equality to a single-defect geometric functional cannot be imposed by notation.
+
+\subsection{Magnetic-moment constraint}
+
+The electron magnetic moment is measured with \(0.13\) parts-per-trillion precision \cite{Fan2023}.  Translating that precision into a compositeness length is model dependent.  For a chirality-protected dipole correction,
+\begin{equation}
+  \Delta a_e
+  \sim
+  \frac{m_e^2}{\Lambda^2},
+\end{equation}
+an illustrative allowance \(|\Delta a_e|\lesssim10^{-12}\) gives
+\begin{equation}
+  \Lambda\gtrsim511\ \mathrm{GeV},
+  \qquad
+  \frac{\hbar c}{\Lambda}
+  \lesssim3.9\times10^{-19}\ \mathrm m.
+  \label{eq:gminus2-bound}
+\end{equation}
+Without chirality protection the scaling may be linear and the bound much stronger \cite{BrodskyDrell1980,GiudiceParadisiPassera2012}.
+
+Thus a femtometre-scale structure that carries charge, magnetic moment, or an unsuppressed electromagnetic form factor is excluded.  This does not directly exclude an electromagnetically inert mass-normalization structure.  Any such separation between a mass-bearing filament and a pointlike electromagnetic sector must itself be derived and tested.
+
+\section{Preregistered falsification gates}
+\label{sec:programme}
+
+The present article supports the following gate structure.
+
+\begin{description}[leftmargin=2.3cm,style=nextline]
+  \item[\textbf{G0: geometry and dynamics}]
+  Show that the resolved SST energy selects the ideal-rope trefoil, or replace \(\calL_D^{(3_1)}\) by the dynamically selected value.  Propagate the numerical provenance and uncertainty of the trefoil estimate.
+
+  \item[\textbf{G1: line energy}]
+  Compute \(C_F\), the core-profile contribution, and the nonlocal Biot--Savart contribution without fitting to \(\alpha\).
+
+  \item[\textbf{G2: density sector}]
+  Derive which material, response, local-tube, or line-inertia coefficient enters the filament energy.
+
+  \item[\textbf{G3: circulation}]
+  Derive the physical circulation of the defect.  In particular, establish or reject \(\GammaC=h/m_e\) without using \(r_e\), \(r_c\), or \(\alpha c\) as hidden calibration inputs.
+
+  \item[\textbf{G4: electromagnetic identification}]
+  Derive B2a--B2c, compute the self-energy shape factor \(C_{\rm EM}\), and establish which \(\alpha\)-free geometric or hydrodynamic response coefficient is equal to the electromagnetic coupling coefficient.
+
+  \item[\textbf{G5: out-of-sample comparison}]
+  Only after G4 has produced an electromagnetic coupling candidate, compare it with \(\alpha_{\rm obs}\).  The measured \(\alpha\), \(r_e\), and all transitive proxies are forbidden during G0--G4 fitting, branch selection, or coefficient determination.
+\end{description}
+
+\begin{remark}[Gate ordering]
+\label{rem:gate-ordering}
+Because \(D_{\rm geom}:=\ell_*/\calL_D\) and
+\(\ell_*:=(3/8\pi)\lC\), one has identically
+\begin{equation}
+  \alpha_{\rm geom}
+  \equiv
+  \frac{D_{\rm geom}}{\lC}.
+  \label{eq:alpha-geom-definition}
+\end{equation}
+G0--G3 can, in principle, fix an \(\alpha\)-free geometric candidate by selecting the curve, the line-energy coefficient, the relevant density coefficient, and the circulation sector.  They cannot by themselves establish that this dimensionless ratio is the electromagnetic fine-structure constant.  Gate G4 is therefore the unique \emph{electromagnetic-identification gate}: it must connect the geometric or hydrodynamic response to the Maxwell kinetic coefficient and to the normalized source sector.  Gate G5 is then a genuine out-of-sample comparison of the G4 output with \(\alpha_{\rm obs}\).
+
+Accordingly, any claimed derivation of the electromagnetic \(\alpha\) that bypasses B2a--B2c and \(C_{\rm EM}\) is, at leading order, only a construction of the ratio \(D/\lC\) or a restatement of its definition, not yet a derivation of the electromagnetic coupling.
+\end{remark}
+
+\begin{table}[t]
+\caption{Epistemic status of the central statements.}
+\label{tab:status}
+\begin{ruledtabular}
+\begin{tabular}{ll}
+Statement & status\\
+\hline
+\(\alpha_{\rm geom}^{-1}=(8\pi/3)\calL_D^{(3_1)}\) & independent geometric candidate\\
+Residual equivalence, \cref{eq:three-faces} & algebraic identity\\
+\(\rhohorn/\rhofil=1/(2\alpha)\) & calibrated conditional identity\\
+Literal volume interpretation of that ratio & not derived\\
+\(\rhoCeff=(2/\pi)m_e/\lC^3\) & \(\alpha\)-free electron-anchored scale\\
+\(\rhoCeff=\rho_{\!f}\) or substrate density & open / not identified\\
+\(\Gammaeff/\GammaC=\alpha^2/4\) & calibrated comparison\\
+\(\GammaC\) as substrate circulation quantum & open\\
+\(D=\re\) & special case \(C_{\rm EM}=1\), not a theorem\\
+Ideal trefoil as physical minimizer & open Gate G0\\
+Trefoil decimal value as exact invariant & excluded; numerical provenance required\\
+G4 as electromagnetic identification & unique coupling-identification gate\\
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+The displayed normalization formulas are algebraically coherent once their coefficients and calibration ancestry are stated explicitly.  Their interpretation is substantially more limited than the raw numerical coincidences suggest.
+
+The factor \(1/(2\alpha)\) is exact under the chosen horn and filament normalizations, but it is not a universal ratio of geometric volumes and is not independent of the calibrated relation \(r/\lC=\alpha/2\).  The three \(855\)-ppm comparisons are one equation in three forms.  The Compton-circulation branch produces an \(\alpha\)-free density scale, but neither its circulation nor its density has been derived as a substrate property.  The factor \(\alpha^2/4\) is likewise a transparent calibrated ratio rather than a demonstrated dynamical suppression.
+
+Within the frozen closure family, at fixed normalization coefficients and with a fixed geometric input, the bookkeeping contains one free coefficient and one comparison datum.  Once those conventions are unfrozen, however, at least the dynamical knot representative, the line-energy coefficient, the relevant density sector, the circulation map, the electromagnetic stiffness match, and the electrostatic shape factor reopen as independent gates.  The scoped one-parameter statement is therefore valid only for the frozen algebraic scaffold, not for the physical model.
+
+This is nevertheless a useful result.  The problem is now decomposed into independent theorem and falsification gates, and hidden reuse of \(\alpha\) is visible by inspection.  Progress requires a resolved core calculation and an action-level electromagnetic match, not further manipulation of the same calibrated identities.
+
+\begin{acknowledgments}
+The author thanks the maintainers of the high-resolution ideal-knot data and the CODATA adjustment for making precise reference values available.
+\end{acknowledgments}
+
+\appendix
+
+\section{Power counting in \texorpdfstring{\(\varepsilon=\alpha/2\)}{epsilon}}
+\label{app:powers}
+
+Let
+\[
+\varepsilon:=\frac{\alpha}{2},
+\qquad
+r=\varepsilon\lC,
+\qquad
+v=\varepsilon c.
+\]
+Then
+\begin{equation}
+  \Gammaeff
+  =
+  2\pi\varepsilon^2\lC c,
+  \qquad
+  \GammaC
+  =
+  2\pi\lC c,
+  \qquad
+  \ell_*=\frac{3}{8\pi}\lC.
+\end{equation}
+The three closure coefficients are
+\begin{equation}
+  \rhohorn
+  =
+  \frac{m_e}{2\pi\varepsilon^5\lC^3},
+  \qquad
+  \rhofil
+  =
+  \frac{2m_e}{\pi\varepsilon^4\lC^3},
+  \qquad
+  \rhoCeff
+  =
+  \frac{2m_e}{\pi\lC^3}.
+\end{equation}
+Therefore
+\begin{equation}
+  \frac{\rhohorn}{\rhofil}
+  =
+  \frac{1}{4\varepsilon}
+  =
+  \frac{1}{2\alpha},
+  \qquad
+  \frac{\rhofil}{\rhoCeff}
+  =
+  \varepsilon^{-4}
+  =
+  \frac{16}{\alpha^4}.
+\end{equation}
+The first ratio contains one inverse power of \(\alpha\) because the two closures scale as \(\varepsilon^{-5}\) and \(\varepsilon^{-4}\).  The second is the square of the calibrated circulation ratio.  These equations are provenance diagnostics, not independent predictions of \(\alpha\).
+
+
+\begin{thebibliography}{99}
+
+\bibitem{Thomson1867}
+W.~Thomson (Lord Kelvin),
+``On vortex atoms,''
+\emph{Phil. Mag.} \textbf{34}, 15--24 (1867).
+
+\bibitem{Onsager1949}
+L.~Onsager,
+``Statistical hydrodynamics,''
+\emph{Nuovo Cimento Suppl.} \textbf{6}, 279--287 (1949),
+\href{https://doi.org/10.1007/BF02780991}{doi:10.1007/BF02780991}.
+
+\bibitem{Feynman1955}
+R.~P.~Feynman,
+``Application of quantum mechanics to liquid helium,''
+in \emph{Progress in Low Temperature Physics}, Vol.~1, edited by C.~J.~Gorter
+(North-Holland, Amsterdam, 1955), pp.~17--53,
+\href{https://doi.org/10.1016/S0079-6417(08)60077-3}{doi:10.1016/S0079-6417(08)60077-3}.
+
+\bibitem{Vinen1961}
+W.~F.~Vinen,
+``The detection of single quanta of circulation in liquid helium II,''
+\emph{Proc. R. Soc. Lond. A} \textbf{260}, 218--236 (1961),
+\href{https://doi.org/10.1098/rspa.1961.0029}{doi:10.1098/rspa.1961.0029}.
+
+\bibitem{Donnelly1991}
+R.~J.~Donnelly,
+\emph{Quantized Vortices in Helium II}
+(Cambridge University Press, Cambridge, 1991).
+
+\bibitem{KlecknerIrvine2013}
+D.~Kleckner and W.~T.~M.~Irvine,
+``Creation and dynamics of knotted vortices,''
+\emph{Nat. Phys.} \textbf{9}, 253--258 (2013),
+\href{https://doi.org/10.1038/nphys2560}{doi:10.1038/nphys2560}.
+
+\bibitem{BuniyKephart2005}
+R.~V.~Buniy and T.~W.~Kephart,
+``Glueballs and the universal energy spectrum of tight knots and links,''
+\emph{Int. J. Mod. Phys. A} \textbf{20}, 1252--1259 (2005),
+\href{https://doi.org/10.1142/S0217751X05024146}{doi:10.1142/S0217751X05024146}.
+
+\bibitem{BuniyEtAl2014}
+R.~V.~Buniy, J.~Cantarella, T.~W.~Kephart, and E.~J.~Rawdon,
+``Tight knot spectrum in QCD,''
+\emph{Phys. Rev. D} \textbf{89}, 054513 (2014),
+\href{https://doi.org/10.1103/PhysRevD.89.054513}{doi:10.1103/PhysRevD.89.054513}.
+
+\bibitem{ChuiMoffatt1995}
+A.~Y.~K.~Chui and H.~K.~Moffatt,
+``The energy and helicity of knotted magnetic flux tubes,''
+\emph{Proc. R. Soc. Lond. A} \textbf{451}, 609--629 (1995),
+\href{https://doi.org/10.1098/rspa.1995.0146}{doi:10.1098/rspa.1995.0146}.
+
+\bibitem{MaggioniRicca2009}
+F.~Maggioni and R.~L.~Ricca,
+``On the groundstate energy of tight knots,''
+\emph{Proc. R. Soc. A} \textbf{465}, 2761--2783 (2009),
+\href{https://doi.org/10.1098/rspa.2008.0536}{doi:10.1098/rspa.2008.0536}.
+
+\bibitem{Iskandarani2026}
+O.~Iskandarani,
+``Angular-projector normalization and finite-core energetics of tight knotted vortex tubes,''
+preprint, manuscript version 0.2.1 (2026).
+
+\bibitem{CODATA2022}
+P.~J.~Mohr, D.~B.~Newell, B.~N.~Taylor, and E.~Tiesinga,
+``CODATA recommended values of the fundamental physical constants: 2022,''
+\emph{Rev. Mod. Phys.} \textbf{97}, 025002 (2025),
+\href{https://doi.org/10.1103/RevModPhys.97.025002}{doi:10.1103/RevModPhys.97.025002}.
+
+\bibitem{PrzybylPieranski2014}
+S.~Przybyl and P.~Pieranski,
+``High resolution portrait of the ideal trefoil knot,''
+\emph{J. Phys. A: Math. Theor.} \textbf{47}, 285201 (2014),
+\href{https://doi.org/10.1088/1751-8113/47/28/285201}{doi:10.1088/1751-8113/47/28/285201}.
+
+\bibitem{CantarellaKusnerSullivan2002}
+J.~Cantarella, R.~B.~Kusner, and J.~M.~Sullivan,
+``On the minimum ropelength of knots and links,''
+\emph{Invent. Math.} \textbf{150}, 257--286 (2002),
+\href{https://doi.org/10.1007/s00222-002-0234-y}{doi:10.1007/s00222-002-0234-y}.
+
+\bibitem{Saffman1992}
+P.~G.~Saffman,
+\emph{Vortex Dynamics}
+(Cambridge University Press, Cambridge, 1992),
+\href{https://doi.org/10.1017/CBO9780511624063}{doi:10.1017/CBO9780511624063}.
+
+\bibitem{Ohanian1986}
+H.~C.~Ohanian,
+``What is spin?,''
+\emph{Am. J. Phys.} \textbf{54}, 500--505 (1986),
+\href{https://doi.org/10.1119/1.14580}{doi:10.1119/1.14580}.
+
+\bibitem{BarceloLiberatiVisser2026}
+C.~Barcel\'o, S.~Liberati, and M.~Visser,
+``Analogue gravity,''
+\emph{Living Rev. Relativ.} \textbf{29}, 2 (2026),
+\href{https://doi.org/10.1007/s41114-026-00064-9}{doi:10.1007/s41114-026-00064-9}.
+
+\bibitem{Fan2023}
+X.~Fan, T.~G.~Myers, B.~A.~D.~Sukra, and G.~Gabrielse,
+``Measurement of the electron magnetic moment,''
+\emph{Phys. Rev. Lett.} \textbf{130}, 071801 (2023),
+\href{https://doi.org/10.1103/PhysRevLett.130.071801}{doi:10.1103/PhysRevLett.130.071801}.
+
+\bibitem{BrodskyDrell1980}
+S.~J.~Brodsky and S.~D.~Drell,
+``Anomalous magnetic moment and limits on fermion substructure,''
+\emph{Phys. Rev. D} \textbf{22}, 2236--2243 (1980),
+\href{https://doi.org/10.1103/PhysRevD.22.2236}{doi:10.1103/PhysRevD.22.2236}.
+
+\bibitem{Sutcliffe2007}
+P.~Sutcliffe,
+``Knots in the Skyrme--Faddeev model,''
+\emph{Proc. R. Soc. A} \textbf{463}, 3001--3020 (2007),
+\href{https://doi.org/10.1098/rspa.2007.0038}{doi:10.1098/rspa.2007.0038}.
+
+
+\bibitem{GiudiceParadisiPassera2012}
+G.~F.~Giudice, P.~Paradisi, and M.~Passera,
+``Testing new physics with the electron \(g-2\),''
+\emph{J. High Energy Phys.} \textbf{11}, 113 (2012),
+\href{https://doi.org/10.1007/JHEP11(2012)113}{doi:10.1007/JHEP11(2012)113}.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,183 @@
+%! DOI = 10.5281/zenodo.
+%! Author = Omar Iskandarani
+%! Date = 2026-08-02
+%! Affiliation = Independent Researcher, Groningen, The Netherlands
+%! ORCID = 0009-0006-1686-3961
+
+
+\newcommand{\paperdoi}{10.5281/zenodo.}
+\newcommand{\papertitle}{}
+\newcommand{\paperkeywords}{}
+
+\documentclass[aps,pre,preprint,notitlepage,nofootinbib,superscriptaddress]{revtex4-2}
+
+% ---------------------------
+% Packages
+% ---------------------------
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsfonts,mathtools,bm,mathrsfs,amsthm}
+\usepackage{booktabs,array}
+\usepackage{siunitx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,decorations.markings,decorations.pathmorphing,decorations.pathreplacing,positioning,shapes.geometric,fit,backgrounds}
+
+\usepackage[nameinlink,noabbrev]{cleveref}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{physics}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!55!black,
+    citecolor=blue!55!black,
+    urlcolor=blue!55!black,
+    pdftitle={Angular-Projector Normalization and Finite-Core Energetics of Tight Knotted Vortex Tubes},
+    pdfauthor={Omar Iskandarani},
+    pdfsubject={Normalization ambiguity, finite-core energetics, and gauge matching for tight knotted vortex tubes},
+    pdfkeywords={vortex dynamics, ropelength, ideal knots, angular measure, helicity, Biot-Savart energy, naturalness, gauge coupling}
+}
+
+\sisetup{separate-uncertainty=true, per-mode=symbol}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\Rop}{\operatorname{Rop}}
+\newcommand{\FP}{\operatorname{FP}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\e}{\mathrm e}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\calH}{\mathcal H}
+\newcommand{\calL}{\mathcal L}
+\newcommand{\calR}{\mathcal R}
+\newcommand{\calI}{\mathcal I}
+\newcommand{\calC}{\mathcal C}
+\newcommand{\calE}{\mathcal E}
+\newcommand{\calG}{\mathcal G}
+\newcommand{\Rmicro}{\mathscr R_{\mathrm{micro}}}
+\newcommand{\Rgeom}{\mathscr R_{0}}
+\newcommand{\Reff}{\mathscr R_{\mathrm{eff}}}
+\newcommand{\ZL}{Z_L}
+\newcommand{\ZOmega}{Z_{\Omega}}
+\newcommand{\Rnl}{\mathscr R_{\mathrm{nl}}^{\mathrm{reg}}}
+\newcommand{\unitvec}[1]{\widehat{\bm #1}}
+
+\usepackage{tabularx}
+\usepackage{import}
+\usepackage{subfiles}
+
+% Tables and Figures
+\usepackage{float}
+
+% ---------------------------
+% Theorem environments
+% ---------------------------
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{hypothesis}{Matching hypothesis}
+\newtheorem{remark}{Remark}
+
+\theoremstyle{plain}
+\newtheorem{axiom}{Axiom}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+
+% hyperref: load after float/tikz/amsthm; *before* tocloft (required by tocloft.pdf — otherwise TOC can be empty).
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+% TOC (tocloft must follow hyperref)
+\usepackage{tocloft}
+\setcounter{tocdepth}{2}
+\renewcommand{\cftsecfont}{\footnotesize}
+\renewcommand{\cftsubsecfont}{\footnotesize\itshape}
+\renewcommand{\cftsecleader}{\cftdotfill{5}}
+\newcommand{\compacttoc}{%
+    \begingroup
+    \setlength{\cftparskip}{0pt}%
+    \setlength{\cftbeforesecskip}{0.5pt}%
+    \setlength{\cftbeforesubsecskip}{0.5pt}%
+    \renewcommand{\cftsecfont}{\scriptsize}%
+    \renewcommand{\cftsubsecfont}{\scriptsize\itshape}%
+    \renewcommand{\cftsecpagefont}{\scriptsize}%
+    \renewcommand{\cftsubsecpagefont}{\scriptsize}%
+    \setlength{\cftsecnumwidth}{2.8em}%
+    \setlength{\cftsubsecindent}{1.4em}%
+    \renewcommand{\cftdotsep}{2}%
+    \setlength{\parskip}{0pt}%
+    \linespread{0.80}\selectfont
+    \tableofcontents
+    \endgroup
+}
+
+
+\begin{document}
+    
+    \thispagestyle{empty}
+
+    % -------------------------------------------------
+    % Title page / front matter
+    % -------------------------------------------------
+    \begin{center}
+        \vspace*{0.015\textheight}
+
+        {\LARGE\bfseries \papertitle\par}
+        \vspace{0.25cm}
+
+        {\large Canonical Reference and Research Framework\par}
+        \vspace{0.4cm}
+
+        {\Large Omar Iskandarani\textsuperscript{*}\par}
+        \vspace{0.25cm}
+
+        {\normalsize Independent Researcher, Groningen, The Netherlands\par}
+        \vspace{0.3cm}
+
+        {\normalsize \today\par}
+        \vspace{0.3cm}
+
+        \rule{0.82\textwidth}{0.5pt}
+        \vspace{0.3cm}
+    \end{center}
+
+
+    \begin{abstract}
+        \noindent
+
+    \end{abstract}
+
+    \vspace{0.2cm}
+    \noindent\textbf{Keywords:} \paperkeywords
+
+    \vspace{0.3cm}
+    \noindent\rule{\textwidth}{0.4pt}
+    \vspace{0.25cm}
+
+    \medskip
+
+    \begin{textblock*}{1\textwidth}(0.15\textwidth,1.1\textheight)\raggedright\footnotesize\renewcommand{\arraystretch}{1.0} \noindent\rule{\textwidth}{0.4pt}\\[0.5em]
+        \textsuperscript{\textbf{*}} Email: \texttt{info@omariskandarani.com}\\
+        ORCID: \texttt{\href{https://orcid.org/0009-0006-1686-3961}{0009-0006-1686-3961}}\\
+        DOI: \href{https://doi.org/\paperdoi}{\paperdoi}
+    \end{textblock*}
+    
+    \newpage
+    % Original: \tableofcontents
+    % Use compact version to save space
+    \compacttoc
+    \newpage
+
+
+        \begin{thebibliography}{99}
+
+        \end{thebibliography}
+
+\end{document}

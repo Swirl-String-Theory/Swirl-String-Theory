@@ -1,0 +1,92 @@
+--- Supplementary_Data_S1_Gilbert_trefoil_record.xml
++++ Supplementary_Data_S1_Gilbert_trefoil_record.xml
+@@ -1,3 +1,47 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!--
++  Supplementary Data S1 . Fourier trefoil record used in
++  "Angular-Projector Normalization and Finite-Core Energetics of Tight
++  Knotted Vortex Tubes" (O. Iskandarani).
++
++  PURPOSE
++    Redistributed verbatim so that the Fourier branch of the provenance
++    analysis is independently reproducible. The record is used only as a
++    diagnostic; no scalar result in the article depends on it.
++
++  RECORD
++    Format         : Fourier (<AB> harmonic) representation of a closed curve,
++                     X(t) = sum_n [ A_n cos(n t) + B_n sin(n t) ]
++    Identifier     : 3:1:1   (Conway notation 3, i.e. the trefoil 3_1)
++    Metadata       : L = 16.371637 (diameter-normalized), D = 1.000000
++    Harmonics      : see <Coeff> elements below
++    Reconstruction : re-deriving the centerline from these coefficients gives
++                     L = 16.3724604307, i.e. +50.30 ppm relative to the
++                     metadata value, with max curvature 2.1668 exceeding the
++                     thickness bound 2. The coefficients are rounded; the
++                     metadata length and the reconstructed length are therefore
++                     not expected to agree exactly.
++
++  PROVENANCE . TO BE COMPLETED BEFORE SUBMISSION
++    Originating dataset : [FILL IN: dataset name]
++    Author / compiler   : [FILL IN]
++    Version or date     : [FILL IN]
++    Retrieved from      : [FILL IN: stable URL or DOI]
++    Retrieved on        : [FILL IN: YYYY-MM-DD]
++    Licence / terms     : [FILL IN; if unknown, state "unknown, redistributed
++                          for reproducibility, attribution requested"]
++
++    The article does not cite this dataset in its bibliography. Either add a
++    citation and complete the fields above, or state explicitly in the text
++    that the record's origin could not be established. Do not leave the
++    provenance unstated: the article's own thesis is provenance discipline.
++
++  INTEGRITY
++    Editing this file changes its SHA-256. Regenerate the manifest with
++      sha256sum * > SHA256SUMS.txt
++    and verify with
++      sha256sum -c SHA256SUMS.txt
++-->
+ <AB Id="3:1:1" Conway="3" L="16.371637" D=" 1.000000">
+     <Coeff I="  1" A=" 0.374139, 0.000000, 0.000000" B=" 0.000000, 0.373928, 0.000000" />
+     <Coeff I="  2" A=" 0.824246, 0.750260, 0.000352" B=" 0.750450,-0.823952,-0.001991" />
+--- README.md
++++ README.md
+@@ -18,6 +18,28 @@
+ - `Supplementary_Code_S1_numerical_checks.py`
+ - `Supplementary_Numerical_Checks_v0.2.0.json`
+ 
++### Provenance of Supplementary Data S1
++
++`Supplementary_Data_S1_Gilbert_trefoil_record.xml` is a third-party Fourier
++record of the trefoil, redistributed verbatim so that the Fourier branch of the
++provenance analysis can be reproduced. Its origin, version, retrieval date and
++licence are recorded in the XML header and **must be completed before
++submission**; the filename currently carries an attribution ("Gilbert") that no
++longer appears anywhere in the manuscript. Either restore a citation or state in
++the text that the origin could not be established.
++
++The record is diagnostic only. No scalar result in the article depends on it:
++the metadata length is used for the Fourier branch, and the reconstructed
++geometry is used only for the curvature and writhe diagnostics reported in the
++appendix.
++
++Any edit to the XML changes its SHA-256. After editing, regenerate and verify:
++
++```bash
++sha256sum * > SHA256SUMS.txt
++sha256sum -c SHA256SUMS.txt
++```
++
+ Run the numerical checks with:
+ 
+ ```bash
+--- Angular_Projector_Normalization_and_Finite_Core_Energetics_v0.2.0.tex
++++ Angular_Projector_Normalization_and_Finite_Core_Energetics_v0.2.0.tex
+@@ -517,7 +517,7 @@
+ \end{align}
+ The parenthetical digits quantify numerical precision within the construction; they are not a rigorous uncertainty interval for the unknown global minimizer.  In particular, $L_a$ is an extrapolative estimate, whereas $L_c$ is the reported numerical upper bound.
+ 
+-A separate Fourier data record gives $L=16.371637$ and $D=1$, hence radius-normalized ropelength $32.743274$.  To make this branch reproducible, the exact trefoil record used here is included as Supplementary Data S1, together with a SHA-256 manifest.  Direct reconstruction of the centerline from the stored coefficients (Supplementary Code S1) returns a third value, $\calL_D^{\rm rec}=16.3724604307$, which exceeds the metadata length by $50.30$ ppm and the high-resolution estimate $L_a/2$ by $60.67$ ppm.  This reconstruction value is reported here for completeness and is not used in any scalar branch; see \cref{app:fourier-reconstruction} for why.
++A separate Fourier data record gives $L=16.371637$ and $D=1$, hence radius-normalized ropelength $32.743274$.  To make this branch reproducible, the exact trefoil record used here is included as Supplementary Data S1, together with a SHA-256 manifest; the originating dataset, its version, and its licence are documented in the header of that file.  Direct reconstruction of the centerline from the stored coefficients (Supplementary Code S1) returns a third value, $\calL_D^{\rm rec}=16.3724604307$, which exceeds the metadata length by $50.30$ ppm and the high-resolution estimate $L_a/2$ by $60.67$ ppm.  This reconstruction value is reported here for completeness and is not used in any scalar branch; see \cref{app:fourier-reconstruction} for why.
+ 
+ 
+ \begin{figure}[t]

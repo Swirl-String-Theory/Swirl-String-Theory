@@ -1,0 +1,41 @@
+--- Angular_Projector_Normalization_and_Finite_Core_Energetics_v0.2.0.tex
++++ Angular_Projector_Normalization_and_Finite_Core_Energetics_v0.2.0.tex
+@@ -588,20 +588,20 @@
+ Naturalness is basis dependent, but it is still informative after the operator normalization has been declared.  Suppose, only for diagnosis, that a residual $\Delta=-0.117284$ were assigned entirely to $c_\kappa\calI_{\kappa^2}$.  The required coefficient is shown in \cref{tab:naturalness-curvature}.
+ 
+ \begin{table}[t]
+-\caption{Coefficient required to close the high-resolution residual using only $c_\kappa\calI_{\kappa^2}$ in the declared normalization.  The last column shows the shift produced by $c_\kappa=1$.}
++\caption{Coefficient required to close the high-resolution residual using only $c_\kappa\calI_{\kappa^2}$ in the declared normalization.  The middle row is the value returned by the reconstruction diagnostic of Supplementary Code S1; the outer rows bracket it.  The last column shows the shift produced by $c_\kappa=1$.}
+ \label{tab:naturalness-curvature}
+ \begin{ruledtabular}
+ \begin{tabular}{ccc}
+ $\calI_{\kappa^2}$ & required $c_\kappa$ & shift for $c_\kappa=1$\\
+ \hline
+-5  & $-2.35\times10^{-2}$ & 5\\
+-20 & $-5.86\times10^{-3}$ & 20\\
+-33 & $-3.55\times10^{-3}$ & 33\\
++5     & $-2.35\times10^{-2}$ & 5\\
++19.32 & $-6.07\times10^{-3}$ & 19.32\\
++33    & $-3.55\times10^{-3}$ & 33\\
+ \end{tabular}
+ \end{ruledtabular}
+ \end{table}
+ 
+-A direct reconstruction of the rounded Fourier record gives a curvature integral of order $20$, but its high Fourier modes also generate curvature overshoot and should not be treated as a certified ideal-knot value.  The robust statement is the order of magnitude: in this basis a curvature coefficient that closes the residual is around $6\times10^{-3}$.  Without a symmetry or matching mechanism, that is a suppression of roughly two orders relative to unity.  This is not a basis-independent proof of fine tuning, but it weakens the claim that a generic finite-core correction naturally closes a sub-per-mille gap.
++A direct reconstruction of the rounded Fourier record gives $\calI_{\kappa^2}=19.32$, but its high Fourier modes also generate curvature overshoot and it should not be treated as a certified ideal-knot value.  Quantitatively, the reconstruction attains $\hat\kappa_{\max}=2.1668$ against the thickness bound $\hat\kappa\le2$, an excess of $8.3\%$; the reconstructed curve therefore violates the very constraint that defines the tight configuration.  Because $|c_\kappa|=|\Delta|/\calI_{\kappa^2}$, the tabulated value $6\times10^{-3}$ should be regarded as an \emph{optimistic lower estimate} for $|c_\kappa|$, conditional on correcting the curvature overshoot not increasing $\calI_{\kappa^2}$.  The robust statement is the order of magnitude: in this basis a curvature coefficient that closes the residual is around $6\times10^{-3}$.  Without a symmetry or matching mechanism, that is a suppression of roughly two orders relative to unity.  This is not a basis-independent proof of fine tuning, but it weakens the claim that a generic finite-core correction naturally closes a sub-per-mille gap.
+ 
+ Framing introduces an independent sensitivity.  The supplementary reconstruction of the stored Fourier orientation gives $Wr\approx-3.41835$.  Using the Fourier length in the lower bound~\eqref{eq:twist-bound-v020} yields the illustrative values in \cref{tab:framing-sensitivity}.  These are not predictions because no physical self-linking sector has been selected.
+ 
+@@ -745,7 +745,11 @@
+ \begin{equation}
+   \bm X(t)=\sum_n\left[\bm A_n\cos(nt)+\bm B_n\sin(nt)\right]
+ \end{equation}
+-from Supplementary Data S1.  The rounded coefficients reproduce a length slightly different from the metadata value and generate local curvature overshoot; the metadata length is therefore retained for the scalar branch while reconstructed geometry is used only for diagnostics.
++from Supplementary Data S1.  The rounded coefficients reproduce a length
++\begin{equation}
++  \calL_D^{\rm rec}=16.3724604307,
++\end{equation}
++i.e.\ $50.30$ ppm above the metadata value $16.371637$ and $60.67$ ppm above the high-resolution estimate $L_a/2=16.3714672385$, and they generate local curvature overshoot, $\hat\kappa_{\max}=2.1668$ against the thickness bound $\hat\kappa\le2$.  The metadata length is therefore retained for the scalar branch while reconstructed geometry is used only for diagnostics.  Both numbers are reported so that the reconstruction can be checked independently and so that the provenance hierarchy of \cref{fig:provenance-v020} is complete rather than restricted to the two branches that happen to agree most closely.
+ 
+ A midpoint discretization of the Gauss writhe integral converges for the stored orientation toward
+ \begin{equation}

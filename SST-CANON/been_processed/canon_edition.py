@@ -458,6 +458,26 @@ EDITION_CONFIG = {
             r"explicit promotion gates on top of v0.8.33."
         ),
     },
+    "0.8.35": {
+        "prev": "0.8.34",
+        "header": (
+            "%! v0.8.35 edition: transverse-projector 8pi/3 origin, alpha-blind "
+            "finite-core response, helicity-constrained twist energy, and EM "
+            "matching guards (been_processed)."
+        ),
+        "note": (
+            r"\textbf{v0.8.35} derives the factor \(8\pi/3\) from the isotropic "
+            r"incompressible transverse projector, fixes the radius--diameter "
+            r"ropelength conversion in the finite-cell \(\alpha\) candidate, "
+            r"records the bare-projector and constant-tube-volume no-go results, "
+            r"adds an alpha-blind finite-core Euler--Biot--Savart response "
+            r"completion with \(c_L=0\), constrains parity-even material-twist "
+            r"energy by the helicity identity \(SL=Wr+Tw\), separates a possible "
+            r"parity-odd helicity channel from the Maxwell stiffness, and links "
+            r"the candidate response to the existing gauge-emergence "
+            r"certification ladder on top of v0.8.34."
+        ),
+    },
 }
 
 CANON_BASE_KEYWORDS: list[str] = [
@@ -622,6 +642,12 @@ EDITION_KEYWORDS: dict[str, list[str]] = {
         "compact-to-slender",
         "Kirchhoff-Cosserat",
         "Moffatt-Ricca",
+    ],
+    "0.8.35": [
+        "transverse projector",
+        "finite-core response",
+        "helicity twist bound",
+        "alpha-blind calibration",
     ],
 }
 

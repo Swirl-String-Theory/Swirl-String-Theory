@@ -1,0 +1,1281 @@
+--- Transverse_Projection_and_Finite_Core_Response_of_Tight_Knotted_Vortex_Tubes_v0.1.0.tex
++++ Angular_Projector_Normalization_and_Finite_Core_Energetics_v0.2.0.tex
+@@ -7,7 +7,7 @@
+ \usepackage{booktabs,array}
+ \usepackage{siunitx}
+ \usepackage{tikz}
+-\usetikzlibrary{arrows.meta,calc,decorations.markings,decorations.pathmorphing,positioning,shapes.geometric,fit,backgrounds}
++\usetikzlibrary{arrows.meta,calc,decorations.markings,decorations.pathmorphing,decorations.pathreplacing,positioning,shapes.geometric,fit,backgrounds}
+ \usepackage{hyperref}
+ \usepackage[nameinlink,noabbrev]{cleveref}
+ \usepackage{xcolor}
+@@ -18,10 +18,10 @@
+   linkcolor=blue!55!black,
+   citecolor=blue!55!black,
+   urlcolor=blue!55!black,
+-  pdftitle={Transverse Projection and Finite-Core Response of Tight Knotted Vortex Tubes},
++  pdftitle={Angular-Projector Normalization and Finite-Core Energetics of Tight Knotted Vortex Tubes},
+   pdfauthor={Omar Iskandarani},
+-  pdfsubject={Geometric identities and finite-core response of tight knotted vortex tubes},
+-  pdfkeywords={vortex dynamics, ropelength, ideal knots, helicity, Biot-Savart energy, gauge coupling}
++  pdfsubject={Normalization ambiguity, finite-core energetics, and gauge matching for tight knotted vortex tubes},
++  pdfkeywords={vortex dynamics, ropelength, ideal knots, angular measure, helicity, Biot-Savart energy, naturalness, gauge coupling}
+ }
+ 
+ \sisetup{separate-uncertainty=true, per-mode=symbol}
+@@ -38,9 +38,13 @@
+ \newcommand{\calI}{\mathcal I}
+ \newcommand{\calC}{\mathcal C}
+ \newcommand{\calE}{\mathcal E}
++\newcommand{\calG}{\mathcal G}
+ \newcommand{\Rmicro}{\mathscr R_{\mathrm{micro}}}
+ \newcommand{\Rgeom}{\mathscr R_{0}}
+ \newcommand{\Reff}{\mathscr R_{\mathrm{eff}}}
++\newcommand{\ZL}{Z_L}
++\newcommand{\ZOmega}{Z_{\Omega}}
++\newcommand{\Rnl}{\mathscr R_{\mathrm{nl}}^{\mathrm{reg}}}
+ \newcommand{\unitvec}[1]{\widehat{\bm #1}}
+ 
+ \newtheorem{proposition}{Proposition}
+@@ -48,53 +52,59 @@
+ \newtheorem{hypothesis}{Matching hypothesis}
+ \newtheorem{remark}{Remark}
+ 
++
+ \begin{document}
+ 
+-\title{\texorpdfstring{Transverse Projection and Finite-Core Response of Tight Knotted Vortex Tubes\\\large Geometric identities, helicity constraints, and an open gauge-stiffness matching problem}{Transverse Projection and Finite-Core Response of Tight Knotted Vortex Tubes: Geometric identities, helicity constraints, and an open gauge-stiffness matching problem}}
++\title{\texorpdfstring{Angular-Projector Normalization and Finite-Core Energetics of Tight Knotted Vortex Tubes\\\large Why a trefoil-length coincidence does not yet determine a gauge coupling}{Angular-Projector Normalization and Finite-Core Energetics of Tight Knotted Vortex Tubes: Why a trefoil-length coincidence does not yet determine a gauge coupling}}
+ 
+ \author{Omar Iskandarani}
+ \email{info@omariskandarani.com}
+ \thanks{ORCID: 0009-0006-1686-3961}
+ \affiliation{Independent Researcher, Groningen, The Netherlands}
+-\date{2 August 2026}
++\date{2 August 2026; manuscript version 0.2.0}
+ 
+ \begin{abstract}
+-A closed vortex tube combines three structures that are often conflated: the geometry of its centerline, the internal structure of its finite core, and the normalization of any long-distance field to which it may couple.  This paper separates these layers.  First, the incompressible Fourier-space projector is averaged over all propagation directions.  For every unit tangent $\bm t$,
++For a unit tangent $\bm t$ and the incompressible transverse projector $P_{ij}=\delta_{ij}-\widehat{k}_i\widehat{k}_j$, rotational invariance gives the exact normalized identity
+ \[
+-\int_{S^2} t_i(\delta_{ij}-\widehat{k}_i\widehat{k}_j)t_j\,\dd\Omega=\frac{8\pi}{3}.
++\frac{1}{4\pi}\int_{S^2}t_iP_{ij}t_j\,\dd\Omega=\frac23.
+ \]
+-Consequently, a diameter-normalized tube centerline of length $L$ defines the exact geometric response $\Rgeom=(8\pi/3)(L/D)$.  The same factor follows from a normalized constant-radius tube volume, but neither construction generates a curvature correction: the bare local projector is orientation independent, and the curvature term in the tube Jacobian vanishes after angular integration.  A nonzero correction must therefore arise from finite-core dynamics, material-frame twist, or nonlocal self-interaction.
+-
+-Starting from the kinetic energy of an incompressible Euler flow, the standard vorticity and filament representations are derived, leading to the regularized Biot--Savart energy of a closed vortex tube.  A low-energy finite-core expansion is then organized in curvature, material twist, and contact operators.  For a single framed thin tube, helicity constrains the topological sector through $\calH/\Gamma^2=SL=Wr+Tw$.  Cauchy--Schwarz yields the parity-even bound
++The corresponding unnormalized integral is $8\pi/3$.  This paper distinguishes that exact geometric statement from the additional convention needed to use $8\pi/3$ as a physical coefficient multiplying a diameter-normalized tube length.  In a Fourier-space field calculation the angular integral is accompanied by a radial spectral measure, powers of $2\pi$, field normalization, and source normalization.  Transversality alone fixes the fraction $2/3$, not the total measure carried by a response functional.
++
++Two local no-go results remain exact.  The bare isotropic projector contains no curvature, torsion, or contact information, and the term linear in curvature in the Jacobian of a constant-radius tube vanishes after integration around the cross-section.  Neither construction generates a finite-core correction.  Starting from the Euler kinetic energy, the vorticity and Biot--Savart representations are derived.  The finite-core energy is then shown to contain a nonanalytic logarithmic self-energy and genuinely nonlocal terms.  A purely polynomial expansion in $D\kappa$ is not controlled for a tight trefoil because $D\kappa$ reaches $2$ on finite curvature-limited intervals.
++
++Helicity constrains a framed tube through $\mathcal H/\Gamma^2=SL=Wr+Tw$, while the standard quadratic variational bound gives
+ \[
+-\calI_{\Omega^2}\ge \frac{4\pi^2}{\calL_D}(SL-Wr)^2,
++\mathcal I_{\Omega^2}\geq \frac{4\pi^2}{\mathcal L_D}(SL-Wr)^2.
+ \]
+-with equality only for uniform material twist.  Thus helicity constrains a quadratic twist energy; it does not supply a linear correction to a parity-even gauge kinetic term.
+-
+-Numerical trefoil data are used only as a convention and provenance test.  The high-resolution radius-normalized ropelength $32.742934477$ is equivalent to the diameter-normalized value $16.3714672385$; a Fourier database value $16.371637$ defines a distinct numerical branch.  Their proximity is strong evidence for scalar ropelength convergence but not for convergence of finite-core response.  Finally, an electromagnetic interpretation is formulated as an explicitly open matching problem: a dimensionless response may be identified with an inverse gauge coupling only after the gauge field and source current have been independently normalized and a genuine $U(1)$ sector with two physical transverse modes has been established.  A calibration and holdout protocol is given that forbids reuse of the target coupling or equivalent calibration data.
++The bound is parity even, but its numerical value depends strongly on the independently chosen self-linking sector.  A naturalness audit shows that, in a commonly used dimensionless curvature basis, closing the trefoil residual requires coefficients of order $10^{-2}$--$10^{-3}$ rather than order unity; this is a diagnostic of suppression in that basis, not a universal theorem.
++
++The numerical provenance is also corrected.  The high-resolution study reports a polygonal length $L_p$, an inscribed-curve upper bound $L_c$, and a weighted estimate $L_a$; these quantities have different epistemic status.  Their internal spread is far smaller than the separation between the high-resolution and rounded Fourier branches, which is itself about eighty times smaller than the external residual.  Finally, a gauge interpretation is retained only as an open matching hypothesis requiring independent source normalization, a protected $U(1)$ constraint, two physical transverse modes, static--radiative universality, and one Lorentz-invariant infrared causal cone shared with matter.  The trefoil number is therefore a normalization-dependent geometric coincidence and a falsification target, not a derived fine-structure constant.
+ \end{abstract}
+ 
+-\keywords{vortex dynamics, ropelength, ideal knots, transverse projector, helicity, writhe, twist, Biot--Savart energy, effective field theory, gauge coupling}
++\keywords{vortex dynamics, ropelength, ideal knots, transverse projector, angular measure, helicity, writhe, twist, Biot--Savart energy, logarithmic self-energy, naturalness, gauge coupling}
+ 
+ \maketitle
+ 
+ \section{Introduction}
+ 
+-Knotted vortex tubes are simultaneously geometric objects, solutions or approximate solutions of fluid equations, and potential carriers of topological invariants.  These roles should be distinguished.  Ropelength is a scale-invariant property of an embedded centerline with nonzero thickness.  Helicity is a conserved integral of a solenoidal field under ideal evolution.  Kinetic energy depends on the entire velocity or vorticity distribution, including the core profile and nonlocal induction.  A gauge coupling, in contrast, is defined only after both the gauge kinetic term and the normalization of charged sources have been fixed.
+-
+-The purpose of this paper is to isolate a precise chain of statements that can be assessed independently:
++Knotted tubes appear in fluid dynamics, magnetohydrodynamics, elasticity, polymer physics, and flux-tube models.  Across these subjects one repeatedly encounters a leading contribution proportional to tube length, supplemented by framing, curvature, contact, or nonlocal terms.  Such structures are established in the magnetic-knot literature and in models of tightly knotted flux tubes \cite{ChuiMoffatt1995,MaggioniRicca2009,BuniyKephart2005,BuniyEtAl2014}.  Hydrodynamic vortex knots likewise possess nontrivial velocity, energy, and helicity that depend on winding and nonlocal induction \cite{MaggioniEtAl2009,MaggioniEtAl2010}.
++
++The present paper addresses a narrower question.  For the incompressible transverse projector, the unnormalized angular integral of the transverse tangent fraction is $8\pi/3$.  When multiplied by the diameter-normalized ropelength of a high-resolution trefoil, this produces a number near the inverse low-energy electromagnetic coupling.  The arithmetic is correct.  The physical interpretation is not automatic, because an angular integral is not yet a normalized response coefficient.  The full spectral measure, radial weight, subtraction prescription, field normalization, and source normalization must be derived from one microscopic calculation.
++
++The purpose of this revision is therefore diagnostic rather than confirmatory.  It separates:
+ \begin{enumerate}[label=(\roman*)]
+-  \item an exact angular identity associated with the incompressible transverse projector;
+-  \item its conversion into a length-normalized geometric response;
+-  \item two no-go results showing why the same local constructions cannot provide a geometry-sensitive correction;
+-  \item the orthodox Euler--Biot--Savart energy and its finite-core regularization;
+-  \item the role of helicity, writhe, and material twist in a parity-even response;
+-  \item the additional normalization conditions required before any response coefficient can be interpreted as an electromagnetic coupling.
++  \item the exact normalized angular mean $2/3$;
++  \item the convention-dependent unnormalized value $8\pi/3$;
++  \item local geometric identities that cannot generate a correction;
++  \item the logarithmic and nonlocal structure of finite-core vortex energy;
++  \item the absence of a small-curvature parameter for a tight trefoil;
++  \item helicity and framing constraints;
++  \item the extra requirements for an electromagnetic gauge interpretation.
+ \end{enumerate}
+ 
+-No microscopic derivation of the electromagnetic fine-structure constant is claimed.  The comparison with its inverse value is retained only as a numerical target that motivates an independent calibration experiment.  In particular, the target value, the elementary charge, and any parameter previously calibrated through the target coupling are excluded from the finite-core matching stage.
+-
+-The geometric part of the analysis is grounded in established ropelength theory.  Ropelength minimizers exist in each tame knot type and are $C^{1,1}$, but they need not be $C^2$ or unique \cite{CantarellaKusnerSullivan2002}.  Constrained-gradient computations make the active strut and kink constraints explicit \cite{AshtonCantarellaPiatekRawdon2011}.  High-resolution work on the trefoil shows that scalar length alone conceals nontrivial curvature, torsion, and contact structure \cite{PrzybylPieranski2014}.  These facts motivate the use of material frames and finite-core operators rather than unregularized Frenet torsion.
++No direct calculation of the fine-structure constant is claimed.  The external value is consulted only after all geometric, normalization, core, and framing choices have been fixed.  In particular, a chosen angular normalization or subtraction convention is not promoted to a physical theorem merely because it produces a nearby number.
++
++Ropelength minimizers exist in every tame knot type and are generally $C^{1,1}$ rather than necessarily $C^2$ \cite{CantarellaKusnerSullivan2002}.  Constrained-gradient calculations expose active struts and kinks \cite{AshtonCantarellaPiatekRawdon2011}.  The high-resolution trefoil exhibits six finite curvature-limited intervals, discontinuous-curvature conjectures, singular torsional structure, and a nontrivial contact map \cite{PrzybylPieranski2014}.  Those features make it an unusually severe test of any local derivative expansion.
+ 
+ \section{Geometric preliminaries and conventions}
+ \label{sec:geometry}
+@@ -103,16 +113,13 @@
+ \begin{equation}
+   \bm t(s)=\frac{\dd\bm\gamma}{\dd s},\qquad |\bm t|=1.
+ \end{equation}
+-Let $a$ denote the radius of an embedded normal tube around $\gamma$, and let $D=2a$ be its diameter.  The standard radius-normalized ropelength is
+-\begin{equation}
+-  \Rop_a[\gamma]=\frac{L}{a},
+-\end{equation}
+-whereas the diameter-normalized length used below is
+-\begin{equation}
++Let $a$ denote the radius of an embedded normal tube and let $D=2a$.  The standard radius-normalized ropelength and the diameter-normalized length are
++\begin{equation}
++  \Rop_a[\gamma]=\frac{L}{a},\qquad
+   \calL_D[\gamma]=\frac{L}{D}=\frac12\Rop_a[\gamma].
+-  \label{eq:diameter-normalized}
+-\end{equation}
+-The distinction is elementary but numerically decisive: multiplying a radius-normalized ropelength by a coefficient derived for $L/D$ introduces an erroneous factor of two.
++  \label{eq:diameter-normalized-v020}
++\end{equation}
++The factor-of-two conversion is essential: the high-resolution trefoil value near $32.743$ is radius normalized, while the value near $16.3715$ is diameter normalized.
+ 
+ \begin{figure}[t]
+ \centering
+@@ -138,282 +145,300 @@
+ \label{fig:trefoil-convention}
+ \end{figure}
+ 
+-For a $C^{1,1}$ minimizer, curvature exists almost everywhere and is essentially bounded.  By contrast, Frenet torsion may be ill-defined at inflection points or across nonsmooth transitions.  A physical twist variable should therefore be attached to a material or core director, not inferred from Frenet torsion alone.
+-
+-\section{The isotropic transverse-projector identity}
++For a $C^{1,1}$ minimizer, curvature exists almost everywhere and is essentially bounded.  A physical twist variable should be attached to a material or core director; unregularized Frenet torsion is not sufficient at inflection points, curvature discontinuities, or frame jumps.
++
++\section{Normalized and unnormalized transverse-projector identities}
+ \label{sec:projector}
+ 
+-In Fourier space, incompressibility requires
+-\begin{equation}
+-  k_i\widetilde u_i(\bm k)=0.
+-\end{equation}
+-The orthogonal projector onto the plane transverse to $\bm k$ is
++In Fourier space, incompressibility requires $k_i\widetilde u_i(\bm k)=0$.  The orthogonal projector onto the plane transverse to $\bm k$ is
+ \begin{equation}
+   P_{ij}(\unitvec{k})=\delta_{ij}-\widehat k_i\widehat k_j.
+-  \label{eq:projector}
+-\end{equation}
+-For a fixed unit tangent $\bm t$,
++  \label{eq:projector-v020}
++\end{equation}
++For a fixed unit tangent,
+ \begin{equation}
+   t_iP_{ij}t_j=1-(\bm t\cdot\unitvec{k})^2.
+ \end{equation}
+-Rotational invariance implies
++Rotational invariance gives
+ \begin{equation}
+   \int_{S^2}\widehat k_i\widehat k_j\,\dd\Omega
+   =\frac{4\pi}{3}\delta_{ij}.
+-  \label{eq:isotropic-second-moment}
+-\end{equation}
+-
+-\begin{proposition}[Isotropic transverse fraction]
++\end{equation}
++
++\begin{proposition}[Normalized transverse fraction]
+ For every unit vector $\bm t\in\RR^3$,
+ \begin{equation}
+   \boxed{
+-  \int_{S^2}t_iP_{ij}(\unitvec{k})t_j\,\dd\Omega
+-  =\frac{8\pi}{3}.}
+-  \label{eq:8pi3}
++  \left\langle t_iP_{ij}t_j\right\rangle_{S^2}
++  :=\frac{1}{4\pi}\int_{S^2}t_iP_{ij}t_j\,\dd\Omega
++  =\frac23.}
++  \label{eq:normalized-23}
++\end{equation}
++Equivalently,
++\begin{equation}
++  \boxed{\int_{S^2}t_iP_{ij}t_j\,\dd\Omega=\frac{8\pi}{3}.}
++  \label{eq:unnormalized-8pi3}
+ \end{equation}
+ \end{proposition}
+ 
+ \begin{proof}
+-Using \cref{eq:isotropic-second-moment},
++Using isotropy,
+ \begin{align}
+   \int_{S^2}t_iP_{ij}t_j\,\dd\Omega
+-  &=4\pi-t_it_j\frac{4\pi}{3}\delta_{ij}\nonumber\\
+-  &=4\pi-\frac{4\pi}{3}|\bm t|^2
+-   =\frac{8\pi}{3}.
++  &=4\pi-t_it_j\frac{4\pi}{3}\delta_{ij}
++  =4\pi-\frac{4\pi}{3}|\bm t|^2
++  =\frac{8\pi}{3}.
+ \end{align}
++Division by $4\pi$ gives $2/3$.
+ \end{proof}
+ 
+-The factor $3$ is therefore the denominator of the isotropic second moment in three spatial dimensions.  It is unrelated to the crossing number of the trefoil, its threefold visual symmetry, or any proposed periodic contact orbit.
++The factor $3$ is the denominator of the isotropic second moment in three spatial dimensions.  It has no relation to the trefoil crossing number or threefold symmetry.
+ 
+ \begin{figure}[t]
+ \centering
+-\begin{tikzpicture}[scale=1.0,>=Latex]
+-  \draw[thick] (0,0) circle (2.15);
+-  \draw[->,very thick,blue!65!black] (0,0)--(0,2.0) node[above] {$\bm t$};
+-  \draw[->,very thick,red!70!black] (0,0)--(1.55,1.25) node[above right] {$\unitvec{k}$};
+-  \coordinate (K) at (1.55,1.25);
+-  \draw[dashed] (0,2.0)--($(K)!(0,2.0)!(0,0)$);
+-  \coordinate (Q) at ($(K)!(0,2.0)!(0,0)$);
+-  \draw[->,thick,orange!80!black] (0,0)--(Q) node[midway,below right] {$\bm t_{\parallel}$};
+-  \draw[->,thick,green!45!black] (Q)--(0,2.0) node[midway,right] {$\bm t_{\perp}$};
+-  \draw (0.35,0) arc[start angle=0,end angle=39,radius=0.35];
+-  \node at (0.55,0.27) {$\theta$};
+-  \node[align=left,anchor=west] at (2.8,1.25)
+-    {$t_iP_{ij}t_j=|\bm t_\perp|^2=1-\cos^2\theta$\\[2pt]
+-     $\langle\cos^2\theta\rangle_{S^2}=1/3$\\[2pt]
+-     $\langle|\bm t_\perp|^2\rangle_{S^2}=2/3$};
++\begin{tikzpicture}[scale=0.82]
++  \draw[very thick,blue!65!black,line cap=round,line join=round]
++    plot[smooth] coordinates {(2.5840,0.0000) (2.5990,0.1886) (2.5938,0.3746) (2.5688,0.5556) (2.5244,0.7293) (2.4618,0.8935) (2.3820,1.0461) (2.2866,1.1856) (2.1773,1.3104) (2.0561,1.4195) (1.9248,1.5122) (1.7856,1.5881) (1.6405,1.6471) (1.4915,1.6896) (1.3405,1.7161) (1.1894,1.7275) (1.0397,1.7251) (0.8926,1.7101) (0.7495,1.6840) (0.6110,1.6486) (0.4779,1.6054) (0.3503,1.5562) (0.2282,1.5024) (0.1116,1.4458) (-0.0000,1.3875) (-0.1074,1.3288) (-0.2111,1.2706) (-0.3121,1.2137) (-0.4113,1.1584) (-0.5097,1.1049) (-0.6080,1.0531) (-0.7071,1.0026) (-0.8076,0.9529) (-0.9100,0.9032) (-1.0146,0.8524) (-1.1214,0.7995) (-1.2302,0.7433) (-1.3404,0.6826) (-1.4514,0.6161) (-1.5621,0.5429) (-1.6714,0.4618) (-1.7777,0.3720) (-1.8794,0.2730) (-1.9749,0.1644) (-2.0621,0.0459) (-2.1394,-0.0821) (-2.2048,-0.2192) (-2.2565,-0.3645) (-2.2929,-0.5170) (-2.3125,-0.6754) (-2.3141,-0.8379) (-2.2967,-1.0027) (-2.2596,-1.1679) (-2.2026,-1.3311) (-2.1255,-1.4903) (-2.0290,-1.6431) (-1.9136,-1.7873) (-1.7806,-1.9208) (-1.6314,-2.0415) (-1.4679,-2.1477) (-1.2920,-2.2378) (-1.1061,-2.3105) (-0.9126,-2.3649) (-0.7142,-2.4003) (-0.5134,-2.4165) (-0.3131,-2.4135) (-0.1157,-2.3917) (0.0761,-2.3519) (0.2602,-2.2953) (0.4343,-2.2230) (0.5966,-2.1369) (0.7457,-2.0385) (0.8801,-1.9300) (0.9992,-1.8132) (1.1023,-1.6903) (1.1894,-1.5634) (1.2606,-1.4343) (1.3164,-1.3049) (1.3576,-1.1768) (1.3853,-1.0516) (1.4008,-0.9304) (1.4055,-0.8141) (1.4011,-0.7033) (1.3890,-0.5984) (1.3709,-0.4995) (1.3485,-0.4062) (1.3231,-0.3181) (1.2962,-0.2344) (1.2687,-0.1542) (1.2418,-0.0765) (1.2160,-0.0000) (1.1918,0.0765) (1.1692,0.1542) (1.1482,0.2344) (1.1284,0.3181) (1.1091,0.4062) (1.0895,0.4995) (1.0686,0.5984) (1.0452,0.7033) (1.0182,0.8141) (0.9862,0.9304) (0.9479,1.0516) (0.9022,1.1768) (0.8480,1.3049) (0.7844,1.4343) (0.7106,1.5634) (0.6262,1.6903) (0.5309,1.8132) (0.4248,1.9300) (0.3083,2.0385) (0.1820,2.1369) (0.0470,2.2230) (-0.0956,2.2953) (-0.2442,2.3519) (-0.3972,2.3917) (-0.5525,2.4135) (-0.7082,2.4165) (-0.8621,2.4003) (-1.0122,2.3649) (-1.1561,2.3105) (-1.2920,2.2378) (-1.4178,2.1477) (-1.5319,2.0415) (-1.6327,1.9208) (-1.7189,1.7873) (-1.7896,1.6431) (-1.8441,1.4903) (-1.8822,1.3311) (-1.9038,1.1679) (-1.9093,1.0027) (-1.8995,0.8379) (-1.8751,0.6754) (-1.8375,0.5170) (-1.7882,0.3645) (-1.7286,0.2192) (-1.6606,0.0821) (-1.5860,-0.0459) (-1.5065,-0.1644) (-1.4240,-0.2730) (-1.3403,-0.3720) (-1.2567,-0.4618) (-1.1748,-0.5429) (-1.0956,-0.6161) (-1.0200,-0.6826) (-0.9487,-0.7433) (-0.8820,-0.7995) (-0.8199,-0.8524) (-0.7621,-0.9032) (-0.7081,-0.9529) (-0.6570,-1.0026) (-0.6080,-1.0531) (-0.5597,-1.1049) (-0.5109,-1.1584) (-0.4601,-1.2137) (-0.4059,-1.2706) (-0.3468,-1.3288) (-0.2815,-1.3875) (-0.2088,-1.4458) (-0.1276,-1.5024) (-0.0371,-1.5562) (0.0632,-1.6054) (0.1736,-1.6486) (0.2941,-1.6840) (0.4243,-1.7101) (0.5635,-1.7251) (0.7106,-1.7275) (0.8644,-1.7161) (1.0231,-1.6896) (1.1851,-1.6471) (1.3482,-1.5881) (1.5101,-1.5122) (1.6687,-1.4195) (1.8215,-1.3104) (1.9662,-1.1856) (2.1005,-1.0461) (2.2224,-0.8935) (2.3297,-0.7293) (2.4208,-0.5556) (2.4943,-0.3746) (2.5489,-0.1886) (2.5840,-0.0000)};
++  \node[align=left,anchor=west] at (3.15,2.0)
++    {schematic trefoil\\centerline $\gamma$};
++  \begin{scope}[shift={(8.2,0.15)}]
++    \draw[thick] (0,0) circle (1.25);
++    \draw[<->,thick] (-1.25,-1.65)--(1.25,-1.65)
++      node[midway,fill=white,inner sep=1pt] {$D=2a$};
++    \draw[->,thick] (0,0)--(1.25,0)
++      node[midway,above] {$a$};
++    \fill (0,0) circle (1.6pt);
++    \node[align=center] at (0,2.0) {normal cross-section};
++    \node[align=left,anchor=west] at (-1.75,-2.55)
++      {$\displaystyle \calL_D=\frac{L}{D}$,\quad
++       $\displaystyle \Rop_a=\frac{L}{a}=2\calL_D$};
++  \end{scope}
+ \end{tikzpicture}
+-\caption{The transverse projector removes the component of $\bm t$ parallel to $\unitvec{k}$.  Isotropic averaging leaves the fraction $2/3$ of the squared unit tangent, and integration over the sphere gives $4\pi(2/3)=8\pi/3$.}
++\caption{The transverse projector removes the component of $\bm t$ parallel to $\unitvec{k}$.  The normalized isotropic mean is $2/3$.  Multiplication by the total solid angle $4\pi$ gives the unnormalized integral $8\pi/3$; retaining that factor in a physical response requires an independently derived measure normalization.}
+ \label{fig:projector}
+ \end{figure}
+ 
+-\begin{corollary}[Length response]
+-Define
+-\begin{equation}
+-  \Rgeom[\gamma]
++\subsection{Measure normalization is additional physics}
++
++Let $\mu$ be the angular part of a physical spectral measure.  Define
++\begin{equation}
++  \calG_\mu[\gamma]
+   :=\int_\gamma\frac{\dd s}{D}
+-     \int_{S^2}t_iP_{ij}t_j\,\dd\Omega.
+-\end{equation}
+-Then
+-\begin{equation}
+-  \boxed{
+-  \Rgeom[\gamma]=\frac{8\pi}{3}\calL_D
+-  =\frac{4\pi}{3}\Rop_a.}
+-  \label{eq:leading-response}
+-\end{equation}
+-\end{corollary}
+-
+-\subsection{A local no-go result}
+-
+-Equation \eqref{eq:8pi3} is independent of the local direction of $\bm t$.  It follows immediately that the bare local construction contains no information about curvature, torsion, writhe, contact, or core profile:
+-\begin{equation}
+-  \boxed{\Delta_{\mathrm{bare\ projector}}=0.}
+-  \label{eq:projector-no-go}
+-\end{equation}
+-Any geometry-sensitive correction must therefore modify the kernel being averaged or introduce additional finite-core and nonlocal variables.
+-
+-\section{The constant-radius tube-volume identity}
++  \int_{S^2}t_iP_{ij}t_j\,\dd\mu(\unitvec{k}).
++\end{equation}
++For an isotropic measure $\dd\mu=C_\Omega\,\dd\Omega/(4\pi)$,
++\begin{equation}
++  \calG_\mu[\gamma]=\frac23 C_\Omega\calL_D.
++  \label{eq:general-measure}
++\end{equation}
++The unnormalized choice $\dd\mu=\dd\Omega$ corresponds to $C_\Omega=4\pi$ and reproduces $(8\pi/3)\calL_D$.  A normalized angular probability measure corresponds to $C_\Omega=1$ and gives $(2/3)\calL_D$.
++
++Steradians are dimensionless in SI, so this is not a dimensional inconsistency.  It is a normalization ambiguity.  In a field calculation, the angular integral normally appears inside a full momentum measure such as $\dd^3k/(2\pi)^3$, together with radial weights, dispersion, eigenmode normalization, and subtraction terms.  None of those factors is supplied by the projector identity.  We therefore write the physical leading line contribution as
++\begin{equation}
++  \boxed{\mathscr R_{\rm line}=\ZL(\mu)\calL_D,}
++  \label{eq:open-line-coefficient}
++\end{equation}
++where $\ZL(\mu)$ must be independently matched.  The numerical choice $\ZL=8\pi/3$ is a candidate convention, not a consequence of incompressibility alone.
++
++\subsection{Local projector no-go}
++
++The normalized and unnormalized angular results are constant for every unit tangent.  Therefore neither contains local curvature, torsion, writhe, contact, or profile information:
++\begin{equation}
++  \boxed{\Delta_{\rm bare\ projector}=0.}
++\end{equation}
++A geometry-sensitive correction requires a modified kernel, a core-resolved field, a material frame, or nonlocal interaction.
++
++\section{Constant-radius tube volume: identity and limitation}
+ \label{sec:tube-volume}
+ 
+-A second appearance of the same coefficient follows from the volume of an embedded tube.  For a sufficiently regular centerline, choose the Frenet-frame parameterization
++For a smooth portion of a centerline, Frenet tube coordinates give
+ \begin{equation}
+   \bm x(s,r,\phi)=\bm\gamma(s)
+-  +r\cos\phi\,\bm n(s)+r\sin\phi\,\bm b(s).
+-\end{equation}
+-Before the normal tube self-overlaps, the volume element is
++  +r\cos\phi\,\bm n(s)+r\sin\phi\,\bm b(s),
++\end{equation}
++with Jacobian
+ \begin{equation}
+   \dd V=r\left(1-\kappa r\cos\phi\right)
+   \dd r\,\dd\phi\,\dd s.
+-  \label{eq:tube-jacobian}
+-\end{equation}
+-Integrating over $0\le r\le a$ and $0\le\phi<2\pi$ gives
+-\begin{equation}
+-  V_{\mathrm{tube}}=\pi a^2L,
+-  \label{eq:tube-volume}
+-\end{equation}
+-because the term linear in curvature vanishes under the $\phi$ integral.  Hence
+-\begin{equation}
+-  \boxed{
+-  \frac{4}{3}\frac{V_{\mathrm{tube}}}{a^3}
+-  =\frac{4\pi L}{3a}
+-  =\frac{8\pi}{3}\calL_D.}
+-  \label{eq:tube-volume-identity}
+-\end{equation}
+-
+-This identity is geometrically exact within its domain of validity, but it is not an electromagnetic derivation.  It also yields a second no-go statement:
+-\begin{equation}
+-  \boxed{\Delta_{\mathrm{constant\ tube\ volume}}=0.}
+-  \label{eq:tube-no-go}
+-\end{equation}
+-A nonzero correction from a tube construction requires at least one ingredient absent from \cref{eq:tube-jacobian}: a deformed or nonuniform cross-section, a spatially varying core profile, contact-mediated stress, overlap regularization, or another dynamical field.
+-
+-\section{Euler energy in velocity and vorticity form}
++\end{equation}
++For the open tube $0\le r<a$ before loss of normal injectivity,
++\begin{equation}
++  V_{\rm tube}=\pi a^2L,
++\end{equation}
++because the term linear in curvature integrates to zero around the cross-section.
++
++One may then write
++\begin{equation}
++  \frac{4}{3}\frac{V_{\rm tube}}{a^3}
++  =\frac{8\pi}{3}\frac{L}{D}.
++  \label{eq:tube-restatement}
++\end{equation}
++This is not a second derivation of $8\pi/3$: the prefactor $4/3$ has been selected so that the right-hand side reproduces the same coefficient.  Equation~\eqref{eq:tube-restatement} is an algebraic restatement of the chosen normalization.
++
++\begin{remark}[Boundary of validity]
++The coordinate map is regular only for $1-\kappa r\cos\phi>0$ in the open tube.  A tight tube reaches $a\kappa_{\max}=1$ at curvature-limited points, and its boundary also touches itself on the contact set.  The volume formula is therefore understood as the volume of the embedded open tube or as a limiting statement.  It cannot by itself describe boundary contact stress or core deformation.
++\end{remark}
++
++The curvature cancellation nevertheless supplies a robust no-go result:
++\begin{equation}
++  \boxed{\Delta_{\rm constant\ circular\ volume}=0.}
++\end{equation}
++A nonzero tube-based correction requires profile variation, cross-sectional deformation, contact stress, overlap regularization, or additional dynamics.
++
++\section{Euler energy, Biot--Savart form, and finite-core logarithms}
+ \label{sec:euler-energy}
+ 
+-Consider an incompressible fluid of constant density $\rho$ in $\RR^3$ or in a domain with boundary conditions that eliminate the relevant surface terms.  The kinetic energy is
++For an incompressible fluid of constant density $\rho$,
+ \begin{equation}
+   E=\frac{\rho}{2}\int |\bm u(\bm x)|^2\,\dd^3x,
+   \qquad \nabla\cdot\bm u=0.
+-  \label{eq:euler-velocity-energy}
+-\end{equation}
+-Introduce the vorticity $\bm\omega=\nabla\times\bm u$ and a vector potential
+-\begin{equation}
+-  \bm A(\bm x)=\frac{1}{4\pi}
+-  \int\frac{\bm\omega(\bm x')}{|\bm x-\bm x'|}\,\dd^3x',
+-  \qquad \bm u=\nabla\times\bm A.
+-\end{equation}
+-Integration by parts yields
+-\begin{equation}
+-  \int |\bm u|^2\,\dd^3x
+-  =\int \bm A\cdot\bm\omega\,\dd^3x,
+-\end{equation}
+-so that
++\end{equation}
++With vorticity $\bm\omega=\nabla\times\bm u$ and suitable decay or boundary conditions,
+ \begin{equation}
+   \boxed{
+   E=\frac{\rho}{8\pi}
+   \int\!\dd^3x\int\!\dd^3x'\,
+   \frac{\bm\omega(\bm x)\cdot\bm\omega(\bm x')}
+        {|\bm x-\bm x'|}.}
+-  \label{eq:vorticity-energy}
+-\end{equation}
+-This is the orthodox nonlocal energy functional for a solenoidal vorticity field \cite{Saffman1992,Moffatt1969}.
+-
+-\subsection{Formal filament limit}
+-
+-For a zero-radius filament of circulation $\Gamma$ supported on $\gamma$,
++  \label{eq:vorticity-energy-v020}
++\end{equation}
++For a formal zero-radius filament,
+ \begin{equation}
+   \bm\omega(\bm x)=\Gamma\oint_\gamma
+-  \bm t(s)\,\delta^{(3)}\!\left(\bm x-\bm\gamma(s)\right)\dd s.
+-  \label{eq:filament-vorticity}
+-\end{equation}
+-Substitution into \cref{eq:vorticity-energy} gives
++  \bm t(s)\delta^{(3)}(\bm x-\bm\gamma(s))\,\dd s,
++\end{equation}
++which gives
++\begin{equation}
++  E_{\rm BS}[\gamma]
++  =\frac{\rho\Gamma^2}{8\pi}
++  \oint\!\oint
++  \frac{\bm t(s)\cdot\bm t(s')}
++       {|\bm\gamma(s)-\bm\gamma(s')|}\,\dd s\,\dd s'.
++  \label{eq:filament-energy-v020}
++\end{equation}
++The diagonal diverges.  A physical result requires a resolved vorticity distribution or an explicit regularization.
++
++For a slender vortex ring of major radius $R$ and core radius $a$, the standard finite-core asymptotics has the structure \cite{Saffman1992}
++\begin{equation}
++  E_{\rm ring}
++  =\frac12\rho\Gamma^2R
++   \left[\ln\!\left(\frac{8R}{a}\right)-C_f+o(1)\right],
++  \qquad a/R\to0,
++  \label{eq:ring-log}
++\end{equation}
++where $C_f$ depends on the core profile.  In terms of $\widehat\kappa=D\kappa=2a/R$, the logarithm is $\ln(16/\widehat\kappa)$.  Thus the leading finite-core structure contains a contribution schematically proportional to
++\begin{equation}
++  \calL_D\ln\!\left(\frac{C}{\widehat\kappa}\right),
++  \label{eq:log-line-term}
++\end{equation}
++not merely a polynomial in $\widehat\kappa^2$.
++
++For a general knot there is no unique local outer cutoff $R$.  The regularized energy depends on global geometry and contact.  A safe decomposition is
+ \begin{equation}
+   \boxed{
+-  E_{\mathrm{BS}}[\gamma]
+-  =\frac{\rho\Gamma^2}{8\pi}
+-  \oint_\gamma\!\oint_\gamma
+-  \frac{\bm t(s)\cdot\bm t(s')}
+-       {|\bm\gamma(s)-\bm\gamma(s')|}
+-  \dd s\,\dd s'.}
+-  \label{eq:filament-energy}
+-\end{equation}
+-The diagonal $s=s'$ diverges.  Equation \eqref{eq:filament-energy} is therefore a formal filament expression, not a finite energy of a physical tube.  It must be replaced by a core-resolved vorticity distribution or by an explicitly stated regularization.
+-
+-With $\bm X=\bm\gamma/D$ and $\sigma=s/D$, the natural energy scale is $\rho\Gamma^2D$ because
+-\begin{equation}
+-  [\rho\Gamma^2D]=\mathrm{kg\,m^2\,s^{-2}}.
+-\end{equation}
+-A generic dimensionless regularized functional can be written as
+-\begin{equation}
+   \calE_f[\gamma]
+-  :=\frac{8\pi E_f}{\rho\Gamma^2D}
+-  =\FP\oint\!\dd\sigma\oint\!\dd\sigma'\,
+-  \bm t(\sigma)\cdot\bm t(\sigma')
+-  G_f\!\left(|\bm X(\sigma)-\bm X(\sigma')|\right),
+-  \label{eq:regularized-energy}
+-\end{equation}
+-where $f$ labels the core profile, $G_f$ is the corresponding regularized kernel, and $\FP$ denotes the declared subtraction or replacement of the local self-part.  Different profiles generally produce different finite constants and different higher-order response coefficients.
+-
+-\section{Finite-core effective expansion}
++  =\ZL(\mu)\calL_D
++  +\Rnl[\gamma,f;\mu]
++  +\Delta_{\rm local}[\gamma,f,\Omega_3;\mu],}
++  \label{eq:safe-decomposition}
++\end{equation}
++where $\Rnl$ retains the logarithmic self-energy, long-range induction, and contact-sensitive terms rather than forcing them into a low-order polynomial.
++
++\section{Relation to established energy--ropelength models}
++\label{sec:prior-art}
++
++Energy functionals for knotted tubes predate the present numerical coincidence.  Chui and Moffatt calculated energy and helicity for knotted magnetic flux tubes under circular and axially uniform assumptions \cite{ChuiMoffatt1995}.  Maggioni and Ricca derived a constrained minimum magnetic energy depending explicitly on ropelength and framing \cite{MaggioniRicca2009}.  Hydrodynamic calculations have compared kinetic energy and helicity across vortex knots and unknots under Biot--Savart evolution \cite{MaggioniEtAl2009,MaggioniEtAl2010}.
++
++Length-proportional mass or energy spectra have also been proposed for tightly knotted flux tubes in high-energy models \cite{BuniyKephart2005,BuniyEtAl2014}.  Those works establish relevant precedent for the structural idea ``length plus corrections'', but they do not provide an electromagnetic derivation of the coefficient in Eq.~\eqref{eq:open-line-coefficient}.  The specific observation examined here is the numerical proximity of one unnormalized angular convention times the tight-trefoil length to an inverse electromagnetic coupling.  Its novelty, if any, lies in that numerical comparison and in the obstruction analysis, not in the general idea that knotted-tube energy may depend on ropelength and framing.
++
++\section{Effective response and the absence of a controlled tight-knot expansion}
+ \label{sec:effective-expansion}
+ 
+-At scales long compared with the core diameter, a regularized tube response may be organized as an effective expansion.  Let
++Let
+ \begin{equation}
+   \widehat\kappa=D\kappa,
++  \qquad \widehat\Omega=D\Omega_3,
++\end{equation}
++and define
++\begin{equation}
++  \calI_{\kappa^2}=\int\widehat\kappa^2\frac{\dd s}{D},
+   \qquad
+-  \widehat\Omega=D\Omega_3,
+-\end{equation}
+-where $\Omega_3$ is the rotation rate of a material director about the tangent.  Define
+-\begin{equation}
+-  \calI_{\kappa^2}=\int_\gamma \widehat\kappa^2\,\frac{\dd s}{D},
+-  \qquad
+-  \calI_{\Omega^2}=\int_\gamma \widehat\Omega^2\,\frac{\dd s}{D}.
+-  \label{eq:operators}
+-\end{equation}
+-A minimal parity-even truncation is
+-\begin{equation}
+-  \boxed{
+-  \Reff[\gamma,f,\Omega_3]
+-  =\frac{8\pi}{3}\calL_D
+-  +c_\kappa\calI_{\kappa^2}
++  \calI_{\Omega^2}=\int\widehat\Omega^2\frac{\dd s}{D}.
++\end{equation}
++If $\widehat\kappa\ll1$ and derivatives are small, a local expansion may supplement Eq.~\eqref{eq:safe-decomposition}:
++\begin{equation}
++  \Delta_{\rm local}
++  =c_\kappa\calI_{\kappa^2}
+   +c_\Omega\calI_{\Omega^2}
+-  +c_C\calC_{\mathrm{contact}}
+-  +\cdots.}
+-  \label{eq:response-expansion}
+-\end{equation}
+-The omitted terms may include $\widehat\kappa^4$, $(\partial_\sigma\widehat\kappa)^2$, $\widehat\kappa^2\widehat\Omega^2$, profile moments, and genuinely nonlocal kernels.  The organization into a line term plus local and nonlocal corrections is standard in effective descriptions of vortex lines, although the coefficients are microscopic matching data rather than topological constants \cite{HornNicolisPenco2015}.
+-
+-\subsection{Length-counterterm degeneracy}
+-
+-A term $c_L\calL_D$ cannot be independently distinguished from a change in the leading coefficient:
+-\begin{equation}
+-  \frac{8\pi}{3}\calL_D+c_L\calL_D
+-  =\left(\frac{8\pi}{3}+c_L\right)\calL_D.
+-\end{equation}
+-If the leading coefficient is declared to be fixed by the exact projector identity, the corresponding renormalization condition must be
+-\begin{equation}
+-  \boxed{c_L=0.}
+-  \label{eq:cLzero}
+-\end{equation}
+-Otherwise a desired final residual can be absorbed by redefining the leading length coefficient after the comparison is known.
++  +c_{\kappa4}\calI_{\kappa^4}
++  +c_{\partial\kappa}\calI_{(\partial\kappa)^2}
++  +\cdots.
++  \label{eq:local-expansion-v020}
++\end{equation}
++This expansion is not controlled for a tight trefoil.  In the radius-one convention used by the high-resolution study, $\kappa=1$ on six finite intervals \cite{PrzybylPieranski2014}.  Since $D=2$, those intervals have
++\begin{equation}
++  \boxed{\widehat\kappa=D\kappa=2.}
++  \label{eq:kappa-two}
++\end{equation}
++Consequently $\widehat\kappa^2=4$, $\widehat\kappa^4=16$, and higher local powers are not parametrically ordered.  Contact and logarithmic nonlocality are simultaneously active.  A three-operator truncation may still be tested as a phenomenological regression model, but not described as a systematic leading-order effective expansion over the complete tight knot.
++
++\subsection{Status of the length subtraction}
++
++Writing
++\begin{equation}
++  \Reff=\frac{8\pi}{3}\calL_D+c_L\calL_D+\cdots
++\end{equation}
++contains an exact degeneracy.  The convention
++\begin{equation}
++  \boxed{c_L=0}
++  \label{eq:cL-convention-v020}
++\end{equation}
++is useful only as a preregistered subtraction rule after choosing $\ZL(\mu_0)=8\pi/3$ at a reference scheme $\mu_0$.  It prevents post hoc refitting of the length coefficient, but it does not derive the physical value of $\ZL$.  A different independently derived spectral measure could produce a different $\ZL$ while leaving the normalized projector identity unchanged.
++
+ 
+ \begin{figure}[t]
+ \centering
+ \begin{tikzpicture}[
+-  node distance=8mm and 10mm,
+-  box/.style={draw,rounded corners,align=center,minimum width=3.25cm,minimum height=1.0cm,fill=blue!5},
+-  open/.style={draw,rounded corners,align=center,minimum width=3.25cm,minimum height=1.0cm,fill=orange!10},
+-  arrow/.style={-{Latex[length=2.5mm]},thick}
++  node distance=7mm and 8mm,
++  box/.style={draw,rounded corners,align=center,minimum width=3.05cm,minimum height=0.95cm,fill=blue!5},
++  open/.style={draw,rounded corners,align=center,minimum width=3.05cm,minimum height=0.95cm,fill=orange!10},
++  arrow/.style={-{Latex[length=2.4mm]},thick}
+ ]
+-  \node[box] (proj) {exact local projector\\$\Rgeom=(8\pi/3)\calL_D$};
+-  \node[box,right=of proj] (core) {finite-core operators\\$\calI_{\kappa^2},\ \calI_{\Omega^2},\ \calC_{\rm contact}$};
++  \node[box] (mean) {exact angular mean\\$\langle t_iP_{ij}t_j\rangle=2/3$};
++  \node[open,right=of mean] (measure) {spectral measure and\\field normalization $\dd\mu(\bm k)$};
++  \node[open,right=of measure] (line) {matched line coefficient\\$\ZL(\mu)\calL_D$};
++  \node[box,below=of measure] (core) {finite-core self-energy\\logarithmic, nonlocal, contact};
+   \node[box,right=of core] (resp) {dimensionless response\\$\Reff$};
+   \node[open,below=of resp] (gauge) {open gauge matching\\$\Reff\ ?=\ 4\pi/g^2$};
+-  \node[open,left=of gauge] (source) {independent source\\normalization};
+-  \node[box,left=of source] (data) {alpha-blind calibration\\rings, twisted tubes, contacts};
+-  \draw[arrow] (proj)--(core);
++  \node[open,left=of gauge] (source) {independent source and\\charge normalization};
++  \node[open,left=of source] (lorentz) {infrared Lorentz\\universality};
++  \draw[arrow] (mean)--(measure);
++  \draw[arrow] (measure)--(line);
++  \draw[arrow] (line)--(resp);
+   \draw[arrow] (core)--(resp);
+-  \draw[arrow] (data)--(source);
++  \draw[arrow] (resp)--(gauge);
+   \draw[arrow] (source)--(gauge);
+-  \draw[arrow] (resp)--(gauge);
++  \draw[arrow] (lorentz)--(source);
+ \end{tikzpicture}
+-\caption{Logical separation of the exact geometric term, finite-core calibration, source normalization, and the optional gauge-stiffness interpretation.  The lower-right arrow is a matching problem, not a consequence of transversality alone.}
+-\label{fig:logic}
++\caption{Logical separation of the exact normalized angular identity, the open spectral-measure normalization, finite-core energy, source normalization, Lorentz universality, and the optional gauge-stiffness interpretation.  The value $8\pi/3$ corresponds to one unnormalized angular convention; it is not fixed by transversality alone.}
++\label{fig:logic-v020}
+ \end{figure}
+ 
+-\section{Helicity, writhe, and material twist}
++
++\section{Helicity, writhe, twist, and framing sectors}
+ \label{sec:helicity}
+ 
+ The helicity of an incompressible flow is
+ \begin{equation}
+   \calH=\int \bm u\cdot\bm\omega\,\dd^3x.
+ \end{equation}
+-For isolated thin vortex tubes, helicity is related to linking and self-linking invariants \cite{Moffatt1969,MoffattRicca1992}.  For a single framed tube of circulation $\Gamma$ in the slender-tube limit~\cite{Calugareanu1961,White1969,MoffattRicca1992},
+-\begin{equation}
+-  \frac{\calH}{\Gamma^2}=SL=Wr+Tw.
+-  \label{eq:calugareanu}
+-\end{equation}
+-The writhe of the centerline is the Gauss integral
++For one isolated framed thin tube with circulation $\Gamma$ and no reconnection,
++\begin{equation}
++  \frac{\calH}{\Gamma^2}=SL=Wr+Tw
++  \label{eq:calugareanu-v020}
++\end{equation}
++under the standard slender-tube hypotheses
++\cite{Moffatt1969,MoffattRicca1992,Calugareanu1961,White1969}.  The writhe of the centerline is the Gauss integral
+ \begin{equation}
+   Wr[\gamma]=\frac{1}{4\pi}
+   \oint\!\oint
+@@ -421,18 +446,16 @@
+         [\bm t(s)\times\bm t(s')]}
+        {|\bm\gamma(s)-\bm\gamma(s')|^3}
+   \dd s\,\dd s'.
+-  \label{eq:writhe}
+-\end{equation}
+-Let $\bm d_1(s)$ be a unit material director perpendicular to $\bm t$.  Its twist rate is
++  \label{eq:writhe-v020}
++\end{equation}
++Writhe is a nonlocal property of the centerline.  Twist requires a physical material director $\bm d_1\perp\bm t$:
+ \begin{equation}
+   \Omega_3=(\bm t\times\bm d_1)\cdot\frac{\dd\bm d_1}{\dd s},
+-\end{equation}
+-so that
+-\begin{equation}
++  \qquad
+   Tw=\frac{1}{2\pi}\oint\Omega_3\,\dd s.
+-  \label{eq:twist}
+-\end{equation}
+-This definition remains meaningful through situations where a Frenet frame is singular or discontinuous, provided the physical material framing is specified.
++  \label{eq:material-twist-v020}
++\end{equation}
++This definition remains meaningful where a Frenet frame is singular or discontinuous, provided the physical material framing is specified.
+ 
+ \begin{figure}[t]
+ \centering
+@@ -455,291 +478,296 @@
+   \node[draw,rounded corners,fill=white] at (3.6,1.55) {$SL=Wr+Tw$};
+ \end{tikzpicture}
+ \caption{Schematic ribbon representation of self-linking.  Writhe is a nonlocal property of the centerline, while twist requires a chosen material framing.  The drawing is illustrative rather than a numerical trefoil reconstruction.}
+-\label{fig:ribbon}
++\label{fig:ribbon-v020}
+ \end{figure}
+ 
+-\subsection{A parity-even twist-energy bound}
+-
+-Using \cref{eq:operators,eq:twist} and Cauchy--Schwarz,
++The self-linking integer is not fixed by the centerline knot type.  It depends on the chosen ribbon or physical core framing.  Any numerical twist correction must therefore freeze the complete data
++\begin{equation}
++  (\gamma,\bm d_1,SL,\text{orientation}).
++\end{equation}
++
++\subsection{Standard quadratic twist bound}
++
++For fixed total twist and length, the uniform-twist field minimizes the quadratic twist energy.  This is the standard one-dimensional variational result used in Kirchhoff--Cosserat rod theory \cite{Antman2005}.  Directly, Cauchy--Schwarz gives
+ \begin{align}
+   (2\pi Tw)^2
+-  &=\left(\int_\gamma D\Omega_3\,\frac{\dd s}{D}\right)^2\nonumber\\
+-  &\le \left(\int_\gamma\frac{\dd s}{D}\right)
+-       \left(\int_\gamma(D\Omega_3)^2\frac{\dd s}{D}\right)
+-   =\calL_D\calI_{\Omega^2}.
++  &=\left(\int D\Omega_3\frac{\dd s}{D}\right)^2
++  \leq \calL_D\calI_{\Omega^2},
+ \end{align}
+-Therefore
+-\begin{proposition}[Minimum material-twist energy]
+-For fixed $SL$, fixed centerline writhe, and fixed length,
++and hence
+ \begin{equation}
+   \boxed{
+-  \calI_{\Omega^2}\ge
++  \calI_{\Omega^2}\geq
+   \frac{4\pi^2}{\calL_D}(SL-Wr)^2.}
+-  \label{eq:twist-bound}
+-\end{equation}
+-Equality holds if and only if $D\Omega_3$ is constant almost everywhere along the tube.
+-\end{proposition}
+-
+-This is the appropriate way for helicity to constrain a parity-even quadratic twist term.  By contrast, $\calH/\Gamma^2$, $Wr$, and $Tw$ are pseudoscalars under spatial reflection.  A linear term
+-\begin{equation}
+-  c_H\frac{\calH}{\Gamma^2}
+-\end{equation}
+-therefore belongs to a parity-odd sector.  If such a sector admits an electromagnetic image, the natural operator class is $f_{\mu\nu}\widetilde f^{\mu\nu}$ rather than the ordinary parity-even kinetic term.  No equality between fluid helicity and a four-dimensional theta term is assumed here.
+-
+-Under the additional uniform-twist approximation, \cref{eq:response-expansion} reduces to
+-\begin{equation}
+-  \Reff=\frac{8\pi}{3}\calL_D
+-  +c_\kappa\calI_{\kappa^2}
+-  +c_\Omega\frac{4\pi^2}{\calL_D}(SL-Wr)^2
+-  +c_C\calC_{\mathrm{contact}}+\cdots.
+-  \label{eq:uniform-twist-response}
+-\end{equation}
+-This is a testable ansatz, not a topological determination of $c_\Omega$.
+-
+-\section{Why scalar ropelength is not a complete response observable}
+-\label{sec:ropelength-data}
+-
+-The standard definition of ropelength is $L/\operatorname{Thi}(\gamma)$, where thickness equals the reach or normal injectivity radius for a sufficiently regular embedded curve \cite{CantarellaKusnerSullivan2002}.  Polygonal constrained-gradient methods implement the active curvature and self-distance constraints through kink and strut sets \cite{AshtonCantarellaPiatekRawdon2011}.  A scalar length can converge while the contact skeleton, multiplier measure, or local curvature structure remains unresolved.
+-
+-The high-resolution trefoil computation of Przybyl and Pieranski used $200{,}640$ vertices and reported the radius-normalized estimate
+-\begin{equation}
+-  \Rop_a^{\mathrm{HR}}=32.742934477(1),
+-  \label{eq:HR-rop}
+-\end{equation}
+-corresponding to
+-\begin{equation}
+-  \calL_D^{\mathrm{HR}}=16.3714672385.
+-\end{equation}
+-The same study reports six finite intervals on which curvature reaches its upper bound, together with narrow torsional features and a highly structured contact set \cite{PrzybylPieranski2014}.  These are precisely the features that a core-sensitive functional may detect even when scalar ropelength has already converged.
+-
+-A separate Fourier database reports~\cite{Gilbert2016}
+-\begin{equation}
+-  L=16.371637,\qquad D=1,
+-  \label{eq:Gilbert}
+-\end{equation}
+-which means
+-\begin{equation}
+-  \calL_D^{\mathrm{G}}=16.371637,
+-  \qquad
+-  \Rop_a^{\mathrm{G}}=32.743274.
+-\end{equation}
+-The two values are close but not identical; rounded Fourier coefficients also need not reconstruct the metadata length exactly.  They must therefore be treated as separate geometry-provenance branches rather than interchangeable inputs.
++  \label{eq:twist-bound-v020}
++\end{equation}
++Equality holds for uniform material twist almost everywhere.  The result is included for completeness; it is not claimed as a new theorem.
++
++Helicity, writhe, and twist are parity odd.  A linear term $c_H\calH/\Gamma^2$ therefore belongs to a parity-odd sector; if an electromagnetic image exists, it is naturally compared with a theta-like $f_{\mu\nu}\widetilde f^{\mu\nu}$ term rather than the parity-even Maxwell stiffness.  The quadratic bound~\eqref{eq:twist-bound-v020} is parity even.
++
++\section{Trefoil provenance and numerical hierarchy}
++\label{sec:provenance}
++
++The high-resolution trefoil study reports three nearby but distinct radius-normalized quantities \cite{PrzybylPieranski2014}:
++\begin{align}
++  L_p&=32.742934460(1), &&\text{polygonal centerline length},\\
++  L_c&=32.742934547(1), &&\text{inscribed-curve ropelength upper bound},\\
++  L_a&=\frac45L_p+\frac15L_c=32.742934477(1),
++      &&\text{weighted estimate of the limiting value}.
++\end{align}
++The parenthetical digits quantify numerical precision within the construction; they are not a rigorous uncertainty interval for the unknown global minimizer.  In particular, $L_a$ is an extrapolative estimate, whereas $L_c$ is the reported numerical upper bound.
++
++A separate Fourier data record gives $L=16.371637$ and $D=1$, hence radius-normalized ropelength $32.743274$.  To make this branch reproducible, the exact trefoil record used here is included as Supplementary Data S1, together with a SHA-256 manifest.
++
++
++\begin{figure}[t]
++\centering
++\resizebox{0.96\linewidth}{!}{%
++\begin{tikzpicture}[x=2.25cm,y=1cm,>=Latex]
++  \draw[thick,->] (0,0)--(5.35,0) node[right] {radius-normalized ropelength};
++  \draw[thick] (2.65,-0.11)--(2.78,0.11);
++  \draw[thick] (2.82,-0.11)--(2.95,0.11);
++  \node[font=\scriptsize,below=3pt] at (2.80,0) {scale break};
++
++  \draw[very thick,blue!65!black] (0.20,0.08)--(0.20,0.90)
++    node[above,align=center,font=\scriptsize] {$L_p$\\polygon};
++  \draw[very thick,green!45!black] (1.00,0.08)--(1.00,1.50)
++    node[above,align=center,font=\scriptsize] {$L_a$\\weighted estimate};
++  \draw[very thick,red!70!black] (1.80,0.08)--(1.80,0.90)
++    node[above,align=center,font=\scriptsize] {$L_c$\\upper bound};
++  \draw[very thick,orange!85!black] (4.55,0.08)--(4.55,1.50)
++    node[above,align=center,font=\scriptsize] {Fourier\\metadata};
++
++  \draw[decorate,decoration={brace,amplitude=5pt},thick]
++    (0.20,-0.78)--(1.80,-0.78)
++    node[midway,below=6pt,align=center,font=\scriptsize]
++    {within-source spread: $2.66\times10^{-3}$ ppm};
++  \draw[decorate,decoration={brace,amplitude=5pt},thick]
++    (1.00,-1.55)--(4.55,-1.55)
++    node[midway,below=6pt,align=center,font=\scriptsize]
++    {branch separation: $10.37$ ppm; external residual: $855.86$ ppm};
++\end{tikzpicture}%
++}
++\caption{Provenance hierarchy for the high-resolution and Fourier branches.  The horizontal scale is deliberately broken between the high-resolution cluster and the Fourier point.  The weighted value $L_a$ is an estimate, whereas $L_c$ is the reported inscribed-curve upper bound.}
++\label{fig:provenance-v020}
++\end{figure}
++
++
++Using $L_a/2=16.3714672385$ as the high-resolution diameter-normalized estimate, the unnormalized candidate convention gives
++\begin{equation}
++  \frac{8\pi}{3}\frac{L_a}{2}=137.1532832132.
++\end{equation}
++The Fourier metadata branch gives $137.1547054038$.  Relative to the external comparison value $137.035999177$, the excesses are $855.86$ ppm and $866.24$ ppm, respectively.  The high-resolution--Fourier branch separation is $10.37$ ppm, approximately $82.5$ times smaller than the high-resolution external residual.  Geometry provenance matters, but the known branch spread is not large enough to explain the residual.
+ 
+ \begin{table}[t]
+-\caption{Trefoil geometry branches and the corresponding leading projector response.  The last two columns use the 2022 CODATA comparison value $\alpha^{-1}=137.035999177$ only after the geometric response has been fixed.}
+-\label{tab:trefoil-branches}
++\caption{Epistemic status of the high-resolution trefoil length quantities and the Fourier metadata branch.}
++\label{tab:provenance-v020}
+ \begin{ruledtabular}
+-\begin{tabular}{lcccc}
+-Branch & $\Rop_a=L/a$ & $\calL_D=L/D$ & $(8\pi/3)\calL_D$ & $\alpha^{-1}-\Rgeom$\\
++\scriptsize
++\begin{tabular}{@{}lccc@{}}
++Quantity & Radius-normalized value & Status & Role\\
+ \hline
+-High resolution & 32.7429344770 & 16.3714672385 & 137.1532832132 & $-0.1172840362$\\
+-Fourier metadata & 32.7432740000 & 16.3716370000 & 137.1547054038 & $-0.1187062268$\\
++$L_p$ & 32.742934460(1) & polygonal & provenance\\
++$L_c$ & 32.742934547(1) & upper bound & conservative\\
++$L_a$ & 32.742934477(1) & weighted estimate & central estimate\\
++Fourier record & 32.743274000 & rounded metadata & separate branch\\
+ \end{tabular}
+ \end{ruledtabular}
+ \end{table}
+ 
+-The leading high-resolution value exceeds the comparison value by approximately $855.9$ parts per million.  The Fourier-metadata branch exceeds it by approximately $866.2$ parts per million.  This proximity is a numerical coincidence unless the finite-core coefficients and the gauge normalization are independently fixed.
+-
+-\section{Open gauge-stiffness matching}
++\section{Naturalness and framing-sensitivity diagnostics}
++\label{sec:naturalness}
++
++Naturalness is basis dependent, but it is still informative after the operator normalization has been declared.  Suppose, only for diagnosis, that a residual $\Delta=-0.117284$ were assigned entirely to $c_\kappa\calI_{\kappa^2}$.  The required coefficient is shown in \cref{tab:naturalness-curvature}.
++
++\begin{table}[t]
++\caption{Coefficient required to close the high-resolution residual using only $c_\kappa\calI_{\kappa^2}$ in the declared normalization.  The last column shows the shift produced by $c_\kappa=1$.}
++\label{tab:naturalness-curvature}
++\begin{ruledtabular}
++\begin{tabular}{ccc}
++$\calI_{\kappa^2}$ & required $c_\kappa$ & shift for $c_\kappa=1$\\
++\hline
++5  & $-2.35\times10^{-2}$ & 5\\
++20 & $-5.86\times10^{-3}$ & 20\\
++33 & $-3.55\times10^{-3}$ & 33\\
++\end{tabular}
++\end{ruledtabular}
++\end{table}
++
++A direct reconstruction of the rounded Fourier record gives a curvature integral of order $20$, but its high Fourier modes also generate curvature overshoot and should not be treated as a certified ideal-knot value.  The robust statement is the order of magnitude: in this basis a curvature coefficient that closes the residual is around $6\times10^{-3}$.  Without a symmetry or matching mechanism, that is a suppression of roughly two orders relative to unity.  This is not a basis-independent proof of fine tuning, but it weakens the claim that a generic finite-core correction naturally closes a sub-per-mille gap.
++
++Framing introduces an independent sensitivity.  The supplementary reconstruction of the stored Fourier orientation gives $Wr\approx-3.41835$.  Using the Fourier length in the lower bound~\eqref{eq:twist-bound-v020} yields the illustrative values in \cref{tab:framing-sensitivity}.  These are not predictions because no physical self-linking sector has been selected.
++
++\begin{table}[t]
++\caption{Illustrative framing sensitivity for the stored Fourier orientation, $Wr\approx-3.41835$ and $\calL_D=16.371637$.  The required coefficient assumes that the entire Fourier-branch residual $-0.118706$ is assigned to the minimum quadratic twist term.}
++\label{tab:framing-sensitivity}
++\begin{ruledtabular}
++\begin{tabular}{ccc}
++$SL$ & lower bound on $\calI_{\Omega^2}$ & required $c_\Omega$\\
++\hline
++$-3$ & 0.422 & $-0.281$\\
++$0$  & 28.18 & $-4.21\times10^{-3}$\\
++\end{tabular}
++\end{ruledtabular}
++\end{table}
++
++The two sectors differ by almost two orders in the inferred coefficient.  A centerline alone therefore cannot define a twist correction; the physical framing sector must be fixed before comparison.
++
++\section{Open gauge-stiffness matching and Lorentz universality}
+ \label{sec:gauge}
+ 
+-The transverse projector in \cref{eq:projector} is also the polarization sum for two spatially transverse modes.  This formal similarity does not establish electrodynamics.  A gauge theory additionally requires a redundancy or first-class constraint, a consistent source current, absence of a physical longitudinal photon, and agreement between static and radiative couplings.
+-
+-Let $a_\mu$ be a dimensionless candidate field with
+-\begin{equation}
+-  f_{\mu\nu}=\partial_\mu a_\nu-\partial_\nu a_\mu.
+-\end{equation}
+-In a convention where the source term is normalized as $\int j^\mu a_\mu$, write
+-\begin{equation}
+-  \frac{S_{\mathrm{IR}}^{(2)}}{\hbar}
+-  =-\frac{\Reff}{16\pi}
+-   \int f_{\mu\nu}f^{\mu\nu}\,\dd^4\xi
++Let $a_\mu$ be a dimensionless candidate field with $f_{\mu\nu}=\partial_\mu a_\nu-\partial_\nu a_\mu$.  In a convention where the source term is $\int j^\mu a_\mu$, write
++\begin{equation}
++  \frac{S_{\rm IR}^{(2)}}{\hbar}
++  =-\frac{\Reff}{16\pi}\int f_{\mu\nu}f^{\mu\nu}\,\dd^4\xi
+    +\int j^\mu a_\mu\,\dd^4\xi+\cdots.
+-  \label{eq:IR-action}
+-\end{equation}
+-Comparison with the rescaled gauge action
+-\begin{equation}
+-  \frac{S_{\mathrm{gauge}}^{(2)}}{\hbar}
+-  =-\frac{1}{4g^2}\int f_{\mu\nu}f^{\mu\nu}\,\dd^4\xi
+-   +\int j^\mu a_\mu\,\dd^4\xi
+-  \label{eq:gauge-action}
+-\end{equation}
+-would imply
+-\begin{equation}
+-  \Reff=\frac{4\pi}{g^2}.
+-  \label{eq:stiffness}
+-\end{equation}
+-If $g^2=4\pi\alpha$ in the chosen charge convention, then $\Reff=\alpha^{-1}$.
++\end{equation}
++Comparison with $-(4g^2)^{-1}\int f^2$ would give $\Reff=4\pi/g^2$.  If $g^2=4\pi\alpha$ in the same charge convention, then $\Reff=\alpha^{-1}$.  Every equality in this chain depends on the normalization of both field and source.
+ 
+ \begin{hypothesis}[Gauge-stiffness matching]
+-A finite-core vortex response can be identified with an inverse electromagnetic coupling only if one microscopic model independently establishes
++A vortex-tube response can be identified with an inverse electromagnetic coupling only if one microscopic model independently establishes
+ \begin{enumerate}[label=(\alph*)]
+-  \item a protected $U(1)$ gauge redundancy or equivalent first-class constraint;
++  \item a protected $U(1)$ redundancy or equivalent first-class constraint;
+   \item exactly two gapless physical transverse modes and no physical longitudinal mode;
+-  \item a conserved current with a fixed unit-charge normalization;
+-  \item the same coupling in the static interaction and radiative kinetic term;
+-  \item positive field energy and a causal, isotropic infrared propagation law;
+-  \item no use of the target coupling or an equivalent target-dependent calibration in determining $\Reff$.
++  \item a conserved current with fixed unit-charge normalization;
++  \item the same coupling in static and radiative sectors;
++  \item positive energy and stable propagation;
++  \item an isotropic infrared dispersion $\omega^2=c_{\rm eff}^2k^2+O(k^4)$ for both polarizations;
++  \item one Lorentz-invariant infrared causal cone shared by the gauge modes and the matter probes used to define the coupling;
++  \item no use of the target coupling or equivalent target-dependent calibration in determining the response.
+ \end{enumerate}
+ \end{hypothesis}
+ 
+-\subsection{Field-normalization obstruction}
+-
+-The source normalization is indispensable.  Under the simultaneous rescaling
+-\begin{equation}
+-  a_\mu\mapsto\lambda a_\mu,
+-  \qquad
+-  j^\mu\mapsto\frac{1}{\lambda}j^\mu,
+-\end{equation}
+-the interaction term is unchanged, while the coefficient of $f^2$ changes.  Therefore the gauge kinetic coefficient is not an observable coupling until the normalization of the source current has been fixed independently.  A numerical coefficient close to $\alpha^{-1}$, by itself, cannot resolve this convention freedom.
+-
+-The 2022 CODATA value is used here only as an external final comparison; it remains the latest CODATA adjustment available at the time of writing \cite{TiesingaEtAl2024}.  Since the low-energy electromagnetic coupling runs with scale, any proposed matching must also specify the momentum or distance regime to which it refers \cite{PeskinSchroeder1995}.
++An incompressible medium has a preferred microscopic frame.  Effective Lorentzian metrics and relativistic-looking propagation can emerge in analogue systems, but preferred-frame corrections, dispersion, and multiple effective cones are separate obstructions \cite{BarceloLiberatiVisser2026}.  Consequently, two transverse modes and a Maxwell-shaped quadratic term are not sufficient.
++
++\subsection{Field-rescaling obstruction}
++
++Under $a_\mu\mapsto\lambda a_\mu$ and $j^\mu\mapsto j^\mu/\lambda$, the source term is unchanged while the coefficient assigned to $f^2$ changes.  The kinetic coefficient is therefore not an observable coupling until the current normalization is fixed independently.
+ 
+ \section{Independent calibration and falsification protocol}
+ \label{sec:calibration}
+ 
+-Let the finite-core response be evaluated for a family of calibration configurations $n$.  Define
++The leading normalization must be calibrated or derived independently before the finite-core residual is defined.  For calibration configuration $n$, write
+ \begin{equation}
+   y_n:=\Rmicro[\gamma_n,f_n,\Omega_{3,n}]
+-      -\frac{8\pi}{3}\calL_{D,n}
+-      =\sum_a A_{na}c_a+\varepsilon_n,
+-  \label{eq:calibration}
+-\end{equation}
+-where the columns of $A$ are the declared operator values, for example
+-\begin{equation}
+-  A_n=(\calI_{\kappa^2,n},\calI_{\Omega^2,n},\calC_{\mathrm{contact},n}).
+-\end{equation}
+-With a covariance matrix $\Sigma$, the weighted least-squares estimator is
+-\begin{equation}
+-  \widehat{\bm c}
+-  =(A^{\mathsf T}\Sigma^{-1}A)^{-1}
+-    A^{\mathsf T}\Sigma^{-1}\bm y,
+-  \label{eq:wls}
+-\end{equation}
+-provided the design matrix has full column rank.
+-
+-The calibration set should separate the operators as directly as possible:
+-\begin{enumerate}[label=\textbf{C\arabic*.},leftmargin=*]
+-  \item \textbf{Bend response:} isolated circular finite-core rings over several $R/D$ values.  For a circle,
+-  \begin{equation}
+-    \calI_{\kappa^2}=\frac{2\pi D}{R}.
+-  \end{equation}
+-  \item \textbf{Twist response:} straight periodic tubes with several prescribed material-twist rates, with curvature and nonlocal contact absent.
+-  \item \textbf{Contact response:} antiparallel finite-core tube pairs over several separations, with a frozen profile and contact kernel.
+-  \item \textbf{Mixed holdouts:} twisted rings and curved near-contact pairs excluded from fitting.
+-  \item \textbf{Cross-geometry tests:} one frozen coefficient vector applied to independently reconstructed knots and links.
+-  \item \textbf{Final trefoil test:} only after all coefficients, conventions, and tolerances are frozen is a selected trefoil branch compared with the external target.
+-\end{enumerate}
+-
+-Ring energy, translational speed, Kelvin-wave dispersion, and contact force may constrain the same microscopic model, but they cannot be inserted as $y_n$ unless an explicit forward derivation maps them to the same response coefficient appearing in \cref{eq:IR-action}.
++      -\ZL(\mu)\calL_{D,n}
++      -\Rnl[\gamma_n,f_n;\mu].
++  \label{eq:calibration-v020}
++\end{equation}
++Only after the logarithmic/nonlocal part has been frozen may a local regression be attempted:
++\begin{equation}
++  y_n=\sum_aA_{na}c_a+\varepsilon_n.
++\end{equation}
++A phenomenological comparison using $\ZL=8\pi/3$ is permissible only when labeled as a preregistered convention rather than a derived coefficient.
++
++The calibration set should include circular rings over several $R/D$, straight periodically twisted tubes, antiparallel finite-core pairs at several separations, and mixed geometries held out from fitting.  Since the tight trefoil is outside a controlled slender-curvature regime, the full regularized functional should be evaluated whenever possible rather than inferred from three local features.
++
+ 
+ \begin{figure}[t]
+ \centering
+ \begin{tikzpicture}[
+-  node distance=5mm,
+-  stagebox/.style={draw,rounded corners,minimum width=7.0cm,minimum height=0.78cm,align=center,fill=blue!5},
++  node distance=4.5mm,
++  stagebox/.style={draw,rounded corners,minimum width=7.4cm,minimum height=0.76cm,align=center,fill=blue!5},
+   gate/.style={draw,diamond,aspect=4,align=center,fill=orange!12,inner sep=1.5pt},
+   arr/.style={-{Latex[length=2.2mm]},thick}
+ ]
+-  \node[stagebox] (a) {alpha-blind ring, twist, and contact calculations};
+-  \node[gate,below=of a] (g0) {provenance free of target leakage?};
+-  \node[stagebox,below=of g0] (b) {fit $c_\kappa,c_\Omega,c_C$ with full-rank design};
+-  \node[gate,below=of b] (g1) {resolution, conditioning, and leave-one-out pass?};
+-  \node[stagebox,below=of g1] (c) {freeze coefficients and evaluate mixed holdouts};
+-  \node[gate,below=of c] (g2) {holdouts and cross-geometry transfer pass?};
+-  \node[stagebox,below=of g2] (d) {open one preregistered trefoil branch and compare};
+-  \draw[arr] (a)--(g0); \draw[arr] (g0)--(b);
+-  \draw[arr] (b)--(g1); \draw[arr] (g1)--(c);
++  \node[stagebox] (z) {derive and freeze the spectral measure, line subtraction, and source convention};
++  \node[gate,below=of z] (gz) {independent of the target coupling?};
++  \node[stagebox,below=of gz] (a) {core-resolved ring, twist, and contact calculations};
++  \node[gate,below=of a] (g0) {full rank, regulator convergence, and no target leakage?};
++  \node[stagebox,below=of g0] (b) {fit finite-core coefficients; retain logarithmic/nonlocal terms};
++  \node[gate,below=of b] (g1) {leave-one-out and mixed holdouts pass?};
++  \node[stagebox,below=of g1] (c) {freeze all coefficients, framing sectors, and geometry provenance};
++  \node[gate,below=of c] (g2) {cross-representation and cross-knot transfer pass?};
++  \node[stagebox,below=of g2] (d) {open one preregistered trefoil branch and compare externally};
++  \draw[arr] (z)--(gz); \draw[arr] (gz)--(a); \draw[arr] (a)--(g0);
++  \draw[arr] (g0)--(b); \draw[arr] (b)--(g1); \draw[arr] (g1)--(c);
+   \draw[arr] (c)--(g2); \draw[arr] (g2)--(d);
+-  \node[anchor=west] at ($(g0.east)+(0.45,0)$) {no $\Rightarrow$ invalid calibration};
+-  \node[anchor=west] at ($(g1.east)+(0.45,0)$) {no $\Rightarrow$ underdetermined};
+-  \node[anchor=west] at ($(g2.east)+(0.45,0)$) {no $\Rightarrow$ nontransferable fit};
+ \end{tikzpicture}
+-\caption{Preregistered calibration and falsification sequence.  The external coupling is not consulted until the coefficients and holdout criteria have been frozen.}
+-\label{fig:calibration}
++\caption{Revised calibration and falsification sequence.  The normalization of the leading length term is itself part of the independent matching problem; it is not supplied by the angular identity.}
++\label{fig:calibration-v020}
+ \end{figure}
+ 
+-At minimum, the following gates are required:
+-\begin{enumerate}[label=G\arabic*.,leftmargin=*]
+-  \item target exclusion throughout the transitive provenance chain;
+-  \item enough independent rows to leave residual degrees of freedom;
+-  \item full column rank and acceptable numerical conditioning;
+-  \item grid, core-profile, and regulator convergence;
+-  \item acceptable residuals and leave-one-out performance;
+-  \item successful mixed-geometry and cross-representation holdouts;
+-  \item a frozen final comparison at a preregistered tolerance.
+-\end{enumerate}
+-A successful final comparison would mean only that the declared truncation has not been falsified.  It would not establish uniqueness of the core model or prove the gauge-matching hypothesis.
++
++The external coupling, elementary charge, final target residual, and any parameter already calibrated through that coupling are forbidden calibration inputs.  At minimum the programme requires target exclusion, full-rank identifiability, resolution and regulator convergence, leave-one-out success, mixed holdouts, cross-representation transfer, cross-knot transfer, frozen framing sectors, and one preregistered final comparison.
+ 
+ \section{Discussion}
+ \label{sec:discussion}
+ 
+-The factor $8\pi/3$ has a clean and conventional origin: it is the total solid angle $4\pi$ multiplied by the isotropic mean transverse fraction $2/3$.  Its appearance in the normalized volume of a constant-radius tube is an exact algebraic equivalence.  These two derivations are mutually consistent, but both are local and both produce no curvature correction.
+-
+-The physically nontrivial information begins at finite core size.  The Euler energy is nonlocal, the filament limit is singular, and regularization introduces profile-dependent data.  Tight-knot geometry adds further subtleties: minimizers are only guaranteed to be $C^{1,1}$, active contacts organize the constraint forces, and material twist cannot be reconstructed from scalar ropelength.  The high-resolution trefoil is therefore best viewed as a demanding geometry benchmark rather than as a complete dynamical state.
+-
+-Helicity provides a particularly useful constraint.  It transfers global centerline writhe into material twist while preserving self-linking, but it does not set the energetic cost of that transfer.  The coefficient $c_\Omega$ remains a constitutive or microscopic response coefficient.  The bound \eqref{eq:twist-bound} is nevertheless model independent once a material framing, $SL$, $Wr$, and $\calL_D$ have been fixed.
+-
+-The electromagnetic interpretation is the most restrictive step.  Transverse modes occur in many non-electromagnetic systems.  Even a Maxwell-shaped quadratic action is insufficient unless gauge redundancy, source quantization, and static--radiative universality are demonstrated.  This normalization issue is independent of the geometric coincidence and cannot be resolved by improving the trefoil ropelength alone.
++The exact part of the argument is narrower than the original formulation.  Spatial isotropy fixes the mean transverse fraction $2/3$.  The number $8\pi/3$ is the same identity integrated with the unnormalized area measure on the unit sphere.  A physical response coefficient requires the full measure and normalization of the underlying modes.  The angular identity alone does not provide them.
++
++The tube-volume calculation supplies a useful local no-go result, but its prefactor does not independently derive the same coefficient.  Finite-core energetics begins with the singular Biot--Savart functional and introduces a logarithmic self-energy, profile-dependent constants, long-range induction, and contact.  The tight trefoil is not in the small-$D\kappa$ regime, so a low-order local operator series has no automatic hierarchy.
++
++The naturalness table makes the numerical issue explicit.  In the declared curvature basis, generic coefficients of order unity would produce corrections much larger than the observed sub-per-mille residual.  Matching the residual requires suppressed coefficients or cancellations.  Such suppression may be physically real, but it must be derived; it cannot be inferred from numerical proximity.
++
++Helicity remains valuable because it constrains the exchange between writhe and material twist.  However, the self-linking sector is additional physical data.  The same centerline can support very different minimum quadratic twist energies in different framings.
++
++Finally, an electromagnetic interpretation is a much stronger statement than transversality.  It requires gauge redundancy, current normalization, static--radiative equality, and emergent Lorentz universality.  Until those conditions and the full finite-core response are derived together, the trefoil comparison is best understood as a normalization-dependent geometric coincidence that motivates a falsification programme.
+ 
+ \section{Conclusions}
+ 
+-The analysis supports five precise conclusions.
++The revision supports the following conclusions:
+ \begin{enumerate}[leftmargin=*]
+-  \item The isotropic incompressible projector gives the exact identity
+-  \begin{equation*}
+-    \int_{S^2}t_i(\delta_{ij}-\widehat k_i\widehat k_j)t_j\,\dd\Omega
+-    =\frac{8\pi}{3}.
+-  \end{equation*}
+-  \item The resulting length response is
+-  \begin{equation*}
+-    \Rgeom=\frac{8\pi}{3}\frac{L}{D}
+-    =\frac{4\pi}{3}\frac{L}{a}.
+-  \end{equation*}
+-  \item Neither the bare local projector nor the volume of a constant circular tube generates a curvature correction.  Nonzero corrections require finite-core or nonlocal dynamics.
+-  \item In a framed thin tube, helicity constrains the parity-even twist energy through
+-  \begin{equation*}
+-    \calI_{\Omega^2}\ge
+-    \frac{4\pi^2}{\calL_D}(SL-Wr)^2,
+-  \end{equation*}
+-  but does not determine its coefficient.
+-  \item Identifying a dimensionless vortex response with an inverse electromagnetic coupling remains an open matching problem that requires independent gauge and source normalization.  The nearby trefoil number is therefore a final-test target, not a derived constant.
++  \item The exact invariant statement is the normalized isotropic mean
++  \[
++    \langle t_iP_{ij}t_j\rangle_{S^2}=2/3.
++  \]
++  The value $8\pi/3$ is the corresponding unnormalized angular integral.
++  \item The coefficient of a physical length operator is an open matching parameter $\ZL(\mu)$; choosing $8\pi/3$ is a convention until the complete spectral measure is derived.
++  \item The bare local projector and constant circular tube volume generate no curvature correction.
++  \item Finite-core vortex energy contains logarithmic and nonlocal contributions.  A polynomial three-operator expansion is not controlled on curvature-limited portions of the tight trefoil.
++  \item The rule $c_L=0$ is a preregistered subtraction convention, not a derivation of the line coefficient.
++  \item Helicity constrains a parity-even quadratic twist energy, but the result depends strongly on the chosen self-linking sector.
++  \item The high-resolution quantities $L_p$, $L_c$, and $L_a$ have different epistemic status.  The known geometry-branch spread is much smaller than the external residual.
++  \item In the declared operator normalization, closing the residual requires suppressed coefficients unless a specific cancellation or symmetry is derived.
++  \item Identifying the response with an inverse electromagnetic coupling remains open and additionally requires Lorentz universality of the infrared gauge and matter sectors.
+ \end{enumerate}
+ 
+-The immediate scientific task is not another fit to the trefoil residual.  It is the construction of an alpha-blind finite-core response calculation with enough independent geometries to determine the low-order coefficients and enough holdouts to test whether they transfer.
++The scientifically decisive next step is a core-resolved calculation that derives the spectral measure, line subtraction, logarithmic self-energy, framing sector, and source normalization without consulting the external coupling.  Until then, the numerical proximity should not be presented as a prediction.
+ 
+ \begin{acknowledgments}
+-The author thanks the developers of the numerical ropelength and constrained-gradient literature for making high-resolution knot geometries and contact diagnostics available.  This manuscript is a reformulation of a broader exploratory programme in the language of classical fluid mechanics, geometric knot theory, and effective field theory.  All electromagnetic identifications are deliberately stated as open matching hypotheses.
++The author thanks the developers of the mathematical and numerical ropelength literature for making high-resolution knot geometries and contact diagnostics available.  The present version is self-contained and relies only on the literature and supplementary data explicitly cited here.
+ \end{acknowledgments}
+ 
+ \appendix
+ 
+-\section{A schematic finite-core contact functional}
+-
+-A convenient numerical contact diagnostic can be defined from a nonnegative shell kernel $K_\sigma(R)$ concentrated near the normalized diameter $R=1$ and an orthogonality weight $Q_\eta$ that selects approximately doubly critical chords:
++\section{Supplementary Fourier reconstruction checks}
++
++Supplementary Code S1 reconstructs the trefoil record
++\begin{equation}
++  \bm X(t)=\sum_n\left[\bm A_n\cos(nt)+\bm B_n\sin(nt)\right]
++\end{equation}
++from Supplementary Data S1.  The rounded coefficients reproduce a length slightly different from the metadata value and generate local curvature overshoot; the metadata length is therefore retained for the scalar branch while reconstructed geometry is used only for diagnostics.
++
++A midpoint discretization of the Gauss writhe integral converges for the stored orientation toward
++\begin{equation}
++  Wr\approx-3.41835.
++\end{equation}
++The sign changes under reversal or mirroring.  The quoted value is an orientation-specific diagnostic of the rounded Fourier record, not a universal writhe assigned to every ideal-trefoil representation.
++
++\section{Schematic contact functional}
++
++A numerical contact diagnostic may be defined using a nonnegative shell kernel $K_\sigma(R)$ concentrated near normalized separation $R=1$ and an orthogonality weight $Q_\eta$:
+ \begin{align}
+-  \calC_{\mathrm{contact}}[\gamma]
++  \calC_{\rm contact}[\gamma]
+   =\frac12\int\!\dd\sigma\int\!\dd\sigma'\,
+-  &K_\sigma\!\left(|\bm X(\sigma)-\bm X(\sigma')|\right)\nonumber\\
+-  &\times Q_\eta\!\left(
+-  \unitvec{R}\cdot\bm t(\sigma),
+-  \unitvec{R}\cdot\bm t(\sigma')
+-  \right),
+-  \label{eq:contact-functional}
++  &K_\sigma(|\bm X(\sigma)-\bm X(\sigma')|)\\
++  &\times Q_\eta(\unitvec{R}\cdot\bm t(\sigma),
++                  \unitvec{R}\cdot\bm t(\sigma')).
+ \end{align}
+-where $\bm R=\bm X(\sigma)-\bm X(\sigma')$.  This is a diagnostic definition, not a universal invariant.  Its shell width, orthogonality tolerance, local-neighbor exclusion, and core profile must be frozen before calibration.  Convergence of \cref{eq:contact-functional} is a stronger requirement than convergence of scalar ropelength alone.
++This is a regulator-dependent diagnostic, not a topological invariant.  Its widths, exclusions, and core profile must be frozen before calibration.
+ 
+ \section{Gauge-field rescaling}
+ 
+-To make the normalization obstruction explicit, start from
+-\begin{equation}
+-  S[a,j]=-\frac{1}{4g^2}\int f^2+\int j\cdot a.
+-\end{equation}
+-Set $a'=\lambda a$ and $j'=j/\lambda$.  Since $f'=\lambda f$,
++Starting from
++\begin{equation}
++  S[a,j]=-\frac{1}{4g^2}\int f^2+\int j\cdot a,
++\end{equation}
++set $a'=\lambda a$ and $j'=j/\lambda$.  Then
+ \begin{equation}
+   S[a',j']=-\frac{1}{4(\lambda g)^2}\int f'^2+\int j'\cdot a'.
+ \end{equation}
+-Thus the numerical value assigned to $g$ changes unless the normalization of $j$ is fixed by an independent charge convention.  This is why a geometric coefficient cannot be identified with a physical coupling from the kinetic term alone.
++The numerical coupling changes unless the source normalization is independently fixed.
+ 
+ \begin{thebibliography}{99}
+ 
+@@ -761,17 +789,18 @@
+ \emph{J. Phys. A: Math. Theor.} \textbf{47}, 285201 (2014),
+ \href{https://doi.org/10.1088/1751-8113/47/28/285201}{doi:10.1088/1751-8113/47/28/285201}.
+ 
+-\bibitem{Gilbert2016}
+-B.~Gilbert,
+-``Database of ideal knots, 3--10 crossings,'' Fourier coefficient data set
+-(11 June 2016), trefoil record 3:1:1.
+-
+ \bibitem{Saffman1992}
+ P.~G.~Saffman,
+ \emph{Vortex Dynamics}
+ (Cambridge University Press, Cambridge, 1992),
+ \href{https://doi.org/10.1017/CBO9780511624063}{doi:10.1017/CBO9780511624063}.
+ 
++\bibitem{HornNicolisPenco2015}
++B.~Horn, A.~Nicolis, and R.~Penco,
++``Effective string theory for vortex lines in fluids and superfluids,''
++\emph{J. High Energy Phys.} \textbf{2015}, 153 (2015),
++doi:\href{https://doi.org/10.1007/JHEP10(2015)153}{10.1007/JHEP10(2015)153}.
++
+ \bibitem{Moffatt1969}
+ H.~K.~Moffatt,
+ ``The degree of knottedness of tangled vortex lines,''
+@@ -784,6 +813,42 @@
+ \emph{Proc. R. Soc. Lond. A} \textbf{439}, 411--429 (1992),
+ \href{https://doi.org/10.1098/rspa.1992.0159}{doi:10.1098/rspa.1992.0159}.
+ 
++\bibitem{ChuiMoffatt1995}
++A.~Y.~K.~Chui and H.~K.~Moffatt,
++``The energy and helicity of knotted magnetic flux tubes,''
++\emph{Proc. R. Soc. Lond. A} \textbf{451}, 609--629 (1995),
++\href{https://doi.org/10.1098/rspa.1995.0146}{doi:10.1098/rspa.1995.0146}.
++
++\bibitem{MaggioniRicca2009}
++F.~Maggioni and R.~L.~Ricca,
++``On the groundstate energy of tight knots,''
++\emph{Proc. R. Soc. A} \textbf{465}, 2761--2783 (2009),
++\href{https://doi.org/10.1098/rspa.2008.0536}{doi:10.1098/rspa.2008.0536}.
++
++\bibitem{MaggioniEtAl2009}
++F.~Maggioni, S.~Z.~Alamri, C.~F.~Barenghi, and R.~L.~Ricca,
++``Kinetic energy of vortex knots and unknots,''
++\emph{Nuovo Cimento C} \textbf{32}, 133--142 (2009),
++\href{https://doi.org/10.1393/ncc/i2009-10351-6}{doi:10.1393/ncc/i2009-10351-6}.
++
++\bibitem{MaggioniEtAl2010}
++F.~Maggioni, S.~Alamri, C.~F.~Barenghi, and R.~L.~Ricca,
++``Velocity, energy, and helicity of vortex knots and unknots,''
++\emph{Phys. Rev. E} \textbf{82}, 026309 (2010),
++\href{https://doi.org/10.1103/PhysRevE.82.026309}{doi:10.1103/PhysRevE.82.026309}.
++
++\bibitem{BuniyKephart2005}
++R.~V.~Buniy and T.~W.~Kephart,
++``Glueballs and the universal energy spectrum of tight knots and links,''
++\emph{Int. J. Mod. Phys. A} \textbf{20}, 1252--1259 (2005),
++\href{https://doi.org/10.1142/S0217751X05024146}{doi:10.1142/S0217751X05024146}.
++
++\bibitem{BuniyEtAl2014}
++R.~V.~Buniy, J.~Cantarella, T.~W.~Kephart, and E.~J.~Rawdon,
++``Tight knot spectrum in QCD,''
++\emph{Phys. Rev. D} \textbf{89}, 054513 (2014),
++\href{https://doi.org/10.1103/PhysRevD.89.054513}{doi:10.1103/PhysRevD.89.054513}.
++
+ \bibitem{Calugareanu1961}
+ G.~C\u{a}lug\u{a}reanu,
+ ``Sur les classes d'isotopie des noeuds tridimensionnels et leurs invariants,''
+@@ -795,16 +860,17 @@
+ \emph{Am. J. Math.} \textbf{91}, 693--728 (1969),
+ \href{https://doi.org/10.2307/2373348}{doi:10.2307/2373348}.
+ 
+-\bibitem{HornNicolisPenco2015}
+-B.~Horn, A.~Nicolis, and R.~Penco,
+-``Effective string theory for vortex lines in fluids and superfluids,''
+-\emph{J. High Energy Phys.} \textbf{2015}, 153 (2015),
+-\href{https://doi.org/10.1007/JHEP10(2015)153}{doi:10.1007/JHEP10(2015)153}.
+-
+-\bibitem{PeskinSchroeder1995}
+-M.~E.~Peskin and D.~V.~Schroeder,
+-\emph{An Introduction to Quantum Field Theory}
+-(Addison--Wesley, Reading, MA, 1995).
++\bibitem{Antman2005}
++S.~S.~Antman,
++\emph{Nonlinear Problems of Elasticity}, 2nd ed.
++(Springer, New York, 2005),
++\href{https://doi.org/10.1007/0-387-27649-1}{doi:10.1007/0-387-27649-1}.
++
++\bibitem{BarceloLiberatiVisser2026}
++C.~Barcel\'o, S.~Liberati, and M.~Visser,
++``Analogue gravity,''
++\emph{Living Rev. Relativ.} \textbf{29}, 2 (2026),
++\href{https://doi.org/10.1007/s41114-026-00064-9}{doi:10.1007/s41114-026-00064-9}.
+ 
+ \bibitem{TiesingaEtAl2024}
+ E.~Tiesinga, P.~J.~Mohr, D.~B.~Newell, and B.~N.~Taylor,

@@ -11,7 +11,7 @@ Each conversation patch gets its own incremental edition.
 | `scripts/` | Incremental build scripts (`apply_v082.py` … `apply_v0820.py`, patch helpers) |
 | `sources/` | **All** conversation diffs, patch blocks, audits, verify scripts, evidence packs (canonical archive) |
 | `blocks/` | Reusable LaTeX blocks integrated into editions |
-| `v0.8.2/` … `v0.8.34/` | Incremental canon editions (`$out/` = build artifacts) |
+| `v0.8.2/` … `v0.8.35/` | Incremental canon editions (`$out/` = build artifacts) |
 
 The `SST-CANON/` root holds only `latexmkrc`, `archive/`, and `been_processed/` — no patch source files.
 
@@ -52,6 +52,7 @@ The `SST-CANON/` root holds only `latexmkrc`, `archive/`, and `been_processed/` 
 | **v0.8.32** | Orphaned-normalization: `rho_ref` legacy reference; physical `rho_f≡rho_eff^(0)` unfixed; VAM-7 defects; A/B/C/Q/X scaling audit; source-free radiation no-go; legacy-reference benchmarks. |
 | **v0.8.33** | Worldsheet/gauge on top of 0.8.32: covariant two-form form-degree guard; Kalb–Ramond RT action; helicity vs chiral alignment; gauge-emergence certification ladder; nonrelease v0.3. |
 | **v0.8.34** | Ideal-knot regime guard (compact vs slender); LIA/KAM compact-state exclusion; Moffatt–Ricca single-tube helicity; RT compact-to-slender + Kirchhoff–Cosserat diagnostics. |
+| **v0.8.35** | Transverse-projector `8π/3` origin; `L/D` vs `L/a` conversion; bare-projector / constant-tube no-gos; alpha-blind finite-core response (`c_L=0`); helicity-constrained twist energy; EM matching via gauge ladder. Protocol review archived (paragraph-level tag cleanup deferred). |
 
 ## Rebuild chain
 
@@ -63,26 +64,27 @@ python scripts/apply_v0831.py
 python scripts/apply_v0832.py
 python scripts/apply_v0833.py
 python scripts/apply_v0834.py
+python scripts/apply_v0835.py
 ```
 
-Individual steps: `scripts/apply_v085.py` … `scripts/apply_v0834.py`.
+Individual steps: `scripts/apply_v085.py` … `scripts/apply_v0835.py`.
 
 Shared metadata: `canon_edition.py`. Patch helpers live in `scripts/` (e.g. `apply_framed_selflinking.py`, `apply_spinstats_z2.py`, `apply_gemini_audit.py`).
 
 ## Build PDF
 
 ```powershell
-cd SST-CANON/been_processed/v0.8.34
-latexmk -pdf -interaction=nonstopmode -output-directory='$out' SST_CANON-v0.8.34.tex
+cd SST-CANON/been_processed/v0.8.35
+latexmk -pdf -interaction=nonstopmode -output-directory='$out' SST_CANON-v0.8.35.tex
 ```
 
 Or manually (three passes):
 
 ```powershell
-cd SST-CANON/been_processed/v0.8.34
-pdflatex -interaction=nonstopmode -output-directory='$out' SST_CANON-v0.8.34.tex
-pdflatex -interaction=nonstopmode -output-directory='$out' SST_CANON-v0.8.34.tex
-pdflatex -interaction=nonstopmode -output-directory='$out' SST_CANON-v0.8.34.tex
+cd SST-CANON/been_processed/v0.8.35
+pdflatex -interaction=nonstopmode -output-directory='$out' SST_CANON-v0.8.35.tex
+pdflatex -interaction=nonstopmode -output-directory='$out' SST_CANON-v0.8.35.tex
+pdflatex -interaction=nonstopmode -output-directory='$out' SST_CANON-v0.8.35.tex
 ```
 
-Output: `v0.8.34/$out/SST_CANON-v0.8.34.pdf` (auxiliary files stay in `$out/`; source `.tex` files remain in the edition folder).
+Output: `v0.8.35/$out/SST_CANON-v0.8.35.pdf` (auxiliary files stay in `$out/`; source `.tex` files remain in the edition folder).

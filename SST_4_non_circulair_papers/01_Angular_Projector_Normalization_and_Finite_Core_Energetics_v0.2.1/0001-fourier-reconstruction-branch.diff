@@ -1,0 +1,66 @@
+--- Angular_Projector_Normalization_and_Finite_Core_Energetics_v0.2.0.tex
++++ Angular_Projector_Normalization_and_Finite_Core_Energetics_v0.2.0.tex
+@@ -517,7 +517,7 @@
+ \end{align}
+ The parenthetical digits quantify numerical precision within the construction; they are not a rigorous uncertainty interval for the unknown global minimizer.  In particular, $L_a$ is an extrapolative estimate, whereas $L_c$ is the reported numerical upper bound.
+ 
+-A separate Fourier data record gives $L=16.371637$ and $D=1$, hence radius-normalized ropelength $32.743274$.  To make this branch reproducible, the exact trefoil record used here is included as Supplementary Data S1, together with a SHA-256 manifest.
++A separate Fourier data record gives $L=16.371637$ and $D=1$, hence radius-normalized ropelength $32.743274$.  To make this branch reproducible, the exact trefoil record used here is included as Supplementary Data S1, together with a SHA-256 manifest.  Direct reconstruction of the centerline from the stored coefficients (Supplementary Code S1) returns a third value, $\calL_D^{\rm rec}=16.3724604307$, which exceeds the metadata length by $50.30$ ppm and the high-resolution estimate $L_a/2$ by $60.67$ ppm.  This reconstruction value is reported here for completeness and is not used in any scalar branch; see \cref{app:fourier-reconstruction} for why.
+ 
+ 
+ \begin{figure}[t]
+@@ -535,20 +535,26 @@
+     node[above,align=center,font=\scriptsize] {$L_a$\\weighted estimate};
+   \draw[very thick,red!70!black] (1.80,0.08)--(1.80,0.90)
+     node[above,align=center,font=\scriptsize] {$L_c$\\upper bound};
+-  \draw[very thick,orange!85!black] (4.55,0.08)--(4.55,1.50)
++  \draw[very thick,orange!85!black] (4.15,0.08)--(4.15,1.50)
+     node[above,align=center,font=\scriptsize] {Fourier\\metadata};
++  \draw[very thick,purple!75!black] (5.05,0.08)--(5.05,0.90)
++    node[above,align=center,font=\scriptsize] {Fourier\\reconstruction};
+ 
+   \draw[decorate,decoration={brace,amplitude=5pt},thick]
+     (0.20,-0.78)--(1.80,-0.78)
+     node[midway,below=6pt,align=center,font=\scriptsize]
+     {within-source spread: $2.66\times10^{-3}$ ppm};
+   \draw[decorate,decoration={brace,amplitude=5pt},thick]
+-    (1.00,-1.55)--(4.55,-1.55)
++    (4.15,-0.78)--(5.05,-0.78)
++    node[midway,below=6pt,align=center,font=\scriptsize]
++    {reconstruction: $50.30$ ppm};
++  \draw[decorate,decoration={brace,amplitude=5pt},thick]
++    (1.00,-1.55)--(4.15,-1.55)
+     node[midway,below=6pt,align=center,font=\scriptsize]
+     {branch separation: $10.37$ ppm; external residual: $855.86$ ppm};
+ \end{tikzpicture}%
+ }
+-\caption{Provenance hierarchy for the high-resolution and Fourier branches.  The horizontal scale is deliberately broken between the high-resolution cluster and the Fourier point.  The weighted value $L_a$ is an estimate, whereas $L_c$ is the reported inscribed-curve upper bound.}
++\caption{Provenance hierarchy for the high-resolution and Fourier branches.  The horizontal scale is deliberately broken between the high-resolution cluster and the Fourier points.  The weighted value $L_a$ is an estimate, whereas $L_c$ is the reported inscribed-curve upper bound.  The reconstruction point is obtained by re-deriving the centerline length from the stored Fourier coefficients; its separation from the metadata value is roughly five times the metadata--high-resolution branch separation, and still more than an order of magnitude below the external residual.}
+ \label{fig:provenance-v020}
+ \end{figure}
+ 
+@@ -557,7 +563,7 @@
+ \begin{equation}
+   \frac{8\pi}{3}\frac{L_a}{2}=137.1532832132.
+ \end{equation}
+-The Fourier metadata branch gives $137.1547054038$.  Relative to the external comparison value $137.035999177$, the excesses are $855.86$ ppm and $866.24$ ppm, respectively.  The high-resolution--Fourier branch separation is $10.37$ ppm, approximately $82.5$ times smaller than the high-resolution external residual.  Geometry provenance matters, but the known branch spread is not large enough to explain the residual.
++The Fourier metadata branch gives $137.1547054038$, and the Fourier reconstruction branch gives $137.1616038$.  Relative to the external comparison value $137.035999177$, the excesses are $855.86$ ppm, $866.24$ ppm, and $916.58$ ppm, respectively.  The high-resolution--Fourier metadata branch separation is $10.37$ ppm, approximately $82.5$ times smaller than the high-resolution external residual; the metadata--reconstruction separation is $50.30$ ppm, approximately $17$ times smaller.  Geometry provenance matters more than the metadata comparison alone suggests, but even the largest known branch spread is more than an order of magnitude too small to explain the residual.
+ 
+ \begin{table}[t]
+ \caption{Epistemic status of the high-resolution trefoil length quantities and the Fourier metadata branch.}
+@@ -571,6 +577,7 @@
+ $L_c$ & 32.742934547(1) & upper bound & conservative\\
+ $L_a$ & 32.742934477(1) & weighted estimate & central estimate\\
+ Fourier record & 32.743274000 & rounded metadata & separate branch\\
++Fourier reconstruction & 32.744920861 & re-derived from S1 coefficients & diagnostic only\\
+ \end{tabular}
+ \end{ruledtabular}
+ \end{table}
+@@ -732,6 +739,7 @@
+ \appendix
+ 
+ \section{Supplementary Fourier reconstruction checks}
++\label{app:fourier-reconstruction}
+ 
+ Supplementary Code S1 reconstructs the trefoil record
+ \begin{equation}
