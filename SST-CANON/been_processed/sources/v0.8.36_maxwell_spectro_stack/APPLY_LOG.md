@@ -1,0 +1,42 @@
+# v0.8.36 apply log
+
+- using existing extract SST_spectroscopic_response_patch_v0.1.0
+- using existing extract SST_CANON-v0.8.35-Maxwell-SST-Kinetic-Closure-package
+- copied SST_CANON-v0.8.35.tex
+- copied SST_CANON-v0.8.35-research-track.tex
+- copied SST_NONRELEASE_SPECULATIVE_RESEARCH-v0.3.tex
+- OK spectro 0001-configuration-resolved-spectroscopic-response-main.diff
+- OK spectro 0002-generalized-king-diagnostics-research-track.diff
+- FAIL kinetic -> SST_CANON-v0.8.35-research-track.tex: context not found for hunk near line 7722: 'of busy motion stored in the fluid still slows the clock in both directions.' ...
+- OK kinetic -> SST_CANON-v0.8.35.tex (3 hunks)
+- OK kinetic RT copy-ready insert (insert before anchor)
+- OK kinetic RT bibitems (bib before end{thebibliography})
+- OK falsifier -> SST_CANON-v0.8.35.tex (2 hunks)
+- FAIL falsifier -> SST_CANON-v0.8.35-research-track.tex: context not found for hunk near line 7783: '\\emph{Classical and Quantum Gravity} \\textbf{38}, 195003 (2021).' ...
+- OK falsifier RT content hunk(s)
+- OK falsifier RT bib fallback (bib before end{thebibliography})
+- OK reciprocal
+- OK dynamical -> SST_CANON-v0.8.35.tex (3 hunks)
+- NOTE dynamical RT unified failed (context not found for hunk near line 12908: '\\emph{Classical and Quantum Gravity} \\textbf{38}, 195003 (2021).' ...); using insert fallback
+- OK dynamical RT section insert (insert before anchor)
+- OK dynamical RT bib (bib before end{thebibliography})
+- OK swirl-tonic abstract+section (2 bare-@@ hunks)
+- OK swirl-tonic bib Maxwell1856 (insert before anchor)
+- renamed SST_CANON-v0.8.35.tex -> SST_CANON-v0.8.36.tex
+- renamed SST_CANON-v0.8.35-research-track.tex -> SST_CANON-v0.8.36-research-track.tex
+- inserted edition note v0.8.36 from EDITION_CONFIG
+- bumped RT companion metadata
+- cleared borrowed \paperdoi / %! DOI
+- synced \paperkeywords (no underscores)
+- seeded SST_CANON-v0.8.36.zenodo.json (no deposit_id/doi)
+- wrote CHANGELOG / APPLY_LOG / INGEST_README
+- updated been_processed/README.md
+- verify OK
+- archive already has SST_spectroscopic_response_patch_v0.1.0.zip
+- removed todo SST_spectroscopic_response_patch_v0.1.0.zip
+- archive already has SST_CANON-v0.8.35-Maxwell-SST-Kinetic-Closure-package.zip
+- removed todo SST_CANON-v0.8.35-Maxwell-SST-Kinetic-Closure-package.zip
+- moved SST_CANON-v0.8.35-Maxwell-blind-mechanical-falsifier.diff -> sources/v0.8.36_maxwell_spectro_stack/
+- moved SST_CANON-v0.8.35-Maxwell-reciprocal-stress.diff -> sources/v0.8.36_maxwell_spectro_stack/
+- moved SST_CANON-v0.8.35-Maxwell-SST-Dynamical-Field-Closure.diff -> sources/v0.8.36_maxwell_spectro_stack/
+- moved SST_CANON-v0.8.35_to_v0.8.36_Maxwell_swirl_tonic.patch -> sources/v0.8.36_maxwell_spectro_stack/

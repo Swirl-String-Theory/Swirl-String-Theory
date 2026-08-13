@@ -1,0 +1,452 @@
+--- a/SST_CANON-v0.8.35.tex
++++ b/SST_CANON-v0.8.35.tex
+@@ -1689,11 +1689,109 @@
+         $\bigl[\rhoF^{-1}\,dp/dr\bigr]=\mathrm{m\,s^{-2}}=\bigl[v_\theta^2/r\bigr]$.
+ 
+         \textbf{[ORTHODOX]}: Eq.~\eqref{eq:swirl_pressure_law} is the ordinary radial Euler balance for steady swirl \cite{Batchelor1967,Saffman1992}.
+-
+         \textbf{[DERIVED SST ROLE]}: this pressure law is the canonical bridge between localized circulation and large-scale force analogies. Interpreting $p_{\mathrm{swirl}}$ as a dark-sector classifier or support layer is an SST model step, logically separate from the orthodox fluid derivation.
+ 
+         \textbf{[DERIVED] Observables / falsifiers:} (i) consistency of a pressure profile reconstructed from archived $v_\theta(r)$ with the radial gradient implied by \eqref{eq:swirl_pressure_law}; (ii) null test: systematic sign or scale mismatch of the reconstructed $dp_{\mathrm{swirl}}/dr$ relative to $v_\theta^2/r$ across validated radial windows excludes the applicability of the balance in those windows.
+ 
++    \subsection{Maxwell-inspired blind mechanical-closure gate}
++        \label{subsec:maxwell_blind_mechanical_closure_gate}
++
++        \textbf{[ORTHODOX HISTORICAL INPUT].}
++        Maxwell's \emph{On Physical Lines of Force} treats the magnetic-force
++        analogue as a medium with unequal principal stresses and uses geometrically
++        similar molecular vortices to obtain a pressure-difference scale proportional
++        to density times velocity squared, independent of the common linear scale
++        \cite{Maxwell1861PhysicalLines}.  The historical molecular-vortex mechanism is
++        not adopted as SST microphysics.
++
++        \textbf{[ORTHODOX COARSE-GRAINING / CANON GUARD].}
++        The primitive Cauchy stress of the incompressible inviscid Euler substrate
++        remains isotropic, $-p\,\delta_{ij}$.  The anisotropic quantity tested here is
++        instead the coarse-grained kinetic momentum-flux stress
++        \begin{align}
++            R_{ij}^{(\ell)}
++            :=
++            \rhoF\left(
++            \overline{u_i u_j}^{\,(\ell)}
++            -
++            \bar u_i^{\,(\ell)}\bar u_j^{\,(\ell)}
++            \right),
++            \label{eq:canon_maxwell_blind_coarse_stress}
++        \end{align}
++        for a preregistered filter scale $\ell$.  This definition must not be
++        reinterpreted as a primitive viscous or elastic shear stress.
++
++        Where $\bar{\boldsymbol\omega}\neq0$, define
++        \begin{align}
++            \mathbf n_\omega
++            &:={\bar{\boldsymbol\omega}\over
++            \|\bar{\boldsymbol\omega}\|},
++            &
++            p_\parallel
++            &:=n_iR_{ij}^{(\ell)}n_j,
++            &
++            p_\perp
++            &:=\frac{\operatorname{tr}R^{(\ell)}-p_\parallel}{2},
++            \label{eq:canon_maxwell_blind_axis_pressures}
++        \end{align}
++        and $\Delta p_\omega:=p_\perp-p_\parallel$.
++
++        \textbf{[RESEARCH / TARGET-BLIND FALSIFIER].}
++        A Maxwell-inspired SST swirl-stress closure is retained only if a frozen
++        finite-core campaign independently satisfies: (i) approximate axial symmetry
++        of $R_{ij}^{(\ell)}$ about $\mathbf n_\omega$; (ii) alignment of
++        $\mathbf n_\omega$ with the least-stress principal direction; (iii) positive
++        $\Delta p_\omega$ on the preregistered active-vorticity support; and
++        (iv) the similarity exponents
++        \begin{align}
++            \Delta p_\omega
++            \propto
++            \rhoF^{\,b_\rho}v_{\rm ref}^{\,b_v}L^{b_L},
++            \qquad
++            b_\rho\simeq1,
++            \quad
++            b_v\simeq2,
++            \quad
++            b_L\simeq0.
++            \label{eq:canon_maxwell_blind_similarity_gate}
++        \end{align}
++        The dimensionless coefficient
++        $C_{\rm blind}:=\operatorname{median}(\Delta p_\omega)/(\rhoF v_{\rm ref}^2)$
++        is recorded but is not compared with Maxwell's historical coefficient or an
++        SST benchmark until the blind report has been frozen and hashed.
++
++        \textbf{[BRIDGE / THEOREM TARGET].}
++        Maxwell's reduced-momentum analogy motivates an independent three-channel
++        test in which a solver-derived reduced momentum $\mathbf p_{\rm red}$, the
++        material/coherent velocity $\mathbf u$, and the independently evolved
++        transverse/effective potential $\mathbf A$ must satisfy held-out scalar
++        factorization,
++        \begin{align}
++            \mathbf p_{\rm red}
++            &\simeq\beta_u\mathbf u,
++            &
++            \mathbf A
++            &\simeq\beta_p\mathbf p_{\rm red},
++            &
++            \beta_A
++            &\simeq\beta_p\beta_u,
++            \label{eq:canon_maxwell_blind_reduced_momentum_factorization}
++        \end{align}
++        without exposing the SI normalization target during fitting.  Only after
++        freezing the blind output may the direct coefficient be compared with the
++        existing electron bridge $\beta_A\stackrel{?}{=}m_e/e$ of
++        Eq.~\eqref{eq:canonical_em_prefactor_guard}.
++
++        \textbf{[RESEARCH GUARD].}
++        Passing these gates would validate only the tested coarse-grained closure and
++        factorization.  It would not establish Maxwell's historical molecular-vortex
++        mechanism, would not identify the material Euler velocity with
++        $\mathbf A_{\rm eff}$, and would not by itself derive electromagnetism from
++        Euler dynamics.  The detailed preregistration and optional structural-current
++        test are recorded in the companion research track.
++
++
++
+     \subsection{Lorentz-Type Force Density as Swirl Stress}
+     \label{sec:lorentz_type_force_density_as_swirl_stress}
+ 
+@@ -4889,6 +4987,17 @@
+             \newblock Amer. J. Math. \textbf{91} (1969), 693--728,
+             \newblock DOI: 10.2307/2373348.
+ 
++            \bibitem{Maxwell1861PhysicalLines}
++            J.~Clerk Maxwell,
++            \newblock On Physical Lines of Force,
++            \newblock \emph{The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science}, Series~4, Parts I--II, \textbf{21} (1861), and Parts III--IV, \textbf{23} (1862).
++
++            \bibitem{Reynolds1895}
++            O.~Reynolds,
++            \newblock On the Dynamical Theory of Incompressible Viscous Fluids and the Determination of the Criterion,
++            \newblock \emph{Philosophical Transactions of the Royal Society A} \textbf{186} (1895), 123--164,
++            \newblock DOI: \href{https://doi.org/10.1098/rsta.1895.0004}{10.1098/rsta.1895.0004}.
++
+             \bibitem{Saffman1992}
+             P.~G. Saffman,
+             \newblock \emph{Vortex Dynamics},
+--- a/SST_CANON-v0.8.35-research-track.tex
++++ b/SST_CANON-v0.8.35-research-track.tex
+@@ -4414,6 +4414,300 @@
+         equations.
+ 
+ \section{EM, Gravity, Diagnostics, Relativity, and Inertia Research Tracks}
++\subsection{Maxwell-inspired target-blind mechanical closure falsifier}
++\label{sec:rt_maxwell_blind_mechanical_falsifier}
++
++\paragraph{Status and scope.}
++\textbf{[ORTHODOX HISTORICAL INPUT / RESEARCH-TRACK SST TEST].}
++In \emph{On Physical Lines of Force}, Maxwell decomposes an axisymmetric state
++of stress into hydrostatic pressure plus an axial pressure/tension, proposes a
++molecular-vortex illustration for the resulting pressure anisotropy, derives the
++similarity scale $\Delta p\propto\rho v^2$, later introduces the ``reduced
++momentum'' of a mechanical system as the quantity whose time derivative gives
++the force associated with changing motion, and treats changing electric
++displacement as a current-like contribution \cite{Maxwell1861PhysicalLines}.
++None of Maxwell's literal cell or idle-wheel microphysics is adopted here.
++
++The purpose of this section is to turn those structural ideas into negative
++SST tests with no target-dependent coefficient fitting.
++
++\subsubsection{Gate M1: coarse-grained kinetic swirl stress}
++
++\textbf{[ORTHODOX COARSE-GRAINING / DEFINITION].}
++For a preregistered linear coarse-graining operator at scale $\ell$, define
++\begin{align}
++    R_{ij}^{(\ell)}
++    :=
++    \rhoF\left(
++    \overline{u_i u_j}^{\,(\ell)}
++    -
++    \bar u_i^{\,(\ell)}\bar u_j^{\,(\ell)}
++    \right).
++    \label{eq:rt_maxwell_blind_Rij}
++\end{align}
++This is the resolved kinetic/momentum-flux covariance familiar from
++coarse-grained fluid mechanics \cite{Reynolds1895}.  It is not a replacement for
++the primitive inviscid Cauchy stress $-p\delta_{ij}$.
++
++On the support where
++$\|\bar{\boldsymbol\omega}\|>\omega_{\rm floor}$, define
++\begin{align}
++    \mathbf n_\omega
++    &=
++    \frac{\bar{\boldsymbol\omega}}
++    {\|\bar{\boldsymbol\omega}\|},
++    \\
++    p_\parallel
++    &=n_iR_{ij}^{(\ell)}n_j,
++    \\
++    p_\perp
++    &=\frac{\operatorname{tr}R^{(\ell)}-p_\parallel}{2},
++    \\
++    \Delta p_\omega
++    &=p_\perp-p_\parallel.
++    \label{eq:rt_maxwell_blind_pressure_split}
++\end{align}
++The best axisymmetric projection about the declared vorticity director is
++\begin{align}
++    R_{ij}^{\rm ax}
++    =
++    p_\perp\delta_{ij}
++    +
++    (p_\parallel-p_\perp)n_i n_j.
++    \label{eq:rt_maxwell_blind_Rax}
++\end{align}
++Define the local normalized tensor residual
++\begin{align}
++    \epsilon_\sigma
++    :=
++    \frac{\|R^{(\ell)}-R^{\rm ax}\|_F}
++    {\max(\|R^{(\ell)}\|_F,R_{\rm floor})},
++    \label{eq:rt_maxwell_blind_eps_sigma}
++\end{align}
++and, with $\mathbf e_{\min}$ the normalized eigenvector of the smallest
++eigenvalue of $R^{(\ell)}$,
++\begin{align}
++    a_\omega
++    :=
++    |\mathbf n_\omega\cdot\mathbf e_{\min}|.
++    \label{eq:rt_maxwell_blind_alignment}
++\end{align}
++
++\textbf{[PREREGISTERED FALSIFIER].}
++Using the top $80\%$ of the nonzero coarse-vorticity support after the declared
++boundary trim, the campaign requires
++\begin{align}
++    \operatorname{median}(\epsilon_\sigma)&\le0.20,
++    &
++    \operatorname{median}(a_\omega)&\ge0.90,
++    &
++    \Pr(\Delta p_\omega>0)&\ge0.80.
++    \label{eq:rt_maxwell_blind_local_gates}
++\end{align}
++Failure of any one of these conditions rejects the single-axis Maxwell-like
++coarse-stress closure for that declared filter family.
++
++\subsubsection{Gate M2: blind similarity exponents}
++
++For each geometrically similar case, preregister before computation the density
++$\rhoF$, a velocity scale $v_{\rm ref}$, and a common geometry scale $L$.  The
++analysis fits
++\begin{align}
++    \ln\Delta p_\omega
++    =
++    b_0
++    +b_\rho\ln\rhoF
++    +b_v\ln v_{\rm ref}
++    +b_L\ln L
++    \label{eq:rt_maxwell_blind_log_scaling}
++\end{align}
++without constraining the coefficients.  The frozen gates are
++\begin{align}
++    0.85&\le b_\rho\le1.15,
++    &
++    1.80&\le b_v\le2.20,
++    &
++    -0.25&\le b_L\le0.25,
++    &
++    R^2&\ge0.98.
++    \label{eq:rt_maxwell_blind_scaling_thresholds}
++\end{align}
++A density sweep may be performed as an off-canon similarity test of the
++resolved equations; it is not a proposal to vary the canonical physical value
++of $\rhoF$.
++
++The dimensionless reported coefficient is
++\begin{align}
++    C_{\rm blind}
++    :=
++    \frac{\operatorname{median}(\Delta p_\omega)}
++    {\rhoF v_{\rm ref}^2}.
++    \label{eq:rt_maxwell_blind_C}
++\end{align}
++\textbf{[BLINDNESS GUARD].}
++No numerical target for $C_{\rm blind}$ participates in M1 or M2.  After the
++blind report is frozen, Maxwell's special uniform circular-vortex value
++$C=1/4$ may be opened as a historical comparison, while the ordinary
++Euler/Bernoulli scale $C=1/2$ may be opened as a second comparison.  Neither is
++a pass/fail target for an arbitrary SST finite-core profile
++\cite{Maxwell1861PhysicalLines,Saffman1992}.
++
++\subsubsection{Gate M3: handedness and angular-momentum null}
++
++Maxwell explicitly noted that the force scale in his similarity argument could
++be independent of vortex diameter while the angular momentum need not be.
++For preregistered opposite-handed realizations with identical geometry and
++$|v_{\rm ref}|$, define
++\begin{align}
++    \epsilon_L
++    &:={
++    \|\mathbf L_+ + \mathbf L_-\|
++    \over
++    \max(\|\mathbf L_+\|+\|\mathbf L_-\|,L_{\rm floor})},
++    \\
++    \epsilon_{\Delta p}
++    &:={
++    |\Delta p_{\omega,+}-\Delta p_{\omega,-}|
++    \over
++    \max(|\Delta p_{\omega,+}|,|\Delta p_{\omega,-}|,p_{\rm floor})}.
++    \label{eq:rt_maxwell_blind_handedness_nulls}
++\end{align}
++The blind gates are
++\begin{align}
++    \epsilon_L\le0.05,
++    \qquad
++    \epsilon_{\Delta p}\le0.05.
++    \label{eq:rt_maxwell_blind_handedness_thresholds}
++\end{align}
++Thus angular momentum is required to reverse while the quadratic stress channel
++remains even under swirl reversal.  A claimed isotropic ensemble must in
++addition demonstrate cancellation of its net bulk angular momentum rather than
++assuming it.
++
++\subsubsection{Gate M4: reduced momentum as an independently reconstructed channel}
++
++\textbf{[BRIDGE / THEOREM TARGET].}
++Maxwell's reduced-momentum construction motivates, but does not prove, an SST
++factorization.  The test requires three quantities computed by independent
++solver routes:
++\begin{enumerate}
++    \item $\mathbf u$: material/coherent velocity;
++    \item $\mathbf p_{\rm red}$: reduced dynamical momentum obtained from a
++    declared action derivative, generalized impulse, or equivalent independent
++    dynamical response;
++    \item $\mathbf A$: independently evolved transverse/effective potential.
++\end{enumerate}
++It is invalid to construct $\mathbf p_{\rm red}$ from $m_e\mathbf u$ or to
++construct $\mathbf A$ from $(m_e/e)\mathbf u$ and then claim this gate as an
++independent test.
++
++On a deterministic preregistered $60/40$ train/validation split, fit scalar
++through-origin maps
++\begin{align}
++    \mathbf p_{\rm red}
++    &=\beta_u\mathbf u+\mathbf r_u,
++    \\
++    \mathbf A
++    &=\beta_p\mathbf p_{\rm red}+\mathbf r_p,
++    \\
++    \mathbf A
++    &=\beta_A\mathbf u+\mathbf r_A.
++    \label{eq:rt_maxwell_blind_reduced_fits}
++\end{align}
++Each relation must satisfy on held-out data
++\begin{align}
++    \operatorname{NRMSE}_{\rm val}&\le0.05,
++    &
++    \operatorname{median}|\cos\theta|&\ge0.995,
++    &
++    \operatorname{CV}(\beta\mid\text{group})&\le0.05,
++    \label{eq:rt_maxwell_blind_reduced_thresholds}
++\end{align}
++and the independently fitted coefficients must satisfy
++\begin{align}
++    { |\beta_A-\beta_p\beta_u| \over |\beta_A| }
++    \le0.05.
++    \label{eq:rt_maxwell_blind_factorization_gate}
++\end{align}
++The numerical electron target remains sealed during fitting.  Only after the
++blind files are frozen is the committed comparison
++\begin{align}
++    \beta_A
++    \stackrel{?}{=}
++    \frac{m_e}{e}
++    \label{eq:rt_maxwell_blind_unblind_A_target}
++\end{align}
++opened, with a preregistered relative tolerance of $5\%$.  This is a test of the
++existing SI normalization bridge, not a derivation of charge or electron mass.
++
++\subsubsection{Gate M5: optional structural displacement-current closure}
++
++\textbf{[SPECULATIVE / OPTIONAL FALSIFIER].}
++A structural displacement field is admissible only if it is defined independently
++of the Ampere residual being fitted.  Let
++\begin{align}
++    \mathbf Y
++    :=
++    \nabla\times\mathbf H
++    -
++    \mathbf J_{\rm transport}.
++    \label{eq:rt_maxwell_blind_ampere_residual}
++\end{align}
++The target-blind fit is
++\begin{align}
++    \mathbf Y
++    =
++    \lambda_D\,\partial_t\mathbf D_{\rm struct}
++    +
++    \mathbf r_D.
++    \label{eq:rt_maxwell_blind_storage_fit}
++\end{align}
++The coefficient $\lambda_D$ is fitted on alternating training times and is not
++predicted in advance.  Held-out data require
++\begin{align}
++    \operatorname{NRMSE}_{\rm val}&\le0.20,
++    &
++    R^2_{\rm val}&\ge0.90,
++    &
++    1-\frac{\operatorname{RMS}(\mathbf r_D)}
++    {\operatorname{RMS}(\mathbf Y)}&\ge0.80.
++    \label{eq:rt_maxwell_blind_storage_thresholds}
++\end{align}
++Failure rejects the declared storage variable; it does not justify adding a new
++source term by hand.
++
++\subsubsection{Blind protocol and verdict}
++
++\textbf{[RESEARCH / PREREGISTRATION].}
++The executable protocol freezes before the production run:
++\begin{enumerate}
++    \item filter fraction and boundary trim;
++    \item active-vorticity support rule;
++    \item $v_{\rm ref}$ and geometry-scale definitions;
++    \item train/validation split seed;
++    \item all numerical gates in
++    Eqs.~\eqref{eq:rt_maxwell_blind_local_gates},
++    \eqref{eq:rt_maxwell_blind_scaling_thresholds},
++    \eqref{eq:rt_maxwell_blind_handedness_thresholds},
++    \eqref{eq:rt_maxwell_blind_reduced_thresholds}, and
++    \eqref{eq:rt_maxwell_blind_factorization_gate};
++    \item SHA-256 commitments to the hidden comparison targets.
++\end{enumerate}
++
++The decision language is:
++\begin{center}
++\begin{tabular}{ll}
++\hline
++\textbf{FAIL} & any mandatory preregistered gate fails;\\
++\textbf{INCONCLUSIVE} & required independent data or scan rank is missing;\\
++\textbf{PASS} & every mandatory blind gate passes.\\
++\hline
++\end{tabular}
++\end{center}
++A PASS supports only this closure class.  It does not establish SST, does not
++validate Maxwell's molecular cells, and does not collapse the material Euler
++sector into the independent photon/link sector.
++
+ 
+ \subsection{Euler-Decomposed Swirl Gravity and Probe Transport}
+ \label{sec:appendix_euler_probe_transport}
+@@ -7783,5 +8077,17 @@
+ \emph{Classical and Quantum Gravity} \textbf{38}, 195003 (2021).
+ DOI: \href{https://doi.org/10.1088/1361-6382/ac1a69}{10.1088/1361-6382/ac1a69}.
+ 
++
++\bibitem{Maxwell1861PhysicalLines}
++J.~Clerk Maxwell,
++\newblock On Physical Lines of Force,
++\newblock \emph{The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science}, Series~4, Parts I--II, \textbf{21} (1861), and Parts III--IV, \textbf{23} (1862).
++
++\bibitem{Reynolds1895}
++O.~Reynolds,
++\newblock On the Dynamical Theory of Incompressible Viscous Fluids and the Determination of the Criterion,
++\newblock \emph{Philosophical Transactions of the Royal Society A} \textbf{186} (1895), 123--164,
++\newblock DOI: \href{https://doi.org/10.1098/rsta.1895.0004}{10.1098/rsta.1895.0004}.
++
+ \end{thebibliography}
+ \fi

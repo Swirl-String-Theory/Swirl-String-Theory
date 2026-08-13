@@ -1,0 +1,978 @@
+diff --git a/SST_CANON-v0.8.35-research-track.tex b/SST_CANON-v0.8.35-research-track.tex
+index 3b99f1367e7aaf38399c891c71bee8b50897d288..8b2ade5e2a37e3a2dd8371606c5dc86384fe4e4b 100644
+--- a/SST_CANON-v0.8.35-research-track.tex
++++ b/SST_CANON-v0.8.35-research-track.tex
+@@ -7722,11 +7722,631 @@ knot.  Turning the knot the other way reverses the visible swirl, but the amount
+ of busy motion stored in the fluid still slows the clock in both directions.
+ 
+ 
++
++
++% ============================================================
++% Maxwell--SST Kinetic Closure and Internal-Mode Thermodynamic Gate
++% Target branch: SST_CANON-v0.8.35 research track
++% ============================================================
++\section{Maxwell--SST Kinetic Closure and Internal-Mode Thermodynamic Gate}
++    \label{sec:rt_maxwell_sst_kinetic_gate}
++
++\subsection{Status, scope, and source discipline}
++
++\textbf{[ORTHODOX INPUT].}
++Maxwell's 1860 kinetic-theory programme derives statistical velocity laws,
++collision rates, mean paths, pressure and transport from microscopic moving
++bodies, and then extends the calculation to non-spherical bodies whose
++collisions exchange translational and rotational energy
++\cite{Maxwell1860GasesI,Maxwell1860GasesIIIII}.
++
++\textbf{[DERIVED HISTORICAL LESSON].}
++The crucial negative result for the present SST programme is methodological:
++when an assumed internal degree of freedom is dynamically coupled and reaches
++equilibrium, it must be included in the thermodynamic bookkeeping.  Maxwell
++used the resulting specific-heat mismatch as evidence that the mechanical model
++was incomplete rather than suppressing the unwanted degree of freedom by
++assumption.
++
++\textbf{[SPECULATIVE / SST RESEARCH PROGRAMME].}
++The Maxwell particles are \emph{not} identified with elements of the SST
++substrate.  The SST substrate remains a continuous incompressible, inviscid
++medium.  The proposed kinetic layer applies only to an ensemble of coherent
++swirl-string objects or excitations embedded in that medium.
++
++The research question is
++\begin{quote}
++For every SST knot $K$: which translational, orientational, Kelvin, twist,
++writhe, and core modes are actually coupled by a physical interaction; what are
++their excitation thresholds or gaps; and what thermodynamic and spectroscopic
++contribution follows?
++\end{quote}
++
++\subsection{Priority I: internal-mode thermodynamic gate}
++    \label{subsec:rt_maxwell_mode_gate}
++
++\subsubsection{Reference state and mode coordinates}
++
++Let $\mathcal Q_K^{(0)}$ denote a preregistered relaxed finite-core state of
++knot class $K$.  A local perturbation is expanded in generalized coordinates
++$q_{K,a}$,
++\begin{equation}
++    \mathcal Q_K
++    =
++    \mathcal Q_K^{(0)}
++    +
++    \sum_a q_{K,a}\,\mathbf e_{K,a}
++    +
++    O(q^2).
++    \label{eq:rt_maxwell_mode_expansion}
++\end{equation}
++
++\textbf{[BRIDGE / RESEARCH DEFINITION].}
++For a declared resolved energy functional $E_K[\mathcal Q_K]$, define the
++quadratic stiffness and inertia matrices by
++\begin{align}
++    H^{(K)}_{ab}
++    &:={}
++    \left.
++    \frac{\partial^2 E_K}{\partial q_{K,a}\partial q_{K,b}}
++    \right|_{\mathcal Q_K^{(0)}},
++    \label{eq:rt_maxwell_hessian}\\
++    M^{(K)}_{ab}
++    &:={}
++    \text{generalized inertia matrix of the same declared model}.
++    \label{eq:rt_maxwell_inertia_matrix}
++\end{align}
++The linearized mode problem is then
++\begin{equation}
++    H^{(K)}\mathbf e_{K,n}
++    =
++    \omega_{K,n}^{2}
++    M^{(K)}\mathbf e_{K,n}.
++    \label{eq:rt_maxwell_generalized_eigenproblem}
++\end{equation}
++Equation~\eqref{eq:rt_maxwell_generalized_eigenproblem} is a generic small-
++oscillation construction; it becomes an SST prediction only after $E_K$ and
++$M^{(K)}$ are derived from the declared finite-core dynamics.
++
++\subsubsection{Do not confuse frequency with an energy gap}
++
++\textbf{[ORTHODOX INPUT / CRITICAL GUARD].}
++For a classical quadratic mode,
++\begin{equation}
++    E_{K,n}(A)
++    =
++    \frac12 \kappa_{K,n}A^2 + O(A^3),
++    \label{eq:rt_maxwell_classical_mode_energy}
++\end{equation}
++so arbitrarily small amplitudes imply arbitrarily small excitation energies.
++Therefore
++\begin{equation}
++    \omega_{K,n}>0
++    \not\Rightarrow
++    \Delta_{K,n}>0 .
++    \label{eq:rt_maxwell_frequency_gap_noimplication}
++\end{equation}
++This is a direct guard against treating torsional rigidity, curvature stiffness,
++or a nonzero Kelvin frequency as a discrete thermodynamic gap.
++
++\textbf{[BRIDGE / DEFINITION].}
++A true SST excitation gap must instead be defined from the admissible state
++space,
++\begin{equation}
++    \Delta_{K,a}
++    :=
++    \inf_{\mathcal Q\in\mathcal A_{K,a}^{\rm exc}}
++    \left[
++        E_K[\mathcal Q]-E_K[\mathcal Q_K^{(0)}]
++    \right],
++    \qquad
++    \Delta_{K,a}>0,
++    \label{eq:rt_maxwell_true_gap_definition}
++\end{equation}
++where $\mathcal A_{K,a}^{\rm exc}$ must exclude the ground-state neighbourhood
++for a physically derived reason---for example discrete occupancy, a topological
++barrier, a nonlinear activation threshold, or another explicitly stated
++selection rule.  No numerical value of $\Delta_{K,a}$ is canonized here.
++
++\subsubsection{Mode taxonomy and double-counting guards}
++
++The following classification is the required audit basis.
++
++\begin{center}
++\begin{tabularx}{\linewidth}{p{0.16\linewidth}p{0.22\linewidth}p{0.22\linewidth}X}
++\hline
++Mode family & Minimal coordinate & Physical coupling channel & Canon guard \\
++\hline
++translation & $\mathbf X_K,\mathbf P_K$ & net impulse / force & collective motion; not an internal gap \\
++orientation & $R_K\in SO(3)$ & net torque / anisotropic encounter & the static orientation coordinate is a symmetry zero-frequency direction in an isotropic unbounded background; rotational kinetic energy and angular momentum, when retained, form a separate collective rotational sector \\
++Kelvin/shape & normal centerline perturbations $q^{\rm K}_{K,n}$ & projected hydrodynamic force & genuine internal shape sector; spectrum must converge with spatial resolution \\
++twist & framed-tube variables $q^{\rm Tw}_{K,n}$ & torque / frame stress & undefined in a centerline-only model; requires a material frame and finite-core closure \\
++writhe & $Wr[\gamma_K]$ & induced indirectly through shape change & \emph{not} an independent degree of freedom by default; treat as an observable projection of shape modes to avoid double counting \\
++core & radial/elliptic/profile variables $q^{\rm core}_{K,n}$ & pressure / strain / local core forcing & absent from singular-filament models; requires a resolved core \\
++\hline
++\end{tabularx}
++\end{center}
++
++\textbf{[ORTHODOX GEOMETRIC INPUT].}
++The writhe $Wr$ is a functional of the centerline geometry, while framed-tube
++self-linking separates into writhe and twist under the declared ribbon
++assumptions.  Consequently a shape eigenmode that changes $Wr$ must not be
++counted again as an independent ``writhe oscillator'' unless a reduced model
++proves that such a coordinate is dynamically independent
++\cite{Moffatt1969,Calugareanu1961,White1969}.
++
++\subsubsection{Interaction-to-mode coupling matrix}
++
++Consider a physical interaction $\mathcal I$---for example a two-knot encounter,
++an imposed transverse packet, or a background velocity gradient.  Define the
++linear coupling amplitude
++\begin{equation}
++    \mathcal G^{(\mathcal I)}_{K,a}
++    :=
++    \mathbf e_{K,a}^{\mathsf T}
++    \mathbf Q_{\mathcal I},
++    \label{eq:rt_maxwell_mode_coupling_projection}
++\end{equation}
++where $\mathbf Q_{\mathcal I}$ is the generalized-force covector in the same
++coordinate basis as $\mathbf q_K$.  This pairing has units of generalized work
++per unit mode amplitude; only its vanishing/non-vanishing and a separately
++normalized dimensionless coupling are used as selection diagnostics.
++
++For two interacting knots $K$ and $L$, the bilinear transfer matrix
++\begin{equation}
++    G^{KL}_{ab}
++    :=
++    \left.
++    \frac{\partial^2 V_{KL}}
++    {\partial q_{K,a}\partial q_{L,b}}
++    \right|_{0}.
++    \label{eq:rt_maxwell_pair_coupling_matrix}
++\end{equation}
++
++\textbf{[BRIDGE / RESEARCH DEFINITION].}
++A mode is called \emph{directly coupled} under $\mathcal I$ only if the
++corresponding projection is nonzero after symmetry reduction and numerical
++convergence:
++\begin{equation}
++    \mathcal G^{(\mathcal I)}_{K,a}\neq0 .
++    \label{eq:rt_maxwell_direct_coupling_gate}
++\end{equation}
++A merely kinematically available eigenmode with zero projected coupling is not
++thermodynamically activated by that interaction.
++
++\subsubsection{Excitation and equilibration timescale}
++
++\textbf{[ORTHODOX KINETIC FORM / SST BRIDGE].}
++If an inelastic encounter cross section $\sigma^{KL}_{a,\rm inel}$ can be
++operationally defined for mode $a$, the dilute-ensemble null model gives
++\begin{equation}
++    \tau^{-1}_{K,a}
++    =
++    \sum_L n_L
++    \left\langle
++        v_{\rm rel}\,
++        \sigma^{KL}_{a,\rm inel}
++    \right\rangle .
++    \label{eq:rt_maxwell_mode_rate}
++\end{equation}
++The dimensions are
++$[n_L][v_{\rm rel}][\sigma]={\rm m^{-3}m\,s^{-1}m^2}={\rm s^{-1}}$.
++Equation~\eqref{eq:rt_maxwell_mode_rate} is a null model, not a theorem for
++long-range vortex interactions.
++
++A mode contributes to an observed equilibrium only when the three gates
++\begin{equation}
++    \boxed{
++    \mathcal G_{K,a}\neq0,
++    \qquad
++    E_{\rm drive}\gtrsim\Delta_{K,a},
++    \qquad
++    \tau_{K,a}\lesssim t_{\rm obs}
++    }
++    \label{eq:rt_maxwell_three_gate_condition}
++\end{equation}
++are simultaneously satisfied.
++
++\subsubsection{Thermodynamic contribution}
++
++\textbf{[ORTHODOX STATISTICAL-MECHANICS BENCHMARK].}
++If the accessible SST internal states form a discrete spectrum
++$E_{K,s}=E_{K,0}+\Delta E_{K,s}$ and are genuinely in thermal equilibrium,
++the internal canonical partition function is
++\begin{equation}
++    Z_{K,\rm int}(\beta)
++    =
++    \sum_s g_{K,s}
++    e^{-\beta\Delta E_{K,s}},
++    \qquad
++    \beta=(k_BT)^{-1},
++    \label{eq:rt_maxwell_internal_partition}
++\end{equation}
++with
++\begin{align}
++    U_{K,\rm int}
++    &=
++    -\frac{\partial}{\partial\beta}
++    \ln Z_{K,\rm int},
++    \label{eq:rt_maxwell_internal_energy}\\
++    C_{V,K}^{\rm int}
++    &=
++    k_B\beta^2
++    \frac{\partial^2}{\partial\beta^2}
++    \ln Z_{K,\rm int}.
++    \label{eq:rt_maxwell_internal_heat_capacity}
++\end{align}
++These are orthodox benchmark equations, not a claim that the SST substrate has
++a thermodynamic temperature \cite{PathriaBeale2011}.
++
++For a single isolated gapped level with degeneracy $g$ and
++$\beta\Delta\gg1$,
++\begin{equation}
++    C_V^{\rm int}
++    =
++    O\!\left(
++        k_B(\beta\Delta)^2e^{-\beta\Delta}
++    \right),
++    \label{eq:rt_maxwell_lowT_gap_suppression}
++\end{equation}
++whereas an ungapped classical quadratic degree of freedom that equilibrates
++contributes an order-$k_B$ term by equipartition.  This is the Maxwell-style
++thermodynamic mode-count gate.
++
++\subsubsection{Spectroscopic contribution}
++
++\textbf{[BRIDGE / RESEARCH BOUND].}
++For an external atomic or resonant state $n$, let $\lambda_{n;K,s}$ denote a
++dimensionless effective coupling weight connecting that observable to internal
++SST state $s$.  A conservative bookkeeping bound is
++\begin{equation}
++    |\delta E_n|
++    \le
++    \sum_{K,s}
++    |\lambda_{n;K,s}|\,
++    p_{K,s}\,
++    \Delta E_{K,s},
++    \label{eq:rt_maxwell_spectroscopic_bound}
++\end{equation}
++with $p_{K,s}$ the physically derived occupation probability.  The model must
++also predict line broadening, sidebands, or inelastic thresholds whenever the
++same coupling opens real transitions.  A fitted energy shift without the
++corresponding transition channels is not sufficient closure.
++
++\subsubsection{Maxwell thermodynamic falsifier}
++
++For a preregistered knot candidate $K$, define the experimentally relevant
++active set
++\begin{equation}
++    \mathcal A_K(T,t_{\rm obs})
++    :=
++    \left\{
++        a:
++        \mathcal G_{K,a}\neq0,
++        \ \Delta_{K,a}\lesssim k_BT,
++        \ \tau_{K,a}\lesssim t_{\rm obs}
++    \right\}.
++    \label{eq:rt_maxwell_active_mode_set}
++\end{equation}
++
++\textbf{[DERIVED / CONDITIONAL FALSIFIER].}
++If the calculated set $\mathcal A_K$ contains modes whose orthodox
++thermodynamic or spectroscopic signatures exceed the empirical upper bounds,
++then at least one of the following must fail: the knot assignment, the mode
++spectrum, the coupling model, or the assumed equilibration mechanism.  The
++constraint may not be repaired by deleting an already-coupled mode after the
++comparison target is exposed.
++
++\subsection{Priority II: kinetic closure for ensembles of swirl strings}
++    \label{subsec:rt_maxwell_knot_kinetics}
++
++\subsubsection{Knot phase space}
++
++For each topological class $K$, introduce a distribution
++\begin{equation}
++    f_K
++    =
++    f_K(
++        \mathbf x,
++        \mathbf P,
++        R,
++        \mathbf q,
++        \boldsymbol\pi,
++        t
++    ),
++    \label{eq:rt_maxwell_knot_distribution}
++\end{equation}
++where $R\in SO(3)$ is orientation and $(\mathbf q,\boldsymbol\pi)$ denotes the
++resolved internal-mode coordinates and conjugate generalized momenta.  Chirality
++or circulation branch labels are discrete indices attached to $K$, not hidden
++continuous fit parameters.
++
++\textbf{[ANSATZ / RESEARCH KINETIC CLOSURE].}
++A minimal evolution equation is
++\begin{equation}
++    \frac{\partial f_K}{\partial t}
++    +
++    \{f_K,H_K\}
++    =
++    \sum_L
++    \left(
++        \mathcal C_{KL}^{\rm ideal}
++        +
++        \mathcal C_{KL}^{\rm rec}
++    \right),
++    \label{eq:rt_maxwell_sst_boltzmann}
++\end{equation}
++where the left-hand side is the Hamiltonian/Liouville transport of the chosen
++reduced model.
++
++The collision/encounter operator is split because ideal Euler evolution and
++reconnection are not the same dynamical sector:
++\begin{align}
++    \mathcal C_{KL}^{\rm ideal}:
++    &\quad
++    K,L,\Gamma_K,\Gamma_L
++    \ \text{preserved},
++    \label{eq:rt_maxwell_ideal_collision_sector}\\
++    \mathcal C_{KL}^{\rm rec}:
++    &\quad
++    \text{topology-changing events allowed only under an explicitly non-ideal
++    closure}.
++    \label{eq:rt_maxwell_reconnection_collision_sector}
++\end{align}
++The ideal operator may exchange translation, orientation and internal-mode
++energy while preserving the declared invariants of the underlying model.
++
++\subsubsection{Maxwellian distribution as null hypothesis only}
++
++\textbf{[ORTHODOX NULL MODEL / NOT CANONIZED FOR SST].}
++For a dilute ensemble of weakly interacting objects with sufficient mixing, the
++translational equilibrium null model is Maxwellian,
++\begin{equation}
++    f_{K,\rm tr}^{(0)}
++    \propto
++    \exp\!\left[
++        -\frac{
++        (\mathbf P-M_K\mathbf U)^2
++        }{2M_Kk_BT}
++    \right].
++    \label{eq:rt_maxwell_translational_null}
++\end{equation}
++Maxwell's derivation motivates this benchmark
++\cite{Maxwell1860GasesI}.  SST vortex knots, however, can interact through
++long-range induced velocity fields and orientation-dependent couplings, so
++Eq.~\eqref{eq:rt_maxwell_translational_null} is a falsifiable null model rather
++than an assumed SST equilibrium law.
++
++\subsection{Priority III: knot-ensemble pressure and stress closure}
++    \label{subsec:rt_maxwell_knot_stress}
++
++\textbf{[ORTHODOX KINETIC FORM / SST BRIDGE].}
++The momentum-flux construction follows the kinetic-theory stress logic used in Maxwellian gas theory \cite{Maxwell1860GasesI}.
++Let
++\begin{equation}
++    \mathbf c
++    :=
++    \mathbf P-M_K\mathbf U
++    \label{eq:rt_maxwell_peculiar_momentum}
++\end{equation}
++be the peculiar momentum of a knot relative to the ensemble mean flow.  The
++kinetic contribution to the material stress is
++\begin{equation}
++    \Pi_{ij}^{\rm knot,kin}
++    =
++    \sum_K
++    \int
++    \frac{c_i c_j}{M_K}
++    f_K\,d\Gamma_K,
++    \label{eq:rt_maxwell_knot_stress_tensor}
++\end{equation}
++where $d\Gamma_K$ denotes the complete reduced phase-space measure.  Since
++$[c_i c_j/M_K]={\rm J}$ and the integrated distribution has units
++${\rm m^{-3}}$, $[\Pi_{ij}]={\rm J\,m^{-3}}={\rm Pa}$.
++
++The isotropic knot-ensemble pressure is
++\begin{equation}
++    p_{\rm knot}
++    =
++    \frac13
++    \operatorname{tr}
++    \Pi^{\rm knot,kin},
++    \label{eq:rt_maxwell_knot_pressure}
++\end{equation}
++and the full material closure may contain additional interaction and internal
++mode stresses,
++\begin{equation}
++    \Pi_{ij}^{\rm knot}
++    =
++    \Pi_{ij}^{\rm knot,kin}
++    +
++    \Pi_{ij}^{\rm knot,int}
++    +
++    \Pi_{ij}^{\rm knot,mode}.
++    \label{eq:rt_maxwell_full_knot_stress}
++\end{equation}
++
++As a scale check, the canonical SST substrate dynamic-pressure scale is
++\begin{align}
++    p_{\rm substrate,0}
++    &=
++    \frac12\rhoF\vchar{}^2\nonumber\\
++    &=
++    4.1877439\times10^5\,\mathrm{Pa},
++    \label{eq:rt_maxwell_substrate_pressure_scale}
++\end{align}
++using $\rhoF=7.0\times10^{-7}\,\mathrm{kg\,m^{-3}}$ and
++$\vchar=1.09384563\times10^6\,\mathrm{m\,s^{-1}}$.  This is a
++substrate Euler/Bernoulli scale, not a prediction for $p_{\rm knot}$.
++
++\textbf{[CANON GUARD].}
++The knot-ensemble pressure $p_{\rm knot}$ is distinct from the Euler/Bernoulli
++pressure of the SST substrate.  They may exchange momentum through a derived
++coupling law, but they must not be identified or added twice in the same energy
++or stress ledger.
++
++\subsection{Priority IV: isotropization of anisotropic knots}
++    \label{subsec:rt_maxwell_orientation_isotropy}
++
++Let $g_K(R,t)$ be the orientation marginal on $SO(3)$, normalized with respect
++to the Haar measure $dR$,
++\begin{equation}
++    \int_{SO(3)} g_K(R,t)\,dR=1.
++    \label{eq:rt_maxwell_orientation_normalization}
++\end{equation}
++For the conventional Euler-angle normalization
++$\int_{SO(3)}dR=8\pi^2$, the isotropic distribution is
++\begin{equation}
++    g_K^{\rm iso}(R)
++    =
++    \frac{1}{8\pi^2}.
++    \label{eq:rt_maxwell_orientation_isotropic}
++\end{equation}
++
++A convenient second-rank anisotropy diagnostic is
++\begin{equation}
++    Q_{ij}^{(K)}
++    =
++    \left\langle
++        t_i t_j-\frac{1}{3}\delta_{ij}
++    \right\rangle_{g_K},
++    \label{eq:rt_maxwell_orientation_tensor}
++\end{equation}
++for a declared body-fixed director $\mathbf t$.  Ensemble isotropization requires
++\begin{equation}
++    Q_{ij}^{(K)}(t)
++    \longrightarrow
++    0
++    \label{eq:rt_maxwell_isotropization_gate}
++\end{equation}
++under the same interaction kernel used in
++Eq.~\eqref{eq:rt_maxwell_sst_boltzmann}.
++
++\textbf{[CRITICAL NOTE].}
++Equation~\eqref{eq:rt_maxwell_isotropization_gate} concerns an ensemble of
++randomly oriented knots.  It does not prove that the field of a single isolated
++anisotropic knot is locally isotropic.  Single-particle isotropy and ensemble
++isotropy are separate theorem targets.
++
++\subsection{Numerical programme and preregistered observables}
++    \label{subsec:rt_maxwell_numerical_programme}
++
++For each candidate knot $K$, the minimal numerical campaign is:
++\begin{enumerate}
++    \item obtain a converged relaxed finite-core reference state
++    $\mathcal Q_K^{(0)}$;
++    \item linearize the declared Euler/Biot--Savart/finite-core model and remove
++    rigid translation and global-orientation zero modes before classifying the
++    internal spectrum;
++    \item compute $\omega_{K,n}$ and classify each eigenvector by Kelvin/shape,
++    framed twist, writhe projection, and core-profile content;
++    \item determine whether a true $\Delta_{K,n}>0$ exists independently of
++    $\omega_{K,n}>0$;
++    \item perform controlled two-knot and externally driven encounters and
++    measure the projected transfer matrix $G^{KL}_{ab}$;
++    \item measure
++    \begin{equation}
++        \Delta E_{\rm CM},\quad
++        \Delta E_{\rm rot/orient},\quad
++        \Delta E_{\rm Kelvin},\quad
++        \Delta E_{\rm twist},\quad
++        \Delta E_{\rm core},
++        \label{eq:rt_maxwell_energy_transfer_channels}
++    \end{equation}
++    while separately recording $\Delta Wr$ as a geometric response rather than
++    automatically treating it as an independent energy channel;
++    \item infer $\sigma^{KL}_{a,\rm inel}(E,\Omega)$ or a nonlocal replacement
++    when a cross-section description fails;
++    \item compute $C_{V,K}^{\rm int}(T)$, predicted inelastic thresholds,
++    line shifts/broadening and $\Pi_{ij}^{\rm knot}$ without retuning the mode
++    spectrum;
++    \item test orientation relaxation
++    $Q_{ij}^{(K)}(t)\to0$ on held-out encounter ensembles.
++\end{enumerate}
++
++\subsection{Primary falsifiers}
++
++\begin{enumerate}
++    \item \textbf{Thermodynamic mode-count failure.}
++    A strongly coupled, experimentally accessible, equilibrated internal mode is
++    predicted but its heat-capacity/inelastic signature is absent.
++
++    \item \textbf{Spectroscopic failure.}
++    The calculated occupation and coupling of internal modes imply line shifts,
++    sidebands, or widths beyond experimental limits.
++
++    \item \textbf{Gap failure.}
++    A claimed positive gap is inferred only from $\omega_{K,n}>0$ while the
++    underlying classical energy functional permits $E-E_0\to0$ continuously.
++
++    \item \textbf{Closure failure.}
++    The same interaction kernel cannot reproduce both the measured mode-energy
++    transfer matrix and the coarse-grained stress/isotropization observables.
++
++    \item \textbf{Resolution failure.}
++    The classified low-energy spectrum or coupling hierarchy does not converge
++    under refinement of centerline resolution, core resolution, regularization,
++    and domain size.
++\end{enumerate}
++
++\subsection{Research target statement}
++
++\begin{center}
++\begin{minipage}{0.92\linewidth}
++\itshape
++For every candidate knot $K$, SST must derive a mode-resolved interaction
++ledger that distinguishes collective translation and orientation from genuine
++internal Kelvin, twist and core excitations, treats writhe as a geometric
++projection unless independently dynamical, determines which modes are coupled,
++kinematically accessible and equilibrated, and propagates those results without
++retuning into thermodynamic, spectroscopic, stress and isotropization
++predictions.  A candidate that fails any held-out empirical gate is rejected or
++its dynamical closure must be revised.
++\end{minipage}
++\end{center}
++
++
+ % ----------------------------------------------------------
+ % Bibliography entries for the Relativity Emergence Ladder
+ % ----------------------------------------------------------
+ \ifresearchtrackincluded\else
+ \begin{thebibliography}{99}
++\bibitem{Maxwell1860GasesI}
++J.~Clerk Maxwell,
++\newblock Illustrations of the dynamical theory of gases---Part I: On the motions and collisions of perfectly elastic spheres,
++\newblock \emph{The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science}, Series~4, \textbf{19} (1860), 19--32,
++\newblock DOI: \href{https://doi.org/10.1080/14786446008642818}{10.1080/14786446008642818}.
++
++\bibitem{Maxwell1860GasesIIIII}
++J.~Clerk Maxwell,
++\newblock Illustrations of the dynamical theory of gases,
++\newblock \emph{The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science}, Series~4, \textbf{20} (1860), 21--37,
++\newblock DOI: \href{https://doi.org/10.1080/14786446008642902}{10.1080/14786446008642902}.
++
++\bibitem{PathriaBeale2011}
++R.~K. Pathria and P.~D. Beale,
++\newblock \emph{Statistical Mechanics}, 3rd ed.,
++\newblock Academic Press / Elsevier (2011),
++\newblock DOI: \href{https://doi.org/10.1016/C2009-0-62310-2}{10.1016/C2009-0-62310-2}.
++
++\bibitem{Moffatt1969}
++H.~K. Moffatt,
++\newblock The degree of knottedness of tangled vortex lines,
++\newblock \emph{Journal of Fluid Mechanics} \textbf{35} (1969), 117--129,
++\newblock DOI: \href{https://doi.org/10.1017/S0022112069000991}{10.1017/S0022112069000991}.
++
++\bibitem{Calugareanu1961}
++G.~C\u{a}lug\u{a}reanu,
++\newblock Sur les classes d'isotopie des noeuds tridimensionnels et leurs invariants,
++\newblock \emph{Czechoslovak Mathematical Journal} \textbf{11} (1961), 588--625,
++\newblock Permalink: \href{https://dml.cz/handle/10338.dmlcz/100486}{DML-CZ:100486}.
++
++\bibitem{White1969}
++J.~H. White,
++\newblock Self-linking and the Gauss integral in higher dimensions,
++\newblock \emph{American Journal of Mathematics} \textbf{91} (1969), 693--728,
++\newblock DOI: \href{https://doi.org/10.2307/2373348}{10.2307/2373348}.
++
+ 
+ 
+ \bibitem{Taylor1922}
+diff --git a/SST_CANON-v0.8.35.tex b/SST_CANON-v0.8.35.tex
+index f65874a57c2316cb0028bf2a92e197b3f732eedf..1dd9954cd7cfe0b9e8f91e9f2e2d8256235d52ca 100644
+--- a/SST_CANON-v0.8.35.tex
++++ b/SST_CANON-v0.8.35.tex
+@@ -2176,97 +2176,201 @@
+         \textbf{[DERIVED]}: This form captures a general upper bound independent of microscopic details.
+     
+     \subsection{Ungapped Spectrum: Instability}
+-        
+-        If the internal spectrum is ungapped:
+-        
+-        \begin{itemize}
+-            \item arbitrarily low-energy excitations exist
+-            \item no universal suppression mechanism applies
+-        \end{itemize}
+-        
+-        \textbf{Consequence:}
+-        \begin{align}
+-            \delta E_n \not\to 0 \quad \text{generically}
+-        \end{align}
+-        
+-        \textbf{[CRITICAL]}:
+-        An ungapped internal sector is generically incompatible with spectroscopy unless:
+-        
++
++        If the internal spectrum is ungapped, arbitrarily low-energy
++        excitations are kinematically available and no universal Boltzmann
++        suppression follows from a gap alone.
++
++        \textbf{[CRITICAL / CONDITIONAL].}
++        An ungapped internal sector is generically incompatible with precision
++        spectroscopy if its modes are appreciably coupled and equilibrate on the
++        observation timescale.  Compatibility requires at least one independently
++        demonstrated suppression mechanism, for example:
+         \begin{itemize}
+-            \item $\lambda_n \ll 1$ (extremely weak coupling), or
+-            \item the density of states is highly suppressed
++            \item $|\lambda_n|\ll1$ (extremely weak observable coupling);
++            \item a sufficiently sparse or symmetry-forbidden active density of states;
++            \item $\tau_{K,a}\gg t_{\rm obs}$ for the relevant interaction
++            (dynamical freeze-out).
+         \end{itemize}
+-    
+-    \subsection{Gapped Spectrum: Decoupling Mechanism}
+-        
+-        We introduce an excitation gap $\Delta_K$:
+-        
+-        \begin{align}
+-            E_{m,n} \geq \Delta_K
+-        \end{align}
+-        
+-        Then occupation factors follow Boltzmann suppression:
+-        
+-        \begin{align}
+-            \nu_{m,n} \sim \exp\left(-\frac{\Delta_K}{k_B T_{\text{eff}}}\right)
+-        \end{align}
+-        
+-        Substituting into Eq.~\ref{eq:coupling_bound}:
+-        
+-        \begin{align}
+-            \delta E_n \propto \exp\left(-\frac{\Delta_K}{k_B T_{\text{eff}}}\right)
++        Thus ``ungapped'' does not by itself mean ``observably excited'', but an
++        ungapped mode may not be deleted from the ledger without a coupling and
++        timescale calculation.
++
++    \subsection{Gapped Spectrum: Conditional Decoupling Mechanism}
++        \label{subsec:canon_true_internal_gap}
++
++        \textbf{[BRIDGE / DEFINITION].}
++        A true excitation gap for knot class $K$ is an energy difference,
++        \begin{equation}
++            E_{m,n}-E_{0,n}
++            \geq
++            \Delta_K
++            >0 .
++            \label{eq:canon_true_excitation_gap}
++        \end{equation}
++
++        \textbf{[ORTHODOX INPUT / CONDITIONAL BRIDGE].}
++        If the internal states are discrete and are in thermal equilibrium at a
++        physically defined temperature $T_{\rm eff}$, their excited-state
++        occupations are Boltzmann suppressed,
++        \begin{equation}
++            \nu_{m,n}
++            \propto
++            \exp\!\left(-\frac{E_{m,n}-E_{0,n}}{k_B T_{\rm eff}}\right),
+             \label{eq:boltzmann_suppression}
+-        \end{align}
+-        
+-        \textbf{[DERIVED]}:
+-        Exponential suppression ensures compatibility with spectroscopy.
+-    
+-    \subsection{Physical Origin of the Gap}
+-        
+-        \textbf{[SPECULATIVE]}:
+-        The gap $\Delta_K$ may arise from:
+-        
+-        \begin{itemize}
+-            \item geometric constraints on filament curvature
+-            \item torsional rigidity
+-            \item topological restrictions
+-            \item core structure of the vortex
+-        \end{itemize}
+-    
+-    \subsection{Order-of-Magnitude Estimate}
+-        
+-        Using filament parameters:
+-        
+-        \begin{align}
+-            \Delta_K \sim \frac{\Gamma^2}{4\pi \xi L}
+-        \end{align}
+-        
+-        where:
++        \end{equation}
++        and therefore the leading contribution of a state separated by
++        $\Delta_K$ is exponentially small when
++        $\Delta_K/(k_BT_{\rm eff})\gg1$ \cite{PathriaBeale2011}.
++
++        \textbf{[CRITICAL NOTE].}
++        This statement is conditional on a genuine discrete energy gap and on
++        equilibration.  It is not a theorem that every nonzero SST normal-mode
++        frequency produces such a gap.
++
++    \subsection{Physical Origin of a True Gap}
++
++        \textbf{[SPECULATIVE / RESEARCH TARGET].}
++        A positive $\Delta_K$ may arise only from a mechanism that excludes
++        arbitrarily small excitations from the admissible state space, for
++        example:
+         \begin{itemize}
+-            \item $\xi$ is the core scale
+-            \item $L$ is the loop length
++            \item a discrete occupancy or mode-selection rule;
++            \item a topological barrier between admissible states;
++            \item a nonlinear activation threshold;
++            \item a finite-core transition with a derived minimum energy cost.
+         \end{itemize}
+-        
+-        For typical SST scales:
+-        
+-        \begin{align}
+-            \Delta_K = \mathcal{O}(10^2 - 10^3 \, \text{eV})
+-        \end{align}
+-        
+-        \textbf{[DERIVED]}:
+-        This places the internal sector well above atomic energy scales ($\sim$ eV).
+-    
++
++        \textbf{[ORTHODOX INPUT / CANON GUARD].}
++        Curvature stiffness, torsional rigidity, and a nonzero Kelvin frequency
++        can generate a restoring force, but in a classical quadratic continuum
++        they do not by themselves imply a discrete energy gap:
++        \begin{equation}
++            \omega_{K,a}>0
++            \not\Rightarrow
++            \Delta_{K,a}>0 .
++            \label{eq:canon_gap_frequency_guard_local}
++        \end{equation}
++
++    \subsection{Dimensional Guard on Gap Estimates}
++
++        \textbf{[DERIVED / CRITICAL CORRECTION].}
++        No numerical internal-mode gap is canonized without a resolved energy
++        functional.  In particular, an expression of the form
++        \begin{equation}
++            \frac{\Gamma^2}{\xi L}
++        \end{equation}
++        is not an energy by itself, because
++        \begin{equation}
++            \left[\frac{\Gamma^2}{\xi L}\right]
++            =
++            \frac{{\rm m^4\,s^{-2}}}{{\rm m^2}}
++            =
++            {\rm m^2\,s^{-2}} .
++            \label{eq:canon_gap_dimensional_guard}
++        \end{equation}
++        A dimensionally valid gap must be computed as an actual energy
++        difference of the same declared finite-core model,
++        \begin{equation}
++            \Delta_{K,a}
++            =
++            E_K[\mathcal Q_{K,a}^{\rm exc}]
++            -
++            E_K[\mathcal Q_K^{(0)}],
++            \label{eq:canon_gap_energy_difference}
++        \end{equation}
++        or through another independently derived map with units of joules.
++        The earlier order-of-magnitude claim
++        $\Delta_K=\mathcal O(10^2\!-
++        10^3\,\mathrm{eV})$ is therefore not retained as a derived Canon result.
++
+     \subsection{Consistency Condition}
+-        
+-        To preserve atomic physics:
+-        
+-        \begin{align}
+-            \frac{\Delta_K}{k_B T_{\text{eff}}} \gg 1
+-        \end{align}
+-        
+-        \textbf{Interpretation:}
+-        The internal sector is effectively frozen at atomic energies.
+-    
++
++        \textbf{[DERIVED / CONSISTENCY GATE].}
++        Compatibility with low-energy spectroscopy can be obtained by any
++        independently established combination of:
++        \begin{align}
++            \frac{\Delta_{K,a}}{k_BT_{\rm eff}} &\gg 1
++            &&\text{(gapped and equilibrated)},
++            \label{eq:canon_gap_freeze_condition}\\
++            |\lambda_{n;K,a}| &\ll 1
++            &&\text{(weakly coupled)},
++            \label{eq:canon_weak_mode_coupling}\\
++            \tau_{K,a} &\gg t_{\rm obs}
++            &&\text{(dynamically frozen)}.
++            \label{eq:canon_mode_frozen_condition}
++        \end{align}
++        A numerical gap is not required if the mode is demonstrably decoupled or
++        cannot equilibrate on the relevant observation timescale; conversely, a
++        nominal gap does not protect the theory if strong driven transitions
++        remain kinematically accessible.
++
++
++    \subsection{Maxwell--SST Internal-Mode Thermodynamic Guard}
++        \label{subsec:maxwell_sst_internal_mode_guard}
++
++        \paragraph{Orthodox motivation.}
++        \textbf{[ORTHODOX INPUT].}
++        Maxwell's kinetic-theory analysis separates collective translation from
++        internal rotational motion and shows that, when additional internal
++        degrees of freedom are dynamically coupled and equilibrate, they alter
++        the thermodynamic energy bookkeeping and therefore the predicted heat
++        capacity \cite{Maxwell1860GasesI,Maxwell1860GasesIIIII}.
++
++        \paragraph{SST consistency consequence.}
++        \textbf{[DERIVED / CONSISTENCY GATE].}
++        For a candidate SST knot class $K$, an internal mode $a$ is
++        phenomenologically active only if all three conditions are satisfied:
++        \begin{align}
++            \mathcal G_{K,a} &\neq 0,
++            \label{eq:canon_mode_coupling_nonzero}\\
++            E_{\rm drive} &\gtrsim \Delta_{K,a},
++            \label{eq:canon_mode_kinematic_access}\\
++            \tau_{K,a} &\lesssim t_{\rm obs},
++            \label{eq:canon_mode_equilibration_time}
++        \end{align}
++        where $\mathcal G_{K,a}$ denotes the interaction-to-mode coupling
++        amplitude, $\Delta_{K,a}$ the true excitation-energy threshold, and
++        $\tau_{K,a}$ the excitation/equilibration timescale.  Failure of any one
++        condition can freeze the mode on the relevant experimental timescale.
++
++        \paragraph{Frequency--gap distinction.}
++        \textbf{[ORTHODOX INPUT / CANON GUARD].}
++        A nonzero classical normal-mode frequency does not by itself imply a
++        nonzero excitation-energy gap:
++        \begin{equation}
++            \omega_{K,a}>0
++            \not\Rightarrow
++            \Delta_{K,a}>0 .
++            \label{eq:canon_frequency_not_gap}
++        \end{equation}
++        A classical harmonic mode with energy quadratic in its amplitude admits
++        arbitrarily small excitation energy.  Therefore a positive SST gap must
++        arise from an independently demonstrated discrete occupancy rule,
++        topological barrier, nonlinear threshold, or other mechanism that
++        forbids arbitrarily small excitation energies.  Stiffness alone is not
++        sufficient.
++
++        \paragraph{Mode-count gate.}
++        \textbf{[DERIVED / CONDITIONAL].}
++        If several ungapped internal modes are appreciably coupled and
++        equilibrate on the measurement timescale, orthodox statistical mechanics
++        assigns them an order-$k_B$ thermodynamic contribution per active
++        quadratic degree of freedom.  Consequently, a particle assignment that
++        predicts many such modes but no corresponding heat-capacity, inelastic,
++        broadening, or sideband signatures fails this gate unless the coupling or
++        equilibration assumptions are independently shown to be invalid
++        \cite{PathriaBeale2011}.
++
++        \paragraph{Research-track pointer.}
++        \textbf{[SPECULATIVE / RESEARCH PROGRAMME].}
++        The companion research track develops the full
++        Maxwell--SST kinetic closure: phase-space distributions for knot
++        ensembles, interaction-induced mode-coupling matrices, a
++        translation/orientation/Kelvin/twist/writhe/core classification,
++        a separate knot-ensemble stress tensor, and an isotropization test on
++        $SO(3)$.
++
+     \subsection{Observable Consequences}
+         
+         \textbf{[SPECULATIVE]}:
+@@ -2299,11 +2403,21 @@
+         \end{itemize}
+     
+     \subsection{Canonical Statement}
+-        
++        \label{subsec:canon_internal_mode_statement}
++
++        \textbf{[DERIVED / CONSISTENCY PRINCIPLE].}
+         \begin{center}
+-            \textit{
+-                Any viable SST extension must include a mechanism—such as an excitation gap—that ensures exponential suppression of internal modes at atomic energy scales.
+-            }
++            \begin{minipage}{0.92\linewidth}
++                \itshape
++                Any viable SST knot assignment must account for every physically
++                coupled internal mode.  Each such mode must be shown either to
++                possess a true excitation-energy gap sufficient to suppress its
++                occupation, to couple weakly enough to satisfy empirical bounds, or
++                to remain dynamically unequilibrated on the relevant observation
++                timescale.  The same preregistered mode ledger must satisfy
++                spectroscopy and thermodynamics without post-hoc deletion of
++                coupled degrees of freedom.
++            \end{minipage}
+         \end{center}
+ 
+     \subsection{Precision electroweak bridge: lessons from the CMS \texorpdfstring{$W$}{W}-mass measurement}
+@@ -4872,6 +4986,24 @@
+             \newblock An enumeration of knots and links, and some of their algebraic properties,
+             \newblock in \emph{Computational Problems in Abstract Algebra}, Pergamon Press (1970), pp.~329--358,
+             \newblock DOI: 10.1016/B978-0-08-012975-4.50034-5.
++            \bibitem{Maxwell1860GasesI}
++            J.~Clerk Maxwell,
++            \newblock Illustrations of the dynamical theory of gases---Part I: On the motions and collisions of perfectly elastic spheres,
++            \newblock \emph{The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science}, Series~4, \textbf{19} (1860), 19--32,
++            \newblock DOI: \href{https://doi.org/10.1080/14786446008642818}{10.1080/14786446008642818}.
++
++            \bibitem{Maxwell1860GasesIIIII}
++            J.~Clerk Maxwell,
++            \newblock Illustrations of the dynamical theory of gases,
++            \newblock \emph{The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science}, Series~4, \textbf{20} (1860), 21--37,
++            \newblock DOI: \href{https://doi.org/10.1080/14786446008642902}{10.1080/14786446008642902}.
++
++            \bibitem{PathriaBeale2011}
++            R.~K. Pathria and P.~D. Beale,
++            \newblock \emph{Statistical Mechanics}, 3rd ed.,
++            \newblock Academic Press / Elsevier (2011),
++            \newblock DOI: \href{https://doi.org/10.1016/C2009-0-62310-2}{10.1016/C2009-0-62310-2}.
++
+             \bibitem{Wien1896}
+             W. Wien,
+             \newblock Ueber die Energieverteilung im Emissionsspectrum eines schwarzen K\"orpers,

@@ -30,6 +30,7 @@ from publish_canon_zenodo import (
     list_online_published,
     local_deposit_is_stale,
     mint_version_doi,
+    newest_first,
     push_version_as_draft,
     read_config_data,
     render_version_pdf,
@@ -363,14 +364,14 @@ class CanonZenodoGUI:
             for item in tree.get_children():
                 tree.delete(item)
 
-        for v in list_online_published(online):
+        for v in newest_first(list_online_published(online)):
             self.published_tree.insert('', tk.END, values=(
                 f"v{v.version}",
                 v.doi or '-',
                 v.publication_date or '-',
             ))
 
-        for v in list_online_drafts(online):
+        for v in newest_first(list_online_drafts(online)):
             version_label = v.version if is_orphan_online_version(v.version) else f"v{v.version}"
             title = (v.title or '')[:48]
             self.drafts_tree.insert(
@@ -385,7 +386,7 @@ class CanonZenodoGUI:
                 ),
             )
 
-        for v in local:
+        for v in newest_first(local):
             status = next((s for s in statuses if s.version == v.version), None)
             warn = '✗' if status and status.errors else ''
             doi_display = (v.doi or '-')[:24]
@@ -405,7 +406,7 @@ class CanonZenodoGUI:
             ))
 
         error_count = 0
-        for s in statuses:
+        for s in newest_first(statuses):
             self.compare_tree.insert('', tk.END, values=(
                 f"v{s.version}",
                 s.status,
@@ -717,6 +718,8 @@ class CanonZenodoGUI:
         preview = f"Render PDF voor v{version}?\n\n"
         if status and status.local:
             preview += f"Verwachte DOI: {status.local.doi}\n"
+            if status.local.has_pdf:
+                preview += "Bestaande PDF wordt overschreven.\n"
         preview += "\nAlleen lokaal compileren (geen Zenodo-upload)."
         if not messagebox.askyesno("Confirm Render PDF", preview):
             return

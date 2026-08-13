@@ -1,0 +1,202 @@
+--- a/SST_CANON-v0.8.34-research-track.tex
++++ b/SST_CANON-v0.8.34-research-track.tex
+@@ -2579,6 +2579,184 @@
+ curvature, and helicity contributions, the mass kernel becomes mechanically
+ inspectable rather than a single opaque coefficient.
+ 
++\subsubsection{Configuration-resolved spectroscopic response and generalized King diagnostics}
++\label{subsubsec:rt_configuration_resolved_spectroscopic_response}
++\paragraph{Status.}
++\textbf{[RESEARCH-TRACK / LINEAR-RESPONSE STRUCTURE DEFINED / ATOMIC ENERGY
++FUNCTIONAL AND SELECTION RULES OPEN].}
++The purpose of this subsection is to connect the canonical mass and topology
++functionals to precision-spectroscopy diagnostics without claiming that SST
++already derives an atomic spectrum.  The neutral-ytterbium inner-shell clock
++programme provides a useful methodological template because several transition
++channels and isotope pairs are used to expose departures from a low-rank
++factorization model \cite{IshiyamaEtAl2026Yb431}.
++
++For an SST configuration $K$, define
++\begin{align}
++    \Delta E_i^{(K)}
++    &\equiv
++    E_{i,e}^{(K)}-E_{i,g}^{(K)},
++    &
++    \nu_i^{(K)}
++    &\equiv
++    \frac{\Delta E_i^{(K)}}{h}.
++    \label{eq:rt_configuration_transition_energy_def}
++\end{align}
++Let $q_A^{(K)}$ be a preregistered set of independent configuration variables.
++The first-order response is
++\begin{align}
++    \delta\nu_i^{(K)}
++    &=
++    \frac{1}{h}
++    \sum_A
++    \frac{\partial\Delta E_i^{(K)}}{\partial q_A^{(K)}}
++    \,\delta q_A^{(K)}
++    +O(\delta q^2).
++    \label{eq:rt_configuration_spectroscopic_linear_response}
++\end{align}
++A compact admissible basis is
++\begin{align}
++    q_A^{(K)}
++    \in
++    \left\{
++        M_K,
++        I_{K,ab},
++        \Xi_K,
++        \SwirlClock,
++        \ldots
++    \right\},
++    \label{eq:rt_configuration_response_compact_basis}
++\end{align}
++where $I_{K,ab}$ is a configuration-dependent inertia tensor.  In this basis,
++$M_K$ carries the scalar rest-energy scale while $I_{K,ab}$ carries orientation-
++and anisotropy-sensitive response.  No scalar moment of inertia is presumed
++sufficient for an anisotropic transition.
++
++A resolved geometric basis may instead be used:
++\begin{align}
++    \mathcal Q_K
++    \equiv
++    \left(
++        C_K,
++        L_K,
++        \mathcal H_K,
++        k_K,
++        \Lambda_K^{\rm strut},
++        \Lambda_K^{\rm kink},
++        \SwirlClock
++    \right),
++    \label{eq:rt_configuration_response_resolved_basis}
++\end{align}
++with
++\begin{align}
++    \Lambda_K^{\rm strut}
++    &\equiv
++    \sum_{(p,q)\in\operatorname{Strut}(K)}\lambda_{pq},
++    &
++    \Lambda_K^{\rm kink}
++    &\equiv
++    \sum_{j\in\operatorname{Kink}(K)}\mu_j.
++    \label{eq:rt_configuration_contact_response_sums}
++\end{align}
++The corresponding response can be written schematically as
++\begin{align}
++    \delta\nu_i^{(K)}
++    =
++    \frac{1}{h}
++    \left[
++        \frac{\partial\Delta E_i}{\partial M_K}\,\delta M_K
++        +
++        \frac{\partial\Delta E_i}{\partial I_{K,ab}}\,\delta I_{K,ab}
++        +
++        \sum_\mu
++        \frac{\partial\Delta E_i}{\partial \mathcal Q_{K,\mu}}
++        \,\delta\mathcal Q_{K,\mu}
++    \right]
++    +O(\delta q^2).
++    \label{eq:rt_configuration_spectroscopic_resolved_response}
++\end{align}
++Repeated Cartesian indices are summed.  The response coefficients in
++Eq.~\eqref{eq:rt_configuration_spectroscopic_resolved_response} are derivatives
++of one shared transition-energy functional; they are not independent free
++coefficients to be assigned separately for every line.
++
++\paragraph{Kernel-dependency guard.}
++For the canonical kernel
++\begin{align}
++    \Xi_K
++    =
++    \left[
++        \alpha_C C_K+
++        \beta_L L_K+
++        \gamma_H\mathcal H_K
++    \right]\varphi^{-2k_K},
++\end{align}
++its variation is
++\begin{align}
++    \delta\Xi_K
++    =
++    \varphi^{-2k_K}
++    \left(
++        \alpha_C\,\delta C_K+
++        \beta_L\,\delta L_K+
++        \gamma_H\,\delta\mathcal H_K
++    \right)
++    -2\ln\varphi\,\Xi_K\,\delta k_K,
++    \label{eq:rt_configuration_kernel_variation}
++\end{align}
++when the matching coefficients are held fixed.  Therefore
++$\delta\mathcal H_K$ and $\delta\Xi_K$ are not independent directions in the
++same fit.  A calculation must choose either the compact basis
++Eq.~\eqref{eq:rt_configuration_response_compact_basis} or the resolved basis
++Eq.~\eqref{eq:rt_configuration_response_resolved_basis}, unless an explicit
++Jacobian, projection, or orthogonalization removes the redundancy.
++
++\paragraph{Generalized King diagnostic.}
++For isotope pairs $A',A$, a spectroscopy model may be organized as
++\begin{align}
++    \delta\nu_i^{A'A}
++    =
++    K_i w^{A'A}
++    +F_i\,\delta\!\left\langle r^2\right\rangle^{A'A}
++    +\sum_\mu S_{i\mu}\,\delta\mathcal Q_\mu^{A'A},
++    \label{eq:rt_sst_generalized_king_diagnostic}
++\end{align}
++where
++\begin{align}
++    \delta\mathcal Q_\mu^{A'A}
++    \equiv
++    \mathcal Q_\mu^{A'}-\mathcal Q_\mu^A.
++\end{align}
++Equation~\eqref{eq:rt_sst_generalized_king_diagnostic} is a diagnostic
++factorization, not a derived SST isotope-shift law.  A nonlinear residual means
++first that the selected low-rank basis is incomplete.  It identifies an SST
++sector only if the same preregistered $\mathcal Q_\mu$ and shared response
++functional explain multiple independent transitions and isotope pairs without
++line-by-line refitting.
++
++\paragraph{Certification gates.}
++Promotion requires all of the following:
++\begin{enumerate}
++    \item $E_{i,g}^{(K)}$ and $E_{i,e}^{(K)}$ follow from one declared SST
++    energy functional and one boundary-condition class;
++    \item the response coefficients are derivatives of that shared functional,
++    not independent parameters for each transition;
++    \item $M_K$, $\Xi_K$, $\mathcal H_K$, and contact variables are counted in
++    an explicitly independent coordinate basis;
++    \item the same configuration variables describe at least three independent
++    transition channels and more isotope pairs than free nuclear/configuration
++    directions;
++    \item selection rules and state labels are derived dynamically rather than
++    imported solely from the measured spectrum;
++    \item at least one withheld transition or isotope pair is predicted outside
++    the calibration set;
++    \item residuals are stable under numerical resolution, admissible core
++    profiles, contact-map perturbations, and uncertainty propagation.
++\end{enumerate}
++Failure of any gate blocks promotion.  In particular, high-significance King
++nonlinearity alone is not evidence for SST ontology, just as it is not by itself
++proof of a new mediator.
++
+ \subsubsection{Golden-layer factor as hyperbolic transfer parametrization}
+ \paragraph{Status.}
+ \textbf{[RESEARCH-TRACK / PARAMETRIC REWRITE].}
+@@ -12356,6 +12534,14 @@
+ \begin{thebibliography}{99}
+ 
+ 
++\bibitem{IshiyamaEtAl2026Yb431}
++T.~Ishiyama, K.~Ono, H.~Kawase, T.~Takano, R.~Asano, A.~Sunaga,
++Y.~Yamamoto, M.~Tanaka, and Y.~Takahashi,
++``Orders-of-magnitude improvement in precision spectroscopy of an inner-shell
++orbital clock transition in neutral ytterbium,''
++\emph{arXiv preprint} (2026), arXiv:2505.04154v2.
++Permalink: \href{https://arxiv.org/abs/2505.04154v2}{arXiv:2505.04154v2}.
++
+ \bibitem{KalbRamond1974}
+ M.~Kalb and P.~Ramond,
+ ``Classical direct interstring action,''

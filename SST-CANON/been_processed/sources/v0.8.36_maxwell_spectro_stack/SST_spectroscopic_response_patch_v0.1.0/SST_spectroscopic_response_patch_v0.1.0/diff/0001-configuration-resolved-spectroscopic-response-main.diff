@@ -1,0 +1,58 @@
+--- a/SST_CANON-v0.8.34.tex
++++ b/SST_CANON-v0.8.34.tex
+@@ -2094,6 +2094,55 @@
+ 
+         \textbf{[CRITICAL NOTE]} Equation~\eqref{eq:sst_master_equation} is presently a canonical synthesis formula, not yet a theorem derived from first-principles filament dynamics alone.
+ 
++        \paragraph{Configuration-resolved spectroscopic-response guard.}
++        \label{par:canon_configuration_resolved_spectroscopic_response_guard}
++        \textbf{[CANON / RESPONSE-DEPENDENCY GUARD].}
++        A transition-frequency shift associated with an SST configuration $K$ is not
++        an additional mass formula.  It is defined by the variation of a transition
++        energy,
++        \begin{align}
++            \Delta E_i^{(K)}
++            &\equiv
++            E_{i,e}^{(K)}-E_{i,g}^{(K)},
++            &
++            \nu_i^{(K)}
++            &\equiv
++            \frac{\Delta E_i^{(K)}}{h},
++            \label{eq:canon_configuration_transition_energy_def}\\
++            \delta\nu_i^{(K)}
++            &=
++            \frac{1}{h}\,\delta\!\left(\Delta E_i^{(K)}\right)
++            =
++            \frac{1}{h}
++            \sum_A
++            \frac{\partial\Delta E_i^{(K)}}{\partial q_A^{(K)}}
++            \,\delta q_A^{(K)}
++            +O(\delta q^2),
++            \label{eq:canon_configuration_spectroscopic_linear_response}
++        \end{align}
++        where $q_A^{(K)}$ denotes a declared set of independent state variables.
++        Admissible examples include $M_K$, an inertia tensor $I_{K,ab}$, resolved
++        geometric or contact variables, and the clock factor.  Equation~\eqref{eq:canon_configuration_spectroscopic_linear_response}
++        defines only the dependency structure of a future response theory.  It does
++        not presently derive atomic levels, selection rules, or transition strengths.
++
++        \textbf{[CANON / NO-DOUBLE-COUNTING RULE].}
++        Because $\mathcal H(K)$ is already contained in the canonical kernel $\Xi_K$,
++        $\delta\mathcal H_K$ and $\delta\Xi_K$ must not be treated as independent
++        fit directions unless an explicit change of variables, projection, or
++        orthogonalization is supplied.  One may use either the compressed kernel
++        response $\delta\Xi_K$ or a resolved basis such as
++        $\{\delta C_K,\delta L_K,\delta\mathcal H_K,\delta k_K\}$, but not both
++        without an independently specified dependency matrix.
++
++        \textbf{[CANON / NON-PREDICTION GUARD].}
++        The present canon contains no first-principles SST derivation of a complete
++        atomic energy functional $E_{n\ell jm}^{(K)}$.  Consequently, generalized
++        isotope-shift or King-plot residuals may be used as research diagnostics, but
++        they do not by themselves identify an SST sector or constitute a prediction
++        of atomic spectroscopy.  The corresponding response programme is retained in
++        the research track.
++
+         \textbf{[NORMALIZATION TRANSPARENCY]} With the canonical background-energy reading, $\rhoM=\rhoE/c^2=4.65949\times10^{-12}\,\mathrm{kg\,m^{-3}}$ and $\rhoM\rc^3=1.30330\times10^{-56}\,\mathrm{kg}=1.43072\times10^{-26}m_e$. Therefore an exposed electron-scale benchmark with $\Pi_K=4/\alpha$ requires a dimensionless kernel of order
+         \begin{align}
+             \Xi_{3_1}^{(e)}

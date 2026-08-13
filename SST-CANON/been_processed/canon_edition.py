@@ -478,6 +478,22 @@ EDITION_CONFIG = {
             r"certification ladder on top of v0.8.34."
         ),
     },
+    "0.8.36": {
+        "prev": "0.8.35",
+        "header": (
+            "%! v0.8.36 edition: Maxwell swirl-tonic, kinetic closure, "
+            "dynamical-field / reciprocal-stress / mechanical falsifiers, and "
+            "spectroscopic-response guards (been_processed)."
+        ),
+        "note": (
+            r"\textbf{v0.8.36} stacks the configuration-resolved spectroscopic-response "
+            r"guard, Maxwell--SST kinetic closure with a true excitation-gap ledger, "
+            r"Maxwell-blind mechanical falsifiers, reciprocal-stress audit, dynamical "
+            r"field-closure gates, and the material swirl--tonic vorticity-potential "
+            r"representation with Stokes/holonomy falsifier and material--link sector "
+            r"separation on top of v0.8.35."
+        ),
+    },
 }
 
 CANON_BASE_KEYWORDS: list[str] = [
@@ -648,6 +664,13 @@ EDITION_KEYWORDS: dict[str, list[str]] = {
         "finite-core response",
         "helicity twist bound",
         "alpha-blind calibration",
+    ],
+    "0.8.36": [
+        "swirl tonic",
+        "kinetic closure",
+        "reciprocal stress",
+        "dynamical field closure",
+        "spectroscopic response",
     ],
 }
 

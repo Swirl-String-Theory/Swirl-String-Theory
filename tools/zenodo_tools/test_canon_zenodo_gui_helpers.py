@@ -645,5 +645,61 @@ class UpdateDoiInCanonTexTests(unittest.TestCase):
             self.assertIn(rf"\newcommand{{\paperdoi}}{{{doi}}}", content)
 
 
+class NewestFirstSortTests(unittest.TestCase):
+    def test_newest_versions_first_orphans_last(self):
+        items = [
+            pc.CanonVersionInfo(version="0.8.19", source="local"),
+            pc.CanonVersionInfo(version="0.8.36", source="local"),
+            pc.CanonVersionInfo(version="0.8.35", source="local"),
+            pc.CanonVersionInfo(version="orphan-123", source="online", state="draft"),
+        ]
+        ordered = [v.version for v in pc.newest_first(items)]
+        self.assertEqual(ordered, ["0.8.36", "0.8.35", "0.8.19", "orphan-123"])
+
+
+class CanRenderOverwriteTests(unittest.TestCase):
+    def test_can_render_when_good_pdf_already_exists(self):
+        local = [
+            pc.CanonVersionInfo(
+                version="0.8.36",
+                source="local",
+                doi="10.5281/zenodo.99999999",
+                has_tex=True,
+                has_config=True,
+                has_pdf=True,
+                pdf_doi_ok=True,
+            )
+        ]
+        statuses = pc.compare_versions(local, [])
+        st = next(s for s in statuses if s.version == "0.8.36")
+        self.assertTrue(st.can_render)
+
+    def test_can_render_published_local_overwrite(self):
+        local = [
+            pc.CanonVersionInfo(
+                version="0.8.19",
+                source="local",
+                doi="10.5281/zenodo.21249056",
+                has_tex=True,
+                has_config=True,
+                has_pdf=True,
+                pdf_doi_ok=True,
+            )
+        ]
+        online = [
+            pc.CanonVersionInfo(
+                version="0.8.19",
+                source="online",
+                doi="10.5281/zenodo.21249056",
+                deposit_id="21249056",
+                state="published",
+            )
+        ]
+        statuses = pc.compare_versions(local, online)
+        st = next(s for s in statuses if s.version == "0.8.19")
+        self.assertEqual(st.status, "published")
+        self.assertTrue(st.can_render)
+
+
 if __name__ == "__main__":
     unittest.main()

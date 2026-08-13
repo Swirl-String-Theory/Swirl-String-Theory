@@ -1,0 +1,496 @@
+diff --git a/SST_CANON-v0.8.35-research-track.tex b/SST_CANON-v0.8.35-research-track.tex
+index 91ab9cb..f364e46 100644
+--- a/SST_CANON-v0.8.35-research-track.tex
++++ b/SST_CANON-v0.8.35-research-track.tex
+@@ -7003,6 +7003,427 @@ C.~Oberti and R.~L. Ricca,
+ 
+ \section{EM, Gravity, Diagnostics, Relativity, and Inertia Research Tracks}
+ 
++% ============================================================
++% Maxwell--SST Dynamical Field Closure
++% Target: v0.8.35 research track
++% ============================================================
++\subsection{Maxwell--SST Dynamical Field Closure: Transverse-Mode, Displacement-Current and Gravitational Energy-Deficit Gates}
++\label{sec:rt_maxwell_dynamical_field_closure}
++
++\subsubsection{Status, source discipline, and purpose}
++
++\textbf{[ORTHODOX HISTORICAL INPUT / SST RESEARCH-TRACK TEST].}
++Maxwell's 1865 field programme separates conduction from changing electric
++displacement, treats field energy as residing in the surrounding field, derives
++transverse propagating electromagnetic disturbances from the closed field
++system, and explicitly asks whether gravitation can be represented by a medium
++whose energy is reduced in the presence of a resultant gravitational field
++\cite{Maxwell1865DynamicalField}.  The present section adopts none of Maxwell's
++literal nineteenth-century ether microphysics.  It uses only these structural
++questions as negative tests on SST closures.
++
++The three primary questions are:
++\begin{enumerate}
++    \item does a transverse radiative branch emerge from the declared
++    unconstrained SST dynamics without applying a solenoidal projector to the
++    data being tested;
++    \item can the coarse-grained polarization and its current be reconstructed
++    from an independently resolved SST internal coordinate while satisfying
++    charge continuity on held-out data;
++    \item does one and the same positive SST Hamiltonian generate an attractive
++    interaction through a negative \emph{interaction-energy difference}, with
++    the force equal to the derivative of that energy and also to an independent
++    stress/momentum-flux reconstruction?
++\end{enumerate}
++
++\textbf{[NON-IDENTIFICATION GUARD].}
++The equal dimensions
++$[\delta p_{\rm swirl}]=[\delta\rhoE]=\mathrm{J\,m^{-3}}$ do not imply
++$\delta p_{\rm swirl}=\delta\rhoE$.  Likewise, the Maxwell displacement-current
++analogy does not identify a particular Kelvin, twist, writhe, core, or link mode
++with electric polarization before an independent coupling calculation has done
++so.
++
++\subsubsection{Gate DFC--T: no-projector transverse-mode theorem}
++\label{subsec:rt_dfc_transverse_gate}
++
++\paragraph{Reference decomposition.}
++Before imposing Eq.~\eqref{eq:div_free_Aeff}, write the effective displacement
++as a Helmholtz decomposition
++\begin{align}
++    \mathbf A_{\rm eff}
++    =
++    \mathbf A_T+\nabla\chi,
++    \qquad
++    \nabla\cdot\mathbf A_T=0.
++    \label{eq:rt_dfc_helmholtz_A}
++\end{align}
++For the existing quadratic bridge action, now interpreted temporarily on the
++unprojected field,
++\begin{align}
++    \mathcal L_{\rm rad}^{\rm unproj}
++    =
++    \frac{\rhoEff}{2}|\partial_t\mathbf A_{\rm eff}|^2
++    -
++    \frac{K_\gamma}{2}|\nabla\times\mathbf A_{\rm eff}|^2,
++    \label{eq:rt_dfc_unprojected_lagrangian}
++\end{align}
++the Euler--Lagrange equation is
++\begin{align}
++    \rhoEff\,\partial_t^2\mathbf A_{\rm eff}
++    +
++    K_\gamma\,\nabla\times(\nabla\times\mathbf A_{\rm eff})
++    =0.
++    \label{eq:rt_dfc_unprojected_eom}
++\end{align}
++The transverse and longitudinal parts therefore obey
++\begin{align}
++    \rhoEff\,\partial_t^2\mathbf A_T
++    -K_\gamma\nabla^2\mathbf A_T
++    &=0,
++    \\
++    \rhoEff\,\nabla\partial_t^2\chi
++    &=0.
++    \label{eq:rt_dfc_TL_reference_equations}
++\end{align}
++Thus the quadratic bridge itself has a finite-frequency transverse wave branch
++and only a nonpropagating longitudinal zero branch.  This calculation is a
++\textbf{reference theorem of the declared bridge action}, not a microscopic SST
++derivation.  Maxwell's own 1865 discussion similarly establishes transverse
++propagation within his field equations while explicitly noting that extra
++unobserved microscopic inertia could, in principle, alter the status of normal
++vibrations \cite{Maxwell1865DynamicalField}.
++
++\paragraph{Microscopic theorem target.}
++For every candidate microdynamical realization, compute normal modes or a
++space--time spectrum \emph{before} any transverse projection.  For a mode with
++wave vector $\mathbf k$ and complex amplitude $\widetilde{\mathbf A}$ define
++\begin{align}
++    \mathcal R_L
++    :=
++    \frac{|\widehat{\mathbf k}\cdot\widetilde{\mathbf A}|^2}
++    {|\widetilde{\mathbf A}|^2},
++    \qquad
++    \widehat{\mathbf k}:=\frac{\mathbf k}{|\mathbf k|}.
++    \label{eq:rt_dfc_longitudinal_fraction}
++\end{align}
++A propagating transverse branch is fit without fixing the speed target,
++\begin{align}
++    \omega_T^2
++    =
++    a_T k^2+b_T.
++    \label{eq:rt_dfc_blind_transverse_dispersion}
++\end{align}
++Define the dimensionless infrared gap statistic
++\begin{align}
++    g_T
++    :=
++    \frac{|b_T|}
++    {a_T k_{\rm med}^2}.
++    \label{eq:rt_dfc_transverse_gap_statistic}
++\end{align}
++The primary gate is not $\mathcal R_L=0$ for every zero-frequency coordinate;
++it is the absence of a \emph{finite-frequency longitudinal radiative branch}
++within the declared operational band.
++
++\paragraph{Preregistered DFC--T thresholds.}
++A strict campaign is valid only when its metadata declare
++\begin{align}
++    \texttt{projector\_applied=false},\qquad
++    \texttt{gauge\_reduced\_input=false},\qquad
++    \texttt{divergence\_constraint\_enforced=false}.
++\end{align}
++For modes above five percent of the maximum resolved frequency, require
++\begin{align}
++    \mathcal R_{L,\rm rad}^{\rm power}
++    &\le 10^{-3},
++    \\
++    R_T^2
++    &\ge0.995,
++    \\
++    g_T
++    &\le0.02,
++    \label{eq:rt_dfc_T_thresholds}
++\end{align}
++and reject the declared radiation closure if a longitudinally dominated mode
++$\mathcal R_L\ge0.8$ propagates with phase speed at least $0.2$ times the fitted
++transverse speed over the same infrared window.  These numerical thresholds are
++analysis tolerances, not fitted physical constants.
++
++\paragraph{Energy partition cross-check.}
++The Hamiltonian density of the existing quadratic radiation bridge is
++\begin{align}
++    \boxed{
++    \mathcal H_{\rm rad}
++    =
++    \frac{\rhoEff}{2}|\partial_t\mathbf A_{\rm eff}|^2
++    +
++    \frac{K_\gamma}{2}|\nabla\times\mathbf A_{\rm eff}|^2
++    \ge0
++    }
++    \label{eq:rt_dfc_radiation_hamiltonian}
++\end{align}
++for $\rhoEff>0$ and $K_\gamma>0$.  A monochromatic transverse solution of
++Eq.~\eqref{eq:rt_dfc_TL_reference_equations} with
++$\omega^2=(K_\gamma/\rhoEff)k^2$ satisfies the cycle-average relation
++\begin{align}
++    \left\langle
++    \frac{\rhoEff}{2}|\partial_t\mathbf A_T|^2
++    \right\rangle
++    =
++    \left\langle
++    \frac{K_\gamma}{2}|\nabla\times\mathbf A_T|^2
++    \right\rangle.
++    \label{eq:rt_dfc_wave_equipartition}
++\end{align}
++When both energy channels are independently available, the blind numerical
++cross-check requires the median absolute logarithmic ratio
++$|\ln(E_{\rm kin}/E_{\rm el})|\le0.05$.  Failure rejects the quadratic-wave
++closure for that dataset, but does not by itself reject all possible nonlinear
++SST radiation models.
++
++\subsubsection{Gate DFC--D: displacement-current micro-closure}
++\label{subsec:rt_dfc_displacement_gate}
++
++\paragraph{Candidate microscopic coordinate.}
++Let $\boldsymbol{\xi}_{\rm pol}$ be an independently resolved generalized
++polarization coordinate of a declared SST carrier or link subsystem.  Its
++physical identity must be chosen from the mode classification programme, not
++from electromagnetic target fitting.  The leading constitutive test is
++\begin{align}
++    \boxed{
++    \mathbf P_{\rm swirl}
++    =
++    \mathsf K_P\boldsymbol{\xi}_{\rm pol}
++    +O(|\boldsymbol{\xi}_{\rm pol}|^2)
++    }
++    \label{eq:rt_dfc_P_microclosure}
++\end{align}
++with a constant scalar, diagonal, or full tensor $\mathsf K_P$ selected
++\emph{before} the campaign.  For a displacement coordinate,
++$[\boldsymbol{\xi}_{\rm pol}]=\mathrm m$ and therefore
++$[\mathsf K_P]=\mathrm{C\,m^{-3}}$ when
++$[\mathbf P]=\mathrm{C\,m^{-2}}$.
++
++The associated bound charge and polarization current are
++\begin{align}
++    \rho_{\rm b}
++    &:=-\nabla\cdot\mathbf P_{\rm swirl},
++    \\
++    \mathbf J_{\rm pol}
++    &:=\partial_t\mathbf P_{\rm swirl},
++    \label{eq:rt_dfc_bound_charge_current}
++\end{align}
++which imply
++\begin{align}
++    \partial_t\rho_{\rm b}
++    +\nabla\cdot\mathbf J_{\rm pol}=0.
++    \label{eq:rt_dfc_bound_continuity}
++\end{align}
++The identity in Eq.~\eqref{eq:rt_dfc_bound_continuity} is not a useful
++falsifier if all three fields are algebraically generated from the same stored
++$\mathbf P_{\rm swirl}$.  A valid test therefore requires independent solver or
++measurement channels for $\boldsymbol{\xi}_{\rm pol}$, $\mathbf P_{\rm swirl}$,
++$\mathbf J_{\rm pol}$, and $\rho_{\rm b}$.
++
++\paragraph{Frequency-domain blind observables.}
++For a Fourier component proportional to
++$e^{i(\mathbf k\cdot\mathbf x-\omega t)}$, independently reconstructed channels
++must satisfy
++\begin{align}
++    \mathbf J_{\rm pol}
++    &\stackrel{?}{=}
++    -i\omega\mathbf P_{\rm swirl},
++    \\
++    \rho_{\rm b}
++    &\stackrel{?}{=}
++    -i\mathbf k\cdot\mathbf P_{\rm swirl},
++    \\
++    -i\omega\rho_{\rm b}
++    +i\mathbf k\cdot\mathbf J_{\rm pol}
++    &\stackrel{?}{=}0.
++    \label{eq:rt_dfc_frequency_current_relations}
++\end{align}
++Fit $\mathsf K_P$ on a deterministic $70\%$ training subset, freeze it, and
++score the remaining $30\%$ without refitting.  Define normalized residuals
++$\epsilon_P$, $\epsilon_J$, $\epsilon_\rho$, and $\epsilon_{\rm cont}$ using the
++root-mean-square norm divided by the corresponding observed RMS scale.
++
++\paragraph{Preregistered DFC--D thresholds.}
++A valid independent-channel campaign requires
++\begin{align}
++    \epsilon_P^{\rm holdout}&\le0.05,
++    &
++    \epsilon_J&\le0.05,
++    &
++    \epsilon_\rho&\le0.05,
++    &
++    \epsilon_{\rm cont}&\le0.05,
++    \label{eq:rt_dfc_D_thresholds}
++\end{align}
++plus a coefficient-stability residual not exceeding $0.10$ when the training
++set is split into two deterministic halves.  Any electromagnetic SI
++normalization target is opened only after these residuals and the fitted
++$\mathsf K_P$ have been frozen.
++
++\subsubsection{Gate DFC--G: gravitational interaction-energy deficit}
++\label{subsec:rt_dfc_gravity_energy_gate}
++
++\paragraph{Historical trigger and SST distinction.}
++Maxwell noted that a medium account of universal attraction would require the
++field energy near gravitating matter to be smaller than the undisturbed value,
++while the absolute intrinsic energy must remain positive
++\cite{Maxwell1865DynamicalField}.  SST has an independent pressure/stress
++channel, but this historical observation does \emph{not} license the local
++identity $\delta\rhoE=\delta p_{\rm swirl}$.
++
++\paragraph{Hamiltonian definition.}
++Let $\mathcal X_d$ be a fully relaxed two-source SST state with source separation
++$d$, all numerical and boundary settings held fixed, and let
++$H_{\rm SST}[\mathcal X]$ be one declared Hamiltonian functional.  Define
++\begin{align}
++    U_{\rm int}(d)
++    :=
++    H_{\rm SST}[\mathcal X_d]
++    -
++    H_{\rm SST}[\mathcal X_\infty].
++    \label{eq:rt_dfc_interaction_energy}
++\end{align}
++The radial Hamiltonian force, with increasing $d$ taken as the positive outward
++direction, is
++\begin{align}
++    F_H(d)
++    :=
++    -\frac{dU_{\rm int}}{dd}.
++    \label{eq:rt_dfc_hamiltonian_force}
++\end{align}
++An attractive energy-deficit branch therefore has
++\begin{align}
++    \boxed{
++    U_{\rm int}(d)<0,
++    \qquad
++    \frac{dU_{\rm int}}{dd}>0,
++    \qquad
++    F_H(d)<0.
++    }
++    \label{eq:rt_dfc_gravity_sign_triplet}
++\end{align}
++These are statements about an interaction-energy \emph{difference}; they do
++not require negative absolute energy density.
++
++\paragraph{Independent force channel.}
++The same states must provide an independently reconstructed force
++$F_\sigma(d)$ from a declared surface-stress, momentum-flux, or constraint-force
++calculation that does not numerically differentiate the stored total-energy
++column.  Define
++\begin{align}
++    \epsilon_F
++    :=
++    \frac{\operatorname{RMS}[F_\sigma-F_H]}
++    {\max(\operatorname{RMS}[F_\sigma],F_{\rm floor})}.
++    \label{eq:rt_dfc_force_energy_residual}
++\end{align}
++A positive absolute-energy guard additionally requires the minimum sampled
++absolute energy density to satisfy
++\begin{align}
++    \rho_{E,\min}
++    \ge
++    -10^{-10}\rho_{E,\rm scale},
++    \label{eq:rt_dfc_positive_absolute_energy_guard}
++\end{align}
++where the negative allowance is numerical roundoff tolerance only.
++
++\paragraph{Preregistered DFC--G thresholds.}
++For the finite-separation samples, require
++\begin{align}
++    \Pr[U_{\rm int}<0]&\ge0.90,
++    &
++    \Pr[dU_{\rm int}/dd>0]&\ge0.90,
++    \\
++    \Pr[F_\sigma<0]&\ge0.90,
++    &
++    \epsilon_F&\le0.10,
++    \label{eq:rt_dfc_G_thresholds}
++\end{align}
++together with Eq.~\eqref{eq:rt_dfc_positive_absolute_energy_guard}.  Failure of
++one condition rejects the declared mechanical gravity closure for that source
++family.
++
++\paragraph{Target-blind far-field exponents.}
++Before any Newtonian comparison, fit
++\begin{align}
++    |U_{\rm int}|&\propto d^{-n_U},
++    &
++    |F_\sigma|&\propto d^{-n_F}.
++    \label{eq:rt_dfc_blind_gravity_exponents}
++\end{align}
++The values $(n_U,n_F)$ are reported and hashed with the blind result but are not
++used in DFC--G pass/fail.  Only after the result is frozen may the orthodox
++inverse-distance/inverse-square targets $(1,2)$ be revealed as a secondary
++comparison.  This prevents the Newtonian exponents from entering the solver or
++fit-selection loop.
++
++\subsubsection{Frequency-dependent constitutive guard}
++
++Maxwell's historical programme also warns against extending a constitutive
++response measured at one time scale to arbitrarily rapid oscillations.  SST
++therefore records the generic possibility
++\begin{align}
++    K_\gamma&\to K_\gamma(\omega,\mathbf k),
++    &
++    \mathsf K_P&\to\mathsf K_P(\omega,\mathbf k),
++    \label{eq:rt_dfc_dispersive_constitutive_guard}
++\end{align}
++unless scale independence is separately demonstrated.  A quasi-static coil or
++material-response coefficient must not be promoted to the R-phase/optical sector
++by extrapolation alone.
++
++\subsubsection{Blindness, split discipline, and falsification logic}
++
++\begin{enumerate}
++    \item All thresholds in Eqs.~\eqref{eq:rt_dfc_T_thresholds},
++    \eqref{eq:rt_dfc_D_thresholds}, and \eqref{eq:rt_dfc_G_thresholds} are frozen
++    before opening target comparisons.
++    \item The analysis code must emit the SHA-256 hash of the preregistration
++    file and of the frozen result bundle.
++    \item Train/hold-out selection for DFC--D is deterministic from a seed stored
++    in the preregistration file; changing the seed after seeing results is a new
++    campaign.
++    \item A transverse projector, gauge-reduced eigensystem, or algebraically
++    generated ``independent'' polarization/current channel makes the relevant
++    gate \texttt{INVALID}, not \texttt{PASS}.
++    \item Per-dataset coefficient retuning after hold-out inspection is forbidden.
++    \item Passing all three primary gates validates only the tested closure.  It
++    does not derive the elementary charge, $\varepsilon_0$, $\mu_0$, $G$, or the
++    complete Standard Model from SST.
++\end{enumerate}
++
++\paragraph{Legacy-reference scale check.}
++Using the explicitly legacy-reference value
++$\rhoRef=7.0\times10^{-7}\,\mathrm{kg\,m^{-3}}$ and the calibrated
++$\vchar=1.09384563\times10^6\,\mathrm{m\,s^{-1}}$, the quadratic substrate scale
++is
++\begin{align}
++    \frac12\rhoRef\vchar{}^2
++    &=4.1877439\times10^5\ \mathrm{J\,m^{-3}},
++    \\
++    \frac14\rhoRef\vchar{}^2
++    &=2.0938720\times10^5\ \mathrm{J\,m^{-3}}.
++    \label{eq:rt_dfc_legacy_energy_scales}
++\end{align}
++The second value is the cycle-averaged kinetic or elastic half for a reference
++plane wave whose velocity-like amplitude equals $\vchar$.  Because
++$\rhoEff$ remains an unfixed effective response in the present Canon, these are
++normalization checks rather than absolute predictions.
++
++\paragraph{Child-level analogy.}
++A good wave test is like removing the training wheels from a bicycle: if the
++model stays transverse only because the code secretly holds it upright, nothing
++has been learned.  The gravity test is like checking a hill with two different
++instruments: the drop in stored energy and the measured pull must describe the
++same slope.
++
++
+ \subsection{Euler-Decomposed Swirl Gravity and Probe Transport}
+ \label{sec:appendix_euler_probe_transport}
+ 
+@@ -12908,5 +13329,11 @@ T.~Gupta, M.~Herrero-Valea, D.~Blas, E.~Barausse, N.~Cornish, K.~Yagi, and N.~Yu
+ \emph{Classical and Quantum Gravity} \textbf{38}, 195003 (2021).
+ DOI: \href{https://doi.org/10.1088/1361-6382/ac1a69}{10.1088/1361-6382/ac1a69}.
+ 
++\bibitem{Maxwell1865DynamicalField}
++J.~Clerk Maxwell,
++``A Dynamical Theory of the Electromagnetic Field,''
++\emph{Philosophical Transactions of the Royal Society of London} \textbf{155} (1865), 459--512.
++DOI: \href{https://doi.org/10.1098/rstl.1865.0008}{10.1098/rstl.1865.0008}.
++
+ \end{thebibliography}
+ \fi
+diff --git a/SST_CANON-v0.8.35.tex b/SST_CANON-v0.8.35.tex
+index efe2ebc..b597771 100644
+--- a/SST_CANON-v0.8.35.tex
++++ b/SST_CANON-v0.8.35.tex
+@@ -3224,6 +3224,16 @@ derivations and falsification tests stated above.
+             \label{eq:div_free_Aeff}
+         \end{align}
+ 
++        \textbf{[CANON / DERIVATION GUARD, v0.8.35].}
++        Equation~\eqref{eq:div_free_Aeff} selects the transverse radiation sector;
++        it is not, by itself, a derivation that the unconstrained SST microdynamics
++        has no physical longitudinal radiative branch.  The corresponding
++        no-projector theorem target, including a longitudinal null/gap test, is
++        assigned to the companion research track in
++        Sec.~\ref{sec:rt_maxwell_dynamical_field_closure}.  A numerical calculation
++        that enforces Eq.~\eqref{eq:div_free_Aeff} by projection cannot be counted as
++        evidence for that theorem.
++
+         and effective Lagrangian density
+ 
+         \begin{align}
+@@ -4920,6 +4930,17 @@ hoEff\) is independently fixed.
+         \end{align}
+         Therefore the Newtonian-looking gravitational acceleration is not fundamental curvature in SST; it is the coarse-grained acceleration produced by pressure/stress gradients in the swirl medium.
+ 
++        \textbf{[CANON / ENERGY-CLOSURE GUARD, v0.8.35].}
++        The pressure anchor does not identify a local pressure decrement with a
++        local field-energy density.  In particular,
++        $\delta p_{\mathrm{swirl}}$ and $\delta\rhoE$ have the same SI dimensions but
++        are not thereby the same constitutive quantity.  A mechanical gravity
++        closure must instead compare the same declared SST Hamiltonian between
++        separated and interacting source configurations and verify that its
++        interaction-energy derivative agrees with an independently reconstructed
++        force.  The target-blind protocol is recorded in
++        Sec.~\ref{sec:rt_maxwell_dynamical_field_closure}.
++
+         \paragraph{Clock and optical closure.}
+         The clock sector supplies the shared time-rate projection:
+         \begin{align}
+@@ -7900,6 +7921,12 @@ B.~Horn, A.~Nicolis, and R.~Penco,
+             \newblock \emph{Banach Center Publications} \textbf{42} (1998), 321--346,
+             \newblock Permalink: \href{https://eudml.org/doc/252224}{EuDML:252224}.
+ 
++            \bibitem{Maxwell1865DynamicalField}
++            J.~Clerk Maxwell,
++            \newblock A Dynamical Theory of the Electromagnetic Field,
++            \newblock \emph{Philosophical Transactions of the Royal Society of London} \textbf{155} (1865), 459--512,
++            \newblock DOI: \href{https://doi.org/10.1098/rstl.1865.0008}{10.1098/rstl.1865.0008}.
++
+ 
+             \bibitem{BertiEtAl2026BlackHoleSpectroscopy}
+             E.~Berti et al.,

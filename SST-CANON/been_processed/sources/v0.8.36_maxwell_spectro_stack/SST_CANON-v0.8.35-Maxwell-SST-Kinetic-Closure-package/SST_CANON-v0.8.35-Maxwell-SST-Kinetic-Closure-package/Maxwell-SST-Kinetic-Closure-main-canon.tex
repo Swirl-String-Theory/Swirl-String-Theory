@@ -1,0 +1,230 @@
+% ============================================================
+% Maxwell--SST main-canon patch block
+% Target: SST_CANON-v0.8.35.tex
+%
+% Placement A:
+% Replace the existing block beginning
+%   \subsection{Ungapped Spectrum: Instability}
+% through the end of the existing
+%   \subsection{Consistency Condition}
+% with the block below, then retain the subsequent
+%   \subsection{Observable Consequences}.
+% ============================================================
+    \subsection{Ungapped Spectrum: Instability}
+
+        If the internal spectrum is ungapped, arbitrarily low-energy
+        excitations are kinematically available and no universal Boltzmann
+        suppression follows from a gap alone.
+
+        \textbf{[CRITICAL / CONDITIONAL].}
+        An ungapped internal sector is generically incompatible with precision
+        spectroscopy if its modes are appreciably coupled and equilibrate on the
+        observation timescale.  Compatibility requires at least one independently
+        demonstrated suppression mechanism, for example:
+        \begin{itemize}
+            \item $|\lambda_n|\ll1$ (extremely weak observable coupling);
+            \item a sufficiently sparse or symmetry-forbidden active density of states;
+            \item $\tau_{K,a}\gg t_{\rm obs}$ for the relevant interaction
+            (dynamical freeze-out).
+        \end{itemize}
+        Thus ``ungapped'' does not by itself mean ``observably excited'', but an
+        ungapped mode may not be deleted from the ledger without a coupling and
+        timescale calculation.
+
+    \subsection{Gapped Spectrum: Conditional Decoupling Mechanism}
+        \label{subsec:canon_true_internal_gap}
+
+        \textbf{[BRIDGE / DEFINITION].}
+        A true excitation gap for knot class $K$ is an energy difference,
+        \begin{equation}
+            E_{m,n}-E_{0,n}
+            \geq
+            \Delta_K
+            >0 .
+            \label{eq:canon_true_excitation_gap}
+        \end{equation}
+
+        \textbf{[ORTHODOX INPUT / CONDITIONAL BRIDGE].}
+        If the internal states are discrete and are in thermal equilibrium at a
+        physically defined temperature $T_{\rm eff}$, their excited-state
+        occupations are Boltzmann suppressed,
+        \begin{equation}
+            \nu_{m,n}
+            \propto
+            \exp\!\left(-\frac{E_{m,n}-E_{0,n}}{k_B T_{\rm eff}}\right),
+            \label{eq:boltzmann_suppression}
+        \end{equation}
+        and therefore the leading contribution of a state separated by
+        $\Delta_K$ is exponentially small when
+        $\Delta_K/(k_BT_{\rm eff})\gg1$ \cite{PathriaBeale2011}.
+
+        \textbf{[CRITICAL NOTE].}
+        This statement is conditional on a genuine discrete energy gap and on
+        equilibration.  It is not a theorem that every nonzero SST normal-mode
+        frequency produces such a gap.
+
+    \subsection{Physical Origin of a True Gap}
+
+        \textbf{[SPECULATIVE / RESEARCH TARGET].}
+        A positive $\Delta_K$ may arise only from a mechanism that excludes
+        arbitrarily small excitations from the admissible state space, for
+        example:
+        \begin{itemize}
+            \item a discrete occupancy or mode-selection rule;
+            \item a topological barrier between admissible states;
+            \item a nonlinear activation threshold;
+            \item a finite-core transition with a derived minimum energy cost.
+        \end{itemize}
+
+        \textbf{[ORTHODOX INPUT / CANON GUARD].}
+        Curvature stiffness, torsional rigidity, and a nonzero Kelvin frequency
+        can generate a restoring force, but in a classical quadratic continuum
+        they do not by themselves imply a discrete energy gap:
+        \begin{equation}
+            \omega_{K,a}>0
+            \not\Rightarrow
+            \Delta_{K,a}>0 .
+            \label{eq:canon_gap_frequency_guard_local}
+        \end{equation}
+
+    \subsection{Dimensional Guard on Gap Estimates}
+
+        \textbf{[DERIVED / CRITICAL CORRECTION].}
+        No numerical internal-mode gap is canonized without a resolved energy
+        functional.  In particular, an expression of the form
+        \begin{equation}
+            \frac{\Gamma^2}{\xi L}
+        \end{equation}
+        is not an energy by itself, because
+        \begin{equation}
+            \left[\frac{\Gamma^2}{\xi L}\right]
+            =
+            \frac{{\rm m^4\,s^{-2}}}{{\rm m^2}}
+            =
+            {\rm m^2\,s^{-2}} .
+            \label{eq:canon_gap_dimensional_guard}
+        \end{equation}
+        A dimensionally valid gap must be computed as an actual energy
+        difference of the same declared finite-core model,
+        \begin{equation}
+            \Delta_{K,a}
+            =
+            E_K[\mathcal Q_{K,a}^{\rm exc}]
+            -
+            E_K[\mathcal Q_K^{(0)}],
+            \label{eq:canon_gap_energy_difference}
+        \end{equation}
+        or through another independently derived map with units of joules.
+        The earlier order-of-magnitude claim
+        $\Delta_K=\mathcal O(10^2\!-
+        10^3\,\mathrm{eV})$ is therefore not retained as a derived Canon result.
+
+    \subsection{Consistency Condition}
+
+        \textbf{[DERIVED / CONSISTENCY GATE].}
+        Compatibility with low-energy spectroscopy can be obtained by any
+        independently established combination of:
+        \begin{align}
+            \frac{\Delta_{K,a}}{k_BT_{\rm eff}} &\gg 1
+            &&\text{(gapped and equilibrated)},
+            \label{eq:canon_gap_freeze_condition}\\
+            |\lambda_{n;K,a}| &\ll 1
+            &&\text{(weakly coupled)},
+            \label{eq:canon_weak_mode_coupling}\\
+            \tau_{K,a} &\gg t_{\rm obs}
+            &&\text{(dynamically frozen)}.
+            \label{eq:canon_mode_frozen_condition}
+        \end{align}
+        A numerical gap is not required if the mode is demonstrably decoupled or
+        cannot equilibrate on the relevant observation timescale; conversely, a
+        nominal gap does not protect the theory if strong driven transitions
+        remain kinematically accessible.
+
+
+    \subsection{Maxwell--SST Internal-Mode Thermodynamic Guard}
+        \label{subsec:maxwell_sst_internal_mode_guard}
+
+        \paragraph{Orthodox motivation.}
+        \textbf{[ORTHODOX INPUT].}
+        Maxwell's kinetic-theory analysis separates collective translation from
+        internal rotational motion and shows that, when additional internal
+        degrees of freedom are dynamically coupled and equilibrate, they alter
+        the thermodynamic energy bookkeeping and therefore the predicted heat
+        capacity \cite{Maxwell1860GasesI,Maxwell1860GasesIIIII}.
+
+        \paragraph{SST consistency consequence.}
+        \textbf{[DERIVED / CONSISTENCY GATE].}
+        For a candidate SST knot class $K$, an internal mode $a$ is
+        phenomenologically active only if all three conditions are satisfied:
+        \begin{align}
+            \mathcal G_{K,a} &\neq 0,
+            \label{eq:canon_mode_coupling_nonzero}\\
+            E_{\rm drive} &\gtrsim \Delta_{K,a},
+            \label{eq:canon_mode_kinematic_access}\\
+            \tau_{K,a} &\lesssim t_{\rm obs},
+            \label{eq:canon_mode_equilibration_time}
+        \end{align}
+        where $\mathcal G_{K,a}$ denotes the interaction-to-mode coupling
+        amplitude, $\Delta_{K,a}$ the true excitation-energy threshold, and
+        $\tau_{K,a}$ the excitation/equilibration timescale.  Failure of any one
+        condition can freeze the mode on the relevant experimental timescale.
+
+        \paragraph{Frequency--gap distinction.}
+        \textbf{[ORTHODOX INPUT / CANON GUARD].}
+        A nonzero classical normal-mode frequency does not by itself imply a
+        nonzero excitation-energy gap:
+        \begin{equation}
+            \omega_{K,a}>0
+            \not\Rightarrow
+            \Delta_{K,a}>0 .
+            \label{eq:canon_frequency_not_gap}
+        \end{equation}
+        A classical harmonic mode with energy quadratic in its amplitude admits
+        arbitrarily small excitation energy.  Therefore a positive SST gap must
+        arise from an independently demonstrated discrete occupancy rule,
+        topological barrier, nonlinear threshold, or other mechanism that
+        forbids arbitrarily small excitation energies.  Stiffness alone is not
+        sufficient.
+
+        \paragraph{Mode-count gate.}
+        \textbf{[DERIVED / CONDITIONAL].}
+        If several ungapped internal modes are appreciably coupled and
+        equilibrate on the measurement timescale, orthodox statistical mechanics
+        assigns them an order-$k_B$ thermodynamic contribution per active
+        quadratic degree of freedom.  Consequently, a particle assignment that
+        predicts many such modes but no corresponding heat-capacity, inelastic,
+        broadening, or sideband signatures fails this gate unless the coupling or
+        equilibration assumptions are independently shown to be invalid
+        \cite{PathriaBeale2011}.
+
+        \paragraph{Research-track pointer.}
+        \textbf{[SPECULATIVE / RESEARCH PROGRAMME].}
+        The companion research track develops the full
+        Maxwell--SST kinetic closure: phase-space distributions for knot
+        ensembles, interaction-induced mode-coupling matrices, a
+        translation/orientation/Kelvin/twist/writhe/core classification,
+        a separate knot-ensemble stress tensor, and an isotropization test on
+        $SO(3)$.
+
+% ============================================================
+% Placement B:
+% Replace the existing \subsection{Canonical Statement}
+% with the block below.
+% ============================================================
+    \subsection{Canonical Statement}
+        \label{subsec:canon_internal_mode_statement}
+
+        \textbf{[DERIVED / CONSISTENCY PRINCIPLE].}
+        \begin{center}
+            \begin{minipage}{0.92\linewidth}
+                \itshape
+                Any viable SST knot assignment must account for every physically
+                coupled internal mode.  Each such mode must be shown either to
+                possess a true excitation-energy gap sufficient to suppress its
+                occupation, to couple weakly enough to satisfy empirical bounds, or
+                to remain dynamically unequilibrated on the relevant observation
+                timescale.  The same preregistered mode ledger must satisfy
+                spectroscopy and thermodynamics without post-hoc deletion of
+                coupled degrees of freedom.
+            \end{minipage}
+        \end{center}

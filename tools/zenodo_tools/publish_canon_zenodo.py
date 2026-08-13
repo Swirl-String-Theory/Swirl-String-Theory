@@ -396,6 +396,21 @@ def version_sort_key(version: str) -> tuple[int, ...]:
         return (0, 0, 0)
 
 
+def newest_first(
+    items: list,
+    *,
+    version_of=lambda x: x.version,
+) -> list:
+    """Newest canon versions first; orphan online labels stay at the bottom."""
+    return sorted(
+        items,
+        key=lambda x: (
+            1 if is_orphan_online_version(version_of(x)) else 0,
+            tuple(-p for p in version_sort_key(version_of(x))),
+        ),
+    )
+
+
 def is_canon_version_dir(name: str) -> bool:
     return bool(re.match(r'^v0\.8\.\d+$', name))
 
@@ -1093,7 +1108,7 @@ def list_bindable_local_versions(
             if online_match and online_match.state == "draft" and online_match.deposit_id != draft_deposit_id:
                 continue
         bindable.append(loc)
-    return sorted(bindable, key=lambda v: version_sort_key(v.version))
+    return newest_first(bindable)
 
 
 def compare_versions(
@@ -1115,12 +1130,8 @@ def compare_versions(
         can_render = False
         if loc:
             can_push, can_mint, errors = validate_version_for_push(ver, local, online)
-            can_render = bool(
-                loc.has_tex
-                and loc.has_config
-                and loc.doi
-                and (not loc.has_pdf or not loc.pdf_doi_ok)
-            )
+            # Re-render allowed even when a good PDF already exists (overwrite).
+            can_render = bool(loc.has_tex and loc.has_config and loc.doi)
 
         stale_pdf = bool(
             loc
@@ -1140,7 +1151,6 @@ def compare_versions(
             ):
                 can_push_metadata = True
                 can_update_config = True
-                can_render = False
                 status = 'published'
                 msg = f"v{ver} gepubliceerd — metadata kan worden bijgewerkt"
             elif on.state == 'draft':
